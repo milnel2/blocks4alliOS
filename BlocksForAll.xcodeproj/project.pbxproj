@@ -7,12 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */; };
+		F10F71691E65BFF50049F3AA /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71681E65BFF50049F3AA /* Block.swift */; };
+		F13A0AD91E68B36A00DB4C86 /* HiddenRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F13A0ACC1E68B36A00DB4C86 /* HiddenRootViewController.m */; };
+		F13A0ADA1E68B36A00DB4C86 /* HideableWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F13A0ACE1E68B36A00DB4C86 /* HideableWindow.m */; };
+		F13A0ADB1E68B36A00DB4C86 /* OBDragDropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AD11E68B36A00DB4C86 /* OBDragDropManager.m */; };
+		F13A0ADC1E68B36A00DB4C86 /* OBLongPressDragDropGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AD41E68B36A00DB4C86 /* OBLongPressDragDropGestureRecognizer.m */; };
+		F13A0ADD1E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.m in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AD61E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.m */; };
+		F13A0ADE1E68B36A00DB4C86 /* UIView+OBDropZone.m in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AD81E68B36A00DB4C86 /* UIView+OBDropZone.m */; };
+		F13A0AE11E69DF8C00DB4C86 /* BlocksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AE01E69DF8C00DB4C86 /* BlocksCollectionViewController.swift */; };
+		F13A0AE31E69F4B100DB4C86 /* BlockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AE21E69F4B100DB4C86 /* BlockCollectionViewCell.swift */; };
+		F13A0AE51E6A3A9500DB4C86 /* TrashCanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AE41E6A3A9500DB4C86 /* TrashCanViewController.swift */; };
+		F13A0AE71E6B27FB00DB4C86 /* BlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F13A0AE61E6B27FB00DB4C86 /* BlocksMenu.plist */; };
+		F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */; };
 		F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */; };
-		F18FFFB51E65B0FB0090C4B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFB41E65B0FB0090C4B6 /* ViewController.swift */; };
+		F18FFFB51E65B0FB0090C4B6 /* BlocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFB41E65B0FB0090C4B6 /* BlocksViewController.swift */; };
 		F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */; };
 		F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F18FFFB91E65B0FC0090C4B6 /* Assets.xcassets */; };
 		F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18FFFBB1E65B0FC0090C4B6 /* LaunchScreen.storyboard */; };
 		F18FFFC81E65B0FC0090C4B6 /* BlocksForAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFC71E65B0FC0090C4B6 /* BlocksForAllTests.swift */; };
+		F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,9 +40,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewController.swift; sourceTree = "<group>"; };
+		F10F71681E65BFF50049F3AA /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlocksForAll-Bridging-Header.h"; sourceTree = "<group>"; };
+		F13A0ACB1E68B36A00DB4C86 /* HiddenRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HiddenRootViewController.h; path = Classes/HiddenRootViewController.h; sourceTree = "<group>"; };
+		F13A0ACC1E68B36A00DB4C86 /* HiddenRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HiddenRootViewController.m; path = Classes/HiddenRootViewController.m; sourceTree = "<group>"; };
+		F13A0ACD1E68B36A00DB4C86 /* HideableWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HideableWindow.h; path = Classes/HideableWindow.h; sourceTree = "<group>"; };
+		F13A0ACE1E68B36A00DB4C86 /* HideableWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HideableWindow.m; path = Classes/HideableWindow.m; sourceTree = "<group>"; };
+		F13A0ACF1E68B36A00DB4C86 /* OBDragDrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBDragDrop.h; path = Classes/OBDragDrop.h; sourceTree = "<group>"; };
+		F13A0AD01E68B36A00DB4C86 /* OBDragDropManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBDragDropManager.h; path = Classes/OBDragDropManager.h; sourceTree = "<group>"; };
+		F13A0AD11E68B36A00DB4C86 /* OBDragDropManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBDragDropManager.m; path = Classes/OBDragDropManager.m; sourceTree = "<group>"; };
+		F13A0AD21E68B36A00DB4C86 /* OBDragDropProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBDragDropProtocol.h; path = Classes/OBDragDropProtocol.h; sourceTree = "<group>"; };
+		F13A0AD31E68B36A00DB4C86 /* OBLongPressDragDropGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBLongPressDragDropGestureRecognizer.h; path = Classes/OBLongPressDragDropGestureRecognizer.h; sourceTree = "<group>"; };
+		F13A0AD41E68B36A00DB4C86 /* OBLongPressDragDropGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBLongPressDragDropGestureRecognizer.m; path = Classes/OBLongPressDragDropGestureRecognizer.m; sourceTree = "<group>"; };
+		F13A0AD51E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIGestureRecognizer+OBDragDrop.h"; path = "Classes/UIGestureRecognizer+OBDragDrop.h"; sourceTree = "<group>"; };
+		F13A0AD61E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIGestureRecognizer+OBDragDrop.m"; path = "Classes/UIGestureRecognizer+OBDragDrop.m"; sourceTree = "<group>"; };
+		F13A0AD71E68B36A00DB4C86 /* UIView+OBDropZone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+OBDropZone.h"; path = "Classes/UIView+OBDropZone.h"; sourceTree = "<group>"; };
+		F13A0AD81E68B36A00DB4C86 /* UIView+OBDropZone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+OBDropZone.m"; path = "Classes/UIView+OBDropZone.m"; sourceTree = "<group>"; };
+		F13A0AE01E69DF8C00DB4C86 /* BlocksCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlocksCollectionViewController.swift; sourceTree = "<group>"; };
+		F13A0AE21E69F4B100DB4C86 /* BlockCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockCollectionViewCell.swift; sourceTree = "<group>"; };
+		F13A0AE41E6A3A9500DB4C86 /* TrashCanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashCanViewController.swift; sourceTree = "<group>"; };
+		F13A0AE61E6B27FB00DB4C86 /* BlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenu.plist; sourceTree = "<group>"; };
+		F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlocksTypeTableViewController.swift; sourceTree = "<group>"; };
 		F18FFFAF1E65B0FB0090C4B6 /* BlocksForAll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocksForAll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F18FFFB41E65B0FB0090C4B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F18FFFB41E65B0FB0090C4B6 /* BlocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksViewController.swift; sourceTree = "<group>"; };
 		F18FFFB71E65B0FC0090C4B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F18FFFB91E65B0FC0090C4B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F18FFFBC1E65B0FC0090C4B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +72,7 @@
 		F18FFFC31E65B0FC0090C4B6 /* BlocksForAllTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocksForAllTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18FFFC71E65B0FC0090C4B6 /* BlocksForAllTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksForAllTests.swift; sourceTree = "<group>"; };
 		F18FFFC91E65B0FC0090C4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +93,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F13A0ADF1E68B38800DB4C86 /* DragDrop */ = {
+			isa = PBXGroup;
+			children = (
+				F13A0ACB1E68B36A00DB4C86 /* HiddenRootViewController.h */,
+				F13A0ACC1E68B36A00DB4C86 /* HiddenRootViewController.m */,
+				F13A0ACD1E68B36A00DB4C86 /* HideableWindow.h */,
+				F13A0ACE1E68B36A00DB4C86 /* HideableWindow.m */,
+				F13A0ACF1E68B36A00DB4C86 /* OBDragDrop.h */,
+				F13A0AD01E68B36A00DB4C86 /* OBDragDropManager.h */,
+				F13A0AD11E68B36A00DB4C86 /* OBDragDropManager.m */,
+				F13A0AD21E68B36A00DB4C86 /* OBDragDropProtocol.h */,
+				F13A0AD31E68B36A00DB4C86 /* OBLongPressDragDropGestureRecognizer.h */,
+				F13A0AD41E68B36A00DB4C86 /* OBLongPressDragDropGestureRecognizer.m */,
+				F13A0AD51E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.h */,
+				F13A0AD61E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.m */,
+				F13A0AD71E68B36A00DB4C86 /* UIView+OBDropZone.h */,
+				F13A0AD81E68B36A00DB4C86 /* UIView+OBDropZone.m */,
+			);
+			name = DragDrop;
+			sourceTree = "<group>";
+		};
 		F18FFFA61E65B0FB0090C4B6 = {
 			isa = PBXGroup;
 			children = (
@@ -77,12 +135,22 @@
 		F18FFFB11E65B0FB0090C4B6 /* BlocksForAll */ = {
 			isa = PBXGroup;
 			children = (
+				F13A0ADF1E68B38800DB4C86 /* DragDrop */,
 				F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */,
-				F18FFFB41E65B0FB0090C4B6 /* ViewController.swift */,
+				F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */,
+				F18FFFB41E65B0FB0090C4B6 /* BlocksViewController.swift */,
+				F13A0AE21E69F4B100DB4C86 /* BlockCollectionViewCell.swift */,
+				F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */,
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
+				F13A0AE41E6A3A9500DB4C86 /* TrashCanViewController.swift */,
+				F13A0AE01E69DF8C00DB4C86 /* BlocksCollectionViewController.swift */,
+				F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */,
+				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
+				F10F71681E65BFF50049F3AA /* Block.swift */,
 				F18FFFB91E65B0FC0090C4B6 /* Assets.xcassets */,
 				F18FFFBB1E65B0FC0090C4B6 /* LaunchScreen.storyboard */,
 				F18FFFBE1E65B0FC0090C4B6 /* Info.plist */,
+				F13A0AE61E6B27FB00DB4C86 /* BlocksMenu.plist */,
 			);
 			path = BlocksForAll;
 			sourceTree = "<group>";
@@ -146,6 +214,7 @@
 				TargetAttributes = {
 					F18FFFAE1E65B0FB0090C4B6 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 5Z9DP5C8DQ;
 						ProvisioningStyle = Automatic;
 					};
 					F18FFFC21E65B0FC0090C4B6 = {
@@ -180,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */,
+				F13A0AE71E6B27FB00DB4C86 /* BlocksMenu.plist in Resources */,
 				F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */,
 				F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */,
 			);
@@ -199,8 +269,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F18FFFB51E65B0FB0090C4B6 /* ViewController.swift in Sources */,
+				F13A0ADE1E68B36A00DB4C86 /* UIView+OBDropZone.m in Sources */,
+				F13A0ADD1E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.m in Sources */,
+				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
+				F18FFFB51E65B0FB0090C4B6 /* BlocksViewController.swift in Sources */,
+				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
+				F13A0ADC1E68B36A00DB4C86 /* OBLongPressDragDropGestureRecognizer.m in Sources */,
+				F13A0ADA1E68B36A00DB4C86 /* HideableWindow.m in Sources */,
+				F13A0AE51E6A3A9500DB4C86 /* TrashCanViewController.swift in Sources */,
+				F13A0AE11E69DF8C00DB4C86 /* BlocksCollectionViewController.swift in Sources */,
+				F13A0ADB1E68B36A00DB4C86 /* OBDragDropManager.m in Sources */,
+				F13A0AE31E69F4B100DB4C86 /* BlockCollectionViewCell.swift in Sources */,
+				F13A0AD91E68B36A00DB4C86 /* HiddenRootViewController.m in Sources */,
+				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
+				F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,11 +422,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5Z9DP5C8DQ;
 				INFOPLIST_FILE = BlocksForAll/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.uw.milnel2.BlocksForAll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -351,11 +437,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5Z9DP5C8DQ;
 				INFOPLIST_FILE = BlocksForAll/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.uw.milnel2.BlocksForAll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -406,6 +495,7 @@
 				F18FFFCE1E65B0FC0090C4B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F18FFFCF1E65B0FC0090C4B6 /* Build configuration list for PBXNativeTarget "BlocksForAllTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +504,7 @@
 				F18FFFD11E65B0FC0090C4B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
