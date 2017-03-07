@@ -143,7 +143,7 @@ class BlockTableViewController: UITableViewController, OBOvumSource {
             if(sView.nameLabel.text!.contains("Repeat")){
                 twoBlocks = true
             }
-            ovum.dataObject = Block(name: sView.nameLabel.text!, color: sView.blockView.backgroundColor!, double: twoBlocks)
+            ovum.dataObject = [Block(name: sView.nameLabel.text!, color: sView.blockView.backgroundColor!, double: twoBlocks)]
         }else{
             ovum.dataObject = sourceView.backgroundColor
         }

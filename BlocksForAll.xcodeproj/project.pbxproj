@@ -20,6 +20,7 @@
 		F13A0AE51E6A3A9500DB4C86 /* TrashCanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AE41E6A3A9500DB4C86 /* TrashCanViewController.swift */; };
 		F13A0AE71E6B27FB00DB4C86 /* BlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F13A0AE61E6B27FB00DB4C86 /* BlocksMenu.plist */; };
 		F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */; };
+		F13A0AEB1E6E733200DB4C86 /* CustomViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AEA1E6E733200DB4C86 /* CustomViewFlowLayout.swift */; };
 		F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */; };
 		F18FFFB51E65B0FB0090C4B6 /* BlocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFB41E65B0FB0090C4B6 /* BlocksViewController.swift */; };
 		F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */; };
@@ -62,6 +63,7 @@
 		F13A0AE41E6A3A9500DB4C86 /* TrashCanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashCanViewController.swift; sourceTree = "<group>"; };
 		F13A0AE61E6B27FB00DB4C86 /* BlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenu.plist; sourceTree = "<group>"; };
 		F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlocksTypeTableViewController.swift; sourceTree = "<group>"; };
+		F13A0AEA1E6E733200DB4C86 /* CustomViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewFlowLayout.swift; sourceTree = "<group>"; };
 		F18FFFAF1E65B0FB0090C4B6 /* BlocksForAll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocksForAll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18FFFB41E65B0FB0090C4B6 /* BlocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */,
 				F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */,
 				F18FFFB41E65B0FB0090C4B6 /* BlocksViewController.swift */,
+				F13A0AEA1E6E733200DB4C86 /* CustomViewFlowLayout.swift */,
 				F13A0AE21E69F4B100DB4C86 /* BlockCollectionViewCell.swift */,
 				F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */,
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F13A0ADE1E68B36A00DB4C86 /* UIView+OBDropZone.m in Sources */,
+				F13A0AEB1E6E733200DB4C86 /* CustomViewFlowLayout.swift in Sources */,
 				F13A0ADD1E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.m in Sources */,
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
 				F18FFFB51E65B0FB0090C4B6 /* BlocksViewController.swift in Sources */,
