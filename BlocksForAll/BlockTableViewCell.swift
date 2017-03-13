@@ -14,6 +14,8 @@ class BlockTableViewCell: UITableViewCell {
     @IBOutlet weak var blockView: UIView!
     
     @IBOutlet weak var nameLabel: UILabel!
+    
+    var block: Block?
 
 
     override func awakeFromNib() {

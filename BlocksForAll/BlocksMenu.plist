@@ -52,7 +52,7 @@
 		<array>
 			<dict>
 				<key>name</key>
-				<string>Repeat Forever</string>
+				<string>Repeat 3 Times</string>
 				<key>color</key>
 				<string>#FFA500</string>
 				<key>double</key>

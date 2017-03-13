@@ -54,6 +54,7 @@ class BlocksTypeTableViewController: UITableViewController {
        if let blockType = blockTypes.object(at: indexPath.row) as? NSDictionary{
             cell.textLabel?.text = blockType.object(forKey: "type") as? String
             cell.textLabel?.textColor = UIColor.white
+            cell.textLabel?.textAlignment = .center
             if let colorString = blockType.object(forKey: "color") as? String{
                 print(colorString)
                 cell.backgroundColor = UIColor.colorFrom(hexString: colorString)
@@ -98,6 +99,14 @@ class BlocksTypeTableViewController: UITableViewController {
         return true
     }
     */
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //only for I3
+        for view in (tableView.superview?.subviews)!{
+            if let blocksView = view as? I3BlockTableViewController{
+                blocksView.typeIndex = indexPath.row
+            }
+        }
+    }
 
     
     // MARK: - Navigation
@@ -110,9 +119,12 @@ class BlocksTypeTableViewController: UITableViewController {
             //if let blockCell = sender as?
             myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
         }
+        if let myDestination = segue.destination as? I3BlockTableViewController{
+            //if let blockCell = sender as?
+            myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
+        }
         // Pass the selected object to the new view controller.
     }
-    
 
 }
 

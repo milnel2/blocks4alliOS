@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -70,6 +71,16 @@ class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollec
             
             //don't need to do anything if trashed, already removed from workspace
             if(!trashed){
+                //change for beginning
+                var announcement = ""
+                if(index != 0){
+                    let myBlock = blocksStack[index-1]
+                    announcement = blocks[0].name + " placed after " + myBlock.name
+                }else{
+                    announcement = blocks[0].name + " placed at beginning"
+                }
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                
                 //add block to stack
                 if(blocks[0].ID == nil){
                     blocks[0].ID = count
@@ -263,13 +274,40 @@ class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollec
             myView.removeFromSuperview()
         }
         
+        
+        //THIS SHOULD WORK FOR SECOND VERSION OF PROGRAM STRUCTURE
+        var blocksToAdd = [Block]()
+        
+        //check if block is nested (or nested multiple times)
+        for i in 0...indexPath.row {
+            if blocksStack[i].double {
+                if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
+                    if(i != indexPath.row){
+                        blocksToAdd.append(blocksStack[i])
+                    }
+                }else{
+                    blocksToAdd.removeLast()
+                }
+            }
+        }
+        blocksToAdd.reverse()
+        
         let block = blocksStack[indexPath.row]
+        
+        var accessibilityLabel = block.name
+        var spearCon = ""
+        for b in blocksToAdd{
+            spearCon += " r "
+            accessibilityLabel += " inside " + b.name
+        }
+        accessibilityLabel = spearCon + accessibilityLabel
         
         let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockWidth))
         myLabel.text = block.name
         myLabel.textAlignment = .center
         myLabel.textColor = UIColor.white
         myLabel.numberOfLines = 0
+        myLabel.accessibilityLabel = accessibilityLabel
         cell.addSubview(myLabel)
         
         cell.backgroundColor = block.color
@@ -386,10 +424,35 @@ class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollec
             let recognizer = manager?.createDragDropGestureRecognizer(with: UIPanGestureRecognizer.classForCoder(), source: self)
             //let recognizer = manager?.createLongPressDragDropGestureRecognizer(with: self)
             cell.addGestureRecognizer(recognizer!)
+            
+            //ADDED TO FAKE VOICEOVER
+            /*
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_sender:)))
+            //tap.delegate = self
+            cell.addGestureRecognizer(tap)
+            
+            //let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_sender:)))
+            //cell.addGestureRecognizer(pan)
+            //cell.accessibilityTraits = accessibility
+            cell.isUserInteractionEnabled = true
+ */
         }
         
         return cell
     }
+    
+    func handleSingleTap(_sender: UITapGestureRecognizer){
+        if let myView = _sender.view as? BlockCollectionViewCell{
+            // create a sound ID, in this case its the tweet sound.
+            let systemSoundID: SystemSoundID = 1104
+            
+            // to play sound
+            AudioServicesPlaySystemSound (systemSoundID)
+            
+            print(myView.labelView.text ?? "nope")
+        }
+    }
+    
     
     // MARK: UICollectionViewDelegate
     
