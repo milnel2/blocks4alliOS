@@ -74,64 +74,15 @@ class I3BlockTableViewController: UITableViewController {
         
         cell.accessibilityLabel = block.name
         cell.accessibilityHint = "Double tap to add block to selected spot in workspace"
-        //cell.blockView.
-        //cell.blockView.backgroundColor = UIColor.brown
-        // Configure the cell...
-        // Drag drop with long press gesture
-        //
-        // Be careful with attaching gesture recognizers inside tableView:cellForRowAtIndexPath: as cells
-        // get reused. Add a check to prevent multiple gesture recognizers from being added to the same cell.
-        // The below check is crude but works; you may need something more specific or elegant.
-       /* if (cell.gestureRecognizers == nil || cell.gestureRecognizers?.count == 0) {
-            let manager = OBDragDropManager.shared()
-            let recognizer = manager?.createDragDropGestureRecognizer(with: UIPanGestureRecognizer.classForCoder(), source: self)
-            //let recognizer = manager?.createLongPressDragDropGestureRecognizer(with: self)
-            cell.addGestureRecognizer(recognizer!)
-            /*OBDragDropManager *dragDropManager = [OBDragDropManager sharedManager];
-             UIGestureRecognizer *recognizer = [dragDropManager createLongPressDragDropGestureRecognizerWithSource:self];
-             [cell addGestureRecognizer:recognizer];*/
-        }*/
-        
-        
+
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let height = tableView.bounds.height/CGFloat(blocks.count)
+        return height
+    }
 
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
     
     // MARK: - Navigation
     
