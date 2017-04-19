@@ -82,19 +82,6 @@ class I4CollectionViewController: UICollectionViewController {
                 }
             }
         }
-        /*var count = 0
-        for b in blocksToAdd{
-            let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
-            //let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: -count*(blockHeight), width: blockWidth+2*blockSpacing, height: blockHeight))
-            myView.accessibilityLabel = "Inside " + b.name
-            myView.text = "Inside " + b.name
-            myView.textAlignment = .center
-            myView.textColor = UIColor.white
-            myView.numberOfLines = 0
-            myView.backgroundColor = b.color
-            cell.addSubview(myView)
-            count += 1
-        }*/
         
         let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockHeight))
         //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))

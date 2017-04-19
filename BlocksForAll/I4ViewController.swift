@@ -14,6 +14,7 @@ class I4ViewController: UIViewController {
     var blockToAdd: Block?
     //var indexToAdd: Int?
     var count = 0
+    var addingBlockFromWorkspace = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,8 @@ class I4ViewController: UIViewController {
             if blockToAdd?.name == "Choose Block from Workspace"{
                 //pick a block from workspace
                 print("Choosing Block From Workspace")
+                addBlockFromWorkspace(at: indexToAdd4)
+                addingBlockFromWorkspace = true
             }else if blockToAdd?.name == "Cancel"{
                 //pick a block from workspace
                 print("Do nothing")
@@ -50,6 +53,19 @@ class I4ViewController: UIViewController {
             }
         }
         indexToAdd4 = 0
+    }
+    
+    func addBlockFromWorkspace(at indexToAdd: Int){
+        //audio to tell you are chosing a block to add there
+        let announcement = "Select which block you want to move here"
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+        
+        //check to make sure that you are adding a block somewhere new, allow option for block already there
+        
+        
+        
+        addingBlockFromWorkspace = false
+
     }
     
     override func didReceiveMemoryWarning() {
