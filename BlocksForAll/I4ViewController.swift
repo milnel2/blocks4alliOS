@@ -12,7 +12,6 @@ class I4ViewController: UIViewController {
     
     var blocksProgram: UICollectionView?
     var blockToAdd: Block?
-    //var indexToAdd: Int?
     var count = 0
     var addingBlockFromWorkspace = false
     
@@ -85,7 +84,10 @@ class I4ViewController: UIViewController {
     // Accessing the UICollectionView in container
     var containerViewController: UICollectionViewController?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // you can set this name in 'segue.embed' in storyboard
+        if let myDestination = segue.destination as? I3BlocksTypeTableViewController{
+            myDestination.sendingInterface = 4
+        }
+        
         if segue.identifier == "I3StackedCollectionViewControllerIdentifier" {
             if let connectContainerViewController = segue.destination as? UICollectionViewController{
                 containerViewController = connectContainerViewController

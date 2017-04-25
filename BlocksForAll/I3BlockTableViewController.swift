@@ -90,7 +90,7 @@ class I3BlockTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // Get the new view controller using segue.destinationViewController.
-        if let myDestination = segue.destination as? Interface3ViewController{
+        if let myDestination = segue.destination as? I3ViewController{
             //if let blockCell = sender as?
             if let blockCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as? BlockTableViewCell{
                 myDestination.blockToAdd = blockCell.block

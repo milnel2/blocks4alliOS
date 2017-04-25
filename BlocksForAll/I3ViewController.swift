@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Interface3ViewController: UIViewController {
+class I3ViewController: UIViewController {
     
     var blocksProgram: UICollectionView?
     var blockToAdd: Block?

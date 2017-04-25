@@ -12,6 +12,8 @@ import AVFoundation
 
 class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    //@IBOutlet weak var playButton: UIButton!
+    
     private let collectionReuseIdentifier = "BlockCell"
     
     //update these as collection view changes
@@ -32,6 +34,7 @@ class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollec
 
     @IBOutlet weak var trashcanView: UIView!
     
+    //collection of blocks that are part of your program
     var blocksStack = [Block]()
     var blocksBeingMoved = [Block]()
 
@@ -46,6 +49,14 @@ class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollec
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // run code
+    @IBAction func playButtonClicked(_ sender: Any) {
+        for block in blocksStack{
+            print(block.name)
+            //TODO add repeat blocks
+        }
     }
     
     // MARK: - Drag and Drop Methods
