@@ -11,6 +11,7 @@ import UIKit
 class I3BlocksTypeTableViewController: UITableViewController {
     var blockDict = NSArray()
     var blockTypes = [Block]()
+    var sendingInterface = 0 //which interface called this controller into existance?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,17 +85,14 @@ class I3BlocksTypeTableViewController: UITableViewController {
         
         // Get the new view controller using segue.destinationViewController.
         if let myDestination = segue.destination as? BlockTableViewController{
-            //if let blockCell = sender as?
             myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
         }
         if let myDestination = segue.destination as? I3BlockTableViewController{
-            //if let blockCell = sender as?
             myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
         }
         
         // Get the new view controller using segue.destinationViewController.
-        if let myDestination = segue.destination as? Interface3ViewController{
-            //if let blockCell = sender as?
+        if let myDestination = segue.destination as? I3ViewController{
             if let blockCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as? BlockTableViewCell{
                 myDestination.blockToAdd = blockCell.block
             }
@@ -103,7 +101,6 @@ class I3BlocksTypeTableViewController: UITableViewController {
         
         // Get the new view controller using segue.destinationViewController.
         if let myDestination = segue.destination as? I4ViewController{
-            //if let blockCell = sender as?
             if let blockCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as? BlockTableViewCell{
                 myDestination.blockToAdd = blockCell.block
             }
@@ -129,10 +126,12 @@ class I3BlocksTypeTableViewController: UITableViewController {
             }
         }
         
-        guard let workspaceblock = Block(name: "Choose Block from Workspace", color: UIColor.darkGray, double: false) else {
-            fatalError("Unable to instantiate block")
+        if (sendingInterface == 4 && blocksStack4.count >= 2) || (sendingInterface == 3 && blocksStack3.count >= 2) {
+            guard let workspaceblock = Block(name: "Choose Block from Workspace", color: UIColor.darkGray, double: false) else {
+                fatalError("Unable to instantiate block")
+            }
+            blockTypes += [workspaceblock]
         }
-        blockTypes += [workspaceblock]
         
         guard let cancelBlock = Block(name: "Cancel", color: UIColor.red, double: false) else {
             fatalError("Unable to instantiate block")

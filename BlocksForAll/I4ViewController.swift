@@ -12,8 +12,8 @@ class I4ViewController: UIViewController {
     
     var blocksProgram: UICollectionView?
     var blockToAdd: Block?
-    //var indexToAdd: Int?
     var count = 0
+    var addingBlockFromWorkspace = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,8 @@ class I4ViewController: UIViewController {
             if blockToAdd?.name == "Choose Block from Workspace"{
                 //pick a block from workspace
                 print("Choosing Block From Workspace")
+                addBlockFromWorkspace(at: indexToAdd4)
+                addingBlockFromWorkspace = true
             }else if blockToAdd?.name == "Cancel"{
                 //pick a block from workspace
                 print("Do nothing")
@@ -52,6 +54,19 @@ class I4ViewController: UIViewController {
         indexToAdd4 = 0
     }
     
+    func addBlockFromWorkspace(at indexToAdd: Int){
+        //audio to tell you are chosing a block to add there
+        let announcement = "Select which block you want to move here"
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+        
+        //check to make sure that you are adding a block somewhere new, allow option for block already there
+        
+        
+        
+        addingBlockFromWorkspace = false
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -69,7 +84,10 @@ class I4ViewController: UIViewController {
     // Accessing the UICollectionView in container
     var containerViewController: UICollectionViewController?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // you can set this name in 'segue.embed' in storyboard
+        if let myDestination = segue.destination as? I3BlocksTypeTableViewController{
+            myDestination.sendingInterface = 4
+        }
+        
         if segue.identifier == "I3StackedCollectionViewControllerIdentifier" {
             if let connectContainerViewController = segue.destination as? UICollectionViewController{
                 containerViewController = connectContainerViewController

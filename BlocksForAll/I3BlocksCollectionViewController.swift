@@ -133,7 +133,7 @@ class I3BlocksCollectionViewController: UICollectionViewController {
     func addBlock(_sender: UIButton){
         if let blockView = _sender.superview as? I3BlockCollectionViewCell{
             indexToAdd3 = (collectionView?.indexPath(for: blockView)?.row)! + 1
-            if let parentViewController = self.parent as? Interface3ViewController{
+            if let parentViewController = self.parent as? I3ViewController{
                 parentViewController.performSegue(withIdentifier: "addNewBlockSegue", sender: parentViewController)
             }
         }

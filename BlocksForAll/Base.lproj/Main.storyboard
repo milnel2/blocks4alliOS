@@ -58,13 +58,51 @@
                                     <segue destination="MnZ-tE-mER" kind="show" id="x0R-41-axD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bed-2B-QED">
+                                <rect key="frame" x="418" y="494" width="188" height="101"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Manage Robots"/>
+                                <connections>
+                                    <segue destination="XOJ-Tu-hH8" kind="popoverPresentation" popoverAnchorView="bed-2B-QED" id="rea-JL-nru">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVo-bF-iCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1269" y="-489"/>
+            <point key="canvasLocation" x="-1269.140625" y="-489.0625"/>
+        </scene>
+        <!--Robot Table View Controller-->
+        <scene sceneID="c6j-qc-ZGN">
+            <objects>
+                <tableViewController id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="robotCell" id="KUQ-1B-5Sg">
+                                <rect key="frame" x="0.0" y="28" width="1024" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KUQ-1B-5Sg" id="ZfT-J5-i3d">
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="XOJ-Tu-hH8" id="WdW-I4-6kU"/>
+                            <outlet property="delegate" destination="XOJ-Tu-hH8" id="477-tl-JEY"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QXa-OY-u2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1269" y="477"/>
         </scene>
         <!--Blocks View Controller-->
         <scene sceneID="E2M-WH-gaJ">
@@ -146,6 +184,9 @@
                                 <state key="normal" backgroundImage="GreenArrow">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="playButtonClicked:" destination="8vk-Lh-kc5" eventType="touchUpInside" id="cFh-UC-nMt"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -379,10 +420,10 @@
             </objects>
             <point key="canvasLocation" x="790" y="-394"/>
         </scene>
-        <!--Interface3 View Controller-->
+        <!--View Controller-->
         <scene sceneID="MaE-TA-xuZ">
             <objects>
-                <viewController id="ald-X8-vwO" customClass="Interface3ViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ald-X8-vwO" customClass="I3ViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yyd-Ct-17Z"/>
                         <viewControllerLayoutGuide type="bottom" id="9cV-iP-pxX"/>
@@ -452,7 +493,7 @@
         <scene sceneID="FLG-CK-bpP">
             <objects>
                 <collectionViewController id="r1y-wO-bzE" customClass="I3BlocksCollectionViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="iZT-hJ-7kC">
+                    <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="iZT-hJ-7kC">
                         <rect key="frame" x="0.0" y="0.0" width="816" height="101"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -701,7 +742,41 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9J-AD-2AY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2106" y="1448"/>
+            <point key="canvasLocation" x="1915" y="1448"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="OoF-hF-avm">
+            <objects>
+                <collectionViewController id="nkO-o1-NoB" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="azV-zS-zOj">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hhb-9H-gYl">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="yNm-7j-XXv">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="nkO-o1-NoB" id="TOF-UZ-qo7"/>
+                            <outlet property="delegate" destination="nkO-o1-NoB" id="bwd-l1-IbX"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iqq-nj-8qE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2691" y="877"/>
         </scene>
         <!--Block Table View Controller-->
         <scene sceneID="VeN-HK-stM">
@@ -762,13 +837,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZZ-Ld-zaB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3529" y="1384"/>
+            <point key="canvasLocation" x="3470" y="1530"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="NNp-UM-tES">
             <objects>
                 <collectionViewController id="xPy-8q-KEK" customClass="I4CollectionViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="h3e-C0-e2H">
+                    <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="h3e-C0-e2H">
                         <rect key="frame" x="0.0" y="0.0" width="816" height="101"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -834,7 +909,11 @@
         <image name="Trashcan" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="CUd-15-QeD"/>
         <segue reference="RJl-zh-XnE"/>
+        <segue reference="Thz-Wt-y9L"/>
+        <segue reference="x0R-41-axD"/>
+        <segue reference="oEn-tm-4zK"/>
         <segue reference="uz9-Qf-9Mr"/>
         <segue reference="Thz-Wt-y9L"/>
         <segue reference="x0R-41-axD"/>
