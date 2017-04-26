@@ -64,7 +64,10 @@ class I3BlocksTypeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row >= blockDict.count{
+        if blockTypes[indexPath.row].name == "Choose Block from Workspace" {
+            self.performSegue(withIdentifier: "choseBlockFromWorkspaceSegue", sender: self)
+        }
+        else if indexPath.row >= blockDict.count{
             self.performSegue(withIdentifier: "cancelSegue", sender: self)
         }else{
             self.performSegue(withIdentifier: "blockTypeSegue", sender: self)
@@ -89,6 +92,7 @@ class I3BlocksTypeTableViewController: UITableViewController {
         }
         if let myDestination = segue.destination as? I3BlockTableViewController{
             myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
+            myDestination.sendingInterface = sendingInterface
         }
         
         // Get the new view controller using segue.destinationViewController.

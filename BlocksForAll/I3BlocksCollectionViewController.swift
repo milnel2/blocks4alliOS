@@ -8,13 +8,13 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
 var blocksStack3 = [Block]()
 var indexToAdd3 = 0
 
 
 class I3BlocksCollectionViewController: UICollectionViewController {
     
+    //private let reuseIdentifier = "Cell"
     //update these as collection view changes
     private let blockWidth = 90
     private let blockHeight = 100

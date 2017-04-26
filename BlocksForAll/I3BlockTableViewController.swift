@@ -14,6 +14,7 @@ class I3BlockTableViewController: UITableViewController {
     var blocks = [Block]()
     var blockTypes = NSArray()
     var typeIndex: Int! = 0
+    var sendingInterface = 0
     
     //update these as collection view changes
     private let blockWidth = 100
@@ -135,10 +136,12 @@ class I3BlockTableViewController: UITableViewController {
             }
             
             //add Cancel and Choose from Workspace Blocks
-            guard let workspaceblock = Block(name: "Choose Block from Workspace", color: UIColor.darkGray, double: false) else {
-                fatalError("Unable to instantiate block")
+            if (sendingInterface == 4 && blocksStack4.count >= 2) || (sendingInterface == 3 && blocksStack3.count >= 2) {
+                guard let workspaceblock = Block(name: "Choose Block from Workspace", color: UIColor.darkGray, double: false) else {
+                    fatalError("Unable to instantiate block")
+                }
+                blocks += [workspaceblock]
             }
-            blocks += [workspaceblock]
             
             guard let cancelBlock = Block(name: "Cancel", color: UIColor.red, double: false) else {
                 fatalError("Unable to instantiate block")

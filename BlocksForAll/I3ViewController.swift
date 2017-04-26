@@ -69,6 +69,9 @@ class I3ViewController: UIViewController {
     // Accessing the UICollectionView in container
     var containerViewController: UICollectionViewController?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let myDestination = segue.destination as? I3BlocksTypeTableViewController{
+            myDestination.sendingInterface = 3
+        }
         // you can set this name in 'segue.embed' in storyboard
         if segue.identifier == "I3StackedCollectionViewControllerIdentifier" {
             if let connectContainerViewController = segue.destination as? UICollectionViewController{
