@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 
-class BlocksViewController: RobotControlViewController, OBDropZone, OBOvumSource, UICollectionViewDataSource, UICollectionViewDelegate {
+class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumSource, UICollectionViewDataSource, UICollectionViewDelegate {
     
     //@IBOutlet weak var playButton: UIButton!
     
@@ -32,8 +32,6 @@ class BlocksViewController: RobotControlViewController, OBDropZone, OBOvumSource
     
     //@IBOutlet weak var blocksProgram: UIStackView!
     @IBOutlet weak var blocksProgram: UICollectionView!
-
-    @IBOutlet weak var trashcanView: UIView!
     
     //collection of blocks that are part of your program
 
@@ -462,50 +460,22 @@ class BlocksViewController: RobotControlViewController, OBDropZone, OBOvumSource
         return cell
     }
     
+    func playSound(){
+        // create a sound ID, in this case its the tweet sound.
+        let systemSoundID: SystemSoundID = 1104
+        
+        // to play sound
+        AudioServicesPlaySystemSound (systemSoundID)
+    }
+    
     func handleSingleTap(_sender: UITapGestureRecognizer){
         if let myView = _sender.view as? BlockCollectionViewCell{
             // create a sound ID, in this case its the tweet sound.
-            let systemSoundID: SystemSoundID = 1104
+            playSound()
             
-            // to play sound
-            AudioServicesPlaySystemSound (systemSoundID)
-            
-            print(myView.labelView.text ?? "nope")
+            //print(myView.labelView.text ?? "nope")
         }
     }
-    
-    
-    // MARK: UICollectionViewDelegate
-    
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
-     }
-     */
-
 
 }
 

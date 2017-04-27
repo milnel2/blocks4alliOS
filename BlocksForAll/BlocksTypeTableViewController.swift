@@ -63,16 +63,6 @@ class BlocksTypeTableViewController: UITableViewController {
         return cell
     }
     
-/*
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //only for I3
-        for view in (tableView.superview?.subviews)!{
-            if let blocksView = view as? I3BlockTableViewController{
-                blocksView.typeIndex = indexPath.row
-            }
-        }
-    }
-*/
     
     // MARK: - Navigation
 
@@ -80,15 +70,12 @@ class BlocksTypeTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        // Letting destination controller know which blocks type was picked
         if let myDestination = segue.destination as? BlockTableViewController{
             //if let blockCell = sender as?
             myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
         }
-        if let myDestination = segue.destination as? I3BlockTableViewController{
-            //if let blockCell = sender as?
-            myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
-        }
-        // Pass the selected object to the new view controller.
     }
 
 }

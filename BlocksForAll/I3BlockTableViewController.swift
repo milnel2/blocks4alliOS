@@ -91,7 +91,7 @@ class I3BlockTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // Get the new view controller using segue.destinationViewController.
-        if let myDestination = segue.destination as? I3ViewController{
+        if let myDestination = segue.destination as? PlaceholderViewController{
             //if let blockCell = sender as?
             if let blockCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as? BlockTableViewCell{
                 myDestination.blockToAdd = blockCell.block
@@ -136,7 +136,7 @@ class I3BlockTableViewController: UITableViewController {
             }
             
             //add Cancel and Choose from Workspace Blocks
-            if (sendingInterface == 4 && blocksStack4.count >= 2) || (sendingInterface == 3 && blocksStack3.count >= 2) {
+            if (sendingInterface == 4 && blocksStack4.count >= 2) || (sendingInterface == 3 && blocksStack.count >= 2) {
                 guard let workspaceblock = Block(name: "Choose Block from Workspace", color: UIColor.darkGray, double: false) else {
                     fatalError("Unable to instantiate block")
                 }

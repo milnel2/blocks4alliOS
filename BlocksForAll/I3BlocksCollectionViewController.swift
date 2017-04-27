@@ -8,12 +8,12 @@
 
 import UIKit
 
-var blocksStack3 = [Block]()
+//var blocksStack3 = [Block]()
 var indexToAdd3 = 0
 
 
 class I3BlocksCollectionViewController: UICollectionViewController {
-    
+    var blocksStack3 = [Block]()
     //private let reuseIdentifier = "Cell"
     //update these as collection view changes
     private let blockWidth = 90
@@ -133,7 +133,7 @@ class I3BlocksCollectionViewController: UICollectionViewController {
     func addBlock(_sender: UIButton){
         if let blockView = _sender.superview as? I3BlockCollectionViewCell{
             indexToAdd3 = (collectionView?.indexPath(for: blockView)?.row)! + 1
-            if let parentViewController = self.parent as? I3ViewController{
+            if let parentViewController = self.parent as? PlaceholderViewController{
                 parentViewController.performSegue(withIdentifier: "addNewBlockSegue", sender: parentViewController)
             }
         }

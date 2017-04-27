@@ -53,7 +53,7 @@ class I3ChooseBlockCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return blocksStack3.count + 1
+        return blocksStack.count + 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -64,17 +64,17 @@ class I3ChooseBlockCollectionViewController: UICollectionViewController {
             myView.removeFromSuperview()
         }
         
-        if indexPath.row < blocksStack3.count {
-            let block = blocksStack3[indexPath.row]
+        if indexPath.row < blocksStack.count {
+            let block = blocksStack[indexPath.row]
         
             var blocksToAdd = [Block]()
             
             //check if block is nested (or nested multiple times)
             for i in 0...indexPath.row {
-                if blocksStack3[i].double {
-                    if(blocksStack3[i].ID! < blocksStack3[i].counterpartID!){
+                if blocksStack[i].double {
+                    if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
                         if(i != indexPath.row){
-                            blocksToAdd.append(blocksStack3[i])
+                            blocksToAdd.append(blocksStack[i])
                         }
                     }else{
                         blocksToAdd.removeLast()
