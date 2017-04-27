@@ -3,6 +3,31 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>type</key>
+		<string>Sound</string>
+		<key>color</key>
+		<string>#FF6347</string>
+		<key>Blocks</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>Say Hi</string>
+				<key>color</key>
+				<string>#FF6347</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>Make Horse Noise</string>
+				<key>color</key>
+				<string>#FF6347</string>
+				<key>double</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
 		<key>color</key>
 		<string>#0000FF</string>
 		<key>type</key>

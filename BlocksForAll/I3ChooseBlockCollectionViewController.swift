@@ -11,7 +11,7 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class I3ChooseBlockCollectionViewController: UICollectionViewController {
-    private let blockWidth = 90
+    private let blockWidth = 100
     private let blockHeight = 100
     private let blockSpacing = 1
     private let reuseIdentifier = "Cell"

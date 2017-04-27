@@ -22,24 +22,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ud3-pf-exg">
-                                <rect key="frame" x="320" y="282" width="188" height="98"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Interface 1"/>
-                                <connections>
-                                    <segue destination="8vk-Lh-kc5" kind="show" id="uXg-zQ-ctl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPP-E0-WmQ">
-                                <rect key="frame" x="516" y="282" width="188" height="98"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Interface 2"/>
-                                <connections>
-                                    <segue destination="oDu-Rt-whG" kind="show" id="Lwh-oz-8Yz"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vam-3z-2bY">
                                 <rect key="frame" x="320" y="388" width="188" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -66,6 +48,15 @@
                                     <segue destination="XOJ-Tu-hH8" kind="popoverPresentation" popoverAnchorView="bed-2B-QED" id="rea-JL-nru">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ud3-pf-exg">
+                                <rect key="frame" x="369" y="282" width="286" height="98"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Drag and Drop Interface"/>
+                                <connections>
+                                    <segue destination="8vk-Lh-kc5" kind="show" id="uXg-zQ-ctl"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -127,7 +118,7 @@
                                 <rect key="frame" x="128" y="667" width="808" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cJS-Mx-l0b">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="oH5-Vf-tZh">
                                     <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -172,6 +163,14 @@
                                         <state key="normal" title="Menu"/>
                                         <connections>
                                             <segue destination="YEE-PZ-SjD" kind="show" id="7nh-Kj-H3v"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jnI-HY-OLG">
+                                        <rect key="frame" x="8" y="46" width="84" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Spatial Layout"/>
+                                        <connections>
+                                            <action selector="switchLayouts:" destination="8vk-Lh-kc5" eventType="touchUpInside" id="cP7-k3-EWF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -905,11 +904,11 @@
         <image name="Trashcan" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="riO-De-gGW"/>
-        <segue reference="PRb-Lz-SU0"/>
-        <segue reference="oEn-tm-4zK"/>
+        <segue reference="7nh-Kj-H3v"/>
         <segue reference="x0R-41-axD"/>
-        <segue reference="uz9-Qf-9Mr"/>
+        <segue reference="Thz-Wt-y9L"/>
+        <segue reference="oEn-tm-4zK"/>
+        <segue reference="1Z9-lE-EuA"/>
         <segue reference="CUd-15-QeD"/>
     </inferredMetricsTieBreakers>
 </document>

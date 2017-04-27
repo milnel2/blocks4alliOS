@@ -33,6 +33,7 @@
 		F13A0AF31E705F9A00DB4C86 /* I3BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AF21E705F9A00DB4C86 /* I3BlockTableViewController.swift */; };
 		F18FEED81EAFBC9A007C15B8 /* I3ChooseBlockCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEED71EAFBC9A007C15B8 /* I3ChooseBlockCollectionViewController.swift */; };
 		F18FEEDA1EB0FCC6007C15B8 /* BottomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEED91EB0FCC6007C15B8 /* BottomLayout.swift */; };
+		F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */; };
 		F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */; };
 		F18FFFB51E65B0FB0090C4B6 /* BlocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFB41E65B0FB0090C4B6 /* BlocksViewController.swift */; };
 		F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */; };
@@ -88,6 +89,7 @@
 		F13A0AF21E705F9A00DB4C86 /* I3BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I3BlockTableViewController.swift; sourceTree = "<group>"; };
 		F18FEED71EAFBC9A007C15B8 /* I3ChooseBlockCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I3ChooseBlockCollectionViewController.swift; sourceTree = "<group>"; };
 		F18FEED91EB0FCC6007C15B8 /* BottomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomLayout.swift; sourceTree = "<group>"; };
+		F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotControlViewController.swift; sourceTree = "<group>"; };
 		F18FFFAF1E65B0FB0090C4B6 /* BlocksForAll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocksForAll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F18FFFB41E65B0FB0090C4B6 /* BlocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksViewController.swift; sourceTree = "<group>"; };
@@ -174,8 +176,7 @@
 				F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */,
 				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
 				F18FFFB41E65B0FB0090C4B6 /* BlocksViewController.swift */,
-				F13A0AEC1E6F5E5300DB4C86 /* DragInterfaceViewController.swift */,
-				F13A0AEE1E6F628400DB4C86 /* StackedBlocksCollectionViewController.swift */,
+				F18FEEDE1EB13555007C15B8 /* Extraneous */,
 			);
 			name = I1andI2;
 			sourceTree = "<group>";
@@ -183,7 +184,6 @@
 		F18FEEDD1EB118AD007C15B8 /* I3andI4 */ = {
 			isa = PBXGroup;
 			children = (
-				F18FEED91EB0FCC6007C15B8 /* BottomLayout.swift */,
 				F134301F1E76395D0095C192 /* I4CollectionViewController.swift */,
 				F13430211E763A720095C192 /* I4ViewController.swift */,
 				F13A0AF01E6FDD3E00DB4C86 /* I3ViewController.swift */,
@@ -194,6 +194,15 @@
 				F134301D1E76071D0095C192 /* I3BlockCollectionViewCell.swift */,
 			);
 			name = I3andI4;
+			sourceTree = "<group>";
+		};
+		F18FEEDE1EB13555007C15B8 /* Extraneous */ = {
+			isa = PBXGroup;
+			children = (
+				F13A0AEC1E6F5E5300DB4C86 /* DragInterfaceViewController.swift */,
+				F13A0AEE1E6F628400DB4C86 /* StackedBlocksCollectionViewController.swift */,
+			);
+			name = Extraneous;
 			sourceTree = "<group>";
 		};
 		F18FFFA61E65B0FB0090C4B6 = {
@@ -219,12 +228,14 @@
 			isa = PBXGroup;
 			children = (
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
+				F18FEED91EB0FCC6007C15B8 /* BottomLayout.swift */,
+				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
+				F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */,
+				F10F71681E65BFF50049F3AA /* Block.swift */,
 				F18FEEDB1EB115AF007C15B8 /* Helper */,
 				F13A0ADF1E68B38800DB4C86 /* DragDrop */,
-				F18FEEDD1EB118AD007C15B8 /* I3andI4 */,
 				F18FEEDC1EB11668007C15B8 /* I1andI2 */,
-				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
-				F10F71681E65BFF50049F3AA /* Block.swift */,
+				F18FEEDD1EB118AD007C15B8 /* I3andI4 */,
 			);
 			path = BlocksForAll;
 			sourceTree = "<group>";
@@ -343,6 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */,
 				F13A0ADE1E68B36A00DB4C86 /* UIView+OBDropZone.m in Sources */,
 				F134301E1E76071D0095C192 /* I3BlockCollectionViewCell.swift in Sources */,
 				F13A0ADD1E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.m in Sources */,
