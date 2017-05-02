@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlaceholderViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class PlaceholderViewController: RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var blocksProgram: UICollectionView!
     var blockToAdd: Block?
@@ -88,31 +88,31 @@ class PlaceholderViewController: UIViewController, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath) as! I3BlockCollectionViewCell
         
-        if !spatialLayout {
-            // Configure the cell
-            for myView in cell.subviews{
-                myView.removeFromSuperview()
-            }
-            
-            let block = blocksStack[indexPath.row]
-            
-            var blocksToAdd = [Block]()
-            
-            //check if block is nested (or nested multiple times)
-            for i in 0...indexPath.row {
-                if blocksStack[i].double {
-                    if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
-                        if(i != indexPath.row){
-                            blocksToAdd.append(blocksStack[i])
-                        }
-                    }else{
-                        blocksToAdd.removeLast()
+        // Configure the cell
+        for myView in cell.subviews{
+            myView.removeFromSuperview()
+        }
+        
+        let block = blocksStack[indexPath.row]
+        
+        var blocksToAdd = [Block]()
+        
+        //check if block is nested (or nested multiple times)
+        for i in 0...indexPath.row {
+            if blocksStack[i].double {
+                if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
+                    if(i != indexPath.row){
+                        blocksToAdd.append(blocksStack[i])
                     }
+                }else{
+                    blocksToAdd.removeLast()
                 }
             }
-            
+        }
+        
+        if !spatialLayout {
             let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockHeight))
-            //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
+
             myLabel.text = block.name
             myLabel.textAlignment = .center
             myLabel.textColor = UIColor.white
@@ -131,27 +131,6 @@ class PlaceholderViewController: UIViewController, UICollectionViewDataSource, U
             
             cell.addSubview(placeholderBlock)
         }else{
-            // Configure the cell
-            for myView in cell.subviews{
-                myView.removeFromSuperview()
-            }
-            
-            let block = blocksStack[indexPath.row]
-            
-            var blocksToAdd = [Block]()
-            
-            //check if block is nested (or nested multiple times)
-            for i in 0...indexPath.row {
-                if blocksStack[i].double {
-                    if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
-                        if(i != indexPath.row){
-                            blocksToAdd.append(blocksStack[i])
-                        }
-                    }else{
-                        blocksToAdd.removeLast()
-                    }
-                }
-            }
             var count = 0
             for b in blocksToAdd{
                 let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
@@ -181,18 +160,10 @@ class PlaceholderViewController: UIViewController, UICollectionViewDataSource, U
             placeholderBlock.titleLabel?.text = "+"
             placeholderBlock.titleLabel?.textColor = UIColor.white
             placeholderBlock.accessibilityLabel = "Add Block after " + block.name
-            //placeholderBlock.
-            //placeholderBlock.addTarget(self, action: #selector(self.addBlock(atIndex:)), for: .touchUpInside)
-            /*if let parentViewController = self.parent as? Interface3ViewController{
-             placeholderBlock.addTarget(self, action: #selector(parentViewController.addBlock(_sender:)), for: .touchUpInside)
-             print("hello world")
-             //I3BlocksCollectionViewController.addBlock(atIndex:(indexPath.row + 1))), for: .touchUpInside)
-             }*/
             placeholderBlock.addTarget(self, action: #selector(self.addBlock(_sender:)), for: .touchUpInside)
-            
-            //I3BlocksCollectionViewController.addBlock(atIndex:(indexPath.row + 1))), for: .touchUpInside)
             cell.addSubview(placeholderBlock)
         }
+        
         return cell
     }
     

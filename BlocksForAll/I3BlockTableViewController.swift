@@ -31,7 +31,6 @@ class I3BlockTableViewController: UITableViewController {
         }
         //self.accessibilityHint = "Double tap from menu to add block to workspace"
         
-        print(blockTypes)
         createBlocksArray()
         // Load the sample data
         //loadSampleBlocks()

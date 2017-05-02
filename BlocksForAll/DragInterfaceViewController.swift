@@ -8,11 +8,11 @@
 
 import UIKit
 
-var blocksStack = [Block]()
+
 var fromWorkspace = false
 
 class DragInterfaceViewController: UIViewController, OBDropZone {
-
+var blocksStack = [Block]()
     
     //update these as collection view changes
     private let blockWidth = 100

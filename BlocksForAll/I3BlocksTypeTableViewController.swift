@@ -120,7 +120,6 @@ class I3BlocksTypeTableViewController: UITableViewController {
                 let name = blockType.object(forKey: "type") as? String
                 var color = UIColor.green
                 if let colorString = blockType.object(forKey: "color") as? String{
-                    print(colorString)
                     color = UIColor.colorFrom(hexString: colorString)
                 }
                 guard let block = Block(name: name!, color: color, double: false) else {

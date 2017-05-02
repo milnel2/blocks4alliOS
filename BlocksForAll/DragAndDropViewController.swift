@@ -9,6 +9,9 @@
 import UIKit
 import AVFoundation
 
+//collection of blocks that are part of your program
+
+var blocksStack = [Block]()
 
 class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumSource, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -33,9 +36,7 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
     //@IBOutlet weak var blocksProgram: UIStackView!
     @IBOutlet weak var blocksProgram: UICollectionView!
     
-    //collection of blocks that are part of your program
 
-    var blocksStack = [Block]()
     var blocksBeingMoved = [Block]()
 
     //toggle between spatial and audio layouts when button pressed
@@ -59,68 +60,13 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
     
     // run code
     @IBAction func playButtonClicked(_ sender: Any) {
-        var cmdToSend = WWCommandSetSequence()
-        var repeatCommands = [WWCommandSet]()
-        var repeat2times = false
-        var repeat3times = false
-        for block in blocksStack{
-            print(block.name)
-            //TODO add repeat blocks
-            
-            let distance: Double = 10
-            let myAction = WWCommandSet()
-            if block.name == "Drive Forward" {
-                let bodyPose = WWCommandBodyPose.init(relativeMeasuredX: distance, y: 0, radians: 0, time: 2)
-                myAction.setBodyPose(bodyPose)
-            }
-            if block.name == "Say Hi" {
-                let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_HI)
-                myAction.setSound(speaker)
-            }
-            
-            if block.name == "Make Horse Noise" {
-                let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_HORSE)
-                myAction.setSound(speaker)
-            }
-            //TODO: FIX FOR NESTED LOOPS
-            if block.name == "Repeat 3 Times" {
-                repeat3times = true
-            }else if block.name == "End Repeat 3 Times" {
-                repeat3times = false
-                for index in 1...3{
-                    for action in repeatCommands {
-                        cmdToSend.add(action, withDuration: 2.0)
-                    }
-                }
-            }else if repeat3times {
-                repeatCommands.append(myAction)
-            }else {
-                cmdToSend.add(myAction, withDuration: 2.0)
-            }
-            
-            //TODO WRONG
-            /*if block.name == "Drive Backward" {
-                var backward = WWCommandBodyLinearAngular(linear: -10, angular: 0)
-                myAction.setBodyLinearAngular(backward)
-                cmdToSend.add(myAction, withDuration: 2.0)
-                var stop = WWCommandBodyLinearAngular(linear: 0, angular: 0)
-                myAction.setBodyLinearAngular(stop)
-                //let bodyPose = WWCommandBodyPose.init(relativeMeasuredX: -10.0, y: 0, radians: 0, time: 2)
-                //myAction.setBodyPose(bodyPose)
-            }
-            //TODO WRONG
-            if block.name == "Turn Left" {
-                myAction.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -20.0, rightWheel: 20.0))
-            }*/
-        }
-        sendCommandSequenceToRobots(cmdSeq: cmdToSend)
-        //sendCommandSetToRobots(cmd: cmdToSend)
+        play(blocksStack)
     }
     
     // MARK: - Drag and Drop Methods
     
     func ovumEntered(_ ovum: OBOvum!, in view: UIView!, atLocation location: CGPoint) -> OBDropAction {
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Entered View", comment: ""))
+        //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Entered View", comment: ""))
         return OBDropAction.copy//OBDragActionCopy
     }
     
@@ -338,28 +284,26 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath) as! BlockCollectionViewCell
         
-        if !spatialLayout {
-            // Configure the cell
-            for myView in cell.subviews{
-                myView.removeFromSuperview()
-            }
-            
-            
-            //THIS SHOULD WORK FOR SECOND VERSION OF PROGRAM STRUCTURE
-            var blocksToAdd = [Block]()
-            
-            //check if block is nested (or nested multiple times)
-            for i in 0...indexPath.row {
-                if blocksStack[i].double {
-                    if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
-                        if(i != indexPath.row){
-                            blocksToAdd.append(blocksStack[i])
-                        }
-                    }else{
-                        blocksToAdd.removeLast()
+        // Configure the cell
+        for myView in cell.subviews{
+            myView.removeFromSuperview()
+        }
+        let block = blocksStack[indexPath.row]
+        var blocksToAdd = [Block]()
+        
+        //check if block is nested (or nested multiple times)
+        for i in 0...indexPath.row {
+            if blocksStack[i].double {
+                if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
+                    if(i != indexPath.row){
+                        blocksToAdd.append(blocksStack[i])
                     }
+                }else{
+                    blocksToAdd.removeLast()
                 }
             }
+        }
+        if !spatialLayout {
             blocksToAdd.reverse()
             
             let block = blocksStack[indexPath.row]
@@ -382,49 +326,7 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
             
             cell.backgroundColor = block.color
 
-            
-            if (cell.gestureRecognizers == nil || cell.gestureRecognizers?.count == 0) {
-                let manager = OBDragDropManager.shared()
-                let recognizer = manager?.createDragDropGestureRecognizer(with: UIPanGestureRecognizer.classForCoder(), source: self)
-                //let recognizer = manager?.createLongPressDragDropGestureRecognizer(with: self)
-                cell.addGestureRecognizer(recognizer!)
-                
-                //ADDED TO FAKE VOICEOVER
-                /*
-                let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_sender:)))
-                //tap.delegate = self
-                cell.addGestureRecognizer(tap)
-                
-                //let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_sender:)))
-                //cell.addGestureRecognizer(pan)
-                //cell.accessibilityTraits = accessibility
-                cell.isUserInteractionEnabled = true
-     */
-            }
         }else {
-            // Configure the cell
-            for myView in cell.subviews{
-                myView.removeFromSuperview()
-            }
-            
-            let block = blocksStack[indexPath.row]
-            
-            
-            //THIS SHOULD WORK FOR SECOND VERSION OF PROGRAM STRUCTURE
-            var blocksToAdd = [Block]()
-            
-            //check if block is nested (or nested multiple times)
-            for i in 0...indexPath.row {
-                if blocksStack[i].double {
-                    if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
-                        if(i != indexPath.row){
-                            blocksToAdd.append(blocksStack[i])
-                        }
-                    }else{
-                        blocksToAdd.removeLast()
-                    }
-                }
-            }
             var count = 0
             for b in blocksToAdd{
                 let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
@@ -447,14 +349,26 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
             myLabel.numberOfLines = 0
             myLabel.backgroundColor = block.color
             cell.addSubview(myLabel)
-            
-            if (cell.gestureRecognizers == nil || cell.gestureRecognizers?.count == 0) {
-                let manager = OBDragDropManager.shared()
-                let recognizer = manager?.createDragDropGestureRecognizer(with: UIPanGestureRecognizer.classForCoder(), source: self)
-                //let recognizer = manager?.createLongPressDragDropGestureRecognizer(with: self)
-                cell.addGestureRecognizer(recognizer!)
-            }
         
+        }
+        
+        if (cell.gestureRecognizers == nil || cell.gestureRecognizers?.count == 0) {
+            let manager = OBDragDropManager.shared()
+            let recognizer = manager?.createDragDropGestureRecognizer(with: UIPanGestureRecognizer.classForCoder(), source: self)
+            //let recognizer = manager?.createLongPressDragDropGestureRecognizer(with: self)
+            cell.addGestureRecognizer(recognizer!)
+            
+            //ADDED TO FAKE VOICEOVER
+            /*
+             let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_sender:)))
+             //tap.delegate = self
+             cell.addGestureRecognizer(tap)
+             
+             //let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_sender:)))
+             //cell.addGestureRecognizer(pan)
+             //cell.accessibilityTraits = accessibility
+             cell.isUserInteractionEnabled = true
+             */
         }
         
         return cell
