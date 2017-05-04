@@ -129,7 +129,7 @@ var blocksStack = [Block]()
                         let block = blocks[0]
                         blocksStack.insert(block, at: index)
                         let endBlockName = "End " + block.name
-                        let endBlock = Block(name: endBlockName, color: block.color, double: true)
+                        let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: block.editable)
                         endBlock?.counterpart = block
                         block.counterpart = endBlock
                         endBlock?.ID = count

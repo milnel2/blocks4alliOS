@@ -62,6 +62,7 @@ class BlockTableViewController: UITableViewController, OBOvumSource {
         }
         
         let block = blocks[indexPath.row]
+        cell.block = block
         
         cell.nameLabel.text = block.name
         cell.blockView.backgroundColor = block.color
@@ -94,12 +95,11 @@ class BlockTableViewController: UITableViewController, OBOvumSource {
     func createOvum(from sourceView: UIView!) -> OBOvum! {
         let ovum = OBOvum.init()
         if let sView = sourceView as? BlockTableViewCell{
-            //TODO: FIX DOUBLE
             var twoBlocks = false
             if(sView.nameLabel.text!.contains("Repeat")){
                 twoBlocks = true
             }
-            ovum.dataObject = [Block(name: sView.nameLabel.text!, color: sView.blockView.backgroundColor!, double: twoBlocks)]
+            ovum.dataObject = [Block(name: sView.nameLabel.text!, color: sView.blockView.backgroundColor!, double: twoBlocks, editable:sView.block!.editable)]
         }else{
             ovum.dataObject = sourceView.backgroundColor
         }
@@ -142,10 +142,12 @@ class BlockTableViewController: UITableViewController, OBOvumSource {
                         if let colorString = dictItem.object(forKey: "color") as? String{
                             let color = UIColor.colorFrom(hexString: colorString)
                             if let double = dictItem.object(forKey: "double") as? Bool{
-                                guard let block = Block(name: name as! String, color: color, double: double) else {
-                                    fatalError("Unable to instantiate block")
+                                if let editable = dictItem.object(forKey: "editable") as? Bool{
+                                    guard let block = Block(name: name as! String, color: color, double: double, editable: editable) else {
+                                        fatalError("Unable to instantiate block")
+                                    }
+                                    blocks += [block]
                                 }
-                                blocks += [block]
                             }
                         }
                     }
@@ -155,19 +157,19 @@ class BlockTableViewController: UITableViewController, OBOvumSource {
     }
     
     private func loadSampleBlocks(){
-        guard let block1 = Block(name: "Drive Forward", color: UIColor.blue, double: false) else {
+        guard let block1 = Block(name: "Drive Forward", color: UIColor.blue, double: false, editable: false) else {
             fatalError("Unable to instantiate block1")
         }
         
-        guard let block2 = Block(name: "Drive Backwards", color: UIColor.blue, double: false) else {
+        guard let block2 = Block(name: "Drive Backwards", color: UIColor.blue, double: false, editable: false) else {
             fatalError("Unable to instantiate block2")
         }
         
-        guard let block3 = Block(name: "Turn Left", color: UIColor.red, double: false) else {
+        guard let block3 = Block(name: "Turn Left", color: UIColor.red, double: false, editable: false) else {
             fatalError("Unable to instantiate block3")
         }
         
-        guard let block4 = Block(name: "Turn Right", color: UIColor.red, double: false) else {
+        guard let block4 = Block(name: "Turn Right", color: UIColor.red, double: false, editable: false) else {
             fatalError("Unable to instantiate block4")
         }
         

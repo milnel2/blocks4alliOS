@@ -18,10 +18,12 @@ class Block {
     var counterpart: Block?
     var ID: Int?
     var counterpartID: Int?
+    var editable: Bool //true if has options
+    var options: [String]?
     
     //MARK: Initialization
     
-    init?(name: String, color: UIColor, double: Bool){
+    init?(name: String, color: UIColor, double: Bool, editable: Bool){
         
         //TODO: check that color is initialized as well
         if name.isEmpty {
@@ -31,6 +33,7 @@ class Block {
         self.name = name
         self.color = color
         self.double = double
+        self.editable = editable
     
     }
     

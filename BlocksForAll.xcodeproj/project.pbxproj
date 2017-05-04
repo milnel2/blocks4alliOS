@@ -14,7 +14,6 @@
 		F121169D1EA7E1D5009976B1 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F121169C1EA7E1D5009976B1 /* libc++.tbd */; };
 		F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121169E1EA823C8009976B1 /* RobotTableViewController.swift */; };
 		F134301A1E75EC050095C192 /* I3BlocksTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13430191E75EC050095C192 /* I3BlocksTypeTableViewController.swift */; };
-		F134301C1E75F3150095C192 /* I3BlocksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F134301B1E75F3150095C192 /* I3BlocksCollectionViewController.swift */; };
 		F134301E1E76071D0095C192 /* I3BlockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F134301D1E76071D0095C192 /* I3BlockCollectionViewCell.swift */; };
 		F13430201E76395D0095C192 /* I4CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F134301F1E76395D0095C192 /* I4CollectionViewController.swift */; };
 		F13430221E763A720095C192 /* I4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13430211E763A720095C192 /* I4ViewController.swift */; };
@@ -31,7 +30,7 @@
 		F13A0AEF1E6F628400DB4C86 /* StackedBlocksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AEE1E6F628400DB4C86 /* StackedBlocksCollectionViewController.swift */; };
 		F13A0AF11E6FDD3E00DB4C86 /* PlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AF01E6FDD3E00DB4C86 /* PlaceholderViewController.swift */; };
 		F13A0AF31E705F9A00DB4C86 /* I3BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AF21E705F9A00DB4C86 /* I3BlockTableViewController.swift */; };
-		F18FEED81EAFBC9A007C15B8 /* I3ChooseBlockCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEED71EAFBC9A007C15B8 /* I3ChooseBlockCollectionViewController.swift */; };
+		F18FEED81EAFBC9A007C15B8 /* PlaceholderChooseBlockCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEED71EAFBC9A007C15B8 /* PlaceholderChooseBlockCollectionViewController.swift */; };
 		F18FEEDA1EB0FCC6007C15B8 /* BottomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEED91EB0FCC6007C15B8 /* BottomLayout.swift */; };
 		F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */; };
 		F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */; };
@@ -62,7 +61,6 @@
 		F121169C1EA7E1D5009976B1 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		F121169E1EA823C8009976B1 /* RobotTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotTableViewController.swift; sourceTree = "<group>"; };
 		F13430191E75EC050095C192 /* I3BlocksTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I3BlocksTypeTableViewController.swift; sourceTree = "<group>"; };
-		F134301B1E75F3150095C192 /* I3BlocksCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I3BlocksCollectionViewController.swift; sourceTree = "<group>"; };
 		F134301D1E76071D0095C192 /* I3BlockCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I3BlockCollectionViewCell.swift; sourceTree = "<group>"; };
 		F134301F1E76395D0095C192 /* I4CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I4CollectionViewController.swift; sourceTree = "<group>"; };
 		F13430211E763A720095C192 /* I4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I4ViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +85,7 @@
 		F13A0AEE1E6F628400DB4C86 /* StackedBlocksCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackedBlocksCollectionViewController.swift; sourceTree = "<group>"; };
 		F13A0AF01E6FDD3E00DB4C86 /* PlaceholderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderViewController.swift; sourceTree = "<group>"; };
 		F13A0AF21E705F9A00DB4C86 /* I3BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I3BlockTableViewController.swift; sourceTree = "<group>"; };
-		F18FEED71EAFBC9A007C15B8 /* I3ChooseBlockCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I3ChooseBlockCollectionViewController.swift; sourceTree = "<group>"; };
+		F18FEED71EAFBC9A007C15B8 /* PlaceholderChooseBlockCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderChooseBlockCollectionViewController.swift; sourceTree = "<group>"; };
 		F18FEED91EB0FCC6007C15B8 /* BottomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomLayout.swift; sourceTree = "<group>"; };
 		F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotControlViewController.swift; sourceTree = "<group>"; };
 		F18FFFAF1E65B0FB0090C4B6 /* BlocksForAll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocksForAll.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,7 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				F134301D1E76071D0095C192 /* I3BlockCollectionViewCell.swift */,
-				F18FEED71EAFBC9A007C15B8 /* I3ChooseBlockCollectionViewController.swift */,
+				F18FEED71EAFBC9A007C15B8 /* PlaceholderChooseBlockCollectionViewController.swift */,
 				F13430191E75EC050095C192 /* I3BlocksTypeTableViewController.swift */,
 				F13A0AF21E705F9A00DB4C86 /* I3BlockTableViewController.swift */,
 				F13A0AF01E6FDD3E00DB4C86 /* PlaceholderViewController.swift */,
@@ -206,7 +204,7 @@
 		F18FEEE11EB29995007C15B8 /* Extraneous */ = {
 			isa = PBXGroup;
 			children = (
-				F134301B1E75F3150095C192 /* I3BlocksCollectionViewController.swift */,
+				F18FEED91EB0FCC6007C15B8 /* BottomLayout.swift */,
 				F134301F1E76395D0095C192 /* I4CollectionViewController.swift */,
 				F13430211E763A720095C192 /* I4ViewController.swift */,
 			);
@@ -236,7 +234,6 @@
 			isa = PBXGroup;
 			children = (
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
-				F18FEED91EB0FCC6007C15B8 /* BottomLayout.swift */,
 				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
 				F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */,
 				F10F71681E65BFF50049F3AA /* Block.swift */,
@@ -385,8 +382,7 @@
 				F13A0AEF1E6F628400DB4C86 /* StackedBlocksCollectionViewController.swift in Sources */,
 				F134301A1E75EC050095C192 /* I3BlocksTypeTableViewController.swift in Sources */,
 				F13430221E763A720095C192 /* I4ViewController.swift in Sources */,
-				F18FEED81EAFBC9A007C15B8 /* I3ChooseBlockCollectionViewController.swift in Sources */,
-				F134301C1E75F3150095C192 /* I3BlocksCollectionViewController.swift in Sources */,
+				F18FEED81EAFBC9A007C15B8 /* PlaceholderChooseBlockCollectionViewController.swift in Sources */,
 				F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

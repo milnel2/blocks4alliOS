@@ -8,13 +8,13 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
 
-class I3ChooseBlockCollectionViewController: UICollectionViewController {
-    private let blockWidth = 100
+class PlaceholderChooseBlockCollectionViewController: UICollectionViewController {
+    private let blockWidth = 90
     private let blockHeight = 100
     private let blockSpacing = 1
-    private let reuseIdentifier = "Cell"
+    private let reuseIdentifier = "BlockCell"
+    private let spatialLayout = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class I3ChooseBlockCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
@@ -53,34 +53,55 @@ class I3ChooseBlockCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return blocksStack.count + 1
+        return blocksStack.count 
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) //as! I3BlockCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! I3BlockCollectionViewCell
         
         // Configure the cell
         for myView in cell.subviews{
             myView.removeFromSuperview()
         }
         
-        if indexPath.row < blocksStack.count {
-            let block = blocksStack[indexPath.row]
+        let block = blocksStack[indexPath.row]
         
-            var blocksToAdd = [Block]()
-            
-            //check if block is nested (or nested multiple times)
-            for i in 0...indexPath.row {
-                if blocksStack[i].double {
-                    if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
-                        if(i != indexPath.row){
-                            blocksToAdd.append(blocksStack[i])
-                        }
-                    }else{
-                        blocksToAdd.removeLast()
+        var blocksToAdd = [Block]()
+        
+        //check if block is nested (or nested multiple times)
+        for i in 0...indexPath.row {
+            if blocksStack[i].double {
+                if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
+                    if(i != indexPath.row){
+                        blocksToAdd.append(blocksStack[i])
                     }
+                }else{
+                    blocksToAdd.removeLast()
                 }
             }
+        }
+        
+        if !spatialLayout {
+            let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockHeight))
+            
+            myLabel.text = block.name
+            myLabel.textAlignment = .center
+            myLabel.textColor = UIColor.white
+            myLabel.numberOfLines = 0
+            myLabel.backgroundColor = block.color
+            
+            cell.addSubview(myLabel)
+            
+            let placeholderBlock = UIButton.init(frame: CGRect(x: blockWidth, y: 0, width: blockWidth/2, height: blockHeight ))
+            placeholderBlock.backgroundColor = UIColor.gray
+            placeholderBlock.titleLabel?.text = "+"
+            placeholderBlock.titleLabel?.textColor = UIColor.white
+            placeholderBlock.accessibilityLabel = "Add Block after " + block.name
+            
+            placeholderBlock.addTarget(self, action: #selector(self.addBlock(_sender:)), for: .touchUpInside)
+            
+            cell.addSubview(placeholderBlock)
+        }else{
             var count = 0
             for b in blocksToAdd{
                 let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
@@ -104,21 +125,22 @@ class I3ChooseBlockCollectionViewController: UICollectionViewController {
             myLabel.backgroundColor = block.color
             
             cell.addSubview(myLabel)
-        }else{
-        //cancel block
-            let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockHeight))
-            //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
-            myLabel.text = "Cancel"
-            myLabel.textAlignment = .center
-            myLabel.textColor = UIColor.white
-            myLabel.numberOfLines = 0
-            myLabel.backgroundColor = UIColor.red
             
-            cell.addSubview(myLabel)
+            let placeholderBlock = UIButton.init(frame: CGRect(x: blockWidth, y: -count*(blockHeight/2+blockSpacing), width: blockWidth/2, height: blockHeight + count*(blockHeight/2+blockSpacing)))
+            placeholderBlock.backgroundColor = UIColor.gray
+            placeholderBlock.titleLabel?.text = "+"
+            placeholderBlock.titleLabel?.textColor = UIColor.white
+            placeholderBlock.accessibilityLabel = "Add Block after " + block.name
+            placeholderBlock.addTarget(self, action: #selector(self.addBlock(_sender:)), for: .touchUpInside)
+            cell.addSubview(placeholderBlock)
         }
         
         return cell
+    }
+    
+    func addBlock(_sender: UIButton){
 
+        //performSegue(withIdentifier: "addNewBlockSegue", sender: self)
     }
 
     // MARK: UICollectionViewDelegate

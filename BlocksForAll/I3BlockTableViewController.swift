@@ -14,7 +14,7 @@ class I3BlockTableViewController: UITableViewController {
     var blocks = [Block]()
     var blockTypes = NSArray()
     var typeIndex: Int! = 0
-    var sendingInterface = 0
+    var indexToAdd = 0
     
     //update these as collection view changes
     private let blockWidth = 100
@@ -94,17 +94,9 @@ class I3BlockTableViewController: UITableViewController {
             //if let blockCell = sender as?
             if let blockCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as? BlockTableViewCell{
                 myDestination.blockToAdd = blockCell.block
+                myDestination.indexToAdd = indexToAdd
             }
            // myDestination.blockToAdd = tableView.indexPathForSelectedRow?.row
-        }
-        
-        // Get the new view controller using segue.destinationViewController.
-        if let myDestination = segue.destination as? I4ViewController{
-            //if let blockCell = sender as?
-            if let blockCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as? BlockTableViewCell{
-                myDestination.blockToAdd = blockCell.block
-            }
-            // myDestination.blockToAdd = tableView.indexPathForSelectedRow?.row
         }
         
         // Pass the selected object to the new view controller.
@@ -124,25 +116,18 @@ class I3BlockTableViewController: UITableViewController {
                         if let colorString = dictItem.object(forKey: "color") as? String{
                             let color = UIColor.colorFrom(hexString: colorString)
                             if let double = dictItem.object(forKey: "double") as? Bool{
-                                guard let block = Block(name: name as! String, color: color, double: double) else {
-                                    fatalError("Unable to instantiate block")
+                                if let editable = dictItem.object(forKey: "editable") as? Bool{
+                                    guard let block = Block(name: name as! String, color: color, double: double, editable: editable) else {
+                                        fatalError("Unable to instantiate block")
+                                    }
+                                    blocks += [block]
                                 }
-                                blocks += [block]
                             }
                         }
                     }
                 }
             }
-            
-            //add Cancel and Choose from Workspace Blocks
-            if (sendingInterface == 4 && blocksStack4.count >= 2) || (sendingInterface == 3 && blocksStack.count >= 2) {
-                guard let workspaceblock = Block(name: "Choose Block from Workspace", color: UIColor.darkGray, double: false) else {
-                    fatalError("Unable to instantiate block")
-                }
-                blocks += [workspaceblock]
-            }
-            
-            guard let cancelBlock = Block(name: "Cancel", color: UIColor.red, double: false) else {
+            guard let cancelBlock = Block(name: "Cancel", color: UIColor.red, double: false, editable: false) else {
                 fatalError("Unable to instantiate block")
             }
             blocks += [cancelBlock]
@@ -157,19 +142,19 @@ class I3BlockTableViewController: UITableViewController {
     }
     
     private func loadSampleBlocks(){
-        guard let block1 = Block(name: "Drive Forward", color: UIColor.blue, double: false) else {
+        guard let block1 = Block(name: "Drive Forward", color: UIColor.blue, double: false, editable: false) else {
             fatalError("Unable to instantiate block1")
         }
         
-        guard let block2 = Block(name: "Drive Backwards", color: UIColor.blue, double: false) else {
+        guard let block2 = Block(name: "Drive Backwards", color: UIColor.blue, double: false, editable: false) else {
             fatalError("Unable to instantiate block2")
         }
         
-        guard let block3 = Block(name: "Turn Left", color: UIColor.red, double: false) else {
+        guard let block3 = Block(name: "Turn Left", color: UIColor.red, double: false, editable: false) else {
             fatalError("Unable to instantiate block3")
         }
         
-        guard let block4 = Block(name: "Turn Right", color: UIColor.red, double: false) else {
+        guard let block4 = Block(name: "Turn Right", color: UIColor.red, double: false, editable: false) else {
             fatalError("Unable to instantiate block4")
         }
         

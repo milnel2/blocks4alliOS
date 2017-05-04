@@ -118,7 +118,7 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
                         let block = blocks[0]
                         blocksStack.insert(block, at: index)
                         let endBlockName = "End " + block.name
-                        let endBlock = Block(name: endBlockName, color: block.color, double: true)
+                        let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: block.editable)
                         endBlock?.counterpart = block
                         block.counterpart = endBlock
                         endBlock?.ID = count
@@ -139,7 +139,7 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
             }
             fromWorkspace = false
             blocksBeingMoved.removeAll()
-           }else{ //probably shoudl be error
+           }else{ //probably should be error
             print("Not [Block]")
         }
         
@@ -316,20 +316,22 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
             }
             accessibilityLabel = spearCon + accessibilityLabel
             
-            let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockWidth))
+            let myLabel = UILabel.init(frame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
             myLabel.text = block.name
             myLabel.textAlignment = .center
             myLabel.textColor = UIColor.white
             myLabel.numberOfLines = 0
+            myLabel.backgroundColor = block.color
             myLabel.accessibilityLabel = accessibilityLabel
             cell.addSubview(myLabel)
             
-            cell.backgroundColor = block.color
+            //cell.backgroundColor = block.color
 
         }else {
             var count = 0
+            let startingHeight = Int(cell.frame.height)-blockHeight
             for b in blocksToAdd{
-                let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
+                let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
                 //let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: -count*(blockHeight), width: blockWidth+2*blockSpacing, height: blockHeight))
                 myView.accessibilityLabel = "Inside " + b.name
                 myView.text = "Inside " + b.name
@@ -341,7 +343,7 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
                 count += 1
             }
             
-            let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+            let myLabel = UILabel.init(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
             //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
             myLabel.text = block.name
             myLabel.textAlignment = .center

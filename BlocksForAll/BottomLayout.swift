@@ -32,6 +32,7 @@ class BottomLayout: UICollectionViewLayout {
     }*/
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        
         for item in 0 ..< collectionView!.numberOfItems(inSection: 0) {
             print("preparing to layout")
             let indexPath = IndexPath(item: item, section: 0)
