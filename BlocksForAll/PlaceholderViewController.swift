@@ -140,7 +140,7 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
                     }
                 }
             }
-            
+            let blockPlacementInfo = ". block " + String(blockStackIndex + 1) + " of " + String(blocksStack.count)
             
             if !spatialLayout {
                 let myLabel = UILabel.init(frame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight))
@@ -150,6 +150,7 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
                 myLabel.textColor = UIColor.white
                 myLabel.numberOfLines = 0
                 myLabel.backgroundColor = block.color
+                myLabel.accessibilityLabel = block.name + blockPlacementInfo
                 
                 cell.addSubview(myLabel)
                 
@@ -157,7 +158,7 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
                 placeholderBlock.backgroundColor = UIColor.gray
                 placeholderBlock.setTitle("+", for: .normal)
                 placeholderBlock.titleLabel?.textColor = UIColor.white
-                placeholderBlock.accessibilityLabel = "Add Block after " + block.name
+                placeholderBlock.accessibilityLabel = "Add Block after " + block.name + blockPlacementInfo
                 
                 placeholderBlock.addTarget(self, action: #selector(self.addBlock(_sender:)), for: .touchUpInside)
                 
@@ -167,7 +168,7 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
                 for b in blocksToAdd{
                     let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
                     //let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: -count*(blockHeight), width: blockWidth+2*blockSpacing, height: blockHeight))
-                    myView.accessibilityLabel = "Inside " + b.name
+                    myView.accessibilityLabel = "Inside " + b.name + blockPlacementInfo
                     myView.text = "Inside " + b.name
                     myView.textAlignment = .center
                     myView.textColor = UIColor.white
@@ -184,6 +185,7 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
                 myLabel.textColor = UIColor.white
                 myLabel.numberOfLines = 0
                 myLabel.backgroundColor = block.color
+                myLabel.accessibilityLabel = block.name + blockPlacementInfo
                 
                 cell.addSubview(myLabel)
                 
@@ -191,7 +193,7 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
                 placeholderBlock.backgroundColor = UIColor.gray
                 placeholderBlock.setTitle("+", for: .normal)
                 placeholderBlock.titleLabel?.textColor = UIColor.white
-                placeholderBlock.accessibilityLabel = "Add Block after " + block.name
+                placeholderBlock.accessibilityLabel = "Add Block after " + block.name + blockPlacementInfo
                 placeholderBlock.addTarget(self, action: #selector(self.addBlock(_sender:)), for: .touchUpInside)
                 cell.addSubview(placeholderBlock)
             }
