@@ -71,7 +71,7 @@
                                 <rect key="frame" x="0.0" y="28" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KUQ-1B-5Sg" id="ZfT-J5-i3d">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -201,7 +201,7 @@
                                 <rect key="frame" x="0.0" y="28" width="110" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y7S-po-v2i" id="H49-mi-XeX">
-                                    <rect key="frame" x="0.0" y="0.0" width="110" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="110" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2aD-zw-vhN">
@@ -406,7 +406,7 @@
                                 <rect key="frame" x="0.0" y="28" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ktg-jG-ZBU" id="0Gc-Rt-YTK">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -447,7 +447,7 @@
                                 <rect key="frame" x="0.0" y="72" width="1024" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aXO-A7-5yh" id="VUr-b2-WVV">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3rg-hj-VUs">
@@ -490,8 +490,8 @@
         <image name="Trashcan" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="7nh-Kj-H3v"/>
         <segue reference="PRb-Lz-SU0"/>
         <segue reference="B6Z-Bo-0sW"/>
-        <segue reference="riO-De-gGW"/>
     </inferredMetricsTieBreakers>
 </document>
