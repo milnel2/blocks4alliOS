@@ -22,50 +22,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ud3-pf-exg">
-                                <rect key="frame" x="320" y="282" width="188" height="98"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Interface 1"/>
-                                <connections>
-                                    <segue destination="8vk-Lh-kc5" kind="show" id="uXg-zQ-ctl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPP-E0-WmQ">
-                                <rect key="frame" x="516" y="282" width="188" height="98"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Interface 2"/>
-                                <connections>
-                                    <segue destination="oDu-Rt-whG" kind="show" id="Lwh-oz-8Yz"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vam-3z-2bY">
-                                <rect key="frame" x="320" y="388" width="188" height="98"/>
+                                <rect key="frame" x="369" y="443" width="286" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Interface 3"/>
+                                <state key="normal" title="Placeholder Interface"/>
                                 <connections>
                                     <segue destination="ald-X8-vwO" kind="show" id="Thz-Wt-y9L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAv-xp-QSF">
-                                <rect key="frame" x="516" y="388" width="188" height="98"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bed-2B-QED">
+                                <rect key="frame" x="369" y="228" width="286" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Interface 4"/>
-                                <connections>
-                                    <segue destination="MnZ-tE-mER" kind="show" id="x0R-41-axD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bed-2B-QED">
-                                <rect key="frame" x="418" y="494" width="188" height="101"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Manage Robots"/>
                                 <connections>
                                     <segue destination="XOJ-Tu-hH8" kind="popoverPresentation" popoverAnchorView="bed-2B-QED" id="rea-JL-nru">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ud3-pf-exg">
+                                <rect key="frame" x="369" y="337" width="286" height="98"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Drag and Drop Interface"/>
+                                <connections>
+                                    <segue destination="8vk-Lh-kc5" kind="show" id="uXg-zQ-ctl"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -102,12 +85,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QXa-OY-u2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1269" y="477"/>
+            <point key="canvasLocation" x="-1298" y="651"/>
         </scene>
-        <!--Blocks View Controller-->
+        <!--Drag And Drop View Controller-->
         <scene sceneID="E2M-WH-gaJ">
             <objects>
-                <viewController id="8vk-Lh-kc5" customClass="BlocksViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8vk-Lh-kc5" customClass="DragAndDropViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qbv-sF-Jvj"/>
                         <viewControllerLayoutGuide type="bottom" id="jYP-vo-Wi2"/>
@@ -124,34 +107,33 @@
                                 </connections>
                             </containerView>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="U58-j4-mFF">
-                                <rect key="frame" x="128" y="667" width="808" height="101"/>
+                                <rect key="frame" x="128" y="0.0" width="808" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cJS-Mx-l0b">
-                                    <size key="itemSize" width="100" height="100"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="oH5-Vf-tZh">
+                                    <size key="itemSize" width="100" height="766"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BlockCell" id="SgC-ru-3mr" customClass="BlockCollectionViewCell" customModule="BlocksForAll" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="766"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="766"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Move Forward" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DO1-uJ-M9B">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="0.0" y="666" width="100" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <size key="customSize" width="100" height="100"/>
+                                        <size key="customSize" width="100" height="766"/>
                                         <connections>
                                             <outlet property="labelView" destination="DO1-uJ-M9B" id="uKJ-cr-O89"/>
                                         </connections>
@@ -172,6 +154,14 @@
                                         <state key="normal" title="Menu"/>
                                         <connections>
                                             <segue destination="YEE-PZ-SjD" kind="show" id="7nh-Kj-H3v"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jnI-HY-OLG">
+                                        <rect key="frame" x="8" y="46" width="84" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Spatial Layout"/>
+                                        <connections>
+                                            <action selector="switchLayouts:" destination="8vk-Lh-kc5" eventType="touchUpInside" id="cP7-k3-EWF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -197,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EqK-ZK-37h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="609.9609375" y="-1878.125"/>
+            <point key="canvasLocation" x="-347.4609375" y="-941.40625"/>
         </scene>
         <!--Block Table View Controller-->
         <scene sceneID="FBv-S2-clb">
@@ -246,7 +236,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UXB-Yq-Sbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2370" y="-1423"/>
+            <point key="canvasLocation" x="786" y="-941"/>
         </scene>
         <!--Blocks Type Table View Controller-->
         <scene sceneID="URh-EJ-59g">
@@ -287,7 +277,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tc4-Mm-WCk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1946" y="-1423"/>
+            <point key="canvasLocation" x="525" y="-941"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fbG-cj-S4j">
@@ -420,10 +410,10 @@
             </objects>
             <point key="canvasLocation" x="790" y="-394"/>
         </scene>
-        <!--View Controller-->
+        <!--Placeholder View Controller-->
         <scene sceneID="MaE-TA-xuZ">
             <objects>
-                <viewController id="ald-X8-vwO" customClass="I3ViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ald-X8-vwO" customClass="PlaceholderViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yyd-Ct-17Z"/>
                         <viewControllerLayoutGuide type="bottom" id="9cV-iP-pxX"/>
@@ -441,22 +431,6 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edp-wc-iZF">
-                                <rect key="frame" x="0.0" y="0.0" width="100" height="768"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" label="Add Block to Workspace"/>
-                                <connections>
-                                    <segue destination="syS-qD-mEU" kind="show" id="2jl-mS-TS2"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Block" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ag-fM-E0Y">
-                                <rect key="frame" x="0.0" y="667" width="100" height="101"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AdB-zu-hur">
                                 <rect key="frame" x="965" y="20" width="39" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -471,78 +445,67 @@
                                 <accessibility key="accessibilityConfiguration" hint="Select to throw away a block" label="Trash"/>
                                 <state key="normal" backgroundImage="Trashcan"/>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jDi-md-JQC">
-                                <rect key="frame" x="99" y="667" width="816" height="101"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="0YM-2g-A4u">
+                                <rect key="frame" x="937" y="58" width="75" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Spatial Layout"/>
                                 <connections>
-                                    <segue destination="r1y-wO-bzE" kind="embed" identifier="I3StackedCollectionViewControllerIdentifier" id="MYt-1B-ADi"/>
+                                    <action selector="switchLayout:" destination="ald-X8-vwO" eventType="touchUpInside" id="Wdz-jJ-HS5"/>
                                 </connections>
-                            </containerView>
+                            </button>
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vRN-pY-aHi">
+                                <rect key="frame" x="0.0" y="0.0" width="929" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="gVv-SR-VZV">
+                                    <size key="itemSize" width="140" height="770"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BlockCell" id="rML-ML-9Sq" customClass="I3BlockCollectionViewCell" customModule="BlocksForAll" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="770"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="140" height="770"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKS-zj-SgA">
+                                                    <rect key="frame" x="90" y="670" width="50" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Add" backgroundImage="Gray">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Move Forward" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BO7-mB-FcB">
+                                                    <rect key="frame" x="0.0" y="670" width="90" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <size key="customSize" width="140" height="770"/>
+                                        <connections>
+                                            <outlet property="labelView" destination="BO7-mB-FcB" id="fld-3g-cSf"/>
+                                            <outlet property="placeHolder" destination="DKS-zj-SgA" id="K8U-fn-o8l"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="blocksProgram" destination="vRN-pY-aHi" id="ckh-8r-J9l"/>
                         <segue destination="syS-qD-mEU" kind="show" identifier="addNewBlockSegue" id="oEn-tm-4zK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z50-Jk-cxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="647" y="212"/>
-        </scene>
-        <!--Blocks Collection View Controller-->
-        <scene sceneID="FLG-CK-bpP">
-            <objects>
-                <collectionViewController id="r1y-wO-bzE" customClass="I3BlocksCollectionViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="iZT-hJ-7kC">
-                        <rect key="frame" x="0.0" y="0.0" width="816" height="101"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="5zy-tN-6sv">
-                            <size key="itemSize" width="136" height="100"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BlockCell" id="rML-ML-9Sq" customClass="I3BlockCollectionViewCell" customModule="BlocksForAll" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Move Forward" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BO7-mB-FcB">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKS-zj-SgA">
-                                            <rect key="frame" x="97" y="0.0" width="53" height="100"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Add" backgroundImage="Gray">
-                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                        </button>
-                                    </subviews>
-                                </view>
-                                <size key="customSize" width="150" height="100"/>
-                                <connections>
-                                    <outlet property="labelView" destination="BO7-mB-FcB" id="fld-3g-cSf"/>
-                                    <outlet property="placeHolder" destination="DKS-zj-SgA" id="K8U-fn-o8l"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="r1y-wO-bzE" id="5Ux-TV-EaC"/>
-                            <outlet property="delegate" destination="r1y-wO-bzE" id="134-Gp-CaB"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zRM-e9-RMj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="766" y="701"/>
+            <point key="canvasLocation" x="-366.796875" y="211.71875"/>
         </scene>
         <!--Blocks Type Table View Controller-->
         <scene sceneID="awD-mw-uvc">
@@ -575,7 +538,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ydt-xb-ovn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1916" y="212"/>
+            <point key="canvasLocation" x="563" y="212"/>
         </scene>
         <!--Block Table View Controller-->
         <scene sceneID="Ean-xS-3V5">
@@ -909,10 +872,6 @@
         <image name="Trashcan" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CUd-15-QeD"/>
-        <segue reference="RJl-zh-XnE"/>
-        <segue reference="Thz-Wt-y9L"/>
-        <segue reference="x0R-41-axD"/>
         <segue reference="oEn-tm-4zK"/>
         <segue reference="uz9-Qf-9Mr"/>
         <segue reference="Thz-Wt-y9L"/>

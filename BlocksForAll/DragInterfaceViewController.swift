@@ -8,11 +8,11 @@
 
 import UIKit
 
-var blocksStack = [Block]()
+
 var fromWorkspace = false
 
 class DragInterfaceViewController: UIViewController, OBDropZone {
-
+var blocksStack = [Block]()
     
     //update these as collection view changes
     private let blockWidth = 100
@@ -129,7 +129,7 @@ class DragInterfaceViewController: UIViewController, OBDropZone {
                         let block = blocks[0]
                         blocksStack.insert(block, at: index)
                         let endBlockName = "End " + block.name
-                        let endBlock = Block(name: endBlockName, color: block.color, double: true)
+                        let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: block.editable)
                         endBlock?.counterpart = block
                         block.counterpart = endBlock
                         endBlock?.ID = count

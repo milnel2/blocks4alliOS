@@ -11,7 +11,7 @@ import UIKit
 class I3BlocksTypeTableViewController: UITableViewController {
     var blockDict = NSArray()
     var blockTypes = [Block]()
-    var sendingInterface = 0 //which interface called this controller into existance?
+    var indexToAdd = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +64,7 @@ class I3BlocksTypeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //TODO check this
         if indexPath.row >= blockDict.count{
             self.performSegue(withIdentifier: "cancelSegue", sender: self)
         }else{
@@ -84,29 +85,19 @@ class I3BlocksTypeTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // Get the new view controller using segue.destinationViewController.
-        if let myDestination = segue.destination as? BlockTableViewController{
-            myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
-        }
         if let myDestination = segue.destination as? I3BlockTableViewController{
             myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
+            myDestination.indexToAdd = self.indexToAdd
         }
         
         // Get the new view controller using segue.destinationViewController.
-        if let myDestination = segue.destination as? I3ViewController{
+        if let myDestination = segue.destination as? PlaceholderViewController{
             if let blockCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as? BlockTableViewCell{
                 myDestination.blockToAdd = blockCell.block
             }
             // myDestination.blockToAdd = tableView.indexPathForSelectedRow?.row
         }
         
-        // Get the new view controller using segue.destinationViewController.
-        if let myDestination = segue.destination as? I4ViewController{
-            if let blockCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as? BlockTableViewCell{
-                myDestination.blockToAdd = blockCell.block
-            }
-            // myDestination.blockToAdd = tableView.indexPathForSelectedRow?.row
-        }
-        // Pass the selected object to the new view controller.
     }
     
     //TODO: this is really convoluted, probably a better way of doing this
@@ -116,24 +107,15 @@ class I3BlocksTypeTableViewController: UITableViewController {
                 let name = blockType.object(forKey: "type") as? String
                 var color = UIColor.green
                 if let colorString = blockType.object(forKey: "color") as? String{
-                    print(colorString)
                     color = UIColor.colorFrom(hexString: colorString)
                 }
-                guard let block = Block(name: name!, color: color, double: false) else {
+                guard let block = Block(name: name!, color: color, double: false, editable: false) else {
                     fatalError("Unable to instantiate block")
                 }
                 blockTypes += [block]
             }
         }
-        
-        if (sendingInterface == 4 && blocksStack4.count >= 2) || (sendingInterface == 3 && blocksStack3.count >= 2) {
-            guard let workspaceblock = Block(name: "Choose Block from Workspace", color: UIColor.darkGray, double: false) else {
-                fatalError("Unable to instantiate block")
-            }
-            blockTypes += [workspaceblock]
-        }
-        
-        guard let cancelBlock = Block(name: "Cancel", color: UIColor.red, double: false) else {
+        guard let cancelBlock = Block(name: "Cancel", color: UIColor.red, double: false, editable: false) else {
             fatalError("Unable to instantiate block")
         }
         

@@ -7,10 +7,15 @@
 //
 
 import UIKit
+ //UNCOMMENT AND CHANGE BRIDGING HEADER FILE TO DISABLE ROBOT AND USE SIMULATOR
+/*
+class RobotTableViewController: UITableViewController {
+
+}*/
 
 var robotManager:WWRobotManager? = nil
 
-class RobotTableViewController: UITableViewController, WWRobotManagerObserver, WWRobotObserver {
+class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
     var robots = [WWRobot]()
 
     override func viewDidLoad() {
@@ -90,7 +95,7 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver, W
     
     func manager(_: WWRobotManager, didConnect robot: WWRobot){
         self.tableView.reloadData()
-        refreshConnectedRobots()
+        //refreshConnectedRobots()
     }
     
     func manager(_: WWRobotManager, didFailToConnect robot: WWRobot, error: WWError){
@@ -105,22 +110,5 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver, W
         print("found a robot")
     }
     
-    func refreshConnectedRobots(){
-        let connectedRobots = robotManager?.allConnectedRobots
-        for r in connectedRobots!{
-            if let robot = r as? WWRobot{
-                robot.add(self)
-            }
-        }
-    }
-    
-    func sendCommandSetToRobots(cmd: WWCommandSet){
-        let connectedRobots = robotManager?.allConnectedRobots
-        for r in connectedRobots!{
-            if let robot = r as? WWRobot{
-                robot.send(cmd)
-            }
-        }
-    }
 
 }

@@ -35,7 +35,7 @@ class I4ViewController: UIViewController {
                     blockToAdd!.ID = count
                     count += 1
                     let endBlockName = "End " + blockToAdd!.name
-                    guard let block1 = Block(name: endBlockName, color: blockToAdd!.color, double: true) else {
+                    guard let block1 = Block(name: endBlockName, color: blockToAdd!.color, double: true, editable: blockToAdd!.editable) else {
                         fatalError("Unable to instantiate block1")
                     }
                     blocksStack4.insert(block1, at: indexToAdd4+1)
@@ -84,9 +84,6 @@ class I4ViewController: UIViewController {
     // Accessing the UICollectionView in container
     var containerViewController: UICollectionViewController?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let myDestination = segue.destination as? I3BlocksTypeTableViewController{
-            myDestination.sendingInterface = 4
-        }
         
         if segue.identifier == "I3StackedCollectionViewControllerIdentifier" {
             if let connectContainerViewController = segue.destination as? UICollectionViewController{

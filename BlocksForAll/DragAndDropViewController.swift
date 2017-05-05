@@ -9,12 +9,16 @@
 import UIKit
 import AVFoundation
 
+//collection of blocks that are part of your program
 
-class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollectionViewDataSource, UICollectionViewDelegate {
+var blocksStack = [Block]()
+
+class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumSource, UICollectionViewDataSource, UICollectionViewDelegate {
     
     //@IBOutlet weak var playButton: UIButton!
     
     private let collectionReuseIdentifier = "BlockCell"
+    private var spatialLayout = false
     
     //update these as collection view changes
     private let blockWidth = 100
@@ -31,13 +35,16 @@ class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollec
     
     //@IBOutlet weak var blocksProgram: UIStackView!
     @IBOutlet weak var blocksProgram: UICollectionView!
-
-    @IBOutlet weak var trashcanView: UIView!
     
-    //collection of blocks that are part of your program
-    var blocksStack = [Block]()
+
     var blocksBeingMoved = [Block]()
 
+    //toggle between spatial and audio layouts when button pressed
+    @IBAction func switchLayouts(_ sender: Any) {
+        spatialLayout = !spatialLayout
+        blocksProgram.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -53,16 +60,13 @@ class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollec
     
     // run code
     @IBAction func playButtonClicked(_ sender: Any) {
-        for block in blocksStack{
-            print(block.name)
-            //TODO add repeat blocks
-        }
+        play(blocksStack)
     }
     
     // MARK: - Drag and Drop Methods
     
     func ovumEntered(_ ovum: OBOvum!, in view: UIView!, atLocation location: CGPoint) -> OBDropAction {
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Entered View", comment: ""))
+        //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Entered View", comment: ""))
         return OBDropAction.copy//OBDragActionCopy
     }
     
@@ -114,7 +118,7 @@ class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollec
                         let block = blocks[0]
                         blocksStack.insert(block, at: index)
                         let endBlockName = "End " + block.name
-                        let endBlock = Block(name: endBlockName, color: block.color, double: true)
+                        let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: block.editable)
                         endBlock?.counterpart = block
                         block.counterpart = endBlock
                         endBlock?.ID = count
@@ -135,7 +139,7 @@ class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollec
             }
             fromWorkspace = false
             blocksBeingMoved.removeAll()
-           }else{ //probably shoudl be error
+           }else{ //probably should be error
             print("Not [Block]")
         }
         
@@ -284,9 +288,7 @@ class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollec
         for myView in cell.subviews{
             myView.removeFromSuperview()
         }
-        
-        
-        //THIS SHOULD WORK FOR SECOND VERSION OF PROGRAM STRUCTURE
+        let block = blocksStack[indexPath.row]
         var blocksToAdd = [Block]()
         
         //check if block is nested (or nested multiple times)
@@ -301,134 +303,56 @@ class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollec
                 }
             }
         }
-        blocksToAdd.reverse()
-        
-        let block = blocksStack[indexPath.row]
-        
-        var accessibilityLabel = block.name
-        var spearCon = ""
-        for b in blocksToAdd{
-            spearCon += " r "
-            accessibilityLabel += " inside " + b.name
-        }
-        accessibilityLabel = spearCon + accessibilityLabel
-        
-        let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockWidth))
-        myLabel.text = block.name
-        myLabel.textAlignment = .center
-        myLabel.textColor = UIColor.white
-        myLabel.numberOfLines = 0
-        myLabel.accessibilityLabel = accessibilityLabel
-        cell.addSubview(myLabel)
-        
-        cell.backgroundColor = block.color
-        //cell.labelView.text = block.name
-        /*
-        if(cell.subviews.count >= 2) {
-            cell.subviews[1].removeFromSuperview()
-            print("removing subview")
-        }
-         
-         
-        */
-        
-        //trying to fix up interface 1
-        /*
-        var nestingLevel = 0
-        var highestNestingLevel = 0
-        //check if block is nested (or nested multiple times)
-        for i in 0...indexPath.row {
-            if blocksStack[i].double {
-                if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
-                    nestingLevel += 1
-                    highestNestingLevel += 1
-                }else{
-                    nestingLevel -= 1
-                    if(nestingLevel == 0){
-                        highestNestingLevel = 0
-                    }
-                }
+        if !spatialLayout {
+            blocksToAdd.reverse()
+            
+            let block = blocksStack[indexPath.row]
+            
+            var accessibilityLabel = block.name
+            var spearCon = ""
+            for b in blocksToAdd{
+                spearCon += " r "
+                accessibilityLabel += " inside " + b.name
             }
-        }
-        var currentNestingLevel = nestingLevel
-        
-        var i = indexPath.row + 1
-        while(nestingLevel > 0){
-            if blocksStack[i].double {
-                if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
-                    nestingLevel += 1
-                    highestNestingLevel += 1
-                }else {
-                    nestingLevel -= 1
-                }
-            }
-            i -= 1
-        }
-        
-        if(block.double && block.ID! > block.counterpartID!){
-            currentNestingLevel += 1
-            highestNestingLevel = max(highestNestingLevel, 1)
-        }
-        
-        print(block.name, currentNestingLevel, highestNestingLevel)
-        
-        //think i need to add in for end block
-        if currentNestingLevel >= 1{
-            for i in 1...highestNestingLevel{
-                let myRect = CGRect(x: 0, y: -(blockDoubleHeight+blockSpacing)*i, width: blockWidth+blockSpacing, height: blockDoubleHeight)
-                let myView = UIView(frame: myRect)
-                myView.backgroundColor = UIColor.colorFrom(hexString: "#FFA500")
+            accessibilityLabel = spearCon + accessibilityLabel
+            
+            let myLabel = UILabel.init(frame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
+            myLabel.text = block.name
+            myLabel.textAlignment = .center
+            myLabel.textColor = UIColor.white
+            myLabel.numberOfLines = 0
+            myLabel.backgroundColor = block.color
+            myLabel.accessibilityLabel = accessibilityLabel
+            cell.addSubview(myLabel)
+            
+            //cell.backgroundColor = block.color
+
+        }else {
+            var count = 0
+            let startingHeight = Int(cell.frame.height)-blockHeight
+            for b in blocksToAdd{
+                let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
+                //let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: -count*(blockHeight), width: blockWidth+2*blockSpacing, height: blockHeight))
+                myView.accessibilityLabel = "Inside " + b.name
+                myView.text = "Inside " + b.name
+                myView.textAlignment = .center
+                myView.textColor = UIColor.white
+                myView.numberOfLines = 0
+                myView.backgroundColor = b.color
                 cell.addSubview(myView)
+                count += 1
             }
-        }
-        */
-        /*THIS SHOULD WORK FOR SECOND VERSION OF PROGRAM STRUCTURE
-        var nestingLevel = 0
-        //check if block is nested (or nested multiple times)
-        for i in 0...indexPath.row {
-            if blocksStack[i].double {
-                if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
-                    nestingLevel += 1
-                }else if(indexPath.row > i){
-                    nestingLevel -= 1
-                }
-            }
-        }
-        //think i need to add in for end block
-        if nestingLevel >= 1{
-            for i in 1...nestingLevel{
-                let myRect = CGRect(x: 0, y: -(blockDoubleHeight+blockSpacing)*i, width: blockWidth+blockSpacing, height: blockDoubleHeight)
-                let myView = UIView(frame: myRect)
-                myView.backgroundColor = UIColor.colorFrom(hexString: "#FFA500")
-                cell.addSubview(myView)
-            }
-        }
-         */
+            
+            let myLabel = UILabel.init(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+            //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
+            myLabel.text = block.name
+            myLabel.textAlignment = .center
+            myLabel.textColor = UIColor.white
+            myLabel.numberOfLines = 0
+            myLabel.backgroundColor = block.color
+            cell.addSubview(myLabel)
         
-        
-        /*
-        if(block.double && block.ID! < block.counterpartID!){
-            var spacing = 0
-            
-            //TODO check for repeats within loop
-            var indexOfCounterpart = -1
-            for i in 0..<blocksStack.count {
-                if blocksStack[i].ID == block.counterpartID {
-                    indexOfCounterpart = i
-                }
-            }
-            
-            for i in 1...(indexOfCounterpart-indexPath.row){
-                spacing = blockWidth + i*(blockWidth+blockSpacing)
-            }
-            
-            let myRect = CGRect(x: 0, y: -blockDoubleHeight, width: spacing, height: blockDoubleHeight)
-            let myView = UIView(frame: myRect)
-            myView.backgroundColor = block.color
-            cell.addSubview(myView)
-           
-            //myView.leftAnchor.constraint(equalTo: cell.leftAnchor)
-        }*/
+        }
         
         if (cell.gestureRecognizers == nil || cell.gestureRecognizers?.count == 0) {
             let manager = OBDragDropManager.shared()
@@ -438,64 +362,36 @@ class BlocksViewController: UIViewController, OBDropZone, OBOvumSource, UICollec
             
             //ADDED TO FAKE VOICEOVER
             /*
-            let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_sender:)))
-            //tap.delegate = self
-            cell.addGestureRecognizer(tap)
-            
-            //let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_sender:)))
-            //cell.addGestureRecognizer(pan)
-            //cell.accessibilityTraits = accessibility
-            cell.isUserInteractionEnabled = true
- */
+             let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_sender:)))
+             //tap.delegate = self
+             cell.addGestureRecognizer(tap)
+             
+             //let pan = UIPanGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_sender:)))
+             //cell.addGestureRecognizer(pan)
+             //cell.accessibilityTraits = accessibility
+             cell.isUserInteractionEnabled = true
+             */
         }
         
         return cell
     }
     
+    func playSound(){
+        // create a sound ID, in this case its the tweet sound.
+        let systemSoundID: SystemSoundID = 1104
+        
+        // to play sound
+        AudioServicesPlaySystemSound (systemSoundID)
+    }
+    
     func handleSingleTap(_sender: UITapGestureRecognizer){
         if let myView = _sender.view as? BlockCollectionViewCell{
             // create a sound ID, in this case its the tweet sound.
-            let systemSoundID: SystemSoundID = 1104
+            playSound()
             
-            // to play sound
-            AudioServicesPlaySystemSound (systemSoundID)
-            
-            print(myView.labelView.text ?? "nope")
+            //print(myView.labelView.text ?? "nope")
         }
     }
-    
-    
-    // MARK: UICollectionViewDelegate
-    
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
-     }
-     */
-
 
 }
 
