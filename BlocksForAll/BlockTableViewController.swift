@@ -30,7 +30,6 @@ class BlockTableViewController: UITableViewController, OBOvumSource {
         }
         self.accessibilityHint = "Double tap from menu to add block to workspace"
         
-        print(blockTypes)
         createBlocksArray()
         // Load the sample data
         //loadSampleBlocks()

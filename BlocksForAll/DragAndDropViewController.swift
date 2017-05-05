@@ -78,7 +78,6 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
             let totalSize = blockWidth+blockSpacing
             
             let index = min((Int(location.x) - totalSize/2)/totalSize, blocksStack.count)
-            print(index)
             
             //check if in trashcan
             let trashed = (Int(location.x) >= Int(view.frame.width) - trashcanWidth)
@@ -97,10 +96,6 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
                 
                 //add block to stack
-                if(blocks[0].ID == nil){
-                    blocks[0].ID = count
-                    count += 1
-                }
                 if twoBlocks {
                     if(fromWorkspace){
                         blocksStack.insert(contentsOf: blocks, at: index)
@@ -121,10 +116,10 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
                         let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: block.editable)
                         endBlock?.counterpart = block
                         block.counterpart = endBlock
-                        endBlock?.ID = count
+                        /*endBlock?.ID = count
                         count += 1
                         endBlock?.counterpartID = block.ID
-                        block.counterpartID = endBlock?.ID
+                        block.counterpartID = endBlock?.ID*/
                         blocksStack.insert(endBlock!, at: index+1)
                         blocksProgram.performBatchUpdates({
                             self.blocksProgram.insertItems(at: [IndexPath.init(row: index, section: 0), IndexPath.init(row: index+1, section: 0)])
@@ -156,7 +151,6 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
         let totalSize = blockWidth+blockSpacing
         
         let index = min((Int(location.x) - totalSize/2)/totalSize, blocksStack.count)
-        //print(location, index)
         if(index != previousIndex || trashed != (Int(location.x) >= Int(view.frame.width) - trashcanWidth)){
             var announcement = ""
             if(Int(location.x) >= Int(view.frame.width) - trashcanWidth){
@@ -189,7 +183,7 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
             if myBlock.double == true{
                 var indexOfCounterpart = -1
                 for i in 0..<blocksStack.count {
-                    if blocksStack[i].ID == myBlock.counterpartID {
+                    if blocksStack[i] === myBlock.counterpart {
                         indexOfCounterpart = i
                     }
                 }
@@ -294,7 +288,7 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
         //check if block is nested (or nested multiple times)
         for i in 0...indexPath.row {
             if blocksStack[i].double {
-                if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
+                if(!blocksStack[i].name.contains("End")){
                     if(i != indexPath.row){
                         blocksToAdd.append(blocksStack[i])
                     }
@@ -385,11 +379,10 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
     }
     
     func handleSingleTap(_sender: UITapGestureRecognizer){
-        if let myView = _sender.view as? BlockCollectionViewCell{
+        if (_sender.view as? BlockCollectionViewCell) != nil{
             // create a sound ID, in this case its the tweet sound.
             playSound()
             
-            //print(myView.labelView.text ?? "nope")
         }
     }
 

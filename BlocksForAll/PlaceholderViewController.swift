@@ -48,21 +48,21 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
                 //add block
                 if(blockToAdd!.double){
                     blocksStack.insert(blockToAdd!, at: indexToAdd)
-                    blockToAdd!.ID = count
-                    count += 1
+                    //blockToAdd!.ID = count
+                    //count += 1
                     let endBlockName = "End " + blockToAdd!.name
-                    guard let block1 = Block(name: endBlockName, color: blockToAdd!.color, double: true, editable: blockToAdd!.editable) else {
+                    guard let endBlock = Block(name: endBlockName, color: blockToAdd!.color, double: true, editable: blockToAdd!.editable) else {
                         fatalError("Unable to instantiate block1")
                     }
-                    blocksStack.insert(block1, at: indexToAdd+1)
-                    block1.ID = indexToAdd+1
-                    block1.counterpartID = indexToAdd
-                    block1.counterpart = blockToAdd
-                    blockToAdd?.counterpart = block1
-                    blockToAdd?.counterpartID = indexToAdd+1
+                    blocksStack.insert(endBlock, at: indexToAdd+1)
+                    //endBlock.ID = indexToAdd+1
+                    //endBlock.counterpartID = indexToAdd
+                    endBlock.counterpart = blockToAdd
+                    blockToAdd?.counterpart = endBlock
+                    //blockToAdd?.counterpartID = indexToAdd+1
                 }else{
                     blocksStack.insert(blockToAdd!, at: indexToAdd)
-                    blockToAdd!.ID = count
+                    //blockToAdd!.ID = count
                     count += 1
                 }
             }
@@ -130,7 +130,8 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
             //check if block is nested (or nested multiple times)
             for i in 0...blockStackIndex {
                 if blocksStack[i].double {
-                    if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
+                    //this is a begin repeat
+                    if(!blocksStack[i].name.contains("End")){
                         if(i != blockStackIndex){
                             blocksToAdd.append(blocksStack[i])
                         }
@@ -199,37 +200,38 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let blockStackIndex = indexPath.row - 1
+        let blocksStackIndex = indexPath.row - 1
+        let blocksProgramIndex = indexPath.row
         //make announcement
-        let myBlock = blocksStack[blockStackIndex]
-        let indexOfCurrentBlock = blockStackIndex
+        let myBlock = blocksStack[blocksStackIndex]
         let announcement = myBlock.name + " selected, chose where to move it.  "
+        print(announcement)
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
         //remove block from collection and program
         if myBlock.double == true{
             var indexOfCounterpart = -1
             for i in 0..<blocksStack.count {
-                if blocksStack[i].ID == myBlock.counterpartID {
+                if blocksStack[i] === myBlock.counterpart! {
                     indexOfCounterpart = i
                 }
             }
             var indexPathArray = [IndexPath]()
             var tempBlockStack = [Block]()
-            for i in min(indexOfCounterpart, indexOfCurrentBlock)...max(indexOfCounterpart, indexOfCurrentBlock){
+            for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
                 indexPathArray += [IndexPath.init(row: i+1, section: 0)]
                 tempBlockStack += [blocksStack[i]]
             }
             blocksBeingMoved = tempBlockStack
             
-            blocksStack.removeSubrange(min(indexOfCounterpart, indexOfCurrentBlock)...max(indexOfCounterpart, indexOfCurrentBlock))
+            blocksStack.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
             blocksProgram.performBatchUpdates({
                 self.blocksProgram.deleteItems(at: indexPathArray)
             }, completion: nil)
         }else{ //only a single block to be removed
-            blocksBeingMoved = [blocksStack[indexOfCurrentBlock]]
-            blocksStack.remove(at: indexOfCurrentBlock)
+            blocksBeingMoved = [blocksStack[blocksStackIndex]]
+            blocksStack.remove(at: blocksStackIndex)
             blocksProgram.performBatchUpdates({
-                self.blocksProgram.deleteItems(at: [IndexPath.init(row: indexOfCurrentBlock, section: 0)])
+                self.blocksProgram.deleteItems(at: [IndexPath.init(row: blocksProgramIndex, section: 0)])
             }, completion: nil)
         }
         movingBlocks = true

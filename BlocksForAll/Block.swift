@@ -16,8 +16,6 @@ class Block {
     var color: UIColor
     var double: Bool //true if needs both beginning and end block like repeat
     var counterpart: Block?
-    var ID: Int?
-    var counterpartID: Int?
     var editable: Bool //true if has options
     var options: [String]?
     

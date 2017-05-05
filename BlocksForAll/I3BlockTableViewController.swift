@@ -131,13 +131,6 @@ class I3BlockTableViewController: UITableViewController {
                 fatalError("Unable to instantiate block")
             }
             blocks += [cancelBlock]
-            
-            /*cell.textLabel?.text = blockType.object(forKey: "type") as? String
-             cell.textLabel?.textColor = UIColor.white
-             if let colorString = blockType.object(forKey: "color") as? String{
-             print(colorString)
-             cell.backgroundColor = UIColor.colorFrom(hexString: colorString)
-             }*/
         }
     }
     

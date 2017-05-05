@@ -56,7 +56,6 @@ class BlocksTypeTableViewController: UITableViewController {
             cell.textLabel?.textColor = UIColor.white
             cell.textLabel?.textAlignment = .center
             if let colorString = blockType.object(forKey: "color") as? String{
-                print(colorString)
                 cell.backgroundColor = UIColor.colorFrom(hexString: colorString)
             }
         }

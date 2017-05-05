@@ -71,7 +71,7 @@ class PlaceholderChooseBlockCollectionViewController: UICollectionViewController
         //check if block is nested (or nested multiple times)
         for i in 0...indexPath.row {
             if blocksStack[i].double {
-                if(blocksStack[i].ID! < blocksStack[i].counterpartID!){
+                if(!blocksStack[i].name.contains("End")){
                     if(i != indexPath.row){
                         blocksToAdd.append(blocksStack[i])
                     }

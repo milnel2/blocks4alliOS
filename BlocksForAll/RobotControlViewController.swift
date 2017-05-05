@@ -58,7 +58,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     
     func robot(_ robot: WWRobot!, didStopExecutingCommand sequence: WWCommandSetSequence!, withResults results: [AnyHashable : Any]!) {
         let connectedRobots = robotManager?.allConnectedRobots
-        for r in connectedRobots!{
+        for _ in connectedRobots!{
             robot.resetState()
         }
     }
@@ -66,7 +66,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     func play(_ blocks2Play: [Block]){
         let connectedRobots = robotManager?.allConnectedRobots
         if connectedRobots != nil{
-            var cmdToSend = WWCommandSetSequence()
+            let cmdToSend = WWCommandSetSequence()
             var repeatCommands = [WWCommandSet]()
             var repeat2times = false
             var repeat3times = false
@@ -94,7 +94,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     repeat3times = true
                 }else if block.name == "End Repeat 3 Times" {
                     repeat3times = false
-                    for index in 1...3{
+                    for _ in 1...3{
                         for action in repeatCommands {
                             cmdToSend.add(action, withDuration: 2.0)
                         }
