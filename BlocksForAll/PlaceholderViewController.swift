@@ -114,10 +114,10 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
             
             let placeholderBlock = UIButton.init(frame: CGRect(x: 0, y: startingHeight, width: placeholderWidth, height: blockHeight ))
             placeholderBlock.backgroundColor = UIColor.gray
-            placeholderBlock.titleLabel?.text = "+"
+            //placeholderBlock.titleLabel?.text = "+"
             placeholderBlock.titleLabel?.textColor = UIColor.white
             placeholderBlock.accessibilityLabel = "Add Block at beginning"
-            
+            placeholderBlock.setTitle("+", for: .normal)
             placeholderBlock.addTarget(self, action: #selector(self.addBlock(_sender:)), for: .touchUpInside)
             
             cell.addSubview(placeholderBlock)
@@ -155,7 +155,7 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
                 
                 let placeholderBlock = UIButton.init(frame: CGRect(x: blockWidth, y: startingHeight, width: placeholderWidth, height: blockHeight ))
                 placeholderBlock.backgroundColor = UIColor.gray
-                placeholderBlock.titleLabel?.text = "+"
+                placeholderBlock.setTitle("+", for: .normal)
                 placeholderBlock.titleLabel?.textColor = UIColor.white
                 placeholderBlock.accessibilityLabel = "Add Block after " + block.name
                 
@@ -189,7 +189,7 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
                 
                 let placeholderBlock = UIButton.init(frame: CGRect(x: blockWidth, y: startingHeight-count*(blockHeight/2+blockSpacing), width: placeholderWidth, height: blockHeight + count*(blockHeight/2+blockSpacing)))
                 placeholderBlock.backgroundColor = UIColor.gray
-                placeholderBlock.titleLabel?.text = "+"
+                placeholderBlock.setTitle("+", for: .normal)
                 placeholderBlock.titleLabel?.textColor = UIColor.white
                 placeholderBlock.accessibilityLabel = "Add Block after " + block.name
                 placeholderBlock.addTarget(self, action: #selector(self.addBlock(_sender:)), for: .touchUpInside)

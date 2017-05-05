@@ -490,8 +490,8 @@
         <image name="Trashcan" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="PRb-Lz-SU0"/>
+        <segue reference="B6Z-Bo-0sW"/>
         <segue reference="riO-De-gGW"/>
-        <segue reference="TSK-jE-rv0"/>
-        <segue reference="oEn-tm-4zK"/>
     </inferredMetricsTieBreakers>
 </document>
