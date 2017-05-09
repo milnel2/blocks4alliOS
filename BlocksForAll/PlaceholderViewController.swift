@@ -1,5 +1,5 @@
 //
-//  Interface3ViewController.swift
+//  PlaceholderViewController.swift
 //  BlocksForAll
 //
 //  Created by Lauren Milne on 3/7/17.
@@ -8,39 +8,26 @@
 
 import UIKit
 
-class PlaceholderViewController: RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class PlaceholderViewController: BlocksViewController {
     
-    @IBOutlet weak var blocksProgram: UICollectionView!
+    //@IBOutlet weak var blocksProgram: UICollectionView!
     var blockToAdd: Block?
     var indexToAdd = 0
     var count = 0
     
-    @IBOutlet weak var playTrashToggleButton: UIButton!
+    //@IBOutlet weak var playTrashToggleButton: UIButton!
     
-    private let blockWidth = 90
-    private let blockHeight = 100
-    private let blockSpacing = 1
     private let blockDoubleHeight = 25
     private let placeholderWidth = 50
     
-    private var spatialLayout = false
-    private let collectionReuseIdentifier = "BlockCell"
     
     //currently moving blocks in the workspace
-    private var movingBlocks = false
     private var blocksBeingMoved = [Block]()
     
-    @IBAction func switchLayout(_ sender: Any) {
-        spatialLayout = !spatialLayout
-        blocksProgram.reloadData()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        blocksProgram.delegate = self
-        blocksProgram.dataSource = self
-
+        blockWidth = 90
         // Do any additional setup after loading the view.
         if blockToAdd != nil {
             if blockToAdd?.name == "Cancel"{
@@ -50,21 +37,16 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
                 //add block
                 if(blockToAdd!.double){
                     blocksStack.insert(blockToAdd!, at: indexToAdd)
-                    //blockToAdd!.ID = count
-                    //count += 1
+
                     let endBlockName = "End " + blockToAdd!.name
                     guard let endBlock = Block(name: endBlockName, color: blockToAdd!.color, double: true, editable: blockToAdd!.editable) else {
                         fatalError("Unable to instantiate block1")
                     }
                     blocksStack.insert(endBlock, at: indexToAdd+1)
-                    //endBlock.ID = indexToAdd+1
-                    //endBlock.counterpartID = indexToAdd
                     endBlock.counterpart = blockToAdd
                     blockToAdd?.counterpart = endBlock
-                    //blockToAdd?.counterpartID = indexToAdd+1
                 }else{
                     blocksStack.insert(blockToAdd!, at: indexToAdd)
-                    //blockToAdd!.ID = count
                     count += 1
                 }
             }
@@ -72,36 +54,13 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
         indexToAdd = 0
     }
     
-    func changeButton(){
-        if movingBlocks{
-            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
-            playTrashToggleButton.accessibilityLabel = "Trash"
-            playTrashToggleButton.accessibilityHint = "Delete selected blocks"
-        }else{
-            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
-            playTrashToggleButton.accessibilityLabel = "Play"
-            playTrashToggleButton.accessibilityHint = "Make your robot go!"
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     // MARK: UICollectionViewDataSource
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return blocksStack.count + 1 //for add new block at beginning
     }
     
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return blocksStack.count + 1
-    }
-    
-    //Use for size
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -124,8 +83,8 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath) as! I3BlockCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath)
         // Configure the cell
         for myView in cell.subviews{
             myView.removeFromSuperview()
@@ -261,19 +220,16 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
         //have giant targets to add it to: at begining, in each block, in trash
     }
     
-    
-    
     func addBlock(_sender: UIButton){
-        if let blockView = _sender.superview as? I3BlockCollectionViewCell{
+        if let blockView = _sender.superview as? UICollectionViewCell{
             indexToAdd = (blocksProgram?.indexPath(for: blockView)?.row)!
         }
         performSegue(withIdentifier: "addNewBlockSegue", sender: self)
     }
     
-    
     // MARK: - Navigation
     
-    // Accessing the UICollectionView in container
+    // Pass on index where the block should be added
     var containerViewController: UICollectionViewController?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let myDestination = segue.destination as? I3BlocksTypeTableViewController{

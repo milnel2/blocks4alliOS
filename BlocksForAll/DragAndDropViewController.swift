@@ -13,61 +13,32 @@ import AVFoundation
 
 var blocksStack = [Block]()
 
-class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumSource, UICollectionViewDataSource, UICollectionViewDelegate {
-    
-    //@IBOutlet weak var playButton: UIButton!
-    
-    private let collectionReuseIdentifier = "BlockCell"
-    private var spatialLayout = false
+class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource {
     
     //update these as collection view changes
-    private let blockWidth = 100
-    private let blockHeight = 100
-    private let blockSpacing = 1
     private let blockDoubleHeight = 25
     private let trashcanWidth = 100
-    
-    private var count = 0
     
     //Set to -1 to distinguish blocks that are pulled in from toolbox vs moving in workspace
     public var indexOfCurrentBlock = -1
     public var fromWorkspace = false
-    
-    //@IBOutlet weak var blocksProgram: UIStackView!
-    @IBOutlet weak var blocksProgram: UICollectionView!
-    
 
     var blocksBeingMoved = [Block]()
 
-    //toggle between spatial and audio layouts when button pressed
-    @IBAction func switchLayouts(_ sender: Any) {
-        spatialLayout = !spatialLayout
-        blocksProgram.reloadData()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        blocksProgram.delegate = self
-        blocksProgram.dataSource = self
         self.view.dropZoneHandler = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // run code
-    @IBAction func playButtonClicked(_ sender: Any) {
-        play(blocksStack)
-    }
     
     // MARK: - Drag and Drop Methods
     
     func ovumEntered(_ ovum: OBOvum!, in view: UIView!, atLocation location: CGPoint) -> OBDropAction {
         //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Entered View", comment: ""))
-        return OBDropAction.copy//OBDragActionCopy
+        movingBlocks = true
+        changeButton()
+        return OBDropAction.copy
     }
     
     func ovumDropped(_ ovum: OBOvum!, in view: UIView!, atLocation location: CGPoint) {
@@ -116,10 +87,6 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
                         let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: block.editable)
                         endBlock?.counterpart = block
                         block.counterpart = endBlock
-                        /*endBlock?.ID = count
-                        count += 1
-                        endBlock?.counterpartID = block.ID
-                        block.counterpartID = endBlock?.ID*/
                         blocksStack.insert(endBlock!, at: index+1)
                         blocksProgram.performBatchUpdates({
                             self.blocksProgram.insertItems(at: [IndexPath.init(row: index, section: 0), IndexPath.init(row: index+1, section: 0)])
@@ -134,6 +101,8 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
             }
             fromWorkspace = false
             blocksBeingMoved.removeAll()
+            movingBlocks = false
+            changeButton()
            }else{ //probably should be error
             print("Not [Block]")
         }
@@ -143,7 +112,6 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
     func ovumExited(_ ovum: OBOvum!, in view: UIView!, atLocation location: CGPoint) {
         self.view.backgroundColor = UIColor.white
     }
-    
     
     var previousIndex = -1
     var trashed = false
@@ -175,7 +143,7 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
     //MARK: - OBOvmSource
     func createOvum(from sourceView: UIView!) -> OBOvum! {
         let ovum = OBOvum.init()
-        if let sView = sourceView as? BlockCollectionViewCell{
+        if let sView = sourceView as? UICollectionViewCell{
             fromWorkspace = true
             indexOfCurrentBlock = (blocksProgram.indexPath(for: sView)?.row)!
             //TODO: UPDATE THIS TO DROP TWO BLOCKS AND EVERYTHING IN BETWEEN
@@ -207,6 +175,8 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
                 }, completion: nil)
             }
             blocksBeingMoved = ovum.dataObject as! [Block]
+            movingBlocks = true
+            changeButton()
         }else{ //probably should throw an error
             ovum.dataObject = sourceView.backgroundColor
         }
@@ -214,140 +184,25 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
     }
     
     func createDragRepresentation(ofSourceView sourceView: UIView!, in window: UIWindow!) -> UIView! {
-        if let sView = sourceView as? BlockCollectionViewCell{
+        if let sView = sourceView as? UICollectionViewCell{
             let dragView = createViewRepresentation(FromBlocks: blocksBeingMoved)
             dragView.frame.origin.x = sView.frame.origin.x
             dragView.frame.origin.y = sView.frame.origin.y
             return dragView
-            /*
-            let frame = sView.convert(sView.bounds, to: sView.window)
-            //TODO: UPDATE THIS TO DROP TWO BLOCKS AND EVERYTHING IN BETWEEN
-            let dragView = UIView(frame: frame)
-            dragView.backgroundColor = sView.backgroundColor
-            let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockWidth))
-            myLabel.text = sView.labelView.text
-            myLabel.textAlignment = .center
-            myLabel.textColor = UIColor.white
-            dragView.self.addSubview(myLabel)
-            dragView.alpha = 0.75
-            return dragView*/
         }
         
         return sourceView
     }
 
-    
+
     func ovumDragEnded(_ ovum: OBOvum!) {
         return
     }
     
-    func createViewRepresentation(FromBlocks blocksRep: [Block]) -> UIView {
-        let myViewWidth = (blockWidth + blockSpacing)*blocksRep.count
-        let myViewHeight = blockHeight
-        let myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
-        let myView = UIView(frame: myFrame)
-        count = 0
-        for block in blocksRep{
-            let xCoord = count*(blockWidth + blockSpacing)
-            let blockView = UIView(frame:CGRect(x: xCoord, y: 0, width: blockWidth, height: blockHeight))
-            count += 1
-            blockView.backgroundColor = block.color
-            let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockWidth))
-            myLabel.text = block.name
-            myLabel.textAlignment = .center
-            myLabel.textColor = UIColor.white
-            blockView.self.addSubview(myLabel)
-            myView.addSubview(blockView)
-        }
-        myView.alpha = 0.75
-        return myView
-    }
-
     
     // MARK: UICollectionViewDataSource
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return blocksStack.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath) as! BlockCollectionViewCell
-        
-        // Configure the cell
-        for myView in cell.subviews{
-            myView.removeFromSuperview()
-        }
-        let block = blocksStack[indexPath.row]
-        var blocksToAdd = [Block]()
-        
-        //check if block is nested (or nested multiple times)
-        for i in 0...indexPath.row {
-            if blocksStack[i].double {
-                if(!blocksStack[i].name.contains("End")){
-                    if(i != indexPath.row){
-                        blocksToAdd.append(blocksStack[i])
-                    }
-                }else{
-                    blocksToAdd.removeLast()
-                }
-            }
-        }
-        if !spatialLayout {
-            blocksToAdd.reverse()
-            
-            let block = blocksStack[indexPath.row]
-            
-            var accessibilityLabel = block.name
-            var spearCon = ""
-            for b in blocksToAdd{
-                spearCon += " r "
-                accessibilityLabel += " inside " + b.name
-            }
-            accessibilityLabel = spearCon + accessibilityLabel
-            
-            let myLabel = UILabel.init(frame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
-            myLabel.text = block.name
-            myLabel.textAlignment = .center
-            myLabel.textColor = UIColor.white
-            myLabel.numberOfLines = 0
-            myLabel.backgroundColor = block.color
-            myLabel.accessibilityLabel = accessibilityLabel
-            cell.addSubview(myLabel)
-            
-            //cell.backgroundColor = block.color
-
-        }else {
-            var count = 0
-            let startingHeight = Int(cell.frame.height)-blockHeight
-            for b in blocksToAdd{
-                let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
-                //let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: -count*(blockHeight), width: blockWidth+2*blockSpacing, height: blockHeight))
-                myView.accessibilityLabel = "Inside " + b.name
-                myView.text = "Inside " + b.name
-                myView.textAlignment = .center
-                myView.textColor = UIColor.white
-                myView.numberOfLines = 0
-                myView.backgroundColor = b.color
-                cell.addSubview(myView)
-                count += 1
-            }
-            
-            let myLabel = UILabel.init(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-            //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
-            myLabel.text = block.name
-            myLabel.textAlignment = .center
-            myLabel.textColor = UIColor.white
-            myLabel.numberOfLines = 0
-            myLabel.backgroundColor = block.color
-            cell.addSubview(myLabel)
-        
-        }
-        
+    override func addGestureRecognizer(_ cell:UICollectionViewCell){
         if (cell.gestureRecognizers == nil || cell.gestureRecognizers?.count == 0) {
             let manager = OBDragDropManager.shared()
             let recognizer = manager?.createDragDropGestureRecognizer(with: UIPanGestureRecognizer.classForCoder(), source: self)
@@ -366,8 +221,6 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
              cell.isUserInteractionEnabled = true
              */
         }
-        
-        return cell
     }
     
     func playSound(){
@@ -379,7 +232,7 @@ class DragAndDropViewController: RobotControlViewController, OBDropZone, OBOvumS
     }
     
     func handleSingleTap(_sender: UITapGestureRecognizer){
-        if (_sender.view as? BlockCollectionViewCell) != nil{
+        if (_sender.view as? UICollectionViewCell) != nil{
             // create a sound ID, in this case its the tweet sound.
             playSound()
             

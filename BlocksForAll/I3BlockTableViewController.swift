@@ -133,26 +133,4 @@ class I3BlockTableViewController: UITableViewController {
             blocks += [cancelBlock]
         }
     }
-    
-    private func loadSampleBlocks(){
-        guard let block1 = Block(name: "Drive Forward", color: UIColor.blue, double: false, editable: false) else {
-            fatalError("Unable to instantiate block1")
-        }
-        
-        guard let block2 = Block(name: "Drive Backwards", color: UIColor.blue, double: false, editable: false) else {
-            fatalError("Unable to instantiate block2")
-        }
-        
-        guard let block3 = Block(name: "Turn Left", color: UIColor.red, double: false, editable: false) else {
-            fatalError("Unable to instantiate block3")
-        }
-        
-        guard let block4 = Block(name: "Turn Right", color: UIColor.red, double: false, editable: false) else {
-            fatalError("Unable to instantiate block4")
-        }
-        
-        blocks += [block1, block2, block3, block4]
-        
-    }
-    
 }
