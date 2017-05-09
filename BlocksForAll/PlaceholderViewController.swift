@@ -15,6 +15,8 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
     var indexToAdd = 0
     var count = 0
     
+    @IBOutlet weak var playTrashToggleButton: UIButton!
+    
     private let blockWidth = 90
     private let blockHeight = 100
     private let blockSpacing = 1
@@ -69,6 +71,18 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
         }
         indexToAdd = 0
     }
+    
+    func changeButton(){
+        if movingBlocks{
+            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
+            playTrashToggleButton.accessibilityLabel = "Trash"
+            playTrashToggleButton.accessibilityHint = "Delete selected blocks"
+        }else{
+            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
+            playTrashToggleButton.accessibilityLabel = "Play"
+            playTrashToggleButton.accessibilityHint = "Make your robot go!"
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -99,6 +113,15 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
         return size
     }
     
+    func createPlaceholderBlock(frame: CGRect) -> UIButton{
+        let placeholderBlock = UIButton.init(frame: frame)
+        placeholderBlock.backgroundColor = UIColor.gray
+        placeholderBlock.titleLabel?.textColor = UIColor.white
+        placeholderBlock.accessibilityLabel = "Add Block at beginning"
+        placeholderBlock.setTitle("+", for: .normal)
+        placeholderBlock.addTarget(self, action: #selector(self.addBlock(_sender:)), for: .touchUpInside)
+        return placeholderBlock
+    }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -111,15 +134,10 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
         let startingHeight = Int(cell.frame.height)-blockHeight
         
         if indexPath.row == 0 {
-            
-            let placeholderBlock = UIButton.init(frame: CGRect(x: 0, y: startingHeight, width: placeholderWidth, height: blockHeight ))
-            placeholderBlock.backgroundColor = UIColor.gray
-            //placeholderBlock.titleLabel?.text = "+"
-            placeholderBlock.titleLabel?.textColor = UIColor.white
-            placeholderBlock.accessibilityLabel = "Add Block at beginning"
-            placeholderBlock.setTitle("+", for: .normal)
-            placeholderBlock.addTarget(self, action: #selector(self.addBlock(_sender:)), for: .touchUpInside)
-            
+            let placeholderBlock = createPlaceholderBlock(frame: CGRect(x: 0, y: startingHeight, width: placeholderWidth, height: blockHeight ))
+            if movingBlocks{
+                placeholderBlock.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning"
+            }
             cell.addSubview(placeholderBlock)
         }else{
             let blockStackIndex = indexPath.row - 1
@@ -143,6 +161,8 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
             let blockPlacementInfo = ". block " + String(blockStackIndex + 1) + " of " + String(blocksStack.count)
             
             if !spatialLayout {
+                
+                
                 let myLabel = UILabel.init(frame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight))
 
                 myLabel.text = block.name
@@ -151,18 +171,15 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
                 myLabel.numberOfLines = 0
                 myLabel.backgroundColor = block.color
                 myLabel.accessibilityLabel = block.name + blockPlacementInfo
+                myLabel.accessibilityHint = "Double tap to move block"
                 
                 cell.addSubview(myLabel)
                 
-                let placeholderBlock = UIButton.init(frame: CGRect(x: blockWidth, y: startingHeight, width: placeholderWidth, height: blockHeight ))
-                placeholderBlock.backgroundColor = UIColor.gray
-                placeholderBlock.setTitle("+", for: .normal)
-                placeholderBlock.titleLabel?.textColor = UIColor.white
+                
+                let placeholderBlock = createPlaceholderBlock(frame: CGRect(x: blockWidth, y: startingHeight, width: placeholderWidth, height: blockHeight ))
                 placeholderBlock.accessibilityLabel = "Add Block after " + block.name + blockPlacementInfo
-                
-                placeholderBlock.addTarget(self, action: #selector(self.addBlock(_sender:)), for: .touchUpInside)
-                
                 cell.addSubview(placeholderBlock)
+                
             }else{
                 var count = 0
                 for b in blocksToAdd{
@@ -186,15 +203,12 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
                 myLabel.numberOfLines = 0
                 myLabel.backgroundColor = block.color
                 myLabel.accessibilityLabel = block.name + blockPlacementInfo
+                myLabel.accessibilityHint = "Double tap to move block"
                 
                 cell.addSubview(myLabel)
                 
-                let placeholderBlock = UIButton.init(frame: CGRect(x: blockWidth, y: startingHeight-count*(blockHeight/2+blockSpacing), width: placeholderWidth, height: blockHeight + count*(blockHeight/2+blockSpacing)))
-                placeholderBlock.backgroundColor = UIColor.gray
-                placeholderBlock.setTitle("+", for: .normal)
-                placeholderBlock.titleLabel?.textColor = UIColor.white
+                let placeholderBlock = createPlaceholderBlock(frame: CGRect(x: blockWidth, y: startingHeight-count*(blockHeight/2+blockSpacing), width: placeholderWidth, height: blockHeight + count*(blockHeight/2+blockSpacing)))
                 placeholderBlock.accessibilityLabel = "Add Block after " + block.name + blockPlacementInfo
-                placeholderBlock.addTarget(self, action: #selector(self.addBlock(_sender:)), for: .touchUpInside)
                 cell.addSubview(placeholderBlock)
             }
         }
@@ -204,39 +218,46 @@ class PlaceholderViewController: RobotControlViewController, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let blocksStackIndex = indexPath.row - 1
         let blocksProgramIndex = indexPath.row
-        //make announcement
-        let myBlock = blocksStack[blocksStackIndex]
-        let announcement = myBlock.name + " selected, chose where to move it.  "
-        print(announcement)
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
-        //remove block from collection and program
-        if myBlock.double == true{
-            var indexOfCounterpart = -1
-            for i in 0..<blocksStack.count {
-                if blocksStack[i] === myBlock.counterpart! {
-                    indexOfCounterpart = i
+        
+        if movingBlocks{
+            movingBlocks = false
+            blocksStack.insert(contentsOf: blocksBeingMoved, at: blocksStackIndex + 1 )
+            blocksProgram.reloadData()
+        }else{
+            //make announcement
+            let myBlock = blocksStack[blocksStackIndex]
+            //remove block from collection and program
+            if myBlock.double == true{
+                var indexOfCounterpart = -1
+                for i in 0..<blocksStack.count {
+                    if blocksStack[i] === myBlock.counterpart! {
+                        indexOfCounterpart = i
+                    }
                 }
+                var indexPathArray = [IndexPath]()
+                var tempBlockStack = [Block]()
+                for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
+                    indexPathArray += [IndexPath.init(row: i+1, section: 0)]
+                    tempBlockStack += [blocksStack[i]]
+                }
+                blocksBeingMoved = tempBlockStack
+                
+                blocksStack.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
+                blocksProgram.reloadData()
+            }else{ //only a single block to be removed
+                blocksBeingMoved = [blocksStack[blocksStackIndex]]
+                blocksStack.remove(at: blocksStackIndex)
+                /*blocksProgram.performBatchUpdates({
+                    self.blocksProgram.deleteItems(at: [IndexPath.init(row: blocksProgramIndex, section: 0)])
+                }, completion: nil)*/
+                blocksProgram.reloadData()
             }
-            var indexPathArray = [IndexPath]()
-            var tempBlockStack = [Block]()
-            for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
-                indexPathArray += [IndexPath.init(row: i+1, section: 0)]
-                tempBlockStack += [blocksStack[i]]
-            }
-            blocksBeingMoved = tempBlockStack
-            
-            blocksStack.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
-            blocksProgram.performBatchUpdates({
-                self.blocksProgram.deleteItems(at: indexPathArray)
-            }, completion: nil)
-        }else{ //only a single block to be removed
-            blocksBeingMoved = [blocksStack[blocksStackIndex]]
-            blocksStack.remove(at: blocksStackIndex)
-            blocksProgram.performBatchUpdates({
-                self.blocksProgram.deleteItems(at: [IndexPath.init(row: blocksProgramIndex, section: 0)])
-            }, completion: nil)
+            let announcement = myBlock.name + " selected, chose where to move it.  "
+            print(announcement)
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+            movingBlocks = true
         }
-        movingBlocks = true
+        changeButton()
         //have giant targets to add it to: at begining, in each block, in trash
     }
     
