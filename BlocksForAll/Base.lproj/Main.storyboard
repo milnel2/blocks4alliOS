@@ -321,46 +321,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BlockCell" id="rML-ML-9Sq" customClass="I3BlockCollectionViewCell" customModule="BlocksForAll" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BlockCell" id="rML-ML-9Sq">
                                         <rect key="frame" x="0.0" y="-1" width="140" height="770"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="140" height="770"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKS-zj-SgA">
-                                                    <rect key="frame" x="90" y="670" width="50" height="100"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="bvQ-Wo-pMf"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Add" backgroundImage="Gray">
-                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move Forward" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BO7-mB-FcB">
-                                                    <rect key="frame" x="0.0" y="670" width="90" height="100"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="CcX-RP-8OX"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                         </view>
-                                        <constraints>
-                                            <constraint firstItem="BO7-mB-FcB" firstAttribute="bottom" secondItem="DKS-zj-SgA" secondAttribute="bottom" id="00O-D2-u9V"/>
-                                            <constraint firstItem="BO7-mB-FcB" firstAttribute="leading" secondItem="rML-ML-9Sq" secondAttribute="leading" id="FCr-oK-h2T"/>
-                                            <constraint firstAttribute="bottom" secondItem="BO7-mB-FcB" secondAttribute="bottom" id="SDV-dW-Rad"/>
-                                            <constraint firstAttribute="trailing" secondItem="DKS-zj-SgA" secondAttribute="trailing" id="WAU-SO-ojb"/>
-                                            <constraint firstItem="BO7-mB-FcB" firstAttribute="top" secondItem="DKS-zj-SgA" secondAttribute="top" id="edv-wT-N8t"/>
-                                            <constraint firstItem="DKS-zj-SgA" firstAttribute="leading" secondItem="BO7-mB-FcB" secondAttribute="trailing" id="k5H-cb-bis"/>
-                                        </constraints>
                                         <size key="customSize" width="140" height="770"/>
-                                        <connections>
-                                            <outlet property="labelView" destination="BO7-mB-FcB" id="fld-3g-cSf"/>
-                                            <outlet property="placeHolder" destination="DKS-zj-SgA" id="K8U-fn-o8l"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -497,7 +465,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Gray" width="300" height="168"/>
         <image name="GreenArrow" width="649" height="586"/>
         <image name="Trashcan" width="512" height="512"/>
     </resources>

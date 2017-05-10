@@ -103,6 +103,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         for myView in cell.subviews{
             myView.removeFromSuperview()
         }
+        
+        let startingHeight = Int(cell.frame.height)-blockHeight
+        
         let block = blocksStack[indexPath.row]
         var blocksToAdd = [Block]()
         
@@ -131,12 +134,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
             accessibilityLabel = spearCon + accessibilityLabel
             
-            let myLabel = UILabel.init(frame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
-            myLabel.text = block.name
+            let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
+            //(frame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
+            /*myLabel.text = block.name
             myLabel.textAlignment = .center
             myLabel.textColor = UIColor.white
             myLabel.numberOfLines = 0
-            myLabel.backgroundColor = block.color
+            myLabel.backgroundColor = block.color*/
             myLabel.accessibilityLabel = accessibilityLabel
             cell.addSubview(myLabel)
             
@@ -144,33 +148,49 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             
         }else {
             var count = 0
-            let startingHeight = Int(cell.frame.height)-blockHeight
             for b in blocksToAdd{
-                let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
+                let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
+                
+                //let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
                 //let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: -count*(blockHeight), width: blockWidth+2*blockSpacing, height: blockHeight))
                 myView.accessibilityLabel = "Inside " + b.name
                 myView.text = "Inside " + b.name
-                myView.textAlignment = .center
-                myView.textColor = UIColor.white
-                myView.numberOfLines = 0
-                myView.backgroundColor = b.color
+                //myView.textAlignment = .center
+               // myView.textColor = UIColor.white
+               // myView.numberOfLines = 0
+               // myView.backgroundColor = b.color
                 cell.addSubview(myView)
                 count += 1
             }
             
-            let myLabel = UILabel.init(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+            //add main label
+            let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+            cell.addSubview(myLabel)
+            
+            /*let myLabel = UILabel.init(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
             //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
             myLabel.text = block.name
             myLabel.textAlignment = .center
             myLabel.textColor = UIColor.white
             myLabel.numberOfLines = 0
             myLabel.backgroundColor = block.color
-            cell.addSubview(myLabel)
+            cell.addSubview(myLabel)*/
             
         }
         addGestureRecognizer(cell)
         
         return cell
+    }
+    
+    func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
+        let myLabel = UILabel.init(frame: frame)
+        //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
+        myLabel.text = block.name
+        myLabel.textAlignment = .center
+        myLabel.textColor = UIColor.white
+        myLabel.numberOfLines = 0
+        myLabel.backgroundColor = block.color
+        return myLabel
     }
 
     func addGestureRecognizer(_ cell:UICollectionViewCell){
