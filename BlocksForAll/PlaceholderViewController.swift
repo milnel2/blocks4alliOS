@@ -16,39 +16,23 @@ class PlaceholderViewController: BlocksViewController {
     var count = 0
     
     //@IBOutlet weak var playTrashToggleButton: UIButton!
-    
-    private let blockDoubleHeight = 25
+
     private let placeholderWidth = 50
-    
-    
-    //currently moving blocks in the workspace
-    private var blocksBeingMoved = [Block]()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         blockWidth = 90
         // Do any additional setup after loading the view.
+        
         if blockToAdd != nil {
             if blockToAdd?.name == "Cancel"{
                 //pick a block from workspace
                 print("Do nothing")
             }else{
                 //add block
-                if(blockToAdd!.double){
-                    blocksStack.insert(blockToAdd!, at: indexToAdd)
-
-                    let endBlockName = "End " + blockToAdd!.name
-                    guard let endBlock = Block(name: endBlockName, color: blockToAdd!.color, double: true, editable: blockToAdd!.editable) else {
-                        fatalError("Unable to instantiate block1")
-                    }
-                    blocksStack.insert(endBlock, at: indexToAdd+1)
-                    endBlock.counterpart = blockToAdd
-                    blockToAdd?.counterpart = endBlock
-                }else{
-                    blocksStack.insert(blockToAdd!, at: indexToAdd)
-                    count += 1
-                }
+                //fromWorkspace = false
+                //TODO might need movingBlocks here
+                addBlocks([blockToAdd!], at: indexToAdd)
             }
         }
         indexToAdd = 0
@@ -78,7 +62,7 @@ class PlaceholderViewController: BlocksViewController {
         placeholderBlock.titleLabel?.textColor = UIColor.white
         placeholderBlock.accessibilityLabel = "Add Block at beginning"
         placeholderBlock.setTitle("+", for: .normal)
-        placeholderBlock.addTarget(self, action: #selector(self.addBlock(_sender:)), for: .touchUpInside)
+        placeholderBlock.addTarget(self, action: #selector(self.addBlockButton(_sender:)), for: .touchUpInside)
         return placeholderBlock
     }
     
@@ -94,7 +78,7 @@ class PlaceholderViewController: BlocksViewController {
         
         if indexPath.row == 0 {
             let placeholderBlock = createPlaceholderBlock(frame: CGRect(x: 0, y: startingHeight, width: placeholderWidth, height: blockHeight ))
-            if movingBlocks{
+            if !blocksBeingMoved.isEmpty{
                 placeholderBlock.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning"
             }
             cell.addSubview(placeholderBlock)
@@ -120,16 +104,10 @@ class PlaceholderViewController: BlocksViewController {
             let blockPlacementInfo = ". block " + String(blockStackIndex + 1) + " of " + String(blocksStack.count)
             
             if !spatialLayout {
-                
-                
-                let myLabel = UILabel.init(frame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight))
+                let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight))
+                addSpatialAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row, blocksToAdd: blocksToAdd)
+                cell.addSubview(myLabel)
 
-                myLabel.text = block.name
-                myLabel.textAlignment = .center
-                myLabel.textColor = UIColor.white
-                myLabel.numberOfLines = 0
-                myLabel.backgroundColor = block.color
-                myLabel.accessibilityLabel = block.name + blockPlacementInfo
                 myLabel.accessibilityHint = "Double tap to move block"
                 
                 cell.addSubview(myLabel)
@@ -142,25 +120,15 @@ class PlaceholderViewController: BlocksViewController {
             }else{
                 var count = 0
                 for b in blocksToAdd{
-                    let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
-                    //let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: -count*(blockHeight), width: blockWidth+2*blockSpacing, height: blockHeight))
+                    let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
                     myView.accessibilityLabel = "Inside " + b.name + blockPlacementInfo
                     myView.text = "Inside " + b.name
-                    myView.textAlignment = .center
-                    myView.textColor = UIColor.white
-                    myView.numberOfLines = 0
-                    myView.backgroundColor = b.color
+
                     cell.addSubview(myView)
                     count += 1
                 }
                 
-                let myLabel = UILabel.init(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
-                myLabel.text = block.name
-                myLabel.textAlignment = .center
-                myLabel.textColor = UIColor.white
-                myLabel.numberOfLines = 0
-                myLabel.backgroundColor = block.color
+                let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                 myLabel.accessibilityLabel = block.name + blockPlacementInfo
                 myLabel.accessibilityHint = "Double tap to move block"
                 
@@ -178,10 +146,9 @@ class PlaceholderViewController: BlocksViewController {
         let blocksStackIndex = indexPath.row - 1
         let blocksProgramIndex = indexPath.row
         
-        if movingBlocks{
-            movingBlocks = false
-            blocksStack.insert(contentsOf: blocksBeingMoved, at: blocksStackIndex + 1 )
-            blocksProgram.reloadData()
+        if !blocksBeingMoved.isEmpty{
+            addBlocks(blocksBeingMoved, at: blocksStackIndex + 1 )
+            //blocksBeingMoved.removeAll()
         }else{
             //make announcement
             let myBlock = blocksStack[blocksStackIndex]
@@ -214,13 +181,13 @@ class PlaceholderViewController: BlocksViewController {
             let announcement = myBlock.name + " selected, chose where to move it.  "
             print(announcement)
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
-            movingBlocks = true
+            //movingBlocks = true
         }
         changeButton()
         //have giant targets to add it to: at begining, in each block, in trash
     }
     
-    func addBlock(_sender: UIButton){
+    func addBlockButton(_sender: UIButton){
         if let blockView = _sender.superview as? UICollectionViewCell{
             indexToAdd = (blocksProgram?.indexPath(for: blockView)?.row)!
         }

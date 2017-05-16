@@ -16,19 +16,17 @@ var blocksStack = [Block]()
 class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource {
     
     //update these as collection view changes
-    private let blockDoubleHeight = 25
     private let trashcanWidth = 100
     
     //Set to -1 to distinguish blocks that are pulled in from toolbox vs moving in workspace
     public var indexOfCurrentBlock = -1
-    public var fromWorkspace = false
-
-    var blocksBeingMoved = [Block]()
+    //movingBlocks = false //to change play button
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.view.dropZoneHandler = self
+        movingBlocks = false
     }
 
     
@@ -41,6 +39,7 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
         return OBDropAction.copy
     }
     
+    
     func ovumDropped(_ ovum: OBOvum!, in view: UIView!, atLocation location: CGPoint) {
 
         //TODO: update this to make [Block]
@@ -52,57 +51,15 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
             
             //check if in trashcan
             let trashed = (Int(location.x) >= Int(view.frame.width) - trashcanWidth)
-            let twoBlocks = blocks[0].double
             
             //don't need to do anything if trashed, already removed from workspace
             if(!trashed){
-                //change for beginning
-                var announcement = ""
-                if(index != 0){
-                    let myBlock = blocksStack[index-1]
-                    announcement = blocks[0].name + " placed after " + myBlock.name
-                }else{
-                    announcement = blocks[0].name + " placed at beginning"
-                }
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
-                
-                //add block to stack
-                if twoBlocks {
-                    if(fromWorkspace){
-                        blocksStack.insert(contentsOf: blocks, at: index)
-                        
-                        var indexPathArray = [IndexPath]()
-                        for i in 0..<blocks.count{
-                            indexPathArray += [IndexPath.init(row: index+i, section: 0)]
-                        }
-                        
-                        blocksProgram.performBatchUpdates({
-                            self.blocksProgram.insertItems(at: indexPathArray)
-                        }, completion: nil)
-                        
-                    }else{
-                        let block = blocks[0]
-                        blocksStack.insert(block, at: index)
-                        let endBlockName = "End " + block.name
-                        let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: block.editable)
-                        endBlock?.counterpart = block
-                        block.counterpart = endBlock
-                        blocksStack.insert(endBlock!, at: index+1)
-                        blocksProgram.performBatchUpdates({
-                            self.blocksProgram.insertItems(at: [IndexPath.init(row: index, section: 0), IndexPath.init(row: index+1, section: 0)])
-                        }, completion: nil)
-                    }
-                }else{
-                    blocksStack.insert(blocks[0], at: index)
-                    blocksProgram.performBatchUpdates({
-                        self.blocksProgram.insertItems(at: [IndexPath.init(row: index, section: 0)])
-                    }, completion: nil)
-                }
+                addBlocks(blocks, at: index)
             }
-            fromWorkspace = false
-            blocksBeingMoved.removeAll()
+            //blocksBeingMoved.removeAll()
             movingBlocks = false
             changeButton()
+            blocksProgram.reloadData()
            }else{ //probably should be error
             print("Not [Block]")
         }
@@ -122,7 +79,7 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
         if(index != previousIndex || trashed != (Int(location.x) >= Int(view.frame.width) - trashcanWidth)){
             var announcement = ""
             if(Int(location.x) >= Int(view.frame.width) - trashcanWidth){
-                announcement = "Trash"
+                announcement = "Place in Trash"
                 trashed = true
             }
             else if(previousIndex == -1 || index <= 0){
@@ -144,7 +101,6 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
     func createOvum(from sourceView: UIView!) -> OBOvum! {
         let ovum = OBOvum.init()
         if let sView = sourceView as? UICollectionViewCell{
-            fromWorkspace = true
             indexOfCurrentBlock = (blocksProgram.indexPath(for: sView)?.row)!
             //TODO: UPDATE THIS TO DROP TWO BLOCKS AND EVERYTHING IN BETWEEN
             let myBlock = blocksStack[indexOfCurrentBlock]

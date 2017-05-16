@@ -15,6 +15,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var playTrashToggleButton: UIButton!
     
     var spatialLayout = false //use spatial or audio layout for blocks
+    var blocksBeingMoved = [Block]() //pretty sure we can
+        //TODO: do I need both movingBlocks and blocksBeingMoved
     var movingBlocks = false    //currently moving blocks in the workspace
     let collectionReuseIdentifier = "BlockCell"
     
@@ -60,10 +62,54 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     // run code
     @IBAction func playButtonClicked(_ sender: Any) {
-        play(blocksStack)
+        if(movingBlocks){
+            //trash
+            movingBlocks = false
+        }else{
+            //play
+            if(blocksStack.isEmpty){
+                let announcement = "Your robot has nothing to do!  Add some blocks to your workspace. "
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+            }else{
+                play(blocksStack)
+            }
+        }
     }
     
     // MARK: Blocks Methods
+    
+    func addBlocks(_ blocks:[Block], at index:Int){
+        //change for beginning
+        var announcement = ""
+        if(index != 0){
+            let myBlock = blocksStack[index-1]
+            announcement = blocks[0].name + " placed after " + myBlock.name
+        }else{
+            announcement = blocks[0].name + " placed at beginning"
+        }
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+        
+        if(blocks[0].double){
+            if(!blocksBeingMoved.isEmpty){
+                blocksStack.insert(contentsOf: blocks, at: index)
+                blocksProgram.reloadData()
+                blocksBeingMoved.removeAll()
+            }else{
+                let block = blocks[0]
+                blocksStack.insert(block, at: index)
+                let endBlockName = "End " + block.name
+                let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: block.editable)
+                endBlock?.counterpart = block
+                block.counterpart = endBlock
+                blocksStack.insert(endBlock!, at: index+1)
+                blocksProgram.reloadData()
+            }
+        }else{
+            blocksStack.insert(blocks[0], at: index)
+            blocksProgram.reloadData()
+        }
+        
+    }
     
     func createViewRepresentation(FromBlocks blocksRep: [Block]) -> UIView {
         let myViewWidth = (blockWidth + blockSpacing)*blocksRep.count
@@ -97,6 +143,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return blocksStack.count
     }
     
+    func addSpatialAccessibilityLabel(myLabel: UILabel, block:Block, number: Int, blocksToAdd: [Block]){
+        var accessibilityLabel = block.name
+        var spearCon = ""
+        for b in blocksToAdd{
+            spearCon += " r "
+            accessibilityLabel += " inside " + b.name
+        }
+        let blockPlacementInfo = ". block " + String(number) + " of " + String(blocksStack.count)
+        
+        accessibilityLabel = spearCon + accessibilityLabel + blockPlacementInfo
+        
+        
+        myLabel.accessibilityLabel = accessibilityLabel
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath)
         // Configure the cell
@@ -125,56 +187,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             blocksToAdd.reverse()
             
             let block = blocksStack[indexPath.row]
-            
-            var accessibilityLabel = block.name
-            var spearCon = ""
-            for b in blocksToAdd{
-                spearCon += " r "
-                accessibilityLabel += " inside " + b.name
-            }
-            accessibilityLabel = spearCon + accessibilityLabel
-            
             let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
-            //(frame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
-            /*myLabel.text = block.name
-            myLabel.textAlignment = .center
-            myLabel.textColor = UIColor.white
-            myLabel.numberOfLines = 0
-            myLabel.backgroundColor = block.color*/
-            myLabel.accessibilityLabel = accessibilityLabel
+            addSpatialAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd)
             cell.addSubview(myLabel)
-            
-            //cell.backgroundColor = block.color
             
         }else {
             var count = 0
             for b in blocksToAdd{
                 let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
-                
-                //let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
-                //let myView = UILabel.init(frame: CGRect(x: -blockSpacing, y: -count*(blockHeight), width: blockWidth+2*blockSpacing, height: blockHeight))
+
                 myView.accessibilityLabel = "Inside " + b.name
                 myView.text = "Inside " + b.name
-                //myView.textAlignment = .center
-               // myView.textColor = UIColor.white
-               // myView.numberOfLines = 0
-               // myView.backgroundColor = b.color
+
                 cell.addSubview(myView)
                 count += 1
             }
+            let blockPlacementInfo = ". block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
             
             //add main label
             let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+            myLabel.accessibilityLabel = block.name + blockPlacementInfo
             cell.addSubview(myLabel)
-            
-            /*let myLabel = UILabel.init(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-            //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
-            myLabel.text = block.name
-            myLabel.textAlignment = .center
-            myLabel.textColor = UIColor.white
-            myLabel.numberOfLines = 0
-            myLabel.backgroundColor = block.color
-            cell.addSubview(myLabel)*/
             
         }
         addGestureRecognizer(cell)

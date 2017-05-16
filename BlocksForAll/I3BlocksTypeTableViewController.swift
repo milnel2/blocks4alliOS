@@ -59,6 +59,10 @@ class I3BlocksTypeTableViewController: UITableViewController {
         cell.textLabel?.textAlignment = .center
         cell.backgroundColor = blockType.color
         //cell.bounds.height = 200
+        if(indexPath.row >= blockDict.count){
+            cell.accessibilityLabel = blockType.name + " category"
+            cell.accessibilityHint = "Double tap to explore blocks in this category"
+        }
         
         return cell
     }

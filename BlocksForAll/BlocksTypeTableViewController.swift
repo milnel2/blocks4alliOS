@@ -52,12 +52,16 @@ class BlocksTypeTableViewController: UITableViewController {
 
         // Configure the cell...
        if let blockType = blockTypes.object(at: indexPath.row) as? NSDictionary{
-            cell.textLabel?.text = blockType.object(forKey: "type") as? String
+            let name = blockType.object(forKey: "type") as? String
+
+            cell.textLabel?.text = name
             cell.textLabel?.textColor = UIColor.white
             cell.textLabel?.textAlignment = .center
             if let colorString = blockType.object(forKey: "color") as? String{
                 cell.backgroundColor = UIColor.colorFrom(hexString: colorString)
             }
+            cell.accessibilityLabel = name! + " category"
+            cell.accessibilityHint = "Double tap to explore blocks in this category"
         }
         return cell
     }
