@@ -35,6 +35,38 @@
 				<key>double</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>editable</key>
+				<true/>
+				<key>options</key>
+				<array>
+					<string>Dog</string>
+					<string>Horse</string>
+					<string>Cat</string>
+				</array>
+				<key>name</key>
+				<string>Make Dog Noise</string>
+				<key>color</key>
+				<string>#FF6347</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<true/>
+				<key>options</key>
+				<array>
+					<string>Dog</string>
+					<string>Horse</string>
+					<string>Cat</string>
+				</array>
+				<key>name</key>
+				<string>Make Cat Noise</string>
+				<key>color</key>
+				<string>#FF6347</string>
+				<key>double</key>
+				<false/>
+			</dict>
 		</array>
 	</dict>
 	<dict>
@@ -79,6 +111,16 @@
 				<false/>
 				<key>name</key>
 				<string>Turn Right</string>
+				<key>color</key>
+				<string>#0000FF</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Start Engine</string>
 				<key>color</key>
 				<string>#0000FF</string>
 				<key>double</key>

@@ -75,23 +75,23 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
     func ovumMoved(_ ovum: OBOvum!, in view: UIView!, atLocation location: CGPoint) -> OBDropAction {
         let totalSize = blockWidth+blockSpacing
         
-        let index = min((Int(location.x) - totalSize/2)/totalSize, blocksStack.count)
-        if(index != previousIndex || trashed != (Int(location.x) >= Int(view.frame.width) - trashcanWidth)){
+        let dropIndex = min((Int(location.x) - totalSize/2)/totalSize, blocksStack.count)
+        if(dropIndex != previousIndex || trashed != (Int(location.x) >= Int(view.frame.width) - trashcanWidth)){
             var announcement = ""
             if(Int(location.x) >= Int(view.frame.width) - trashcanWidth){
                 announcement = "Place in Trash"
                 trashed = true
             }
-            else if(previousIndex == -1 || index <= 0){
+            else if(previousIndex == -1 || dropIndex <= 0){
                 announcement = "Place at beginning"
                 trashed = false
             }else{
-                announcement = "Place after " + blocksStack[index-1].name
+                announcement = "Place after " + blocksStack[dropIndex-1].name
                 trashed = false
             }
             print(announcement)
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
-            previousIndex = index
+            previousIndex = dropIndex
         }
         
         return OBDropAction.move

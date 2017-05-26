@@ -28,12 +28,13 @@ class BlockTableViewController: UITableViewController, OBOvumSource {
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
             self.title = blockType.object(forKey: "type") as? String
         }
-        self.accessibilityHint = "Double tap from menu to add block to workspace"
+        self.accessibilityHint = "Double tap from toolbox to add block to workspace"
         
         createBlocksArray()
         // Load the sample data
         //loadSampleBlocks()
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -65,7 +66,7 @@ class BlockTableViewController: UITableViewController, OBOvumSource {
         
         cell.nameLabel.text = block.name
         cell.blockView.backgroundColor = block.color
-        cell.accessibilityHint = "Double tap and hold and drag to the right"
+        cell.accessibilityHint = "In Toolbox. Double tap and hold and drag to the right to add block to workspace."
         //cell.blockView.
         //cell.blockView.backgroundColor = UIColor.brown
         // Configure the cell...

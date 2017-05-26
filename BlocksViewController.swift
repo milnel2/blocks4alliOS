@@ -24,6 +24,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     let blockHeight = 100
     let blockSpacing = 1
     
+    //TODO: probably want to get rid of this
+    var dropIndex = 0
+    
+    
     // MARK: - View Set Up
     
     override func viewDidLoad() {
@@ -31,8 +35,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
-
+        //#selector(self.addBlockButton(_sender:))
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didFinishAnnouncement(dict:)), name: NSNotification.Name.UIAccessibilityAnnouncementDidFinish, object: nil)
         // Do any additional setup after loading the view.
+    }
+    
+    func didFinishAnnouncement(dict: NSNotification){
+        //if let info = dict.userInfo as? Dictionary
+        if let spokenString = dict.userInfo?[UIAccessibilityAnnouncementKeyStringValue] as? String {
+            //.object(forKey: UIAccessibilityAnnouncementKeyStringValue) as? String{
+            print(spokenString)
+            if(spokenString.contains("placed")){
+                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, blocksProgram.cellForItem(at: IndexPath(row: dropIndex, section: 0)))
+            }
+        }
+        //let spokenString = dict.userInfo.objectForKey(UIAccessibilityAnnouncementKeyStringValue)
+        //UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, blocksProgram.cellForItem(at: IndexPath(row: index, section: 0)))
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,6 +99,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func addBlocks(_ blocks:[Block], at index:Int){
         //change for beginning
         var announcement = ""
+        dropIndex = index
         if(index != 0){
             let myBlock = blocksStack[index-1]
             announcement = blocks[0].name + " placed after " + myBlock.name
@@ -88,7 +107,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             announcement = blocks[0].name + " placed at beginning"
         }
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
-        
         if(blocks[0].double){
             if(!blocksBeingMoved.isEmpty){
                 blocksStack.insert(contentsOf: blocks, at: index)
@@ -108,7 +126,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             blocksStack.insert(blocks[0], at: index)
             blocksProgram.reloadData()
         }
-        
     }
     
     func createViewRepresentation(FromBlocks blocksRep: [Block]) -> UIView {
@@ -150,12 +167,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             spearCon += " r "
             accessibilityLabel += " inside " + b.name
         }
-        let blockPlacementInfo = ". block " + String(number) + " of " + String(blocksStack.count)
+        let blockPlacementInfo = ". block " + String(number) + " of " + String(blocksStack.count) + " in Workspace."
         
-        accessibilityLabel = spearCon + accessibilityLabel + blockPlacementInfo
-        
+        accessibilityLabel = spearCon + accessibilityLabel
+        accessibilityHint = blockPlacementInfo
         
         myLabel.accessibilityLabel = accessibilityLabel
+        myLabel.accessibilityHint = accessibilityHint
     }
     
     
@@ -202,7 +220,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 cell.addSubview(myView)
                 count += 1
             }
-            let blockPlacementInfo = ". block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
+            let blockPlacementInfo = ". block " + String(indexPath.row + 1) + " of " + String(blocksStack.count) + " in workspace. Double tap and hold to move block."
             
             //add main label
             let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))

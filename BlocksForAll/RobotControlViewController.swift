@@ -71,22 +71,82 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
             var repeat2times = false
             var repeat3times = false
             for block in blocks2Play{
+                var duration = 1.0
                 print(block.name)
                 //TODO add repeat blocks
-                
-                let distance: Double = 10
-                let myAction = WWCommandSet()
+                let distance: Double = 50
+                var myAction = WWCommandSet()
                 if block.name == "Drive Forward" {
-                    let bodyPose = WWCommandBodyPose.init(relativeMeasuredX: distance, y: 0, radians: 0, time: 2)
-                    myAction.setBodyPose(bodyPose)
+                    //let bodyPose = WWCommandBodyPose.init(relativeMeasuredX: distance, y: 0, radians: 0, time: 1.0)
+                    //myAction.setBodyPose(bodyPose)
+                    let setAngular = WWCommandBodyLinearAngular(linear: 50, angular: 0)
+                    let driveBackward = WWCommandSet()
+                    driveBackward.setBodyLinearAngular(setAngular)
+                    cmdToSend.add(driveBackward, withDuration: 1.0)
+                    myAction = WWCommandToolbelt.moveStop()
+                }
+                //TODO WRONG
+                if block.name == "Drive Backward" {
+                    let setAngular = WWCommandBodyLinearAngular(linear: -50, angular: 0)
+                    let driveBackward = WWCommandSet()
+                    driveBackward.setBodyLinearAngular(setAngular)
+                    cmdToSend.add(driveBackward, withDuration: 1.0)
+                    myAction = WWCommandToolbelt.moveStop()
+                    //let bodyPose = WWCommandBodyPose.init(relativeMeasuredX: -distance, y: 0, radians: 0, time: 1.0)
+                    //myAction.setBodyPose(bodyPose)
+                }
+                if block.name == "Wiggle" {
+                    duration = 0.5
+                    let rotateLeft = WWCommandSet()
+                    rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -20.0, rightWheel: 20.0))
+                    let rotateRight = WWCommandSet()
+                    rotateRight.setBodyWheels(WWCommandBodyWheels.init(leftWheel: 20.0, rightWheel: -20.0))
+                    cmdToSend.add(rotateLeft, withDuration: duration)
+                    cmdToSend.add(rotateRight, withDuration: duration)
+                    cmdToSend.add(rotateLeft, withDuration: duration)
+                    cmdToSend.add(rotateRight, withDuration: duration)
+                    myAction = WWCommandToolbelt.moveStop()
+                }
+                //TODO WRONG
+                if block.name == "Turn Left" {
+                    duration = 0.55
+                    let rotateLeft = WWCommandSet()
+                    rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -20.0, rightWheel: 20.0))
+                    cmdToSend.add(rotateLeft, withDuration: duration)
+                    myAction = WWCommandToolbelt.moveStop()
+                }
+                //TODO WRONG
+                if block.name == "Turn Right" {
+                    duration = 0.56
+                    let rotateLeft = WWCommandSet()
+                    rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: 20.0, rightWheel: -20.0))
+                    cmdToSend.add(rotateLeft, withDuration: duration)
+                    myAction = WWCommandToolbelt.moveStop()
+                    /*let setAngular = WWCommandBodyLinearAngular(linear: 0, angular: -3.1415)
+                    let drive = WWCommandSet()
+                    drive.setBodyLinearAngular(setAngular)
+                    cmdToSend.add(drive, withDuration: 1.0)
+                    myAction = WWCommandToolbelt.moveStop()*/
+                    //myAction.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -20.0, rightWheel: 20.0))
                 }
                 if block.name == "Say Hi" {
                     let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_HI)
                     myAction.setSound(speaker)
                 }
-                
                 if block.name == "Make Horse Noise" {
                     let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_HORSE)
+                    myAction.setSound(speaker)
+                }
+                if block.name == "Make Dog Noise" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_DOG)
+                    myAction.setSound(speaker)
+                }
+                if block.name == "Make Cat Noise" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_CAT)
+                    myAction.setSound(speaker)
+                }
+                if block.name == "Start Engine" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_ENGINE_REV)
                     myAction.setSound(speaker)
                 }
                 //TODO: FIX FOR NESTED LOOPS
@@ -96,13 +156,13 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     repeat3times = false
                     for _ in 1...3{
                         for action in repeatCommands {
-                            cmdToSend.add(action, withDuration: 2.0)
+                            cmdToSend.add(action, withDuration: duration)
                         }
                     }
                 }else if repeat3times {
                     repeatCommands.append(myAction)
                 }else {
-                    cmdToSend.add(myAction, withDuration: 2.0)
+                    cmdToSend.add(myAction, withDuration: duration)
                 }
                 
                 //TODO WRONG
