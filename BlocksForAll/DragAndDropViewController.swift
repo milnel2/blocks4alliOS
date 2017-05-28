@@ -59,11 +59,11 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
             }else{
                 let announcement = blocks[0].name + " placed in trash"
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                
             }
             //blocksBeingMoved.removeAll()
             movingBlocks = false
             changeButton()
-            blocksProgram.reloadData()
            }else{ //probably should be error
             print("Not [Block]")
         }

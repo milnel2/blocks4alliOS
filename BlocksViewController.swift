@@ -56,13 +56,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     func didFinishAnnouncement(dict: NSNotification){
         //if let info = dict.userInfo as? Dictionary
-        if let spokenString = dict.userInfo?[UIAccessibilityAnnouncementKeyStringValue] as? String {
+       /* if let spokenString = dict.userInfo?[UIAccessibilityAnnouncementKeyStringValue] as? String {
             //.object(forKey: UIAccessibilityAnnouncementKeyStringValue) as? String{
             print(spokenString)
             if(spokenString.contains("placed")){
                 UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, blocksProgram.cellForItem(at: IndexPath(row: dropIndex, section: 0)))
             }
-        }
+        }*/
+        blocksProgram.reloadData()
         //let spokenString = dict.userInfo.objectForKey(UIAccessibilityAnnouncementKeyStringValue)
         //UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, blocksProgram.cellForItem(at: IndexPath(row: index, section: 0)))
     }
@@ -100,6 +101,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             let announcement = blocksBeingMoved[0].name + " placed in trash."
             blocksBeingMoved.removeAll()
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+            //CRAZY TRY
             blocksProgram.reloadData()
         }else{
             //play
@@ -128,8 +130,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if(blocks[0].double){
             if(!blocksBeingMoved.isEmpty){
                 blocksStack.insert(contentsOf: blocks, at: index)
-                blocksProgram.reloadData()
                 blocksBeingMoved.removeAll()
+                //CRAZY TRY
+                blocksProgram.reloadData()
             }else{
                 let block = blocks[0]
                 blocksStack.insert(block, at: index)
@@ -138,12 +141,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 endBlock?.counterpart = block
                 block.counterpart = endBlock
                 blocksStack.insert(endBlock!, at: index+1)
+                //CRAZY TRY
                 blocksProgram.reloadData()
             }
         }else{
             blocksStack.insert(blocks[0], at: index)
+            //CRAZY TRY
             blocksProgram.reloadData()
         }
+    }
+    
+    func makeAnnouncement(_ announcement: String){
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
     }
     
     func createViewRepresentation(FromBlocks blocksRep: [Block]) -> UIView {
@@ -195,8 +204,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         let blockPlacementInfo = ". Workspace block " + String(number) + " of " + String(blocksStack.count)
         
+        
+        var movementInfo = "Double tap to move block."
+        
+        if(dragOn){
+            movementInfo = "tap and hold to move block."
+        }
+        
         accessibilityLabel = spearCon + accessibilityLabel
-        accessibilityHint = blockPlacementInfo
+        accessibilityHint = blockPlacementInfo + movementInfo
         
         myLabel.accessibilityLabel = accessibilityLabel
         myLabel.accessibilityHint = accessibilityHint
