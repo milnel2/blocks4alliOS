@@ -18,10 +18,11 @@ class Block {
     var counterpart: Block?
     var editable: Bool //true if has options
     var options: [String]?
+    var imageName: String?
     
     //MARK: Initialization
     
-    init?(name: String, color: UIColor, double: Bool, editable: Bool){
+    init?(name: String, color: UIColor, double: Bool, editable: Bool, imageName: String? = nil){
         
         //TODO: check that color is initialized as well
         if name.isEmpty {
@@ -32,7 +33,12 @@ class Block {
         self.color = color
         self.double = double
         self.editable = editable
+        
     
+    }
+    
+    func addImage(_ imageName: String){
+        self.imageName = imageName
     }
     
 

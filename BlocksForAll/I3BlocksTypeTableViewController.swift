@@ -17,7 +17,7 @@ class I3BlocksTypeTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Toolbox"
         self.accessibilityLabel = "Toolbox Menu"
-        self.accessibilityHint = "Double tap from menu to select block type"
+        self.accessibilityHint = "Double tap from menu to select block category"
         
         blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
         
@@ -60,6 +60,9 @@ class I3BlocksTypeTableViewController: UITableViewController {
         cell.backgroundColor = blockType.color
         //cell.bounds.height = 200
         if(indexPath.row >= blockDict.count){
+            cell.accessibilityLabel = blockType.name
+            cell.accessibilityHint = "Double tap to return to workspace"
+        }else{
             cell.accessibilityLabel = blockType.name + " category"
             cell.accessibilityHint = "Double tap to explore blocks in this category"
         }

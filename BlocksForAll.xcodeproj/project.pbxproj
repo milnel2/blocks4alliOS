@@ -25,6 +25,7 @@
 		F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */; };
 		F13A0AF11E6FDD3E00DB4C86 /* PlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AF01E6FDD3E00DB4C86 /* PlaceholderViewController.swift */; };
 		F13A0AF31E705F9A00DB4C86 /* I3BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AF21E705F9A00DB4C86 /* I3BlockTableViewController.swift */; };
+		F13B2C511ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B2C501ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift */; };
 		F18FEED81EAFBC9A007C15B8 /* PlaceholderChooseBlockCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEED71EAFBC9A007C15B8 /* PlaceholderChooseBlockCollectionViewController.swift */; };
 		F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */; };
 		F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */; };
@@ -74,6 +75,7 @@
 		F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlocksTypeTableViewController.swift; sourceTree = "<group>"; };
 		F13A0AF01E6FDD3E00DB4C86 /* PlaceholderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderViewController.swift; sourceTree = "<group>"; };
 		F13A0AF21E705F9A00DB4C86 /* I3BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I3BlockTableViewController.swift; sourceTree = "<group>"; };
+		F13B2C501ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropBlockTableViewController.swift; sourceTree = "<group>"; };
 		F18FEED71EAFBC9A007C15B8 /* PlaceholderChooseBlockCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderChooseBlockCollectionViewController.swift; sourceTree = "<group>"; };
 		F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotControlViewController.swift; sourceTree = "<group>"; };
 		F18FFFAF1E65B0FB0090C4B6 /* BlocksForAll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocksForAll.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +162,7 @@
 				F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */,
 				F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */,
 				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
+				F13B2C501ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift */,
 				F18FFFB41E65B0FB0090C4B6 /* DragAndDropViewController.swift */,
 			);
 			name = I1andI2;
@@ -341,6 +344,7 @@
 				F13A0AD91E68B36A00DB4C86 /* HiddenRootViewController.m in Sources */,
 				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
 				F134301A1E75EC050095C192 /* I3BlocksTypeTableViewController.swift in Sources */,
+				F13B2C511ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift in Sources */,
 				701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */,
 				F18FEED81EAFBC9A007C15B8 /* PlaceholderChooseBlockCollectionViewController.swift in Sources */,
 				F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */,

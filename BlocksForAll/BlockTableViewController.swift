@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BlockTableViewController: UITableViewController, OBOvumSource {
+class BlockTableViewController: UITableViewController {
     
     //MARK: Properties
     var blocks = [Block]()
@@ -16,7 +16,7 @@ class BlockTableViewController: UITableViewController, OBOvumSource {
     var typeIndex: Int! = 0
     
     //update these as collection view changes
-    private let blockWidth = 100
+    let blockWidth = 100
     private let blockSpacing = 10
     
 
@@ -66,67 +66,25 @@ class BlockTableViewController: UITableViewController, OBOvumSource {
         
         cell.nameLabel.text = block.name
         cell.blockView.backgroundColor = block.color
-        cell.accessibilityHint = "In Toolbox. Double tap and hold and drag to the right to add block to workspace."
-        //cell.blockView.
-        //cell.blockView.backgroundColor = UIColor.brown
-        // Configure the cell...
-        // Drag drop with long press gesture
-        //
-        // Be careful with attaching gesture recognizers inside tableView:cellForRowAtIndexPath: as cells
-        // get reused. Add a check to prevent multiple gesture recognizers from being added to the same cell.
-        // The below check is crude but works; you may need something more specific or elegant.
-        if (cell.gestureRecognizers == nil || cell.gestureRecognizers?.count == 0) {
-            let manager = OBDragDropManager.shared()
-            let recognizer = manager?.createDragDropGestureRecognizer(with: UIPanGestureRecognizer.classForCoder(), source: self)
-            //let recognizer = manager?.createLongPressDragDropGestureRecognizer(with: self)
-            cell.addGestureRecognizer(recognizer!)
-            /*OBDragDropManager *dragDropManager = [OBDragDropManager sharedManager];
-            UIGestureRecognizer *recognizer = [dragDropManager createLongPressDragDropGestureRecognizerWithSource:self];
-            [cell addGestureRecognizer:recognizer];*/
+        
+        if(block.imageName != nil){
+            let imageName = block.imageName!
+            let image = UIImage(named: imageName)
+            let imv = UIImageView.init(image: image)
+            cell.addSubview(imv)
         }
         
-
+        cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
+        
         return cell
     }
     
 
-    
-    //MARK: - OBOvmSource
-    func createOvum(from sourceView: UIView!) -> OBOvum! {
-        let ovum = OBOvum.init()
-        if let sView = sourceView as? BlockTableViewCell{
-            var twoBlocks = false
-            if(sView.nameLabel.text!.contains("Repeat")){
-                twoBlocks = true
-            }
-            ovum.dataObject = [Block(name: sView.nameLabel.text!, color: sView.blockView.backgroundColor!, double: twoBlocks, editable:sView.block!.editable)]
-        }else{
-            ovum.dataObject = sourceView.backgroundColor
-        }
-        return ovum
-    }
-    
-    func createDragRepresentation(ofSourceView sourceView: UIView!, in window: UIWindow!) -> UIView! {
-        if let sView = sourceView as? BlockTableViewCell{
-            let frame = sView.convert(sView.blockView.bounds, to: sView.window)
-
-            let dragView = UIView(frame: frame)
-            dragView.backgroundColor = sView.blockView.backgroundColor
-            let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockWidth))
-            myLabel.text = sView.nameLabel.text
-            myLabel.textAlignment = .center
-            myLabel.textColor = UIColor.white
-            dragView.self.addSubview(myLabel)
-            dragView.alpha = 0.75
-            return dragView
-        }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let block = blocks[indexPath.row]
+        let announcement = block.name + " selected. "
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
         
-        return sourceView
-    }
-
-    
-    func ovumDragEnded(_ ovum: OBOvum!) {
-        return
     }
     
     
@@ -146,6 +104,9 @@ class BlockTableViewController: UITableViewController, OBOvumSource {
                                     guard let block = Block(name: name as! String, color: color, double: double, editable: editable) else {
                                         fatalError("Unable to instantiate block")
                                     }
+                                    if let imageName = dictItem.object(forKey: "imageName") as? String{
+                                        block.addImage(imageName)
+                                    }
                                     blocks += [block]
                                 }
                             }
@@ -154,27 +115,6 @@ class BlockTableViewController: UITableViewController, OBOvumSource {
                 }
             }
         }
-    }
-    
-    private func loadSampleBlocks(){
-        guard let block1 = Block(name: "Drive Forward", color: UIColor.blue, double: false, editable: false) else {
-            fatalError("Unable to instantiate block1")
-        }
-        
-        guard let block2 = Block(name: "Drive Backwards", color: UIColor.blue, double: false, editable: false) else {
-            fatalError("Unable to instantiate block2")
-        }
-        
-        guard let block3 = Block(name: "Turn Left", color: UIColor.red, double: false, editable: false) else {
-            fatalError("Unable to instantiate block3")
-        }
-        
-        guard let block4 = Block(name: "Turn Right", color: UIColor.red, double: false, editable: false) else {
-            fatalError("Unable to instantiate block4")
-        }
-        
-        blocks += [block1, block2, block3, block4]
-    
     }
 
 }

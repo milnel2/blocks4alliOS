@@ -66,6 +66,12 @@ class I3BlockTableViewController: UITableViewController {
         cell.nameLabel.text = block.name
         cell.blockView.backgroundColor = block.color
         cell.block = block
+        if(block.imageName != nil){
+            let imageName = block.imageName!
+            let image = UIImage(named: imageName)
+            let imv = UIImageView.init(image: image)
+            cell.blockView.addSubview(imv)
+        }
         
         if(block.name == "Cancel" || block.name == "Choose Block from Workspace"){
             cell.blockView.frame = cell.bounds
@@ -119,6 +125,9 @@ class I3BlockTableViewController: UITableViewController {
                                 if let editable = dictItem.object(forKey: "editable") as? Bool{
                                     guard let block = Block(name: name as! String, color: color, double: double, editable: editable) else {
                                         fatalError("Unable to instantiate block")
+                                    }
+                                    if let imageName = dictItem.object(forKey: "imageName") as? String{
+                                        block.addImage(imageName)
                                     }
                                     blocks += [block]
                                 }

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DragAndDropViewController.swift
 //  BlocksForAll
 //
 //  Created by Lauren Milne on 2/28/17.
@@ -22,13 +22,14 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
     public var indexOfCurrentBlock = -1
     //movingBlocks = false //to change play button
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        dragOn = true
         // Do any additional setup after loading the view, typically from a nib.
         self.view.dropZoneHandler = self
         movingBlocks = false
     }
-
     
     // MARK: - Drag and Drop Methods
     

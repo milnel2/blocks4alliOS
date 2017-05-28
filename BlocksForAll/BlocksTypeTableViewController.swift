@@ -66,6 +66,11 @@ class BlocksTypeTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let height = tableView.bounds.height/CGFloat(blockTypes.count)
+        return height
+    }
+    
     
     // MARK: - Navigation
 

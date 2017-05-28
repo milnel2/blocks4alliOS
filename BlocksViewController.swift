@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
@@ -24,6 +25,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     let blockHeight = 100
     let blockSpacing = 1
     
+    //if drag is set off
+    var dragOn = false
+    
+    
     //TODO: probably want to get rid of this
     var dropIndex = 0
     
@@ -32,7 +37,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dragOn = false
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
         //#selector(self.addBlockButton(_sender:))
@@ -145,6 +150,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             myLabel.textColor = UIColor.white
             blockView.self.addSubview(myLabel)
             myView.addSubview(blockView)
+            
+            if(block.imageName != nil){
+                let imageName = block.imageName!
+                let image = UIImage(named: imageName)
+                let imv = UIImageView.init(image: image)
+                myView.addSubview(imv)
+            }
+            
         }
         myView.alpha = 0.75
         return myView
@@ -167,7 +180,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             spearCon += " r "
             accessibilityLabel += " inside " + b.name
         }
-        let blockPlacementInfo = ". block " + String(number) + " of " + String(blocksStack.count) + " in Workspace."
+        let blockPlacementInfo = ". Workspace block " + String(number) + " of " + String(blocksStack.count)
         
         accessibilityLabel = spearCon + accessibilityLabel
         accessibilityHint = blockPlacementInfo
@@ -208,7 +221,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
             addSpatialAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd)
             cell.addSubview(myLabel)
-            
+            if(block.imageName != nil){
+                let imageName = block.imageName!
+                let image = UIImage(named: imageName)
+                let imv = UIImageView.init(image: image)
+                myLabel.addSubview(imv)
+            }
         }else {
             var count = 0
             for b in blocksToAdd{
@@ -220,27 +238,45 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 cell.addSubview(myView)
                 count += 1
             }
-            let blockPlacementInfo = ". block " + String(indexPath.row + 1) + " of " + String(blocksStack.count) + " in workspace. Double tap and hold to move block."
+            let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
+            
+            var movementInfo = "Double tap to move block."
+            
+            if(dragOn){
+                movementInfo = "Double tap and hold to move block."
+            }
             
             //add main label
             let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-            myLabel.accessibilityLabel = block.name + blockPlacementInfo
+            myLabel.accessibilityLabel = block.name + blockPlacementInfo + movementInfo
             cell.addSubview(myLabel)
-            
+            if(block.imageName != nil){
+                let imageName = block.imageName!
+                let image = UIImage(named: imageName)
+                let imv = UIImageView.init(image: image)
+                myLabel.addSubview(imv)
+            }
         }
         addGestureRecognizer(cell)
         
         return cell
     }
+
     
     func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
         let myLabel = UILabel.init(frame: frame)
         //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
         myLabel.text = block.name
         myLabel.textAlignment = .center
-        myLabel.textColor = UIColor.white
+        myLabel.textColor = block.color
         myLabel.numberOfLines = 0
         myLabel.backgroundColor = block.color
+        if(block.imageName != nil){
+            let imageName = block.imageName!
+            let image = UIImage(named: imageName)
+            let imv = UIImageView.init(image: image)
+            myLabel.addSubview(imv)
+        }
         return myLabel
     }
 
