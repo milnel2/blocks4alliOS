@@ -79,18 +79,18 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                 if block.name == "Drive Forward" {
                     //let bodyPose = WWCommandBodyPose.init(relativeMeasuredX: distance, y: 0, radians: 0, time: 1.0)
                     //myAction.setBodyPose(bodyPose)
-                    let setAngular = WWCommandBodyLinearAngular(linear: 50, angular: 0)
+                    let setAngular = WWCommandBodyLinearAngular(linear: 30, angular: 0)
                     let driveBackward = WWCommandSet()
                     driveBackward.setBodyLinearAngular(setAngular)
-                    cmdToSend.add(driveBackward, withDuration: 1.0)
+                    cmdToSend.add(driveBackward, withDuration: 2.0)
                     myAction = WWCommandToolbelt.moveStop()
                 }
                 //TODO WRONG
                 if block.name == "Drive Backward" {
-                    let setAngular = WWCommandBodyLinearAngular(linear: -50, angular: 0)
+                    let setAngular = WWCommandBodyLinearAngular(linear: -30, angular: 0)
                     let driveBackward = WWCommandSet()
                     driveBackward.setBodyLinearAngular(setAngular)
-                    cmdToSend.add(driveBackward, withDuration: 1.0)
+                    cmdToSend.add(driveBackward, withDuration: 2.0)
                     myAction = WWCommandToolbelt.moveStop()
                     //let bodyPose = WWCommandBodyPose.init(relativeMeasuredX: -distance, y: 0, radians: 0, time: 1.0)
                     //myAction.setBodyPose(bodyPose)

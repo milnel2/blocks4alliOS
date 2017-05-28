@@ -28,6 +28,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     //if drag is set off
     var dragOn = false
     
+    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var spatialButton: UIButton!
     
     //TODO: probably want to get rid of this
     var dropIndex = 0
@@ -40,8 +42,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         dragOn = false
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
+        
+        //TOGGLE this off if you want to be able to access menu and spatial buttons with VO on
+        menuButton.isAccessibilityElement = false
+        menuButton.accessibilityElementsHidden = true
+        spatialButton.isAccessibilityElement = false
+        spatialButton.accessibilityElementsHidden = true
+        
         //#selector(self.addBlockButton(_sender:))
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didFinishAnnouncement(dict:)), name: NSNotification.Name.UIAccessibilityAnnouncementDidFinish, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(self.didFinishAnnouncement(dict:)), name: NSNotification.Name.UIAccessibilityAnnouncementDidFinish, object: nil)
         // Do any additional setup after loading the view.
     }
     
@@ -74,7 +83,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func changeButton(){
         if movingBlocks{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
-            playTrashToggleButton.accessibilityLabel = "Trash"
+            playTrashToggleButton.accessibilityLabel = "Place in Trash"
             playTrashToggleButton.accessibilityHint = "Delete selected blocks"
         }else{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
@@ -88,6 +97,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if(movingBlocks){
             //trash
             movingBlocks = false
+            let announcement = blocksBeingMoved[0].name + " placed in trash."
+            blocksBeingMoved.removeAll()
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+            blocksProgram.reloadData()
         }else{
             //play
             if(blocksStack.isEmpty){

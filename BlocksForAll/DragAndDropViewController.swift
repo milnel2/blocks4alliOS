@@ -56,6 +56,9 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
             //don't need to do anything if trashed, already removed from workspace
             if(!trashed){
                 addBlocks(blocks, at: index)
+            }else{
+                let announcement = blocks[0].name + " placed in trash"
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
             }
             //blocksBeingMoved.removeAll()
             movingBlocks = false

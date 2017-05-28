@@ -165,21 +165,24 @@ class PlaceholderViewController: BlocksViewController {
         
         let myBlock = blocksStack[blocksStackIndex]
         
+        
+        var announcement = ""
+        
         if !blocksBeingMoved.isEmpty{
             addBlocks(blocksBeingMoved, at: blocksStackIndex + 1 )
             //blocksBeingMoved.removeAll()
             
             //make announcement
-            let announcement = blocksBeingMoved[0].name + " placed after " + myBlock.name
-            print(announcement)
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString(announcement, comment: ""))
+            announcement = blocksBeingMoved[0].name + " placed after " + myBlock.name
             blocksBeingMoved.removeAll()
-            
+            print(announcement)
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+            movingBlocks = false
         }else{
             //make announcement
-            let announcement = myBlock.name + " selected, chose where to move it.  "
+            announcement = myBlock.name + " selected, chose where to move it.  "
             print(announcement)
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString(announcement, comment: ""))
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
             
             //create view in the middle
             
@@ -200,14 +203,14 @@ class PlaceholderViewController: BlocksViewController {
                 blocksBeingMoved = tempBlockStack
                 
                 blocksStack.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
-                blocksProgram.reloadData()
+                
             }else{ //only a single block to be removed
                 blocksBeingMoved = [blocksStack[blocksStackIndex]]
                 blocksStack.remove(at: blocksStackIndex)
-                blocksProgram.reloadData()
             }
+            blocksProgram.reloadData()
             //(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
-            //movingBlocks = true
+            movingBlocks = true
         }
         changeButton()
         //have giant targets to add it to: at begining, in each block, in trash
@@ -224,7 +227,7 @@ class PlaceholderViewController: BlocksViewController {
             //make announcement
             let announcement = blocksBeingMoved[0].name + " placed at beginning "
             print(announcement)
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString(announcement, comment: ""))
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
             blocksBeingMoved.removeAll()
             
         }else{
