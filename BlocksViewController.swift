@@ -103,6 +103,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
             //CRAZY TRY
             blocksProgram.reloadData()
+            changeButton()
         }else{
             //play
             if(blocksStack.isEmpty){
@@ -148,6 +149,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             blocksStack.insert(blocks[0], at: index)
             //CRAZY TRY
             blocksProgram.reloadData()
+            //blocksProgram.performBatchUpdates({self.blocksProgram.insertItems(at: [IndexPath.init(row:index, section:0)])}, completion: nil)
+            
+            /*deleteItems(at: indexPathArray)
+            }, completion: nil)*/
+            
         }
     }
     
