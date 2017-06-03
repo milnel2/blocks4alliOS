@@ -21,11 +21,13 @@
 		F13A0ADC1E68B36A00DB4C86 /* OBLongPressDragDropGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AD41E68B36A00DB4C86 /* OBLongPressDragDropGestureRecognizer.m */; };
 		F13A0ADD1E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.m in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AD61E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.m */; };
 		F13A0ADE1E68B36A00DB4C86 /* UIView+OBDropZone.m in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AD81E68B36A00DB4C86 /* UIView+OBDropZone.m */; };
-		F13A0AE71E6B27FB00DB4C86 /* BlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F13A0AE61E6B27FB00DB4C86 /* BlocksMenu.plist */; };
 		F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */; };
 		F13A0AF11E6FDD3E00DB4C86 /* PlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AF01E6FDD3E00DB4C86 /* PlaceholderViewController.swift */; };
 		F13A0AF31E705F9A00DB4C86 /* I3BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AF21E705F9A00DB4C86 /* I3BlockTableViewController.swift */; };
 		F13B2C511ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B2C501ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift */; };
+		F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */; };
+		F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186EB871EE0D8B100C2FA4B /* BlockView.swift */; };
+		F186EB8A1EE0DC2F00C2FA4B /* BlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F186EB891EE0DC2F00C2FA4B /* BlocksMenu.plist */; };
 		F18FEED81EAFBC9A007C15B8 /* PlaceholderChooseBlockCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEED71EAFBC9A007C15B8 /* PlaceholderChooseBlockCollectionViewController.swift */; };
 		F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */; };
 		F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */; };
@@ -71,11 +73,13 @@
 		F13A0AD61E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIGestureRecognizer+OBDragDrop.m"; path = "Classes/UIGestureRecognizer+OBDragDrop.m"; sourceTree = "<group>"; };
 		F13A0AD71E68B36A00DB4C86 /* UIView+OBDropZone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+OBDropZone.h"; path = "Classes/UIView+OBDropZone.h"; sourceTree = "<group>"; };
 		F13A0AD81E68B36A00DB4C86 /* UIView+OBDropZone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+OBDropZone.m"; path = "Classes/UIView+OBDropZone.m"; sourceTree = "<group>"; };
-		F13A0AE61E6B27FB00DB4C86 /* BlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenu.plist; sourceTree = "<group>"; };
 		F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlocksTypeTableViewController.swift; sourceTree = "<group>"; };
 		F13A0AF01E6FDD3E00DB4C86 /* PlaceholderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderViewController.swift; sourceTree = "<group>"; };
 		F13A0AF21E705F9A00DB4C86 /* I3BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = I3BlockTableViewController.swift; sourceTree = "<group>"; };
 		F13B2C501ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropBlockTableViewController.swift; sourceTree = "<group>"; };
+		F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedBlockViewController.swift; sourceTree = "<group>"; };
+		F186EB871EE0D8B100C2FA4B /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
+		F186EB891EE0DC2F00C2FA4B /* BlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenu.plist; sourceTree = "<group>"; };
 		F18FEED71EAFBC9A007C15B8 /* PlaceholderChooseBlockCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderChooseBlockCollectionViewController.swift; sourceTree = "<group>"; };
 		F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotControlViewController.swift; sourceTree = "<group>"; };
 		F18FFFAF1E65B0FB0090C4B6 /* BlocksForAll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocksForAll.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,10 +150,13 @@
 		F18FEEDB1EB115AF007C15B8 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
+				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
+				F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */,
 				F18FFFB91E65B0FC0090C4B6 /* Assets.xcassets */,
 				F18FFFBB1E65B0FC0090C4B6 /* LaunchScreen.storyboard */,
+				F186EB891EE0DC2F00C2FA4B /* BlocksMenu.plist */,
 				F18FFFBE1E65B0FC0090C4B6 /* Info.plist */,
-				F13A0AE61E6B27FB00DB4C86 /* BlocksMenu.plist */,
 				F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */,
 				F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */,
 			);
@@ -159,9 +166,6 @@
 		F18FEEDC1EB11668007C15B8 /* I1andI2 */ = {
 			isa = PBXGroup;
 			children = (
-				F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */,
-				F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */,
-				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
 				F13B2C501ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift */,
 				F18FFFB41E65B0FB0090C4B6 /* DragAndDropViewController.swift */,
 			);
@@ -202,10 +206,12 @@
 			isa = PBXGroup;
 			children = (
 				701A43861EC26EFD00314599 /* BlocksViewController.swift */,
-				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
-				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
-				F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */,
+				F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */,
 				F10F71681E65BFF50049F3AA /* Block.swift */,
+				F186EB871EE0D8B100C2FA4B /* BlockView.swift */,
+				F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */,
+				F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */,
+				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
 				F18FEEDB1EB115AF007C15B8 /* Helper */,
 				F13A0ADF1E68B38800DB4C86 /* DragDrop */,
 				F18FEEDC1EB11668007C15B8 /* I1andI2 */,
@@ -308,7 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */,
-				F13A0AE71E6B27FB00DB4C86 /* BlocksMenu.plist in Resources */,
+				F186EB8A1EE0DC2F00C2FA4B /* BlocksMenu.plist in Resources */,
 				F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */,
 				F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */,
 			);
@@ -330,6 +336,7 @@
 			files = (
 				F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */,
 				F13A0ADE1E68B36A00DB4C86 /* UIView+OBDropZone.m in Sources */,
+				F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */,
 				F13A0ADD1E68B36A00DB4C86 /* UIGestureRecognizer+OBDragDrop.m in Sources */,
 				F13A0AF11E6FDD3E00DB4C86 /* PlaceholderViewController.swift in Sources */,
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
@@ -342,6 +349,7 @@
 				F13A0ADB1E68B36A00DB4C86 /* OBDragDropManager.m in Sources */,
 				F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */,
 				F13A0AD91E68B36A00DB4C86 /* HiddenRootViewController.m in Sources */,
+				F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */,
 				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
 				F134301A1E75EC050095C192 /* I3BlocksTypeTableViewController.swift in Sources */,
 				F13B2C511ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift in Sources */,

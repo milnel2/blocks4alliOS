@@ -45,7 +45,7 @@ class PlaceholderViewController: BlocksViewController {
         return blocksStack.count + 1 //for add new block at beginning
     }
     
-    func collectionView(_ collectionView: UICollectionView,
+    override func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: CGFloat(blockWidth + placeholderWidth), height: collectionView.frame.height)
@@ -159,7 +159,7 @@ class PlaceholderViewController: BlocksViewController {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let blocksStackIndex = indexPath.row - 1
         let blocksProgramIndex = indexPath.row
         
@@ -238,7 +238,6 @@ class PlaceholderViewController: BlocksViewController {
     // MARK: - Navigation
     
     // Pass on index where the block should be added
-    var containerViewController: UICollectionViewController?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let myDestination = segue.destination as? I3BlocksTypeTableViewController{
             myDestination.indexToAdd = indexToAdd

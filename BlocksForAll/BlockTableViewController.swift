@@ -15,6 +15,9 @@ class BlockTableViewController: UITableViewController {
     var blockTypes = NSArray()
     var typeIndex: Int! = 0
     
+    //used to pass on delegate to selectedBlockViewController
+    var delegate: BlockSelectionDelegate?
+    
     //update these as collection view changes
     let blockWidth = 100
     private let blockSpacing = 10
@@ -33,6 +36,8 @@ class BlockTableViewController: UITableViewController {
         createBlocksArray()
         // Load the sample data
         //loadSampleBlocks()
+        
+        //self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"
     }
     
 
@@ -80,11 +85,34 @@ class BlockTableViewController: UITableViewController {
     }
     
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+   /* override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let block = blocks[indexPath.row]
         let announcement = block.name + " selected. "
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
         
+    }*/
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        // Letting destination controller know which blocks type was picked
+        if let myDestination = segue.destination as? SelectedBlockViewController{
+            let block = blocks[(tableView.indexPathForSelectedRow?.row)!]
+            if block.double{
+                let endBlockName = "End " + block.name
+                let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: block.editable)
+                endBlock?.counterpart = block
+                block.counterpart = endBlock
+                myDestination.blocks = [block, endBlock!]
+            }else{
+                myDestination.blocks = [block]
+            }
+            myDestination.delegate = self.delegate
+        }
     }
     
     

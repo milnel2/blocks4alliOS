@@ -8,9 +8,13 @@
 
 import UIKit
 
+protocol BlockSelectionDelegate{
+    func setSelectedBlocks(_ blocks:[Block])
+    func unsetBlocks()
+    func setParentViewController(_ myVC:UIViewController)
+}
 
-class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
+class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
     @IBOutlet weak var blocksProgram: UICollectionView!
     @IBOutlet weak var playTrashToggleButton: UIButton!
@@ -20,13 +24,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //TODO: do I need both movingBlocks and blocksBeingMoved
     var movingBlocks = false    //currently moving blocks in the workspace
     let collectionReuseIdentifier = "BlockCell"
+    var containerViewController: UINavigationController?
     
     var blockWidth = 100
     let blockHeight = 100
     let blockSpacing = 1
     
-    //if drag is set off
     var dragOn = false
+    
     
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var spatialButton: UIButton!
@@ -39,7 +44,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dragOn = false
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
         
@@ -54,25 +58,29 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // Do any additional setup after loading the view.
     }
     
-    func didFinishAnnouncement(dict: NSNotification){
-        //if let info = dict.userInfo as? Dictionary
-       /* if let spokenString = dict.userInfo?[UIAccessibilityAnnouncementKeyStringValue] as? String {
-            //.object(forKey: UIAccessibilityAnnouncementKeyStringValue) as? String{
-            print(spokenString)
-            if(spokenString.contains("placed")){
-                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, blocksProgram.cellForItem(at: IndexPath(row: dropIndex, section: 0)))
-            }
-        }*/
-        blocksProgram.reloadData()
-        //let spokenString = dict.userInfo.objectForKey(UIAccessibilityAnnouncementKeyStringValue)
-        //UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, blocksProgram.cellForItem(at: IndexPath(row: index, section: 0)))
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Block Selection Delegate
+    func unsetBlocks() {
+        movingBlocks = false
+        blocksBeingMoved.removeAll()
+        changeButton()
+    }
+    
+    
+    func setSelectedBlocks(_ blocks: [Block]) {
+        movingBlocks = true
+        blocksBeingMoved = blocks
+        changeButton()
+    }
+    
+    func setParentViewController(_ myVC: UIViewController) {
+        containerViewController = myVC as! UINavigationController
+    }
     
     // MARK: - Button Actions
     
@@ -97,22 +105,62 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBAction func playButtonClicked(_ sender: Any) {
         if(movingBlocks){
             //trash
-            movingBlocks = false
+            //movingBlocks = false
             let announcement = blocksBeingMoved[0].name + " placed in trash."
-            blocksBeingMoved.removeAll()
+            //blocksBeingMoved.removeAll()
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
             //CRAZY TRY
             blocksProgram.reloadData()
-            changeButton()
+            //changeButton()
+            
+            containerViewController?.popViewController(animated: false)
+            unsetBlocks()
         }else{
             //play
             if(blocksStack.isEmpty){
                 let announcement = "Your robot has nothing to do!  Add some blocks to your workspace. "
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
             }else{
+                createCommandSequence(blocksStack)
                 play(blocksStack)
             }
         }
+    }
+    
+    func unrollLoop(times: Int, blocks:[Block])->[String]{
+        var commands = [String]()
+        for _ in 0..<times{
+            var i = 0
+            while i < blocks.count{
+                if blocks[i].name == "Repeat 3 Times" {
+                    var ii = i+1
+                    var blocksToUnroll = [Block]()
+                    while blocks[i].counterpart !== blocks[ii]{
+                        blocksToUnroll.append(blocks[ii])
+                        ii += 1
+                    }
+                    i = ii
+                    var items = unrollLoop(times: 3, blocks: blocksToUnroll)
+                    //add items
+                    for item in items{
+                        commands.append(item)
+                    }
+                }else{
+                    commands.append(blocks[i].name)
+                }
+                i+=1
+            }
+        }
+        return commands
+    }
+    
+    
+    func createCommandSequence(_ blocks: [Block]){
+        var commands = unrollLoop(times: 1, blocks: blocks)
+        for c in commands{
+            print(c)
+        }
+        
     }
     
     // MARK: Blocks Methods
@@ -129,30 +177,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
         if(blocks[0].double){
-            if(!blocksBeingMoved.isEmpty){
-                blocksStack.insert(contentsOf: blocks, at: index)
-                blocksBeingMoved.removeAll()
-                //CRAZY TRY
-                blocksProgram.reloadData()
-            }else{
-                let block = blocks[0]
-                blocksStack.insert(block, at: index)
-                let endBlockName = "End " + block.name
-                let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: block.editable)
-                endBlock?.counterpart = block
-                block.counterpart = endBlock
-                blocksStack.insert(endBlock!, at: index+1)
-                //CRAZY TRY
-                blocksProgram.reloadData()
-            }
+            blocksStack.insert(contentsOf: blocks, at: index)
+            blocksBeingMoved.removeAll()
+            blocksProgram.reloadData()
         }else{
             blocksStack.insert(blocks[0], at: index)
-            //CRAZY TRY
             blocksProgram.reloadData()
-            //blocksProgram.performBatchUpdates({self.blocksProgram.insertItems(at: [IndexPath.init(row:index, section:0)])}, completion: nil)
-            
-            /*deleteItems(at: indexPathArray)
-            }, completion: nil)*/
             
         }
     }
@@ -198,7 +228,26 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return blocksStack.count
+        return blocksStack.count + 1
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var size = CGSize(width: CGFloat(blockWidth), height: collectionView.frame.height)
+        
+        if indexPath.row == blocksStack.count {
+            if blocksStack.count < 8 {
+                //fill up the rest of the screen
+                let myWidth = collectionView.frame.width - CGFloat(blocksStack.count) * CGFloat(blockWidth)
+                size = CGSize(width: myWidth, height: collectionView.frame.height)
+            }else{
+                //just normal size block at the end
+                size = CGSize(width: CGFloat(blockWidth), height: collectionView.frame.height)
+            }
+        }
+        return size
     }
     
     func addSpatialAccessibilityLabel(myLabel: UILabel, block:Block, number: Int, blocksToAdd: [Block]){
@@ -212,10 +261,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         
         var movementInfo = "Double tap to move block."
-        
-        if(dragOn){
-            movementInfo = "tap and hold to move block."
-        }
         
         accessibilityLabel = spearCon + accessibilityLabel
         accessibilityHint = blockPlacementInfo + movementInfo
@@ -231,69 +276,89 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         for myView in cell.subviews{
             myView.removeFromSuperview()
         }
+        if indexPath.row == blocksStack.count {
+            if blocksStack.count == 0 {
+                cell.accessibilityLabel = "Place Block at Beginning"
+            }else{
+                cell.accessibilityLabel = "Place Block at End"
+            }
+        }else{
         
-        let startingHeight = Int(cell.frame.height)-blockHeight
-        
-        let block = blocksStack[indexPath.row]
-        var blocksToAdd = [Block]()
-        
-        //check if block is nested (or nested multiple times)
-        for i in 0...indexPath.row {
-            if blocksStack[i].double {
-                if(!blocksStack[i].name.contains("End")){
-                    if(i != indexPath.row){
-                        blocksToAdd.append(blocksStack[i])
+            let startingHeight = Int(cell.frame.height)-blockHeight
+            
+            let block = blocksStack[indexPath.row]
+            var blocksToAdd = [Block]()
+            
+            //check if block is nested (or nested multiple times)
+            for i in 0...indexPath.row {
+                if blocksStack[i].double {
+                    if(!blocksStack[i].name.contains("End")){
+                        if(i != indexPath.row){
+                            blocksToAdd.append(blocksStack[i])
+                        }
+                    }else{
+                        blocksToAdd.removeLast()
                     }
-                }else{
-                    blocksToAdd.removeLast()
+                }
+            }
+
+            if !spatialLayout {
+                blocksToAdd.reverse()
+                
+                let block = blocksStack[indexPath.row]
+                let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
+                addSpatialAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd)
+                if(block.imageName != nil){
+                    let imageName = block.imageName!
+                    let image = UIImage(named: imageName)
+                    let imv = UIImageView.init(image: image)
+                    myLabel.addSubview(imv)
+                }
+                cell.addSubview(myLabel)
+                if(block.imageName != nil){
+                    let imageName = block.imageName!
+                    let image = UIImage(named: imageName)
+                    let imv = UIImageView.init(image: image)
+                    myLabel.addSubview(imv)
+                }
+            }else {
+                var count = 0
+                for b in blocksToAdd{
+                    let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
+
+                    myView.accessibilityLabel = "Inside " + b.name
+                    myView.text = "Inside " + b.name
+
+                    cell.addSubview(myView)
+                    count += 1
+                }
+                let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
+                
+                var movementInfo = "Double tap to move block."
+                
+                if(dragOn){
+                    movementInfo = "Double tap and hold to move block."
+                }
+                
+                //add main label
+                let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                if(block.imageName != nil){
+                    let imageName = block.imageName!
+                    let image = UIImage(named: imageName)
+                    let imv = UIImageView.init(image: image)
+                    myLabel.addSubview(imv)
+                }
+                
+                myLabel.accessibilityLabel = block.name + blockPlacementInfo + movementInfo
+                cell.addSubview(myLabel)
+                if(block.imageName != nil){
+                    let imageName = block.imageName!
+                    let image = UIImage(named: imageName)
+                    let imv = UIImageView.init(image: image)
+                    myLabel.addSubview(imv)
                 }
             }
         }
-        if !spatialLayout {
-            blocksToAdd.reverse()
-            
-            let block = blocksStack[indexPath.row]
-            let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
-            addSpatialAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd)
-            cell.addSubview(myLabel)
-            if(block.imageName != nil){
-                let imageName = block.imageName!
-                let image = UIImage(named: imageName)
-                let imv = UIImageView.init(image: image)
-                myLabel.addSubview(imv)
-            }
-        }else {
-            var count = 0
-            for b in blocksToAdd{
-                let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
-
-                myView.accessibilityLabel = "Inside " + b.name
-                myView.text = "Inside " + b.name
-
-                cell.addSubview(myView)
-                count += 1
-            }
-            let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
-            
-            var movementInfo = "Double tap to move block."
-            
-            if(dragOn){
-                movementInfo = "Double tap and hold to move block."
-            }
-            
-            //add main label
-            let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-            myLabel.accessibilityLabel = block.name + blockPlacementInfo + movementInfo
-            cell.addSubview(myLabel)
-            if(block.imageName != nil){
-                let imageName = block.imageName!
-                let image = UIImage(named: imageName)
-                let imv = UIImageView.init(image: image)
-                myLabel.addSubview(imv)
-            }
-        }
-        addGestureRecognizer(cell)
-        
         return cell
     }
 
@@ -306,13 +371,48 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         myLabel.textColor = block.color
         myLabel.numberOfLines = 0
         myLabel.backgroundColor = block.color
-        if(block.imageName != nil){
-            let imageName = block.imageName!
-            let image = UIImage(named: imageName)
-            let imv = UIImageView.init(image: image)
-            myLabel.addSubview(imv)
-        }
         return myLabel
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if(movingBlocks){
+            addBlocks(blocksBeingMoved, at: indexPath.row)
+            containerViewController?.popViewController(animated: false)
+            unsetBlocks()
+        }else{
+            if(indexPath.row < blocksStack.count){//otherwise empty block at end
+                movingBlocks = true
+                let blocksStackIndex = indexPath.row
+                let myBlock = blocksStack[blocksStackIndex]
+                //remove block from collection and program
+                if myBlock.double == true{
+                    var indexOfCounterpart = -1
+                    for i in 0..<blocksStack.count {
+                        if blocksStack[i] === myBlock.counterpart! {
+                            indexOfCounterpart = i
+                        }
+                    }
+                    var indexPathArray = [IndexPath]()
+                    var tempBlockStack = [Block]()
+                    for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
+                        indexPathArray += [IndexPath.init(row: i, section: 0)]
+                        tempBlockStack += [blocksStack[i]]
+                    }
+                    blocksBeingMoved = tempBlockStack
+                    
+                    blocksStack.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
+                    
+                }else{ //only a single block to be removed
+                    blocksBeingMoved = [blocksStack[blocksStackIndex]]
+                    blocksStack.remove(at: blocksStackIndex)
+                }
+                blocksProgram.reloadData()
+                let mySelectedBlockVC = SelectedBlockViewController()
+                mySelectedBlockVC.blocks = blocksBeingMoved
+                containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
+                changeButton()
+            }
+        }
     }
 
     func addGestureRecognizer(_ cell:UICollectionViewCell){
@@ -320,14 +420,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let containerViewController = segue.destination as? UINavigationController{
+            if let myTopViewController = containerViewController.topViewController as? BlocksTypeTableViewController{
+                myTopViewController.delegate = self
+            }
+        }
     }
-    */
+    
 
 }

@@ -161,6 +161,125 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
     
     
     // MARK: UICollectionViewDataSource
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return blocksStack.count
+    }
+    
+    override func addSpatialAccessibilityLabel(myLabel: UILabel, block:Block, number: Int, blocksToAdd: [Block]){
+        var accessibilityLabel = block.name
+        var spearCon = ""
+        for b in blocksToAdd{
+            spearCon += " r "
+            accessibilityLabel += " inside " + b.name
+        }
+        let blockPlacementInfo = ". Workspace block " + String(number) + " of " + String(blocksStack.count)
+        
+        
+        var movementInfo = "Double tap to move block."
+        
+        if(dragOn){
+            movementInfo = "tap and hold to move block."
+        }
+        
+        accessibilityLabel = spearCon + accessibilityLabel
+        accessibilityHint = blockPlacementInfo + movementInfo
+        
+        myLabel.accessibilityLabel = accessibilityLabel
+        myLabel.accessibilityHint = accessibilityHint
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath)
+        // Configure the cell
+        for myView in cell.subviews{
+            myView.removeFromSuperview()
+        }
+        
+        let startingHeight = Int(cell.frame.height)-blockHeight
+        
+        let block = blocksStack[indexPath.row]
+        var blocksToAdd = [Block]()
+        
+        //check if block is nested (or nested multiple times)
+        for i in 0...indexPath.row {
+            if blocksStack[i].double {
+                if(!blocksStack[i].name.contains("End")){
+                    if(i != indexPath.row){
+                        blocksToAdd.append(blocksStack[i])
+                    }
+                }else{
+                    blocksToAdd.removeLast()
+                }
+            }
+        }
+        if !spatialLayout {
+            blocksToAdd.reverse()
+            
+            let block = blocksStack[indexPath.row]
+            let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
+            addSpatialAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd)
+            cell.addSubview(myLabel)
+            if(block.imageName != nil){
+                let imageName = block.imageName!
+                let image = UIImage(named: imageName)
+                let imv = UIImageView.init(image: image)
+                myLabel.addSubview(imv)
+            }
+        }else {
+            var count = 0
+            for b in blocksToAdd{
+                let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
+                
+                myView.accessibilityLabel = "Inside " + b.name
+                myView.text = "Inside " + b.name
+                
+                cell.addSubview(myView)
+                count += 1
+            }
+            let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
+            
+            var movementInfo = "Double tap to move block."
+            
+            if(dragOn){
+                movementInfo = "Double tap and hold to move block."
+            }
+            
+            //add main label
+            let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+            myLabel.accessibilityLabel = block.name + blockPlacementInfo + movementInfo
+            cell.addSubview(myLabel)
+            if(block.imageName != nil){
+                let imageName = block.imageName!
+                let image = UIImage(named: imageName)
+                let imv = UIImageView.init(image: image)
+                myLabel.addSubview(imv)
+            }
+        }
+        addGestureRecognizer(cell)
+        
+        return cell
+    }
+    
+    
+    override func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
+        let myLabel = UILabel.init(frame: frame)
+        //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
+        myLabel.text = block.name
+        myLabel.textAlignment = .center
+        myLabel.textColor = block.color
+        myLabel.numberOfLines = 0
+        myLabel.backgroundColor = block.color
+        if(block.imageName != nil){
+            let imageName = block.imageName!
+            let image = UIImage(named: imageName)
+            let imv = UIImageView.init(image: image)
+            myLabel.addSubview(imv)
+        }
+        return myLabel
+    }
+    
     
     override func addGestureRecognizer(_ cell:UICollectionViewCell){
         if (cell.gestureRecognizers == nil || cell.gestureRecognizers?.count == 0) {

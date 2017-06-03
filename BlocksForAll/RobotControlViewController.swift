@@ -63,6 +63,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         }
     }
     
+    
     func play(_ blocks2Play: [Block]){
         let connectedRobots = robotManager?.allConnectedRobots
         if connectedRobots != nil{
@@ -85,7 +86,6 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     cmdToSend.add(driveBackward, withDuration: 2.0)
                     myAction = WWCommandToolbelt.moveStop()
                 }
-                //TODO WRONG
                 if block.name == "Drive Backward" {
                     let setAngular = WWCommandBodyLinearAngular(linear: -30, angular: 0)
                     let driveBackward = WWCommandSet()
@@ -165,20 +165,6 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     cmdToSend.add(myAction, withDuration: duration)
                 }
                 
-                //TODO WRONG
-                /*if block.name == "Drive Backward" {
-                 var backward = WWCommandBodyLinearAngular(linear: -10, angular: 0)
-                 myAction.setBodyLinearAngular(backward)
-                 cmdToSend.add(myAction, withDuration: 2.0)
-                 var stop = WWCommandBodyLinearAngular(linear: 0, angular: 0)
-                 myAction.setBodyLinearAngular(stop)
-                 //let bodyPose = WWCommandBodyPose.init(relativeMeasuredX: -10.0, y: 0, radians: 0, time: 2)
-                 //myAction.setBodyPose(bodyPose)
-                 }
-                 //TODO WRONG
-                 if block.name == "Turn Left" {
-                 myAction.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -20.0, rightWheel: 20.0))
-                 }*/
             }
             sendCommandSequenceToRobots(cmdSeq: cmdToSend)
             //sendCommandSetToRobots(cmd: cmdToSend)

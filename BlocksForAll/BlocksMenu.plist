@@ -148,11 +148,41 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#FFA500</string>
+		<string>#FF7F2A</string>
 		<key>type</key>
 		<string>Repeat</string>
 		<key>Blocks</key>
-		<array/>
+		<array>
+			<dict>
+				<key>editable</key>
+				<true/>
+				<key>options</key>
+				<array>
+					<true/>
+					<false/>
+				</array>
+				<key>name</key>
+				<string>Repeat 3 Times</string>
+				<key>color</key>
+				<string>#FF7F2A</string>
+				<key>double</key>
+				<true/>
+				<key>imageName</key>
+				<string>repeat_3x.png</string>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Repeat 2 Times</string>
+				<key>color</key>
+				<string>#FF7F2A</string>
+				<key>double</key>
+				<true/>
+				<key>imageName</key>
+				<string>repeat_2x.png</string>
+			</dict>
+		</array>
 	</dict>
 </array>
 </plist>

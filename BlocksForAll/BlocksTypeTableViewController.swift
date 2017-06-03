@@ -11,6 +11,9 @@ import UIKit
 class BlocksTypeTableViewController: UITableViewController {
     
     var blockTypes = NSArray()
+    
+    //used to pass on delegate to selectedBlockViewController
+    var delegate: BlockSelectionDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +86,7 @@ class BlocksTypeTableViewController: UITableViewController {
         if let myDestination = segue.destination as? BlockTableViewController{
             //if let blockCell = sender as?
             myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
+            myDestination.delegate = self.delegate
         }
     }
 
