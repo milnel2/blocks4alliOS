@@ -64,20 +64,18 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     }
     
     
-    func play(_ blocks2Play: [Block]){
+    func play(_ myCommands: [String]){
         let connectedRobots = robotManager?.allConnectedRobots
         if connectedRobots != nil{
             let cmdToSend = WWCommandSetSequence()
             var repeatCommands = [WWCommandSet]()
-            var repeat2times = false
-            var repeat3times = false
-            for block in blocks2Play{
+            for command in myCommands{
                 var duration = 1.0
-                print(block.name)
+                //print(command)
                 //TODO add repeat blocks
                 let distance: Double = 50
                 var myAction = WWCommandSet()
-                if block.name == "Drive Forward" {
+                if command == "Drive Forward" {
                     //let bodyPose = WWCommandBodyPose.init(relativeMeasuredX: distance, y: 0, radians: 0, time: 1.0)
                     //myAction.setBodyPose(bodyPose)
                     let setAngular = WWCommandBodyLinearAngular(linear: 30, angular: 0)
@@ -86,7 +84,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     cmdToSend.add(driveBackward, withDuration: 2.0)
                     myAction = WWCommandToolbelt.moveStop()
                 }
-                if block.name == "Drive Backward" {
+                if command == "Drive Backward" {
                     let setAngular = WWCommandBodyLinearAngular(linear: -30, angular: 0)
                     let driveBackward = WWCommandSet()
                     driveBackward.setBodyLinearAngular(setAngular)
@@ -95,7 +93,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     //let bodyPose = WWCommandBodyPose.init(relativeMeasuredX: -distance, y: 0, radians: 0, time: 1.0)
                     //myAction.setBodyPose(bodyPose)
                 }
-                if block.name == "Wiggle" {
+                if command == "Wiggle" {
                     duration = 0.5
                     let rotateLeft = WWCommandSet()
                     rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -20.0, rightWheel: 20.0))
@@ -107,16 +105,14 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     cmdToSend.add(rotateRight, withDuration: duration)
                     myAction = WWCommandToolbelt.moveStop()
                 }
-                //TODO WRONG
-                if block.name == "Turn Left" {
+                if command == "Turn Left" {
                     duration = 0.55
                     let rotateLeft = WWCommandSet()
                     rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -20.0, rightWheel: 20.0))
                     cmdToSend.add(rotateLeft, withDuration: duration)
                     myAction = WWCommandToolbelt.moveStop()
                 }
-                //TODO WRONG
-                if block.name == "Turn Right" {
+                if command == "Turn Right" {
                     duration = 0.56
                     let rotateLeft = WWCommandSet()
                     rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: 20.0, rightWheel: -20.0))
@@ -129,41 +125,27 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     myAction = WWCommandToolbelt.moveStop()*/
                     //myAction.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -20.0, rightWheel: 20.0))
                 }
-                if block.name == "Say Hi" {
+                if command == "Say Hi" {
                     let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_HI)
                     myAction.setSound(speaker)
                 }
-                if block.name == "Make Horse Noise" {
+                if command == "Make Horse Noise" {
                     let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_HORSE)
                     myAction.setSound(speaker)
                 }
-                if block.name == "Make Dog Noise" {
+                if command == "Make Dog Noise" {
                     let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_DOG)
                     myAction.setSound(speaker)
                 }
-                if block.name == "Make Cat Noise" {
+                if command == "Make Cat Noise" {
                     let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_CAT)
                     myAction.setSound(speaker)
                 }
-                if block.name == "Start Engine" {
+                if command == "Start Engine" {
                     let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_ENGINE_REV)
                     myAction.setSound(speaker)
                 }
-                //TODO: FIX FOR NESTED LOOPS
-                if block.name == "Repeat 3 Times" {
-                    repeat3times = true
-                }else if block.name == "End Repeat 3 Times" {
-                    repeat3times = false
-                    for _ in 1...3{
-                        for action in repeatCommands {
-                            cmdToSend.add(action, withDuration: duration)
-                        }
-                    }
-                }else if repeat3times {
-                    repeatCommands.append(myAction)
-                }else {
-                    cmdToSend.add(myAction, withDuration: duration)
-                }
+                cmdToSend.add(myAction, withDuration: duration)
                 
             }
             sendCommandSequenceToRobots(cmdSeq: cmdToSend)

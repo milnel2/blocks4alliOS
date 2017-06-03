@@ -121,8 +121,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let announcement = "Your robot has nothing to do!  Add some blocks to your workspace. "
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
             }else{
-                createCommandSequence(blocksStack)
-                play(blocksStack)
+                let commands = createCommandSequence(blocksStack)
+                play(commands)
             }
         }
     }
@@ -145,6 +145,19 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     for item in items{
                         commands.append(item)
                     }
+                }else if blocks[i].name == "Repeat 2 Times" {
+                    var ii = i+1
+                    var blocksToUnroll = [Block]()
+                    while blocks[i].counterpart !== blocks[ii]{
+                        blocksToUnroll.append(blocks[ii])
+                        ii += 1
+                    }
+                    i = ii
+                    var items = unrollLoop(times: 2, blocks: blocksToUnroll)
+                    //add items
+                    for item in items{
+                        commands.append(item)
+                    }
                 }else{
                     commands.append(blocks[i].name)
                 }
@@ -155,12 +168,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     
-    func createCommandSequence(_ blocks: [Block]){
+    func createCommandSequence(_ blocks: [Block])->[String]{
         var commands = unrollLoop(times: 1, blocks: blocks)
         for c in commands{
             print(c)
         }
-        
+        return commands
     }
     
     // MARK: Blocks Methods
