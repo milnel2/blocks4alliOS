@@ -23,8 +23,7 @@ class SelectedBlockViewController: UIViewController {
         let myFrame = CGRect(x: 0, y: Int(self.view.bounds.height/2), width: 0, height: 0)
         
         
-        let myBlockView = BlockView.init(frame: myFrame)
-        myBlockView.addBlocks(blocks!)
+        let myBlockView = BlockView.init(frame: myFrame, block: blocks!)
         
         self.view.addSubview(myBlockView)
 

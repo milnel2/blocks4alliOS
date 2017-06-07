@@ -166,7 +166,7 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
         return blocksStack.count
     }
     
-    override func addSpatialAccessibilityLabel(myLabel: UILabel, block:Block, number: Int, blocksToAdd: [Block]){
+    override func addSpatialAccessibilityLabel(myLabel: UIView, block:Block, number: Int, blocksToAdd: [Block]){
         var accessibilityLabel = block.name
         var spearCon = ""
         for b in blocksToAdd{

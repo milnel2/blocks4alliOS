@@ -67,17 +67,22 @@ class BlockTableViewController: UITableViewController {
         }
         
         let block = blocks[indexPath.row]
-        cell.block = block
         
+       //probably get rid of special blocktableviewcell and just add blockView to each cell
+        cell.block = block
         cell.nameLabel.text = block.name
         cell.blockView.backgroundColor = block.color
         
+        let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth), block: [block])
+        
+        cell.addSubview(myView)
+        /*
         if(block.imageName != nil){
             let imageName = block.imageName!
             let image = UIImage(named: imageName)
             let imv = UIImageView.init(image: image)
             cell.addSubview(imv)
-        }
+        }*/
         
         cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
         
@@ -101,10 +106,19 @@ class BlockTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         // Letting destination controller know which blocks type was picked
         if let myDestination = segue.destination as? SelectedBlockViewController{
-            let block = blocks[(tableView.indexPathForSelectedRow?.row)!]
+            //copy to ensure that you get a new id for each block
+            let b2 = tableView.cellForRow(at: tableView.indexPathForSelectedRow!)
+            var block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
+            for myView in (b2?.subviews)!{
+                if let myBlockView = myView as? BlockView{
+                    block = myBlockView.blocks[0].copy()
+                }
+            }
+
+            //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
             if block.double{
                 let endBlockName = "End " + block.name
-                let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: block.editable)
+                let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: false)
                 endBlock?.counterpart = block
                 block.counterpart = endBlock
                 myDestination.blocks = [block, endBlock!]
@@ -134,6 +148,12 @@ class BlockTableViewController: UITableViewController {
                                     }
                                     if let imageName = dictItem.object(forKey: "imageName") as? String{
                                         block.addImage(imageName)
+                                    }
+                                    if let options = dictItem.object(forKey: "options") as? [String]{
+                                        block.options = options
+                                    }
+                                    if let optionsLabels = dictItem.object(forKey: "optionsLabels") as? [String]{
+                                        block.optionsLabels = optionsLabels
                                     }
                                     blocks += [block]
                                 }

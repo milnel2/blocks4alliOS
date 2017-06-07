@@ -99,7 +99,7 @@ class I3BlockTableViewController: UITableViewController {
         if let myDestination = segue.destination as? PlaceholderViewController{
             //if let blockCell = sender as?
             if let blockCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as? BlockTableViewCell{
-                myDestination.blockToAdd = blockCell.block
+                myDestination.blockToAdd = blockCell.block?.copy()            //copy to ensure that you get a new id for each block
                 myDestination.indexToAdd = indexToAdd
             }
            // myDestination.blockToAdd = tableView.indexPathForSelectedRow?.row

@@ -48,10 +48,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksProgram.dataSource = self
         
         //TOGGLE this off if you want to be able to access menu and spatial buttons with VO on
-        menuButton.isAccessibilityElement = false
+        /*menuButton.isAccessibilityElement = false
         menuButton.accessibilityElementsHidden = true
         spatialButton.isAccessibilityElement = false
-        spatialButton.accessibilityElementsHidden = true
+        spatialButton.accessibilityElementsHidden = true*/
         
         //#selector(self.addBlockButton(_sender:))
         //NotificationCenter.default.addObserver(self, selector: #selector(self.didFinishAnnouncement(dict:)), name: NSNotification.Name.UIAccessibilityAnnouncementDidFinish, object: nil)
@@ -132,7 +132,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         for _ in 0..<times{
             var i = 0
             while i < blocks.count{
-                if blocks[i].name == "Repeat 3 Times" {
+                if blocks[i].name.contains("Repeat") {
+                    var timesToRepeat = 1
+                    if blocks[i].name == "Repeat 2 Times"{
+                        timesToRepeat = 2
+                    }else if blocks[i].name == "Repeat 3 Times"{
+                        timesToRepeat = 3
+                    }else if blocks[i].name == "Repeat Times"{
+                        var timesToRepeatAsString = blocks[i].options[blocks[i].pickedOption]
+                        timesToRepeatAsString = timesToRepeatAsString.substring(to: timesToRepeatAsString.index(before: timesToRepeatAsString.endIndex))
+                        timesToRepeat = Int(timesToRepeatAsString)!
+                    }
                     var ii = i+1
                     var blocksToUnroll = [Block]()
                     while blocks[i].counterpart !== blocks[ii]{
@@ -140,26 +150,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         ii += 1
                     }
                     i = ii
-                    var items = unrollLoop(times: 3, blocks: blocksToUnroll)
-                    //add items
-                    for item in items{
-                        commands.append(item)
-                    }
-                }else if blocks[i].name == "Repeat 2 Times" {
-                    var ii = i+1
-                    var blocksToUnroll = [Block]()
-                    while blocks[i].counterpart !== blocks[ii]{
-                        blocksToUnroll.append(blocks[ii])
-                        ii += 1
-                    }
-                    i = ii
-                    var items = unrollLoop(times: 2, blocks: blocksToUnroll)
+                    let items = unrollLoop(times: timesToRepeat, blocks: blocksToUnroll)
                     //add items
                     for item in items{
                         commands.append(item)
                     }
                 }else{
-                    commands.append(blocks[i].name)
+                    var myCommand = blocks[i].name
+                    if blocks[i].name.contains("Distance"){
+                        let distance = blocks[i].options[blocks[i].pickedOption]
+                        myCommand.append(distance)
+                    }
+                    commands.append(myCommand)
                 }
                 i+=1
             }
@@ -212,22 +214,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         var count = 0
         for block in blocksRep{
             let xCoord = count*(blockWidth + blockSpacing)
-            let blockView = UIView(frame:CGRect(x: xCoord, y: 0, width: blockWidth, height: blockHeight))
+            
+            let blockView = BlockView(frame: CGRect(x: xCoord, y: 0, width: blockWidth, height: blockHeight), block: [block])
             count += 1
+/*
+            let blockView = UIView(frame:CGRect(x: xCoord, y: 0, width: blockWidth, height: blockHeight))
             blockView.backgroundColor = block.color
+            
             let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockWidth))
             myLabel.text = block.name
             myLabel.textAlignment = .center
             myLabel.textColor = UIColor.white
-            blockView.self.addSubview(myLabel)
+            blockView.self.addSubview(myLabel)*/
             myView.addSubview(blockView)
-            
+             /*
             if(block.imageName != nil){
                 let imageName = block.imageName!
                 let image = UIImage(named: imageName)
                 let imv = UIImageView.init(image: image)
                 myView.addSubview(imv)
-            }
+            }*/
+            
             
         }
         myView.alpha = 0.75
@@ -263,7 +270,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return size
     }
     
-    func addSpatialAccessibilityLabel(myLabel: UILabel, block:Block, number: Int, blocksToAdd: [Block]){
+    func addSpatialAccessibilityLabel(myLabel: UIView, block:Block, number: Int, blocksToAdd: [Block]){
         var accessibilityLabel = block.name
         var spearCon = ""
         for b in blocksToAdd{
@@ -319,21 +326,19 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 blocksToAdd.reverse()
                 
                 let block = blocksStack[indexPath.row]
-                let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
+                let myLabel = BlockView(frame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth), block: [block])
+                
+                //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
                 addSpatialAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd)
-                if(block.imageName != nil){
+                /*if(block.imageName != nil){
                     let imageName = block.imageName!
                     let image = UIImage(named: imageName)
                     let imv = UIImageView.init(image: image)
                     myLabel.addSubview(imv)
-                }
+                }*/
+
                 cell.addSubview(myLabel)
-                if(block.imageName != nil){
-                    let imageName = block.imageName!
-                    let image = UIImage(named: imageName)
-                    let imv = UIImageView.init(image: image)
-                    myLabel.addSubview(imv)
-                }
+
             }else {
                 var count = 0
                 for b in blocksToAdd{
@@ -354,22 +359,19 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 //add main label
-                let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight), block: [block])
+                
+                /*let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                 if(block.imageName != nil){
                     let imageName = block.imageName!
                     let image = UIImage(named: imageName)
                     let imv = UIImageView.init(image: image)
                     myLabel.addSubview(imv)
-                }
+                }*/
                 
                 myLabel.accessibilityLabel = block.name + blockPlacementInfo + movementInfo
                 cell.addSubview(myLabel)
-                if(block.imageName != nil){
-                    let imageName = block.imageName!
-                    let image = UIImage(named: imageName)
-                    let imv = UIImageView.init(image: image)
-                    myLabel.addSubview(imv)
-                }
             }
         }
         return cell

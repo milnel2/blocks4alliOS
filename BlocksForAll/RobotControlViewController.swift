@@ -10,7 +10,55 @@
 import UIKit
 
 class RobotControlViewController: UIViewController, WWRobotObserver {
-
+    let soundFiles = [WW_SOUNDFILE_GIGGLE,
+        WW_SOUNDFILE_AIRPLANE,
+        WW_SOUNDFILE_OKAY,
+        WW_SOUNDFILE_BYE,
+        WW_SOUNDFILE_SIGH,
+        WW_SOUNDFILE_BEEP,
+        WW_SOUNDFILE_BRAGGING,
+        WW_SOUNDFILE_CONFUSED,
+        WW_SOUNDFILE_COOL,
+        WW_SOUNDFILE_CROCODILE,
+        WW_SOUNDFILE_HUH,
+        WW_SOUNDFILE_HI,
+        WW_SOUNDFILE_WAH,
+        WW_SOUNDFILE_WOW,
+        WW_SOUNDFILE_DINOSAUR,
+        WW_SOUNDFILE_ELEPHANT,
+        WW_SOUNDFILE_ENGINE_REV,
+        WW_SOUNDFILE_WEE,
+        WW_SOUNDFILE_WOOHOO,
+        WW_SOUNDFILE_GOAT,
+        WW_SOUNDFILE_CAT,
+        WW_SOUNDFILE_DOG,
+        WW_SOUNDFILE_LION,
+        WW_SOUNDFILE_GOBBLE,
+        WW_SOUNDFILE_HAHA,
+        WW_SOUNDFILE_OOH,
+        WW_SOUNDFILE_GRUNT,
+        WW_SOUNDFILE_HELICOPTER,
+        WW_SOUNDFILE_HORSE,
+        WW_SOUNDFILE_LASERS,
+        WW_SOUNDFILE_SQUEAK,
+        WW_SOUNDFILE_SNORING,
+        WW_SOUNDFILE_SPEED_BOOST,
+        WW_SOUNDFILE_SURPRISED,
+        WW_SOUNDFILE_TAH_DAH,
+        WW_SOUNDFILE_YAWN,
+        WW_SOUNDFILE_TIRE_SQUEAL,
+        WW_SOUNDFILE_TRAIN,
+        WW_SOUNDFILE_HORN,
+        WW_SOUNDFILE_TRUMPET,
+        WW_SOUNDFILE_BOAT,
+        WW_SOUNDFILE_BUZZ,
+        WW_SOUNDFILE_WEEHEE,
+        WW_SOUNDFILE_UH_OH,
+        WW_SOUNDFILE_SIREN,
+        WW_SOUNDFILE_UH_HUH,
+        WW_SOUNDFILE_YIPPE,
+        WW_SOUNDFILE_LETS_GO]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -61,31 +109,50 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         for _ in connectedRobots!{
             robot.resetState()
         }
-    }
-    
+    } 
+    var leftLightIndex = 0
+    var rightLightIndex = 0
+    var eyeLightIndex = 0
     
     func play(_ myCommands: [String]){
         let connectedRobots = robotManager?.allConnectedRobots
         if connectedRobots != nil{
+            //set up light dict
+            let lightDict = [WWCommandLightRGB.init(red: 0.9, green: 0, blue: 0), WWCommandLightRGB.init(red: 0, green: 0.9, blue: 0), WWCommandLightRGB.init(red: 0, green: 0, blue: 0.9), WWCommandLightRGB.init(red: 0, green: 0, blue: 0), WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)]
+
+            
             let cmdToSend = WWCommandSetSequence()
             var repeatCommands = [WWCommandSet]()
             for command in myCommands{
                 var duration = 1.0
                 //print(command)
                 //TODO add repeat blocks
-                let distance: Double = 50
+                var distance: Double = 30
                 var myAction = WWCommandSet()
-                if command == "Drive Forward" {
+                if command.contains("Drive Forward") {
                     //let bodyPose = WWCommandBodyPose.init(relativeMeasuredX: distance, y: 0, radians: 0, time: 1.0)
                     //myAction.setBodyPose(bodyPose)
-                    let setAngular = WWCommandBodyLinearAngular(linear: 30, angular: 0)
-                    let driveBackward = WWCommandSet()
-                    driveBackward.setBodyLinearAngular(setAngular)
-                    cmdToSend.add(driveBackward, withDuration: 2.0)
+                    if(command.contains("0")){
+                        var distanceString = command
+                        distanceString = distanceString.substring(from:distanceString.index(distanceString.endIndex, offsetBy: -2))
+                        distance = Double(distanceString)!
+                    }
+                    
+                    
+                    let setAngular = WWCommandBodyLinearAngular(linear: distance, angular: 0)
+                    let drive = WWCommandSet()
+                    drive.setBodyLinearAngular(setAngular)
+                    cmdToSend.add(drive, withDuration: 2.0)
                     myAction = WWCommandToolbelt.moveStop()
                 }
-                if command == "Drive Backward" {
-                    let setAngular = WWCommandBodyLinearAngular(linear: -30, angular: 0)
+                if command.contains("Drive Backward") {
+                    if(command.contains("0")){
+                        var distanceString = command
+                        distanceString = distanceString.substring(from:distanceString.index(distanceString.endIndex, offsetBy: -2))
+                        distance = Double(distanceString)!
+                    }
+                    
+                    let setAngular = WWCommandBodyLinearAngular(linear: -distance, angular: 0)
                     let driveBackward = WWCommandSet()
                     driveBackward.setBodyLinearAngular(setAngular)
                     cmdToSend.add(driveBackward, withDuration: 2.0)
@@ -103,6 +170,50 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     cmdToSend.add(rotateRight, withDuration: duration)
                     cmdToSend.add(rotateLeft, withDuration: duration)
                     cmdToSend.add(rotateRight, withDuration: duration)
+                    myAction = WWCommandToolbelt.moveStop()
+                }
+                if command == "Nod" {
+                    //let nodAnimation = WWCommandSetSequence()
+                    let lookup = WWCommandSet()
+                    lookup.setHeadPositionTilt(WWCommandHeadPosition.init(degree: -20))
+                    let lookdown = WWCommandSet()
+                    lookdown.setHeadPositionTilt(WWCommandHeadPosition.init(degree:7.5))
+                    duration = 0.4
+                    cmdToSend.add(lookup, withDuration:duration)
+                    cmdToSend.add(lookdown, withDuration:duration)
+                    cmdToSend.add(lookup, withDuration:duration)
+                    cmdToSend.add(lookdown, withDuration:duration)
+                    cmdToSend.add(lookup, withDuration:duration)
+                    cmdToSend.add(lookdown, withDuration:duration)
+                    cmdToSend.add(lookup, withDuration:duration)
+                    cmdToSend.add(lookdown, withDuration:duration)
+                    myAction = WWCommandToolbelt.moveStop()
+                }
+                if command == "Dance" {
+                    duration = 0.5
+                    let rotateLeft = WWCommandSet()
+                    rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -30.0, rightWheel: 30.0))
+                    let rotateRight = WWCommandSet()
+                    rotateRight.setBodyWheels(WWCommandBodyWheels.init(leftWheel: 30.0, rightWheel: -30.0))
+                    let setLeft = WWCommandSet()
+                    let light = lightDict[leftLightIndex%lightDict.count]
+                    leftLightIndex += 1
+                    setLeft.setLeftEarLight(light)
+                    let setRight = WWCommandSet()
+                    setRight.setRightEarLight(light)
+                    rightLightIndex += 1
+                    
+                    cmdToSend.add(rotateLeft, withDuration: duration)
+                    cmdToSend.add(rotateRight, withDuration: duration)
+                    cmdToSend.add(setLeft, withDuration: duration)
+                    cmdToSend.add(setRight, withDuration: duration)
+                    cmdToSend.add(rotateLeft, withDuration: duration)
+                    cmdToSend.add(rotateRight, withDuration: duration)
+                    cmdToSend.add(setLeft, withDuration: duration)
+                    cmdToSend.add(setRight, withDuration: duration)
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_WOOHOO)
+                    myAction.setSound(speaker)
+                    
                     myAction = WWCommandToolbelt.moveStop()
                 }
                 if command == "Turn Left" {
@@ -129,6 +240,11 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_HI)
                     myAction.setSound(speaker)
                 }
+                if command == "Make Random Noise"{
+                    let randomNumber = arc4random_uniform(UInt32(soundFiles.count))
+                    let speaker = WWCommandSpeaker.init(defaultSound: soundFiles[Int(randomNumber)])
+                    myAction.setSound(speaker)
+                }
                 if command == "Make Horse Noise" {
                     let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_HORSE)
                     myAction.setSound(speaker)
@@ -144,6 +260,22 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                 if command == "Start Engine" {
                     let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_ENGINE_REV)
                     myAction.setSound(speaker)
+                }
+                if command == "Set Eye Light" {
+                    let light = lightDict[eyeLightIndex%lightDict.count]
+                    eyeLightIndex += 1
+                    myAction.setEyeLight(light)
+                    myAction.setChestLight(light)
+                }
+                if command == "Set Left Ear Light" {
+                    let light = lightDict[leftLightIndex%lightDict.count]
+                    leftLightIndex += 1
+                    myAction.setLeftEarLight(light)
+                }
+                if command == "Set Right Ear Light" {
+                    let light = lightDict[rightLightIndex%lightDict.count]
+                    rightLightIndex += 1
+                    myAction.setRightEarLight(light)
                 }
                 cmdToSend.add(myAction, withDuration: duration)
                 
