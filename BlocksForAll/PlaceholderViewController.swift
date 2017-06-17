@@ -173,11 +173,12 @@ class PlaceholderViewController: BlocksViewController {
         var announcement = ""
         
         if !blocksBeingMoved.isEmpty{
+            announcement = blocksBeingMoved[0].name + " placed after " + myBlock.name
+            
             addBlocks(blocksBeingMoved, at: blocksStackIndex + 1 )
             //blocksBeingMoved.removeAll()
             
             //make announcement
-            announcement = blocksBeingMoved[0].name + " placed after " + myBlock.name
             blocksBeingMoved.removeAll()
             print(announcement)
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
@@ -227,12 +228,6 @@ class PlaceholderViewController: BlocksViewController {
         if !blocksBeingMoved.isEmpty{
             addBlocks(blocksBeingMoved, at: indexToAdd  )
             //blocksBeingMoved.removeAll()
-            
-            //make announcement
-            let announcement = blocksBeingMoved[0].name + " placed at beginning "
-            print(announcement)
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
-            blocksBeingMoved.removeAll()
             
         }else{
             performSegue(withIdentifier: "addNewBlockSegue", sender: self)
