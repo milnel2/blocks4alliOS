@@ -1,5 +1,5 @@
 //
-//  I3BlockTableViewController.swift
+//  PlaceholderBlockTableViewController.swift
 //  BlocksForAll
 //
 //  Created by Lauren Milne on 3/8/17.
@@ -34,12 +34,9 @@ class PlaceholderBlockTableViewController: BlockTableViewController {
         cell.nameLabel.text = block.name
         cell.blockView.backgroundColor = block.color
         cell.block = block
-        if(block.imageName != nil){
-            let imageName = block.imageName!
-            let image = UIImage(named: imageName)
-            let imv = UIImageView.init(image: image)
-            cell.blockView.addSubview(imv)
-        }
+        
+        let myView = BlockView.init(frame: CGRect.init(x: (Int(cell.bounds.width)-blockWidth)/2, y: 0, width: blockWidth, height: blockWidth), block: [block])
+        cell.addSubview(myView)
         
         cell.accessibilityLabel = block.name
         cell.accessibilityHint = "Double tap to add block to selected spot in workspace"
