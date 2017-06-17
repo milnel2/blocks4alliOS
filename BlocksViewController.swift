@@ -75,11 +75,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func setSelectedBlocks(_ blocks: [Block]) {
         movingBlocks = true
         blocksBeingMoved = blocks
+        blocksProgram.reloadData()
         changeButton()
     }
     
     func setParentViewController(_ myVC: UIViewController) {
-        containerViewController = myVC as! UINavigationController
+        containerViewController = myVC as? UINavigationController
     }
     
     // MARK: - Button Actions
@@ -270,20 +271,37 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return size
     }
     
-    func addSpatialAccessibilityLabel(myLabel: UIView, block:Block, number: Int, blocksToAdd: [Block]){
-        var accessibilityLabel = block.name
+    func addAccessibilityLabel(myLabel: UIView, block:Block, number: Int, blocksToAdd: [Block], spatial: Bool, interface: Int){
+
+        myLabel.isAccessibilityElement = true
+        var accessibilityLabel = ""
+        //is blocksStack.count always correct?
+        var blockPlacementInfo = ". Workspace block " + String(number) + " of " + String(blocksStack.count)
+        var accessibilityHint = ""
         var spearCon = ""
-        for b in blocksToAdd{
-            spearCon += " r "
-            accessibilityLabel += " inside " + b.name
+        var nestingInfo  = ""
+        var movementInfo = ". Double tap to move block."
+        if(!blocksBeingMoved.isEmpty){
+            if(interface == 0){
+                accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before "
+            }else{
+                accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " after "
+            }
+            movementInfo = ". Double tap to add " + blocksBeingMoved[0].name + " block here"
         }
-        let blockPlacementInfo = ". Workspace block " + String(number) + " of " + String(blocksStack.count)
         
+        if(!spatial){
+            for b in blocksToAdd{
+                spearCon += " r "
+                nestingInfo += " inside " + b.name
+            }
+        }
+        if(interface == 1){
+            movementInfo = ". tap and hold to move block."
+        }
         
-        var movementInfo = "Double tap to move block."
-        
-        accessibilityLabel = spearCon + accessibilityLabel
-        accessibilityHint = blockPlacementInfo + movementInfo
+        accessibilityLabel += spearCon + block.name + blockPlacementInfo + nestingInfo
+        accessibilityHint += movementInfo
         
         myLabel.accessibilityLabel = accessibilityLabel
         myLabel.accessibilityHint = accessibilityHint
@@ -296,11 +314,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         for myView in cell.subviews{
             myView.removeFromSuperview()
         }
+        cell.isAccessibilityElement = false
         if indexPath.row == blocksStack.count {
-            if blocksStack.count == 0 {
-                cell.accessibilityLabel = "Place Block at Beginning"
-            }else{
-                cell.accessibilityLabel = "Place Block at End"
+            if !blocksBeingMoved.isEmpty{
+                cell.isAccessibilityElement = true
+                if blocksStack.count == 0 {
+                    cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at Beginning"
+                }else{
+                    cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End"
+                }
             }
         }else{
         
@@ -329,13 +351,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let myLabel = BlockView(frame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth), block: [block])
                 
                 //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
-                addSpatialAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd)
-                /*if(block.imageName != nil){
-                    let imageName = block.imageName!
-                    let image = UIImage(named: imageName)
-                    let imv = UIImageView.init(image: image)
-                    myLabel.addSubview(imv)
-                }*/
+                //myLabel.isAccessibilityElement = true
+                addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd, spatial:false, interface: 0)
 
                 cell.addSubview(myLabel)
 
@@ -350,17 +367,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(myView)
                     count += 1
                 }
-                let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
+                //let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
                 
-                var movementInfo = "Double tap to move block."
+                //var movementInfo = "Double tap to move block."
                 
-                if(dragOn){
-                    movementInfo = "Double tap and hold to move block."
-                }
                 
                 //add main label
                 
                 let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight), block: [block])
+                addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row+1, blocksToAdd: blocksToAdd, spatial: true, interface: 0)
                 
                 /*let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                 if(block.imageName != nil){
@@ -369,8 +384,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let imv = UIImageView.init(image: image)
                     myLabel.addSubview(imv)
                 }*/
+                //myLabel.isAccessibilityElement = true
+                /*
+                let accessibilityLabel = block.name + blockPlacementInfo + movementInfo
+                myLabel.accessibilityLabel = accessibilityLabel
+                if(!blocksBeingMoved.isEmpty){
+                    myLabel.accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before " +  accessibilityLabel
+                    myLabel.accessibilityHint = blockPlacementInfo + ". Double tap to add " + blocksBeingMoved[0].name + " block here"
+                }*/
                 
-                myLabel.accessibilityLabel = block.name + blockPlacementInfo + movementInfo
+                
                 cell.addSubview(myLabel)
             }
         }
@@ -395,7 +418,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             containerViewController?.popViewController(animated: false)
             unsetBlocks()
         }else{
-            if(indexPath.row < blocksStack.count){//otherwise empty block at end
+            if(indexPath.row < blocksStack.count){ //otherwise empty block at end
                 movingBlocks = true
                 let blocksStackIndex = indexPath.row
                 let myBlock = blocksStack[blocksStackIndex]

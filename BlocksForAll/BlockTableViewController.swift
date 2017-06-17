@@ -20,7 +20,7 @@ class BlockTableViewController: UITableViewController {
     
     //update these as collection view changes
     let blockWidth = 100
-    private let blockSpacing = 10
+    let blockSpacing = 10
     
 
     override func viewDidLoad() {
@@ -62,18 +62,22 @@ class BlockTableViewController: UITableViewController {
         // Table view cells are reused and should be dequeued using a cell identifier
         let cellIdentifier = "BlockTableViewCell"
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BlockTableViewCell else {
+        /*guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BlockTableViewCell else {
             fatalError("The dequeued cell is not an instance of BlockTableViewCell.")
-        }
+        }*/
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         let block = blocks[indexPath.row]
         
        //probably get rid of special blocktableviewcell and just add blockView to each cell
-        cell.block = block
-        cell.nameLabel.text = block.name
-        cell.blockView.backgroundColor = block.color
+        //cell.block = block
+        //cell.nameLabel.text = block.name
+        //cell.blockView.backgroundColor = block.color
         
         let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth), block: [block])
+        cell.accessibilityLabel = block.name
+        cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
         
         cell.addSubview(myView)
         /*
@@ -84,7 +88,7 @@ class BlockTableViewController: UITableViewController {
             cell.addSubview(imv)
         }*/
         
-        cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
+        //cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
         
         return cell
     }

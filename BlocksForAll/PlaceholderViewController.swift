@@ -11,7 +11,7 @@ import UIKit
 class PlaceholderViewController: BlocksViewController {
     
     //@IBOutlet weak var blocksProgram: UICollectionView!
-    var blockToAdd: Block?
+    var blocksToAdd: [Block]?
     var indexToAdd = 0
     var count = 0
     
@@ -24,16 +24,11 @@ class PlaceholderViewController: BlocksViewController {
         blockWidth = 90
         // Do any additional setup after loading the view.
         
-        if blockToAdd != nil {
-            if blockToAdd?.name == "Cancel"{
-                //pick a block from workspace
-                print("Do nothing")
-            }else{
-                //add block
-                //fromWorkspace = false
-                //TODO might need movingBlocks here
-                addBlocks([blockToAdd!], at: indexToAdd)
-            }
+        if blocksToAdd != nil {
+            //add block
+            //fromWorkspace = false
+            //TODO might need movingBlocks here
+            addBlocks(blocksToAdd!, at: indexToAdd)
         }
         indexToAdd = 0
     }
@@ -102,11 +97,12 @@ class PlaceholderViewController: BlocksViewController {
                     }
                 }
             }
-            let blockPlacementInfo = ". block " + String(blockStackIndex + 1) + " of " + String(blocksStack.count) + " in Workspace."
+            let blockPlacementInfo = ". Workspace block " + String(blockStackIndex + 1) + " of " + String(blocksStack.count)
             
             if !spatialLayout {
                 if !blocksBeingMoved.isEmpty{
-                    let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight, width: blockWidth+placeholderWidth, height: blockHeight))
+                    let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight, width: blockWidth+placeholderWidth, height: blockHeight), block: [block])
+                    //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight, width: blockWidth+placeholderWidth, height: blockHeight))
                     
                     var accessibilityLabel = block.name
                     var spearCon = ""
@@ -114,18 +110,21 @@ class PlaceholderViewController: BlocksViewController {
                         spearCon += " r "
                         accessibilityLabel += " inside " + b.name
                     }
-                    
+                    addAccessibilityLabel(myLabel: myLabel, block: block, number: blockStackIndex + 1, blocksToAdd: blocksToAdd, spatial: false, interface: 2)
+                    /*myLabel.isAccessibilityElement = true
                     myLabel.accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " after " + spearCon + accessibilityLabel
-                    myLabel.accessibilityHint = blockPlacementInfo + ". Double tap to add " + blocksBeingMoved[0].name + " block here"
+                    myLabel.accessibilityHint = blockPlacementInfo + ". Double tap to add " + blocksBeingMoved[0].name + " block here"*/
                     cell.addSubview(myLabel)
                 }else{
-                    let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight))
-                    addSpatialAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row, blocksToAdd: blocksToAdd)
+                    let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight), block: [block])
+                    //myLabel.isAccessibilityElement = true
+                    //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight))
+                    addAccessibilityLabel(myLabel: myLabel, block: block, number: blockStackIndex + 1, blocksToAdd: blocksToAdd, spatial: true, interface: 2)
                     cell.addSubview(myLabel)
 
-                    myLabel.accessibilityHint = blockPlacementInfo + ". Double tap to move block"
+                    //myLabel.accessibilityHint = blockPlacementInfo + ". Double tap to move block"
                     
-                    cell.addSubview(myLabel)
+                    //cell.addSubview(myLabel)
                     
                     
                     let placeholderBlock = createPlaceholderBlock(frame: CGRect(x: blockWidth, y: startingHeight, width: placeholderWidth, height: blockHeight ))
@@ -144,9 +143,14 @@ class PlaceholderViewController: BlocksViewController {
                     count += 1
                 }
                 
-                let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                myLabel.accessibilityLabel = block.name
-                myLabel.accessibilityHint =   blockPlacementInfo + ". Double tap to move block"
+                let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight), block: [block])
+                addAccessibilityLabel(myLabel: myLabel, block: block, number: blockStackIndex + 1, blocksToAdd: blocksToAdd, spatial: true, interface: 2)
+                
+                
+                //myLabel.isAccessibilityElement = true
+                //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                //myLabel.accessibilityLabel = block.name
+                //myLabel.accessibilityHint =   blockPlacementInfo + ". Double tap to move block"
                 
                 cell.addSubview(myLabel)
                 
@@ -239,7 +243,7 @@ class PlaceholderViewController: BlocksViewController {
     
     // Pass on index where the block should be added
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let myDestination = segue.destination as? I3BlocksTypeTableViewController{
+        if let myDestination =  segue.destination as? PlaceholderBlocksTypeTableViewController{
             myDestination.indexToAdd = indexToAdd
         }
     }

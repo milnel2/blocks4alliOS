@@ -61,7 +61,7 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
                 
             }
-            //blocksBeingMoved.removeAll()
+            blocksBeingMoved.removeAll()
             movingBlocks = false
             changeButton()
            }else{ //probably should be error
@@ -145,6 +145,10 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
     
     func createDragRepresentation(ofSourceView sourceView: UIView!, in window: UIWindow!) -> UIView! {
         if let sView = sourceView as? UICollectionViewCell{
+            
+            /*let dragView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth), block: [sView.block!])
+            return dragView*/
+            
             let dragView = createViewRepresentation(FromBlocks: blocksBeingMoved)
             dragView.frame.origin.x = sView.frame.origin.x
             dragView.frame.origin.y = sView.frame.origin.y
@@ -164,29 +168,6 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return blocksStack.count
-    }
-    
-    override func addSpatialAccessibilityLabel(myLabel: UIView, block:Block, number: Int, blocksToAdd: [Block]){
-        var accessibilityLabel = block.name
-        var spearCon = ""
-        for b in blocksToAdd{
-            spearCon += " r "
-            accessibilityLabel += " inside " + b.name
-        }
-        let blockPlacementInfo = ". Workspace block " + String(number) + " of " + String(blocksStack.count)
-        
-        
-        var movementInfo = "Double tap to move block."
-        
-        if(dragOn){
-            movementInfo = "tap and hold to move block."
-        }
-        
-        accessibilityLabel = spearCon + accessibilityLabel
-        accessibilityHint = blockPlacementInfo + movementInfo
-        
-        myLabel.accessibilityLabel = accessibilityLabel
-        myLabel.accessibilityHint = accessibilityHint
     }
     
     
@@ -218,15 +199,15 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
             blocksToAdd.reverse()
             
             let block = blocksStack[indexPath.row]
-            let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
-            addSpatialAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd)
-            cell.addSubview(myLabel)
-            if(block.imageName != nil){
-                let imageName = block.imageName!
-                let image = UIImage(named: imageName)
-                let imv = UIImageView.init(image: image)
-                myLabel.addSubview(imv)
-            }
+            
+            //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
+            
+            let myView = BlockView.init(frame: CGRect.init(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth), block: [block])
+            myView.isAccessibilityElement = true
+            addAccessibilityLabel(myLabel: myView, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd, spatial: false, interface: 1)
+            //myView.isAccessibilityElement = true
+            cell.addSubview(myView)
+
         }else {
             var count = 0
             for b in blocksToAdd{
@@ -238,46 +219,29 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
                 cell.addSubview(myView)
                 count += 1
             }
-            let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
+            //let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
             
-            var movementInfo = "Double tap to move block."
-            
-            if(dragOn){
-                movementInfo = "Double tap and hold to move block."
-            }
+            //var movementInfo = "Tap and hold to move block."
             
             //add main label
-            let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-            myLabel.accessibilityLabel = block.name + blockPlacementInfo + movementInfo
+            let myLabel = BlockView.init(frame: CGRect.init(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockWidth), block: [block])
+            addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd, spatial: true, interface: 1)
+            
+            //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+            //myLabel.isAccessibilityElement = true
+            //myLabel.accessibilityLabel = block.name + blockPlacementInfo + movementInfo
+            //myLabel.picker?.isAccessibilityElement = true
             cell.addSubview(myLabel)
-            if(block.imageName != nil){
+            /*if(block.imageName != nil){
                 let imageName = block.imageName!
                 let image = UIImage(named: imageName)
                 let imv = UIImageView.init(image: image)
                 myLabel.addSubview(imv)
-            }
+            }*/
         }
         addGestureRecognizer(cell)
         
         return cell
-    }
-    
-    
-    override func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
-        let myLabel = UILabel.init(frame: frame)
-        //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
-        myLabel.text = block.name
-        myLabel.textAlignment = .center
-        myLabel.textColor = block.color
-        myLabel.numberOfLines = 0
-        myLabel.backgroundColor = block.color
-        if(block.imageName != nil){
-            let imageName = block.imageName!
-            let image = UIImage(named: imageName)
-            let imv = UIImageView.init(image: image)
-            myLabel.addSubview(imv)
-        }
-        return myLabel
     }
     
     

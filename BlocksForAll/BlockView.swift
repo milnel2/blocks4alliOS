@@ -42,7 +42,7 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
             let image = UIImage(named: imageName)
             let imv = UIImageView.init(image: image)
             myView.addSubview(imv)
-        }else if !block.double{ //check if this works
+        }else if !block.double{ //so end repeat blocks don't have names
             let myLabel = UILabel.init(frame: myFrame)
             myLabel.text = block.name
             myLabel.textAlignment = .center
@@ -65,7 +65,7 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
             pickedItem?.delegate = self
             myView.addSubview(pickedItem!)
             */
-            let myFrame = CGRect(x: 50, y: 0, width: 50, height: 100)
+            let myFrame = CGRect(x: 50, y: 0, width: 50, height: 50)
             //let myFrame = CGRect(x: blockWidth/2, y: 0, width: 40, height: 40)
             self.picker = UIPickerView.init(frame: myFrame)
             self.picker?.isAccessibilityElement = true
@@ -82,6 +82,7 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
         }
         return myView
     }
+    
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var label = view
@@ -117,6 +118,8 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
         return false
     }
     */
+    
+    
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
