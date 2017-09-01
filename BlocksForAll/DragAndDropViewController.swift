@@ -202,7 +202,7 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
             
             //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
             
-            let myView = BlockView.init(frame: CGRect.init(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth), block: [block])
+            let myView = BlockView.init(frame: CGRect.init(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
             myView.isAccessibilityElement = true
             addAccessibilityLabel(myLabel: myView, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd, spatial: false, interface: 1)
             //myView.isAccessibilityElement = true
@@ -224,7 +224,7 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
             //var movementInfo = "Tap and hold to move block."
             
             //add main label
-            let myLabel = BlockView.init(frame: CGRect.init(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockWidth), block: [block])
+            let myLabel = BlockView.init(frame: CGRect.init(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockWidth), block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
             addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd, spatial: true, interface: 1)
             
             //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))

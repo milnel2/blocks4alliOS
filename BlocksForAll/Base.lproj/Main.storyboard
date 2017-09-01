@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main Menu View Controller-->
         <scene sceneID="On8-Fi-nz2">
             <objects>
-                <viewController id="YEE-PZ-SjD" sceneMemberID="viewController">
+                <viewController id="YEE-PZ-SjD" customClass="MainMenuViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FH7-oO-4nu"/>
                         <viewControllerLayoutGuide type="bottom" id="uNC-fx-WtB"/>
@@ -22,19 +22,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vam-3z-2bY">
-                                <rect key="frame" x="369" y="443" width="286" height="98"/>
+                                <rect key="frame" x="158" y="390" width="286" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Placeholder Interface"/>
+                                <state key="normal" title="Placeholder Interface">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="C8t-uD-roQ" kind="show" id="Thz-Wt-y9L"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bed-2B-QED">
-                                <rect key="frame" x="369" y="228" width="286" height="101"/>
+                                <rect key="frame" x="158" y="175" width="286" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Manage Robots"/>
+                                <state key="normal" title="Manage Robots">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="XOJ-Tu-hH8" kind="popoverPresentation" popoverAnchorView="bed-2B-QED" id="rea-JL-nru">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -42,26 +47,58 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ud3-pf-exg">
-                                <rect key="frame" x="369" y="337" width="286" height="98"/>
+                                <rect key="frame" x="158" y="284" width="286" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Drag and Drop Interface"/>
+                                <state key="normal" title="Drag and Drop Interface">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="8vk-Lh-kc5" kind="show" id="uXg-zQ-ctl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Kc-2pq">
-                                <rect key="frame" x="369" y="549" width="286" height="98"/>
+                                <rect key="frame" x="158" y="496" width="286" height="98"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="No Drag"/>
+                                <state key="normal" title="No Drag">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="uoc-nU-c4a" kind="show" id="Tjn-hR-3fo"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="50" maxValue="400" translatesAutoresizingMaskIntoConstraints="NO" id="PqS-nZ-CHq">
+                                <rect key="frame" x="579" y="556" width="290" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="YEE-PZ-SjD" eventType="valueChanged" id="gcA-fK-leo"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set Block Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTL-S3-5DH">
+                                <rect key="frame" x="581" y="504" width="286" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ACc-uM-QIy">
+                                <rect key="frame" x="604" y="360" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <connections>
+                        <outlet property="blockSizeSlider" destination="PqS-nZ-CHq" id="Fak-CV-K25"/>
+                        <outlet property="sampleBlock" destination="ACc-uM-QIy" id="5zT-YY-G3I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVo-bF-iCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -197,7 +234,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLx-VG-2JW">
-                                <rect key="frame" x="0.0" y="0.0" width="120" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="110" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="zor-jh-2cz" kind="embed" id="Mdl-ke-gN7"/>
@@ -561,15 +598,15 @@
             <objects>
                 <tableViewController id="qsn-gg-TPc" customClass="BlockTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="u2M-AO-l53">
-                        <rect key="frame" x="0.0" y="0.0" width="120" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="110" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BlockTableViewCell" rowHeight="90" id="LoD-Y1-Y1Y" customClass="BlockTableViewCell" customModule="BlocksForAll" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="120" height="90"/>
+                                <rect key="frame" x="0.0" y="28" width="110" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" tableViewCell="LoD-Y1-Y1Y" id="pIh-s5-DHa">
-                                    <rect key="frame" x="0.0" y="0.0" width="120" height="89.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="110" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFZ-xN-h8Z">
@@ -617,7 +654,7 @@
                         <viewControllerLayoutGuide type="bottom" id="M8X-LY-ONh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gng-WS-M5w">
-                        <rect key="frame" x="0.0" y="0.0" width="120" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="110" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -631,19 +668,19 @@
             <objects>
                 <tableViewController id="2Tn-yf-DgT" customClass="BlocksTypeTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6cp-t1-mWw">
-                        <rect key="frame" x="0.0" y="0.0" width="120" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="110" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlockTypeTableViewCell" textLabel="4FW-BL-NbK" style="IBUITableViewCellStyleDefault" id="TPR-VH-FnZ">
-                                <rect key="frame" x="0.0" y="28" width="120" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="110" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TPR-VH-FnZ" id="Kx7-b8-S84">
-                                    <rect key="frame" x="0.0" y="0.0" width="120" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="110" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Drive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4FW-BL-NbK">
-                                            <rect key="frame" x="15" y="0.0" width="90" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="80" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -690,7 +727,6 @@
         <!--Navigation Controller-->
         <scene sceneID="lWK-hB-l69">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vGj-v3-fnx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C8t-uD-roQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="beG-lK-Xju">
@@ -702,6 +738,7 @@
                         <segue destination="ald-X8-vwO" kind="relationship" relationship="rootViewController" id="6pr-8V-7BX"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vGj-v3-fnx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-190" y="485"/>
         </scene>
@@ -711,7 +748,7 @@
         <image name="Trashcan" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="riO-De-gGW"/>
+        <segue reference="FAp-gd-0H0"/>
         <segue reference="Thz-Wt-y9L"/>
     </inferredMetricsTieBreakers>
 </document>

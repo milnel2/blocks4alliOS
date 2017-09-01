@@ -13,6 +13,7 @@ class BlocksTypeTableViewController: UITableViewController {
     var blockDict = NSArray()
     var blockTypes = [Block]()
     var indexToAdd = 0
+    var blockWidth = 200
     
     //used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
@@ -22,8 +23,9 @@ class BlocksTypeTableViewController: UITableViewController {
         self.title = "Toolbox"
         self.accessibilityLabel = "Toolbox Menu"
         self.accessibilityHint = "Double tap from menu to select block category"
+        //self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: CGFloat(blockWidth), height: CGFloat(blockWidth))
         
-        blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
+        blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenuSession2", ofType: "plist")!)!
         
         createBlocksArray()
         // Uncomment the following line to preserve selection between presentations
@@ -69,8 +71,10 @@ class BlocksTypeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height = tableView.bounds.height/CGFloat(blockTypes.count)
-        return height
+        //let height = tableView.bounds.height/CGFloat(blockTypes.count)
+        //return height
+        print(blockWidth)
+        return CGFloat(blockWidth)
     }
     
     //TODO: this is really convoluted, probably a better way of doing this
@@ -106,9 +110,6 @@ class BlocksTypeTableViewController: UITableViewController {
             myDestination.delegate = self.delegate
         }
     }
-    
-    
-
 }
 
 

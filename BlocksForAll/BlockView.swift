@@ -12,21 +12,31 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
 
     var blocks: [Block]
     var blockWidth = 100
-    let blockHeight = 100
+    var blockHeight = 100
     let blockSpacing = 1
     var picker: UIPickerView?
     var pickerData: [String] = []
     var pickerDataAccessibilityLabels: [String] = []
     var pickedItem: UITextField?
     
-    init (frame : CGRect, block : [Block]) {
+    init (frame : CGRect, block : [Block], myBlockWidth: Int, myBlockHeight: Int) {
         self.blocks = block
         super.init(frame : frame)
+        blockWidth = myBlockWidth
+        blockHeight = myBlockHeight
         self.addSubview(simpleView(FromBlock: block))
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
 
     func simpleView(FromBlock block: [Block]) -> UIView {
@@ -39,7 +49,8 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
         myView.backgroundColor = block.color
         if(block.imageName != nil){
             let imageName = block.imageName!
-            let image = UIImage(named: imageName)
+            var image = UIImage(named: imageName)
+            image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight))
             let imv = UIImageView.init(image: image)
             myView.addSubview(imv)
         }else if !block.double{ //so end repeat blocks don't have names
@@ -65,7 +76,7 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
             pickedItem?.delegate = self
             myView.addSubview(pickedItem!)
             */
-            let myFrame = CGRect(x: 50, y: 0, width: 50, height: 50)
+            let myFrame = CGRect(x: blockWidth/2, y: 0, width: blockWidth/2, height: blockHeight/2)
             //let myFrame = CGRect(x: blockWidth/2, y: 0, width: 40, height: 40)
             self.picker = UIPickerView.init(frame: myFrame)
             self.picker?.isAccessibilityElement = true
@@ -86,7 +97,7 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var label = view
-        let myFrame = CGRect(x: 50, y: 0, width: pickerView.rowSize(forComponent: component).width, height: pickerView.rowSize(forComponent: component).height)
+        let myFrame = CGRect(x: CGFloat(blockWidth/2), y: 0, width: pickerView.rowSize(forComponent: component).width, height: pickerView.rowSize(forComponent: component).height)
         if !(label != nil){
             label = UILabel.init(frame: myFrame)
             if let myLabel = label as? UILabel{

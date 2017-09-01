@@ -37,7 +37,7 @@ class DragAndDropBlockTableViewController: BlockTableViewController, OBOvumSourc
         cell.blockView.backgroundColor = block.color
         cell.accessibilityHint = "In Toolbox. Tap and then hold and drag to the right to add block to workspace."
 
-        let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth), block: [block])
+        let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockWidth)
         
         cell.addSubview(myView)
         
@@ -90,7 +90,7 @@ class DragAndDropBlockTableViewController: BlockTableViewController, OBOvumSourc
             let frame = sView.convert(sView.blockView.bounds, to: sView.window)
             
             let dragView = UIView(frame: frame)
-            let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth), block: [sView.block!])
+            let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth), block: [sView.block!],  myBlockWidth: blockWidth, myBlockHeight: blockWidth)
             
             dragView.addSubview(myView)
             

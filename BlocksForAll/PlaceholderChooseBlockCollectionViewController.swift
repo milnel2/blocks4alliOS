@@ -93,7 +93,7 @@ class PlaceholderChooseBlockCollectionViewController: UICollectionViewController
             cell.addSubview(myLabel)
             
             let placeholderBlock = UIButton.init(frame: CGRect(x: blockWidth, y: 0, width: blockWidth/2, height: blockHeight ))
-            placeholderBlock.backgroundColor = UIColor.gray
+            placeholderBlock.backgroundColor = UIColor.lightGray
             placeholderBlock.titleLabel?.text = "+"
             placeholderBlock.titleLabel?.textColor = UIColor.white
             placeholderBlock.accessibilityLabel = "Add Block after " + block.name

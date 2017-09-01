@@ -27,7 +27,7 @@ class BlockTableViewController: UITableViewController {
         super.viewDidLoad()
         //self.title = "Toolbox"
         
-        blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
+        blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenuSession2", ofType: "plist")!)!
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
             self.title = blockType.object(forKey: "type") as? String
         }
@@ -75,7 +75,7 @@ class BlockTableViewController: UITableViewController {
         //cell.nameLabel.text = block.name
         //cell.blockView.backgroundColor = block.color
         
-        let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth), block: [block])
+        let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockWidth)
         cell.accessibilityLabel = block.name
         cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
         

@@ -26,8 +26,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     let collectionReuseIdentifier = "BlockCell"
     var containerViewController: UINavigationController?
     
-    var blockWidth = 100
-    let blockHeight = 100
+    var blockWidth = 200
+    var blockHeight = 200
     let blockSpacing = 1
     
     var dragOn = false
@@ -198,6 +198,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             blocksProgram.reloadData()
         }else{
             blocksStack.insert(blocks[0], at: index)
+            //NEED TO DO THIS?
+            blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
             
         }
@@ -216,26 +218,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         for block in blocksRep{
             let xCoord = count*(blockWidth + blockSpacing)
             
-            let blockView = BlockView(frame: CGRect(x: xCoord, y: 0, width: blockWidth, height: blockHeight), block: [block])
+            let blockView = BlockView(frame: CGRect(x: xCoord, y: 0, width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
             count += 1
-/*
-            let blockView = UIView(frame:CGRect(x: xCoord, y: 0, width: blockWidth, height: blockHeight))
-            blockView.backgroundColor = block.color
-            
-            let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockWidth))
-            myLabel.text = block.name
-            myLabel.textAlignment = .center
-            myLabel.textColor = UIColor.white
-            blockView.self.addSubview(myLabel)*/
+
             myView.addSubview(blockView)
-             /*
-            if(block.imageName != nil){
-                let imageName = block.imageName!
-                let image = UIImage(named: imageName)
-                let imv = UIImageView.init(image: image)
-                myView.addSubview(imv)
-            }*/
-            
             
         }
         myView.alpha = 0.75
@@ -348,7 +334,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 blocksToAdd.reverse()
                 
                 let block = blocksStack[indexPath.row]
-                let myLabel = BlockView(frame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth), block: [block])
+                let myLabel = BlockView(frame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth), block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                 
                 //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
                 //myLabel.isAccessibilityElement = true
@@ -374,7 +360,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 //add main label
                 
-                let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight), block: [block])
+                let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                 addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row+1, blocksToAdd: blocksToAdd, spatial: true, interface: 0)
                 
                 /*let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
@@ -466,6 +452,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if let containerViewController = segue.destination as? UINavigationController{
             if let myTopViewController = containerViewController.topViewController as? BlocksTypeTableViewController{
                 myTopViewController.delegate = self
+                myTopViewController.blockWidth = blockWidth
             }
         }
     }

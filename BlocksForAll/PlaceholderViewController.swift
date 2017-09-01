@@ -17,11 +17,12 @@ class PlaceholderViewController: BlocksViewController {
     
     //@IBOutlet weak var playTrashToggleButton: UIButton!
 
-    private let placeholderWidth = 50
+    private var placeholderWidth = 50
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        blockWidth = 90
+        //blockWidth = 90
+        placeholderWidth = blockWidth/2
         // Do any additional setup after loading the view.
         
         if blocksToAdd != nil {
@@ -53,10 +54,11 @@ class PlaceholderViewController: BlocksViewController {
     
     func createPlaceholderBlock(frame: CGRect) -> UIButton{
         let placeholderBlock = UIButton.init(frame: frame)
-        placeholderBlock.backgroundColor = UIColor.gray
-        placeholderBlock.titleLabel?.textColor = UIColor.white
+        placeholderBlock.backgroundColor = UIColor.lightGray
         placeholderBlock.accessibilityLabel = "Add Block at beginning"
         placeholderBlock.setTitle("+", for: .normal)
+        //placeholderBlock.titleLabel.font
+        placeholderBlock.titleLabel?.textColor = UIColor.black
         placeholderBlock.addTarget(self, action: #selector(self.addBlockButton(_sender:)), for: .touchUpInside)
         return placeholderBlock
     }
@@ -101,7 +103,7 @@ class PlaceholderViewController: BlocksViewController {
             
             if !spatialLayout {
                 if !blocksBeingMoved.isEmpty{
-                    let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight, width: blockWidth+placeholderWidth, height: blockHeight), block: [block])
+                    let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight, width: blockWidth+placeholderWidth, height: blockHeight), block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight, width: blockWidth+placeholderWidth, height: blockHeight))
                     
                     var accessibilityLabel = block.name
@@ -116,7 +118,7 @@ class PlaceholderViewController: BlocksViewController {
                     myLabel.accessibilityHint = blockPlacementInfo + ". Double tap to add " + blocksBeingMoved[0].name + " block here"*/
                     cell.addSubview(myLabel)
                 }else{
-                    let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight), block: [block])
+                    let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     //myLabel.isAccessibilityElement = true
                     //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight))
                     addAccessibilityLabel(myLabel: myLabel, block: block, number: blockStackIndex + 1, blocksToAdd: blocksToAdd, spatial: true, interface: 2)
@@ -143,7 +145,7 @@ class PlaceholderViewController: BlocksViewController {
                     count += 1
                 }
                 
-                let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight), block: [block])
+                let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                 addAccessibilityLabel(myLabel: myLabel, block: block, number: blockStackIndex + 1, blocksToAdd: blocksToAdd, spatial: true, interface: 2)
                 
                 
@@ -227,7 +229,7 @@ class PlaceholderViewController: BlocksViewController {
         }
         if !blocksBeingMoved.isEmpty{
             addBlocks(blocksBeingMoved, at: indexToAdd  )
-            //blocksBeingMoved.removeAll()
+            blocksBeingMoved.removeAll()
             
         }else{
             performSegue(withIdentifier: "addNewBlockSegue", sender: self)

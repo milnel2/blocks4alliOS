@@ -35,7 +35,7 @@ class PlaceholderBlockTableViewController: BlockTableViewController {
         cell.blockView.backgroundColor = block.color
         cell.block = block
         
-        let myView = BlockView.init(frame: CGRect.init(x: (Int(cell.bounds.width)-blockWidth)/2, y: 0, width: blockWidth, height: blockWidth), block: [block])
+        let myView = BlockView.init(frame: CGRect.init(x: (Int(cell.bounds.width)-blockWidth)/2, y: 0, width: blockWidth, height: blockWidth),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockWidth)
         cell.addSubview(myView)
         
         cell.accessibilityLabel = block.name

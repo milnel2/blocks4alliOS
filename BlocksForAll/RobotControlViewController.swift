@@ -257,6 +257,50 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_CAT)
                     myAction.setSound(speaker)
                 }
+                if command == "Make Dinosaur Noise" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_DINOSAUR)
+                    myAction.setSound(speaker)
+                }
+                if command == "Make Elephant Noise" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_ELEPHANT)
+                    myAction.setSound(speaker)
+                }
+                if command == "Make Lion Noise" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_LION)
+                    myAction.setSound(speaker)
+                }
+                if command == "Make Goat Noise" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_GOAT)
+                    myAction.setSound(speaker)
+                }
+                if command == "Make Crocodile Noise" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_CROCODILE)
+                    myAction.setSound(speaker)
+                }
+                if command == "Say Okay" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_OKAY)
+                    myAction.setSound(speaker)
+                }
+                if command == "Say Bye" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_BYE)
+                    myAction.setSound(speaker)
+                }
+                if command == "Bragging" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_BRAGGING)
+                    myAction.setSound(speaker)
+                }
+                if command == "Confused" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_CONFUSED)
+                    myAction.setSound(speaker)
+                }
+                if command == "Say Cool" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_COOL)
+                    myAction.setSound(speaker)
+                }
+                if command == "Say Wow" {
+                    let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_WOW)
+                    myAction.setSound(speaker)
+                }
                 if command == "Start Engine" {
                     let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_ENGINE_REV)
                     myAction.setSound(speaker)

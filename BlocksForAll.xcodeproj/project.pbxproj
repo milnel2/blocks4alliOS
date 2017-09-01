@@ -25,6 +25,8 @@
 		F13A0AF11E6FDD3E00DB4C86 /* PlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AF01E6FDD3E00DB4C86 /* PlaceholderViewController.swift */; };
 		F13A0AF31E705F9A00DB4C86 /* PlaceholderBlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AF21E705F9A00DB4C86 /* PlaceholderBlockTableViewController.swift */; };
 		F13B2C511ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13B2C501ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift */; };
+		F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16BA3BB1F57919600A94FBA /* MainMenuViewController.swift */; };
+		F16BA3BE1F59103A00A94FBA /* BlocksMenuSession2.plist in Resources */ = {isa = PBXBuildFile; fileRef = F16BA3BD1F59103A00A94FBA /* BlocksMenuSession2.plist */; };
 		F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */; };
 		F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186EB871EE0D8B100C2FA4B /* BlockView.swift */; };
 		F186EB8A1EE0DC2F00C2FA4B /* BlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F186EB891EE0DC2F00C2FA4B /* BlocksMenu.plist */; };
@@ -78,6 +80,8 @@
 		F13A0AF01E6FDD3E00DB4C86 /* PlaceholderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderViewController.swift; sourceTree = "<group>"; };
 		F13A0AF21E705F9A00DB4C86 /* PlaceholderBlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderBlockTableViewController.swift; sourceTree = "<group>"; };
 		F13B2C501ED7F0FB00A1EBD2 /* DragAndDropBlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropBlockTableViewController.swift; sourceTree = "<group>"; };
+		F16BA3BB1F57919600A94FBA /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		F16BA3BD1F59103A00A94FBA /* BlocksMenuSession2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenuSession2.plist; sourceTree = "<group>"; };
 		F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedBlockViewController.swift; sourceTree = "<group>"; };
 		F186EB871EE0D8B100C2FA4B /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
 		F186EB891EE0DC2F00C2FA4B /* BlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenu.plist; sourceTree = "<group>"; };
@@ -152,8 +156,10 @@
 		F18FEEDB1EB115AF007C15B8 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				F16BA3BD1F59103A00A94FBA /* BlocksMenuSession2.plist */,
 				F1B1F4801EF0A1A8003C2827 /* SimpleBlocksMenu.plist */,
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
+				F16BA3BB1F57919600A94FBA /* MainMenuViewController.swift */,
 				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
 				F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */,
 				F18FFFB91E65B0FC0090C4B6 /* Assets.xcassets */,
@@ -321,6 +327,7 @@
 				F186EB8A1EE0DC2F00C2FA4B /* BlocksMenu.plist in Resources */,
 				F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */,
 				F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */,
+				F16BA3BE1F59103A00A94FBA /* BlocksMenuSession2.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +356,7 @@
 				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
 				F13A0ADC1E68B36A00DB4C86 /* OBLongPressDragDropGestureRecognizer.m in Sources */,
+				F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */,
 				F13A0ADA1E68B36A00DB4C86 /* HideableWindow.m in Sources */,
 				F13A0ADB1E68B36A00DB4C86 /* OBDragDropManager.m in Sources */,
 				F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */,
