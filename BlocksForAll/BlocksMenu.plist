@@ -63,24 +63,6 @@
 				<key>imageName</key>
 				<string>cat_sound.png</string>
 			</dict>
-			<dict>
-				<key>editable</key>
-				<false/>
-				<key>options</key>
-				<array>
-					<string>Dog</string>
-					<string>Horse</string>
-					<string>Cat</string>
-				</array>
-				<key>name</key>
-				<string>Make Random Noise</string>
-				<key>color</key>
-				<string>#008000</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>random_sound.png</string>
-			</dict>
 		</array>
 	</dict>
 	<dict>
@@ -101,6 +83,24 @@
 				<false/>
 				<key>imageName</key>
 				<string>say_hi.png</string>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>options</key>
+				<array>
+					<string>Dog</string>
+					<string>Horse</string>
+					<string>Cat</string>
+				</array>
+				<key>name</key>
+				<string>Make Random Noise</string>
+				<key>color</key>
+				<string>#008000</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>random_sound.png</string>
 			</dict>
 			<dict>
 				<key>editable</key>

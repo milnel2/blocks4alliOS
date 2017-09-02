@@ -25,7 +25,7 @@ class BlocksTypeTableViewController: UITableViewController {
         self.accessibilityHint = "Double tap from menu to select block category"
         //self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: CGFloat(blockWidth), height: CGFloat(blockWidth))
         
-        blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenuSession2", ofType: "plist")!)!
+        blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
         
         createBlocksArray()
         // Uncomment the following line to preserve selection between presentations
@@ -63,6 +63,7 @@ class BlocksTypeTableViewController: UITableViewController {
         cell.textLabel?.text = blockType.name
         cell.textLabel?.textColor = UIColor.white
         cell.textLabel?.textAlignment = .center
+        cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
         cell.backgroundColor = blockType.color
         //cell.bounds.height = 200
         cell.accessibilityLabel = blockType.name + " category"
@@ -71,10 +72,8 @@ class BlocksTypeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //let height = tableView.bounds.height/CGFloat(blockTypes.count)
-        //return height
-        print(blockWidth)
-        return CGFloat(blockWidth)
+        return CGFloat(blockWidth + 10)
+
     }
     
     //TODO: this is really convoluted, probably a better way of doing this

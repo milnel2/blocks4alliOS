@@ -11,8 +11,8 @@ import UIKit
 class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
     var blocks: [Block]
-    var blockWidth = 100
-    var blockHeight = 100
+    var blockWidth = 150
+    var blockHeight = 150
     let blockSpacing = 1
     var picker: UIPickerView?
     var pickerData: [String] = []
@@ -58,6 +58,7 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
             myLabel.text = block.name
             myLabel.textAlignment = .center
             myLabel.textColor = UIColor.white
+            myLabel.font = UIFont.preferredFont(forTextStyle: .title2)
             myLabel.numberOfLines = 0
             myView.addSubview(myLabel)
         }

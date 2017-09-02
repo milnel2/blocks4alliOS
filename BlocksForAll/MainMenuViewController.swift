@@ -44,6 +44,12 @@ class MainMenuViewController: UIViewController {
             myDestination.blockWidth = blockSize
             myDestination.blockHeight = blockSize
         }
+        if let destinationViewController = segue.destination as? UINavigationController{
+            if let myTopViewController = destinationViewController.topViewController as? BlocksViewController{
+                myTopViewController.blockWidth = blockSize
+                myTopViewController.blockHeight = blockSize
+            }
+        }
         
     }
     

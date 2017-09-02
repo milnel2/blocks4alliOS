@@ -19,7 +19,7 @@ class BlockTableViewController: UITableViewController {
     var delegate: BlockSelectionDelegate?
     
     //update these as collection view changes
-    let blockWidth = 100
+    var blockWidth = 150
     let blockSpacing = 10
     
 
@@ -27,7 +27,7 @@ class BlockTableViewController: UITableViewController {
         super.viewDidLoad()
         //self.title = "Toolbox"
         
-        blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenuSession2", ofType: "plist")!)!
+        blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
             self.title = blockType.object(forKey: "type") as? String
         }
@@ -92,6 +92,12 @@ class BlockTableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        //let height = tableView.bounds.height/CGFloat(blocks.count)
+        return CGFloat(blockWidth + blockSpacing)
+    }
+
     
 
    /* override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -14,10 +14,9 @@ class PlaceholderViewController: BlocksViewController {
     var blocksToAdd: [Block]?
     var indexToAdd = 0
     var count = 0
+    var placeholderWidth = 50
     
     //@IBOutlet weak var playTrashToggleButton: UIButton!
-
-    private var placeholderWidth = 50
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,7 +16,7 @@ var blocksStack = [Block]()
 class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource {
     
     //update these as collection view changes
-    private let trashcanWidth = 100
+    private let trashcanWidth = 150
     
     //Set to -1 to distinguish blocks that are pulled in from toolbox vs moving in workspace
     public var indexOfCurrentBlock = -1

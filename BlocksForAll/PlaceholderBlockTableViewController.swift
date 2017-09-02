@@ -13,7 +13,6 @@ class PlaceholderBlockTableViewController: BlockTableViewController {
     //MARK: Properties
     var indexToAdd = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.accessibilityHint = "Double tap from menu to add block to workspace"
@@ -45,8 +44,8 @@ class PlaceholderBlockTableViewController: BlockTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height = tableView.bounds.height/CGFloat(blocks.count)
-        return height
+        //let height = tableView.bounds.height/CGFloat(blocks.count)
+        return CGFloat(blockWidth + blockSpacing)
     }
 
     
@@ -57,6 +56,7 @@ class PlaceholderBlockTableViewController: BlockTableViewController {
         
         if let containerViewController = segue.destination as? UINavigationController{
             if let myDestination = containerViewController.topViewController as? PlaceholderViewController{
+                myDestination.blockWidth = blockWidth
                 if let blockCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!) as? BlockTableViewCell{
                     if let block = blockCell.block?.copy(){
                         if block.double{

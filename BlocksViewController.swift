@@ -449,12 +449,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let containerViewController = segue.destination as? UINavigationController{
-            if let myTopViewController = containerViewController.topViewController as? BlocksTypeTableViewController{
+        if let destinationViewController = segue.destination as? UINavigationController{
+            if let myTopViewController = destinationViewController.topViewController as? BlocksTypeTableViewController{
                 myTopViewController.delegate = self
                 myTopViewController.blockWidth = blockWidth
             }
         }
+        
     }
     
 

@@ -28,6 +28,7 @@ class PlaceholderBlocksTypeTableViewController: BlocksTypeTableViewController {
         if let myDestination = segue.destination as? PlaceholderBlockTableViewController{
             myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
             myDestination.indexToAdd = self.indexToAdd
+            myDestination.blockWidth = blockWidth
         }
         
         // Get the new view controller using segue.destinationViewController.
