@@ -160,7 +160,7 @@
 			</dict>
 			<dict>
 				<key>editable</key>
-				<true/>
+				<false/>
 				<key>name</key>
 				<string>Make Horse Noise</string>
 				<key>color</key>
@@ -172,7 +172,7 @@
 			</dict>
 			<dict>
 				<key>editable</key>
-				<true/>
+				<false/>
 				<key>name</key>
 				<string>Make Dog Noise</string>
 				<key>color</key>
@@ -184,7 +184,7 @@
 			</dict>
 			<dict>
 				<key>editable</key>
-				<true/>
+				<false/>
 				<key>name</key>
 				<string>Make Cat Noise</string>
 				<key>color</key>

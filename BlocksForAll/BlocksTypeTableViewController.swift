@@ -25,7 +25,7 @@ class BlocksTypeTableViewController: UITableViewController {
         self.accessibilityHint = "Double tap from menu to select block category"
         //self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: CGFloat(blockWidth), height: CGFloat(blockWidth))
         
-        blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
+        blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenuSession2", ofType: "plist")!)!
         
         createBlocksArray()
         // Uncomment the following line to preserve selection between presentations

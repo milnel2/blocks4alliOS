@@ -27,7 +27,7 @@ class BlockTableViewController: UITableViewController {
         super.viewDidLoad()
         //self.title = "Toolbox"
         
-        blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
+        blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenuSession2", ofType: "plist")!)!
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
             self.title = blockType.object(forKey: "type") as? String
         }
