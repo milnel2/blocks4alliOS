@@ -27,7 +27,7 @@ class BlockTableViewController: UITableViewController {
         super.viewDidLoad()
         //self.title = "Toolbox"
         
-        blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenuSession2", ofType: "plist")!)!
+        blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "AssetsBlocksMenu", ofType: "plist")!)!
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
             self.title = blockType.object(forKey: "type") as? String
         }
@@ -62,16 +62,16 @@ class BlockTableViewController: UITableViewController {
         // Table view cells are reused and should be dequeued using a cell identifier
         let cellIdentifier = "BlockTableViewCell"
         
-        /*guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BlockTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BlockTableViewCell else {
             fatalError("The dequeued cell is not an instance of BlockTableViewCell.")
-        }*/
+        }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        //let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         let block = blocks[indexPath.row]
         
        //probably get rid of special blocktableviewcell and just add blockView to each cell
-        //cell.block = block
+        cell.block = block
         //cell.nameLabel.text = block.name
         //cell.blockView.backgroundColor = block.color
         
@@ -164,6 +164,12 @@ class BlockTableViewController: UITableViewController {
                                     }
                                     if let optionsLabels = dictItem.object(forKey: "optionsLabels") as? [String]{
                                         block.optionsLabels = optionsLabels
+                                    }
+                                    if let type = dictItem.object(forKey: "type") as? String{
+                                        block.type = type
+                                    }
+                                    if let acceptedTypes = dictItem.object(forKey: "acceptedTypes") as? [String]{
+                                        block.acceptedTypes = acceptedTypes
                                     }
                                     blocks += [block]
                                 }

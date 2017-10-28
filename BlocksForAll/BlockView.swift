@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
@@ -25,6 +26,18 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
         blockWidth = myBlockWidth
         blockHeight = myBlockHeight
         self.addSubview(simpleView(FromBlock: block))
+    }
+    
+    override func accessibilityElementDidBecomeFocused() {
+        print(blocks[0].name + " is focused")
+        //AudioServicesPlaySystemSound(1024)
+        if blocks[0].type ==  "Number" || (!blocks[0].acceptedTypes.isEmpty && blocks[0].acceptedTypes[0] == "Number"){
+            print("1")
+            AudioServicesPlaySystemSound(1257)
+        }else if blocks[0].type ==  "Boolean" || (!blocks[0].acceptedTypes.isEmpty && blocks[0].acceptedTypes[0] == "Boolean"){
+            print("2")
+            AudioServicesPlaySystemSound(1255)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

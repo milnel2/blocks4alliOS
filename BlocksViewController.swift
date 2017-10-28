@@ -19,15 +19,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var blocksProgram: UICollectionView!
     @IBOutlet weak var playTrashToggleButton: UIButton!
     
-    var spatialLayout = false //use spatial or audio layout for blocks
+    var spatialLayout = true //use spatial or audio layout for blocks
     var blocksBeingMoved = [Block]() //pretty sure we can
         //TODO: do I need both movingBlocks and blocksBeingMoved
     var movingBlocks = false    //currently moving blocks in the workspace
     let collectionReuseIdentifier = "BlockCell"
     var containerViewController: UINavigationController?
     
-    var blockWidth = 200
-    var blockHeight = 200
+    var blockWidth = 150
+    var blockHeight = 150
     let blockSpacing = 1
     
     var dragOn = false
@@ -135,6 +135,32 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             while i < blocks.count{
                 if blocks[i].name.contains("Repeat") {
                     var timesToRepeat = 1
+                    if !blocks[i].addedBlocks.isEmpty {
+                        if blocks[i].addedBlocks[0].name == "two times"{
+                            timesToRepeat = 2
+                        }else if blocks[i].addedBlocks[0].name == "three times"{
+                            timesToRepeat = 3
+                        }
+                    }else{
+                        //default
+                        timesToRepeat = 2
+                    }
+
+                    var ii = i+1
+                    var blocksToUnroll = [Block]()
+                    while blocks[i].counterpart !== blocks[ii]{
+                        blocksToUnroll.append(blocks[ii])
+                        ii += 1
+                    }
+                    i = ii
+                    let items = unrollLoop(times: timesToRepeat, blocks: blocksToUnroll)
+                    //add items
+                    for item in items{
+                        commands.append(item)
+                    }
+                    
+                    /*
+                    var timesToRepeat = 1
                     if blocks[i].name == "Repeat 2 Times"{
                         timesToRepeat = 2
                     }else if blocks[i].name == "Repeat 3 Times"{
@@ -155,9 +181,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     //add items
                     for item in items{
                         commands.append(item)
-                    }
+                    }*/
                 }else{
                     var myCommand = blocks[i].name
+                    if blocks[i].name.contains("If"){
+                        if !blocks[i].addedBlocks.isEmpty {
+                            myCommand.append(blocks[i].addedBlocks[0].name)
+                        }
+                    }
+                    
                     if blocks[i].name.contains("Distance"){
                         let distance = blocks[i].options[blocks[i].pickedOption]
                         myCommand.append(distance)
@@ -182,6 +214,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // MARK: Blocks Methods
     
     func addBlocks(_ blocks:[Block], at index:Int){
+        //TODO: if condition announce correctly
+        
         //change for beginning
         var announcement = ""
         dropIndex = index
@@ -192,6 +226,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             announcement = blocks[0].name + " placed at beginning"
         }
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+        //add a completion block here
         if(blocks[0].double){
             blocksStack.insert(contentsOf: blocks, at: index)
             blocksBeingMoved.removeAll()
@@ -201,7 +236,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             //NEED TO DO THIS?
             blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
-            
         }
     }
     
@@ -258,7 +292,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     func addAccessibilityLabel(myLabel: UIView, block:Block, number: Int, blocksToAdd: [Block], spatial: Bool, interface: Int){
-
+        //TODO: if condition change accessibility label
         myLabel.isAccessibilityElement = true
         var accessibilityLabel = ""
         //is blocksStack.count always correct?
@@ -267,6 +301,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         var spearCon = ""
         var nestingInfo  = ""
         var movementInfo = ". Double tap to move block."
+        
+        
+        
+        
         if(!blocksBeingMoved.isEmpty){
             if(interface == 0){
                 accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before "
@@ -274,11 +312,36 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " after "
             }
             movementInfo = ". Double tap to add " + blocksBeingMoved[0].name + " block here"
+            
+            if(blocksBeingMoved[0].type == "Boolean" || blocksBeingMoved[0].type == "Number"){
+                var acceptsNumbers = false
+                var acceptsBooleans = false
+                for type in block.acceptedTypes{
+                    if type == "Boolean"{
+                        acceptsBooleans = true
+                    }
+                    if type == "Number"{
+                        acceptsNumbers = true
+                    }
+                }
+                if acceptsNumbers && blocksBeingMoved[0].type == "Number"{
+                    accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " as number of times "
+                }else if acceptsBooleans && blocksBeingMoved[0].type == "Boolean"{
+                    accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " as condition of "
+                }else{
+                    accessibilityLabel = "Cannot place in "
+                    movementInfo = ""
+                }
+            }
         }
-        
+         
         if(!spatial){
             for b in blocksToAdd{
-                spearCon += " r "
+                if b.name == "If"{
+                    spearCon += " if "
+                }else{
+                    spearCon += " rep "
+                }
                 nestingInfo += " inside " + b.name
             }
         }
@@ -304,10 +367,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if indexPath.row == blocksStack.count {
             if !blocksBeingMoved.isEmpty{
                 cell.isAccessibilityElement = true
+                
                 if blocksStack.count == 0 {
                     cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at Beginning"
                 }else{
                     cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End"
+                }
+                if(blocksBeingMoved[0].type == "Boolean" || blocksBeingMoved[0].type == "Number"){
+                        cell.accessibilityLabel = "Cannot place at end "
                 }
             }
         }else{
@@ -338,9 +405,32 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
                 //myLabel.isAccessibilityElement = true
+                //TODO: make same changes as below
                 addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd, spatial:false, interface: 0)
 
+                
                 cell.addSubview(myLabel)
+                if block.name == "If" || block.name == "Repeat" {
+                    if block.addedBlocks.isEmpty{
+                        //draw false block
+                        var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
+                        if block.name == "Repeat"{
+                            placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
+                        }
+                        let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                        myConditionLabel.accessibilityLabel = "False"
+                        if block.name == "Repeat"{
+                            myConditionLabel.accessibilityLabel = "two times"
+                        }
+                        myConditionLabel.isAccessibilityElement = true
+                        cell.addSubview(myConditionLabel)
+                    }else{
+                        let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                        myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                        myConditionLabel.isAccessibilityElement = true
+                        cell.addSubview(myConditionLabel)
+                    }
+                }
 
             }else {
                 var count = 0
@@ -358,31 +448,37 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 //var movementInfo = "Double tap to move block."
                 
                 
+                //TODO: I added this, add it to !spatial as well
+                if block.name == "If" || block.name == "Repeat" {
+                    if block.addedBlocks.isEmpty{
+                        //draw false block
+                        var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
+                        if block.name == "Repeat"{
+                            placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
+                        }
+                        let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                        myConditionLabel.accessibilityLabel = "False"
+                        if block.name == "Repeat"{
+                            myConditionLabel.accessibilityLabel = "two times"
+                        }
+                        myConditionLabel.isAccessibilityElement = true
+                        cell.addSubview(myConditionLabel)
+                    }else{
+                        let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                        myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                                myConditionLabel.isAccessibilityElement = true
+                        cell.addSubview(myConditionLabel)
+                    }
+                }
                 //add main label
                 
                 let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                 addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row+1, blocksToAdd: blocksToAdd, spatial: true, interface: 0)
-                
-                /*let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                if(block.imageName != nil){
-                    let imageName = block.imageName!
-                    let image = UIImage(named: imageName)
-                    let imv = UIImageView.init(image: image)
-                    myLabel.addSubview(imv)
-                }*/
-                //myLabel.isAccessibilityElement = true
-                /*
-                let accessibilityLabel = block.name + blockPlacementInfo + movementInfo
-                myLabel.accessibilityLabel = accessibilityLabel
-                if(!blocksBeingMoved.isEmpty){
-                    myLabel.accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before " +  accessibilityLabel
-                    myLabel.accessibilityHint = blockPlacementInfo + ". Double tap to add " + blocksBeingMoved[0].name + " block here"
-                }*/
-                
-                
                 cell.addSubview(myLabel)
             }
         }
+        cell.accessibilityElements = cell.accessibilityElements?.reversed()
+        print(cell.accessibilityElements)
         return cell
     }
 
@@ -400,9 +496,55 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(movingBlocks){
-            addBlocks(blocksBeingMoved, at: indexPath.row)
-            containerViewController?.popViewController(animated: false)
-            unsetBlocks()
+            if blocksBeingMoved[0].type == "Boolean" || blocksBeingMoved[0].type == "Number"{
+                //TODO: can only be added above conditional
+                var acceptsBooleans = false
+                var acceptsNumbers = false
+                if(indexPath.row < blocksStack.count){//otherwise empty block at end
+                    let myBlock = blocksStack[indexPath.row]
+                    for type in myBlock.acceptedTypes{
+                        if type == "Boolean"{
+                            acceptsBooleans = true
+                        }
+                        if type == "Number"{
+                            acceptsNumbers = true
+                        }
+                    }
+                    if blocksBeingMoved[0].type == "Boolean" && acceptsBooleans{
+                        //add it here
+                        myBlock.addedBlocks.removeAll()
+                        myBlock.addedBlocks.append(blocksBeingMoved[0])
+                        containerViewController?.popViewController(animated: false)
+                        let condition = myBlock.addedBlocks[0].name
+                        let announcement = condition + "placed in if statement"
+                        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                        blocksProgram.reloadData()
+                        unsetBlocks()
+                    }else if blocksBeingMoved[0].type == "Number" && acceptsNumbers{
+                        //add it here
+                        myBlock.addedBlocks.removeAll()
+                        myBlock.addedBlocks.append(blocksBeingMoved[0])
+                        containerViewController?.popViewController(animated: false)
+                        let condition = myBlock.addedBlocks[0].name
+                        let announcement = condition + "placed in repeat statement"
+                        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                        blocksProgram.reloadData()
+                        unsetBlocks()
+                    }else{
+                        //say you can't add it here
+                        print("you can't add it here")
+                        makeAnnouncement("you can't add it here")
+                    }
+                }else{
+                    //say you can't add it here
+                    print("you can't add it here")
+                    makeAnnouncement("you can't add it here")
+                }
+            }else{
+                addBlocks(blocksBeingMoved, at: indexPath.row)
+                containerViewController?.popViewController(animated: false)
+                unsetBlocks()
+            }
         }else{
             if(indexPath.row < blocksStack.count){ //otherwise empty block at end
                 movingBlocks = true
@@ -438,13 +580,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
     }
-
+    // For Subclass
     func addGestureRecognizer(_ cell:UICollectionViewCell){
-    
     }
 
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

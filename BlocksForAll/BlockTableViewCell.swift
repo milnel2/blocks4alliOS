@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class BlockTableViewCell: UITableViewCell {
     
@@ -27,6 +28,18 @@ class BlockTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func accessibilityElementDidBecomeFocused() {
+        //print(nameLabel.text! + " is focused")
+        //AudioServicesPlaySystemSound(1024)
+        if block!.type ==  "Number" || (!block!.acceptedTypes.isEmpty && block!.acceptedTypes[0] == "Number"){
+            print("1")
+            AudioServicesPlaySystemSound(1257)
+        }else if block!.type ==  "Boolean" || (!block!.acceptedTypes.isEmpty && block!.acceptedTypes[0] == "Boolean"){
+            print("2")
+            AudioServicesPlaySystemSound(1255)
+        }
     }
 
 }

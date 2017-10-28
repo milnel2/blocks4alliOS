@@ -40,6 +40,7 @@
 		F18FFFC81E65B0FC0090C4B6 /* BlocksForAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFC71E65B0FC0090C4B6 /* BlocksForAllTests.swift */; };
 		F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */; };
 		F1B1F4811EF0A1A8003C2827 /* SimpleBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1B1F4801EF0A1A8003C2827 /* SimpleBlocksMenu.plist */; };
+		F1BC90B61FA43D13008EC60C /* AssetsBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		F18FFFC91E65B0FC0090C4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
 		F1B1F4801EF0A1A8003C2827 /* SimpleBlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SimpleBlocksMenu.plist; sourceTree = "<group>"; };
+		F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AssetsBlocksMenu.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				F16BA3BD1F59103A00A94FBA /* BlocksMenuSession2.plist */,
+				F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */,
 				F1B1F4801EF0A1A8003C2827 /* SimpleBlocksMenu.plist */,
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
 				F16BA3BB1F57919600A94FBA /* MainMenuViewController.swift */,
@@ -324,6 +327,7 @@
 			files = (
 				F1B1F4811EF0A1A8003C2827 /* SimpleBlocksMenu.plist in Resources */,
 				F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */,
+				F1BC90B61FA43D13008EC60C /* AssetsBlocksMenu.plist in Resources */,
 				F186EB8A1EE0DC2F00C2FA4B /* BlocksMenu.plist in Resources */,
 				F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */,
 				F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */,

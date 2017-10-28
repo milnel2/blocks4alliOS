@@ -66,7 +66,7 @@ class DragAndDropBlockTableViewController: BlockTableViewController, OBOvumSourc
     func createOvum(from sourceView: UIView!) -> OBOvum! {
         let ovum = OBOvum.init()
         if let sView = sourceView as? BlockTableViewCell{
-            let myBlock = Block(name: sView.nameLabel.text!, color: sView.blockView.backgroundColor!, double: sView.block!.double, editable:sView.block!.editable, options: sView.block!.options, pickedOption: sView.block!.pickedOption, optionsLabels: sView.block!.optionsLabels)
+            let myBlock = Block(name: sView.nameLabel.text!, color: sView.blockView.backgroundColor!, double: sView.block!.double, editable:sView.block!.editable, options: sView.block!.options, pickedOption: sView.block!.pickedOption, optionsLabels: sView.block!.optionsLabels, addedBlocks:sView.block!.addedBlocks, type:sView.block!.type, acceptedTypes:sView.block!.acceptedTypes)
             if(sView.block!.imageName != nil){
                 myBlock?.addImage(sView.block!.imageName!)
             }

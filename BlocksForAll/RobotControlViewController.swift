@@ -104,6 +104,17 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         }
     }
     
+    func getSensorData() -> [WWSensorSet] {
+        var sensorSet: [WWSensorSet] = []
+        let connectedRobots = robotManager?.allConnectedRobots
+        for r in connectedRobots!{
+            if let robot = r as? WWRobot{
+                sensorSet.append(robot.history.currentState())
+            }
+        }
+        return sensorSet as! [WWSensorSet]
+    }
+    
     func robot(_ robot: WWRobot!, didStopExecutingCommand sequence: WWCommandSetSequence!, withResults results: [AnyHashable : Any]!) {
         let connectedRobots = robotManager?.allConnectedRobots
         for _ in connectedRobots!{
@@ -123,12 +134,56 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
             
             let cmdToSend = WWCommandSetSequence()
             var repeatCommands = [WWCommandSet]()
-            for command in myCommands{
-                var duration = 1.0
+            var i = 0
+            while i < myCommands.count{
+                var command = myCommands[i]
+            //for command in myCommands{
+                var duration = 2.0
                 //print(command)
                 //TODO add repeat blocks
                 var distance: Double = 30
                 var myAction = WWCommandSet()
+                if command.contains("If"){
+                    //TODO check blocks condition
+                    var conditionString = command.substring(from: command.index(command.startIndex, offsetBy: 2))
+                    print("conditionString" , conditionString)
+                    var condition = false
+                    if(conditionString == "Hear Voice"){
+                        var data = getSensorData()
+                        if(!data.isEmpty){
+                            //just checks first robot
+                            let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
+                            print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
+                            if(micData.amplitude > 0){
+                                condition = true
+                            }
+                        }
+                    }
+                    if(conditionString == "Obstacle in front"){
+                        var data = getSensorData()
+                        if(!data.isEmpty){
+                            //just checks first robot
+                            let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
+                            let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
+                                //WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
+                            print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
+                            if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
+                                condition = true
+                            }
+                        }
+                    }
+                    if(condition){
+                        print("TRUE")
+                        //if it's true, just keep going
+                    }else{
+                    //if it's not true, keep going and don't do any of the blocks until you see endif
+                        while(command != "End If"){
+                            i += 1
+                            command = myCommands[i]
+                            print("it is an endif")
+                        }
+                    }
+                }
                 if command.contains("Drive Forward") {
                     //let bodyPose = WWCommandBodyPose.init(relativeMeasuredX: distance, y: 0, radians: 0, time: 1.0)
                     //myAction.setBodyPose(bodyPose)
@@ -322,9 +377,12 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     myAction.setRightEarLight(light)
                 }
                 cmdToSend.add(myAction, withDuration: duration)
-                
+                print(cmdToSend)
+                sendCommandSequenceToRobots(cmdSeq: cmdToSend)
+                cmdToSend.removeAllEvents()
+                i += 1
             }
-            sendCommandSequenceToRobots(cmdSeq: cmdToSend)
+
             //sendCommandSetToRobots(cmd: cmdToSend)
         }else{
             print("no connected robots")

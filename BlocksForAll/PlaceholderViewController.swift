@@ -126,6 +126,28 @@ class PlaceholderViewController: BlocksViewController {
                     //myLabel.accessibilityHint = blockPlacementInfo + ". Double tap to move block"
                     
                     //cell.addSubview(myLabel)
+                    if block.name == "If" || block.name == "Repeat" {
+                        if block.addedBlocks.isEmpty{
+                            //draw false block
+                            var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
+                            if block.name == "Repeat"{
+                                placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
+                            }
+                            let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                            myConditionLabel.accessibilityLabel = "False"
+                            if block.name == "Repeat"{
+                                myConditionLabel.accessibilityLabel = "two times"
+                            }
+                            myConditionLabel.isAccessibilityElement = true
+                            cell.addSubview(myConditionLabel)
+                        }else{
+                            let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                            myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                            myConditionLabel.isAccessibilityElement = true
+                            cell.addSubview(myConditionLabel)
+                        }
+                    }
+                    
                     
                     
                     let placeholderBlock = createPlaceholderBlock(frame: CGRect(x: blockWidth, y: startingHeight, width: placeholderWidth, height: blockHeight ))
@@ -154,6 +176,28 @@ class PlaceholderViewController: BlocksViewController {
                 //myLabel.accessibilityHint =   blockPlacementInfo + ". Double tap to move block"
                 
                 cell.addSubview(myLabel)
+                
+                if block.name == "If" || block.name == "Repeat" {
+                    if block.addedBlocks.isEmpty{
+                        //draw false block
+                        var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
+                        if block.name == "Repeat"{
+                            placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
+                        }
+                        let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                        myConditionLabel.accessibilityLabel = "False"
+                        if block.name == "Repeat"{
+                            myConditionLabel.accessibilityLabel = "two times"
+                        }
+                        myConditionLabel.isAccessibilityElement = true
+                        cell.addSubview(myConditionLabel)
+                    }else{
+                        let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                        myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                        myConditionLabel.isAccessibilityElement = true
+                        cell.addSubview(myConditionLabel)
+                    }
+                }
                 
                 let placeholderBlock = createPlaceholderBlock(frame: CGRect(x: blockWidth, y: startingHeight-count*(blockHeight/2+blockSpacing), width: placeholderWidth, height: blockHeight + count*(blockHeight/2+blockSpacing)))
                 placeholderBlock.accessibilityLabel = "Add Block after " + block.name

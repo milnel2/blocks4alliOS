@@ -284,40 +284,11 @@
 		<array>
 			<dict>
 				<key>editable</key>
-				<false/>
-				<key>options</key>
-				<array>
-					<true/>
-					<false/>
-				</array>
-				<key>name</key>
-				<string>Repeat 3 Times</string>
-				<key>color</key>
-				<string>#FF7F2A</string>
-				<key>double</key>
-				<true/>
-				<key>imageName</key>
-				<string>repeat_3x.png</string>
-			</dict>
-			<dict>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Repeat 2 Times</string>
-				<key>color</key>
-				<string>#FF7F2A</string>
-				<key>double</key>
-				<true/>
-				<key>imageName</key>
-				<string>repeat_2x.png</string>
-			</dict>
-			<dict>
-				<key>editable</key>
 				<true/>
 				<key>name</key>
 				<string>Repeat Times</string>
 				<key>color</key>
-				<string>#FF7F2A</string>
+				<string>#ff162a</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
@@ -336,6 +307,23 @@
 					<string>4 times</string>
 					<string>5 times</string>
 				</array>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>options</key>
+				<array>
+					<true/>
+					<false/>
+				</array>
+				<key>name</key>
+				<string>If</string>
+				<key>color</key>
+				<string>#FF7F2A</string>
+				<key>double</key>
+				<true/>
 			</dict>
 		</array>
 	</dict>

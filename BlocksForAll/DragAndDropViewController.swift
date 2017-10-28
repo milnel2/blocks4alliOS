@@ -208,6 +208,29 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
             //myView.isAccessibilityElement = true
             cell.addSubview(myView)
 
+            if block.name == "If" || block.name == "Repeat" {
+                if block.addedBlocks.isEmpty{
+                    //draw false block
+                    var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
+                    if block.name == "Repeat"{
+                        placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
+                    }
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = "False"
+                    if block.name == "Repeat"{
+                        myConditionLabel.accessibilityLabel = "two times"
+                    }
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                }else{
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                }
+            }
+            
+            
         }else {
             var count = 0
             for b in blocksToAdd{
@@ -238,6 +261,27 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
                 let imv = UIImageView.init(image: image)
                 myLabel.addSubview(imv)
             }*/
+            if block.name == "If" || block.name ==  "Repeat" {
+                if block.addedBlocks.isEmpty{
+                    //draw false block
+                    var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
+                    if block.name == "Repeat"{
+                        placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
+                    }
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = "False"
+                    if block.name == "Repeat"{
+                        myConditionLabel.accessibilityLabel = "two times"
+                    }
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                }else{
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                }
+            }
         }
         addGestureRecognizer(cell)
         

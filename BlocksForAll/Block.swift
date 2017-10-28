@@ -21,10 +21,13 @@ class Block {
     var optionsLabels: [String] = []
     var pickedOption: Int = 0
     var imageName: String?
+    var addedBlocks: [Block] = []
+    var type: String = "Operation"
+    var acceptedTypes: [String] = []
     
     //MARK: Initialization
     
-    init?(name: String, color: UIColor, double: Bool, editable: Bool, imageName: String? = nil, options: [String] = [], pickedOption: Int = 0, optionsLabels: [String] = []){
+    init?(name: String, color: UIColor, double: Bool, editable: Bool, imageName: String? = nil, options: [String] = [], pickedOption: Int = 0, optionsLabels: [String] = [], addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
         
         //TODO: check that color is initialized as well
         if name.isEmpty {
@@ -39,6 +42,9 @@ class Block {
         self.options = options
         self.pickedOption = pickedOption
         self.optionsLabels = optionsLabels
+        self.addedBlocks = addedBlocks
+        self.type = type
+        self.acceptedTypes = acceptedTypes
     }
     
     func addImage(_ imageName: String){
@@ -46,7 +52,7 @@ class Block {
     }
     
     func copy() -> Block{
-        let newBlock = Block.init(name: self.name, color: self.color, double: self.double, editable: self.editable, imageName: self.imageName, options: self.options, pickedOption: self.pickedOption, optionsLabels: self.optionsLabels)
+        let newBlock = Block.init(name: self.name, color: self.color, double: self.double, editable: self.editable, imageName: self.imageName, options: self.options, pickedOption: self.pickedOption, optionsLabels: self.optionsLabels, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes)
         return newBlock!
     }
 
