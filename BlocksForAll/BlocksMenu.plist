@@ -6,16 +6,38 @@
 		<key>type</key>
 		<string>Sound</string>
 		<key>color</key>
-		<string>#008000</string>
+		<string>#15284A</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
+				<key>type</key>
+				<string>Statement</string>
 				<key>editable</key>
 				<false/>
+				<key>options</key>
+				<array>
+					<string>Dog</string>
+					<string>Horse</string>
+					<string>Cat</string>
+				</array>
+				<key>name</key>
+				<string>Make Random Noise</string>
+				<key>color</key>
+				<string>#008000</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>random_sound.png</string>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>type</key>
+				<string>Statement</string>
 				<key>name</key>
 				<string>Say Hi</string>
 				<key>color</key>
-				<string>#008000</string>
+				<string>#15284A</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -23,13 +45,148 @@
 			</dict>
 			<dict>
 				<key>editable</key>
-				<true/>
-				<key>options</key>
-				<array>
-					<string>Dog</string>
-					<string>Horse</string>
-					<string>Cat</string>
-				</array>
+				<false/>
+				<key>type</key>
+				<string>Statement</string>
+				<key>name</key>
+				<string>Confused</string>
+				<key>color</key>
+				<string>#15284A</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>type</key>
+				<string>Statement</string>
+				<key>name</key>
+				<string>Bragging</string>
+				<key>color</key>
+				<string>#15284A</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Say Bye</string>
+				<key>color</key>
+				<string>#15284A</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Say Cool</string>
+				<key>color</key>
+				<string>#15284A</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>type</key>
+				<string>Statement</string>
+				<key>name</key>
+				<string>Say Wow</string>
+				<key>color</key>
+				<string>#15284A</string>
+				<key>double</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>type</key>
+		<string>Animals</string>
+		<key>color</key>
+		<string>#008000</string>
+		<key>Blocks</key>
+		<array>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Make Crocodile Noise</string>
+				<key>color</key>
+				<string>#008000</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>crocodile_sound.png</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Make Goat Noise</string>
+				<key>color</key>
+				<string>#008000</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>goat_sound.png</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Make Elephant Noise</string>
+				<key>color</key>
+				<string>#008000</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>elephant_sound.png</string>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>type</key>
+				<string>Statement</string>
+				<key>name</key>
+				<string>Make Dinosaur Noise</string>
+				<key>color</key>
+				<string>#008000</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>dinosaur_sound.png</string>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>type</key>
+				<string>Statement</string>
+				<key>name</key>
+				<string>Make Lion Noise</string>
+				<key>color</key>
+				<string>#008000</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>lion_sound.png</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
 				<key>name</key>
 				<string>Make Horse Noise</string>
 				<key>color</key>
@@ -41,13 +198,9 @@
 			</dict>
 			<dict>
 				<key>editable</key>
-				<true/>
-				<key>options</key>
-				<array>
-					<string>Dog</string>
-					<string>Horse</string>
-					<string>Cat</string>
-				</array>
+				<false/>
+				<key>type</key>
+				<string>Statement</string>
 				<key>name</key>
 				<string>Make Dog Noise</string>
 				<key>color</key>
@@ -59,13 +212,9 @@
 			</dict>
 			<dict>
 				<key>editable</key>
-				<true/>
-				<key>options</key>
-				<array>
-					<string>Dog</string>
-					<string>Horse</string>
-					<string>Cat</string>
-				</array>
+				<false/>
+				<key>type</key>
+				<string>Statement</string>
 				<key>name</key>
 				<string>Make Cat Noise</string>
 				<key>color</key>
@@ -89,6 +238,8 @@
 				<false/>
 				<key>name</key>
 				<string>Drive Forward</string>
+				<key>type</key>
+				<string>Statement</string>
 				<key>color</key>
 				<string>#0000FF</string>
 				<key>double</key>
@@ -99,6 +250,8 @@
 			<dict>
 				<key>editable</key>
 				<false/>
+				<key>type</key>
+				<string>Statement</string>
 				<key>name</key>
 				<string>Drive Backward</string>
 				<key>color</key>
@@ -111,6 +264,8 @@
 			<dict>
 				<key>editable</key>
 				<false/>
+				<key>type</key>
+				<string>Statement</string>
 				<key>name</key>
 				<string>Turn Left</string>
 				<key>color</key>
@@ -123,6 +278,8 @@
 			<dict>
 				<key>editable</key>
 				<false/>
+				<key>type</key>
+				<string>Statement</string>
 				<key>name</key>
 				<string>Turn Right</string>
 				<key>color</key>
@@ -135,6 +292,8 @@
 			<dict>
 				<key>editable</key>
 				<false/>
+				<key>type</key>
+				<string>Statement</string>
 				<key>name</key>
 				<string>Start Engine</string>
 				<key>color</key>
@@ -148,11 +307,221 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#FFA500</string>
+		<string>#FF7F2A</string>
 		<key>type</key>
-		<string>Repeat</string>
+		<string>Control</string>
 		<key>Blocks</key>
-		<array/>
+		<array>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>acceptedTypes</key>
+				<array>
+					<string>Number</string>
+				</array>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Repeat</string>
+				<key>color</key>
+				<string>#ff162a</string>
+				<key>double</key>
+				<true/>
+				<key>imageName</key>
+				<string>repeat_red.png</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Number</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>two times</string>
+				<key>color</key>
+				<string>#FF7F2A</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>2.png</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Number</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>three times</string>
+				<key>color</key>
+				<string>#FF7F2A</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>3.png</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>acceptedTypes</key>
+				<array>
+					<string>Boolean</string>
+				</array>
+				<key>editable</key>
+				<false/>
+				<key>options</key>
+				<array>
+					<true/>
+					<false/>
+				</array>
+				<key>name</key>
+				<string>If</string>
+				<key>color</key>
+				<string>#FF7F2A</string>
+				<key>double</key>
+				<true/>
+				<key>imageName</key>
+				<string>if.png</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Boolean</string>
+				<key>editable</key>
+				<false/>
+				<key>options</key>
+				<array>
+					<true/>
+					<false/>
+				</array>
+				<key>name</key>
+				<string>Hear Voice</string>
+				<key>color</key>
+				<string>#FF7F2A</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>turn_toward_voice.png</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Boolean</string>
+				<key>editable</key>
+				<false/>
+				<key>options</key>
+				<array>
+					<true/>
+					<false/>
+				</array>
+				<key>name</key>
+				<string>Obstacle in front</string>
+				<key>color</key>
+				<string>#FF7F2A</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>obstacle.png</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>color</key>
+		<string>#A02C2C</string>
+		<key>type</key>
+		<string>Lights</string>
+		<key>Blocks</key>
+		<array>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Set Eye Light</string>
+				<key>color</key>
+				<string>#442178</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>set_eye_light.png</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Set Left Ear Light</string>
+				<key>color</key>
+				<string>#442178</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>set_left_ear_light.png</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Set Right Ear Light</string>
+				<key>color</key>
+				<string>#442178</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>set_right_ear_light.png</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>color</key>
+		<string>#442178</string>
+		<key>type</key>
+		<string>Animations</string>
+		<key>Blocks</key>
+		<array>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Wiggle</string>
+				<key>color</key>
+				<string>#442178</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>wiggle.png</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Nod</string>
+				<key>color</key>
+				<string>#442178</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>nod.png</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Dance</string>
+				<key>color</key>
+				<string>#442178</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>dance.png</string>
+			</dict>
+		</array>
 	</dict>
 </array>
 </plist>

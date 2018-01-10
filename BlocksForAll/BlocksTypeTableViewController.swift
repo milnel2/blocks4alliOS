@@ -10,16 +10,24 @@ import UIKit
 
 class BlocksTypeTableViewController: UITableViewController {
     
-    var blockTypes = NSArray()
+    var blockDict = NSArray()
+    var blockTypes = [Block]()
+    var indexToAdd = 0
+    var blockWidth = 150
+    
+    //used to pass on delegate to selectedBlockViewController
+    var delegate: BlockSelectionDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Toolbox"
         self.accessibilityLabel = "Toolbox Menu"
-        self.accessibilityHint = "Double tap from menu to select block type"
+        self.accessibilityHint = "Double tap from menu to select block category"
+        //self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: CGFloat(blockWidth), height: CGFloat(blockWidth))
         
-        blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
-
+        blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
+        
+        createBlocksArray()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -51,25 +59,40 @@ class BlocksTypeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
 
         // Configure the cell...
-       if let blockType = blockTypes.object(at: indexPath.row) as? NSDictionary{
-            let name = blockType.object(forKey: "type") as? String
-
-            cell.textLabel?.text = name
-            cell.textLabel?.textColor = UIColor.white
-            cell.textLabel?.textAlignment = .center
-            if let colorString = blockType.object(forKey: "color") as? String{
-                cell.backgroundColor = UIColor.colorFrom(hexString: colorString)
-            }
-            cell.accessibilityLabel = name! + " category"
-            cell.accessibilityHint = "Double tap to explore blocks in this category"
-        }
+        let blockType = blockTypes[indexPath.row]
+        cell.textLabel?.text = blockType.name
+        cell.textLabel?.textColor = UIColor.white
+        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+        cell.backgroundColor = blockType.color
+        //cell.bounds.height = 200
+        cell.accessibilityLabel = blockType.name + " category"
+        cell.accessibilityHint = "Double tap to explore blocks in this category"
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height = tableView.bounds.height/CGFloat(blockTypes.count)
-        return height
+        return CGFloat(blockWidth + 10)
+
     }
+    
+    //TODO: this is really convoluted, probably a better way of doing this
+    private func createBlocksArray(){
+        for item in blockDict{
+            if let blockType = item as? NSDictionary{
+                let name = blockType.object(forKey: "type") as? String
+                var color = UIColor.green
+                if let colorString = blockType.object(forKey: "color") as? String{
+                    color = UIColor.colorFrom(hexString: colorString)
+                }
+                guard let block = Block(name: name!, color: color, double: false, editable: false) else {
+                    fatalError("Unable to instantiate block")
+                }
+                blockTypes += [block]
+            }
+        }
+    }
+    
     
     
     // MARK: - Navigation
@@ -83,10 +106,13 @@ class BlocksTypeTableViewController: UITableViewController {
         if let myDestination = segue.destination as? BlockTableViewController{
             //if let blockCell = sender as?
             myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
+            myDestination.delegate = self.delegate
         }
     }
-
 }
+
+
+
 
 extension UIColor{
     static func colorFrom(hexString:String, alpha:CGFloat = 1.0)->UIColor{

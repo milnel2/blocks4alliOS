@@ -11,29 +11,24 @@ import UIKit
 class PlaceholderViewController: BlocksViewController {
     
     //@IBOutlet weak var blocksProgram: UICollectionView!
-    var blockToAdd: Block?
+    var blocksToAdd: [Block]?
     var indexToAdd = 0
     var count = 0
+    var placeholderWidth = 50
     
     //@IBOutlet weak var playTrashToggleButton: UIButton!
 
-    private let placeholderWidth = 50
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        blockWidth = 90
+        //blockWidth = 90
+        placeholderWidth = blockWidth/2
         // Do any additional setup after loading the view.
         
-        if blockToAdd != nil {
-            if blockToAdd?.name == "Cancel"{
-                //pick a block from workspace
-                print("Do nothing")
-            }else{
-                //add block
-                //fromWorkspace = false
-                //TODO might need movingBlocks here
-                addBlocks([blockToAdd!], at: indexToAdd)
-            }
+        if blocksToAdd != nil {
+            //add block
+            //fromWorkspace = false
+            //TODO might need movingBlocks here
+            addBlocks(blocksToAdd!, at: indexToAdd)
         }
         indexToAdd = 0
     }
@@ -45,7 +40,7 @@ class PlaceholderViewController: BlocksViewController {
         return blocksStack.count + 1 //for add new block at beginning
     }
     
-    func collectionView(_ collectionView: UICollectionView,
+    override func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: CGFloat(blockWidth + placeholderWidth), height: collectionView.frame.height)
@@ -58,10 +53,11 @@ class PlaceholderViewController: BlocksViewController {
     
     func createPlaceholderBlock(frame: CGRect) -> UIButton{
         let placeholderBlock = UIButton.init(frame: frame)
-        placeholderBlock.backgroundColor = UIColor.gray
-        placeholderBlock.titleLabel?.textColor = UIColor.white
+        placeholderBlock.backgroundColor = UIColor.lightGray
         placeholderBlock.accessibilityLabel = "Add Block at beginning"
         placeholderBlock.setTitle("+", for: .normal)
+        //placeholderBlock.titleLabel.font
+        placeholderBlock.titleLabel?.textColor = UIColor.black
         placeholderBlock.addTarget(self, action: #selector(self.addBlockButton(_sender:)), for: .touchUpInside)
         return placeholderBlock
     }
@@ -102,11 +98,12 @@ class PlaceholderViewController: BlocksViewController {
                     }
                 }
             }
-            let blockPlacementInfo = ". block " + String(blockStackIndex + 1) + " of " + String(blocksStack.count) + " in Workspace."
+            let blockPlacementInfo = ". Workspace block " + String(blockStackIndex + 1) + " of " + String(blocksStack.count)
             
             if !spatialLayout {
                 if !blocksBeingMoved.isEmpty{
-                    let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight, width: blockWidth+placeholderWidth, height: blockHeight))
+                    let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight, width: blockWidth+placeholderWidth, height: blockHeight), block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight, width: blockWidth+placeholderWidth, height: blockHeight))
                     
                     var accessibilityLabel = block.name
                     var spearCon = ""
@@ -114,18 +111,43 @@ class PlaceholderViewController: BlocksViewController {
                         spearCon += " r "
                         accessibilityLabel += " inside " + b.name
                     }
-                    
+                    addAccessibilityLabel(myLabel: myLabel, block: block, number: blockStackIndex + 1, blocksToAdd: blocksToAdd, spatial: false, interface: 2)
+                    /*myLabel.isAccessibilityElement = true
                     myLabel.accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " after " + spearCon + accessibilityLabel
-                    myLabel.accessibilityHint = blockPlacementInfo + ". Double tap to add " + blocksBeingMoved[0].name + " block here"
+                    myLabel.accessibilityHint = blockPlacementInfo + ". Double tap to add " + blocksBeingMoved[0].name + " block here"*/
                     cell.addSubview(myLabel)
                 }else{
-                    let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight))
-                    addSpatialAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row, blocksToAdd: blocksToAdd)
+                    let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    //myLabel.isAccessibilityElement = true
+                    //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight, width: blockWidth, height: blockHeight))
+                    addAccessibilityLabel(myLabel: myLabel, block: block, number: blockStackIndex + 1, blocksToAdd: blocksToAdd, spatial: true, interface: 2)
                     cell.addSubview(myLabel)
 
-                    myLabel.accessibilityHint = blockPlacementInfo + ". Double tap to move block"
+                    //myLabel.accessibilityHint = blockPlacementInfo + ". Double tap to move block"
                     
-                    cell.addSubview(myLabel)
+                    //cell.addSubview(myLabel)
+                    if block.name == "If" || block.name == "Repeat" {
+                        if block.addedBlocks.isEmpty{
+                            //draw false block
+                            var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
+                            if block.name == "Repeat"{
+                                placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
+                            }
+                            let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                            myConditionLabel.accessibilityLabel = "False"
+                            if block.name == "Repeat"{
+                                myConditionLabel.accessibilityLabel = "two times"
+                            }
+                            myConditionLabel.isAccessibilityElement = true
+                            cell.addSubview(myConditionLabel)
+                        }else{
+                            let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                            myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                            myConditionLabel.isAccessibilityElement = true
+                            cell.addSubview(myConditionLabel)
+                        }
+                    }
+                    
                     
                     
                     let placeholderBlock = createPlaceholderBlock(frame: CGRect(x: blockWidth, y: startingHeight, width: placeholderWidth, height: blockHeight ))
@@ -144,11 +166,38 @@ class PlaceholderViewController: BlocksViewController {
                     count += 1
                 }
                 
-                let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                myLabel.accessibilityLabel = block.name
-                myLabel.accessibilityHint =   blockPlacementInfo + ". Double tap to move block"
+                let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                addAccessibilityLabel(myLabel: myLabel, block: block, number: blockStackIndex + 1, blocksToAdd: blocksToAdd, spatial: true, interface: 2)
+                
+                
+                //myLabel.isAccessibilityElement = true
+                //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                //myLabel.accessibilityLabel = block.name
+                //myLabel.accessibilityHint =   blockPlacementInfo + ". Double tap to move block"
                 
                 cell.addSubview(myLabel)
+                
+                if block.name == "If" || block.name == "Repeat" {
+                    if block.addedBlocks.isEmpty{
+                        //draw false block
+                        var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
+                        if block.name == "Repeat"{
+                            placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
+                        }
+                        let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                        myConditionLabel.accessibilityLabel = "False"
+                        if block.name == "Repeat"{
+                            myConditionLabel.accessibilityLabel = "two times"
+                        }
+                        myConditionLabel.isAccessibilityElement = true
+                        cell.addSubview(myConditionLabel)
+                    }else{
+                        let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                        myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                        myConditionLabel.isAccessibilityElement = true
+                        cell.addSubview(myConditionLabel)
+                    }
+                }
                 
                 let placeholderBlock = createPlaceholderBlock(frame: CGRect(x: blockWidth, y: startingHeight-count*(blockHeight/2+blockSpacing), width: placeholderWidth, height: blockHeight + count*(blockHeight/2+blockSpacing)))
                 placeholderBlock.accessibilityLabel = "Add Block after " + block.name
@@ -159,7 +208,7 @@ class PlaceholderViewController: BlocksViewController {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let blocksStackIndex = indexPath.row - 1
         let blocksProgramIndex = indexPath.row
         
@@ -169,11 +218,12 @@ class PlaceholderViewController: BlocksViewController {
         var announcement = ""
         
         if !blocksBeingMoved.isEmpty{
+            announcement = blocksBeingMoved[0].name + " placed after " + myBlock.name
+            
             addBlocks(blocksBeingMoved, at: blocksStackIndex + 1 )
             //blocksBeingMoved.removeAll()
             
             //make announcement
-            announcement = blocksBeingMoved[0].name + " placed after " + myBlock.name
             blocksBeingMoved.removeAll()
             print(announcement)
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
@@ -222,12 +272,6 @@ class PlaceholderViewController: BlocksViewController {
         }
         if !blocksBeingMoved.isEmpty{
             addBlocks(blocksBeingMoved, at: indexToAdd  )
-            //blocksBeingMoved.removeAll()
-            
-            //make announcement
-            let announcement = blocksBeingMoved[0].name + " placed at beginning "
-            print(announcement)
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
             blocksBeingMoved.removeAll()
             
         }else{
@@ -238,9 +282,8 @@ class PlaceholderViewController: BlocksViewController {
     // MARK: - Navigation
     
     // Pass on index where the block should be added
-    var containerViewController: UICollectionViewController?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let myDestination = segue.destination as? I3BlocksTypeTableViewController{
+        if let myDestination =  segue.destination as? PlaceholderBlocksTypeTableViewController{
             myDestination.indexToAdd = indexToAdd
         }
     }

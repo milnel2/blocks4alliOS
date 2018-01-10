@@ -21,6 +21,7 @@ class DragAndDropBlockTableViewController: BlockTableViewController, OBOvumSourc
         // Dispose of any resources that can be recreated.
     }
     
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Table view cells are reused and should be dequeued using a cell identifier
@@ -32,17 +33,13 @@ class DragAndDropBlockTableViewController: BlockTableViewController, OBOvumSourc
         
         let block = blocks[indexPath.row]
         cell.block = block
-        
         cell.nameLabel.text = block.name
         cell.blockView.backgroundColor = block.color
         cell.accessibilityHint = "In Toolbox. Tap and then hold and drag to the right to add block to workspace."
 
-        if(block.imageName != nil){
-            let imageName = block.imageName!
-            let image = UIImage(named: imageName)
-            let imv = UIImageView.init(image: image)
-            cell.addSubview(imv)
-        }
+        let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockWidth)
+        
+        cell.addSubview(myView)
         
         // Configure the cell...
         // Drag drop with long press gesture
@@ -69,15 +66,19 @@ class DragAndDropBlockTableViewController: BlockTableViewController, OBOvumSourc
     func createOvum(from sourceView: UIView!) -> OBOvum! {
         let ovum = OBOvum.init()
         if let sView = sourceView as? BlockTableViewCell{
-            var twoBlocks = false
-            if(sView.nameLabel.text!.contains("Repeat")){
-                twoBlocks = true
-            }
-            let myBlock = Block(name: sView.nameLabel.text!, color: sView.blockView.backgroundColor!, double: twoBlocks, editable:sView.block!.editable)
+            let myBlock = Block(name: sView.nameLabel.text!, color: sView.blockView.backgroundColor!, double: sView.block!.double, editable:sView.block!.editable, options: sView.block!.options, pickedOption: sView.block!.pickedOption, optionsLabels: sView.block!.optionsLabels, addedBlocks:sView.block!.addedBlocks, type:sView.block!.type, acceptedTypes:sView.block!.acceptedTypes)
             if(sView.block!.imageName != nil){
                 myBlock?.addImage(sView.block!.imageName!)
             }
-            ovum.dataObject = [myBlock]
+            if (myBlock?.double)!{
+                let endBlockName = "End " + (myBlock?.name)!
+                let endBlock = Block(name: endBlockName, color: (myBlock?.color)!, double: true, editable: false)
+                endBlock?.counterpart = myBlock
+                myBlock?.counterpart = endBlock
+                ovum.dataObject = [myBlock, endBlock!]
+            }else{
+                ovum.dataObject = [myBlock]
+            }
         }else{
             ovum.dataObject = sourceView.backgroundColor
         }
@@ -89,20 +90,9 @@ class DragAndDropBlockTableViewController: BlockTableViewController, OBOvumSourc
             let frame = sView.convert(sView.blockView.bounds, to: sView.window)
             
             let dragView = UIView(frame: frame)
-            dragView.backgroundColor = sView.blockView.backgroundColor
-            let myLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: blockWidth, height: blockWidth))
-            myLabel.text = sView.nameLabel.text
-            myLabel.textAlignment = .center
-            myLabel.textColor = UIColor.white
-            dragView.self.addSubview(myLabel)
+            let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth), block: [sView.block!],  myBlockWidth: blockWidth, myBlockHeight: blockWidth)
             
-            if(sView.block?.imageName != nil){
-                let imageName = sView.block?.imageName!
-                let image = UIImage(named: imageName!)
-                let imv = UIImageView.init(image: image)
-                dragView.addSubview(imv)
-            }
-            
+            dragView.addSubview(myView)
             
             dragView.alpha = 0.75
             return dragView
@@ -115,16 +105,5 @@ class DragAndDropBlockTableViewController: BlockTableViewController, OBOvumSourc
     func ovumDragEnded(_ ovum: OBOvum!) {
         return
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
