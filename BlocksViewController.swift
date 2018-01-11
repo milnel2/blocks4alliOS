@@ -8,6 +8,9 @@
 
 import UIKit
 
+//collection of blocks that are part of your program
+var blocksStack = [Block]()
+
 protocol BlockSelectionDelegate{
     func setSelectedBlocks(_ blocks:[Block])
     func unsetBlocks()
