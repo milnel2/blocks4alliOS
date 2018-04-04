@@ -29,6 +29,7 @@
 		F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */; };
 		F1B1F4811EF0A1A8003C2827 /* BlocksMenuSession1.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */; };
 		F1BC90B61FA43D13008EC60C /* AssetsBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */; };
+		F1F7CD322054A36A001ABD18 /* RhymesMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CD312054A36A001ABD18 /* RhymesMenu.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
 		F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenuSession1.plist; sourceTree = "<group>"; };
 		F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AssetsBlocksMenu.plist; sourceTree = "<group>"; };
+		F1F7CD312054A36A001ABD18 /* RhymesMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RhymesMenu.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				F16BA3BD1F59103A00A94FBA /* BlocksMenu.plist */,
+				F1F7CD312054A36A001ABD18 /* RhymesMenu.plist */,
 				F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */,
 				F186EB891EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist */,
 				F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */,
@@ -264,6 +267,7 @@
 				F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */,
 				F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */,
 				F16BA3BE1F59103A00A94FBA /* BlocksMenu.plist in Resources */,
+				F1F7CD322054A36A001ABD18 /* RhymesMenu.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

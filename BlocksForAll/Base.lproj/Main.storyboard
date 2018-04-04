@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -129,7 +129,7 @@
                                     <segue destination="zor-jh-2cz" kind="embed" id="Mdl-ke-gN7"/>
                                 </connections>
                             </containerView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l66-Lb-Pdn">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l66-Lb-Pdn">
                                 <rect key="frame" x="163" y="0.0" width="702" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -151,28 +151,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qPr-Qu-15t">
-                                <rect key="frame" x="873" y="0.0" width="151" height="609"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mo0-mb-OIZ">
-                                        <rect key="frame" x="31" y="8" width="39" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Menu"/>
-                                        <connections>
-                                            <segue destination="YEE-PZ-SjD" kind="show" id="FAp-gd-0H0"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="nT7-4m-OCu">
-                                        <rect key="frame" x="8" y="46" width="84" height="39"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Spatial Layout"/>
-                                        <connections>
-                                            <action selector="switchLayout:" destination="uoc-nU-c4a" eventType="touchUpInside" id="LxL-UE-zob"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztu-9b-vFh">
                                 <rect key="frame" x="873" y="617" width="151" height="151"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -190,14 +168,12 @@
                     </view>
                     <connections>
                         <outlet property="blocksProgram" destination="l66-Lb-Pdn" id="aCz-wf-cUf"/>
-                        <outlet property="menuButton" destination="mo0-mb-OIZ" id="nk3-nY-9ca"/>
                         <outlet property="playTrashToggleButton" destination="Ztu-9b-vFh" id="LFC-BT-ZaG"/>
-                        <outlet property="spatialButton" destination="nT7-4m-OCu" id="UPH-5L-VC5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W32-Q3-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-124.21874999999999" y="-1854.6875"/>
+            <point key="canvasLocation" x="-345" y="-489"/>
         </scene>
         <!--Block Table View Controller-->
         <scene sceneID="OAu-TV-gtl">
@@ -249,7 +225,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P15-Pw-S0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1350" y="-1866"/>
+            <point key="canvasLocation" x="777" y="-489"/>
         </scene>
         <!--Selected Block View Controller-->
         <scene sceneID="5FT-Oz-ag0">
@@ -267,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FIB-I7-Bpu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1487" y="-1880"/>
+            <point key="canvasLocation" x="1017" y="-489"/>
         </scene>
         <!--Blocks Type Table View Controller-->
         <scene sceneID="ogp-yU-KgL">
@@ -295,9 +271,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="qsn-gg-TPc" kind="show" id="ekI-8a-VBt">
-                                        <nil key="action"/>
-                                    </segue>
+                                    <segue destination="qsn-gg-TPc" kind="show" id="ekI-8a-VBt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -310,7 +284,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCM-Ar-V96" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1089" y="-1866"/>
+            <point key="canvasLocation" x="497" y="-489"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="28s-Hb-jSN">
@@ -328,7 +302,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K3H-da-u0u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="808" y="-1865"/>
+            <point key="canvasLocation" x="195" y="-489"/>
         </scene>
     </scenes>
     <resources>

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import AVFoundation
 
-//collection of blocks that are part of your program
+//collection of blocks that are part of the program
 var blocksStack = [Block]()
 
 protocol BlockSelectionDelegate{
@@ -17,17 +18,23 @@ protocol BlockSelectionDelegate{
     func setParentViewController(_ myVC:UIViewController)
 }
 
-class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
+class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIPickerViewDelegate, UIPickerViewDataSource, BlockSelectionDelegate {
+    
+    //@IBOutlet weak var voicePicker: UIPickerView!
     
     @IBOutlet weak var blocksProgram: UICollectionView!
     @IBOutlet weak var playTrashToggleButton: UIButton!
     
     var spatialLayout = true //use spatial or audio layout for blocks
-    var blocksBeingMoved = [Block]() //pretty sure we can
-        //TODO: do I need both movingBlocks and blocksBeingMoved
+    var blocksBeingMoved = [Block]()
     var movingBlocks = false    //currently moving blocks in the workspace
     let collectionReuseIdentifier = "BlockCell"
     var containerViewController: UINavigationController?
+    
+    //VoicePicker
+    var arrVoiceLanguages: [Dictionary<String, String?>] = []
+    var selectedVoiceLanguage = 0
+    var selectedVoiceIdentifier: String? = nil
     
     var blockWidth = 150
     var blockHeight = 150
@@ -37,7 +44,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     
     @IBOutlet weak var menuButton: UIButton!
-    @IBOutlet weak var spatialButton: UIButton!
     
     //TODO: probably want to get rid of this
     var dropIndex = 0
@@ -50,6 +56,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
         
+        //prepareVoiceList()
+        //voicePicker.delegate = self
+        //voicePicker.dataSource = self
+        
         //TOGGLE this off if you want to be able to access menu and spatial buttons with VO on
         /*menuButton.isAccessibilityElement = false
         menuButton.accessibilityElementsHidden = true
@@ -59,6 +69,40 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //#selector(self.addBlockButton(_sender:))
         //NotificationCenter.default.addObserver(self, selector: #selector(self.didFinishAnnouncement(dict:)), name: NSNotification.Name.UIAccessibilityAnnouncementDidFinish, object: nil)
         // Do any additional setup after loading the view.
+    }
+    
+    func prepareVoiceList() {
+        for voice in AVSpeechSynthesisVoice.speechVoices() {
+            //let voiceLanguageCode = (voice as AVSpeechSynthesisVoice).language
+            
+            let languageName = voice.name
+            let id = voice.identifier
+            
+            let dictionary = ["languageName": languageName, "languageCode": id]
+            
+            arrVoiceLanguages.append(dictionary)
+        }
+    }
+    
+    // MARK: - PickerView (If you want to include voices)
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return arrVoiceLanguages.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let voiceLanguagesDictionary = arrVoiceLanguages[row] as Dictionary<String, String?>
+        
+        return voiceLanguagesDictionary["languageName"]!
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedVoiceLanguage = row
+        selectedVoiceIdentifier = arrVoiceLanguages[selectedVoiceLanguage]["languageCode"] as? String
     }
     
 
@@ -74,7 +118,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         changeButton()
     }
     
-    
     func setSelectedBlocks(_ blocks: [Block]) {
         movingBlocks = true
         blocksBeingMoved = blocks
@@ -86,13 +129,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         containerViewController = myVC as? UINavigationController
     }
     
-    // MARK: - Button Actions
     
-    @IBAction func switchLayout(_ sender: Any) {
-        spatialLayout = !spatialLayout
-        blocksProgram.reloadData()
-    }
-    
+    /*
+     Changes the play button back and forth from trash to play
+     */
     func changeButton(){
         if movingBlocks{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
@@ -105,18 +145,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
     
-    // run code
+    // run the actual program when the play button is clicked or put blocks in trash
     @IBAction func playButtonClicked(_ sender: Any) {
         if(movingBlocks){
             //trash
-            //movingBlocks = false
             let announcement = blocksBeingMoved[0].name + " placed in trash."
             //blocksBeingMoved.removeAll()
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
-            //CRAZY TRY
             blocksProgram.reloadData()
             //changeButton()
-            
             containerViewController?.popViewController(animated: false)
             unsetBlocks()
         }else{
@@ -126,11 +163,35 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
             }else{
                 let commands = createCommandSequence(blocksStack)
+                //playWithoutRobot(commands)
                 play(commands)
             }
         }
     }
     
+    func playWithoutRobot(_ myCommands:[String]){
+        var mySong = ""
+        for item in myCommands{
+            mySong.append(item)
+        }
+        speakStringOnDelay(song: mySong)
+    }
+    
+    func speakStringOnDelay(song: String){
+        let synth = AVSpeechSynthesizer()
+        let utterance = AVSpeechUtterance(string: song)
+        if let id = selectedVoiceIdentifier{
+            utterance.voice = AVSpeechSynthesisVoice(identifier: id)
+        }else{
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        }
+        utterance.rate = 0.5
+        utterance.pitchMultiplier = 0.5
+        
+        synth.speak(utterance)
+    }
+    
+    //unrolls the repeat loops in the blocks program
     func unrollLoop(times: Int, blocks:[Block])->[String]{
         var commands = [String]()
         for _ in 0..<times{
@@ -143,6 +204,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                             timesToRepeat = 2
                         }else if blocks[i].addedBlocks[0].name == "three times"{
                             timesToRepeat = 3
+                        }else if blocks[i].addedBlocks[0].name == "four times"{
+                            timesToRepeat = 4
+                        }else if blocks[i].addedBlocks[0].name == "five times"{
+                            timesToRepeat = 5
                         }
                     }else{
                         //default
@@ -161,30 +226,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     for item in items{
                         commands.append(item)
                     }
-                    
-                    /*
-                    var timesToRepeat = 1
-                    if blocks[i].name == "Repeat 2 Times"{
-                        timesToRepeat = 2
-                    }else if blocks[i].name == "Repeat 3 Times"{
-                        timesToRepeat = 3
-                    }else if blocks[i].name == "Repeat Times"{
-                        var timesToRepeatAsString = blocks[i].options[blocks[i].pickedOption]
-                        timesToRepeatAsString = timesToRepeatAsString.substring(to: timesToRepeatAsString.index(before: timesToRepeatAsString.endIndex))
-                        timesToRepeat = Int(timesToRepeatAsString)!
-                    }
-                    var ii = i+1
-                    var blocksToUnroll = [Block]()
-                    while blocks[i].counterpart !== blocks[ii]{
-                        blocksToUnroll.append(blocks[ii])
-                        ii += 1
-                    }
-                    i = ii
-                    let items = unrollLoop(times: timesToRepeat, blocks: blocksToUnroll)
-                    //add items
-                    for item in items{
-                        commands.append(item)
-                    }*/
+
                 }else{
                     var myCommand = blocks[i].name
                     if blocks[i].name.contains("If"){
@@ -205,9 +247,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return commands
     }
     
-    
+    //turns the blocks into commands
     func createCommandSequence(_ blocks: [Block])->[String]{
-        var commands = unrollLoop(times: 1, blocks: blocks)
+        let commands = unrollLoop(times: 1, blocks: blocks)
         for c in commands{
             print(c)
         }
@@ -217,7 +259,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // MARK: Blocks Methods
     
     func addBlocks(_ blocks:[Block], at index:Int){
-        //TODO: if condition announce correctly
         
         //change for beginning
         var announcement = ""
@@ -294,20 +335,19 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return size
     }
     
+    /* adds in label for voiceOver
+     */
     func addAccessibilityLabel(myLabel: UIView, block:Block, number: Int, blocksToAdd: [Block], spatial: Bool, interface: Int){
         //TODO: if condition change accessibility label
         myLabel.isAccessibilityElement = true
         var accessibilityLabel = ""
         //is blocksStack.count always correct?
-        var blockPlacementInfo = ". Workspace block " + String(number) + " of " + String(blocksStack.count)
+        let blockPlacementInfo = ". Workspace block " + String(number) + " of " + String(blocksStack.count)
         var accessibilityHint = ""
         var spearCon = ""
         var nestingInfo  = ""
         var movementInfo = ". Double tap to move block."
-        
-        
-        
-        
+
         if(!blocksBeingMoved.isEmpty){
             if(interface == 0){
                 accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before "
@@ -359,7 +399,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         myLabel.accessibilityHint = accessibilityHint
     }
     
-    
+    /* Displays the actual collection of blocks (i.e. the program that is being created with the blocks)
+     */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath)
         // Configure the cell
@@ -399,89 +440,50 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                 }
             }
+            var count = 0
+            for b in blocksToAdd{
+                let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
 
-            if !spatialLayout {
-                blocksToAdd.reverse()
-                
-                let block = blocksStack[indexPath.row]
-                let myLabel = BlockView(frame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth), block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                
-                //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
-                //myLabel.isAccessibilityElement = true
-                //TODO: make same changes as below
-                addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd, spatial:false, interface: 0)
+                myView.accessibilityLabel = "Inside " + b.name
+                myView.text = "Inside " + b.name
 
-                
-                cell.addSubview(myLabel)
-                if block.name == "If" || block.name == "Repeat" {
-                    if block.addedBlocks.isEmpty{
-                        //draw false block
-                        var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
-                        if block.name == "Repeat"{
-                            placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
-                        }
-                        let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                        myConditionLabel.accessibilityLabel = "False"
-                        if block.name == "Repeat"{
-                            myConditionLabel.accessibilityLabel = "two times"
-                        }
-                        myConditionLabel.isAccessibilityElement = true
-                        cell.addSubview(myConditionLabel)
-                    }else{
-                        let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                        myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
-                        myConditionLabel.isAccessibilityElement = true
-                        cell.addSubview(myConditionLabel)
-                    }
-                }
-
-            }else {
-                var count = 0
-                for b in blocksToAdd{
-                    let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
-
-                    myView.accessibilityLabel = "Inside " + b.name
-                    myView.text = "Inside " + b.name
-
-                    cell.addSubview(myView)
-                    count += 1
-                }
-                //let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
-                
-                //var movementInfo = "Double tap to move block."
-                
-                
-                //TODO: I added this, add it to !spatial as well
-                if block.name == "If" || block.name == "Repeat" {
-                    if block.addedBlocks.isEmpty{
-                        //draw false block
-                        var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
-                        if block.name == "Repeat"{
-                            placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
-                        }
-                        let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                        myConditionLabel.accessibilityLabel = "False"
-                        if block.name == "Repeat"{
-                            myConditionLabel.accessibilityLabel = "two times"
-                        }
-                        myConditionLabel.isAccessibilityElement = true
-                        cell.addSubview(myConditionLabel)
-                    }else{
-                        let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                        myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
-                                myConditionLabel.isAccessibilityElement = true
-                        cell.addSubview(myConditionLabel)
-                    }
-                }
-                //add main label
-                
-                let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row+1, blocksToAdd: blocksToAdd, spatial: true, interface: 0)
-                cell.addSubview(myLabel)
+                cell.addSubview(myView)
+                count += 1
             }
+            //let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
+            
+            //var movementInfo = "Double tap to move block."
+            
+            
+            //TODO: I added this, add it to !spatial as well
+            if block.name == "If" || block.name == "Repeat" {
+                if block.addedBlocks.isEmpty{
+                    //draw false block
+                    var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
+                    if block.name == "Repeat"{
+                        placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
+                    }
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = "False"
+                    if block.name == "Repeat"{
+                        myConditionLabel.accessibilityLabel = "two times"
+                    }
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                }else{
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                            myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                }
+            }
+            //add main label
+            
+            let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+            addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row+1, blocksToAdd: blocksToAdd, spatial: true, interface: 0)
+            cell.addSubview(myLabel)
         }
         cell.accessibilityElements = cell.accessibilityElements?.reversed()
-        print(cell.accessibilityElements)
         return cell
     }
 

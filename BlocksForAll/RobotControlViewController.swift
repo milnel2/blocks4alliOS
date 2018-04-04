@@ -112,7 +112,8 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                 sensorSet.append(robot.history.currentState())
             }
         }
-        return sensorSet as! [WWSensorSet]
+        //return sensorSet as! [WWSensorSet]
+        return sensorSet
     }
     
     func robot(_ robot: WWRobot!, didStopExecutingCommand sequence: WWCommandSetSequence!, withResults results: [AnyHashable : Any]!) {
@@ -133,7 +134,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 
             
             let cmdToSend = WWCommandSetSequence()
-            var repeatCommands = [WWCommandSet]()
+           // var repeatCommands = [WWCommandSet]()
             var i = 0
             while i < myCommands.count{
                 var command = myCommands[i]
@@ -145,7 +146,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                 var myAction = WWCommandSet()
                 if command.contains("If"){
                     //TODO check blocks condition
-                    var conditionString = command.substring(from: command.index(command.startIndex, offsetBy: 2))
+                    let conditionString = command.substring(from: command.index(command.startIndex, offsetBy: 2))
                     print("conditionString" , conditionString)
                     var condition = false
                     if(conditionString == "Hear Voice"){
