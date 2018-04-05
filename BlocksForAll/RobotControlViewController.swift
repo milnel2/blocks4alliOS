@@ -126,6 +126,14 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     var rightLightIndex = 0
     var eyeLightIndex = 0
     
+    func connectedRobots() -> Bool{
+        if let connectedRobots = robotManager?.allConnectedRobots{
+            return !connectedRobots.isEmpty
+        }else{
+            return false
+        }
+    }
+    
     func play(_ myCommands: [String]){
         let connectedRobots = robotManager?.allConnectedRobots
         if connectedRobots != nil{

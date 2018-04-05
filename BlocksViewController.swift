@@ -158,7 +158,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             unsetBlocks()
         }else{
             //play
-            if(blocksStack.isEmpty){
+            if(!connectedRobots()){
+                //no robots
+                let announcement = "Connect to the dash robot. "
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                print("No robots")
+                performSegue(withIdentifier: "AddRobotSegue", sender: nil)
+                
+            }else if(blocksStack.isEmpty){
                 let announcement = "Your robot has nothing to do!  Add some blocks to your workspace. "
                 UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
             }else{
