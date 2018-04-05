@@ -146,7 +146,8 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                 var myAction = WWCommandSet()
                 if command.contains("If"){
                     //TODO check blocks condition
-                    let conditionString = command.substring(from: command.index(command.startIndex, offsetBy: 2))
+                    let conditionString = command[command.index(command.startIndex, offsetBy: 2)...]
+                    //let conditionString = command.substring(from: command.index(command.startIndex, offsetBy: 2))
                     print("conditionString" , conditionString)
                     var condition = false
                     if(conditionString == "Hear Voice"){
@@ -190,7 +191,10 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     //myAction.setBodyPose(bodyPose)
                     if(command.contains("0")){
                         var distanceString = command
-                        distanceString = distanceString.substring(from:distanceString.index(distanceString.endIndex, offsetBy: -2))
+                        //distanceString = distanceString.substring(from:distanceString.index(distanceString.endIndex, offsetBy: -2))
+                        
+                        distanceString = String(distanceString[distanceString.index(distanceString.endIndex, offsetBy: -2)...])
+                        
                         distance = Double(distanceString)!
                     }
                     
@@ -204,7 +208,10 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                 if command.contains("Drive Backward") {
                     if(command.contains("0")){
                         var distanceString = command
-                        distanceString = distanceString.substring(from:distanceString.index(distanceString.endIndex, offsetBy: -2))
+                        
+                        distanceString = String(distanceString[distanceString.index(distanceString.endIndex, offsetBy: -2)...])
+                        
+                        //distanceString = distanceString.substring(from:distanceString.index(distanceString.endIndex, offsetBy: -2))
                         distance = Double(distanceString)!
                     }
                     
