@@ -70,6 +70,8 @@
 		F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
 		F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenuSession1.plist; sourceTree = "<group>"; };
 		F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AssetsBlocksMenu.plist; sourceTree = "<group>"; };
+		F1F68E7E207715CC00BFBD8E /* BlocksForAll */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BlocksForAll; sourceTree = "<group>"; };
+		F1F68E7F20771C7900BFBD8E /* Installation Manual.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Installation Manual.pdf"; sourceTree = "<group>"; };
 		F1F7CD312054A36A001ABD18 /* RhymesMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RhymesMenu.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,7 +126,9 @@
 		F18FFFA61E65B0FB0090C4B6 = {
 			isa = PBXGroup;
 			children = (
+				F1F68E7F20771C7900BFBD8E /* Installation Manual.pdf */,
 				F18FFFB11E65B0FB0090C4B6 /* BlocksForAll */,
+				F1F68E7E207715CC00BFBD8E /* BlocksForAll */,
 				F18FFFC61E65B0FC0090C4B6 /* BlocksForAllTests */,
 				F18FFFB01E65B0FB0090C4B6 /* Products */,
 				F12116971EA7E0DA009976B1 /* Frameworks */,
