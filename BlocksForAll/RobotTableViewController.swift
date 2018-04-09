@@ -14,9 +14,9 @@ class RobotTableViewController: UITableViewController {
 }*/
 
 var robotManager:WWRobotManager? = nil
+var robots = [WWRobot]()
 
 class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
-    var robots = [WWRobot]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,9 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         }
         
         robotManager?.startScanning(forRobots: 2.0)
+        if(!robots.isEmpty){
+            print(robots[0])
+        }
         // Uncomment the following line to preserve selection between presentations
          self.clearsSelectionOnViewWillAppear = false
 
@@ -110,5 +113,8 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         print("found a robot")
     }
     
+    func manager(_ manager: WWRobotManager!, didDisconnectRobot robot: WWRobot!) {
+        self.tableView.reloadData()
+    }
 
 }
