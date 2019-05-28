@@ -6,8 +6,6 @@
 //  Copyright © 2017 Lauren Milne. All rights reserved.
 //
 
-//test push
-
 import UIKit
 
 class SelectedBlockViewController: UIViewController {
