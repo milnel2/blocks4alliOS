@@ -8,10 +8,8 @@
 
 //test push 3
 
-
 import UIKit
 import AVFoundation
-// hello - jacqueline testing commit
 
 //collection of blocks that are part of the program
 var blocksStack = [Block]()
