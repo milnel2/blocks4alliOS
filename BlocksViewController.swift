@@ -31,10 +31,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     let collectionReuseIdentifier = "BlockCell"
     var containerViewController: UINavigationController?
     
+    // FIXME: the blockWidth and blockHeight are not the same as the variable blockSize (= 100) - discuss
     var blockWidth = 150
     var blockHeight = 150
     let blockSpacing = 1
-	
+    
+
     @IBOutlet weak var menuButton: UIButton!
     
     // MARK: - View Set Up
@@ -272,19 +274,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: CGFloat(blockWidth), height: collectionView.frame.height)
-        
+        print(indexPath)
         if indexPath.row == blocksStack.count {
+            // expands the editor space to allow more blocks to be added
             if blocksStack.count < 8 {
-                //fill up the rest of the screen
-                let myWidth = collectionView.frame.width - CGFloat(blocksStack.count) * CGFloat(blockWidth)
+                // TODO: eventually simplify this section without blocksStack.count < 8
+                // blocksStack.count < 8 means that the orignal editor only fit up to 8 blocks of a fixed size horizontally, but we may want to change that too
+                let myWidth = collectionView.frame.width
                 size = CGSize(width: myWidth, height: collectionView.frame.height)
             }else{
-                //just normal size block at the end
                 size = CGSize(width: CGFloat(blockWidth), height: collectionView.frame.height)
             }
         }
         return size
     }
+
     
     /* adds in label for voiceOver
      */
