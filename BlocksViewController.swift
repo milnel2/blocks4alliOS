@@ -34,17 +34,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var blockWidth = 150
     var blockHeight = 150
     let blockSpacing = 1
-    
-    
-    //MARK: Delete Drag and Drop dragOn
-//    var dragOn = false
-    
-    
+	
     @IBOutlet weak var menuButton: UIButton!
-    
-    //TODO: probably want to get rid of this
-    var dropIndex = 0
-    
     
     // MARK: - View Set Up
     
@@ -220,7 +211,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         //change for beginning
         var announcement = ""
-        dropIndex = index
+		//MARK: dropIndex
+		//        dropIndex = index
         if(index != 0){
             let myBlock = blocksStack[index-1]
             announcement = blocks[0].name + " placed after " + myBlock.name
