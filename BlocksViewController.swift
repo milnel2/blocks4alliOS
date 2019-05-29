@@ -150,24 +150,31 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if(movingBlocks){
             //trash
             let announcement = blocksBeingMoved[0].name + " placed in trash."
-            //blocksBeingMoved.removeAll()
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+            })
             blocksProgram.reloadData()
             //changeButton()
             containerViewController?.popViewController(animated: false)
             unsetBlocks()
+           
+            //blocksBeingMoved.removeAll()
+            print("put in trash")
         }else{
             //play
             if(!connectedRobots()){
                 //no robots
                 let announcement = "Connect to the dash robot. "
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString(announcement, comment: ""))
                 print("No robots")
                 performSegue(withIdentifier: "AddRobotSegue", sender: nil)
                 
             }else if(blocksStack.isEmpty){
                 let announcement = "Your robot has nothing to do!  Add some blocks to your workspace. "
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                })
+                
             }else{
                 let commands = createCommandSequence(blocksStack)
                 //playWithoutRobot(commands)
@@ -276,7 +283,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }else{
             announcement = blocks[0].name + " placed at beginning"
         }
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+        })
+        
         //add a completion block here
         if(blocks[0].double){
             blocksStack.insert(contentsOf: blocks, at: index)
@@ -529,7 +539,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         containerViewController?.popViewController(animated: false)
                         let condition = myBlock.addedBlocks[0].name
                         let announcement = condition + "placed in if statement"
-                        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                        })
                         blocksProgram.reloadData()
                         unsetBlocks()
                     }else if blocksBeingMoved[0].type == "Number" && acceptsNumbers{
@@ -539,18 +551,25 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         containerViewController?.popViewController(animated: false)
                         let condition = myBlock.addedBlocks[0].name
                         let announcement = condition + "placed in repeat statement"
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
                         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                        })
                         blocksProgram.reloadData()
                         unsetBlocks()
                     }else{
                         //say you can't add it here
                         print("you can't add it here")
-                        makeAnnouncement("you can't add it here")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                            self.makeAnnouncement("you can't add it here")
+                        })
+                        
                     }
                 }else{
                     //say you can't add it here
                     print("you can't add it here")
-                    makeAnnouncement("you can't add it here")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                        self.makeAnnouncement("you can't add it here")
+                    })
                 }
             }else{
                 addBlocks(blocksBeingMoved, at: indexPath.row)
