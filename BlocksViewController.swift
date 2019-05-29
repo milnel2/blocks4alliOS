@@ -102,16 +102,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBAction func playButtonClicked(_ sender: Any) {
         if(movingBlocks){
             //trash
+            changeButton()
             let announcement = blocksBeingMoved[0].name + " placed in trash."
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+            playTrashToggleButton.accessibilityLabel = announcement
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                self.containerViewController?.popViewController(animated: false)
             })
             blocksProgram.reloadData()
-            //changeButton()
-            containerViewController?.popViewController(animated: false)
-            unsetBlocks()
-           
-            //blocksBeingMoved.removeAll()
+            movingBlocks = false
+            blocksBeingMoved.removeAll()
             print("put in trash")
         }else{
             //play
@@ -123,10 +122,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 performSegue(withIdentifier: "AddRobotSegue", sender: nil)
                 
             }else if(blocksStack.isEmpty){
+                changeButton()
                 let announcement = "Your robot has nothing to do!  Add some blocks to your workspace. "
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-                    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
-                })
+                playTrashToggleButton.accessibilityLabel = announcement
                 
             }else{
                 let commands = createCommandSequence(blocksStack)
