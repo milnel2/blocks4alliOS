@@ -211,8 +211,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         //change for beginning
         var announcement = ""
-		//MARK: dropIndex
-		//        dropIndex = index
         if(index != 0){
             let myBlock = blocksStack[index-1]
             announcement = blocks[0].name + " placed after " + myBlock.name
