@@ -21,8 +21,6 @@ protocol BlockSelectionDelegate{
 
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
-    //@IBOutlet weak var voicePicker: UIPickerView!
-    
     @IBOutlet weak var blocksProgram: UICollectionView!
     @IBOutlet weak var playTrashToggleButton: UIButton!
     
