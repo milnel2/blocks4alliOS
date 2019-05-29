@@ -18,7 +18,7 @@ protocol BlockSelectionDelegate{
     func setParentViewController(_ myVC:UIViewController)
 }
 
-class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIPickerViewDelegate, UIPickerViewDataSource, BlockSelectionDelegate {
+class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
     //@IBOutlet weak var voicePicker: UIPickerView!
     
@@ -31,16 +31,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     let collectionReuseIdentifier = "BlockCell"
     var containerViewController: UINavigationController?
     
-    //VoicePicker
-    var arrVoiceLanguages: [Dictionary<String, String?>] = []
-    var selectedVoiceLanguage = 0
-    var selectedVoiceIdentifier: String? = nil
-    
     var blockWidth = 150
     var blockHeight = 150
     let blockSpacing = 1
     
-    var dragOn = false
+    
+    //MARK: Delete Drag and Drop dragOn
+//    var dragOn = false
     
     
     @IBOutlet weak var menuButton: UIButton!
@@ -55,10 +52,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         super.viewDidLoad()
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
-        
-        //prepareVoiceList()
-        //voicePicker.delegate = self
-        //voicePicker.dataSource = self
+
         
         //TOGGLE this off if you want to be able to access menu and spatial buttons with VO on
         /*menuButton.isAccessibilityElement = false
@@ -70,41 +64,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //NotificationCenter.default.addObserver(self, selector: #selector(self.didFinishAnnouncement(dict:)), name: NSNotification.Name.UIAccessibilityAnnouncementDidFinish, object: nil)
         // Do any additional setup after loading the view.
     }
-    
-    func prepareVoiceList() {
-        for voice in AVSpeechSynthesisVoice.speechVoices() {
-            //let voiceLanguageCode = (voice as AVSpeechSynthesisVoice).language
-            
-            let languageName = voice.name
-            let id = voice.identifier
-            
-            let dictionary = ["languageName": languageName, "languageCode": id]
-            
-            arrVoiceLanguages.append(dictionary)
-        }
-    }
-    
-    // MARK: - PickerView (If you want to include voices)
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return arrVoiceLanguages.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let voiceLanguagesDictionary = arrVoiceLanguages[row] as Dictionary<String, String?>
-        
-        return voiceLanguagesDictionary["languageName"]!
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedVoiceLanguage = row
-        selectedVoiceIdentifier = arrVoiceLanguages[selectedVoiceLanguage]["languageCode"] as? String
-    }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -188,21 +147,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         for item in myCommands{
             mySong.append(item)
         }
-        speakStringOnDelay(song: mySong)
-    }
-    
-    func speakStringOnDelay(song: String){
-        let synth = AVSpeechSynthesizer()
-        let utterance = AVSpeechUtterance(string: song)
-        if let id = selectedVoiceIdentifier{
-            utterance.voice = AVSpeechSynthesisVoice(identifier: id)
-        }else{
-            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        }
-        utterance.rate = 0.5
-        utterance.pitchMultiplier = 0.5
-        
-        synth.speak(utterance)
     }
     
     //unrolls the repeat loops in the blocks program
