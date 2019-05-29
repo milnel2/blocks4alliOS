@@ -9,17 +9,16 @@
 import UIKit
 import AudioToolbox
 
-class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class BlockView: UIView, UITextFieldDelegate {
 
     var blocks: [Block]
     var blockWidth = 150
     var blockHeight = 150
     let blockSpacing = 1
-    var picker: UIPickerView?
-    var pickerData: [String] = []
-    var pickerDataAccessibilityLabels: [String] = []
-    var pickedItem: UITextField?
-    
+	
+	var pickedItem: UITextField?
+	
+	//MARK: - init Block View
     init (frame : CGRect, block : [Block], myBlockWidth: Int, myBlockHeight: Int) {
         self.blocks = block
         super.init(frame : frame)
@@ -27,7 +26,9 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
         blockHeight = myBlockHeight
         self.addSubview(simpleView(FromBlock: block))
     }
-    
+	
+	
+	//MARK: - Element Focus
     override func accessibilityElementDidBecomeFocused() {
         print(blocks[0].name + " is focused")
         //AudioServicesPlaySystemSound(1024)
@@ -52,8 +53,8 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
         return newImage
     }
 
+	//MARK:- simpleView
     func simpleView(FromBlock block: [Block]) -> UIView {
-        
         let block = block[0]
         let myViewWidth = blockWidth
         let myViewHeight = blockHeight
@@ -76,86 +77,9 @@ class BlockView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFie
             myView.addSubview(myLabel)
         }
         if block.editable {
-            //self.pickerData = ["2x","3x", "4x"]
-            //self.pickerDataAccessibilityLabels = ["2 times", "3 times", "4 times"]
-            self.pickerData = block.options
-            self.pickerDataAccessibilityLabels = block.optionsLabels
-            /*
-            let myTextFrame = CGRect(x: 60, y: 0, width: 50, height: 100)
-            pickedItem = UITextField(frame: myTextFrame)
-            pickedItem?.text = pickerData[0]
-            pickedItem?.textColor = UIColor.white
-            pickedItem?.font = UIFont.boldSystemFont(ofSize: 25)
-            //pickedItem?.font = UIFont.systemFont(ofSize: 25)
-            pickedItem?.delegate = self
-            myView.addSubview(pickedItem!)
-            */
             let myFrame = CGRect(x: blockWidth/2, y: 0, width: blockWidth/2, height: blockHeight/2)
             //let myFrame = CGRect(x: blockWidth/2, y: 0, width: 40, height: 40)
-            self.picker = UIPickerView.init(frame: myFrame)
-            self.picker?.isAccessibilityElement = true
-            //self.picker?.
-            self.picker?.delegate = self
-            self.picker?.dataSource = self
-            //self.picker?.backgroundColor = block.color
-            //self.picker?.isHidden = true
-            self.picker?.selectRow(block.pickedOption, inComponent: 0, animated: false)
-            
-            myView.addSubview(picker!)
-            
-            //self.pickerData = block.options
-        }
+			}
         return myView
     }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var label = view
-        let myFrame = CGRect(x: CGFloat(blockWidth/2), y: 0, width: pickerView.rowSize(forComponent: component).width, height: pickerView.rowSize(forComponent: component).height)
-        if !(label != nil){
-            label = UILabel.init(frame: myFrame)
-            if let myLabel = label as? UILabel{
-                myLabel.textAlignment = NSTextAlignment.right
-                myLabel.textColor = UIColor.white
-                myLabel.backgroundColor = blocks[0].color
-                myLabel.text = pickerData[row]
-                myLabel.font = UIFont.boldSystemFont(ofSize: 35)
-                myLabel.accessibilityLabel = pickerDataAccessibilityLabels[row]
-                return myLabel
-            }
-        }
-        return label!
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        blocks[0].pickedOption = row
-        
-        /*if let selectedLabel = pickerView.view(forRow: row, forComponent: component) as? UILabel{
-            selectedLabel.backgroundColor = UIColor.white
-        }*/
-
-        //pickedItem?.text = pickerData[row]
-        //self.picker?.isHidden = true
-    }
-    /*
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        self.picker?.isHidden = false
-        return false
-    }
-    */
-    
-    
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
-    }
-    
 }

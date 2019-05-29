@@ -17,7 +17,7 @@ var robotManager:WWRobotManager? = nil
 var robots = [WWRobot]()
 
 class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
-
+	//MARK: - viewDidLoad function
     override func viewDidLoad() {
         super.viewDidLoad()
         if(robotManager == nil){

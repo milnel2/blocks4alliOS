@@ -10,7 +10,7 @@ import UIKit
 
 class Block {
     
-    //MARK: Properties
+    //MARK: - Properties
     
     var name: String
     var color: UIColor
@@ -25,7 +25,7 @@ class Block {
     var type: String = "Operation"
     var acceptedTypes: [String] = []
     
-    //MARK: Initialization
+    //MARK: - Initialization
     
     init?(name: String, color: UIColor, double: Bool, editable: Bool, imageName: String? = nil, options: [String] = [], pickedOption: Int = 0, optionsLabels: [String] = [], addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
         

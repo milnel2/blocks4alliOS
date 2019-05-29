@@ -15,7 +15,8 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var blockSizeSlider: UISlider!
     @IBOutlet weak var sampleBlock: UIView!
     
-    override func viewDidLoad() {
+	//MARK: - viewDidLoad function
+	override func viewDidLoad() {
         super.viewDidLoad()
         blockSize = Int(blockSizeSlider.value)
         sampleBlock.frame = CGRect(x: Int(sampleBlock.frame.midX) - blockSize/2, y: Int(sampleBlock.frame.maxY) - blockSize, width: blockSize, height: blockSize)

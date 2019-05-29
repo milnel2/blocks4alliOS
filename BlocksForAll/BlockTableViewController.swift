@@ -22,7 +22,7 @@ class BlockTableViewController: UITableViewController {
     var blockWidth = 150
     let blockSpacing = 10
     
-
+	//MARK: - viewDidLoad function
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.title = "Toolbox"
