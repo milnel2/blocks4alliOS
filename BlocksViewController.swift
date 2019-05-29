@@ -12,6 +12,7 @@ import AVFoundation
 //collection of blocks that are part of the program
 var blocksStack = [Block]()
 
+//MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
     func setSelectedBlocks(_ blocks:[Block])
     func unsetBlocks()
@@ -39,7 +40,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     @IBOutlet weak var menuButton: UIButton!
     
-    // MARK: - View Set Up
+    // MARK: - - View Set Up
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +64,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Block Selection Delegate
+    // MARK: - - Block Selection Delegate functions
     func unsetBlocks() {
         movingBlocks = false
         blocksBeingMoved.removeAll()
@@ -82,7 +83,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     
-    /*
+	
+	//MARK: - Trash Button Play Button
+	/*
      Changes the play button back and forth from trash to play
      */
     func changeButton(){
@@ -134,14 +137,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
     }
-    
+	
+
     func playWithoutRobot(_ myCommands:[String]){
         var mySong = ""
         for item in myCommands{
             mySong.append(item)
         }
     }
-    
+	
+	
     //unrolls the repeat loops in the blocks program
     func unrollLoop(times: Int, blocks:[Block])->[String]{
         var commands = [String]()
@@ -207,7 +212,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return commands
     }
     
-    // MARK: Blocks Methods
+    // MARK: - Blocks Methods
     
     func addBlocks(_ blocks:[Block], at index:Int){
         
@@ -259,7 +264,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return myView
     }
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -553,7 +558,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func addGestureRecognizer(_ cell:UICollectionViewCell){
     }
 
-    // MARK: - Navigation
+    // MARK: - - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
