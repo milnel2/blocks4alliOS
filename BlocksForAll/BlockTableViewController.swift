@@ -9,6 +9,7 @@
 import UIKit
 
 class BlockTableViewController: UITableViewController {
+    /*Toolbox menu that displays the blocks of a certain type*/
     
     //MARK: Properties
     var blocks = [Block]()
@@ -144,6 +145,7 @@ class BlockTableViewController: UITableViewController {
     
     //TODO: this is really convoluted, probably a better way of doing this
     private func createBlocksArray(){
+        /*Creating the toolbox by reading in from the .plist file */
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
             if let blockArray = blockType.object(forKey: "Blocks") as? NSArray{
                 for item in blockArray{

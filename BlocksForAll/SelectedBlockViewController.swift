@@ -9,6 +9,8 @@
 import UIKit
 
 class SelectedBlockViewController: UIViewController {
+    /*View controller that displays the currently selected block (selected either from workspace or
+     toolbox, which you are moving */
     
     var blocks: [Block]?
     var blockWidth = 100

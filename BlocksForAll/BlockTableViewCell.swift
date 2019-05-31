@@ -10,6 +10,7 @@ import UIKit
 import AudioToolbox
 
 class BlockTableViewCell: UITableViewCell {
+    /*TableViewCell that contains the blocks in the Toolbox*/
     
     //MARK: Properties
     @IBOutlet weak var blockView: UIView!

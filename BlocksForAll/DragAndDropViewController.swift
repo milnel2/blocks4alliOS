@@ -36,7 +36,7 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
     func ovumEntered(_ ovum: OBOvum!, in view: UIView!, atLocation location: CGPoint) -> OBDropAction {
         //UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString("Entered View", comment: ""))
         movingBlocks = true
-        changeButton()
+        changePlayTrashButton()
         return OBDropAction.copy
     }
     
@@ -63,7 +63,7 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
             }
             blocksBeingMoved.removeAll()
             movingBlocks = false
-            changeButton()
+            changePlayTrashButton()
            }else{ //probably should be error
             print("Not [Block]")
         }
@@ -136,7 +136,7 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
             }
             blocksBeingMoved = ovum.dataObject as! [Block]
             movingBlocks = true
-            changeButton()
+            changePlayTrashButton()
         }else{ //probably should throw an error
             ovum.dataObject = sourceView.backgroundColor
         }

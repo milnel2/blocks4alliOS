@@ -9,6 +9,7 @@
 import UIKit
 
 class BlocksTypeTableViewController: UITableViewController {
+    /*Toolbox menu that allows you to select the block type*/
     
     var blockDict = NSArray()
     var blockTypes = [Block]()

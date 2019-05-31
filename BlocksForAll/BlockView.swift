@@ -10,6 +10,7 @@ import UIKit
 import AudioToolbox
 
 class BlockView: UIView, UITextFieldDelegate {
+    /*Given a block, creates the view that should be shown*/
 
     var blocks: [Block]
     var blockWidth = 150

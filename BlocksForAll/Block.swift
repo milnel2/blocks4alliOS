@@ -9,21 +9,27 @@
 import UIKit
 
 class Block {
+    /*Block model that has all the properties describing the block*/
     
     //MARK: - Properties
     
     var name: String
     var color: UIColor
-    var double: Bool //true if needs both beginning and end block like repeat
-    var counterpart: Block?
-    var editable: Bool //true if has options
+    var double: Bool //true if needs both beginning and end block like repeat, if
+    var counterpart: Block? //start block for end block and end block for start block for double blocks
+    
+    //MARK: Delete these (I think), maybe check through BlocksMenu.plist to make sure they aren't being used in any block
+    var editable: Bool
     var options: [String] = []
     var optionsLabels: [String] = []
     var pickedOption: Int = 0
+    
     var imageName: String?
-    var addedBlocks: [Block] = []
-    var type: String = "Operation"
-    var acceptedTypes: [String] = []
+    
+    //For control blocks (if and repeat blocks)
+    var addedBlocks: [Block] = [] //blocks that modify the current block (e.g. two times for a repeat block)
+    var type: String = "Operation" //types: Operations, Booleans, Numbers
+    var acceptedTypes: [String] = [] //list of types that can be added to current block (e.g. numbers for a repeat block)
     
     //MARK: - Initialization
     
@@ -52,6 +58,7 @@ class Block {
     }
     
     func copy() -> Block{
+        /*Used when selecting a block from the toolbox and copying into workspace*/
         let newBlock = Block.init(name: self.name, color: self.color, double: self.double, editable: self.editable, imageName: self.imageName, options: self.options, pickedOption: self.pickedOption, optionsLabels: self.optionsLabels, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes)
         return newBlock!
     }

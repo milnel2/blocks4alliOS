@@ -14,6 +14,7 @@ var blocksStack = [Block]()
 
 //MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
+    /*Used to send information to SelectedBlockViewController when moving blocks in workspace*/
     func setSelectedBlocks(_ blocks:[Block])
     func unsetBlocks()
     func setParentViewController(_ myVC:UIViewController)
@@ -21,14 +22,17 @@ protocol BlockSelectionDelegate{
 
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
-    @IBOutlet weak var blocksProgram: UICollectionView!
+    @IBOutlet weak var blocksProgram: UICollectionView! //View on the bottom of the screen that shows blocks in worksapce
     @IBOutlet weak var playTrashToggleButton: UIButton!
     
+    //MARK: delete this and all references
     var spatialLayout = true //use spatial or audio layout for blocks
-    var blocksBeingMoved = [Block]()
-    var movingBlocks = false    //currently moving blocks in the workspace
-    let collectionReuseIdentifier = "BlockCell"
-    var containerViewController: UINavigationController?
+    
+    var blocksBeingMoved = [Block]() /* List of blocks that are currently being moved (moving repeat and if blocks
+    also move the blocks nested inside */
+    var movingBlocks = false    //True if currently moving blocks in the workspace
+    
+    var containerViewController: UINavigationController? //Top-level controller for toolbox view controllers
     
     // FIXME: the blockWidth and blockHeight are not the same as the variable blockSize (= 100) - discuss
     var blockWidth = 150
@@ -64,18 +68,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     // MARK: - - Block Selection Delegate functions
     func unsetBlocks() {
+        /*Called after Blocks have been placed in final destination, so unset everything*/
         movingBlocks = false
         blocksBeingMoved.removeAll()
-        changeButton()
+        changePlayTrashButton() //Toggling the play/trash button
     }
     
     func setSelectedBlocks(_ blocks: [Block]) {
+        /*Called when moving moving blocks*/
         movingBlocks = true
         blocksBeingMoved = blocks
         blocksProgram.reloadData()
-        changeButton()
+        changePlayTrashButton()
     }
     
+    //TODO: LAUREN, figure out what this code is for
     func setParentViewController(_ myVC: UIViewController) {
         containerViewController = myVC as? UINavigationController
     }
@@ -86,7 +93,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 	/*
      Changes the play button back and forth from trash to play
      */
-    func changeButton(){
+    func changePlayTrashButton(){
         if movingBlocks{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Place in Trash"
@@ -102,7 +109,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBAction func playButtonClicked(_ sender: Any) {
         if(movingBlocks){
             //trash
-            changeButton()
+            changePlayTrashButton()
             let announcement = blocksBeingMoved[0].name + " placed in trash."
             playTrashToggleButton.accessibilityLabel = announcement
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
@@ -122,7 +129,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 performSegue(withIdentifier: "AddRobotSegue", sender: nil)
                 
             }else if(blocksStack.isEmpty){
-                changeButton()
+                changePlayTrashButton()
                 let announcement = "Your robot has nothing to do!  Add some blocks to your workspace. "
                 playTrashToggleButton.accessibilityLabel = announcement
                 
@@ -134,7 +141,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
 	
-
+    //MARK: delete this method
     func playWithoutRobot(_ myCommands:[String]){
         var mySong = ""
         for item in myCommands{
@@ -143,9 +150,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
 	
 	
-    //unrolls the repeat loops in the blocks program
+    //MARK: Complier methods, converts from Blocks4All to robot code
+    //MARK: Clean this up!!
+    //Unrolls the repeat loops in the blocks program: converts to a list of commands to run
     func unrollLoop(times: Int, blocks:[Block])->[String]{
-        var commands = [String]()
+        var commands = [String]() //list of commands so far
         for _ in 0..<times{
             var i = 0
             while i < blocks.count{
@@ -199,7 +208,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return commands
     }
     
-    //turns the blocks into commands
+    //turns the blocks into robot commands
     func createCommandSequence(_ blocks: [Block])->[String]{
         let commands = unrollLoop(times: 1, blocks: blocks)
         for c in commands{
@@ -211,6 +220,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // MARK: - Blocks Methods
     
     func addBlocks(_ blocks:[Block], at index:Int){
+        /*Called after selecting a place to add a block to the workspace, makes accessibility announcements
+         and place blocks in the blockProgram stack, etc...*/
         
         //change for beginning
         var announcement = ""
@@ -242,6 +253,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     func createViewRepresentation(FromBlocks blocksRep: [Block]) -> UIView {
+        /*Given a list of blocks, creates the views that will be displayed in the blocksProgram*/
         let myViewWidth = (blockWidth + blockSpacing)*blocksRep.count
         let myViewHeight = blockHeight
         let myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
@@ -277,7 +289,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         var size = CGSize(width: CGFloat(blockWidth), height: collectionView.frame.height)
         print(indexPath)
         if indexPath.row == blocksStack.count {
-            // expands the editor space to allow more blocks to be added
+            // expands the size of the last cell in the collectionView, so it's easier to add a block at the end
+            // with VoiceOver on
             if blocksStack.count < 8 {
                 // TODO: eventually simplify this section without blocksStack.count < 8
                 // blocksStack.count < 8 means that the orignal editor only fit up to 8 blocks of a fixed size horizontally, but we may want to change that too
@@ -305,6 +318,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         var movementInfo = ". Double tap to move block."
 
         if(!blocksBeingMoved.isEmpty){
+            //Moving blocks, so switch labels to indicated where blocks can be placed
             if(interface == 0){
                 accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before "
             }else{
@@ -313,6 +327,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             movementInfo = ". Double tap to add " + blocksBeingMoved[0].name + " block here"
             
             if(blocksBeingMoved[0].type == "Boolean" || blocksBeingMoved[0].type == "Number"){
+                //if block being moved is a boolean or number, announces information about where it can and cannot go
                 var acceptsNumbers = false
                 var acceptsBooleans = false
                 for type in block.acceptedTypes{
@@ -333,7 +348,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             }
         }
-         
+         /*
         if(!spatial){
             for b in blocksToAdd{
                 if b.name == "If"{
@@ -343,7 +358,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 nestingInfo += " inside " + b.name
             }
-        }
+        }*/
         if(interface == 1){
             movementInfo = ". tap and hold to move block."
         }
@@ -355,9 +370,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         myLabel.accessibilityHint = accessibilityHint
     }
     
-    /* Displays the actual collection of blocks (i.e. the program that is being created with the blocks)
+    /* CollectionView contains the actual collection of blocks (i.e. the program that is being created with the blocks)
+      This method creates and returns the cell at a given index
      */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let collectionReuseIdentifier = "BlockCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath)
         // Configure the cell
         for myView in cell.subviews{
@@ -365,6 +382,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         cell.isAccessibilityElement = false
         if indexPath.row == blocksStack.count {
+            // The last cell in the collectionView is an empty cell so you can place blocks at the end
             if !blocksBeingMoved.isEmpty{
                 cell.isAccessibilityElement = true
                 
@@ -384,7 +402,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             let block = blocksStack[indexPath.row]
             var blocksToAdd = [Block]()
             
-            //check if block is nested (or nested multiple times)
+            //check if block is nested (or nested multiple times) and adds in "inside" repeat/if blocks
             for i in 0...indexPath.row {
                 if blocksStack[i].double {
                     if(!blocksStack[i].name.contains("End")){
@@ -406,12 +424,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 cell.addSubview(myView)
                 count += 1
             }
-            //let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
-            
-            //var movementInfo = "Double tap to move block."
-            
-            
-            //TODO: I added this, add it to !spatial as well
+
             if block.name == "If" || block.name == "Repeat" {
                 if block.addedBlocks.isEmpty{
                     //draw false block
@@ -433,6 +446,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(myConditionLabel)
                 }
             }
+            
             //add main label
             
             let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
@@ -456,6 +470,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        /*Called when a block is selected in the collectionView, so either selects block to move or places blocks*/
         if(movingBlocks){
             if blocksBeingMoved[0].type == "Boolean" || blocksBeingMoved[0].type == "Number"{
                 //TODO: can only be added above conditional
@@ -546,10 +561,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let mySelectedBlockVC = SelectedBlockViewController()
                 mySelectedBlockVC.blocks = blocksBeingMoved
                 containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
-                changeButton()
+                changePlayTrashButton()
             }
         }
     }
+    //MARK: I think this can be deleted
     // For Subclass
     func addGestureRecognizer(_ cell:UICollectionViewCell){
     }
