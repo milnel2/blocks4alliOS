@@ -25,8 +25,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var blocksProgram: UICollectionView! //View on the bottom of the screen that shows blocks in worksapce
     @IBOutlet weak var playTrashToggleButton: UIButton!
     
-    //MARK: delete this and all references
-    var spatialLayout = true //use spatial or audio layout for blocks
+
     
     var blocksBeingMoved = [Block]() /* List of blocks that are currently being moved (moving repeat and if blocks
     also move the blocks nested inside */
@@ -135,17 +134,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
             }else{
                 let commands = createCommandSequence(blocksStack)
-                //playWithoutRobot(commands)
                 play(commands)
             }
-        }
-    }
-	
-    //MARK: delete this method
-    func playWithoutRobot(_ myCommands:[String]){
-        var mySong = ""
-        for item in myCommands{
-            mySong.append(item)
         }
     }
 	
@@ -232,7 +222,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             announcement = blocks[0].name + " placed at beginning"
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+            self.makeAnnouncement(announcement)
         })
         
         //add a completion block here
@@ -313,8 +303,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //is blocksStack.count always correct?
         let blockPlacementInfo = ". Workspace block " + String(number) + " of " + String(blocksStack.count)
         var accessibilityHint = ""
-        var spearCon = ""
-        var nestingInfo  = ""
         var movementInfo = ". Double tap to move block."
 
         if(!blocksBeingMoved.isEmpty){
@@ -348,22 +336,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             }
         }
-         /*
-        if(!spatial){
-            for b in blocksToAdd{
-                if b.name == "If"{
-                    spearCon += " if "
-                }else{
-                    spearCon += " rep "
-                }
-                nestingInfo += " inside " + b.name
-            }
-        }*/
+      
         if(interface == 1){
             movementInfo = ". tap and hold to move block."
         }
         
-        accessibilityLabel += spearCon + block.name + blockPlacementInfo + nestingInfo
+        accessibilityLabel += block.name + blockPlacementInfo
         accessibilityHint += movementInfo
         
         myLabel.accessibilityLabel = accessibilityLabel
@@ -494,7 +472,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         let condition = myBlock.addedBlocks[0].name
                         let announcement = condition + "placed in if statement"
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-                            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                            self.makeAnnouncement(announcement)
                         })
                         blocksProgram.reloadData()
                         unsetBlocks()
@@ -506,7 +484,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         let condition = myBlock.addedBlocks[0].name
                         let announcement = condition + "placed in repeat statement"
                         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-                        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                            self.makeAnnouncement(announcement)
                         })
                         blocksProgram.reloadData()
                         unsetBlocks()
@@ -564,10 +542,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 changePlayTrashButton()
             }
         }
-    }
-    //MARK: I think this can be deleted
-    // For Subclass
-    func addGestureRecognizer(_ cell:UICollectionViewCell){
     }
 
     // MARK: - - Navigation
