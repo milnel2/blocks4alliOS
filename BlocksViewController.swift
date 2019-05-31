@@ -25,9 +25,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var blocksProgram: UICollectionView! //View on the bottom of the screen that shows blocks in worksapce
     @IBOutlet weak var playTrashToggleButton: UIButton!
     
-    //MARK: delete this and all references
-    var spatialLayout = true //use spatial or audio layout for blocks
-    
     var blocksBeingMoved = [Block]() /* List of blocks that are currently being moved (moving repeat and if blocks
     also move the blocks nested inside */
     var movingBlocks = false    //True if currently moving blocks in the workspace
@@ -48,13 +45,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         super.viewDidLoad()
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
-
-        
-        //TOGGLE this off if you want to be able to access menu and spatial buttons with VO on
-        /*menuButton.isAccessibilityElement = false
-        menuButton.accessibilityElementsHidden = true
-        spatialButton.isAccessibilityElement = false
-        spatialButton.accessibilityElementsHidden = true*/
         
         //#selector(self.addBlockButton(_sender:))
         //NotificationCenter.default.addObserver(self, selector: #selector(self.didFinishAnnouncement(dict:)), name: NSNotification.Name.UIAccessibilityAnnouncementDidFinish, object: nil)
@@ -135,20 +125,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
             }else{
                 let commands = createCommandSequence(blocksStack)
-                //playWithoutRobot(commands)
                 play(commands)
             }
         }
     }
-	
-    //MARK: delete this method
-    func playWithoutRobot(_ myCommands:[String]){
-        var mySong = ""
-        for item in myCommands{
-            mySong.append(item)
-        }
-    }
-	
 	
     //MARK: Complier methods, converts from Blocks4All to robot code
     //MARK: Clean this up!!
