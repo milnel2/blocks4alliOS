@@ -18,6 +18,8 @@ class BlocksTypeTableViewController: UITableViewController {
     //used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
 
+	
+	//MARK: - viewDidLoad function
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Toolbox"

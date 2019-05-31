@@ -16,6 +16,7 @@ class SelectedBlockViewController: UIViewController {
     let blockSpacing = 1
     var delegate: BlockSelectionDelegate?
 
+	//MARK: - viewDidLoad function
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"

@@ -12,15 +12,14 @@ import AVFoundation
 //collection of blocks that are part of the program
 var blocksStack = [Block]()
 
+//MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
     func setSelectedBlocks(_ blocks:[Block])
     func unsetBlocks()
     func setParentViewController(_ myVC:UIViewController)
 }
 
-class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIPickerViewDelegate, UIPickerViewDataSource, BlockSelectionDelegate {
-    
-    //@IBOutlet weak var voicePicker: UIPickerView!
+class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
     @IBOutlet weak var blocksProgram: UICollectionView!
     @IBOutlet weak var playTrashToggleButton: UIButton!
@@ -31,34 +30,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     let collectionReuseIdentifier = "BlockCell"
     var containerViewController: UINavigationController?
     
-    //VoicePicker
-    var arrVoiceLanguages: [Dictionary<String, String?>] = []
-    var selectedVoiceLanguage = 0
-    var selectedVoiceIdentifier: String? = nil
-    
+    // FIXME: the blockWidth and blockHeight are not the same as the variable blockSize (= 100) - discuss
     var blockWidth = 150
     var blockHeight = 150
     let blockSpacing = 1
     
-    var dragOn = false
-    
-    
+
     @IBOutlet weak var menuButton: UIButton!
     
-    //TODO: probably want to get rid of this
-    var dropIndex = 0
-    
-    
-    // MARK: - View Set Up
+    // MARK: - - View Set Up
     
     override func viewDidLoad() {
         super.viewDidLoad()
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
-        
-        //prepareVoiceList()
-        //voicePicker.delegate = self
-        //voicePicker.dataSource = self
+
         
         //TOGGLE this off if you want to be able to access menu and spatial buttons with VO on
         /*menuButton.isAccessibilityElement = false
@@ -70,48 +56,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //NotificationCenter.default.addObserver(self, selector: #selector(self.didFinishAnnouncement(dict:)), name: NSNotification.Name.UIAccessibilityAnnouncementDidFinish, object: nil)
         // Do any additional setup after loading the view.
     }
-    
-    func prepareVoiceList() {
-        for voice in AVSpeechSynthesisVoice.speechVoices() {
-            //let voiceLanguageCode = (voice as AVSpeechSynthesisVoice).language
-            
-            let languageName = voice.name
-            let id = voice.identifier
-            
-            let dictionary = ["languageName": languageName, "languageCode": id]
-            
-            arrVoiceLanguages.append(dictionary)
-        }
-    }
-    
-    // MARK: - PickerView (If you want to include voices)
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return arrVoiceLanguages.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let voiceLanguagesDictionary = arrVoiceLanguages[row] as Dictionary<String, String?>
-        
-        return voiceLanguagesDictionary["languageName"]!
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedVoiceLanguage = row
-        selectedVoiceIdentifier = arrVoiceLanguages[selectedVoiceLanguage]["languageCode"] as? String
-    }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Block Selection Delegate
+    // MARK: - - Block Selection Delegate functions
     func unsetBlocks() {
         movingBlocks = false
         blocksBeingMoved.removeAll()
@@ -130,7 +81,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     
-    /*
+	
+	//MARK: - Trash Button Play Button
+	/*
      Changes the play button back and forth from trash to play
      */
     func changeButton(){
@@ -149,25 +102,30 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBAction func playButtonClicked(_ sender: Any) {
         if(movingBlocks){
             //trash
+            changeButton()
             let announcement = blocksBeingMoved[0].name + " placed in trash."
-            //blocksBeingMoved.removeAll()
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+            playTrashToggleButton.accessibilityLabel = announcement
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                self.containerViewController?.popViewController(animated: false)
+            })
             blocksProgram.reloadData()
-            //changeButton()
-            containerViewController?.popViewController(animated: false)
-            unsetBlocks()
+            movingBlocks = false
+            blocksBeingMoved.removeAll()
+            print("put in trash")
         }else{
             //play
             if(!connectedRobots()){
                 //no robots
                 let announcement = "Connect to the dash robot. "
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString(announcement, comment: ""))
                 print("No robots")
                 performSegue(withIdentifier: "AddRobotSegue", sender: nil)
                 
             }else if(blocksStack.isEmpty){
+                changeButton()
                 let announcement = "Your robot has nothing to do!  Add some blocks to your workspace. "
-                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                playTrashToggleButton.accessibilityLabel = announcement
+                
             }else{
                 let commands = createCommandSequence(blocksStack)
                 //playWithoutRobot(commands)
@@ -175,29 +133,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
     }
-    
+	
+
     func playWithoutRobot(_ myCommands:[String]){
         var mySong = ""
         for item in myCommands{
             mySong.append(item)
         }
-        speakStringOnDelay(song: mySong)
     }
-    
-    func speakStringOnDelay(song: String){
-        let synth = AVSpeechSynthesizer()
-        let utterance = AVSpeechUtterance(string: song)
-        if let id = selectedVoiceIdentifier{
-            utterance.voice = AVSpeechSynthesisVoice(identifier: id)
-        }else{
-            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        }
-        utterance.rate = 0.5
-        utterance.pitchMultiplier = 0.5
-        
-        synth.speak(utterance)
-    }
-    
+	
+	
     //unrolls the repeat loops in the blocks program
     func unrollLoop(times: Int, blocks:[Block])->[String]{
         var commands = [String]()
@@ -263,20 +208,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return commands
     }
     
-    // MARK: Blocks Methods
+    // MARK: - Blocks Methods
     
     func addBlocks(_ blocks:[Block], at index:Int){
         
         //change for beginning
         var announcement = ""
-        dropIndex = index
         if(index != 0){
             let myBlock = blocksStack[index-1]
             announcement = blocks[0].name + " placed after " + myBlock.name
         }else{
             announcement = blocks[0].name + " placed at beginning"
         }
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+        })
+        
         //add a completion block here
         if(blocks[0].double){
             blocksStack.insert(contentsOf: blocks, at: index)
@@ -313,7 +260,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return myView
     }
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -328,19 +275,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: CGFloat(blockWidth), height: collectionView.frame.height)
-        
+        print(indexPath)
         if indexPath.row == blocksStack.count {
+            // expands the editor space to allow more blocks to be added
             if blocksStack.count < 8 {
-                //fill up the rest of the screen
-                let myWidth = collectionView.frame.width - CGFloat(blocksStack.count) * CGFloat(blockWidth)
+                // TODO: eventually simplify this section without blocksStack.count < 8
+                // blocksStack.count < 8 means that the orignal editor only fit up to 8 blocks of a fixed size horizontally, but we may want to change that too
+                let myWidth = collectionView.frame.width
                 size = CGSize(width: myWidth, height: collectionView.frame.height)
             }else{
-                //just normal size block at the end
                 size = CGSize(width: CGFloat(blockWidth), height: collectionView.frame.height)
             }
         }
         return size
     }
+
     
     /* adds in label for voiceOver
      */
@@ -529,7 +478,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         containerViewController?.popViewController(animated: false)
                         let condition = myBlock.addedBlocks[0].name
                         let announcement = condition + "placed in if statement"
-                        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                        })
                         blocksProgram.reloadData()
                         unsetBlocks()
                     }else if blocksBeingMoved[0].type == "Number" && acceptsNumbers{
@@ -539,18 +490,25 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         containerViewController?.popViewController(animated: false)
                         let condition = myBlock.addedBlocks[0].name
                         let announcement = condition + "placed in repeat statement"
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
                         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+                        })
                         blocksProgram.reloadData()
                         unsetBlocks()
                     }else{
                         //say you can't add it here
                         print("you can't add it here")
-                        makeAnnouncement("you can't add it here")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                            self.makeAnnouncement("you can't add it here")
+                        })
+                        
                     }
                 }else{
                     //say you can't add it here
                     print("you can't add it here")
-                    makeAnnouncement("you can't add it here")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+                        self.makeAnnouncement("you can't add it here")
+                    })
                 }
             }else{
                 addBlocks(blocksBeingMoved, at: indexPath.row)
@@ -596,7 +554,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func addGestureRecognizer(_ cell:UICollectionViewCell){
     }
 
-    // MARK: - Navigation
+    // MARK: - - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
