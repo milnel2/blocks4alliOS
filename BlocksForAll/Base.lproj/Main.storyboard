@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bed-2B-QED">
-                                <rect key="frame" x="158" y="374" width="286" height="101"/>
+                                <rect key="frame" x="133" y="341" width="417" height="173"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Instructions">
@@ -56,7 +56,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Kc-2pq">
-                                <rect key="frame" x="158" y="268" width="286" height="98"/>
+                                <rect key="frame" x="133" y="168" width="417" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Get Started">
@@ -68,7 +68,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RT2-NS-4g9">
-                                <rect key="frame" x="158" y="483" width="286" height="98"/>
+                                <rect key="frame" x="133" y="522" width="417" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Add Robots">
@@ -90,7 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVo-bF-iCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1994" y="-489"/>
+            <point key="canvasLocation" x="-1994.143484626647" y="-489.25781249999994"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="EBT-KX-h8k">
@@ -116,42 +116,20 @@
                                     <segue destination="YEE-PZ-SjD" kind="show" id="KBE-C8-Ew2"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZe-3b-W7O">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="justified" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZe-3b-W7O">
                                 <rect key="frame" x="44" y="129" width="924" height="617"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <attributedString key="attributedText">
-                                    <fragment>
-                                        <string key="content">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control. 
+                                <mutableString key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control. 
 
 In order to use Blocks4All, you must have a Dash or Dot robot from Wonder Workshop. 
 
 To get started, select "Get Started" from the Main Menu. In the "Get Started" page, first select a category and then select a block (command) from the "toolbox" on the left side of the screen. Finally select where you would like the block to go in the "workspace" in the middle of the screen.
-</string>
-                                        <attributes>
-                                            <font key="NSFont" size="22" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacing="1" paragraphSpacingBefore="1" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                        <attributes>
-                                            <font key="NSFont" size="22" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacing="1" paragraphSpacingBefore="1" firstLineHeadIndent="10" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">To have the robot play the commands, press the play button in the lower right side of the screen. If no robot is selected, you will be taken to a menu of detected robots. Select the robot you want and the robot will play the commands. 
 
-All the commands are single blocks, except for the ones in the control category. There are two main control blocks: "repeat" and "if" blocks and two types of modifier blocks: numbers and conditions. "Repeat" blocks can be modified with any of the number blocks and will cause any blocks located inside the "repeat" blocks (between the "repeat" and the "end repeat" blocks) to be repeated that number of times. "If" blocks can be modified with conditions (statements that can be evaluated as either true or false) and will cause any blocks located inside the "if" blocks (between the "if" and "end if" blocks to only be played if the "if" block evaluates to true.  To modify a control block, you first place it in the workspace, select a modifier from the toolbox, and then select the block you wish it to modify in the workspace.</string>
-                                        <attributes>
-                                            <font key="NSFont" size="22" name=".AppleSystemUIFont"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacing="1" paragraphSpacingBefore="1" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+To have the robot play the commands, press the play button in the lower right side of the screen. If no robot is selected, you will be taken to a menu of detected robots. Select the robot you want and the robot will play the commands. 
+
+All the commands are single blocks, except for the ones in the control category. There are two main control blocks: "repeat" and "if" blocks and two types of modifier blocks: numbers and conditions. "Repeat" blocks can be modified with any of the number blocks and will cause any blocks located inside the "repeat" blocks (between the "repeat" and the "end repeat" blocks) to be repeated that number of times. "If" blocks can be modified with conditions (statements that can be evaluated as either true or false) and will cause any blocks located inside the "if" blocks (between the "if" and "end if" blocks to only be played if the "if" block evaluates to true.  To modify a control block, you first place it in the workspace, select a modifier from the toolbox, and then select the block you wish it to modify in the workspace.</mutableString>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
@@ -449,8 +427,8 @@ All the commands are single blocks, except for the ones in the control category.
         <image name="GreenArrow" width="649" height="586"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PDx-fD-9tY"/>
-        <segue reference="PIe-sL-Fqa"/>
-        <segue reference="s7f-fy-WFP"/>
+        <segue reference="Tjn-hR-3fo"/>
+        <segue reference="Var-Sg-Rcn"/>
+        <segue reference="KBE-C8-Ew2"/>
     </inferredMetricsTieBreakers>
 </document>
