@@ -61,7 +61,7 @@ class BlockView: UIView, UITextFieldDelegate {
         let myViewHeight = blockHeight
         let myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
         let myView = UIView(frame: myFrame)
-        myView.backgroundColor = block.color
+        myView.backgroundColor = block.color.uiColor
         if(block.imageName != nil){
             let imageName = block.imageName!
             var image = UIImage(named: imageName)

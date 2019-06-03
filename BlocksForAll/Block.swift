@@ -5,18 +5,57 @@
 //  Created by Lauren Milne on 2/28/17.
 //  Copyright © 2017 Lauren Milne. All rights reserved.
 //
-
 import UIKit
+struct Color : Codable {
+    var red : CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
+    
+    var uiColor : UIColor {
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
+    
+    init(uiColor : UIColor) {
+        uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+    }
+}
 
-class Block {
+struct Task: Codable {
+    
+    private enum CodingKeys: String, CodingKey { case content, deadline, color }
+    
+    var content: String
+    var deadline: Date
+    var color : UIColor
+    
+    init(content: String, deadline: Date, color : UIColor) {
+        self.content = content
+        self.deadline = deadline
+        self.color = color
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        content = try container.decode(String.self, forKey: .content)
+        deadline = try container.decode(Date.self, forKey: .deadline)
+        color = try container.decode(Color.self, forKey: .color).uiColor
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(content, forKey: .content)
+        try container.encode(deadline, forKey: .deadline)
+        try container.encode(Color(uiColor: color), forKey: .color)
+    }
+}
+class Block: Codable {
     /*Block model that has all the properties describing the block*/
     
     //MARK: - Properties
     
     var name: String
-    var color: UIColor
+    var color: Color
     var double: Bool //true if needs both beginning and end block like repeat, if
-    var counterpart: Block? //start block for end block and end block for start block for double blocks
+    var counterpart:Block? //start and end block counterpart for for etc.
+
     
     //MARK: Delete these (I think), maybe check through BlocksMenu.plist to make sure they aren't being used in any block
     var editable: Bool
@@ -33,7 +72,7 @@ class Block {
     
     //MARK: - Initialization
     
-    init?(name: String, color: UIColor, double: Bool, editable: Bool, imageName: String? = nil, options: [String] = [], pickedOption: Int = 0, optionsLabels: [String] = [], addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
+    init?(name: String, color: Color, double: Bool, editable: Bool, imageName: String? = nil, options: [String] = [], pickedOption: Int = 0, optionsLabels: [String] = [], addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
         
         //TODO: check that color is initialized as well
         if name.isEmpty {
@@ -63,4 +102,6 @@ class Block {
         return newBlock!
     }
 
+    
+    
 }

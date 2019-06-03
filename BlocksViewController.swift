@@ -40,7 +40,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var menuButton: UIButton!
     
     // MARK: - - View Set Up
-    
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         blocksProgram.delegate = self
@@ -396,9 +396,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             if block.name == "If" || block.name == "Repeat" {
                 if block.addedBlocks.isEmpty{
                     //draw false block
-                    var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
+                    var placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "false.png", type: "Boolean")
                     if block.name == "Repeat"{
-                        placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
+                        placeholderBlock = Block(name: "two times", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "2.png", type: "Number")
                     }
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = "False"
@@ -431,9 +431,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
         myLabel.text = block.name
         myLabel.textAlignment = .center
-        myLabel.textColor = block.color
+        myLabel.textColor = block.color.uiColor
         myLabel.numberOfLines = 0
-        myLabel.backgroundColor = block.color
+        myLabel.backgroundColor = block.color.uiColor
         return myLabel
     }
     

@@ -152,10 +152,10 @@ class BlockTableViewController: UITableViewController {
                     if let dictItem = item as? NSDictionary{
                         let name = dictItem.object(forKey: "name")
                         if let colorString = dictItem.object(forKey: "color") as? String{
-                            let color = UIColor.colorFrom(hexString: colorString)
+                            let color2 = Color.init(uiColor:UIColor.colorFrom(hexString: colorString))
                             if let double = dictItem.object(forKey: "double") as? Bool{
                                 if let editable = dictItem.object(forKey: "editable") as? Bool{
-                                    guard let block = Block(name: name as! String, color: color, double: double, editable: editable) else {
+                                    guard let block = Block(name: name as! String, color: color2 , double: double, editable: editable) else {
                                         fatalError("Unable to instantiate block")
                                     }
                                     if let imageName = dictItem.object(forKey: "imageName") as? String{

@@ -67,7 +67,7 @@ class BlocksTypeTableViewController: UITableViewController {
         cell.textLabel?.textColor = UIColor.white
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
-        cell.backgroundColor = blockType.color
+        cell.backgroundColor = blockType.color.uiColor
         //cell.bounds.height = 200
         cell.accessibilityLabel = blockType.name + " category"
         cell.accessibilityHint = "Double tap to explore blocks in this category"
@@ -84,9 +84,9 @@ class BlocksTypeTableViewController: UITableViewController {
         for item in blockDict{
             if let blockType = item as? NSDictionary{
                 let name = blockType.object(forKey: "type") as? String
-                var color = UIColor.green
+                var color = Color.init(uiColor:UIColor.green )
                 if let colorString = blockType.object(forKey: "color") as? String{
-                    color = UIColor.colorFrom(hexString: colorString)
+                    color = Color.init(uiColor: UIColor.colorFrom(hexString: colorString)) 
                 }
                 guard let block = Block(name: name!, color: color, double: false, editable: false) else {
                     fatalError("Unable to instantiate block")
