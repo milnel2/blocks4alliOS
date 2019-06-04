@@ -5,6 +5,9 @@
 //  Created by Lauren Milne on 2/28/17.
 //  Copyright © 2017 Lauren Milne. All rights reserved.
 //
+
+// The code below came from https://stackoverflow.com/questions/50928153/make-uicolor-codable
+// The function below makes a struct Color and creates a uiColor from it while conforming to the codable forms that swift allows for encoding and decoding
 import UIKit
 struct Color : Codable {
     var red : CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
@@ -18,6 +21,8 @@ struct Color : Codable {
     }
 }
 
+
+//Below is the actual encoding and decoding of the uiColor
 struct Task: Codable {
     
     private enum CodingKeys: String, CodingKey { case content, deadline, color }
@@ -46,6 +51,8 @@ struct Task: Codable {
         try container.encode(Color(uiColor: color), forKey: .color)
     }
 }
+//above code is from https://stackoverflow.com/questions/50928153/make-uicolor-codable
+
 class Block: Codable {
     /*Block model that has all the properties describing the block*/
     
