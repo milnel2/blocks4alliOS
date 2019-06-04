@@ -153,17 +153,10 @@ All the commands are single blocks, except for the ones in the control category.
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
-                                <rect key="frame" x="0.0" y="372" width="1366" height="652"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="XOJ-Tu-hH8" kind="embed" id="sot-c6-H0b"/>
-                                </connections>
-                            </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a robot from the list below. If you don't see any robots, try turning your robot off and on again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVq-QZ-GAv">
-                                <rect key="frame" x="173" y="20" width="831" height="88"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a robot from the list below. If you don't see any robots, try turning your robot off and on again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVq-QZ-GAv">
+                                <rect key="frame" x="173" y="20" width="831" height="245"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -179,20 +172,27 @@ All the commands are single blocks, except for the ones in the control category.
                                     <segue destination="uoc-nU-c4a" kind="show" id="PDx-fD-9tY"/>
                                 </connections>
                             </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
+                                <rect key="frame" x="0.0" y="516" width="1366" height="206"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="XOJ-Tu-hH8" kind="embed" id="sot-c6-H0b"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXL-nz-dw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-437.109375" y="561.71875"/>
+            <point key="canvasLocation" x="-437.48169838945824" y="561.328125"/>
         </scene>
         <!--Robot Table View Controller-->
         <scene sceneID="c6j-qc-ZGN">
             <objects>
                 <tableViewController id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
-                        <rect key="frame" x="0.0" y="0.0" width="1366" height="652"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="206"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -428,7 +428,7 @@ All the commands are single blocks, except for the ones in the control category.
         <image name="GreenArrow" width="649" height="586"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tjn-hR-3fo"/>
+        <segue reference="PDx-fD-9tY"/>
         <segue reference="Var-Sg-Rcn"/>
         <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>
