@@ -22,8 +22,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bed-2B-QED">
-                                <rect key="frame" x="133" y="341" width="417" height="173"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="110" y="421" width="417" height="173"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Instructions">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -33,31 +33,9 @@
                                     <segue destination="1qS-gh-lht" kind="show" id="bSo-ZN-0MK"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="50" maxValue="400" translatesAutoresizingMaskIntoConstraints="NO" id="PqS-nZ-CHq">
-                                <rect key="frame" x="579" y="556" width="290" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="sliderValueChanged:" destination="YEE-PZ-SjD" eventType="valueChanged" id="gcA-fK-leo"/>
-                                </connections>
-                            </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set Block Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTL-S3-5DH">
-                                <rect key="frame" x="505" y="504" width="465" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ACc-uM-QIy">
-                                <rect key="frame" x="604" y="360" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Kc-2pq">
-                                <rect key="frame" x="133" y="168" width="417" height="165"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="110" y="248" width="417" height="165"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Get Started">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -68,8 +46,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RT2-NS-4g9">
-                                <rect key="frame" x="133" y="522" width="417" height="175"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="110" y="602" width="417" height="175"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Add Robots">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,6 +57,28 @@
                                     <segue destination="cJF-Nc-M7L" kind="show" id="Var-Sg-Rcn"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="50" maxValue="400" translatesAutoresizingMaskIntoConstraints="NO" id="PqS-nZ-CHq">
+                                <rect key="frame" x="708" y="702" width="290" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="YEE-PZ-SjD" eventType="valueChanged" id="gcA-fK-leo"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set Block Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTL-S3-5DH">
+                                <rect key="frame" x="635" y="599" width="465" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ACc-uM-QIy">
+                                <rect key="frame" x="733" y="421" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -120,7 +120,7 @@
                                 <rect key="frame" x="44" y="129" width="924" height="617"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control. 
+                                <string key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control. 
 
 In order to use Blocks4All, you must have a Dash or Dot robot from Wonder Workshop. 
 
@@ -128,7 +128,7 @@ To get started, select "Get Started" from the Main Menu. In the "Get Started" pa
 
 To have the robot play the commands, press the play button in the lower right side of the screen. If no robot is selected, you will be taken to a menu of detected robots. Select the robot you want and the robot will play the commands. 
 
-All the commands are single blocks, except for the ones in the control category. There are two main control blocks: "repeat" and "if" blocks and two types of modifier blocks: numbers and conditions. "Repeat" blocks can be modified with any of the number blocks and will cause any blocks located inside the "repeat" blocks (between the "repeat" and the "end repeat" blocks) to be repeated that number of times. "If" blocks can be modified with conditions (statements that can be evaluated as either true or false) and will cause any blocks located inside the "if" blocks (between the "if" and "end if" blocks to only be played if the "if" block evaluates to true.  To modify a control block, you first place it in the workspace, select a modifier from the toolbox, and then select the block you wish it to modify in the workspace.</mutableString>
+All the commands are single blocks, except for the ones in the control category. There are two main control blocks: "repeat" and "if" blocks and two types of modifier blocks: numbers and conditions. "Repeat" blocks can be modified with any of the number blocks and will cause any blocks located inside the "repeat" blocks (between the "repeat" and the "end repeat" blocks) to be repeated that number of times. "If" blocks can be modified with conditions (statements that can be evaluated as either true or false) and will cause any blocks located inside the "if" blocks (between the "if" and "end if" blocks to only be played if the "if" block evaluates to true.  To modify a control block, you first place it in the workspace, select a modifier from the toolbox, and then select the block you wish it to modify in the workspace.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -227,9 +227,10 @@ All the commands are single blocks, except for the ones in the control category.
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLx-VG-2JW">
-                                <rect key="frame" x="0.0" y="0.0" width="225" height="1024"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLx-VG-2JW">
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <connections>
                                     <segue destination="zor-jh-2cz" kind="embed" id="Mdl-ke-gN7"/>
                                 </connections>
@@ -246,22 +247,12 @@ All the commands are single blocks, except for the ones in the control category.
                                     <action selector="playButtonClicked:" destination="uoc-nU-c4a" eventType="touchUpInside" id="vL1-rJ-3br"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-F9-VES">
-                                <rect key="frame" x="1215" y="28" width="131" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <state key="normal" title="Menu">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="YEE-PZ-SjD" kind="show" id="s7f-fy-WFP"/>
-                                </connections>
-                            </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l66-Lb-Pdn">
-                                <rect key="frame" x="233" y="0.0" width="974" height="1024"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l66-Lb-Pdn">
+                                <rect key="frame" x="296" y="0.0" width="911" height="1024"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="974" id="T82-6c-cwb"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="tWc-fW-BLq">
                                     <size key="itemSize" width="98" height="879"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -280,6 +271,18 @@ All the commands are single blocks, except for the ones in the control category.
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-F9-VES">
+                                <rect key="frame" x="1146" y="32" width="200" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <state key="normal" title="Menu">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="YEE-PZ-SjD" kind="show" id="s7f-fy-WFP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -298,15 +301,15 @@ All the commands are single blocks, except for the ones in the control category.
             <objects>
                 <tableViewController id="qsn-gg-TPc" customClass="BlockTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" id="u2M-AO-l53">
-                        <rect key="frame" x="0.0" y="0.0" width="225" height="950"/>
+                        <rect key="frame" x="0.0" y="0.0" width="288" height="950"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BlockTableViewCell" rowHeight="150" id="LoD-Y1-Y1Y" customClass="BlockTableViewCell" customModule="BlocksForAll" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="225" height="150"/>
+                                <rect key="frame" x="0.0" y="28" width="288" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" tableViewCell="LoD-Y1-Y1Y" id="pIh-s5-DHa">
-                                    <rect key="frame" x="0.0" y="0.0" width="225" height="149.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="288" height="149.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFZ-xN-h8Z">
@@ -354,7 +357,7 @@ All the commands are single blocks, except for the ones in the control category.
                         <viewControllerLayoutGuide type="bottom" id="M8X-LY-ONh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gng-WS-M5w">
-                        <rect key="frame" x="0.0" y="0.0" width="225" height="950"/>
+                        <rect key="frame" x="0.0" y="0.0" width="288" height="950"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -368,19 +371,19 @@ All the commands are single blocks, except for the ones in the control category.
             <objects>
                 <tableViewController id="2Tn-yf-DgT" customClass="BlocksTypeTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6cp-t1-mWw">
-                        <rect key="frame" x="0.0" y="0.0" width="225" height="950"/>
+                        <rect key="frame" x="0.0" y="0.0" width="288" height="950"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlockTypeTableViewCell" textLabel="4FW-BL-NbK" style="IBUITableViewCellStyleDefault" id="TPR-VH-FnZ">
-                                <rect key="frame" x="0.0" y="28" width="225" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="288" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TPR-VH-FnZ" id="Kx7-b8-S84">
-                                    <rect key="frame" x="0.0" y="0.0" width="225" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="288" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Drive" textAlignment="natural" lineBreakMode="wordWrap" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="4FW-BL-NbK">
-                                            <rect key="frame" x="16" y="0.0" width="193" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="256" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
@@ -410,7 +413,7 @@ All the commands are single blocks, except for the ones in the control category.
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zor-jh-2cz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translucent="NO" id="3of-s2-3mf">
-                        <rect key="frame" x="0.0" y="24" width="225" height="50"/>
+                        <rect key="frame" x="0.0" y="24" width="288" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -427,7 +430,7 @@ All the commands are single blocks, except for the ones in the control category.
         <image name="GreenArrow" width="649" height="586"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tjn-hR-3fo"/>
+        <segue reference="PDx-fD-9tY"/>
         <segue reference="Var-Sg-Rcn"/>
         <segue reference="KBE-C8-Ew2"/>
     </inferredMetricsTieBreakers>
