@@ -27,7 +27,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>random_sound.png</string>
+				<string>random_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -41,7 +41,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>say_hi.png</string>
+				<string>say_hi.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -55,7 +55,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>sound_confused.png</string>
+				<string>sound_confused.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -69,7 +69,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>sound_bragging.png</string>
+				<string>sound_bragging.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -83,7 +83,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>sound_bye.png</string>
+				<string>sound_bye.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -97,7 +97,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>sound_cool.png</string>
+				<string>sound_cool.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -111,7 +111,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>sound_wow.png</string>
+				<string>sound_wow.pdf</string>
 			</dict>
 		</array>
 	</dict>
@@ -529,7 +529,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>wiggle.png</string>
+				<string>wiggle.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -543,7 +543,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>nod.png</string>
+				<string>nod.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -557,7 +557,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>dance.png</string>
+				<string>dance.pdf</string>
 			</dict>
 		</array>
 	</dict>
