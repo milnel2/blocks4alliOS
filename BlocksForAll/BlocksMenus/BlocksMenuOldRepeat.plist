@@ -344,7 +344,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>set_eye_light.png</string>
+				<string>set_eye_light.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -356,7 +356,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>set_left_ear_light.png</string>
+				<string>set_left_ear_light.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -368,7 +368,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>set_right_ear_light.png</string>
+				<string>set_right_ear_light.pdf</string>
 			</dict>
 		</array>
 	</dict>

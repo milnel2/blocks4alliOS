@@ -413,7 +413,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             if block.name == "If" || block.name == "Repeat" {
                 if block.addedBlocks.isEmpty{
                     //draw false block
-                    var placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "false.png", type: "Boolean")
+                    var placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "false.pdf", type: "Boolean")
                     if block.name == "Repeat"{
                         placeholderBlock = Block(name: "two times", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "2.pdf", type: "Number")
                     }
