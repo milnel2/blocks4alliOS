@@ -20,9 +20,20 @@ protocol BlockSelectionDelegate{
     func setParentViewController(_ myVC:UIViewController)
 }
 
-class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
+class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate, saveDelegate {
+    func save() {
+        for block in blocksStack{
+            if let json = block.json {
+                if let jsonString = String(data: json, encoding: .utf8){
+                    print(jsonString)
+                }
+            }
+        }
+    }
     
-    @IBOutlet weak var blocksProgram: UICollectionView! //View on the bottom of the screen that shows blocks in worksapce
+    
+    @IBOutlet weak var blocksProgram: UICollectionView!
+     //View on the bottom of the screen that shows blocks in worksapce
     @IBOutlet weak var playTrashToggleButton: UIButton!
     
     var blocksBeingMoved = [Block]() /* List of blocks that are currently being moved (moving repeat and if blocks
@@ -36,19 +47,20 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var blockHeight = 150
     let blockSpacing = 1
     
+  
 
     @IBOutlet weak var menuButton: UIButton!
     
     // MARK: - - View Set Up
     // MARK: - viewDidLoad
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
-        
-        //#selector(self.addBlockButton(_sender:))
-        //NotificationCenter.default.addObserver(self, selector: #selector(self.didFinishAnnouncement(dict:)), name: NSNotification.Name.UIAccessibilityAnnouncementDidFinish, object: nil)
-        // Do any additional setup after loading the view.
+        save()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,19 +69,23 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     // MARK: - - Block Selection Delegate functions
+    // MARK: add save function to function
     func unsetBlocks() {
         /*Called after Blocks have been placed in final destination, so unset everything*/
         movingBlocks = false
         blocksBeingMoved.removeAll()
         changePlayTrashButton() //Toggling the play/trash button
+        save()
     }
     
+    // MARK: add save function to function
     func setSelectedBlocks(_ blocks: [Block]) {
         /*Called when moving moving blocks*/
         movingBlocks = true
         blocksBeingMoved = blocks
         blocksProgram.reloadData()
         changePlayTrashButton()
+        save()
     }
     
     //TODO: LAUREN, figure out what this code is for
@@ -533,7 +549,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
     }
-
+    
     // MARK: - - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

@@ -9,6 +9,12 @@
 // The code below came from https://stackoverflow.com/questions/50928153/make-uicolor-codable
 // The function below makes a struct Color and creates a uiColor from it while conforming to the codable forms that swift allows for encoding and decoding
 import UIKit
+
+protocol saveDelegate: AnyObject{
+    func save()
+    
+}
+
 struct Color : Codable {
     var red : CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
     
@@ -77,6 +83,18 @@ class Block: Codable {
     var type: String = "Operation" //types: Operations, Booleans, Numbers
     var acceptedTypes: [String] = [] //list of types that can be added to current block (e.g. numbers for a repeat block)
     
+    var json: Data? {
+//        print(self)
+        var blocksCounterpart = self.counterpart
+        self.counterpart = nil
+        var jsonString = try? JSONEncoder().encode(self)
+//        print(self.counterpart)
+        self.counterpart = blocksCounterpart
+//        print(self.counterpart)
+        return jsonString
+    }
+
+    
     //MARK: - Initialization
     
     init?(name: String, color: Color, double: Bool, editable: Bool, imageName: String? = nil, options: [String] = [], pickedOption: Int = 0, optionsLabels: [String] = [], addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
@@ -97,6 +115,7 @@ class Block: Codable {
         self.addedBlocks = addedBlocks
         self.type = type
         self.acceptedTypes = acceptedTypes
+        
     }
     
     func addImage(_ imageName: String){
@@ -108,6 +127,20 @@ class Block: Codable {
         let newBlock = Block.init(name: self.name, color: self.color, double: self.double, editable: self.editable, imageName: self.imageName, options: self.options, pickedOption: self.pickedOption, optionsLabels: self.optionsLabels, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes)
         return newBlock!
     }
+    
+    
+    func save(){
+        for blocks in blocksStack{
+//            print(blocks)
+            if let json = blocks.json {
+                if let jsonString = String(data: json, encoding: .utf8){
+                    print(jsonString)
+                }
+            }
+        }
+    }
+
+    
 
     
     
