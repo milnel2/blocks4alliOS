@@ -19,7 +19,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>drive_forward.png</string>
+				<string>drive_forward.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -31,7 +31,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>drive_backward.png</string>
+				<string>drive_backward.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -43,7 +43,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>turn_left.png</string>
+				<string>turn_left.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -55,7 +55,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>turn_right.png</string>
+				<string>turn_right.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -67,7 +67,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>car_sound.png</string>
+				<string>car_sound.pdf</string>
 			</dict>
 		</array>
 	</dict>
