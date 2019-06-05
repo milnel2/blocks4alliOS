@@ -10,7 +10,7 @@ import UIKit
 
 class MainMenuViewController: UIViewController {
 
-    var blockSize = 100
+    var blockSize = 300 /* this controls the size of the blocks you put down in the Building Screen */
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -25,14 +25,10 @@ class MainMenuViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if let myDestination = segue.destination as? BlocksViewController{
             print("block size " , blockSize)
-            myDestination.blockWidth = blockSize
-            myDestination.blockHeight = blockSize
         }
         if let destinationViewController = segue.destination as? UINavigationController{
             if let myTopViewController = destinationViewController.topViewController as? BlocksViewController{
                 print("block size 2 " , blockSize)
-                myTopViewController.blockWidth = blockSize
-                myTopViewController.blockHeight = blockSize
             }
         }
         

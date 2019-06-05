@@ -21,7 +21,7 @@ class BlockTableViewController: UITableViewController {
     
     //update these as collection view changes
     var blockWidth = 150
-    let blockSpacing = 10
+    let blockSpacing = 0
     
 	//MARK: - viewDidLoad function
     override func viewDidLoad() {
