@@ -143,7 +143,7 @@ All the commands are single blocks, except for the ones in the control category.
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="uoc-nU-c4a" kind="show" id="PDx-fD-9tY"/>
+                                    <segue destination="YEE-PZ-SjD" kind="show" id="uZD-xM-HW6"/>
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
@@ -402,7 +402,6 @@ All the commands are single blocks, except for the ones in the control category.
         <image name="GreenArrow" width="649" height="586"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PDx-fD-9tY"/>
         <segue reference="Var-Sg-Rcn"/>
         <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>
