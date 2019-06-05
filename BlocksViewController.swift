@@ -125,6 +125,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             movingBlocks = false
             blocksBeingMoved.removeAll()
             print("put in trash")
+            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
         }else{
             //play
             if(!connectedRobots()){
