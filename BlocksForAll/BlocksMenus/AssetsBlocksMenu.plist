@@ -430,7 +430,7 @@
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
-				<string>repeat_red.png</string>
+				<string>repeat_red.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -444,7 +444,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>2.png</string>
+				<string>2.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -458,7 +458,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>3.png</string>
+				<string>3.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -481,7 +481,7 @@
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
-				<string>if.png</string>
+				<string>if.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -500,7 +500,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>turn_toward_voice.png</string>
+				<string>turn_toward_voice.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -519,7 +519,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>obstacle.png</string>
+				<string>obstacle.pdf</string>
 			</dict>
 		</array>
 	</dict>

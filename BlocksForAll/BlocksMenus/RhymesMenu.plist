@@ -25,7 +25,7 @@
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
-				<string>repeat_red.png</string>
+				<string>repeat_red.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -39,7 +39,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>2.png</string>
+				<string>2.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -53,7 +53,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>3.png</string>
+				<string>3.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -67,7 +67,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>4.png</string>
+				<string>4.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -81,7 +81,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>5.png</string>
+				<string>5.pdf</string>
 			</dict>
 		</array>
 	</dict>

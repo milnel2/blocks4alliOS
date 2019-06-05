@@ -213,7 +213,7 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
                     //draw false block
                     var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
                     if block.name == "Repeat"{
-                        placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
+                        placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.pdf", type: "Number")
                     }
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = "False"
@@ -266,7 +266,7 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
                     //draw false block
                     var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.png", type: "Boolean")
                     if block.name == "Repeat"{
-                        placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.png", type: "Number")
+                        placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.pdf", type: "Number")
                     }
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = "False"
