@@ -106,7 +106,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>horse_sound.png</string>
+				<string>horse_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -124,7 +124,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>dog_sound.png</string>
+				<string>dog_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -142,7 +142,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.png</string>
+				<string>cat_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>

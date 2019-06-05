@@ -124,7 +124,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>crocodile_sound.png</string>
+				<string>crocodile_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -138,7 +138,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>goat_sound.png</string>
+				<string>goat_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -152,7 +152,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>elephant_sound.png</string>
+				<string>elephant_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -166,7 +166,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>dinosaur_sound.png</string>
+				<string>dinosaur_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -180,7 +180,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>lion_sound.png</string>
+				<string>lion_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -194,7 +194,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>horse_sound.png</string>
+				<string>horse_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -208,7 +208,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>dog_sound.png</string>
+				<string>dog_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -222,7 +222,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.png</string>
+				<string>cat_sound.pdf</string>
 			</dict>
 		</array>
 	</dict>
