@@ -13,8 +13,8 @@ class SelectedBlockViewController: UIViewController {
      toolbox, which you are moving */
     
     var blocks: [Block]?
-    var blockWidth = 100
-    let blockHeight = 100
+    var blockWidth = 200
+    let blockHeight = 200
     let blockSpacing = 1
     var delegate: BlockSelectionDelegate?
 

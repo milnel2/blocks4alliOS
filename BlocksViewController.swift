@@ -558,7 +558,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if let destinationViewController = segue.destination as? UINavigationController{
             if let myTopViewController = destinationViewController.topViewController as? BlocksTypeTableViewController{
                 myTopViewController.delegate = self
-                myTopViewController.blockWidth = 100
+                myTopViewController.blockWidth = 150
             }
         }
         
