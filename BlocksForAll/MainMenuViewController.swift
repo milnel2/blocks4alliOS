@@ -10,7 +10,20 @@ import UIKit
 
 class MainMenuViewController: UIViewController {
 
-    var blockSize = 300 /* this controls the size of the blocks you put down in the Building Screen */
+    var blockSize = 150 /* this controls the size of the blocks you put down in the Building Screen */
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if #available(iOS 11.0, *) {
+            if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
+                print("accessibility enabled")
+                blockSize = 200
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -24,6 +37,8 @@ class MainMenuViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let myDestination = segue.destination as? BlocksViewController{
+            myDestination.blockHeight = blockSize
+            myDestination.blockWidth = blockSize
             print("block size " , blockSize)
         }
         if let destinationViewController = segue.destination as? UINavigationController{
