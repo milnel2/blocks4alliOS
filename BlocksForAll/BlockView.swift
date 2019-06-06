@@ -67,6 +67,11 @@ class BlockView: UIView, UITextFieldDelegate {
             var image = UIImage(named: imageName)
             image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight))
             let imv = UIImageView.init(image: image)
+//            if #available(iOS 11.0, *) {
+//                imv.adjustsImageSizeForAccessibilityContentSizeCategory = true
+//            } else {
+//                // Fallback on earlier versions
+//            }
             myView.addSubview(imv)
         }else if !block.double{ //so end repeat blocks don't have names
             let myLabel = UILabel.init(frame: myFrame)
