@@ -12,6 +12,15 @@ import AVFoundation
 //collection of blocks that are part of the program
 var blocksStack = [Block]()
 
+// from Paul
+func getDocumentsDirectory() -> URL{
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    return paths[0]
+}
+
+public let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
+
+
 //MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
     /*Used to send information to SelectedBlockViewController when moving blocks in workspace*/
@@ -20,7 +29,7 @@ protocol BlockSelectionDelegate{
     func setParentViewController(_ myVC:UIViewController)
 }
 
-class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate, saveDelegate {
+class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
     
 
@@ -45,14 +54,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var menuButton: UIButton!
     
     
-    // from Paul
-    func getDocumentsDirectory() -> URL{
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    
-    
     func save(){
         let fileManager = FileManager.default
         print("save called")
@@ -63,47 +64,33 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }catch{
             print("couldn't delete")
         }
-//        print("blocks in block stack:")
-//        print(blocksStack)
+        //        print("blocks in block stack:")
+        //        print(blocksStack)
         var writeText = String()
         // string that json text is appended too
         for blocks in blocksStack{
-//            print("in for loop")
+            //            print("in for loop")
             if let jsonText = blocks.json {
-                    writeText.append(String(data: jsonText, encoding: .utf8)!)
-                    writeText.append("\n")
-//                    print("wrote")
+                writeText.append(String(data: jsonText, encoding: .utf8)!)
+                writeText.append("\n")
+                //                    print("wrote")
+            }
+            do{
+                try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+                // writes the accumlated string of json objects to a single file
+                try print(String(contentsOf: filename))
+            }catch {
+                print("couldn't print json")
+            }
         }
-        do{
-            try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-            // writes the accumlated string of json objects to a single file
-            try print(String(contentsOf: filename))
-        }catch {
-            print("couldn't print json")
-        }
-        }
+        print("\n end of save")
     }
     
     
-    //NOT FINISHED
     func loadSave() {
-        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json").absoluteString
-        
-        if let url = URL(string: filename) {
-            
-            do {
-                let contents = try Data(contentsOf: url)
-                
-                do {
-                    let decoder = JSONDecoder()
-                    let decodedData: [Block] = try [decoder.decode(Block.self, from: contents)]
-                    blocksStack = decodedData
-                } catch{
-                    
-                }
-            } catch {
-                
-            }
+        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
+        if let jsonData = try? Data(contentsOf: filename){
+            //            Block = Block(json: jsonData)
         }
     }
     
