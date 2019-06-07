@@ -469,7 +469,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 count += 1
             }
 
-            if block.name == "If" || block.name == "Repeat" {
+            var name = block.name
+            print(name)
+            switch name{
+            case "If":
+                if block.addedBlocks.isEmpty{
+                    //draw false block
+                    var placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "false.pdf", type: "Boolean")
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = "False"
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                } else {
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                }
+            case "Repeat":
                 if block.addedBlocks.isEmpty{
                     //draw false block
                     var placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "false.pdf", type: "Boolean")
@@ -483,12 +500,28 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                     myConditionLabel.isAccessibilityElement = true
                     cell.addSubview(myConditionLabel)
-                }else{
+                } else {
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
-                            myConditionLabel.isAccessibilityElement = true
+                    myConditionLabel.isAccessibilityElement = true
                     cell.addSubview(myConditionLabel)
                 }
+            case "Drive Forward", "Drive Backward":
+                if block.addedBlocks.isEmpty{
+                    var placeholderBlock = Block(name: "two times", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "2.pdf", type: "Number")
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = "Distance"
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                } else {
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                }
+            default:
+                print("hello")
+              
             }
             
             //add main label
