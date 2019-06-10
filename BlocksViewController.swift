@@ -12,6 +12,85 @@ import AVFoundation
 //collection of blocks that are part of the program
 var blocksStack = [Block]()
 
+func loadSave() {
+    print("load save called")
+    //    print("contents of filename")
+    //    print( try? String(contentsOf: filename))
+    
+    var blockStackFromSave: [Block] = []
+    //array of blocks loaded from the save
+    
+    do{
+        let jsonString = try String(contentsOf: filename)
+        // creates a string type of the entire json file
+        let jsonStrings = jsonString.components(separatedBy: "\n Next Object \n")
+        // the string of the json file parsed out into each object in the file
+        var doesPreviousNeedCounter = false
+        // if this is true that means the previous block needed a counter part, and the current object needs to be created as the
+        
+        for part in jsonStrings {
+            //            print("part to be processed")
+            //            print(part)
+            if part == "" {
+                break
+            }
+            // this covers the last string parsed out that's just a new line
+            
+            let jsonPart = part.data(using: .utf8)
+            // this takes the json object as a string and turns it into a data object named jsonPart
+            let blockBeingCreated = Block(json: jsonPart!)
+            // this is the block being made, it's created using the block initializer that takes a data format json
+            
+            if blockBeingCreated?.name == "Repeat"{
+                // for some reason the || or statement doesn't work in these conditionals and I wonder if "End Repeat" is accepted here
+                doesPreviousNeedCounter = true
+                // lets the function know that on the next block it will be initialized and then added as a counter part in the 2nd to last else statment
+                blockStackFromSave.append(blockBeingCreated!)
+                // adds the block created to the end of the stack that is being created and later set to the global blocksStack
+            }else if blockBeingCreated?.name == "If"{
+                doesPreviousNeedCounter = true
+                blockStackFromSave.append(blockBeingCreated!)
+                // mirrors Repeat clause
+            }else if doesPreviousNeedCounter == true{
+                blockStackFromSave.last?.counterpart = blockBeingCreated
+                doesPreviousNeedCounter = false
+                // if the last block was something with a counterpart
+                // sets last block's counter part to the block created
+                // resets the counterpart var
+                // does not added the created block to the block stack
+            }else{
+                //            print("blockBeingCreated")
+                //            print(blockBeingCreated?.name)
+                blockStackFromSave.append(blockBeingCreated!)
+                // catch for all blocks without counterparts just adds block to the stack
+            }
+        }
+        //        print("blockStackFromSave")
+        //        for block in blockStackFromSave{
+        //            print(block.name)
+        //        }
+        //        print("blocksStack Below")
+        //        for block in blocksStack{
+        //            print(block.name)
+        //        }
+        blocksStack = blockStackFromSave
+        // blockStackFrom save is array of blocks created from save file in this function, sets it to the global array of blocks used
+        print("load completed")
+    }catch{
+        print("load Failed")
+    }
+}
+
+// from Paul
+func getDocumentsDirectory() -> URL{
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    return paths[0]
+}
+// gets the path for the sandbox we're in
+
+public let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
+// global var for the location of the save file
+
 //MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
     /*Used to send information to SelectedBlockViewController when moving blocks in workspace*/
@@ -20,17 +99,17 @@ protocol BlockSelectionDelegate{
     func setParentViewController(_ myVC:UIViewController)
 }
 
-class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate, saveDelegate {
+class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
     
-
+    
     
     @IBOutlet weak var blocksProgram: UICollectionView!
-     //View on the bottom of the screen that shows blocks in worksapce
+    //View on the bottom of the screen that shows blocks in worksapce
     @IBOutlet weak var playTrashToggleButton: UIButton!
     
     var blocksBeingMoved = [Block]() /* List of blocks that are currently being moved (moving repeat and if blocks
-    also move the blocks nested inside */
+     also move the blocks nested inside */
     var movingBlocks = false    //True if currently moving blocks in the workspace
     
     var containerViewController: UINavigationController? //Top-level controller for toolbox view controllers
@@ -40,22 +119,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var blockHeight = 150
     let blockSpacing = 1
     
-  
-
+    
+    
     @IBOutlet weak var menuButton: UIButton!
     
     
-    // from Paul
-    func getDocumentsDirectory() -> URL{
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    
-    
     func save(){
-        let fileManager = FileManager.default
         print("save called")
+        
+        let fileManager = FileManager.default
         let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
         do{
             try fileManager.removeItem(at: filename)
@@ -63,51 +135,59 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }catch{
             print("couldn't delete")
         }
-//        print("blocks in block stack:")
-//        print(blocksStack)
+        
+        //        print("blocks in block stack:")
+        //        print(blocksStack)
+        
         var writeText = String()
         // string that json text is appended too
-        for blocks in blocksStack{
-//            print("in for loop")
-            if let jsonText = blocks.json {
-                    writeText.append(String(data: jsonText, encoding: .utf8)!)
-                    writeText.append("\n")
-//                    print("wrote")
-        }
-        do{
-            try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-            // writes the accumlated string of json objects to a single file
-            try print(String(contentsOf: filename))
-        }catch {
-            print("couldn't print json")
-        }
-        }
-    }
-    
-    
-    //NOT FINISHED
-    func loadSave() {
-        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json").absoluteString
-        
-        if let url = URL(string: filename) {
-            
-            do {
-                let contents = try Data(contentsOf: url)
-                
-                do {
-                    let decoder = JSONDecoder()
-                    let decodedData: [Block] = try [decoder.decode(Block.self, from: contents)]
-                    blocksStack = decodedData
-                } catch{
-                    
+        for block in blocksStack{
+            // blocks is each block as iterated through the array of the global variable of the array of blocks in the workspace
+            //            print("in for loop")
+            if block.name == "If"{
+                // catch for it the block being and If block not sure if it catches if end block
+                if block.counterpart != nil{
+                    if let jsonText = block.jsonCounter{
+                        // lets jsonText take the form of jsonCounter var in block, which takes a 2 tuple of optional data types
+                        writeText.append(String(data: jsonText.0!, encoding: .utf8)!)
+                        // adds the block data in the index 0 of the tuple string form and appends it to the end of the string later encoded to the save file
+                        writeText.append("\n Next Object \n")
+                        // marker for seperating and parsing the blocks in the json file later in the loadSave() function
+                        writeText.append(String(data: jsonText.1!, encoding: .utf8)!)
+                        // does the same as the one above but for the second data in the tuple of jsonCounter
+                        writeText.append("\n Next Object \n")
+                        // marker for seperating for parsing later
+                    }
+                } else if block.name == "Repeat"{
+                    // catch for Repeat not sure if it catches End Repeat
+                    if let jsonText = block.jsonCounter{
+                        writeText.append(String(data: jsonText.0!, encoding: .utf8)!)
+                        writeText.append("\n Next Object \n")
+                        writeText.append(String(data: jsonText.1!, encoding: .utf8)!)
+                        writeText.append("\n Next Object \n")
+                    }
                 }
-            } catch {
-                
+            }else{
+                // catch for all blocks without a counterpart(everything but repeat and if)
+                if let jsonText = block.json {
+                    // sets jsonText to the var type json in block that takes a Data object
+                    writeText.append(String(data: jsonText, encoding: .utf8)!)
+                    // appends the data from jsonText in string form to the string writeText later saved as json ssave file
+                    writeText.append("\n Next Object \n")
+                }
+                //                    print("wrote")
+            }
+            
+            do{
+                try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+                // writes the accumlated string of json objects to a single file
+                try print(String(contentsOf: filename))
+            }catch {
+                print("couldn't print json")
             }
         }
+        print("\n end of save")
     }
-    
-    
     
     
     // MARK: - - View Set Up
@@ -115,11 +195,28 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     
     override func viewDidLoad() {
+        //        let fileManager = FileManager.default
+        //        print("save called")
+        //        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
+        //        do{
+        //            try fileManager.removeItem(at: filename)
+        //            //Deletes previous save to rewrite later on for each save action
+        //        }catch{
+        //            print("couldn't delete")
+        //        }
+        ////    uncomment and get started once don't place blocks then stop the program to clear the save file to empty
+        
         super.viewDidLoad()
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
+        print("before loadSave blocksStack")
+        for block in blocksStack{
+            print(block.name)
+        }
+        loadSave()
         save()
-
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
