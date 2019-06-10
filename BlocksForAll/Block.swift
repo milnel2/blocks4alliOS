@@ -10,12 +10,6 @@
 // The function below makes a struct Color and creates a uiColor from it while conforming to the codable forms that swift allows for encoding and decoding
 import UIKit
 
-protocol saveDelegate: AnyObject {
-    func save()
-    func loadSave()
-    func getDocumentsDirectory() -> URL
-}
-
 struct Color : Codable {
     var red : CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
     
@@ -97,6 +91,43 @@ class Block: Codable {
 
     
     //MARK: - Initialization
+    
+    
+    //MARK: - Initialization
+    init? (json: Data){
+        self.name = "hello"
+        self.color = Color(uiColor: UIColor(white: 0, alpha: 0))
+        self.double = true
+        self.editable = true
+        self.imageName = "default image name"
+        self.options = ["options defualt"]
+        self.pickedOption = 9
+        self.optionsLabels = ["options labels defualt"]
+        self.addedBlocks = []
+        self.type = "bool"
+        self.acceptedTypes = ["bool"]
+        do{
+            var newValue: Block?
+            var jsonToUse = try? Data(contentsOf: filename)
+            if let newValue = try? JSONDecoder().decode(Block.self, from: json){
+                self.name = newValue.name
+                self.color = newValue.color
+                self.double = newValue.double
+                self.editable = newValue.editable
+                self.imageName = newValue.imageName
+                self.options = newValue.options
+                self.pickedOption = newValue.pickedOption
+                self.optionsLabels = newValue.optionsLabels
+                self.addedBlocks = newValue.addedBlocks
+                self.type = newValue.type
+                self.acceptedTypes = newValue.acceptedTypes
+            }
+        }catch{
+            print("couldn't convert json data")
+            return nil
+        }
+    }
+
     
     init?(name: String, color: Color, double: Bool, editable: Bool, imageName: String? = nil, options: [String] = [], pickedOption: Int = 0, optionsLabels: [String] = [], addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
         
