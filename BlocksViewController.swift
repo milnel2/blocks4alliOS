@@ -469,13 +469,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 count += 1
             }
 
-            var name = block.name
+            let name = block.name
             print(name)
             switch name{
             case "If":
                 if block.addedBlocks.isEmpty{
                     //draw false block
-                    var placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "false.pdf", type: "Boolean")
+                    let placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "false.pdf", type: "Boolean")
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = "False"
                     myConditionLabel.isAccessibilityElement = true
@@ -508,9 +508,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             case "Drive Forward", "Drive Backward":
                 if block.addedBlocks.isEmpty{
-                    var placeholderBlock = Block(name: "two times", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "2.pdf", type: "Number")
+                    let placeholderBlock = Block(name: "Set Distance and Speed", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = "Distance"
+                    myConditionLabel.accessibilityLabel = "Distance and Speed"
                     myConditionLabel.isAccessibilityElement = true
                     cell.addSubview(myConditionLabel)
                 } else {
@@ -521,9 +521,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             case "Turn Left", "Turn Right":
                 if block.addedBlocks.isEmpty{
-                    var placeholderBlock = Block(name: "two times", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "2.pdf", type: "Number")
+                    let placeholderBlock = Block(name: "Set turn angle", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = "Distance"
+                    myConditionLabel.accessibilityLabel = "Set turn angle"
                     myConditionLabel.isAccessibilityElement = true
                     cell.addSubview(myConditionLabel)
                 } else {
@@ -534,9 +534,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             case "Set Eye Light", "Set Left Ear Light", "Set Right Ear Light":
                 if block.addedBlocks.isEmpty{
-                    var placeholderBlock = Block(name: "two times", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "2.pdf", type: "Number")
+                    let placeholderBlock = Block(name: "Set light color", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = "Distance"
+                    myConditionLabel.accessibilityLabel = "Set light color"
                     myConditionLabel.isAccessibilityElement = true
                     cell.addSubview(myConditionLabel)
                 } else {
