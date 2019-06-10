@@ -25,7 +25,7 @@ func loadSave() {
         // creates a string type of the entire json file
         let jsonStrings = jsonString.components(separatedBy: "\n Next Object \n")
         // the string of the json file parsed out into each object in the file
-        var doesPreviousNeedCounter = false
+//        var doesPreviousNeedCounter = false
         // if this is true that means the previous block needed a counter part, and the current object needs to be created as the
         
         for part in jsonStrings {
@@ -43,17 +43,17 @@ func loadSave() {
             
             if blockBeingCreated?.name == "Repeat"{
                 // for some reason the || or statement doesn't work in these conditionals and I wonder if "End Repeat" is accepted here
-                doesPreviousNeedCounter = true
+//                doesPreviousNeedCounter = true
                 // lets the function know that on the next block it will be initialized and then added as a counter part in the 2nd to last else statment
                 blockStackFromSave.append(blockBeingCreated!)
                 // adds the block created to the end of the stack that is being created and later set to the global blocksStack
             }else if blockBeingCreated?.name == "If"{
-                doesPreviousNeedCounter = true
+//                doesPreviousNeedCounter = true
                 blockStackFromSave.append(blockBeingCreated!)
                 // mirrors Repeat clause
-            }else if doesPreviousNeedCounter == true{
-                blockStackFromSave.last?.counterpart = blockBeingCreated
-                doesPreviousNeedCounter = false
+//            }else if doesPreviousNeedCounter == true{
+//                blockStackFromSave.last?.counterpart = blockBeingCreated
+//                doesPreviousNeedCounter = false
                 // if the last block was something with a counterpart
                 // sets last block's counter part to the block created
                 // resets the counterpart var
@@ -195,16 +195,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     
     override func viewDidLoad() {
-        //        let fileManager = FileManager.default
-        //        print("save called")
-        //        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
-        //        do{
-        //            try fileManager.removeItem(at: filename)
-        //            //Deletes previous save to rewrite later on for each save action
-        //        }catch{
-        //            print("couldn't delete")
-        //        }
-        ////    uncomment and get started once don't place blocks then stop the program to clear the save file to empty
+//                let fileManager = FileManager.default
+//                print("save called")
+//                let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
+//                do{
+//                    try fileManager.removeItem(at: filename)
+//                    //Deletes previous save to rewrite later on for each save action
+//                }catch{
+//                    print("couldn't delete")
+//                }
+//        //    uncomment and get started once don't place blocks then stop the program to clear the save file to empty
         
         super.viewDidLoad()
         blocksProgram.delegate = self
@@ -213,8 +213,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         for block in blocksStack{
             print(block.name)
         }
-        loadSave()
-        save()
+//        loadSave()
+//        save()
         
         
     }
@@ -231,7 +231,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         movingBlocks = false
         blocksBeingMoved.removeAll()
         changePlayTrashButton() //Toggling the play/trash button
-        save()
+//        save()
     }
     
     // MARK: add save function to function
@@ -241,7 +241,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksBeingMoved = blocks
         blocksProgram.reloadData()
         changePlayTrashButton()
-        save()
+//        save()
     }
     
     //TODO: LAUREN, figure out what this code is for

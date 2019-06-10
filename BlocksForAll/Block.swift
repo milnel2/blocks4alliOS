@@ -205,65 +205,8 @@ class Block: Codable {
         return paths[0]
     }
     
+    func save(){}
     
-    
-    func save(){
-        let fileManager = FileManager.default
-        print("save called")
-        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
-        do{
-            try fileManager.removeItem(at: filename)
-            //Deletes previous save to rewrite later on for each save action
-        }catch{
-            print("couldn't delete")
-        }
-        //        print("blocks in block stack:")
-        //        print(blocksStack)
-        var writeText = String()
-        // string that json text is appended too
-        for blocks in blocksStack{
-            //            print("in for loop")
-            if let jsonText = blocks.json {
-                writeText.append(String(data: jsonText, encoding: .utf8)!)
-                writeText.append("\n")
-                //                    print("wrote")
-            }
-            do{
-                try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-                // writes the accumlated string of json objects to a single file
-                try print(String(contentsOf: filename))
-            }catch {
-                print("couldn't print json")
-            }
-        }
-    }
-    
-    
-    //NOT FINISHED
-    func loadSave() {
-        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json").absoluteString
-        
-        if let url = URL(string: filename) {
-            
-            do {
-                let contents = try Data(contentsOf: url)
-                
-                do {
-                    let decoder = JSONDecoder()
-                    let decodedData: [Block] = try [decoder.decode(Block.self, from: contents)]
-                    blocksStack = decodedData
-                } catch{
-                    
-                }
-            } catch {
-                
-            }
-        }
-    }
-
-
-    
-
-    
-    
+    func loadSave() {}
+   
 }
