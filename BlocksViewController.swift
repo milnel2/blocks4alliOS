@@ -559,18 +559,36 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             case "Repeat":
                 if block.addedBlocks.isEmpty{
+                    // Clean up code
+                    let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    repeatNumberButton.backgroundColor = .lightGray
+                    repeatNumberButton.setTitle("Number of times", for: .normal)
+                    repeatNumberButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+                    repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    repeatNumberButton.layer.borderWidth = 2.0
+                    repeatNumberButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    repeatNumberButton.accessibilityLabel = "Set number of times to repeat"
+                    repeatNumberButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(repeatNumberButton)
+                    
+                    
                     //draw false block
-                    var placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "false.pdf", type: "Boolean")
-                    if block.name == "Repeat"{
-                        placeholderBlock = Block(name: "two times", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "2.pdf", type: "Number")
-                    }
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = "False"
-                    if block.name == "Repeat"{
-                        myConditionLabel.accessibilityLabel = "two times"
-                    }
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+//                    var placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "false.pdf", type: "Boolean")
+                    
+//                    if block.name == "Repeat"{
+//                        placeholderBlock = Block(name: "two times", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "2.pdf", type: "Number")
+//                    }
+//                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+//                    myConditionLabel.accessibilityLabel = "False"
+                    
+//                    if block.name == "Repeat"{
+//                        myConditionLabel.accessibilityLabel = "two times"
+//                    }
+//                    myConditionLabel.isAccessibilityElement = true
+//                    cell.addSubview(myConditionLabel)
                 } else {
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
