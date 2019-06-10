@@ -581,24 +581,57 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             case "Drive Forward", "Drive Backward":
                 if block.addedBlocks.isEmpty{
-                    let placeholderBlock = Block(name: "Distance and Speed", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = "Distance and Speed"
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+                    //Creates distance button for modifier.
+                    let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    distanceSpeedButton.backgroundColor = .lightGray
+                    distanceSpeedButton.setTitle("Distance and Speed", for: .normal)
+                    distanceSpeedButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+                    distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    distanceSpeedButton.layer.borderWidth = 2.0
+                    distanceSpeedButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    distanceSpeedButton.accessibilityLabel = "Set distance and speed"
+                    distanceSpeedButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(distanceSpeedButton)
+                    
+// MARK: -Delete
+//                    let placeholderBlock = Block(name: "Distance and Speed", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
+//                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+//                    myConditionLabel.accessibilityLabel = "Distance and Speed"
+//                    myConditionLabel.isAccessibilityElement = true
+//                    cell.addSubview(myConditionLabel)
                 } else {
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
                     myConditionLabel.isAccessibilityElement = true
                     cell.addSubview(myConditionLabel)
                 }
+                
             case "Turn Left", "Turn Right":
                 if block.addedBlocks.isEmpty{
-                    let placeholderBlock = Block(name: "Turn angle", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = "Set turn angle"
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+                    //Creates angle button for modifier
+                    let angleButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    angleButton.backgroundColor = .lightGray
+                    angleButton.setTitle("Angle", for: .normal)
+                    angleButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+                    angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    angleButton.layer.borderWidth = 2.0
+                    angleButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    angleButton.accessibilityLabel = "Set turn angle"
+                    angleButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(angleButton)
+                    
+// MARK: -Delete
+//                    let placeholderBlock = Block(name: "Turn angle", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
+//                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+//                    myConditionLabel.accessibilityLabel = "Set turn angle"
+//                    myConditionLabel.isAccessibilityElement = true
+//                    cell.addSubview(myConditionLabel)
                 } else {
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
@@ -607,11 +640,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             case "Set Eye Light", "Set Left Ear Light", "Set Right Ear Light":
                 if block.addedBlocks.isEmpty{
-                    let placeholderBlock = Block(name: "Light color", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = "Set light color"
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+                    //Creates button to allow light color change.
+                    let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    lightColorButton.backgroundColor = .lightGray
+                    lightColorButton.setTitle("Light Color", for: .normal)
+                    lightColorButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+                    lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    lightColorButton.layer.borderWidth = 2.0
+                    lightColorButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    lightColorButton.accessibilityLabel = "Set light color"
+                    lightColorButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(lightColorButton)
+                    
+// MARK: -Delete
+//                    let placeholderBlock = Block(name: "Light color", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
+//                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+//                    myConditionLabel.accessibilityLabel = "Set light color"
+//                    myConditionLabel.isAccessibilityElement = true
+//                    cell.addSubview(myConditionLabel)
                 } else {
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
@@ -632,6 +681,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return cell
     }
 
+    //Function for to print line when button is tapped
+    @objc func buttonTapped(sender: UIButton!) {
+        print("Open Segue Here")
+    }
     
     func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
         let myLabel = UILabel.init(frame: frame)
