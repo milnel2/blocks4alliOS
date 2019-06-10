@@ -25,7 +25,7 @@ func loadSave() {
         // creates a string type of the entire json file
         let jsonStrings = jsonString.components(separatedBy: "\n Next Object \n")
         // the string of the json file parsed out into each object in the file
-//        var doesPreviousNeedCounter = false
+        //        var doesPreviousNeedCounter = false
         // if this is true that means the previous block needed a counter part, and the current object needs to be created as the
         
         for part in jsonStrings {
@@ -39,40 +39,41 @@ func loadSave() {
             let jsonPart = part.data(using: .utf8)
             // this takes the json object as a string and turns it into a data object named jsonPart
             let blockBeingCreated = Block(json: jsonPart!)
+            print("counterpart printed:", blockBeingCreated?.counterpart)
             // this is the block being made, it's created using the block initializer that takes a data format json
             
-            if blockBeingCreated?.name == "Repeat"{
-                // for some reason the || or statement doesn't work in these conditionals and I wonder if "End Repeat" is accepted here
-//                doesPreviousNeedCounter = true
-                // lets the function know that on the next block it will be initialized and then added as a counter part in the 2nd to last else statment
-                blockStackFromSave.append(blockBeingCreated!)
-                // adds the block created to the end of the stack that is being created and later set to the global blocksStack
-            }else if blockBeingCreated?.name == "If"{
-//                doesPreviousNeedCounter = true
-                blockStackFromSave.append(blockBeingCreated!)
-                // mirrors Repeat clause
-//            }else if doesPreviousNeedCounter == true{
-//                blockStackFromSave.last?.counterpart = blockBeingCreated
-//                doesPreviousNeedCounter = false
-                // if the last block was something with a counterpart
-                // sets last block's counter part to the block created
-                // resets the counterpart var
-                // does not added the created block to the block stack
+            //            print("blockBeingCreated")
+            //            print(blockBeingCreated?.name)
+            blockStackFromSave.append(blockBeingCreated!)
+            // catch for all blocks without counterparts just adds block to the stack
+            
+        }
+        
+        var forOpen: [Block] = []
+        var ifOpen: [Block] = []
+        for block in blockStackFromSave{
+            if block.name == "Repeat"{
+                forOpen.append(block)
+            }else if block.name == "End Repeat"{
+                forOpen.last?.counterpart = block
+                forOpen.removeLast()
+            }else if block.name == "If"{
+                ifOpen.append(block)
+            }else if block.name == "End If"{
+                ifOpen.last?.counterpart = block
+                ifOpen.removeLast()
             }else{
-                //            print("blockBeingCreated")
-                //            print(blockBeingCreated?.name)
-                blockStackFromSave.append(blockBeingCreated!)
-                // catch for all blocks without counterparts just adds block to the stack
+                break
             }
         }
-        //        print("blockStackFromSave")
-        //        for block in blockStackFromSave{
-        //            print(block.name)
-        //        }
-        //        print("blocksStack Below")
-        //        for block in blocksStack{
-        //            print(block.name)
-        //        }
+        for block in blockStackFromSave{
+            if block.counterpart != nil {
+                print("block")
+                print(block.name)
+                print("block coutnerpart")
+                print(block.counterpart?.name)
+            }
+        }
         blocksStack = blockStackFromSave
         // blockStackFrom save is array of blocks created from save file in this function, sets it to the global array of blocks used
         print("load completed")
@@ -143,45 +144,20 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // string that json text is appended too
         for block in blocksStack{
             // blocks is each block as iterated through the array of the global variable of the array of blocks in the workspace
-            //            print("in for loop")
-            if block.name == "If"{
-                // catch for it the block being and If block not sure if it catches if end block
-                if block.counterpart != nil{
-                    if let jsonText = block.jsonCounter{
-                        // lets jsonText take the form of jsonCounter var in block, which takes a 2 tuple of optional data types
-                        writeText.append(String(data: jsonText.0!, encoding: .utf8)!)
-                        // adds the block data in the index 0 of the tuple string form and appends it to the end of the string later encoded to the save file
-                        writeText.append("\n Next Object \n")
-                        // marker for seperating and parsing the blocks in the json file later in the loadSave() function
-                        writeText.append(String(data: jsonText.1!, encoding: .utf8)!)
-                        // does the same as the one above but for the second data in the tuple of jsonCounter
-                        writeText.append("\n Next Object \n")
-                        // marker for seperating for parsing later
-                    }
-                } else if block.name == "Repeat"{
-                    // catch for Repeat not sure if it catches End Repeat
-                    if let jsonText = block.jsonCounter{
-                        writeText.append(String(data: jsonText.0!, encoding: .utf8)!)
-                        writeText.append("\n Next Object \n")
-                        writeText.append(String(data: jsonText.1!, encoding: .utf8)!)
-                        writeText.append("\n Next Object \n")
-                    }
-                }
-            }else{
-                // catch for all blocks without a counterpart(everything but repeat and if)
-                if let jsonText = block.json {
-                    // sets jsonText to the var type json in block that takes a Data object
-                    writeText.append(String(data: jsonText, encoding: .utf8)!)
-                    // appends the data from jsonText in string form to the string writeText later saved as json ssave file
-                    writeText.append("\n Next Object \n")
-                }
-                //                    print("wrote")
+            
+            if let jsonText = block.json {
+                // sets jsonText to the var type json in block that takes a Data object
+                writeText.append(String(data: jsonText, encoding: .utf8)!)
+                // appends the data from jsonText in string form to the string writeText later saved as json ssave file
+                writeText.append("\n Next Object \n")
             }
+            //                    print("wrote")
+            //            }
             
             do{
                 try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
                 // writes the accumlated string of json objects to a single file
-                try print(String(contentsOf: filename))
+                //                try print(String(contentsOf: filename))
             }catch {
                 print("couldn't print json")
             }
@@ -213,8 +189,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         for block in blocksStack{
             print(block.name)
         }
-//        loadSave()
-//        save()
+        loadSave()
+        save()
         
         
     }
@@ -231,7 +207,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         movingBlocks = false
         blocksBeingMoved.removeAll()
         changePlayTrashButton() //Toggling the play/trash button
-//        save()
+        save()
     }
     
     // MARK: add save function to function
@@ -241,7 +217,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksBeingMoved = blocks
         blocksProgram.reloadData()
         changePlayTrashButton()
-//        save()
+        save()
     }
     
     //TODO: LAUREN, figure out what this code is for

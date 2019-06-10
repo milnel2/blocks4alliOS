@@ -63,7 +63,7 @@ class Block: Codable {
     var color: Color
     var double: Bool //true if needs both beginning and end block like repeat, if
     var counterpart:Block? //start and end block counterpart for for etc.
-
+    
     
     //MARK: Delete these (I think), maybe check through BlocksMenu.plist to make sure they aren't being used in any block
     var editable: Bool
@@ -86,38 +86,9 @@ class Block: Codable {
         var jsonString = try? JSONEncoder().encode(self)
         //        print(self.counterpart)
         self.counterpart = blocksCounterpart
-        //        print(self.counterpart)
+        //print(self.counterpart)
         return jsonString
     }
-    
-    
-    // Attempting to replicate above but for a block with a counter part creates a tuple of two data objects the first data object being a block with a counterpart and the second data object being the counter part of the first block data object in the tuple
-    var jsonCounter: (Data?, Data?)? {
-        let counterBlock = self.counterpart!
-        // creates a constant for the counterpart of the block in question, var jsonCounter is a var in all block objects so self is the block object this is being called on
-        let jsonCounterString = jsonCounterPart(counterBlock: counterBlock)!
-        // calls function that returns the encoded json of the counterBlock for the self block jsonCounter is a part of
-        self.counterpart = nil
-        // sets the counter part of the block this is being called on to nil so that it can be encoded with out infinite recursion, also why we saved the counter part block to counterBlock
-        var jsonString = try? JSONEncoder().encode(self)
-        // creates the encoded data object for the block this being called on
-        return (jsonString, jsonCounterString)
-        // returns the data object of the json encoded block and it's counterpart
-    }
-    
-    // used to get the encoding of the coutnerpart block of the block being called in jsonCounter
-    func jsonCounterPart(counterBlock: Block) -> Data? {
-        // takes the counterBlock from the block called for jsonCounter in save and returns it's json encoding as a data object
-        counterBlock.counterpart = nil
-        //sets the counterBlock's counterpart to nil to prevent infinite recursion, this might need to be something other than nil.... that also means nothing
-        var jsonCounterPartString = try? JSONEncoder().encode(self)
-        // encodes the block to a json encoding data object, not sure if it should be self or counterZBlock... will need to check
-        return jsonCounterPartString
-        // returns the Data object json encoding of the counterBlock
-    }
-    
-    
-    //MARK: - Initialization
     
     
     //MARK: - Initialization
@@ -166,7 +137,7 @@ class Block: Codable {
             return nil
         }
     }
-
+    
     
     init?(name: String, color: Color, double: Bool, editable: Bool, imageName: String? = nil, options: [String] = [], pickedOption: Int = 0, optionsLabels: [String] = [], addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
         
@@ -208,5 +179,5 @@ class Block: Codable {
     func save(){}
     
     func loadSave() {}
-   
+    
 }
