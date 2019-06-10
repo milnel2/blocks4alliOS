@@ -605,7 +605,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             case "Drive Forward", "Drive Backward":
                 if block.addedBlocks.isEmpty{
-                    let placeholderBlock = Block(name: "Set Distance and Speed", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
+                    let placeholderBlock = Block(name: "Distance and Speed", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = "Distance and Speed"
                     myConditionLabel.isAccessibilityElement = true
@@ -618,7 +618,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             case "Turn Left", "Turn Right":
                 if block.addedBlocks.isEmpty{
-                    let placeholderBlock = Block(name: "Set turn angle", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
+                    let placeholderBlock = Block(name: "Turn angle", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = "Set turn angle"
                     myConditionLabel.isAccessibilityElement = true
@@ -631,7 +631,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             case "Set Eye Light", "Set Left Ear Light", "Set Right Ear Light":
                 if block.addedBlocks.isEmpty{
-                    let placeholderBlock = Block(name: "Set light color", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
+                    let placeholderBlock = Block(name: "Light color", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = "Set light color"
                     myConditionLabel.isAccessibilityElement = true
