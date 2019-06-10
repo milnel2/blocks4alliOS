@@ -62,8 +62,6 @@ func loadSave() {
             }else if block.name == "End If"{
                 ifOpen.last?.counterpart = block
                 ifOpen.removeLast()
-            }else{
-                break
             }
         }
         for block in blockStackFromSave{
