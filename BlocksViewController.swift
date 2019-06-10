@@ -546,7 +546,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(myConditionLabel)
                 }
             default:
-                print("This block does not need a modifier")
+                print("hello")
+              
             }
             
             //add main label
