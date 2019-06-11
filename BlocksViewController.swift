@@ -102,6 +102,7 @@ protocol BlockSelectionDelegate{
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
     
+    @IBOutlet weak var DeleteAll: UIButton!
     
     
     @IBOutlet weak var blocksProgram: UICollectionView!
@@ -212,6 +213,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         
     }
+    
+    func deleteAll(){
+        blocksStack = []
+        blocksProgram.reloadData()
+        save()
+        loadSave()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -259,6 +267,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             playTrashToggleButton.accessibilityLabel = "Play"
             playTrashToggleButton.accessibilityHint = "Make your robot go!"
         }
+    }
+    
+    @IBAction func DeleteAllClicked(_ sender: Any) {
+        DeleteAll.accessibilityLabel = "Delete all"
+        DeleteAll.accessibilityHint = "Delete all blocks on the screen"
+        let announcement = "All blocks deleted."
+        DeleteAll.accessibilityLabel = announcement
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.makeAnnouncement(announcement)
+        })
+        deleteAll()
     }
     
     // run the actual program when the play button is clicked or put blocks in trash
