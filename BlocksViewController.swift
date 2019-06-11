@@ -274,6 +274,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             blocksProgram.reloadData()
             movingBlocks = false
             blocksBeingMoved.removeAll()
+            save()
             print("put in trash")
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
         }else{
