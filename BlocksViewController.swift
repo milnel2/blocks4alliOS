@@ -564,7 +564,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     repeatNumberButton.backgroundColor = .lightGray
                     repeatNumberButton.setTitle("Number of times", for: .normal)
-                    repeatNumberButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+                    repeatNumberButton.addTarget(self, action: #selector(repeatModifier(sender:)), for: .touchUpInside)
                     repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     repeatNumberButton.layer.borderWidth = 2.0
                     repeatNumberButton.layer.borderColor = UIColor.black.cgColor
@@ -602,7 +602,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     distanceSpeedButton.backgroundColor = .lightGray
                     distanceSpeedButton.setTitle("Distance and Speed", for: .normal)
-                    distanceSpeedButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+                    distanceSpeedButton.addTarget(self, action: #selector(distanceSpeedModifier(sender:)), for: .touchUpInside)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.layer.borderWidth = 2.0
                     distanceSpeedButton.layer.borderColor = UIColor.black.cgColor
@@ -632,7 +632,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     angleButton.backgroundColor = .lightGray
                     angleButton.setTitle("Angle", for: .normal)
-                    angleButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+                    angleButton.addTarget(self, action: #selector(angleModifier(sender:)), for: .touchUpInside)
                     angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     angleButton.layer.borderWidth = 2.0
                     angleButton.layer.borderColor = UIColor.black.cgColor
@@ -654,6 +654,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     myConditionLabel.isAccessibilityElement = true
                     cell.addSubview(myConditionLabel)
                 }
+            
             case "Set Eye Light", "Set Left Ear Light", "Set Right Ear Light":
                 if block.addedBlocks.isEmpty{
                     //Creates button to allow light color change.
@@ -661,7 +662,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     lightColorButton.backgroundColor = .lightGray
                     lightColorButton.setTitle("Light Color", for: .normal)
-                    lightColorButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+                    lightColorButton.addTarget(self, action: #selector(colorModifier(sender:)), for: .touchUpInside)
                     lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     lightColorButton.layer.borderWidth = 2.0
                     lightColorButton.layer.borderColor = UIColor.black.cgColor
@@ -699,7 +700,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     //Function for to print line when button is tapped
     @objc func buttonTapped(sender: UIButton!) {
-        print("Open Segue Here")
+        performSegue(withIdentifier: "AddRobotSegue", sender: nil)
+    }
+    
+    @objc func distanceSpeedModifier(sender: UIButton!) {
+        performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
+    }
+    
+    @objc func angleModifier(sender: UIButton!) {
+        performSegue(withIdentifier: "TurnRightModifier", sender: nil)
+    }
+    @objc func colorModifier(sender: UIButton!) {
+        performSegue(withIdentifier: "ColorModifier", sender: nil)
+    }
+    @objc func repeatModifier(sender: UIButton!) {
+        performSegue(withIdentifier: "RepeatModifier", sender: nil)
     }
     
     func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
