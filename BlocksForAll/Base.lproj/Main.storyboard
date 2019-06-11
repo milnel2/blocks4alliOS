@@ -442,7 +442,7 @@ All the commands are single blocks, except for the ones in the control category.
         <!--Distance and Speed-->
         <scene sceneID="EcS-ih-qYG">
             <objects>
-                <viewController title="Distance and Speed" id="PBc-35-QW0" sceneMemberID="viewController">
+                <viewController title="Distance and Speed" id="PBc-35-QW0" customClass="DistanceSpeedModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zJX-ce-Uh5"/>
                         <viewControllerLayoutGuide type="bottom" id="ukk-FT-0dn"/>
@@ -456,12 +456,18 @@ All the commands are single blocks, except for the ones in the control category.
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" hint="10 to 100 in increments of 10" label="Distance Slider"/>
+                                <connections>
+                                    <action selector="distanceChanged:" destination="PBc-35-QW0" eventType="valueChanged" id="Fmz-sn-Oyw"/>
+                                </connections>
                             </slider>
                             <slider contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="elR-hJ-FtK" userLabel="Speed Slider">
                                 <rect key="frame" x="201" y="574" width="623" height="31"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" hint="Slowest to fastest" label="Speed Slider"/>
+                                <connections>
+                                    <action selector="speedChanged:" destination="PBc-35-QW0" eventType="valueChanged" id="RMg-mA-yT3"/>
+                                </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqa-ry-KPK">
                                 <rect key="frame" x="20" y="28" width="195" height="57"/>
@@ -492,10 +498,14 @@ All the commands are single blocks, except for the ones in the control category.
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <connections>
+                        <outlet property="distanceSlider" destination="33V-6u-7DC" id="moc-Ai-IzA"/>
+                        <outlet property="speedSlider" destination="elR-hJ-FtK" id="m5B-FB-3ch"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2c-JQ-QCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="247.26562499999997" y="271.875"/>
+            <point key="canvasLocation" x="247" y="273"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="28s-Hb-jSN">
@@ -610,8 +620,7 @@ All the commands are single blocks, except for the ones in the control category.
         <image name="GreenArrow" width="649" height="586"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cqe-hd-fim"/>
-        <segue reference="IVp-4f-s1y"/>
+        <segue reference="ebu-O5-0hJ"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>
