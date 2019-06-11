@@ -102,7 +102,7 @@ protocol BlockSelectionDelegate{
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
     
-    
+    @IBOutlet weak var deleteAll: UIButton!
     
     @IBOutlet weak var blocksProgram: UICollectionView!
     //View on the bottom of the screen that shows blocks in worksapce
@@ -243,8 +243,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         containerViewController = myVC as? UINavigationController
     }
     
+    func deleteAllBlocks(){
+        blocksStack = []
+        blocksProgram.reloadData()
+        save()
+        loadSave()
+    }
     
-	
+    @IBAction func deleteAll(_ sender: Any) {
+        deleteAll.accessibilityLabel = "Delete all"
+        deleteAll.accessibilityHint = "Delete all blocks on the screen"
+        let announcement = "All blocks deleted."
+        deleteAll.accessibilityLabel = announcement
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.makeAnnouncement(announcement)
+        })
+        deleteAllBlocks()
+    }
+    
 	//MARK: - Trash Button Play Button
 	/*
      Changes the play button back and forth from trash to play
