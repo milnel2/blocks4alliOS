@@ -94,13 +94,13 @@
                                 <rect key="frame" x="44" y="129" width="924" height="617"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control.
+                                <string key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control. 
 
-In order to use Blocks4All, you must have a Dash or Dot robot from Wonder Workshop.
+In order to use Blocks4All, you must have a Dash or Dot robot from Wonder Workshop. 
 
 To get started, select "Get Started" from the Main Menu. In the "Get Started" page, first select a category and then select a block (command) from the "toolbox" on the left side of the screen. Finally select where you would like the block to go in the "workspace" in the middle of the screen.
 
-To have the robot play the commands, press the play button in the lower right side of the screen. If no robot is selected, you will be taken to a menu of detected robots. Select the robot you want and the robot will play the commands.
+To have the robot play the commands, press the play button in the lower right side of the screen. If no robot is selected, you will be taken to a menu of detected robots. Select the robot you want and the robot will play the commands. 
 
 All the commands are single blocks, except for the ones in the control category. There are two main control blocks: "repeat" and "if" blocks and two types of modifier blocks: numbers and conditions. "Repeat" blocks can be modified with any of the number blocks and will cause any blocks located inside the "repeat" blocks (between the "repeat" and the "end repeat" blocks) to be repeated that number of times. "If" blocks can be modified with conditions (statements that can be evaluated as either true or false) and will cause any blocks located inside the "if" blocks (between the "if" and "end if" blocks to only be played if the "if" block evaluates to true.  To modify a control block, you first place it in the workspace, select a modifier from the toolbox, and then select the block you wish it to modify in the workspace.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -452,7 +452,7 @@ All the commands are single blocks, except for the ones in the control category.
         <!--Distance and Speed-->
         <scene sceneID="EcS-ih-qYG">
             <objects>
-                <viewController title="Distance and Speed" id="PBc-35-QW0" customClass="DistanceSpeedModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Distance and Speed" id="PBc-35-QW0" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zJX-ce-Uh5"/>
                         <viewControllerLayoutGuide type="bottom" id="ukk-FT-0dn"/>
@@ -466,18 +466,12 @@ All the commands are single blocks, except for the ones in the control category.
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" hint="10 to 100 in increments of 10" label="Distance Slider"/>
-                                <connections>
-                                    <action selector="distanceChanged:" destination="PBc-35-QW0" eventType="valueChanged" id="Fmz-sn-Oyw"/>
-                                </connections>
                             </slider>
                             <slider contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="elR-hJ-FtK" userLabel="Speed Slider">
                                 <rect key="frame" x="201" y="574" width="623" height="31"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" hint="Slowest to fastest" label="Speed Slider"/>
-                                <connections>
-                                    <action selector="speedChanged:" destination="PBc-35-QW0" eventType="valueChanged" id="RMg-mA-yT3"/>
-                                </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqa-ry-KPK">
                                 <rect key="frame" x="20" y="28" width="195" height="57"/>
@@ -508,14 +502,10 @@ All the commands are single blocks, except for the ones in the control category.
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <connections>
-                        <outlet property="distanceSlider" destination="33V-6u-7DC" id="moc-Ai-IzA"/>
-                        <outlet property="speedSlider" destination="elR-hJ-FtK" id="m5B-FB-3ch"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2c-JQ-QCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="247" y="273"/>
+            <point key="canvasLocation" x="247.26562499999997" y="271.875"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="28s-Hb-jSN">
@@ -631,7 +621,8 @@ All the commands are single blocks, except for the ones in the control category.
         <image name="Untitled drawing" width="72" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ebu-O5-0hJ"/>
+        <segue reference="iKl-5d-2xu"/>
+        <segue reference="QqG-dM-L1w"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>
