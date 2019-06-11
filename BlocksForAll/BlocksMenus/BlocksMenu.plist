@@ -265,6 +265,20 @@
 				<key>imageName</key>
 				<string>obstacle.pdf</string>
 			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Wait for Time</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#FF7F2A</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>wait.pdf</string>
+			</dict>
 		</array>
 	</dict>
 	<dict>
