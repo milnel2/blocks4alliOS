@@ -176,8 +176,4 @@ class Block: Codable {
         return paths[0]
     }
     
-    func save(){}
-    
-    func loadSave() {}
-    
 }

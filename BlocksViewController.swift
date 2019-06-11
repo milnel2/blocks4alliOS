@@ -25,12 +25,14 @@ func loadSave() {
         // creates a string type of the entire json file
         let jsonStrings = jsonString.components(separatedBy: "\n Next Object \n")
         // the string of the json file parsed out into each object in the file
-        //        var doesPreviousNeedCounter = false
-        // if this is true that means the previous block needed a counter part, and the current object needs to be created as the
+        
         
         for part in jsonStrings {
+            // for each json object in the array of json objects as strings
+            
             //            print("part to be processed")
             //            print(part)
+            
             if part == "" {
                 break
             }
@@ -38,38 +40,36 @@ func loadSave() {
             
             let jsonPart = part.data(using: .utf8)
             // this takes the json object as a string and turns it into a data object named jsonPart
+            
             let blockBeingCreated = Block(json: jsonPart!)
-            print("counterpart printed:", blockBeingCreated?.counterpart)
             // this is the block being made, it's created using the block initializer that takes a data format json
             
-            //            print("blockBeingCreated")
-            //            print(blockBeingCreated?.name)
+            
             blockStackFromSave.append(blockBeingCreated!)
-            // catch for all blocks without counterparts just adds block to the stack
+            // adds the created block to the array of blocks that will later be set to the blocksStack
             
         }
         
         var forOpen: [Block] = []
+        //array of all of the "Repeat" blocks but not the "End Repeat" blocks
         var ifOpen: [Block] = []
+        //array of all of the "If" blocks but not the "End Repeat" blocks
         for block in blockStackFromSave{
+            // iterates through the blocks in the array created from the save, goal is to assign counterparts to all of the For and If statements
             if block.name == "Repeat"{
                 forOpen.append(block)
+                //adds "For" statements to an array
             }else if block.name == "End Repeat"{
                 forOpen.last?.counterpart = block
+                // matches the repeat start to the counter part repeat end
                 forOpen.removeLast()
+                // removes the open block that was matched to a close block
             }else if block.name == "If"{
+                //mirrors for loop stuff
                 ifOpen.append(block)
             }else if block.name == "End If"{
                 ifOpen.last?.counterpart = block
                 ifOpen.removeLast()
-            }
-        }
-        for block in blockStackFromSave{
-            if block.counterpart != nil {
-                print("block")
-                print(block.name)
-                print("block coutnerpart")
-                print(block.counterpart?.name)
             }
         }
         blocksStack = blockStackFromSave
@@ -79,6 +79,7 @@ func loadSave() {
         print("load Failed")
     }
 }
+
 
 // from Paul
 func getDocumentsDirectory() -> URL{
@@ -123,45 +124,64 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var menuButton: UIButton!
     
     
+    /** This function saves each block in the superview as a json object cast as a String to a growing file. The function uses fileManager to be able to add and remove blocks from previous saves to stay up to date. **/
+    
     func save(){
-        print("save called")
         
+        print("save called")
         let fileManager = FileManager.default
+        //filename refers to the url found at "Blocks4AllSave.json"
+        
         let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
         do{
+            //Deletes previous save in order to rewrite for each save action (therefore, no excess blocks)
             try fileManager.removeItem(at: filename)
-            //Deletes previous save to rewrite later on for each save action
         }catch{
             print("couldn't delete")
+            
         }
         
-        //        print("blocks in block stack:")
-        //        print(blocksStack)
+        // string that json text is appended too
         
         var writeText = String()
-        // string that json text is appended too
+        /** block represents each block belonging to the global array of blocks in the workspace. blocksStack holds all blocks on the screen. **/
+        
         for block in blocksStack{
-            // blocks is each block as iterated through the array of the global variable of the array of blocks in the workspace
+            
+            // sets jsonText to the var type json in block that takes a Data object
             
             if let jsonText = block.json {
-                // sets jsonText to the var type json in block that takes a Data object
+                
+                /** appends the data from jsonText in string form to the string writeText. writeText is then saved as a json save file **/
+                
                 writeText.append(String(data: jsonText, encoding: .utf8)!)
-                // appends the data from jsonText in string form to the string writeText later saved as json ssave file
+                
+                /** Appending "\n Next Object \n" is meant to separate each encoded block's data in order to make it easier to fetch at a later time **/
+                
                 writeText.append("\n Next Object \n")
+                
             }
-            //                    print("wrote")
-            //            }
-            
             do{
-                try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+                
                 // writes the accumlated string of json objects to a single file
-                //                try print(String(contentsOf: filename))
+                
+                try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+                
             }catch {
+                
                 print("couldn't print json")
+                
             }
+            
         }
+        
         print("\n end of save")
+        
     }
+    
+    
+    
+
     
     
     // MARK: - - View Set Up
