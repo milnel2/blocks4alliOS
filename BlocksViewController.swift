@@ -255,9 +255,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         deleteAll.accessibilityHint = "Delete all blocks on the screen"
         let announcement = "All blocks deleted."
         deleteAll.accessibilityLabel = announcement
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            self.makeAnnouncement(announcement)
-        })
         deleteAllBlocks()
     }
     

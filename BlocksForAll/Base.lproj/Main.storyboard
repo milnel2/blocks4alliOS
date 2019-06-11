@@ -290,7 +290,7 @@ All the commands are single blocks, except for the ones in the control category.
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-Fa-yDY" userLabel="DeleteAll">
                                 <rect key="frame" x="900" y="34" width="59" height="52"/>
-                                <accessibility key="accessibilityConfiguration" hint="Make your robot go!" label="Play"/>
+                                <accessibility key="accessibilityConfiguration" hint="Delete all blocks on the screen" label="Delete All"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" backgroundImage="deleteAll">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
