@@ -115,7 +115,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var blockHeight = 150
     let blockSpacing = 1
     
-    
+    var distanceChanged: Double = 30
+    var speedChanged: Double = 10
+    var modifierButton: UIButton?
     
     
     /** This function saves each block in the superview as a json object cast as a String to a growing file. The function uses fileManager to be able to add and remove blocks from previous saves to stay up to date. **/
@@ -158,6 +160,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("\(distanceChanged) and \(speedChanged)")
+        print(modifierButton?.title(for: .normal))
+        modifierButton?.setTitle("\(distanceChanged)", for: .normal)
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
         print("before loadSave blocksStack")
@@ -594,7 +599,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     distanceSpeedButton.backgroundColor = .lightGray
-                    distanceSpeedButton.setTitle("Distance and Speed", for: .normal)
+                    distanceSpeedButton.setTitle("Distance: \(Int(distanceChanged)), Speed: \(Int(speedChanged))", for: .normal)
+                    distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    distanceSpeedButton.titleLabel?.numberOfLines = 0
                     distanceSpeedButton.addTarget(self, action: #selector(distanceSpeedModifier(sender:)), for: .touchUpInside)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.layer.borderWidth = 2.0
@@ -691,12 +699,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return cell
     }
     
-    //Function for to print line when button is tapped
-    @objc func buttonTapped(sender: UIButton!) {
-        performSegue(withIdentifier: "AddRobotSegue", sender: nil)
-    }
-    
     @objc func distanceSpeedModifier(sender: UIButton!) {
+        modifierButton = sender
         performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
     }
     
@@ -819,6 +823,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 myTopViewController.delegate = self
                 myTopViewController.blockWidth = 150
             }
+        }
+        if let destinationViewController = segue.destination as? DistanceSpeedModViewController{
+            destinationViewController.modifierButtonSender = modifierButton
         }
         
     }

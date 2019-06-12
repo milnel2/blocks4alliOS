@@ -2,7 +2,7 @@
 //  DistanceSpeedModViewController.swift
 //  BlocksForAll
 //
-//  Created by admin on 6/11/19.
+//  Created by admin on 6/12/19.
 //  Copyright © 2019 Jacqueline Ong. All rights reserved.
 //
 
@@ -12,19 +12,28 @@ import UIKit
 class DistanceSpeedModViewController: UIViewController{
     /* View controller for the Distance and Speed modifier scene */
     
-    //TODO: change these based on Dash API
+    //TODO: update these based on Dash API
     var distance: Double = 30
     var speed: Double = 10
+    var modifierButtonSender: UIButton!
     
     @IBOutlet weak var distanceSlider: UISlider!
     @IBOutlet weak var speedSlider: UISlider!
     
-    @IBAction func distanceChanged(_ sender: UISlider) {
+    @IBAction func distanceSliderChanged(_ sender: UISlider) {
         distance = Double(sender.value)
-        print(distance)
     }
-    @IBAction func speedChanged(_ sender: UISlider) {
+    @IBAction func speedSliderChanged(_ sender: UISlider) {
         speed = Double(sender.value)
-        print(speed)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if let destinationViewController = segue.destination as? BlocksViewController{
+            
+            destinationViewController.modifierButton = modifierButtonSender
+            destinationViewController.distanceChanged = distance
+            destinationViewController.speedChanged = speed
+        }
+    }
+    
 }
