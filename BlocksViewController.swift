@@ -60,6 +60,7 @@ func ifAndRepeatCounterparts(_ aBlockStack: [Block]){
             //adds "For" statements to an array
         }else if block.name == "End Repeat"{
             forOpen.last?.counterpart = block
+            block.counterpart = forOpen.last
             // matches the repeat start to the counter part repeat end
             forOpen.removeLast()
             // removes the open block that was matched to a close block
@@ -68,6 +69,7 @@ func ifAndRepeatCounterparts(_ aBlockStack: [Block]){
             ifOpen.append(block)
         }else if block.name == "End If"{
             ifOpen.last?.counterpart = block
+            block.counterpart = ifOpen.last
             ifOpen.removeLast()
         }
     }
