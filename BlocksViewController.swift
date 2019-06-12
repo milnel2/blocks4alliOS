@@ -219,15 +219,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         self.present(alert, animated: true)
         
     }
-    
     /* Changes the play button back and forth from trash to play */
     func changePlayTrashButton(){
         if movingBlocks{
-            playTrashToggleButton.setBackgroundImage( imageLiteral(resourceName: "Trashcan"), for: .normal)
+            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Place in Trash"
             playTrashToggleButton.accessibilityHint = "Delete selected blocks"
         }else{
-            playTrashToggleButton.setBackgroundImage( imageLiteral(resourceName: "GreenArrow"), for: .normal)
+            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Play"
             playTrashToggleButton.accessibilityHint = "Make your robot go!"
         }
