@@ -136,7 +136,7 @@ All the commands are single blocks, except for the ones in the control category.
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="YEE-PZ-SjD" kind="show" id="uZD-xM-HW6"/>
+                                    <segue destination="uoc-nU-c4a" kind="show" id="mvy-bP-rks"/>
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
@@ -288,17 +288,6 @@ All the commands are single blocks, except for the ones in the control category.
                                     <segue destination="YEE-PZ-SjD" kind="show" id="s7f-fy-WFP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-Fa-yDY" userLabel="DeleteAll">
-                                <rect key="frame" x="900" y="34" width="59" height="52"/>
-                                <accessibility key="accessibilityConfiguration" hint="Delete all blocks on the screen" label="Delete All"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <state key="normal" backgroundImage="deleteAll">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="deleteAll:" destination="uoc-nU-c4a" eventType="touchUpInside" id="Tdt-IF-nlc"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztu-9b-vFh">
                                 <rect key="frame" x="867" y="584" width="125" height="157"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -309,15 +298,27 @@ All the commands are single blocks, except for the ones in the control category.
                                 </state>
                                 <connections>
                                     <action selector="playButtonClicked:" destination="uoc-nU-c4a" eventType="touchUpInside" id="vL1-rJ-3br"/>
+                                    <action selector="trashClicked:" destination="uoc-nU-c4a" eventType="touchUpInside" id="lYi-W8-QUd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-Fa-yDY" userLabel="DeleteAll">
+                                <rect key="frame" x="613" y="34" width="200" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" hint="Delete all blocks on the screen" label="Delete All"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="Clear All">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteAll:" destination="uoc-nU-c4a" eventType="touchUpInside" id="Tdt-IF-nlc"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ipa-F9-VES" firstAttribute="leading" secondItem="Qkj-vq-g4U" secondAttribute="leading" constant="300" id="2Vn-hX-0tT"/>
-                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="leading" secondItem="Qkj-vq-g4U" secondAttribute="leading" constant="900" id="8AX-gp-7kv"/>
                             <constraint firstItem="Ipa-F9-VES" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="50" id="eCG-tT-T1r"/>
-                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="firstBaseline" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="10" id="jJw-54-1Wm"/>
                         </constraints>
                     </view>
                     <connections>
@@ -333,7 +334,7 @@ All the commands are single blocks, except for the ones in the control category.
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W32-Q3-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-379.94143484626642" y="-557.2265625"/>
+            <point key="canvasLocation" x="-380.2734375" y="-557.8125"/>
         </scene>
         <!--Block Table View Controller-->
         <scene sceneID="OAu-TV-gtl">
@@ -629,11 +630,10 @@ All the commands are single blocks, except for the ones in the control category.
     </scenes>
     <resources>
         <image name="GreenArrow" width="649" height="586"/>
-        <image name="deleteAll" width="72" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ebu-O5-0hJ"/>
+        <segue reference="mvy-bP-rks"/>
         <segue reference="PIe-sL-Fqa"/>
-        <segue reference="s7f-fy-WFP"/>
+        <segue reference="KBE-C8-Ew2"/>
     </inferredMetricsTieBreakers>
 </document>

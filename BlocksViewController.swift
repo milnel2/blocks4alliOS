@@ -14,8 +14,6 @@ var blocksStack = [Block]()
 
 func loadSave() {
     print("load save called")
-    //    print("contents of filename")
-    //    print( try? String(contentsOf: filename))
     
     var blockStackFromSave: [Block] = []
     //array of blocks loaded from the save
@@ -26,62 +24,55 @@ func loadSave() {
         let jsonStrings = jsonString.components(separatedBy: "\n Next Object \n")
         // the string of the json file parsed out into each object in the file
         
-        
         for part in jsonStrings {
             // for each json object in the array of json objects as strings
-            
-            //            print("part to be processed")
-            //            print(part)
-            
             if part == "" {
                 break
             }
             // this covers the last string parsed out that's just a new line
-            
             let jsonPart = part.data(using: .utf8)
             // this takes the json object as a string and turns it into a data object named jsonPart
-            
             let blockBeingCreated = Block(json: jsonPart!)
             // this is the block being made, it's created using the block initializer that takes a data format json
-            
-            
             blockStackFromSave.append(blockBeingCreated!)
             // adds the created block to the array of blocks that will later be set to the blocksStack
-            
         }
         
-        var forOpen: [Block] = []
-        //array of all of the "Repeat" blocks but not the "End Repeat" blocks
-        var ifOpen: [Block] = []
-        //array of all of the "If" blocks but not the "End Repeat" blocks
-        for block in blockStackFromSave{
-            // iterates through the blocks in the array created from the save, goal is to assign counterparts to all of the For and If statements
-            if block.name == "Repeat"{
-                forOpen.append(block)
-                //adds "For" statements to an array
-            }else if block.name == "End Repeat"{
-                forOpen.last?.counterpart = block
-                // matches the repeat start to the counter part repeat end
-                forOpen.removeLast()
-                // removes the open block that was matched to a close block
-            }else if block.name == "If"{
-                //mirrors for loop stuff
-                ifOpen.append(block)
-            }else if block.name == "End If"{
-                ifOpen.last?.counterpart = block
-                ifOpen.removeLast()
-            }
-        }
+        ifAndRepeatCounterparts(blockStackFromSave)
         blocksStack = blockStackFromSave
         // blockStackFrom save is array of blocks created from save file in this function, sets it to the global array of blocks used
         print("load completed")
     }catch{
-        print("load Failed")
+        print("load failed")
     }
 }
 
+func ifAndRepeatCounterparts(_ aBlockStack: [Block]){
+    var forOpen: [Block] = []
+    //array of all of the "Repeat" blocks but not the "End Repeat" blocks
+    var ifOpen: [Block] = []
+    //array of all of the "If" blocks but not the "End Repeat" blocks
+    for block in aBlockStack{
+        // iterates through the blocks in the array created from the save, goal is to assign counterparts to all of the For and If statements
+        if block.name == "Repeat"{
+            forOpen.append(block)
+            //adds "For" statements to an array
+        }else if block.name == "End Repeat"{
+            forOpen.last?.counterpart = block
+            // matches the repeat start to the counter part repeat end
+            forOpen.removeLast()
+            // removes the open block that was matched to a close block
+        }else if block.name == "If"{
+            //mirrors for loop stuff
+            ifOpen.append(block)
+        }else if block.name == "End If"{
+            ifOpen.last?.counterpart = block
+            ifOpen.removeLast()
+        }
+    }
+}
 
-// from Paul
+// from Paul Hegarty, lectures 13 and 14
 func getDocumentsDirectory() -> URL{
     let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return paths[0]
@@ -108,6 +99,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     //View on the bottom of the screen that shows blocks in worksapce
     @IBOutlet weak var playTrashToggleButton: UIButton!
     
+    @IBOutlet weak var menuButton: UIButton!
+    
     var blocksBeingMoved = [Block]() /* List of blocks that are currently being moved (moving repeat and if blocks
      also move the blocks nested inside */
     var movingBlocks = false    //True if currently moving blocks in the workspace
@@ -119,69 +112,41 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var blockHeight = 150
     let blockSpacing = 1
     
-    
-    
-    @IBOutlet weak var menuButton: UIButton!
+
     
     
     /** This function saves each block in the superview as a json object cast as a String to a growing file. The function uses fileManager to be able to add and remove blocks from previous saves to stay up to date. **/
-    
     func save(){
-        
-        print("save called")
         let fileManager = FileManager.default
         //filename refers to the url found at "Blocks4AllSave.json"
-        
         let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
         do{
             //Deletes previous save in order to rewrite for each save action (therefore, no excess blocks)
             try fileManager.removeItem(at: filename)
         }catch{
             print("couldn't delete")
-            
         }
         
         // string that json text is appended too
-        
         var writeText = String()
         /** block represents each block belonging to the global array of blocks in the workspace. blocksStack holds all blocks on the screen. **/
-        
         for block in blocksStack{
-            
             // sets jsonText to the var type json in block that takes a Data object
-            
             if let jsonText = block.json {
-                
                 /** appends the data from jsonText in string form to the string writeText. writeText is then saved as a json save file **/
-                
                 writeText.append(String(data: jsonText, encoding: .utf8)!)
                 
                 /** Appending "\n Next Object \n" is meant to separate each encoded block's data in order to make it easier to fetch at a later time **/
-                
                 writeText.append("\n Next Object \n")
-                
             }
             do{
-                
                 // writes the accumlated string of json objects to a single file
-                
                 try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-                
             }catch {
-                
                 print("couldn't print json")
-                
             }
-            
         }
-        
-        print("\n end of save")
-        
     }
-    
-    
-    
-
     
     
     // MARK: - - View Set Up
@@ -189,17 +154,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     
     override func viewDidLoad() {
-//                let fileManager = FileManager.default
-//                print("save called")
-//                let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
-//                do{
-//                    try fileManager.removeItem(at: filename)
-//                    //Deletes previous save to rewrite later on for each save action
-//                }catch{
-//                    print("couldn't delete")
-//                }
-//        //    uncomment and get started once don't place blocks then stop the program to clear the save file to empty
-        
         super.viewDidLoad()
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
@@ -209,8 +163,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         loadSave()
         save()
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -219,7 +171,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     // MARK: - - Block Selection Delegate functions
-    // MARK: add save function to function
     func unsetBlocks() {
         /*Called after Blocks have been placed in final destination, so unset everything*/
         movingBlocks = false
@@ -243,6 +194,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         containerViewController = myVC as? UINavigationController
     }
     
+    /** Function removes all blocks from the blocksStack and program **/
     func deleteAllBlocks(){
         blocksStack = []
         blocksProgram.reloadData()
@@ -250,18 +202,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         loadSave()
     }
     
+    /** When a user clicks the 'Clear All' button, they receive an alert asking if they really want to
+     delete all blocks or not. If yes, the screen is cleared. **/
     @IBAction func deleteAll(_ sender: Any) {
         deleteAll.accessibilityLabel = "Delete all"
         deleteAll.accessibilityHint = "Delete all blocks on the screen"
-        let announcement = "All blocks deleted."
-        deleteAll.accessibilityLabel = announcement
-        deleteAllBlocks()
+        
+        let alert = UIAlertController(title: "Do you want to delete all?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+            let announcement = "All blocks deleted."
+            self.deleteAll.accessibilityLabel = announcement
+            self.deleteAllBlocks()}))
+        
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+        
     }
     
-	//MARK: - Trash Button Play Button
-	/*
-     Changes the play button back and forth from trash to play
-     */
+	/* Changes the play button back and forth from trash to play */
     func changePlayTrashButton(){
         if movingBlocks{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
@@ -274,24 +232,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
     
-    // run the actual program when the play button is clicked or put blocks in trash
+    // run the actual program when the play button is clicked
     @IBAction func playButtonClicked(_ sender: Any) {
-        if(movingBlocks){
-            //trash
-            changePlayTrashButton()
-            let announcement = blocksBeingMoved[0].name + " placed in trash."
-            playTrashToggleButton.accessibilityLabel = announcement
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                self.containerViewController?.popViewController(animated: false)
-            })
-            blocksProgram.reloadData()
-            movingBlocks = false
-            blocksBeingMoved.removeAll()
-            save()
-            print("put in trash")
-            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
-        }else{
-            //play
+        //play
+        if(!movingBlocks){
             if(!connectedRobots()){
                 //no robots
                 let announcement = "Connect to the dash robot. "
@@ -301,7 +245,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
             }else if(blocksStack.isEmpty){
                 changePlayTrashButton()
-                let announcement = "Your robot has nothing to do!  Add some blocks to your workspace. "
+                let announcement = "Your robot has nothing to do! Add some blocks to your workspace."
                 playTrashToggleButton.accessibilityLabel = announcement
                 
             }else{
@@ -310,7 +254,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
     }
-	
+    
+    // run the actual program when the trash button is clicked
+    @IBAction func trashClicked(_ sender: Any) {
+        if(movingBlocks){
+            //trash
+            let announcement = blocksBeingMoved[0].name + " placed in trash."
+            playTrashToggleButton.accessibilityLabel = announcement
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                self.containerViewController?.popViewController(animated: false)})
+            blocksProgram.reloadData()
+            print("put in trash")
+            unsetBlocks()
+        }
+    }
+    
     //MARK: Complier methods, converts from Blocks4All to robot code
     //MARK: Clean this up!!
     //Unrolls the repeat loops in the blocks program: converts to a list of commands to run
@@ -392,9 +350,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }else{
             announcement = blocks[0].name + " placed at beginning"
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-           self.makeAnnouncement(announcement)
-        })
+        delay(announcement, 2)
         
         //add a completion block here
         if(blocks[0].double){
@@ -411,6 +367,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     func makeAnnouncement(_ announcement: String){
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+    }
+    
+    func delay(_ announcement: String, _ seconds: Int){
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: {
+            self.makeAnnouncement(announcement)
+        })
     }
     
     func createViewRepresentation(FromBlocks blocksRep: [Block]) -> UIView {
@@ -786,9 +748,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         containerViewController?.popViewController(animated: false)
                         let condition = myBlock.addedBlocks[0].name
                         let announcement = condition + "placed in if statement"
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-                            self.makeAnnouncement(announcement)
-                        })
+                        delay(announcement, 2)
                         blocksProgram.reloadData()
                         unsetBlocks()
                     }else if blocksBeingMoved[0].type == "Number" && acceptsNumbers{
@@ -798,25 +758,19 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         containerViewController?.popViewController(animated: false)
                         let condition = myBlock.addedBlocks[0].name
                         let announcement = condition + "placed in repeat statement"
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-                        self.makeAnnouncement(announcement)
-                        })
+                        delay(announcement, 2)
                         blocksProgram.reloadData()
                         unsetBlocks()
                     }else{
                         //say you can't add it here
                         print("you can't add it here")
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-                            self.makeAnnouncement("you can't add it here")
-                        })
+                        delay("you can't add it here", 2)
                         
                     }
                 }else{
                     //say you can't add it here
                     print("you can't add it here")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-                        self.makeAnnouncement("you can't add it here")
-                    })
+                    delay("you can't add it here", 2)
                 }
             }else{
                 addBlocks(blocksBeingMoved, at: indexPath.row)
