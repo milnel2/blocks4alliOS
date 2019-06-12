@@ -11,13 +11,15 @@
 import UIKit
 
 struct Color : Codable {
+// struct used to make a codable UIColor
     var red : CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
-    
+    // create variables used to construct a UIColor
     var uiColor : UIColor {
+    // takes the Color object uses variables above, initialized below to create and return a UIColor object
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
-    
     init(uiColor : UIColor) {
+    //initializes a color
         uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
     }
 }
@@ -54,22 +56,16 @@ struct Task: Codable {
 }
 //above code is from https://stackoverflow.com/questions/50928153/make-uicolor-codable
 
+
 class Block: Codable {
     /*Block model that has all the properties describing the block*/
     
     //MARK: - Properties
     
     var name: String
-    var color: Color
+    var color: Color //Color struct rather than UIColor so as to be codable
     var double: Bool //true if needs both beginning and end block like repeat, if
     var counterpart:Block? //start and end block counterpart for for etc.
-    
-    
-    //MARK: Delete these (I think), maybe check through BlocksMenu.plist to make sure they aren't being used in any block
-    var editable: Bool
-    var options: [String] = []
-    var optionsLabels: [String] = []
-    var pickedOption: Int = 0
     
     var imageName: String?
     
@@ -78,68 +74,49 @@ class Block: Codable {
     var type: String = "Operation" //types: Operations, Booleans, Numbers
     var acceptedTypes: [String] = [] //list of types that can be added to current block (e.g. numbers for a repeat block)
     
+    
+    //MARK: - json variable
     // From Paul, create a variable for creating the json encoded data, using the self data of the block in question
     var json: Data? {
-        //        print(self)
-        var blocksCounterpart = self.counterpart
+        let blocksCounterpart = self.counterpart
         self.counterpart = nil
-        var jsonString = try? JSONEncoder().encode(self)
-        //        print(self.counterpart)
+        // gets counterpart to be re-added later, then sets the counterpart to nil so its codable
+        let jsonString = try? JSONEncoder().encode(self)
+        // try to encode self to a JSON object
         self.counterpart = blocksCounterpart
-        //print(self.counterpart)
+        // adds the counterpart back to the block
         return jsonString
     }
     
     
     //MARK: - Initialization
-    
-    // initializes a block from a json format data object
+
     init? (json: Data){
-        
+    // initializes a block from a json format data object
         // below declarations are to provide a default so the actual initialzation could be use, needs to be removed later but can't figure out error that occurs when there is no defualt
         self.name = "hello"
         self.color = Color(uiColor: UIColor(white: 0, alpha: 0))
         self.double = true
-        self.editable = true
         self.imageName = "default image name"
-        self.options = ["options defualt"]
-        self.pickedOption = 9
-        self.optionsLabels = ["options labels defualt"]
         self.addedBlocks = []
         self.type = "bool"
         self.acceptedTypes = ["bool"]
-        
-        
-        do{
-            var newValue: Block?
-            // crreates a place holder block to be used below
-            var jsonToUse = try? Data(contentsOf: filename)
-            // I thinkg this can be delete not sure what the purpouse of it is
             
-            if let newValue = try? JSONDecoder().decode(Block.self, from: json){
-                // tries to take the json file passed in initialization and set the placeholder block newValue to the information in the
-                self.name = newValue.name
-                // initializes the new block information from the place holder block newValue.... can't remember how this works since it seems the block creation of the new value is recursive....
-                self.color = newValue.color
-                self.double = newValue.double
-                self.editable = newValue.editable
-                self.imageName = newValue.imageName
-                self.options = newValue.options
-                self.pickedOption = newValue.pickedOption
-                self.optionsLabels = newValue.optionsLabels
-                self.addedBlocks = newValue.addedBlocks
-                self.type = newValue.type
-                self.acceptedTypes = newValue.acceptedTypes
-                //                self.counterpart = newValue.counterpart
-            }
-        }catch{
-            print("couldn't convert json data")
-            return nil
+        if let newValue = try? JSONDecoder().decode(Block.self, from: json){
+            // tries to take the json file passed in initialization and set the placeholder block newValue to the information in the
+            self.name = newValue.name
+            // initializes the new block information from the place holder block newValue.... can't remember how this works since it seems the block creation of the new value is recursive....
+            self.color = newValue.color
+            self.double = newValue.double
+            self.imageName = newValue.imageName
+            self.addedBlocks = newValue.addedBlocks
+            self.type = newValue.type
+            self.acceptedTypes = newValue.acceptedTypes
         }
     }
     
     
-    init?(name: String, color: Color, double: Bool, editable: Bool, imageName: String? = nil, options: [String] = [], pickedOption: Int = 0, optionsLabels: [String] = [], addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
+    init?(name: String, color: Color, double: Bool, imageName: String? = nil, addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
         
         //TODO: check that color is initialized as well
         if name.isEmpty {
@@ -149,11 +126,7 @@ class Block: Codable {
         self.name = name
         self.color = color
         self.double = double
-        self.editable = editable
         self.imageName = imageName
-        self.options = options
-        self.pickedOption = pickedOption
-        self.optionsLabels = optionsLabels
         self.addedBlocks = addedBlocks
         self.type = type
         self.acceptedTypes = acceptedTypes
@@ -166,7 +139,7 @@ class Block: Codable {
     
     func copy() -> Block{
         /*Used when selecting a block from the toolbox and copying into workspace*/
-        let newBlock = Block.init(name: self.name, color: self.color, double: self.double, editable: self.editable, imageName: self.imageName, options: self.options, pickedOption: self.pickedOption, optionsLabels: self.optionsLabels, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes)
+        let newBlock = Block.init(name: self.name, color: self.color, double: self.double, imageName: self.imageName, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes)
         return newBlock!
     }
     
