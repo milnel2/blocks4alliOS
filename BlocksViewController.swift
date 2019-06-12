@@ -242,37 +242,42 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // run the actual program when the play button is clicked
     @IBAction func playButtonClicked(_ sender: Any) {
         //play
-        if(!movingBlocks){
-            if(!connectedRobots()){
-                //no robots
-                let announcement = "Connect to the dash robot. "
-                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString(announcement, comment: ""))
-                print("No robots")
-                performSegue(withIdentifier: "AddRobotSegue", sender: nil)
-                
-            }else if(blocksStack.isEmpty){
-                changePlayTrashButton()
-                let announcement = "Your robot has nothing to do! Add some blocks to your workspace."
-                playTrashToggleButton.accessibilityLabel = announcement
-                
-            }else{
-                let commands = createCommandSequence(blocksStack)
-                play(commands)
-            }
+        if(movingBlocks){
+            trashClicked()
+        }
+        else{
+            playClicked()
         }
     }
     
     // run the actual program when the trash button is clicked
-    @IBAction func trashClicked(_ sender: Any) {
-        if(movingBlocks){
-            //trash
-            let announcement = blocksBeingMoved[0].name + " placed in trash."
+    func trashClicked() {
+        //trash
+        let announcement = blocksBeingMoved[0].name + " placed in trash."
+        playTrashToggleButton.accessibilityLabel = announcement
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.containerViewController?.popViewController(animated: false)})
+        print("put in trash")
+        blocksProgram.reloadData()
+        unsetBlocks()
+    }
+    
+    func playClicked(){
+        if(!connectedRobots()){
+            //no robots
+            let announcement = "Connect to the dash robot. "
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString(announcement, comment: ""))
+            print("No robots")
+            performSegue(withIdentifier: "AddRobotSegue", sender: nil)
+            
+        }else if(blocksStack.isEmpty){
+            changePlayTrashButton()
+            let announcement = "Your robot has nothing to do! Add some blocks to your workspace."
             playTrashToggleButton.accessibilityLabel = announcement
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                self.containerViewController?.popViewController(animated: false)})
-            blocksProgram.reloadData()
-            print("put in trash")
-            unsetBlocks()
+            
+        }else{
+            let commands = createCommandSequence(blocksStack)
+            play(commands)
         }
     }
     
