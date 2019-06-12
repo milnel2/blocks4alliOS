@@ -67,13 +67,6 @@ class Block: Codable {
     var double: Bool //true if needs both beginning and end block like repeat, if
     var counterpart:Block? //start and end block counterpart for for etc.
     
-    
-    //MARK: Delete these (I think), maybe check through BlocksMenu.plist to make sure they aren't being used in any block
-    var editable: Bool
-    var options: [String] = []
-    var optionsLabels: [String] = []
-    var pickedOption: Int = 0
-    
     var imageName: String?
     
     //For control blocks (if and repeat blocks)
@@ -104,11 +97,7 @@ class Block: Codable {
         self.name = "hello"
         self.color = Color(uiColor: UIColor(white: 0, alpha: 0))
         self.double = true
-        self.editable = true
         self.imageName = "default image name"
-        self.options = ["options defualt"]
-        self.pickedOption = 9
-        self.optionsLabels = ["options labels defualt"]
         self.addedBlocks = []
         self.type = "bool"
         self.acceptedTypes = ["bool"]
@@ -119,11 +108,7 @@ class Block: Codable {
             // initializes the new block information from the place holder block newValue.... can't remember how this works since it seems the block creation of the new value is recursive....
             self.color = newValue.color
             self.double = newValue.double
-            self.editable = newValue.editable
             self.imageName = newValue.imageName
-            self.options = newValue.options
-            self.pickedOption = newValue.pickedOption
-            self.optionsLabels = newValue.optionsLabels
             self.addedBlocks = newValue.addedBlocks
             self.type = newValue.type
             self.acceptedTypes = newValue.acceptedTypes
@@ -131,7 +116,7 @@ class Block: Codable {
     }
     
     
-    init?(name: String, color: Color, double: Bool, editable: Bool, imageName: String? = nil, options: [String] = [], pickedOption: Int = 0, optionsLabels: [String] = [], addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
+    init?(name: String, color: Color, double: Bool, imageName: String? = nil, addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
         
         //TODO: check that color is initialized as well
         if name.isEmpty {
@@ -141,11 +126,7 @@ class Block: Codable {
         self.name = name
         self.color = color
         self.double = double
-        self.editable = editable
         self.imageName = imageName
-        self.options = options
-        self.pickedOption = pickedOption
-        self.optionsLabels = optionsLabels
         self.addedBlocks = addedBlocks
         self.type = type
         self.acceptedTypes = acceptedTypes
@@ -158,7 +139,7 @@ class Block: Codable {
     
     func copy() -> Block{
         /*Used when selecting a block from the toolbox and copying into workspace*/
-        let newBlock = Block.init(name: self.name, color: self.color, double: self.double, editable: self.editable, imageName: self.imageName, options: self.options, pickedOption: self.pickedOption, optionsLabels: self.optionsLabels, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes)
+        let newBlock = Block.init(name: self.name, color: self.color, double: self.double, imageName: self.imageName, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes)
         return newBlock!
     }
     

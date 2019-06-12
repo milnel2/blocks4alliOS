@@ -356,11 +356,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                             myCommand.append(blocks[i].addedBlocks[0].name)
                         }
                     }
-                    
-                    if blocks[i].name.contains("Distance"){
-                        let distance = blocks[i].options[blocks[i].pickedOption]
-                        myCommand.append(distance)
-                    }
                     commands.append(myCommand)
                 }
                 i+=1
@@ -580,7 +575,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "If":
                 if block.addedBlocks.isEmpty{
                     //draw false block
-                    let placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "false.pdf", type: "Boolean")
+                    let placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, imageName: "false.pdf", type: "Boolean")
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = "False"
                     myConditionLabel.isAccessibilityElement = true
