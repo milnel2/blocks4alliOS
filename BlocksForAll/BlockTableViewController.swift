@@ -23,7 +23,7 @@ class BlockTableViewController: UITableViewController {
     var blockWidth = 150
     let blockSpacing = 0
     
-	//MARK: - viewDidLoad function
+    //MARK: - viewDidLoad function
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.title = "Toolbox"
@@ -41,22 +41,22 @@ class BlockTableViewController: UITableViewController {
         //self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return blocks.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -71,7 +71,7 @@ class BlockTableViewController: UITableViewController {
         
         let block = blocks[indexPath.row]
         
-       //probably get rid of special blocktableviewcell and just add blockView to each cell
+        //probably get rid of special blocktableviewcell and just add blockView to each cell
         cell.block = block
         //cell.nameLabel.text = block.name
         //cell.blockView.backgroundColor = block.color
@@ -82,12 +82,12 @@ class BlockTableViewController: UITableViewController {
         
         cell.addSubview(myView)
         /*
-        if(block.imageName != nil){
-            let imageName = block.imageName!
-            let image = UIImage(named: imageName)
-            let imv = UIImageView.init(image: image)
-            cell.addSubview(imv)
-        }*/
+         if(block.imageName != nil){
+         let imageName = block.imageName!
+         let image = UIImage(named: imageName)
+         let imv = UIImageView.init(image: image)
+         cell.addSubview(imv)
+         }*/
         
         //cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
         
@@ -98,15 +98,15 @@ class BlockTableViewController: UITableViewController {
         //let height = tableView.bounds.height/CGFloat(blocks.count)
         return CGFloat(blockWidth + blockSpacing)
     }
-
     
-
-   /* override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let block = blocks[indexPath.row]
-        let announcement = block.name + " selected. "
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
-        
-    }*/
+    
+    
+    /* override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     let block = blocks[indexPath.row]
+     let announcement = block.name + " selected. "
+     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+     
+     }*/
     
     // MARK: - Navigation
     
@@ -125,11 +125,11 @@ class BlockTableViewController: UITableViewController {
                     block = myBlockView.blocks[0].copy()
                 }
             }
-
+            
             //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
             if block.double{
                 let endBlockName = "End " + block.name
-                let endBlock = Block(name: endBlockName, color: block.color, double: true, editable: false)
+                let endBlock = Block(name: endBlockName, color: block.color, double: true)
                 endBlock?.counterpart = block
                 block.counterpart = endBlock
                 myDestination.blocks = [block, endBlock!]
@@ -154,27 +154,20 @@ class BlockTableViewController: UITableViewController {
                         if let colorString = dictItem.object(forKey: "color") as? String{
                             let color2 = Color.init(uiColor:UIColor.colorFrom(hexString: colorString))
                             if let double = dictItem.object(forKey: "double") as? Bool{
-                                if let editable = dictItem.object(forKey: "editable") as? Bool{
-                                    guard let block = Block(name: name as! String, color: color2 , double: double, editable: editable) else {
-                                        fatalError("Unable to instantiate block")
-                                    }
-                                    if let imageName = dictItem.object(forKey: "imageName") as? String{
-                                        block.addImage(imageName)
-                                    }
-                                    if let options = dictItem.object(forKey: "options") as? [String]{
-                                        block.options = options
-                                    }
-                                    if let optionsLabels = dictItem.object(forKey: "optionsLabels") as? [String]{
-                                        block.optionsLabels = optionsLabels
-                                    }
-                                    if let type = dictItem.object(forKey: "type") as? String{
-                                        block.type = type
-                                    }
-                                    if let acceptedTypes = dictItem.object(forKey: "acceptedTypes") as? [String]{
-                                        block.acceptedTypes = acceptedTypes
-                                    }
-                                    blocks += [block]
+                                guard let block = Block(name: name as! String, color: color2 , double: double) else {
+                                    fatalError("Unable to instantiate block")
                                 }
+                                if let imageName = dictItem.object(forKey: "imageName") as? String{
+                                    block.addImage(imageName)
+                                }
+                                if let type = dictItem.object(forKey: "type") as? String{
+                                    block.type = type
+                                }
+                                if let acceptedTypes = dictItem.object(forKey: "acceptedTypes") as? [String]{
+                                    block.acceptedTypes = acceptedTypes
+                                }
+                                blocks += [block]
+                                
                             }
                         }
                     }
@@ -182,5 +175,5 @@ class BlockTableViewController: UITableViewController {
             }
         }
     }
-
+    
 }

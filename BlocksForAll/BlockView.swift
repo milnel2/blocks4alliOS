@@ -11,15 +11,15 @@ import AudioToolbox
 
 class BlockView: UIView, UITextFieldDelegate {
     /*Given a block, creates the view that should be shown*/
-
+    
     var blocks: [Block]
     var blockWidth = 150
     var blockHeight = 150
     let blockSpacing = 1
-	
-	var pickedItem: UITextField?
-	
-	//MARK: - init Block View
+    
+    var pickedItem: UITextField?
+    
+    //MARK: - init Block View
     init (frame : CGRect, block : [Block], myBlockWidth: Int, myBlockHeight: Int) {
         self.blocks = block
         super.init(frame : frame)
@@ -27,9 +27,9 @@ class BlockView: UIView, UITextFieldDelegate {
         blockHeight = myBlockHeight
         self.addSubview(simpleView(FromBlock: block))
     }
-	
-	
-	//MARK: - Element Focus
+    
+    
+    //MARK: - Element Focus
     override func accessibilityElementDidBecomeFocused() {
         print(blocks[0].name + " is focused")
         //AudioServicesPlaySystemSound(1024)
@@ -53,8 +53,8 @@ class BlockView: UIView, UITextFieldDelegate {
         UIGraphicsEndImageContext()
         return newImage
     }
-
-	//MARK:- simpleView
+    
+    //MARK:- simpleView
     func simpleView(FromBlock block: [Block]) -> UIView {
         let block = block[0]
         let myViewWidth = blockWidth
@@ -67,11 +67,11 @@ class BlockView: UIView, UITextFieldDelegate {
             var image = UIImage(named: imageName)
             image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight))
             let imv = UIImageView.init(image: image)
-//            if #available(iOS 11.0, *) {
-//                imv.adjustsImageSizeForAccessibilityContentSizeCategory = true
-//            } else {
-//                // Fallback on earlier versions
-//            }
+            //            if #available(iOS 11.0, *) {
+            //                imv.adjustsImageSizeForAccessibilityContentSizeCategory = true
+            //            } else {
+            //                // Fallback on earlier versions
+            //            }
             myView.addSubview(imv)
         }else if !block.double{ //so end repeat blocks don't have names
             let myLabel = UILabel.init(frame: myFrame)
@@ -82,10 +82,6 @@ class BlockView: UIView, UITextFieldDelegate {
             myLabel.numberOfLines = 0
             myView.addSubview(myLabel)
         }
-        if block.editable {
-            let myFrame = CGRect(x: blockWidth/2, y: 0, width: blockWidth/2, height: blockHeight/2)
-            //let myFrame = CGRect(x: blockWidth/2, y: 0, width: 40, height: 40)
-			}
         return myView
     }
 }

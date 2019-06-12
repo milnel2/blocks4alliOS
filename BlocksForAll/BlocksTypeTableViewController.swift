@@ -18,9 +18,9 @@ class BlocksTypeTableViewController: UITableViewController {
     
     //used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
-
-	
-	//MARK: - viewDidLoad function
+    
+    
+    //MARK: - viewDidLoad function
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Toolbox"
@@ -33,26 +33,26 @@ class BlocksTypeTableViewController: UITableViewController {
         createBlocksArray()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return blockTypes.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier
@@ -60,7 +60,7 @@ class BlocksTypeTableViewController: UITableViewController {
         let cellIdentifier = "BlockTypeTableViewCell"
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-
+        
         // Configure the cell...
         let blockType = blockTypes[indexPath.row]
         cell.textLabel?.text = blockType.name
@@ -76,7 +76,7 @@ class BlocksTypeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(blockWidth + 10)
-
+        
     }
     
     //TODO: this is really convoluted, probably a better way of doing this
@@ -86,9 +86,9 @@ class BlocksTypeTableViewController: UITableViewController {
                 let name = blockType.object(forKey: "type") as? String
                 var color = Color.init(uiColor:UIColor.green )
                 if let colorString = blockType.object(forKey: "color") as? String{
-                    color = Color.init(uiColor: UIColor.colorFrom(hexString: colorString)) 
+                    color = Color.init(uiColor: UIColor.colorFrom(hexString: colorString))
                 }
-                guard let block = Block(name: name!, color: color, double: false, editable: false) else {
+                guard let block = Block(name: name!, color: color, double: false) else {
                     fatalError("Unable to instantiate block")
                 }
                 blockTypes += [block]
@@ -99,7 +99,7 @@ class BlocksTypeTableViewController: UITableViewController {
     
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
