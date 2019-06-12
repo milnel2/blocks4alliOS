@@ -82,6 +82,10 @@ class BlockView: UIView, UITextFieldDelegate {
             myLabel.numberOfLines = 0
             myView.addSubview(myLabel)
         }
+        if block.editable {
+            let myFrame = CGRect(x: blockWidth/2, y: 0, width: blockWidth/2, height: blockHeight/2)
+            //let myFrame = CGRect(x: blockWidth/2, y: 0, width: 40, height: 40)
+			}
         return myView
     }
 }
