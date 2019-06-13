@@ -82,7 +82,10 @@ class BlocksTypeTableViewController: UITableViewController {
     //TODO: this is really convoluted, probably a better way of doing this
     private func createBlocksArray(){
         for item in blockDict{
+            //for item in blockDict which is a NSArray that contains contents of BlocksMenu.plist
             if let blockType = item as? NSDictionary{
+                // for every item blockType is a constant set to the item as a NSDictionary
+                //initializes the block properities
                 let name = blockType.object(forKey: "type") as? String
                 var color = Color.init(uiColor:UIColor.green )
                 if let colorString = blockType.object(forKey: "color") as? String{
@@ -92,6 +95,7 @@ class BlocksTypeTableViewController: UITableViewController {
                     fatalError("Unable to instantiate block")
                 }
                 blockTypes += [block]
+                // adds block to the array of blocks that are the different types used for automatically generating the toolbox UI components
             }
         }
     }

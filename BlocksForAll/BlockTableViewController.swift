@@ -12,7 +12,7 @@ class BlockTableViewController: UITableViewController {
     /*Toolbox menu that displays the blocks of a certain type*/
     
     //MARK: Properties
-    var blocks = [Block]()
+    var toolBoxBlockArray = [Block]()
     var blockTypes = NSArray()
     var typeIndex: Int! = 0
     
@@ -54,7 +54,7 @@ class BlockTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return blocks.count
+        return toolBoxBlockArray.count
     }
     
     
@@ -69,7 +69,7 @@ class BlockTableViewController: UITableViewController {
         
         //let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
-        let block = blocks[indexPath.row]
+        let block = toolBoxBlockArray[indexPath.row]
         
         //probably get rid of special blocktableviewcell and just add blockView to each cell
         cell.block = block
@@ -119,7 +119,7 @@ class BlockTableViewController: UITableViewController {
         if let myDestination = segue.destination as? SelectedBlockViewController{
             //copy to ensure that you get a new id for each block
             let b2 = tableView.cellForRow(at: tableView.indexPathForSelectedRow!)
-            var block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
+            var block = toolBoxBlockArray[(tableView.indexPathForSelectedRow?.row)!].copy()
             for myView in (b2?.subviews)!{
                 if let myBlockView = myView as? BlockView{
                     block = myBlockView.blocks[0].copy()
@@ -143,13 +143,18 @@ class BlockTableViewController: UITableViewController {
     
     //MARK: Private Methods
     
-    //TODO: this is really convoluted, probably a better way of doing this
+    //TODO: Clean this method it's a bit convoluted
     private func createBlocksArray(){
         /*Creating the toolbox by reading in from the .plist file */
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
+            // blockTypes is a nsArray object with the contents of the blocksMenu.plist file, type index is an Int Var starts at 0, so it takes the contents of blocksMenu.plist and sets it to blockType as an NSDictionary
             if let blockArray = blockType.object(forKey: "Blocks") as? NSArray{
+                // creates array from the first object in blocksMenu.plist aka Animals, Controls, Drive, Sounds, etc.
                 for item in blockArray{
+                    // for block in category Animal, Control, etc.
                     if let dictItem = item as? NSDictionary{
+                        // take the block and using it as a dictionary dictItem
+                        // below takes the blocks and initalizes their properties
                         let name = dictItem.object(forKey: "name")
                         if let colorString = dictItem.object(forKey: "color") as? String{
                             let color2 = Color.init(uiColor:UIColor.colorFrom(hexString: colorString))
@@ -166,8 +171,8 @@ class BlockTableViewController: UITableViewController {
                                 if let acceptedTypes = dictItem.object(forKey: "acceptedTypes") as? [String]{
                                     block.acceptedTypes = acceptedTypes
                                 }
-                                blocks += [block]
-                                
+                                toolBoxBlockArray += [block]
+                                // adds block to the toolbox
                             }
                         }
                     }
@@ -177,3 +182,4 @@ class BlockTableViewController: UITableViewController {
     }
     
 }
+

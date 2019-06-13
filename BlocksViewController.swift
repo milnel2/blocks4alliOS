@@ -287,9 +287,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func unrollLoop(times: Int, blocks:[Block])->[String]{
         var commands = [String]() //list of commands so far
         for _ in 0..<times{
+        // times in the number of times unroll loop stuff is gone through
             var i = 0
             while i < blocks.count{
+            // for all blocks check
                 if blocks[i].name.contains("Repeat") {
+                // if block contains repeat it will get added blocks and check how many times it needs to be looped through and adds the contents of the for loop the extra number of times
+                    
+                // there's an easier way to redo this going to ignore commenting beyond here as it'll just be easier to work from scratch later.
                     var timesToRepeat = 1
                     if !blocks[i].addedBlocks.isEmpty {
                         if blocks[i].addedBlocks[0].name == "two times"{
