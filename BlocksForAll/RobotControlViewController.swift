@@ -345,6 +345,21 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     myAction = WWCommandToolbelt.moveStop()
                     nodIndex = 0
                     
+                case "Look Up":
+                    let lookup = WWCommandSet()
+                    lookup.setHeadPositionTilt(WWCommandHeadPosition.init(degree: -30))
+                    duration = 0.3
+                    cmdToSend.add(lookup, withDuration: duration)
+                    myAction =  WWCommandToolbelt.moveStop()
+                  
+                    
+                case "Look Down":
+                    let lookdown = WWCommandSet()
+                    lookdown.setHeadPositionTilt(WWCommandHeadPosition.init(degree:10.5))
+                    duration = 0.3
+                    cmdToSend.add(lookdown, withDuration: duration)
+                    myAction =  WWCommandToolbelt.moveStop()
+                    
                 case "Dance":
                     duration = 0.5
                     let rotateLeft = WWCommandSet()
