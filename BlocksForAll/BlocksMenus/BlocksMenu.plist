@@ -409,6 +409,34 @@
 				<key>imageName</key>
 				<string>set_right_ear_light.pdf</string>
 			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Set Chest Light</string>
+				<key>color</key>
+				<string>#442178</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>chest_light.pdf</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Set All Lights</string>
+				<key>color</key>
+				<string>#442178</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>all_lights.pdf</string>
+			</dict>
 		</array>
 	</dict>
 	<dict>

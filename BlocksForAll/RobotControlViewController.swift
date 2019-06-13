@@ -128,6 +128,9 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     var leftLightIndex = 0
     var rightLightIndex = 0
     var eyeLightIndex = 0
+    var chestLightIndex = 0
+    var allLightsIndex = 0
+    
     
     func connectedRobots() -> Bool{
         if let connectedRobots = robotManager?.allConnectedRobots{
@@ -285,7 +288,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     let light = lightDict[eyeLightIndex%lightDict.count]
                     eyeLightIndex += 1
                     myAction.setEyeLight(light)
-                    myAction.setChestLight(light)
+//                    myAction.setChestLight(light)
                     
                 case "Set Left Ear Light":
                     let light = lightDict[leftLightIndex%lightDict.count]
@@ -297,6 +300,18 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     rightLightIndex += 1
                     myAction.setRightEarLight(light)
                     
+                case "Set Chest Light":
+                    let light = lightDict[chestLightIndex%lightDict.count]
+                    chestLightIndex += 1
+                    myAction.setChestLight(light)
+                    
+                case "Set All Lights":
+                    let light = lightDict[allLightsIndex%lightDict.count]
+                    allLightsIndex += 1
+                    myAction.setEyeLight(light)
+                    myAction.setRightEarLight(light)
+                    myAction.setLeftEarLight(light)
+                    myAction.setChestLight(light)
                     
                 //Motion Category
                 case "Wiggle":

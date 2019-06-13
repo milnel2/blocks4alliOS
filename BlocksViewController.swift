@@ -666,7 +666,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(myConditionLabel)
                 }
                 
-            case "Set Eye Light", "Set Left Ear Light", "Set Right Ear Light":
+            case "Set Eye Light", "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
                 if block.addedBlocks.isEmpty{
                     //Creates button to allow light color change.
                     let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
