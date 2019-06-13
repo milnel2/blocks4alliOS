@@ -35,9 +35,6 @@ class BlockTableViewController: UITableViewController {
         self.accessibilityHint = "Double tap from toolbox to add block to workspace"
         
         createBlocksArray()
-        // Load the sample data
-        //loadSampleBlocks()
-        
         //self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"
     }
     
@@ -81,14 +78,6 @@ class BlockTableViewController: UITableViewController {
         cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
         
         cell.addSubview(myView)
-        /*
-         if(block.imageName != nil){
-         let imageName = block.imageName!
-         let image = UIImage(named: imageName)
-         let imv = UIImageView.init(image: image)
-         cell.addSubview(imv)
-         }*/
-        
         //cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
         
         return cell
@@ -98,15 +87,6 @@ class BlockTableViewController: UITableViewController {
         //let height = tableView.bounds.height/CGFloat(blocks.count)
         return CGFloat(blockWidth + blockSpacing)
     }
-    
-    
-    
-    /* override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     let block = blocks[indexPath.row]
-     let announcement = block.name + " selected. "
-     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
-     
-     }*/
     
     // MARK: - Navigation
     

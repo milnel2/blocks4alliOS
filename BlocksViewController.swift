@@ -96,6 +96,8 @@ protocol BlockSelectionDelegate{
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
     
+    
+    // below are all the buttons for this class
     @IBOutlet weak var deleteAll: UIButton!
     
     @IBOutlet weak var blocksProgram: UICollectionView!
@@ -103,10 +105,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var playTrashToggleButton: UIButton!
     
     @IBOutlet weak var menuButton: UIButton!
+    // above are all the buttons for this class
+    
+    
     
     var blocksBeingMoved = [Block]() /* List of blocks that are currently being moved (moving repeat and if blocks
      also move the blocks nested inside */
     var movingBlocks = false    //True if currently moving blocks in the workspace
+    // used in moving as well as deleting, plural for for and if statements and nesting
     
     var containerViewController: UINavigationController? //Top-level controller for toolbox view controllers
     
@@ -157,7 +163,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // MARK: - - View Set Up
     // MARK: - viewDidLoad
     
-    
+    // viewDidLoad = on appear
     override func viewDidLoad() {
         super.viewDidLoad()
         print("\(distanceChanged) and \(speedChanged)")
@@ -165,10 +171,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         modifierButton?.setTitle("\(distanceChanged)", for: .normal)
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
-        print("before loadSave blocksStack")
-        for block in blocksStack{
-            print(block.name)
-        }
         loadSave()
         save()
     }
@@ -582,21 +584,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     cell.addSubview(repeatNumberButton)
                     
-                    
-                    //draw false block
-                    //                    var placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "false.pdf", type: "Boolean")
-                    
-                    //                    if block.name == "Repeat"{
-                    //                        placeholderBlock = Block(name: "two times", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "2.pdf", type: "Number")
-                    //                    }
-                    //                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    //                    myConditionLabel.accessibilityLabel = "False"
-                    
-                    //                    if block.name == "Repeat"{
-                    //                        myConditionLabel.accessibilityLabel = "two times"
-                    //                    }
-                    //                    myConditionLabel.isAccessibilityElement = true
-                    //                    cell.addSubview(myConditionLabel)
                 } else {
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
@@ -622,13 +609,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     distanceSpeedButton.isAccessibilityElement = true
                     
                     cell.addSubview(distanceSpeedButton)
-                    
-                    // MARK: -Delete
-                    //                    let placeholderBlock = Block(name: "Distance and Speed", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
-                    //                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    //                    myConditionLabel.accessibilityLabel = "Distance and Speed"
-                    //                    myConditionLabel.isAccessibilityElement = true
-                    //                    cell.addSubview(myConditionLabel)
                 } else {
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
@@ -652,13 +632,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     angleButton.isAccessibilityElement = true
                     
                     cell.addSubview(angleButton)
-                    
-                    // MARK: -Delete
-                    //                    let placeholderBlock = Block(name: "Turn angle", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
-                    //                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    //                    myConditionLabel.accessibilityLabel = "Set turn angle"
-                    //                    myConditionLabel.isAccessibilityElement = true
-                    //                    cell.addSubview(myConditionLabel)
                 } else {
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
@@ -682,13 +655,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     lightColorButton.isAccessibilityElement = true
                     
                     cell.addSubview(lightColorButton)
-                    
-                    // MARK: -Delete
-                    //                    let placeholderBlock = Block(name: "Light color", color: Color.init(uiColor:UIColor.red ) , double: false, editable: false, imageName: "Gray.pdf", type: "Number")
-                    //                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    //                    myConditionLabel.accessibilityLabel = "Set light color"
-                    //                    myConditionLabel.isAccessibilityElement = true
-                    //                    cell.addSubview(myConditionLabel)
                 } else {
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
