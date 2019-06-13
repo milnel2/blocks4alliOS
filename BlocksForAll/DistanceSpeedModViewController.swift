@@ -30,7 +30,7 @@ class DistanceSpeedModViewController: UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let destinationViewController = segue.destination as? BlocksViewController{
             
-//            destinationViewController.modifierButton = modifierButtonSender
+            destinationViewController.modifierButton = modifierButtonSender
             destinationViewController.distanceChanged = distance
             destinationViewController.speedChanged = speed
         }

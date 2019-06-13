@@ -123,7 +123,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     var distanceChanged: Double = 30
     var speedChanged: Double = 10
-    var modifierBlock: Block?
+    var modifierButton: UIButton?
+    
     
     /** This function saves each block in the superview as a json object cast as a String to a growing file. The function uses fileManager to be able to add and remove blocks from previous saves to stay up to date. **/
     func save(){
@@ -165,9 +166,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // viewDidLoad = on appear
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("\(distanceChanged) and \(speedChanged)")
-//        print(modifierButton?.title(for: .normal))
-//        modifierButton?.setTitle("\(distanceChanged)", for: .normal)
+        print("\(distanceChanged) and \(speedChanged)")
+        print(modifierButton?.title(for: .normal))
+        modifierButton?.setTitle("\(distanceChanged)", for: .normal)
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
         loadSave()
@@ -592,15 +593,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Drive Forward", "Drive Backward":
                 if block.addedBlocks.isEmpty{
                     //Creates distance button for modifier.
-                    let placeholderBlock = Block(name: "Distance = \(distanceChanged), Speed = \(speedChanged)", color: Color.init(uiColor:UIColor.red ) , double: false, imageName: "false.pdf", type: "Boolean")
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-//                    myConditionLabel.accessibilityLabel = "Distance and Speed"
-//                    myConditionLabel.isAccessibilityElement = true
-//                    cell.addSubview(myConditionLabel)
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    modifierBlock = blocksStack[indexPath.row]
-                    
                     let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     distanceSpeedButton.backgroundColor = .lightGray
@@ -684,7 +676,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     @objc func distanceSpeedModifier(sender: UIButton!) {
-        print("this is \(modifierBlock?.addedBlocks[0].name)")
+        modifierButton = sender
         performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
     }
     
@@ -808,8 +800,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 myTopViewController.blockWidth = 150
             }
         }
-//        if let destinationViewController = segue.destination as? DistanceSpeedModViewController{
-        //        }
+        if let destinationViewController = segue.destination as? DistanceSpeedModViewController{
+            destinationViewController.modifierButtonSender = modifierButton
+        }
         
     }
     
