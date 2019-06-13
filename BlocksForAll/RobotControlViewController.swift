@@ -215,9 +215,11 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     
                 case "Make Lion Noise":
                     playNoise(myAction: myAction, sound: WW_SOUNDFILE_LION)
+                case "Make Turkey Noise":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOBBLE)
                     
                     
-                //Control Category
+                //Control Category - might have to add to
                 case "If":
                     //TODO: check blocks condition
                     let conditionString = command[command.index(command.startIndex, offsetBy: 2)...]
@@ -280,7 +282,25 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     
                 case "Start Engine":
                     playNoise(myAction: myAction, sound: WW_SOUNDFILE_ENGINE_REV)
+                  
                     
+                    
+                //Emotes Category
+                case "Confused":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_CONFUSED)
+                case "Bragging":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_BRAGGING)
+                case "Giggle":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_GIGGLE)
+                case "Grunt":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_GRUNT)
+                case "Sigh":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_SIGH)
+                case "Surprised":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_SURPRISED)
+                case "Yawn":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_YAWN)
+    
                     
                 //Lights Category
                 //MARK: change this code and make is smoother once we have user input
@@ -378,27 +398,72 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                case "Make Random Noise":
                     let randomNumber = arc4random_uniform(UInt32(soundFiles.count))
                     playNoise(myAction: myAction, sound: soundFiles[Int(randomNumber)])
+                case "Buzz":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_BUZZ)
+                case "Lasers":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_LASERS)
+                case "Snore":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_SNORING)
+                case "Trumpet":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRUMPET)
+                case "Squeak":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_SQUEAK)
+                
                     
+                //Speak Category
                 case "Say Hi":
                     playNoise(myAction: myAction, sound: WW_SOUNDFILE_HI)
-                    
-                case "Confused":
-                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_CONFUSED)
-                    
-                case "Bragging":
-                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_BRAGGING)
-                    
                 case "Say Bye":
                     playNoise(myAction: myAction, sound: WW_SOUNDFILE_BYE)
-            
                 case "Say Cool":
                     playNoise(myAction: myAction, sound: WW_SOUNDFILE_COOL)
-                    
+                case "Say Haha":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_HAHA)
+                case "Say Huh":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_HUH)
+                case "Say Lets Go":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_LETS_GO)
+                case "Say Oh":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_OOH)
                 case "Say Wow":
                     playNoise(myAction: myAction, sound: WW_SOUNDFILE_WOW)
-                  
+                case "Say Tah Dah":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_TAH_DAH)
+                case "Uh Huh":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_HUH)
+                case "Uh Oh":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_OH)
+                case "Wah":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_WAH)
+                case "Wee":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEE)
+                case "Weehee":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEEHEE)
+                case "Yippe":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_YIPPE)
+                 
                     
-                //not in a category
+                //vehicle Category - check on
+                case "Airplane":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_AIRPLANE)
+                case "Beep":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_BEEP)
+                case "Boat":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_BOAT)
+                case "Helicopter":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_HELICOPTER)
+                case "Horn":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_HORN)
+                case "Siren":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_SIREN)
+                case "Speed Boost":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_SPEED_BOOST)
+                case "Tire Squeal":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_TIRE_SQUEAL)
+                case "Train":
+                    playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRAIN)
+                
+                //not in a category or plist? add
                 case "Say Okay":
                     playNoise(myAction: myAction, sound: WW_SOUNDFILE_OKAY)
                     

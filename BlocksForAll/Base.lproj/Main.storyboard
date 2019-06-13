@@ -94,7 +94,7 @@
                                 <rect key="frame" x="44" y="129" width="924" height="617"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control.
+                                <string key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control.
                                     
 In order to use Blocks4All, you must have a Dash or Dot robot from Wonder Workshop.
                                     
@@ -102,7 +102,7 @@ To get started, select "Get Started" from the Main Menu. In the "Get Started" pa
                                     
 To have the robot play the commands, press the play button in the lower right side of the screen. If no robot is selected, you will be taken to a menu of detected robots. Select the robot you want and the robot will play the commands.
                                     
-All the commands are single blocks, except for the ones in the control category. There are two main control blocks: "repeat" and "if" blocks and two types of modifier blocks: numbers and conditions. "Repeat" blocks can be modified with any of the number blocks and will cause any blocks located inside the "repeat" blocks (between the "repeat" and the "end repeat" blocks) to be repeated that number of times. "If" blocks can be modified with conditions (statements that can be evaluated as either true or false) and will cause any blocks located inside the "if" blocks (between the "if" and "end if" blocks to only be played if the "if" block evaluates to true.  To modify a control block, you first place it in the workspace, select a modifier from the toolbox, and then select the block you wish it to modify in the workspace.</mutableString>
+All the commands are single blocks, except for the ones in the control category. There are two main control blocks: "repeat" and "if" blocks and two types of modifier blocks: numbers and conditions. "Repeat" blocks can be modified with any of the number blocks and will cause any blocks located inside the "repeat" blocks (between the "repeat" and the "end repeat" blocks) to be repeated that number of times. "If" blocks can be modified with conditions (statements that can be evaluated as either true or false) and will cause any blocks located inside the "if" blocks (between the "if" and "end if" blocks to only be played if the "if" block evaluates to true.  To modify a control block, you first place it in the workspace, select a modifier from the toolbox, and then select the block you wish it to modify in the workspace.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -406,7 +406,7 @@ All the commands are single blocks, except for the ones in the control category.
                     <view key="view" contentMode="scaleToFill" id="gng-WS-M5w">
                         <rect key="frame" x="0.0" y="0.0" width="235" height="698"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FIB-I7-Bpu" userLabel="First Responder" sceneMemberID="firstResponder"/>
