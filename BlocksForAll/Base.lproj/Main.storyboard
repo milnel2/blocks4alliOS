@@ -94,7 +94,7 @@
                                 <rect key="frame" x="44" y="129" width="924" height="617"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control.
+                                <string key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control.
                                     
 In order to use Blocks4All, you must have a Dash or Dot robot from Wonder Workshop.
                                     
@@ -102,7 +102,7 @@ To get started, select "Get Started" from the Main Menu. In the "Get Started" pa
                                     
 To have the robot play the commands, press the play button in the lower right side of the screen. If no robot is selected, you will be taken to a menu of detected robots. Select the robot you want and the robot will play the commands.
                                     
-All the commands are single blocks, except for the ones in the control category. There are two main control blocks: "repeat" and "if" blocks and two types of modifier blocks: numbers and conditions. "Repeat" blocks can be modified with any of the number blocks and will cause any blocks located inside the "repeat" blocks (between the "repeat" and the "end repeat" blocks) to be repeated that number of times. "If" blocks can be modified with conditions (statements that can be evaluated as either true or false) and will cause any blocks located inside the "if" blocks (between the "if" and "end if" blocks to only be played if the "if" block evaluates to true.  To modify a control block, you first place it in the workspace, select a modifier from the toolbox, and then select the block you wish it to modify in the workspace.</mutableString>
+All the commands are single blocks, except for the ones in the control category. There are two main control blocks: "repeat" and "if" blocks and two types of modifier blocks: numbers and conditions. "Repeat" blocks can be modified with any of the number blocks and will cause any blocks located inside the "repeat" blocks (between the "repeat" and the "end repeat" blocks) to be repeated that number of times. "If" blocks can be modified with conditions (statements that can be evaluated as either true or false) and will cause any blocks located inside the "if" blocks (between the "if" and "end if" blocks to only be played if the "if" block evaluates to true.  To modify a control block, you first place it in the workspace, select a modifier from the toolbox, and then select the block you wish it to modify in the workspace.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -302,7 +302,7 @@ All the commands are single blocks, except for the ones in the control category.
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-Fa-yDY" userLabel="DeleteAll">
-                                <rect key="frame" x="804" y="28" width="200" height="54"/>
+                                <rect key="frame" x="744" y="28" width="260" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.80248137953367871" green="0.28850571533125552" blue="0.2153958467552054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Delete all blocks on the screen" label="Delete All"/>
@@ -637,8 +637,9 @@ All the commands are single blocks, except for the ones in the control category.
         <image name="GreenArrow" width="649" height="586"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="CWQ-aM-vhy"/>
         <segue reference="ebu-O5-0hJ"/>
         <segue reference="PIe-sL-Fqa"/>
-        <segue reference="KBE-C8-Ew2"/>
+        <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>
 </document>
