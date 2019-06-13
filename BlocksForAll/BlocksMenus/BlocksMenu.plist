@@ -362,6 +362,87 @@
 	</dict>
 	<dict>
 		<key>color</key>
+		<string>#FF748C</string>
+		<key>type</key>
+		<string>Look</string>
+		<key>Blocks</key>
+		<array>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Up</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#FF748C</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Down </string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#FF748C</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Straight</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#FF748C</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Left</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#FF748C</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Right</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#FF748C</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Towards Voice</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#FF748C</string>
+				<key>double</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>color</key>
 		<string>#A02C2C</string>
 		<key>type</key>
 		<string>Lights</string>

@@ -302,7 +302,7 @@ All the commands are single blocks, except for the ones in the control category.
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-Fa-yDY" userLabel="DeleteAll">
-                                <rect key="frame" x="804" y="28" width="200" height="54"/>
+                                <rect key="frame" x="744" y="28" width="260" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.80248137953367871" green="0.28850571533125552" blue="0.2153958467552054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Delete all blocks on the screen" label="Delete All"/>
@@ -637,8 +637,9 @@ All the commands are single blocks, except for the ones in the control category.
         <image name="GreenArrow" width="649" height="586"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="CWQ-aM-vhy"/>
         <segue reference="ebu-O5-0hJ"/>
         <segue reference="PIe-sL-Fqa"/>
-        <segue reference="KBE-C8-Ew2"/>
+        <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>
 </document>
