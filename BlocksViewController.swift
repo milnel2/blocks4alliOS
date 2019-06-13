@@ -829,9 +829,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 myTopViewController.blockWidth = 150
             }
         }
-//        if let destinationViewController = segue.destination as? DistanceSpeedModViewController{
-//            destinationViewController.modifierButtonSender = modifierButton
-//        }
+        if let destinationViewController = segue.destination as? DistanceSpeedModViewController{
+            destinationViewController.modifierButtonSender = modifierButton
+        }
         
     }
     
