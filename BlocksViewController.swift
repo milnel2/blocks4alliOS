@@ -789,6 +789,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
                 print("i'm here")
                 mySelectedBlockVC.viewDidLoad()
+                changePlayTrashButton()
             }
         }
     }
