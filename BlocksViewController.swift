@@ -12,6 +12,7 @@ import AVFoundation
 
 //collection of blocks that are part of the program
 var blocksStack = [Block]()
+// edited 06/13 by jacqueline -- saves unique distance for each block, but gray images overlap
 
 func loadSave() {
     print("load save called")
@@ -123,7 +124,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     var distanceChanged: Double = 30
     var speedChanged: Double = 10
-    var modifierButton: UIButton?
+    var modifierBlock: Block?
     
     
     /** This function saves each block in the superview as a json object cast as a String to a growing file. The function uses fileManager to be able to add and remove blocks from previous saves to stay up to date. **/
@@ -166,9 +167,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // viewDidLoad = on appear
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("\(distanceChanged) and \(speedChanged)")
-        print(modifierButton?.title(for: .normal))
-        modifierButton?.setTitle("\(distanceChanged)", for: .normal)
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
         loadSave()
@@ -289,14 +287,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func unrollLoop(times: Int, blocks:[Block])->[String]{
         var commands = [String]() //list of commands so far
         for _ in 0..<times{
-        // times in the number of times unroll loop stuff is gone through
+            // times in the number of times unroll loop stuff is gone through
             var i = 0
             while i < blocks.count{
-            // for all blocks check
+                // for all blocks check
                 if blocks[i].name.contains("Repeat") {
-                // if block contains repeat it will get added blocks and check how many times it needs to be looped through and adds the contents of the for loop the extra number of times
+                    // if block contains repeat it will get added blocks and check how many times it needs to be looped through and adds the contents of the for loop the extra number of times
                     
-                // there's an easier way to redo this going to ignore commenting beyond here as it'll just be easier to work from scratch later.
+                    // there's an easier way to redo this going to ignore commenting beyond here as it'll just be easier to work from scratch later.
                     var timesToRepeat = 1
                     if !blocks[i].addedBlocks.isEmpty {
                         if blocks[i].addedBlocks[0].name == "two times"{
@@ -551,7 +549,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
             
             let name = block.name
-            print(name)
+            //            print(name)
             switch name{
             case "If":
                 if block.addedBlocks.isEmpty{
@@ -593,10 +591,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Drive Forward", "Drive Backward":
                 if block.addedBlocks.isEmpty{
                     //Creates distance button for modifier.
+                    // TODO: change the Distance and Speed values in the placeholderBlock name according to Dash API
+                    // MARK: the Distance and Speed values are cast as Ints to round them off
+                    // FIX: the Distance and Speed values do not reset to default when a new Drive Forward/Backward block is made *low priority*
+                    var placeholderBlock = Block(name: "Distance = \(Int(distanceChanged)), Speed = \(Int(speedChanged))", color: Color.init(uiColor:UIColor.red ) , double: false, imageName: "Gray.pdf", type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    modifierBlock = blocksStack[indexPath.row]
+                    
                     let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     distanceSpeedButton.backgroundColor = .lightGray
-                    distanceSpeedButton.setTitle("Distance: \(Int(distanceChanged)), Speed: \(Int(speedChanged))", for: .normal)
+                    distanceSpeedButton.setTitle("\(placeholderBlock!.name)", for: .normal)
                     distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.titleLabel?.numberOfLines = 0
@@ -610,6 +616,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     cell.addSubview(distanceSpeedButton)
                 } else {
+                    // FIX: make sure the old placeholderBlock is here -- remove gray image!
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
                     myConditionLabel.isAccessibilityElement = true
@@ -676,16 +683,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     @objc func distanceSpeedModifier(sender: UIButton!) {
-        modifierButton = sender
         performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
+    }
+    
+    func distanceDisplay(_ block: Block, setTo text:String) {
+        /* updates the Distance and Speed text on the modifiable block */
+        block.addedBlocks[0].name = text
     }
     
     @objc func angleModifier(sender: UIButton!) {
         performSegue(withIdentifier: "TurnRightModifier", sender: nil)
     }
+    
     @objc func colorModifier(sender: UIButton!) {
         performSegue(withIdentifier: "ColorModifier", sender: nil)
     }
+    
     @objc func repeatModifier(sender: UIButton!) {
         performSegue(withIdentifier: "RepeatModifier", sender: nil)
     }
@@ -784,8 +797,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 blocksProgram.reloadData()
                 let mySelectedBlockVC = SelectedBlockViewController()
                 mySelectedBlockVC.blocks = blocksBeingMoved
-                print("i'm here")
-                print(mySelectedBlockVC.blocks![0].name)
                 containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
                 print("i'm here")
                 mySelectedBlockVC.viewDidLoad()
@@ -805,11 +816,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
         if let destinationViewController = segue.destination as? DistanceSpeedModViewController{
-            destinationViewController.modifierButtonSender = modifierButton
+            destinationViewController.modifierBlockSender = modifierBlock
         }
-        
     }
-    
-    
 }
-
