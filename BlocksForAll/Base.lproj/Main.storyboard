@@ -340,11 +340,9 @@ All the commands are single blocks, except for the ones in the control category.
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="jq3-Fa-yDY" secondAttribute="trailing" constant="25" id="58s-85-3EL"/>
                             <constraint firstAttribute="trailing" secondItem="Ztu-9b-vFh" secondAttribute="trailing" constant="10" id="C2P-V3-lJQ"/>
-                            <constraint firstAttribute="trailing" secondItem="Ztu-9b-vFh" secondAttribute="trailing" id="FMy-ch-SxG"/>
                             <constraint firstItem="Ipa-F9-VES" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="40" id="YfW-1o-GHM"/>
                             <constraint firstItem="jq3-Fa-yDY" firstAttribute="leading" secondItem="Ipa-F9-VES" secondAttribute="trailing" constant="100" id="fWa-Mg-v9L"/>
                             <constraint firstItem="jq3-Fa-yDY" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="40" id="o2c-lg-OwA"/>
-                            <constraint firstAttribute="trailing" secondItem="Ztu-9b-vFh" secondAttribute="trailing" constant="10" id="p81-p0-GhK"/>
                             <constraint firstItem="sdp-BB-7Wl" firstAttribute="top" secondItem="Ztu-9b-vFh" secondAttribute="bottom" constant="25" id="xt9-le-DG4"/>
                         </constraints>
                     </view>

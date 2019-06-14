@@ -1,4 +1,3 @@
-
 //
 //  BlocksViewController.swift
 //  BlocksForAll
@@ -594,7 +593,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     // TODO: change the Distance and Speed values in the placeholderBlock name according to Dash API
                     // MARK: the Distance and Speed values are cast as Ints to round them off
                     // FIX: the Distance and Speed values do not reset to default when a new Drive Forward/Backward block is made *low priority*
-                    var placeholderBlock = Block(name: "Distance = \(Int(distanceChanged)), Speed = \(Int(speedChanged))", color: Color.init(uiColor:UIColor.red ) , double: false, imageName: "Gray.pdf", type: "Boolean")
+                    // TODO: block name doesn't support Dynamic Type
+                    var placeholderBlock = Block(name: "Distance = \(Int(distanceChanged)), \nSpeed = \(Int(speedChanged))", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     modifierBlock = blocksStack[indexPath.row]
@@ -606,6 +606,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.titleLabel?.numberOfLines = 0
+                    distanceSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
                     distanceSpeedButton.addTarget(self, action: #selector(distanceSpeedModifier(sender:)), for: .touchUpInside)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.layer.borderWidth = 2.0
@@ -616,7 +617,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     cell.addSubview(distanceSpeedButton)
                 } else {
-                    // FIX: make sure the old placeholderBlock is here -- remove gray image!
+                    // MARK: displays the selected Distance and Speed as the .name attribute of a block, makes a BlockView. Unable to adjust slider value again.
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
                     myConditionLabel.isAccessibilityElement = true
@@ -798,8 +799,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let mySelectedBlockVC = SelectedBlockViewController()
                 mySelectedBlockVC.blocks = blocksBeingMoved
                 containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
-                print("i'm here")
-                mySelectedBlockVC.viewDidLoad()
                 changePlayTrashButton()
             }
         }
@@ -820,3 +819,4 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
 }
+
