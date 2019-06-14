@@ -694,9 +694,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @objc func angleModifier(sender: UIButton!) {
         performSegue(withIdentifier: "TurnRightModifier", sender: nil)
     }
+    
     @objc func colorModifier(sender: UIButton!) {
         performSegue(withIdentifier: "ColorModifier", sender: nil)
     }
+    
     @objc func repeatModifier(sender: UIButton!) {
         performSegue(withIdentifier: "RepeatModifier", sender: nil)
     }
