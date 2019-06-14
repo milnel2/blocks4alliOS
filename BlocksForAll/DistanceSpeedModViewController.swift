@@ -15,7 +15,7 @@ class DistanceSpeedModViewController: UIViewController{
     //TODO: update these based on Dash API
     var distance: Double = 30
     var speed: Double = 10
-    var modifierButtonSender: UIButton!
+    var modifierBlockSender: Block?
     
     @IBOutlet weak var distanceSlider: UISlider!
     @IBOutlet weak var speedSlider: UISlider!
@@ -30,9 +30,11 @@ class DistanceSpeedModViewController: UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let destinationViewController = segue.destination as? BlocksViewController{
             
-            destinationViewController.modifierButton = modifierButtonSender
             destinationViewController.distanceChanged = distance
             destinationViewController.speedChanged = speed
+            
+            destinationViewController.modifierBlock = modifierBlockSender
+            destinationViewController.distanceDisplay(modifierBlockSender!, setTo: "Distance: \(Int(distance)), Speed: \(Int(speed))")
         }
     }
     
