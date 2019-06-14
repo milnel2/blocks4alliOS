@@ -689,7 +689,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func distanceDisplay(_ block: Block, setTo text:String) {
         /* updates the Distance and Speed text on the modifiable block */
         block.addedBlocks[0].name = text
-        }
     }
     
     @objc func angleModifier(sender: UIButton!) {
