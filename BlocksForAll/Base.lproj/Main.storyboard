@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
-    <device id="ipad9_7" orientation="landscape">
+    <device id="ipad11_0rounded" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="uNC-fx-WtB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gAB-RG-Zzd">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bed-2B-QED">
-                                <rect key="frame" x="304" y="294" width="417" height="173"/>
+                                <rect key="frame" x="389" y="327" width="417" height="173"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Instructions">
@@ -34,7 +34,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Kc-2pq">
-                                <rect key="frame" x="304" y="174" width="417" height="165"/>
+                                <rect key="frame" x="389" y="193" width="417" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Get Started">
@@ -46,7 +46,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RT2-NS-4g9">
-                                <rect key="frame" x="304" y="420" width="417" height="175"/>
+                                <rect key="frame" x="389" y="467" width="417" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Add Robots">
@@ -75,7 +75,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dhE-H1-Vfr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="acT-FA-pXp">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jem-v4-ejR">
@@ -124,7 +124,7 @@ All the commands are single blocks, except for the ones in the control category.
                         <viewControllerLayoutGuide type="bottom" id="Zck-g6-6V2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6Hh-dq-UJ7">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6i5-m2-CBz">
@@ -140,7 +140,7 @@ All the commands are single blocks, except for the ones in the control category.
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
-                                <rect key="frame" x="0.0" y="260" width="1024" height="206"/>
+                                <rect key="frame" x="0.0" y="326" width="1194" height="206"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="XOJ-Tu-hH8" kind="embed" id="sot-c6-H0b"/>
@@ -166,15 +166,15 @@ All the commands are single blocks, except for the ones in the control category.
             <objects>
                 <tableViewController id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="206"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="206"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="robotCell" id="KUQ-1B-5Sg">
-                                <rect key="frame" x="0.0" y="28" width="1024" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="1194" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KUQ-1B-5Sg" id="ZfT-J5-i3d">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1194" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -198,7 +198,7 @@ All the commands are single blocks, except for the ones in the control category.
                         <viewControllerLayoutGuide type="bottom" id="Y2X-sY-PwO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pT3-hS-b8f">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nKa-YP-2xv">
@@ -243,31 +243,20 @@ All the commands are single blocks, except for the ones in the control category.
                         <viewControllerLayoutGuide type="bottom" id="sdp-BB-7Wl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Qkj-vq-g4U">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLx-VG-2JW">
-                                <rect key="frame" x="0.0" y="0.0" width="235" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="235" height="834"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <connections>
                                     <segue destination="zor-jh-2cz" kind="embed" id="Mdl-ke-gN7"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-F9-VES">
-                                <rect key="frame" x="479" y="60" width="200" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-F9-VES">
+                                <rect key="frame" x="486" y="60" width="104" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="1cP-69-LB8"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="KAe-iR-Ocd"/>
-                                    <constraint firstAttribute="width" constant="200" id="N8p-yH-xOv"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="WUJ-ZY-jjp"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="X8b-iK-ExS"/>
-                                    <constraint firstAttribute="height" constant="50" id="YV5-UR-5Ye"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="h35-kE-Cb4"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="j8Y-fz-vnH"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="kUa-29-Nl1"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                 <state key="normal" title="Menu">
@@ -278,7 +267,7 @@ All the commands are single blocks, except for the ones in the control category.
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztu-9b-vFh">
-                                <rect key="frame" x="864" y="593" width="150" height="150"/>
+                                <rect key="frame" x="1034" y="639" width="150" height="150"/>
                                 <accessibility key="accessibilityConfiguration" hint="Make your robot go!" label="Play"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="E6v-C1-H7C"/>
@@ -292,29 +281,8 @@ All the commands are single blocks, except for the ones in the control category.
                                     <action selector="playButtonClicked:" destination="uoc-nU-c4a" eventType="touchUpInside" id="vL1-rJ-3br"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-Fa-yDY" userLabel="DeleteAll">
-                                <rect key="frame" x="779" y="60" width="200" height="50"/>
-                                <color key="backgroundColor" red="0.80248137953367871" green="0.28850571533125552" blue="0.2153958467552054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <accessibility key="accessibilityConfiguration" hint="Delete all blocks on the screen" label="Delete All"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="DJm-3Y-otg"/>
-                                    <constraint firstAttribute="width" constant="200" id="MOM-nw-Iyw"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="bOg-mS-stQ"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="elH-sY-3xk"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="hk7-PZ-yID"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="y0r-cB-jpa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
-                                <state key="normal" title="Clear All">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="deleteAll:" destination="uoc-nU-c4a" eventType="touchUpInside" id="Tdt-IF-nlc"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l66-Lb-Pdn">
-                                <rect key="frame" x="243" y="122" width="650" height="646"/>
+                                <rect key="frame" x="243" y="122" width="820" height="712"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="tWc-fW-BLq">
@@ -325,7 +293,7 @@ All the commands are single blocks, except for the ones in the control category.
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BlockCell" id="Z2H-jN-O7E">
-                                        <rect key="frame" x="0.0" y="-116.5" width="98" height="879"/>
+                                        <rect key="frame" x="0.0" y="-83.5" width="98" height="879"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="98" height="879"/>
@@ -335,14 +303,27 @@ All the commands are single blocks, except for the ones in the control category.
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-Fa-yDY" userLabel="DeleteAll">
+                                <rect key="frame" x="673" y="60" width="300" height="32"/>
+                                <color key="backgroundColor" red="0.80248137953367871" green="0.28850571533125552" blue="0.2153958467552054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <accessibility key="accessibilityConfiguration" hint="Delete all blocks on the screen" label="Delete All"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <state key="normal" title="Clear All">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteAll:" destination="uoc-nU-c4a" eventType="touchUpInside" id="Tdt-IF-nlc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="jq3-Fa-yDY" secondAttribute="trailing" constant="25" id="58s-85-3EL"/>
                             <constraint firstAttribute="trailing" secondItem="Ztu-9b-vFh" secondAttribute="trailing" constant="10" id="C2P-V3-lJQ"/>
-                            <constraint firstItem="Ipa-F9-VES" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="40" id="YfW-1o-GHM"/>
-                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="leading" secondItem="Ipa-F9-VES" secondAttribute="trailing" constant="100" id="fWa-Mg-v9L"/>
-                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="40" id="o2c-lg-OwA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jq3-Fa-yDY" secondAttribute="trailing" constant="18" id="LYM-wv-3Du"/>
+                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="leading" secondItem="Ipa-F9-VES" secondAttribute="trailing" constant="130" id="RL2-FR-Ai3"/>
+                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="40" id="ZzS-pr-hTU"/>
+                            <constraint firstItem="Ipa-F9-VES" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="40" id="rlH-lT-iry"/>
                             <constraint firstItem="sdp-BB-7Wl" firstAttribute="top" secondItem="Ztu-9b-vFh" secondAttribute="bottom" constant="25" id="xt9-le-DG4"/>
                         </constraints>
                     </view>
@@ -366,7 +347,7 @@ All the commands are single blocks, except for the ones in the control category.
             <objects>
                 <tableViewController id="qsn-gg-TPc" customClass="BlockTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" id="u2M-AO-l53">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="698"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="760"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -432,7 +413,7 @@ All the commands are single blocks, except for the ones in the control category.
                         <viewControllerLayoutGuide type="bottom" id="M8X-LY-ONh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gng-WS-M5w">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="698"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="760"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -446,7 +427,7 @@ All the commands are single blocks, except for the ones in the control category.
             <objects>
                 <tableViewController id="2Tn-yf-DgT" customClass="BlocksTypeTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6cp-t1-mWw">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="698"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="760"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -491,7 +472,7 @@ All the commands are single blocks, except for the ones in the control category.
                         <viewControllerLayoutGuide type="bottom" id="ukk-FT-0dn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nbW-AW-Yn9">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="33V-6u-7DC" userLabel="Distance Slider">
@@ -558,7 +539,7 @@ All the commands are single blocks, except for the ones in the control category.
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zor-jh-2cz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translucent="NO" id="3of-s2-3mf">
-                        <rect key="frame" x="0.0" y="20" width="235" height="50"/>
+                        <rect key="frame" x="0.0" y="24" width="235" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -579,7 +560,7 @@ All the commands are single blocks, except for the ones in the control category.
                         <viewControllerLayoutGuide type="bottom" id="hik-92-oYa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0me-MT-hwN">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jM-yw-zZG">
@@ -624,7 +605,7 @@ All the commands are single blocks, except for the ones in the control category.
                         <viewControllerLayoutGuide type="bottom" id="Opv-aB-563"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Hee-2C-IaQ">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNK-wk-KcV">
@@ -665,7 +646,6 @@ All the commands are single blocks, except for the ones in the control category.
         <image name="GreenArrow" width="649" height="586"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CWQ-aM-vhy"/>
         <segue reference="ebu-O5-0hJ"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="s7f-fy-WFP"/>
