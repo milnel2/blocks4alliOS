@@ -1,4 +1,3 @@
-
 //
 //  BlocksViewController.swift
 //  BlocksForAll
@@ -820,3 +819,4 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
 }
+

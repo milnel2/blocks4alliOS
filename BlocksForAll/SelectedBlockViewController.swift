@@ -20,6 +20,7 @@ class SelectedBlockViewController: UIViewController {
 
 	//MARK: - viewDidLoad function
     override func viewDidLoad() {
+        print("entered viewDidLoad")
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"
         
