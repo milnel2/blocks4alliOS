@@ -1,4 +1,4 @@
-//
+//  edit 6/18/19
 //  SelectedBlockViewController.swift
 //  BlocksForAll
 //
@@ -17,9 +17,10 @@ class SelectedBlockViewController: UIViewController {
     let blockHeight = 200
     let blockSpacing = 1
     var delegate: BlockSelectionDelegate?
-
-	//MARK: - viewDidLoad function
+    
+    //MARK: - viewDidLoad function
     override func viewDidLoad() {
+        print("\n")
         print("entered viewDidLoad")
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"
@@ -30,7 +31,7 @@ class SelectedBlockViewController: UIViewController {
         let myBlockView = BlockView.init(frame: myFrame, block: blocks!, myBlockWidth: blockWidth, myBlockHeight: blockHeight)
         
         self.view.addSubview(myBlockView)
-
+        
         // Do any additional setup after loading the view.
         let label = (blocks?[0].name)! + " selected. Select location in workspace to place it"
         
@@ -42,7 +43,7 @@ class SelectedBlockViewController: UIViewController {
         delegate?.setParentViewController(self.parent!)
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -56,15 +57,15 @@ class SelectedBlockViewController: UIViewController {
         }
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
