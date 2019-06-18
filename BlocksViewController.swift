@@ -586,6 +586,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     myConditionLabel.isAccessibilityElement = true
                     cell.addSubview(myConditionLabel)
                 }
+            
+            case "Repeat Forever":
+                if block.addedBlocks.isEmpty{
+                    _ = Block(name: "forever", color: Color.init(uiColor:UIColor.red ) , double: false, type: "Boolean")
+                }
+            
             case "Drive Forward", "Drive Backward":
                 if block.addedBlocks.isEmpty{
                     //Creates distance button for modifier.
