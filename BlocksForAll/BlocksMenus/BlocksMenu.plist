@@ -164,6 +164,20 @@
 			</dict>
 			<dict>
 				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Repeat Forever</string>
+				<key>color</key>
+				<string>#B30DCB</string>
+				<key>double</key>
+				<true/>
+				<key>imageName</key>
+				<string>repeat_forever.pdf</string>
+			</dict>
+			<dict>
+				<key>type</key>
 				<string>Number</string>
 				<key>editable</key>
 				<false/>
