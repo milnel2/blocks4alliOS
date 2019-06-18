@@ -6,7 +6,7 @@
 		<key>type</key>
 		<string>Animals</string>
 		<key>color</key>
-		<string>#2ECC40</string>
+		<string>#058900</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
@@ -139,7 +139,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#B10DC9</string>
+		<string>#B30DCB</string>
 		<key>type</key>
 		<string>Control</string>
 		<key>Blocks</key>
@@ -297,9 +297,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#FF851B
-                #FF4136
-                #FF4136</string>
+		<string>#B15C13</string>
 		<key>type</key>
 		<string>Drive</string>
 		<key>Blocks</key>
@@ -380,7 +378,7 @@
 		<key>type</key>
 		<string>Noise</string>
 		<key>color</key>
-		<string>#7FDBFF</string>
+		<string>#0066D0</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
@@ -485,7 +483,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#FFDC00</string>
+		<string>#6700C1</string>
 		<key>type</key>
 		<string>Lights</string>
 		<key>Blocks</key>
@@ -564,7 +562,8 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#39CCCC</string>
+		<string>#227C7C
+</string>
 		<key>type</key>
 		<string>Look</string>
 		<key>Blocks</key>
@@ -645,7 +644,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string># FF4136</string>
+		<string>#C63329</string>
 		<key>type</key>
 		<string>Motion</string>
 		<key>Blocks</key>
@@ -698,7 +697,7 @@
 		<key>type</key>
 		<string>Sound</string>
 		<key>color</key>
-		<string>#3D9970</string>
+		<string>#836F53</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
@@ -797,7 +796,7 @@
 		<key>type</key>
 		<string>Speak</string>
 		<key>color</key>
-		<string>#F012BE</string>
+		<string>#A50C82</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
@@ -1016,7 +1015,7 @@
 		<key>type</key>
 		<string>Vehicle</string>
 		<key>color</key>
-		<string>#001f3f</string>
+		<string>#002041</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
