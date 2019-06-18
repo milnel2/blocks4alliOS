@@ -449,7 +449,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>chest_light.pdf</string>
+				<string>set_chest_light.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -463,7 +463,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>all_lights.pdf</string>
+				<string>set_all_lights.pdf</string>
 			</dict>
 		</array>
 	</dict>
