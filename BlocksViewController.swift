@@ -306,7 +306,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         }
                     }else{
                         //default
-                        timesToRepeat = 2
+                        timesToRepeat = 1000
                     }
                     
                     var ii = i+1
