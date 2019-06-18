@@ -469,8 +469,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#227C7C
-</string>
+		<string>#836F53</string>
 		<key>type</key>
 		<string>Look</string>
 		<key>Blocks</key>
@@ -551,7 +550,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#C63329</string>
+		<string>#0066D0</string>
 		<key>type</key>
 		<string>Motion</string>
 		<key>Blocks</key>
@@ -604,7 +603,7 @@
 		<key>type</key>
 		<string>Noise</string>
 		<key>color</key>
-		<string>#0066D0</string>
+		<string>#C63329</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
@@ -711,7 +710,7 @@
 		<key>type</key>
 		<string>Sound</string>
 		<key>color</key>
-		<string>#836F53</string>
+		<string>#227C7C</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
