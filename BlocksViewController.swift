@@ -39,8 +39,7 @@ func loadSave() {
         }
         
         ifAndRepeatCounterparts(blockStackFromSave)
-        // MARK: this resets the blocksStack from the json file -- commented out 06/18/2019
-        // blocksStack = blockStackFromSave
+        blocksStack = blockStackFromSave
         // blockStackFrom save is array of blocks created from save file in this function, sets it to the global array of blocks used
         print("load completed")
     }catch{
@@ -123,6 +122,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     var distanceChanged: Double = 30
     var speedChanged: Double = 10
+    //    var modifierBlock: Block?
     var modifierBlockIndex: Int?
     
     /** This function saves each block in the superview as a json object cast as a String to a growing file. The function uses fileManager to be able to add and remove blocks from previous saves to stay up to date. **/
@@ -594,27 +594,28 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             
             case "Drive Forward", "Drive Backward":
                 if block.addedBlocks.isEmpty{
-                    let initialDistance = 30
-                    let initialSpeed = 10
                     //Creates distance button for modifier.
                     // TODO: change the Distance and Speed values in the placeholderBlock name according to Dash API
                     // MARK: the Distance and Speed values are cast as Ints to round them off
                     // FIX: the Distance and Speed values do not reset to default when a new Drive Forward/Backward block is made *low priority*
                     // TODO: block name doesn't support Dynamic Type
-                    // TODO 06/18/2019: get rid of placeholderBlock by saving attributes in Drive block below
-                    var placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                   
-                    block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "distance", value: "\(initialDistance)")
-                    placeholderBlock?.addAttributes(key: "speed", value:  "\(initialSpeed)")
-                    save()
+                    var placeholderBlock = Block(name: "Distance = \(Int(distanceChanged)), \nSpeed = \(Int(speedChanged))", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    //                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    //                    myConditionLabel.accessibilityLabel = "False"
+                    //                    myConditionLabel.isAccessibilityElement = true
+                    //                    cell.addSubview(myConditionLabel)
                     
+                    block.addedBlocks.append(placeholderBlock!)
                     modifierBlockIndex = indexPath.row
+                    //                    print("the original modifier block index is: \(modifierBlockIndex ?? 99)")
+                    print("entered if -- \(block.addedBlocks[0].name ?? "nothing")")
+                    //                    print(blocksStack[modifierBlockIndex!].name)
+                    //                    modifierBlock = blocksStack[indexPath.row]
                     
                     let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     distanceSpeedButton.backgroundColor = .lightGray
-                    distanceSpeedButton.setTitle("Distance = \(placeholderBlock?.attributes["distance"] ?? "30") \nSpeed = \(placeholderBlock?.attributes["speed"] ?? "10")", for: .normal)
+                    distanceSpeedButton.setTitle("\(placeholderBlock!.name)", for: .normal)
                     distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.titleLabel?.numberOfLines = 0
@@ -629,28 +630,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     cell.addSubview(distanceSpeedButton)
                 } else {
-                    var placeholderBlock = block.addedBlocks[0]
-                    let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    modifierBlockIndex = indexPath.row
-                    
-                    distanceSpeedButton.backgroundColor = .lightGray
-                    distanceSpeedButton.setTitle("Distance = \(block.addedBlocks[0].attributes["distance"]!), Speed = \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
-                    
-                    distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-                    distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    distanceSpeedButton.titleLabel?.numberOfLines = 0
-                    distanceSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    distanceSpeedButton.addTarget(self, action: #selector(distanceSpeedModifier(sender:)), for: .touchUpInside)
-                    distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    distanceSpeedButton.layer.borderWidth = 2.0
-                    distanceSpeedButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    distanceSpeedButton.accessibilityLabel = "Set distance and speed"
-                    distanceSpeedButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(distanceSpeedButton)
-                    
+                    // MARK: displays the selected Distance and Speed as the .name attribute of a block, makes a BlockView. Unable to adjust slider value again.
+                    //                    print("loaded -- \(modifierBlockIndex)")
+                    //                    print("entered else -- \(block.addedBlocks[0].name)")
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = blocksStack[indexPath.row].addedBlocks[0].name
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
                 }
                 
             case "Turn Left", "Turn Right":
@@ -715,6 +701,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @objc func distanceSpeedModifier(sender: UIButton!) {
         performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
     }
+    
+    func distanceDisplay(block atIndex: Int, setToDistance: Double, setToSpeed: Double){
+        distanceChanged = setToDistance
+        speedChanged = setToSpeed
+        print("this is the index = \(atIndex)")
+        blocksStack[atIndex].addedBlocks[0].name = "Distance: \(distanceChanged), Speed: \(speedChanged)"
+    }
+    
+    //    func distanceDisplay(_ block: Block, setTo text:String) {
+    //        /* updates the Distance and Speed text on the modifiable block */
+    //        block.addedBlocks[0].name = text
+    //    }
     
     @objc func angleModifier(sender: UIButton!) {
         performSegue(withIdentifier: "TurnRightModifier", sender: nil)
