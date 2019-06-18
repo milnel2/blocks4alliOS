@@ -9,81 +9,6 @@
 import UIKit
 import AVFoundation
 
-//collection of blocks that are part of the program
-var blocksStack = [Block]()
-
-func loadSave() {
-    print("load save called")
-    
-    var blockStackFromSave: [Block] = []
-    //array of blocks loaded from the save
-    
-    do{
-        let jsonString = try String(contentsOf: filename)
-        // creates a string type of the entire json file
-        let jsonStrings = jsonString.components(separatedBy: "\n Next Object \n")
-        // the string of the json file parsed out into each object in the file
-        
-        for part in jsonStrings {
-            // for each json object in the array of json objects as strings
-            if part == "" {
-                break
-            }
-            // this covers the last string parsed out that's just a new line
-            let jsonPart = part.data(using: .utf8)
-            // this takes the json object as a string and turns it into a data object named jsonPart
-            let blockBeingCreated = Block(json: jsonPart!)
-            // this is the block being made, it's created using the block initializer that takes a data format json
-            blockStackFromSave.append(blockBeingCreated!)
-            // adds the created block to the array of blocks that will later be set to the blocksStack
-        }
-        
-        ifAndRepeatCounterparts(blockStackFromSave)
-        blocksStack = blockStackFromSave
-        // blockStackFrom save is array of blocks created from save file in this function, sets it to the global array of blocks used
-        print("load completed")
-    }catch{
-        print("load failed")
-    }
-}
-
-func ifAndRepeatCounterparts(_ aBlockStack: [Block]){
-    var forOpen: [Block] = []
-    //array of all of the "Repeat" blocks but not the "End Repeat" blocks
-    var ifOpen: [Block] = []
-    //array of all of the "If" blocks but not the "End Repeat" blocks
-    for block in aBlockStack{
-        // iterates through the blocks in the array created from the save, goal is to assign counterparts to all of the For and If statements
-        if block.name == "Repeat"{
-            forOpen.append(block)
-            //adds "For" statements to an array
-        }else if block.name == "End Repeat"{
-            forOpen.last?.counterpart = block
-            block.counterpart = forOpen.last
-            // matches the repeat start to the counter part repeat end
-            forOpen.removeLast()
-            // removes the open block that was matched to a close block
-        }else if block.name == "If"{
-            //mirrors for loop stuff
-            ifOpen.append(block)
-        }else if block.name == "End If"{
-            ifOpen.last?.counterpart = block
-            block.counterpart = ifOpen.last
-            ifOpen.removeLast()
-        }
-    }
-}
-
-// from Paul Hegarty, lectures 13 and 14
-func getDocumentsDirectory() -> URL{
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    return paths[0]
-}
-// gets the path for the sandbox we're in
-
-public let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
-// global var for the location of the save file
-
 //MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
     /*Used to send information to SelectedBlockViewController when moving blocks in workspace*/
@@ -93,8 +18,6 @@ protocol BlockSelectionDelegate{
 }
 
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
-    
-    
     
     // below are all the buttons for this class
     @IBOutlet weak var deleteAll: UIButton!
@@ -124,6 +47,83 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var speedChanged: Double = 10
     //    var modifierBlock: Block?
     var modifierBlockIndex: Int?
+    
+    
+    //collection of blocks that are part of the program
+    var blocksStack = [Block]()
+    
+    func load() {
+        print("load save called")
+        
+        var blockStackFromSave: [Block] = []
+        //array of blocks loaded from the save
+        
+        do{
+            let jsonString = try String(contentsOf: filename)
+            // creates a string type of the entire json file
+            let jsonStrings = jsonString.components(separatedBy: "\n Next Object \n")
+            // the string of the json file parsed out into each object in the file
+            
+            for part in jsonStrings {
+                // for each json object in the array of json objects as strings
+                if part == "" {
+                    break
+                }
+                // this covers the last string parsed out that's just a new line
+                let jsonPart = part.data(using: .utf8)
+                // this takes the json object as a string and turns it into a data object named jsonPart
+                let blockBeingCreated = Block(json: jsonPart!)
+                // this is the block being made, it's created using the block initializer that takes a data format json
+                blockStackFromSave.append(blockBeingCreated!)
+                // adds the created block to the array of blocks that will later be set to the blocksStack
+            }
+            
+            ifAndRepeatCounterparts(blockStackFromSave)
+            blocksStack = blockStackFromSave
+            // blockStackFrom save is array of blocks created from save file in this function, sets it to the global array of blocks used
+            print("load completed")
+        }catch{
+            print("load failed")
+        }
+    }
+    
+    func ifAndRepeatCounterparts(_ aBlockStack: [Block]){
+        var forOpen: [Block] = []
+        //array of all of the "Repeat" blocks but not the "End Repeat" blocks
+        var ifOpen: [Block] = []
+        //array of all of the "If" blocks but not the "End Repeat" blocks
+        for block in aBlockStack{
+            // iterates through the blocks in the array created from the save, goal is to assign counterparts to all of the For and If statements
+            if block.name == "Repeat"{
+                forOpen.append(block)
+                //adds "For" statements to an array
+            }else if block.name == "End Repeat"{
+                forOpen.last?.counterpart = block
+                block.counterpart = forOpen.last
+                // matches the repeat start to the counter part repeat end
+                forOpen.removeLast()
+                // removes the open block that was matched to a close block
+            }else if block.name == "If"{
+                //mirrors for loop stuff
+                ifOpen.append(block)
+            }else if block.name == "End If"{
+                ifOpen.last?.counterpart = block
+                block.counterpart = ifOpen.last
+                ifOpen.removeLast()
+            }
+        }
+    }
+    
+    // from Paul Hegarty, lectures 13 and 14
+    func getDocumentsDirectory() -> URL{
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    // gets the path for the sandbox we're in
+    
+    lazy var filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
+    // global var for the location of the save file
+
     
     /** This function saves each block in the superview as a json object cast as a String to a growing file. The function uses fileManager to be able to add and remove blocks from previous saves to stay up to date. **/
     func save(){
@@ -167,7 +167,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         super.viewDidLoad()
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
-        loadSave()
+        load()
         save()
     }
     
@@ -205,7 +205,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksStack = []
         blocksProgram.reloadData()
         save()
-        loadSave()
+        load()
     }
     
     /** When a user clicks the 'Clear All' button, they receive an alert asking if they really want to
