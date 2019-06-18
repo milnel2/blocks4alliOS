@@ -73,6 +73,7 @@ class Block: Codable {
     var addedBlocks: [Block] = [] //blocks that modify the current block (e.g. two times for a repeat block)
     var type: String = "Operation" //types: Operations, Booleans, Numbers
     var acceptedTypes: [String] = [] //list of types that can be added to current block (e.g. numbers for a repeat block)
+    var attributes = [String:String]() //dictionary that holds attibute values for block (e.g. distance and speed)
     
     
     //MARK: - json variable
@@ -101,6 +102,7 @@ class Block: Codable {
         self.addedBlocks = []
         self.type = "bool"
         self.acceptedTypes = ["bool"]
+        self.attributes = [String:String]()
         
         if let newValue = try? JSONDecoder().decode(Block.self, from: json){
             // tries to take the json file passed in initialization and set the placeholder block newValue to the information in the
@@ -112,6 +114,7 @@ class Block: Codable {
             self.addedBlocks = newValue.addedBlocks
             self.type = newValue.type
             self.acceptedTypes = newValue.acceptedTypes
+            self.attributes = newValue.attributes
         }
     }
     
@@ -135,6 +138,10 @@ class Block: Codable {
     
     func addImage(_ imageName: String){
         self.imageName = imageName
+    }
+    
+    func addAttributes(key: String, value: String){
+        self.attributes[key] = value
     }
     
     func copy() -> Block{
