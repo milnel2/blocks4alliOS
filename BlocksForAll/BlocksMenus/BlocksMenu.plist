@@ -629,7 +629,7 @@
 		<key>type</key>
 		<string>Noise</string>
 		<key>color</key>
-		<string>#C63329</string>
+		<string>#A50C82</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
@@ -835,7 +835,7 @@
 		<key>type</key>
 		<string>Speak</string>
 		<key>color</key>
-		<string>#A50C82</string>
+		<string>#C63329</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
