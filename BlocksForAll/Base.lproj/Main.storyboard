@@ -42,6 +42,7 @@
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="load:" destination="YEE-PZ-SjD" eventType="touchUpInside" id="Evz-tZ-FdR"/>
                                     <segue destination="uoc-nU-c4a" kind="show" id="Tjn-hR-3fo"/>
                                 </connections>
                             </button>
@@ -646,8 +647,8 @@ All the commands are single blocks, except for the ones in the control category.
         <image name="GreenArrow" width="649" height="586"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ebu-O5-0hJ"/>
-        <segue reference="PIe-sL-Fqa"/>
+        <segue reference="Tjn-hR-3fo"/>
+        <segue reference="Var-Sg-Rcn"/>
         <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>
 </document>
