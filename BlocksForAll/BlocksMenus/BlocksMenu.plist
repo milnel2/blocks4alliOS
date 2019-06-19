@@ -482,9 +482,11 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#A02C2C</string>
+				<string>#836F53</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>look_up.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -494,21 +496,25 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#A02C2C</string>
+				<string>#836F53</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>look_down.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
 				<false/>
 				<key>name</key>
-				<string>Look Forward</string>
+				<string>Look Straight</string>
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#A02C2C</string>
+				<string>#836F53</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>look_straight.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -518,9 +524,11 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#A02C2C</string>
+				<string>#836F53</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>look_left.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -530,21 +538,39 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#A02C2C</string>
+				<string>#836F53</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>look_right.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
 				<false/>
 				<key>name</key>
-				<string>Look Towards Voice</string>
+				<string>Look Forward</string>
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#A02C2C</string>
+				<string>#836F53</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>look_forward.pdf</string>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Toward Voice</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#836F53</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>look_toward_voice.pdf</string>
 			</dict>
 		</array>
 	</dict>
