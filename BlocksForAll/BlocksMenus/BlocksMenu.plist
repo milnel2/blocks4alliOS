@@ -771,7 +771,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>buzz_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -785,7 +785,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>laser_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -799,7 +799,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>snore_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -813,7 +813,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>trumpet_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -827,7 +827,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>squeak_sound.pdf</string>
 			</dict>
 		</array>
 	</dict>
