@@ -10,6 +10,12 @@ import UIKit
 
 class MainMenuViewController: UIViewController {
 
+    // from Paul Hegarty, lectures 13 and 14
+    func getDocumentsDirectory() -> URL{
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    // on opening the workspace with get started it call load save
     @IBAction func load(_ sender: Any) {
         print("load save called")
         
@@ -17,7 +23,7 @@ class MainMenuViewController: UIViewController {
         //array of blocks loaded from the save
         
         do{
-            let jsonString = try String(contentsOf: filename)
+            let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json"))
             // creates a string type of the entire json file
             let jsonStrings = jsonString.components(separatedBy: "\n Next Object \n")
             // the string of the json file parsed out into each object in the file
@@ -44,43 +50,33 @@ class MainMenuViewController: UIViewController {
             print("load failed")
         }
     }
-        
-        func ifAndRepeatCounterparts(_ aBlockStack: [Block]){
-            var forOpen: [Block] = []
-            //array of all of the "Repeat" blocks but not the "End Repeat" blocks
-            var ifOpen: [Block] = []
-            //array of all of the "If" blocks but not the "End Repeat" blocks
-            for block in aBlockStack{
-                // iterates through the blocks in the array created from the save, goal is to assign counterparts to all of the For and If statements
-                if block.name == "Repeat"{
-                    forOpen.append(block)
-                    //adds "For" statements to an array
-                }else if block.name == "End Repeat"{
-                    forOpen.last?.counterpart = block
-                    block.counterpart = forOpen.last
-                    // matches the repeat start to the counter part repeat end
-                    forOpen.removeLast()
-                    // removes the open block that was matched to a close block
-                }else if block.name == "If"{
-                    //mirrors for loop stuff
-                    ifOpen.append(block)
-                }else if block.name == "End If"{
-                    ifOpen.last?.counterpart = block
-                    block.counterpart = ifOpen.last
-                    ifOpen.removeLast()
-                }
+    
+    func ifAndRepeatCounterparts(_ aBlockStack: [Block]){
+        var forOpen: [Block] = []
+        //array of all of the "Repeat" blocks but not the "End Repeat" blocks
+        var ifOpen: [Block] = []
+        //array of all of the "If" blocks but not the "End Repeat" blocks
+        for block in aBlockStack{
+            // iterates through the blocks in the array created from the save, goal is to assign counterparts to all of the For and If statements
+            if block.name == "Repeat"{
+                forOpen.append(block)
+                //adds "For" statements to an array
+            }else if block.name == "End Repeat"{
+                forOpen.last?.counterpart = block
+                block.counterpart = forOpen.last
+                // matches the repeat start to the counter part repeat end
+                forOpen.removeLast()
+                // removes the open block that was matched to a close block
+            }else if block.name == "If"{
+                //mirrors for loop stuff
+                ifOpen.append(block)
+            }else if block.name == "End If"{
+                ifOpen.last?.counterpart = block
+                block.counterpart = ifOpen.last
+                ifOpen.removeLast()
             }
         }
-        
-        // from Paul Hegarty, lectures 13 and 14
-    func getDocumentsDirectory() -> URL{
-            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-            return paths[0]
     }
-        // gets the path for the sandbox we're in
-        
-    lazy var filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
-        // global var for the location of the save file
 
     var blockSize = 150 /* this controls the size of the blocks you put down in the Building Screen */
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

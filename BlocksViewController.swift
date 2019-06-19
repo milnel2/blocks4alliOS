@@ -50,44 +50,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     var modifierBlockIndex: Int?
     
-    // from Paul Hegarty, lectures 13 and 14
-    func getDocumentsDirectory() -> URL{
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    /** This function saves each block in the superview as a json object cast as a String to a growing file. The function uses fileManager to be able to add and remove blocks from previous saves to stay up to date. **/
-    func save(){
-        let fileManager = FileManager.default
-        //filename refers to the url found at "Blocks4AllSave.json"
-        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
-        do{
-            //Deletes previous save in order to rewrite for each save action (therefore, no excess blocks)
-            try fileManager.removeItem(at: filename)
-        }catch{
-            print("couldn't delete")
-        }
-        
-        // string that json text is appended too
-        var writeText = String()
-        /** block represents each block belonging to the global array of blocks in the workspace. blocksStack holds all blocks on the screen. **/
-        for block in blocksStack{
-            // sets jsonText to the var type json in block that takes a Data object
-            if let jsonText = block.json {
-                /** appends the data from jsonText in string form to the string writeText. writeText is then saved as a json save file **/
-                writeText.append(String(data: jsonText, encoding: .utf8)!)
-                
-                /** Appending "\n Next Object \n" is meant to separate each encoded block's data in order to make it easier to fetch at a later time **/
-                writeText.append("\n Next Object \n")
-            }
-            do{
-                // writes the accumlated string of json objects to a single file
-                try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-            }catch {
-                print("couldn't print json")
-            }
-        }
-    }
+
     
     
     // MARK: - - View Set Up
@@ -98,7 +61,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         super.viewDidLoad()
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
-        save()
     }
     
     override func didReceiveMemoryWarning() {
@@ -112,7 +74,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         movingBlocks = false
         blocksBeingMoved.removeAll()
         changePlayTrashButton() //Toggling the play/trash button
-        save()
     }
     
     // MARK: add save function to function
@@ -122,7 +83,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksBeingMoved = blocks
         blocksProgram.reloadData()
         changePlayTrashButton()
-        save()
     }
     
     //TODO: LAUREN, figure out what this code is for
@@ -134,7 +94,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func deleteAllBlocks(){
         blocksStack = []
         blocksProgram.reloadData()
-        save()
+
     }
     
     /** When a user clicks the 'Clear All' button, they receive an alert asking if they really want to
@@ -533,7 +493,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "distance", value: "\(initialDistance)")
                     placeholderBlock?.addAttributes(key: "speed", value:  "\(initialSpeed)")
-                    save()
                     
                     modifierBlockIndex = indexPath.row
                     
@@ -585,7 +544,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "angle", value: "\(initialAngle)")
-                    save()
                     
                     modifierBlockIndex = indexPath.row
                     
