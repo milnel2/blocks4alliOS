@@ -39,8 +39,6 @@ class DistanceSpeedModViewController: UIViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = "\(Int(speed))"
             
-            // MARK: added 06/18/2019
-            loadSave()
         }
     }
     
