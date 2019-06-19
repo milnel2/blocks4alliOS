@@ -22,11 +22,9 @@ class DistanceSpeedModViewController: UIViewController{
     
     @IBAction func distanceSliderChanged(_ sender: UISlider) {
         distance = Double(sender.value)
-        blocksStack[modifierBlockIndexSender!].addedBlocks[0].addAttributes(key: "distance", value: "\(Int(distance))")
     }
     @IBAction func speedSliderChanged(_ sender: UISlider) {
         speed = Double(sender.value)
-        blocksStack[modifierBlockIndexSender!].addedBlocks[0].addAttributes(key: "speed", value: "\(Int(speed))")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

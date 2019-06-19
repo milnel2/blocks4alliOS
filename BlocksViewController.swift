@@ -586,13 +586,26 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
             case "Set Eye Light", "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
                 if block.addedBlocks.isEmpty{
-                    //Creates button to allow light color change.
+                    // Creates button to allow light color change.
+                    // TODO: decide on initial/default color
+                    let initialColor = "white"
+                    
+                    var placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "lightColor", value: "\(initialColor)")
+                    
+                    modifierBlockIndex = indexPath.row
+                    
                     let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     lightColorButton.backgroundColor = .lightGray
-                    lightColorButton.setTitle("Light Color", for: .normal)
-                    lightColorButton.addTarget(self, action: #selector(colorModifier(sender:)), for: .touchUpInside)
+                    lightColorButton.setTitle("Light color is \(block.addedBlocks[0].attributes["lightColor"]!)", for: .normal)
+                    lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
                     lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    lightColorButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    lightColorButton.titleLabel?.numberOfLines = 0
+                    lightColorButton.titleLabel?.textAlignment = NSTextAlignment.left
                     lightColorButton.layer.borderWidth = 2.0
                     lightColorButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -601,10 +614,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     cell.addSubview(lightColorButton)
                 } else {
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+                    var placeholderBlock = block.addedBlocks[0]
+                    let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    modifierBlockIndex = indexPath.row
+                    
+                    lightColorButton.backgroundColor = .lightGray
+                    lightColorButton.setTitle("Light color is \(block.addedBlocks[0].attributes["lightColor"]!)", for: .normal)
+                    lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
+                    lightColorButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    lightColorButton.titleLabel?.numberOfLines = 0
+                    lightColorButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    lightColorButton.layer.borderWidth = 2.0
+                    lightColorButton.layer.borderColor = UIColor.black.cgColor
+                    lightColorButton.accessibilityLabel = "Set light color"
+                    lightColorButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(lightColorButton)
                 }
             default:
                 print("This block does not need a modifier.")
@@ -628,7 +655,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "TurnRightModifier", sender: nil)
     }
     
-    @objc func colorModifier(sender: UIButton!) {
+    @objc func lightColorModifier(sender: UIButton!) {
         performSegue(withIdentifier: "ColorModifier", sender: nil)
     }
     
@@ -754,6 +781,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // Segue to AngleModViewController
         if let destinationViewController = segue.destination as? AngleModViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to ColorModViewController
+        if let destinationViewController = segue.destination as? ColorModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }

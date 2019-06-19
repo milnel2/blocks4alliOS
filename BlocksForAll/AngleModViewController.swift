@@ -20,8 +20,6 @@ class AngleModViewController: UIViewController {
     
     @IBAction func angleSliderChanged(_ sender: UISlider) {
         angle = Double(sender.value)
-        
-        blocksStack[modifierBlockIndexSender!].addedBlocks[0].addAttributes(key: "angle", value: "\(Int(angle))")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
