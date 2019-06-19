@@ -48,8 +48,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var blockHeight = 150
     let blockSpacing = 1
     
-    var distanceChanged: Double = 30
-    var speedChanged: Double = 10
     var modifierBlockIndex: Int?
     
     // from Paul Hegarty, lectures 13 and 14
@@ -517,19 +515,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     myConditionLabel.isAccessibilityElement = true
                     cell.addSubview(myConditionLabel)
                 }
-            
+                
             case "Repeat Forever":
                 if block.addedBlocks.isEmpty{
                     _ = Block(name: "forever", color: Color.init(uiColor:UIColor.red ) , double: false, type: "Boolean")
                 }
-            
+                
             case "Drive Forward", "Drive Backward":
                 if block.addedBlocks.isEmpty{
                     let initialDistance = 30
                     let initialSpeed = 10
-                    //Creates distance button for modifier.
+                    // Creates distance button for modifier.
                     // TODO: change the Distance and Speed values in the placeholderBlock name according to Dash API
-                    // MARK: the Distance and Speed values are cast as Ints to round them off
                     
                     var placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
@@ -565,7 +562,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     distanceSpeedButton.backgroundColor = .lightGray
                     distanceSpeedButton.setTitle("Distance = \(block.addedBlocks[0].attributes["distance"]!), Speed = \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
-                    
                     distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.titleLabel?.numberOfLines = 0
@@ -574,35 +570,60 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.layer.borderWidth = 2.0
                     distanceSpeedButton.layer.borderColor = UIColor.black.cgColor
-                    
                     distanceSpeedButton.accessibilityLabel = "Set distance and speed"
                     distanceSpeedButton.isAccessibilityElement = true
                     
                     cell.addSubview(distanceSpeedButton)
-                    
                 }
                 
             case "Turn Left", "Turn Right":
                 if block.addedBlocks.isEmpty{
                     //Creates angle button for modifier
+                    let initialAngle = 0
+                    
+                    var placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "angle", value: "\(initialAngle)")
+                    save()
+                    
+                    modifierBlockIndex = indexPath.row
+                    
                     let angleButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     angleButton.backgroundColor = .lightGray
-                    angleButton.setTitle("Angle", for: .normal)
+                    angleButton.setTitle("Angle = \(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
+                    angleButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    angleButton.titleLabel?.numberOfLines = 0
+                    angleButton.titleLabel?.textAlignment = NSTextAlignment.left
                     angleButton.addTarget(self, action: #selector(angleModifier(sender:)), for: .touchUpInside)
                     angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     angleButton.layer.borderWidth = 2.0
                     angleButton.layer.borderColor = UIColor.black.cgColor
-                    
                     angleButton.accessibilityLabel = "Set turn angle"
                     angleButton.isAccessibilityElement = true
                     
                     cell.addSubview(angleButton)
                 } else {
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+                    var placeholderBlock = block.addedBlocks[0]
+                    let angleButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    modifierBlockIndex = indexPath.row
+                    
+                    angleButton.backgroundColor = .lightGray
+                    angleButton.setTitle("Angle = \(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
+                    angleButton.addTarget(self, action: #selector(angleModifier(sender:)), for: .touchUpInside)
+                    angleButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    angleButton.titleLabel?.numberOfLines = 0
+                    angleButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    angleButton.layer.borderWidth = 2.0
+                    angleButton.layer.borderColor = UIColor.black.cgColor
+                    angleButton.accessibilityLabel = "Set turn angle"
+                    angleButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(angleButton)
                 }
                 
             case "Set Eye Light", "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
@@ -758,16 +779,23 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     // MARK: - - Navigation
-    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Segue to Toolbox
         if let destinationViewController = segue.destination as? UINavigationController{
             if let myTopViewController = destinationViewController.topViewController as? BlocksTypeTableViewController{
                 myTopViewController.delegate = self
                 myTopViewController.blockWidth = 150
             }
         }
+        
+        // Segue to DistanceSpeedModViewController
         if let destinationViewController = segue.destination as? DistanceSpeedModViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to AngleModViewController
+        if let destinationViewController = segue.destination as? AngleModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }

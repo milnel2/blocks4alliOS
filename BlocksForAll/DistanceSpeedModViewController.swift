@@ -30,16 +30,9 @@ class DistanceSpeedModViewController: UIViewController{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if let destinationViewController = segue.destination as? BlocksViewController{
-            print("from DSMVC distance = \(distance), speed = \(speed)")
-            destinationViewController.distanceChanged = distance
-            destinationViewController.speedChanged = speed
-            destinationViewController.modifierBlockIndex = modifierBlockIndexSender
-          
+        if segue.destination is BlocksViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = "\(Int(speed))"
-            
         }
     }
-    
 }

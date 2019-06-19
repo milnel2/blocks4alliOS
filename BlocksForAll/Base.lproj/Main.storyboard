@@ -555,7 +555,7 @@ All the commands are single blocks, except for the ones in the control category.
         <!--Turn-->
         <scene sceneID="M8C-xf-t1F">
             <objects>
-                <viewController title="Turn" id="JzC-8L-d8W" sceneMemberID="viewController">
+                <viewController title="Turn" id="JzC-8L-d8W" customClass="AngleModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pSJ-xI-sbp"/>
                         <viewControllerLayoutGuide type="bottom" id="hik-92-oYa"/>
@@ -583,15 +583,21 @@ All the commands are single blocks, except for the ones in the control category.
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="45" minValue="0.0" maxValue="360" translatesAutoresizingMaskIntoConstraints="NO" id="HuR-8Y-sXT" userLabel="Angle Slider">
+                            <slider contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="360" translatesAutoresizingMaskIntoConstraints="NO" id="HuR-8Y-sXT" userLabel="Angle Slider">
                                 <rect key="frame" x="201" y="400" width="623" height="31"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" hint="10 to 100 in increments of 10" label="Angle Slider"/>
+                                <connections>
+                                    <action selector="angleSliderChanged:" destination="JzC-8L-d8W" eventType="valueChanged" id="zMc-qL-LDW"/>
+                                </connections>
                             </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <connections>
+                        <outlet property="angleSlider" destination="HuR-8Y-sXT" id="ctg-yU-TaL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLF-rh-Lei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -647,7 +653,7 @@ All the commands are single blocks, except for the ones in the control category.
         <image name="GreenArrow" width="649" height="586"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tjn-hR-3fo"/>
+        <segue reference="IVp-4f-s1y"/>
         <segue reference="Var-Sg-Rcn"/>
         <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>
