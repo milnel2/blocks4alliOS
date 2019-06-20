@@ -13,7 +13,7 @@ class RepeatModViewController: UIViewController{
     /* Custom view controller for the Repeat modifier scene */
     
     var modifierBlockIndexSender: Int?
-    var timesToRepeat: Int = 0
+    var timesToRepeat: Int = 2
     
     @IBOutlet weak var timesToRepeatLabel: UILabel!
     
@@ -22,13 +22,16 @@ class RepeatModViewController: UIViewController{
         timesToRepeatLabel.text = "\(timesToRepeat)"
     }
     @IBAction func minusButtonPressed(_ sender: Any) {
-        timesToRepeat = timesToRepeat - 1
+        if (timesToRepeat >= 3) {
+            // prevents users from entering 1, 0 or negative times to repeat
+            timesToRepeat = timesToRepeat - 1
+        }
         timesToRepeatLabel.text = "\(timesToRepeat)"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is BlocksViewController{
-            
+            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["timesToRepeat"] = "\(timesToRepeat)"
         }
     }
     

@@ -454,11 +454,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             case "Repeat":
                 if block.addedBlocks.isEmpty{
-                    // Clean up code
-                    let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    // Creates repeat button for modifier.
+                    let initialTimesToRepeat = 2
+                   
+                    var placeholderBlock = Block(name: "Repeat Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "timesToRepeat", value: "\(initialTimesToRepeat)")
+                    modifierBlockIndex = indexPath.row
+                    
+                    let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     repeatNumberButton.backgroundColor = .lightGray
-                    repeatNumberButton.setTitle("Number of times", for: .normal)
+                    repeatNumberButton.setTitle("Repeat \(placeholderBlock?.attributes["timesToRepeat"] ?? "1")", for: .normal)
+                    repeatNumberButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    repeatNumberButton.titleLabel?.numberOfLines = 0
+                    repeatNumberButton.titleLabel?.textAlignment = NSTextAlignment.left
                     repeatNumberButton.addTarget(self, action: #selector(repeatModifier(sender:)), for: .touchUpInside)
                     repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     repeatNumberButton.layer.borderWidth = 2.0
@@ -468,12 +479,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     repeatNumberButton.isAccessibilityElement = true
                     
                     cell.addSubview(repeatNumberButton)
-                    
                 } else {
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+                    var placeholderBlock = block.addedBlocks[0]
+                    let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    modifierBlockIndex = indexPath.row
+            
+                    repeatNumberButton.backgroundColor = .lightGray
+                    // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
+                    repeatNumberButton.setTitle("Repeat \(block.addedBlocks[0].attributes["timesToRepeat"] ?? "1")", for: .normal)
+                    repeatNumberButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    repeatNumberButton.titleLabel?.numberOfLines = 0
+                    repeatNumberButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    repeatNumberButton.addTarget(self, action: #selector(repeatModifier(sender:)), for: .touchUpInside)
+                    repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    repeatNumberButton.layer.borderWidth = 2.0
+                    repeatNumberButton.layer.borderColor = UIColor.black.cgColor
+                    repeatNumberButton.accessibilityLabel = "Set number of times to repeat"
+                    repeatNumberButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(repeatNumberButton)
                 }
                 
             case "Repeat Forever":
@@ -818,6 +844,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // Segue to ColorModViewController
         if let destinationViewController = segue.destination as? ColorModViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to RepeatModViewController
+        if let destinationViewController = segue.destination as? RepeatModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }
