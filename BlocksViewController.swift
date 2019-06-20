@@ -584,7 +584,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(angleButton)
                 }
                 
-            case "Set Eye Light", "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
+            case "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
                 if block.addedBlocks.isEmpty{
                     // Creates button to allow light color change.
                     // TODO: decide on initial/default color
@@ -633,6 +633,32 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     cell.addSubview(lightColorButton)
                 }
+                
+            case "Set Eye Light":
+                if block.addedBlocks.isEmpty{
+                    let lightPattern = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    lightPattern.backgroundColor = .lightGray
+                    lightPattern.setTitle("On/Off", for: .normal)
+                    lightPattern.addTarget(self, action: #selector(clickedLightColor), for: .touchUpInside)
+                    lightPattern.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    lightPattern.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    lightPattern.titleLabel?.numberOfLines = 0
+                    lightPattern.titleLabel?.textAlignment = NSTextAlignment.left
+                    lightPattern.layer.borderWidth = 2.0
+                    lightPattern.layer.borderColor = UIColor.black.cgColor
+                    
+                    lightPattern.accessibilityLabel = "Turn eye light on and off"
+                    lightPattern.isAccessibilityElement = true
+                    
+                    cell.addSubview(lightPattern)
+                } else {
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                }
+                
             default:
                 print("This block does not need a modifier.")
             }
@@ -663,6 +689,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "RepeatModifier", sender: nil)
     }
     
+    @objc func clickedLightColor(sender: UIButton!){
+        print ("Eye light button clicked")
+    }
+    
     func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
         let myLabel = UILabel.init(frame: frame)
         //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
@@ -673,6 +703,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         myLabel.backgroundColor = block.color.uiColor
         return myLabel
     }
+    
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         /*Called when a block is selected in the collectionView, so either selects block to move or places blocks*/
