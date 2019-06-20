@@ -17,7 +17,7 @@
 				<key>name</key>
 				<string>Make Cat Noise</string>
 				<key>color</key>
-				<string>#0074D9</string>
+				<string>#058900</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -31,7 +31,7 @@
 				<key>name</key>
 				<string>Make Crocodile Noise</string>
 				<key>color</key>
-				<string>#0074D9</string>
+				<string>#058900</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -45,7 +45,7 @@
 				<key>name</key>
 				<string>Make Dinosaur Noise</string>
 				<key>color</key>
-				<string>#0074D9</string>
+				<string>#058900</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -59,7 +59,7 @@
 				<key>name</key>
 				<string>Make Dog Noise</string>
 				<key>color</key>
-				<string>#0074D9</string>
+				<string>#058900</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -73,7 +73,7 @@
 				<key>name</key>
 				<string>Make Elephant Noise</string>
 				<key>color</key>
-				<string>#0074D9</string>
+				<string>#058900</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -87,7 +87,7 @@
 				<key>name</key>
 				<string>Make Goat Noise</string>
 				<key>color</key>
-				<string>#0074D9</string>
+				<string>#058900</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -101,7 +101,7 @@
 				<key>name</key>
 				<string>Make Horse Noise</string>
 				<key>color</key>
-				<string>#0074D9</string>
+				<string>#058900</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -115,7 +115,7 @@
 				<key>name</key>
 				<string>Make Lion Noise</string>
 				<key>color</key>
-				<string>#0074D9</string>
+				<string>#058900</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -129,7 +129,7 @@
 				<key>name</key>
 				<string>Make Turkey Noise</string>
 				<key>color</key>
-				<string>#0074D9</string>
+				<string>#058900</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -156,7 +156,7 @@
 				<key>name</key>
 				<string>Repeat</string>
 				<key>color</key>
-				<string>#FF748C</string>
+				<string>#B30DCB</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
@@ -184,7 +184,7 @@
 				<key>name</key>
 				<string>two times</string>
 				<key>color</key>
-				<string>#FF748C</string>
+				<string>#B30DCB</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -198,7 +198,7 @@
 				<key>name</key>
 				<string>three times</string>
 				<key>color</key>
-				<string>#FF748C</string>
+				<string>#B30DCB</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -212,7 +212,7 @@
 				<key>name</key>
 				<string>four times</string>
 				<key>color</key>
-				<string>#FF748C</string>
+				<string>#B30DCB</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -226,7 +226,7 @@
 				<key>name</key>
 				<string>five times</string>
 				<key>color</key>
-				<string>#FF748C</string>
+				<string>#B30DCB</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -249,7 +249,7 @@
 				<key>name</key>
 				<string>If</string>
 				<key>color</key>
-				<string>#FF748C</string>
+				<string>#B30DCB</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
@@ -268,7 +268,7 @@
 				<key>name</key>
 				<string>Hear Voice</string>
 				<key>color</key>
-				<string>#FF748C</string>
+				<string>#B30DCB</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -287,7 +287,7 @@
 				<key>name</key>
 				<string>Obstacle in front</string>
 				<key>color</key>
-				<string>#FF748C</string>
+				<string>#B30DCB</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -301,7 +301,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#FF748C</string>
+				<string>#B30DCB</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -324,7 +324,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#008000</string>
+				<string>#B15C13</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -338,7 +338,7 @@
 				<key>name</key>
 				<string>Drive Backward</string>
 				<key>color</key>
-				<string>#008000</string>
+				<string>#B15C13</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -352,7 +352,7 @@
 				<key>name</key>
 				<string>Turn Left</string>
 				<key>color</key>
-				<string>#008000</string>
+				<string>#B15C13</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -366,25 +366,11 @@
 				<key>name</key>
 				<string>Turn Right</string>
 				<key>color</key>
-				<string>#008000</string>
+				<string>#B15C13</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
 				<string>turn_right.pdf</string>
-			</dict>
-			<dict>
-				<key>editable</key>
-				<false/>
-				<key>type</key>
-				<string>Statement</string>
-				<key>name</key>
-				<string>Start Engine</string>
-				<key>color</key>
-				<string>#008000</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>car_sound.pdf</string>
 			</dict>
 		</array>
 	</dict>
@@ -403,7 +389,7 @@
 				<key>name</key>
 				<string>Set Eye Light</string>
 				<key>color</key>
-				<string>#0000FF</string>
+				<string>#6700C1</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -417,7 +403,7 @@
 				<key>name</key>
 				<string>Set Left Ear Light</string>
 				<key>color</key>
-				<string>#0000FF</string>
+				<string>#6700C1</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -432,6 +418,8 @@
 				<string>Set Right Ear Light</string>
 				<key>color</key>
 				<string>#0000FF</string>
+				<key>New item</key>
+				<string>#6700C1</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -445,7 +433,7 @@
 				<key>name</key>
 				<string>Set Chest Light</string>
 				<key>color</key>
-				<string>#0000FF</string>
+				<string>#6700C1</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -459,7 +447,7 @@
 				<key>name</key>
 				<string>Set All Lights</string>
 				<key>color</key>
-				<string>#0000FF</string>
+				<string>#6700C1</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -589,7 +577,7 @@
 				<key>name</key>
 				<string>Wiggle</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#0066D0</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -603,7 +591,7 @@
 				<key>name</key>
 				<string>Nod</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#0066D0</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -617,7 +605,7 @@
 				<key>name</key>
 				<string>Dance</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#0066D0</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -640,7 +628,7 @@
 				<key>name</key>
 				<string>Bragging</string>
 				<key>color</key>
-				<string>#FF7F2A</string>
+				<string>#A50C82</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -654,7 +642,7 @@
 				<key>name</key>
 				<string>Confused</string>
 				<key>color</key>
-				<string>#FF7F2A</string>
+				<string>#A50C82</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -668,7 +656,7 @@
 				<key>name</key>
 				<string>Giggle</string>
 				<key>color</key>
-				<string>#FF7F2A</string>
+				<string>#A50C82</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -682,7 +670,7 @@
 				<key>name</key>
 				<string>Grunt</string>
 				<key>color</key>
-				<string>#FF7F2A</string>
+				<string>#A50C82</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -696,7 +684,7 @@
 				<key>name</key>
 				<string>Sigh</string>
 				<key>color</key>
-				<string>#FF7F2A</string>
+				<string>#A50C82</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -710,7 +698,7 @@
 				<key>name</key>
 				<string>Surprised</string>
 				<key>color</key>
-				<string>#FF7F2A</string>
+				<string>#A50C82</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -724,7 +712,7 @@
 				<key>name</key>
 				<string>Yawn</string>
 				<key>color</key>
-				<string>#FF7F2A</string>
+				<string>#A50C82</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -753,7 +741,7 @@
 				<key>name</key>
 				<string>Make Random Noise</string>
 				<key>color</key>
-				<string>#008000</string>
+				<string>#227C7C</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -767,7 +755,7 @@
 				<key>name</key>
 				<string>Buzz</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#227C7C</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -781,7 +769,7 @@
 				<key>name</key>
 				<string>Lasers</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#227C7C</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -795,7 +783,7 @@
 				<key>name</key>
 				<string>Snore</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#227C7C</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -809,7 +797,7 @@
 				<key>name</key>
 				<string>Trumpet</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#227C7C</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -823,7 +811,7 @@
 				<key>name</key>
 				<string>Squeak</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#227C7C</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -846,11 +834,11 @@
 				<key>name</key>
 				<string>Say Hi</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>say_hi.pdf</string>
+				<string>speak_hi.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -860,11 +848,11 @@
 				<key>name</key>
 				<string>Say Bye</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>sound_bye.pdf</string>
+				<string>speak_bye.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -874,11 +862,11 @@
 				<key>name</key>
 				<string>Say Cool</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>sound_cool.pdf</string>
+				<string>speak_cool.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -888,11 +876,11 @@
 				<key>name</key>
 				<string>Say Haha</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>speak_haha.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -902,11 +890,11 @@
 				<key>name</key>
 				<string>Say Huh</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>speak_huh.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -916,11 +904,11 @@
 				<key>name</key>
 				<string>Say Lets Go</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>speak_lets_go.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -930,11 +918,11 @@
 				<key>name</key>
 				<string>Say Oh</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>speak_oh.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -944,11 +932,11 @@
 				<key>name</key>
 				<string>Say Wow</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>sound_wow.pdf</string>
+				<string>speak_wow.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -958,11 +946,11 @@
 				<key>name</key>
 				<string>Say Tah Dah</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>speak_tah_dah.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -972,11 +960,11 @@
 				<key>name</key>
 				<string>Uh Huh</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>speak_uh_huh.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -986,11 +974,11 @@
 				<key>name</key>
 				<string>Uh Oh</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>speak_uh_oh.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1000,11 +988,11 @@
 				<key>name</key>
 				<string>Wah</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>speak_wah.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1014,11 +1002,11 @@
 				<key>name</key>
 				<string>Wee</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>speak_wee.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1028,11 +1016,11 @@
 				<key>name</key>
 				<string>Weehee</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>speak_wee_hee.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1042,11 +1030,11 @@
 				<key>name</key>
 				<string>Yippe</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>speak_yippe.pdf</string>
 			</dict>
 		</array>
 	</dict>
@@ -1065,11 +1053,11 @@
 				<key>name</key>
 				<string>Airplane</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#002041</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>airplane.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1079,11 +1067,11 @@
 				<key>name</key>
 				<string>Beep</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#002041</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>beep.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1093,11 +1081,11 @@
 				<key>name</key>
 				<string>Boat</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#002041</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>boat.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1107,25 +1095,11 @@
 				<key>name</key>
 				<string>Helicopter</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#002041</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Horn</string>
-				<key>color</key>
-				<string>#15284A</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>helicopter.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1135,11 +1109,11 @@
 				<key>name</key>
 				<string>Siren</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#002041</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>siren.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1149,11 +1123,25 @@
 				<key>name</key>
 				<string>Speed Boost</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#002041</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>speed_boost.pdf</string>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>type</key>
+				<string>Statement</string>
+				<key>name</key>
+				<string>Start Engine</string>
+				<key>color</key>
+				<string>#002041</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>car_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1163,11 +1151,11 @@
 				<key>name</key>
 				<string>Tire Squeal</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#002041</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>tire_squeal.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1177,11 +1165,11 @@
 				<key>name</key>
 				<string>Train</string>
 				<key>color</key>
-				<string>#15284A</string>
+				<string>#002041</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>cat_sound.pdf</string>
+				<string>train.pdf</string>
 			</dict>
 		</array>
 	</dict>
