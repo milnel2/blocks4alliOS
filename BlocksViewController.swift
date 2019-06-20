@@ -500,7 +500,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     distanceSpeedButton.backgroundColor = .lightGray
                     distanceSpeedButton.setTitle("Distance = \(placeholderBlock?.attributes["distance"] ?? "30") \nSpeed = \(placeholderBlock?.attributes["speed"] ?? "10")", for: .normal)
-                    distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.titleLabel?.numberOfLines = 0
                     distanceSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
@@ -520,8 +520,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     modifierBlockIndex = indexPath.row
                     
                     distanceSpeedButton.backgroundColor = .lightGray
-                    distanceSpeedButton.setTitle("Distance = \(block.addedBlocks[0].attributes["distance"]!), Speed = \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
-                    distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    distanceSpeedButton.setTitle("Distance = \(block.addedBlocks[0].attributes["distance"]!) \nSpeed = \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
+                    distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.titleLabel?.numberOfLines = 0
                     distanceSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
@@ -551,7 +551,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     angleButton.backgroundColor = .lightGray
                     angleButton.setTitle("Angle = \(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
-                    angleButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
                     angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     angleButton.titleLabel?.numberOfLines = 0
                     angleButton.titleLabel?.textAlignment = NSTextAlignment.left
@@ -572,7 +572,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     angleButton.backgroundColor = .lightGray
                     angleButton.setTitle("Angle = \(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
                     angleButton.addTarget(self, action: #selector(angleModifier(sender:)), for: .touchUpInside)
-                    angleButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
                     angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     angleButton.titleLabel?.numberOfLines = 0
                     angleButton.titleLabel?.textAlignment = NSTextAlignment.left
@@ -603,7 +603,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     lightColorButton.setTitle("Light color is \(block.addedBlocks[0].attributes["lightColor"]!)", for: .normal)
                     lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
                     lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    lightColorButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    lightColorButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
                     lightColorButton.titleLabel?.numberOfLines = 0
                     lightColorButton.titleLabel?.textAlignment = NSTextAlignment.left
                     lightColorButton.layer.borderWidth = 2.0
@@ -622,7 +622,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     lightColorButton.backgroundColor = .lightGray
                     lightColorButton.setTitle("Light color is \(block.addedBlocks[0].attributes["lightColor"]!)", for: .normal)
                     lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
-                    lightColorButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    lightColorButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
                     lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     lightColorButton.titleLabel?.numberOfLines = 0
                     lightColorButton.titleLabel?.textAlignment = NSTextAlignment.left
