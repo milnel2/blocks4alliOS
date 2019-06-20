@@ -156,11 +156,11 @@
 				<key>name</key>
 				<string>Repeat</string>
 				<key>color</key>
-				<string>#ff0000ff</string>
+				<string>#E20000</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
-				<string>repeat_red.pdf</string>
+				<string>repeat.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -170,7 +170,7 @@
 				<key>name</key>
 				<string>Repeat Forever</string>
 				<key>color</key>
-				<string>#ff0000ff</string>
+				<string>#B30DCB</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
@@ -249,7 +249,7 @@
 				<key>name</key>
 				<string>If</string>
 				<key>color</key>
-				<string>#ef8400ff</string>
+				<string>#EF8400</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
