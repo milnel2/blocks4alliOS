@@ -58,10 +58,10 @@ class MainMenuViewController: UIViewController {
         //array of all of the "If" blocks but not the "End Repeat" blocks
         for block in aBlockStack{
             // iterates through the blocks in the array created from the save, goal is to assign counterparts to all of the For and If statements
-            if block.name == "Repeat"{
+            if block.name == "Repeat" || block.name == "Repeat Forever"{
                 forOpen.append(block)
                 //adds "For" statements to an array
-            }else if block.name == "End Repeat"{
+            }else if block.name == "End Repeat" || block.name == "End Repeat Forever"{
                 forOpen.last?.counterpart = block
                 block.counterpart = forOpen.last
                 // matches the repeat start to the counter part repeat end
