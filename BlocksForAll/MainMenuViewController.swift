@@ -21,33 +21,35 @@ class MainMenuViewController: UIViewController {
         
         var blockStackFromSave: [Block] = []
         //array of blocks loaded from the save
-        
-        do{
-            let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json"))
-            // creates a string type of the entire json file
-            let jsonStrings = jsonString.components(separatedBy: "\n Next Object \n")
-            // the string of the json file parsed out into each object in the file
-            
-            for part in jsonStrings {
-                // for each json object in the array of json objects as strings
-                if part == "" {
-                    break
+        if !blocksStack.isEmpty{
+        // prevents extra loading on get started button press after menu button press return in workspace
+            do{
+                let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json"))
+                // creates a string type of the entire json file
+                let jsonStrings = jsonString.components(separatedBy: "\n Next Object \n")
+                // the string of the json file parsed out into each object in the file
+                
+                for part in jsonStrings {
+                    // for each json object in the array of json objects as strings
+                    if part == "" {
+                        break
+                    }
+                    // this covers the last string parsed out that's just a new line
+                    let jsonPart = part.data(using: .utf8)
+                    // this takes the json object as a string and turns it into a data object named jsonPart
+                    let blockBeingCreated = Block(json: jsonPart!)
+                    // this is the block being made, it's created using the block initializer that takes a data format json
+                    blockStackFromSave.append(blockBeingCreated!)
+                    // adds the created block to the array of blocks that will later be set to the blocksStack
                 }
-                // this covers the last string parsed out that's just a new line
-                let jsonPart = part.data(using: .utf8)
-                // this takes the json object as a string and turns it into a data object named jsonPart
-                let blockBeingCreated = Block(json: jsonPart!)
-                // this is the block being made, it's created using the block initializer that takes a data format json
-                blockStackFromSave.append(blockBeingCreated!)
-                // adds the created block to the array of blocks that will later be set to the blocksStack
+                
+                ifAndRepeatCounterparts(blockStackFromSave)
+                blocksStack = blockStackFromSave
+                // blockStackFrom save is array of blocks created from save file in this function, sets it to the global array of blocks used
+                print("load completed")
+            }catch{
+                print("load failed")
             }
-            
-            ifAndRepeatCounterparts(blockStackFromSave)
-            blocksStack = blockStackFromSave
-            // blockStackFrom save is array of blocks created from save file in this function, sets it to the global array of blocks used
-            print("load completed")
-        }catch{
-            print("load failed")
         }
     }
     
