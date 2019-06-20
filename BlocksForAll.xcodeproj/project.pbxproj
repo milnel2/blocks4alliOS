@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		023D632F22BBF05700A8002C /* ColorModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D632E22BBF05700A8002C /* ColorModViewController.swift */; };
+		023D633122BC0B2E00A8002C /* RepeatModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D633022BC0B2E00A8002C /* RepeatModViewController.swift */; };
 		025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */; };
 		02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */; };
 		701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701A43861EC26EFD00314599 /* BlocksViewController.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		023D632E22BBF05700A8002C /* ColorModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModViewController.swift; sourceTree = "<group>"; };
+		023D633022BC0B2E00A8002C /* RepeatModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatModViewController.swift; sourceTree = "<group>"; };
 		025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleModViewController.swift; sourceTree = "<group>"; };
 		02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceSpeedModViewController.swift; sourceTree = "<group>"; };
 		701A43861EC26EFD00314599 /* BlocksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksViewController.swift; path = ../BlocksViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				F186EB871EE0D8B100C2FA4B /* BlockView.swift */,
 				F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */,
 				F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */,
+				023D633022BC0B2E00A8002C /* RepeatModViewController.swift */,
 				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
 				02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */,
 				F18FEEDB1EB115AF007C15B8 /* Helper */,
@@ -315,6 +318,7 @@
 				F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */,
 				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
 				701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */,
+				023D633122BC0B2E00A8002C /* RepeatModViewController.swift in Sources */,
 				F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
