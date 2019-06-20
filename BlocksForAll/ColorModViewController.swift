@@ -27,7 +27,7 @@ class ColorModViewController: UIViewController{
     @IBAction func yellowButtonPressed(_ sender: UIButton) {
         colorSelected = "yellow"
     }
-    @IBAction func greenButtonPressed(_ sender: Any) {
+    @IBAction func greenButtonPressed(_ sender: UIButton) {
         colorSelected = "green"
     }
     @IBAction func blueButtonPressed(_ sender: UIButton) {
