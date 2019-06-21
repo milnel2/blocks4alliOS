@@ -515,7 +515,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     // Creates repeat button for modifier.
                     let initialTimesToRepeat = 2
                    
-                    var placeholderBlock = Block(name: "Repeat Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Repeat Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "timesToRepeat", value: "\(initialTimesToRepeat)")
@@ -538,7 +538,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     cell.addSubview(repeatNumberButton)
                 } else {
-                    var placeholderBlock = block.addedBlocks[0]
+                    _ = block.addedBlocks[0]
                     let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     modifierBlockIndex = indexPath.row
@@ -572,7 +572,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     // Creates distance button for modifier.
                     // TODO: change the Distance and Speed values in the placeholderBlock name according to Dash API
                     
-                    var placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "distance", value: "\(initialDistance)")
@@ -598,7 +598,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     cell.addSubview(distanceSpeedButton)
                 } else {
-                    var placeholderBlock = block.addedBlocks[0]
+                    _ = block.addedBlocks[0]
                     let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     modifierBlockIndex = indexPath.row
@@ -624,7 +624,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     //Creates angle button for modifier
                     let initialAngle = 0
                     
-                    var placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "angle", value: "\(initialAngle)")
@@ -648,7 +648,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     cell.addSubview(angleButton)
                 } else {
-                    var placeholderBlock = block.addedBlocks[0]
+                    _ = block.addedBlocks[0]
                     let angleButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     modifierBlockIndex = indexPath.row
@@ -674,7 +674,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     // TODO: decide on initial/default color
                     let initialColor = "white"
                     
-                    var placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "lightColor", value: "\(initialColor)")
@@ -698,7 +698,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     cell.addSubview(lightColorButton)
                 } else {
-                    var placeholderBlock = block.addedBlocks[0]
+                    _ = block.addedBlocks[0]
                     let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     modifierBlockIndex = indexPath.row
@@ -719,7 +719,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
             case "Set Eye Light":
-                var placeholderBlock = Block(name: "Eye Light Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                _ = Block(name: "Eye Light Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                 
                 if block.addedBlocks.isEmpty{
                     let lightPattern = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
@@ -748,7 +748,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Wait for Time":
                 if block.addedBlocks.isEmpty{
                     let initialWait = 1
-                    var placeholderBlock = Block(name: "Wait Time", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Wait Time", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "wait", value: "\(initialWait)")
@@ -771,7 +771,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     cell.addSubview(waitTimeButton)
                 } else {
-                    var placeholderBlock = block.addedBlocks[0]
+                    _ = block.addedBlocks[0]
                     let waitButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     modifierBlockIndex = indexPath.row
