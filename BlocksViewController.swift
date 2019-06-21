@@ -742,47 +742,23 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     myConditionLabel.isAccessibilityElement = true
                     cell.addSubview(myConditionLabel)
                 }
-                
-            case "Look Left", "Look Right", "Look Up", "Look Down":
-                var placeholderBlock = Block(name: "Look Angle Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                
-                if block.addedBlocks.isEmpty{
-                    let lookButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    lookButton.backgroundColor = .lightGray
-                    lookButton.setTitle("Angle", for: .normal)
-                    lookButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-                    lookButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    lookButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-                    lookButton.titleLabel?.numberOfLines = 0
-                    lookButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    lookButton.layer.borderWidth = 2.0
-                    lookButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    lookButton.accessibilityLabel = "Set look angle"
-                    lookButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(lookButton)
-                } else {
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
-                }
-                
+            
             case "Wait for Time":
-                var placeholderBlock = Block(name: "Wait Time", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                block.addedBlocks.append(placeholderBlock!)
-                
-                
                 if block.addedBlocks.isEmpty{
+                    let initialWait = 1
+                    var placeholderBlock = Block(name: "Wait Time", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "wait", value: "\(initialWait)")
+                    modifierBlockIndex = indexPath.row
+                    
                     let waitTimeButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     waitTimeButton.backgroundColor = .lightGray
-                    waitTimeButton.setTitle("Wait Time", for: .normal)
-                    waitTimeButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+                    waitTimeButton.setTitle("Wait for \(placeholderBlock?.attributes["wait"] ?? "1") seconds", for: .normal)
+                    waitTimeButton.addTarget(self, action: #selector(waitModifier(sender:)), for: .touchUpInside)
                     waitTimeButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    waitTimeButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    waitTimeButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
                     waitTimeButton.titleLabel?.numberOfLines = 0
                     waitTimeButton.titleLabel?.textAlignment = NSTextAlignment.left
                     waitTimeButton.layer.borderWidth = 2.0
@@ -793,10 +769,25 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     cell.addSubview(waitTimeButton)
                 } else {
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+                    var placeholderBlock = block.addedBlocks[0]
+                    let waitButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    modifierBlockIndex = indexPath.row
+                    
+                    waitButton.backgroundColor = .lightGray
+                    waitButton.setTitle("Wait for \(block.addedBlocks[0].attributes["wait"]!) seconds", for: .normal)
+                    waitButton.addTarget(self, action: #selector(waitModifier(sender:)), for: .touchUpInside)
+                    waitButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    waitButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    waitButton.titleLabel?.numberOfLines = 0
+                    waitButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    waitButton.layer.borderWidth = 2.0
+                    waitButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    waitButton.accessibilityLabel = "Set wait time"
+                    waitButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(waitButton)
                 }
                 
             default:
@@ -815,6 +806,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     @objc func distanceSpeedModifier(sender: UIButton!) {
         performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
+    }
+    
+    @objc  func waitModifier(sender: UIButton!) {
+        performSegue(withIdentifier: "WaitModifier", sender: nil)
     }
     
     @objc func angleModifier(sender: UIButton!) {
@@ -963,6 +958,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // Segue to RepeatModViewController
         if let destinationViewController = segue.destination as? RepeatModViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to WaitModViewController
+        if let destinationViewController = segue.destination as? WaitModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }

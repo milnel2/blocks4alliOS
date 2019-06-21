@@ -16,17 +16,17 @@ class WaitModViewController: UIViewController{
     var wait: Int = 1
     
     @IBOutlet weak var waitLabel: UILabel!
-    
+
     @IBAction func plusButtonPressed(_ sender: UIButton) {
         if (wait < 10) {
             wait = wait + 1
-            waitLabel.text = "\(wait)"
+            waitLabel.text = "\(wait) seconds"
         }
     }
     @IBAction func minusButtonPressed(_ sender: UIButton) {
         if (wait > 1) {
             wait = wait - 1
-            waitLabel.text = "\(wait)"
+            waitLabel.text = "\(wait) seconds"
         }
     }
     

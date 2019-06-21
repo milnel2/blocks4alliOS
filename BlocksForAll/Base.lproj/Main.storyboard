@@ -733,27 +733,27 @@ All the commands are single blocks, except for the ones in the control category.
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVI-Mg-Hbg">
-                                <rect key="frame" x="610" y="406" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="plus"/>
-                                <connections>
-                                    <action selector="plusButtonPressed:" destination="9VT-Qr-ako" eventType="touchUpInside" id="W8V-24-lCe"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2 seconds" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbS-E8-DcQ">
-                                <rect key="frame" x="445" y="406" width="134" height="100"/>
+                                <rect key="frame" x="323" y="406" width="378" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="je8-kt-IQ9">
-                                <rect key="frame" x="316" y="406" width="100" height="100"/>
+                                <rect key="frame" x="215" y="406" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="minus"/>
                                 <connections>
                                     <action selector="minusButtonPressed:" destination="9VT-Qr-ako" eventType="touchUpInside" id="s7O-Qy-l8I"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVI-Mg-Hbg">
+                                <rect key="frame" x="709" y="406" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="plus"/>
+                                <connections>
+                                    <action selector="plusButtonPressed:" destination="9VT-Qr-ako" eventType="touchUpInside" id="W8V-24-lCe"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -765,7 +765,7 @@ All the commands are single blocks, except for the ones in the control category.
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gWd-G8-6Lp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1736" y="1030"/>
+            <point key="canvasLocation" x="1735.546875" y="1029.6875"/>
         </scene>
         <!--Repeat-->
         <scene sceneID="zCU-JJ-aje">
