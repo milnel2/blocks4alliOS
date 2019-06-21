@@ -1051,7 +1051,7 @@
                     <key>editable</key>
                     <false/>
                     <key>name</key>
-                    <string>Airplane</string>
+                    <string>Airplane Noise</string>
                     <key>color</key>
                     <string>#002041</string>
                     <key>double</key>
@@ -1079,7 +1079,7 @@
                     <key>editable</key>
                     <false/>
                     <key>name</key>
-                    <string>Boat</string>
+                    <string>Boat Noise</string>
                     <key>color</key>
                     <string>#002041</string>
                     <key>double</key>
@@ -1093,7 +1093,7 @@
                     <key>editable</key>
                     <false/>
                     <key>name</key>
-                    <string>Helicopter</string>
+                    <string>Helicopter Noise</string>
                     <key>color</key>
                     <string>#002041</string>
                     <key>double</key>
@@ -1107,7 +1107,7 @@
                     <key>editable</key>
                     <false/>
                     <key>name</key>
-                    <string>Siren</string>
+                    <string>Siren Noise</string>
                     <key>color</key>
                     <string>#002041</string>
                     <key>double</key>
@@ -1135,7 +1135,7 @@
                     <key>type</key>
                     <string>Statement</string>
                     <key>name</key>
-                    <string>Start Engine</string>
+                    <string>Start Engine Noise</string>
                     <key>color</key>
                     <string>#002041</string>
                     <key>double</key>
@@ -1163,7 +1163,7 @@
                     <key>editable</key>
                     <false/>
                     <key>name</key>
-                    <string>Train</string>
+                    <string>Train Noise</string>
                     <key>color</key>
                     <string>#002041</string>
                     <key>double</key>
