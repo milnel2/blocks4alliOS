@@ -489,7 +489,7 @@
 				);
 				INFOPLIST_FILE = BlocksForAll/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All.kt;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All.kt1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
@@ -515,7 +515,7 @@
 				);
 				INFOPLIST_FILE = BlocksForAll/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All.kt;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All.kt1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
