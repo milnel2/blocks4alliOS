@@ -509,12 +509,13 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_SIREN)
                     case "Speed Boost":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_SPEED_BOOST)
+                    case "Start Engine Noise":
+                        playNoise(myAction: myAction, sound: WW_SOUNDFILE_ENGINE_REV)
                     case "Tire Squeal":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_TIRE_SQUEAL)
                     case "Train Noise":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRAIN)
-                    case "Start Engine":
-                        playNoise(myAction: myAction, sound: WW_SOUNDFILE_ENGINE_REV)
+              
                         
                     //not in a category or plist? add
                     case "Say Okay":
