@@ -144,8 +144,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /** When a user clicks the 'Clear All' button, they receive an alert asking if they really want to
      delete all blocks or not. If yes, the screen is cleared. **/
     @IBAction func deleteAll(_ sender: Any) {
-        deleteAll.accessibilityLabel = "Delete all"
-        deleteAll.accessibilityHint = "Delete all blocks on the screen"
+        deleteAll.accessibilityLabel = "Clear all"
+        deleteAll.accessibilityHint = "Clear all blocks on the screen"
         
         let alert = UIAlertController(title: "Do you want to delete all?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
