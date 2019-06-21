@@ -770,7 +770,34 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(myConditionLabel)
                 }
                 
-            
+            case "Wait for Time":
+                var placeholderBlock = Block(name: "Wait Time", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                block.addedBlocks.append(placeholderBlock!)
+                
+                
+                if block.addedBlocks.isEmpty{
+                    let waitTimeButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    waitTimeButton.backgroundColor = .lightGray
+                    waitTimeButton.setTitle("Wait Time", for: .normal)
+                    waitTimeButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+                    waitTimeButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    waitTimeButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    waitTimeButton.titleLabel?.numberOfLines = 0
+                    waitTimeButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    waitTimeButton.layer.borderWidth = 2.0
+                    waitTimeButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    waitTimeButton.accessibilityLabel = "Set Wait Time"
+                    waitTimeButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(waitTimeButton)
+                } else {
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                }
                 
             default:
                 print("This block does not need a modifier.")
