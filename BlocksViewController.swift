@@ -717,12 +717,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
             case "Set Eye Light":
+                var placeholderBlock = Block(name: "Eye Light Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                block.addedBlocks.append(placeholderBlock!)
+                
+                
                 if block.addedBlocks.isEmpty{
                     let lightPattern = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     lightPattern.backgroundColor = .lightGray
-                    lightPattern.setTitle("On/Off", for: .normal)
-                    lightPattern.addTarget(self, action: #selector(clickedLightColor), for: .touchUpInside)
+                    lightPattern.setTitle("On / Off", for: .normal)
+                    lightPattern.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
                     lightPattern.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     lightPattern.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
                     lightPattern.titleLabel?.numberOfLines = 0
@@ -740,6 +744,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     myConditionLabel.isAccessibilityElement = true
                     cell.addSubview(myConditionLabel)
                 }
+                
+            
                 
             default:
                 print("This block does not need a modifier.")
@@ -771,8 +777,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "RepeatModifier", sender: nil)
     }
     
-    @objc func clickedLightColor(sender: UIButton!){
-        print ("Eye light button clicked")
+    @objc func buttonClicked(sender: UIButton!){
+        print ("Button clicked")
     }
     
     func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
