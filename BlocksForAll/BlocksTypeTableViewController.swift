@@ -28,7 +28,7 @@ class BlocksTypeTableViewController: UITableViewController {
         self.accessibilityHint = "Double tap from menu to select block category"
         //self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: CGFloat(blockWidth), height: CGFloat(blockWidth))
         
-        blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
+        blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "ReleaseBlocksMenu", ofType: "plist")!)!
         
         createBlocksArray()
         // Uncomment the following line to preserve selection between presentations
@@ -82,7 +82,7 @@ class BlocksTypeTableViewController: UITableViewController {
     //TODO: this is really convoluted, probably a better way of doing this
     private func createBlocksArray(){
         for item in blockDict{
-            //for item in blockDict which is a NSArray that contains contents of BlocksMenu.plist
+            //for item in blockDict which is a NSArray that contains contents of ReleaseBlocksMenu.plist
             if let blockType = item as? NSDictionary{
                 // for every item blockType is a constant set to the item as a NSDictionary
                 //initializes the block properities
