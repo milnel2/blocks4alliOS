@@ -18,11 +18,14 @@ class RepeatModViewController: UIViewController{
     @IBOutlet weak var timesToRepeatLabel: UILabel!
     
     @IBAction func plusButtonPressed(_ sender: UIButton) {
-        timesToRepeat = timesToRepeat + 1
-        timesToRepeatLabel.text = "\(timesToRepeat)"
+        if (timesToRepeat < 20) {
+            // prevents users from repeating more than 20 times (Blockly limit)
+            timesToRepeat = timesToRepeat + 1
+            timesToRepeatLabel.text = "\(timesToRepeat)"
+        }
     }
     @IBAction func minusButtonPressed(_ sender: Any) {
-        if (timesToRepeat >= 3) {
+        if (timesToRepeat > 2) {
             // prevents users from entering 1, 0 or negative times to repeat
             timesToRepeat = timesToRepeat - 1
         }
