@@ -247,19 +247,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     // there's an easier way to redo this going to ignore commenting beyond here as it'll just be easier to work from scratch later.
                     var timesToRepeat = 1
                     if !blocks[i].addedBlocks.isEmpty {
-                        if blocks[i].addedBlocks[0].name == "two times"{
-                            timesToRepeat = 2
-                        }else if blocks[i].addedBlocks[0].name == "three times"{
-                            timesToRepeat = 3
-                        }else if blocks[i].addedBlocks[0].name == "four times"{
-                            timesToRepeat = 4
-                        }else if blocks[i].addedBlocks[0].name == "five times"{
-                            timesToRepeat = 5
-                        }
+                        timesToRepeat = Int(blocks[i].addedBlocks[0].attributes["timesToRepeat"] ?? "2") ?? 2
                     }else{
                         //default
                         timesToRepeat = 1000
                     }
+
                     
                     var ii = i+1
                     var blocksToUnroll = [Block]()

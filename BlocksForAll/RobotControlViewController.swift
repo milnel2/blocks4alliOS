@@ -195,7 +195,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
             let cmdToSend = WWCommandSetSequence()
             // var repeatCommands = [WWCommandSet]()
             var i = 0
-            if i < myCommands.count{
+            while i < myCommands.count{
                 var command = myCommands[i]
                 //for command in myCommands{
                 //print(command)
