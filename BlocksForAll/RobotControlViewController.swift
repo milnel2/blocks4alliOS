@@ -296,8 +296,6 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                         //25.3 in the left wheel (and 1 in the right) allows Dash to turn right 90 degrees
                         myAction = playTurn(turnConstantLW: (25.3), turnConstantRW: (1.0), cmdToSend: cmdToSend)
                         
-                    case "Start Engine":
-                        playNoise(myAction: myAction, sound: WW_SOUNDFILE_ENGINE_REV)
                         
                         
                         
@@ -470,51 +468,53 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_BYE)
                     case "Say Cool":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_COOL)
-                    case "Say Haha":
+                    case "Say Ha ha":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_HAHA)
-                    case "Say Huh":
+                    case "Say huhhh":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_HUH)
                     case "Say Lets Go":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_LETS_GO)
-                    case "Say Oh":
+                    case "Say O":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_OOH)
                     case "Say Wow":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_WOW)
-                    case "Say Tah Dah":
+                    case "Say Tahhh Dahhhh":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_TAH_DAH)
-                    case "Uh Huh":
+                    case "Say Uh Huhhh":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_HUH)
-                    case "Uh Oh":
+                    case "Say Uh O":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_OH)
-                    case "Wah":
+                    case "Say Wah":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_WAH)
-                    case "Wee":
+                    case "Say We":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEE)
-                    case "Weehee":
+                    case "Say We he":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEEHEE)
-                    case "Yippe":
+                    case "Say Yipp e":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_YIPPE)
                         
                         
                     //vehicle Category - check on
-                    case "Airplane":
+                    case "Airplane Noise":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_AIRPLANE)
                     case "Beep":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_BEEP)
-                    case "Boat":
+                    case "Boat Noise":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_BOAT)
-                    case "Helicopter":
+                    case "Helicopter Noise":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_HELICOPTER)
                     case "Horn":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_HORN)
-                    case "Siren":
+                    case "Siren Noise":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_SIREN)
                     case "Speed Boost":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_SPEED_BOOST)
                     case "Tire Squeal":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_TIRE_SQUEAL)
-                    case "Train":
+                    case "Train Noise":
                         playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRAIN)
+                    case "Start Engine":
+                        playNoise(myAction: myAction, sound: WW_SOUNDFILE_ENGINE_REV)
                         
                     //not in a category or plist? add
                     case "Say Okay":
