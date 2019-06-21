@@ -718,8 +718,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
             case "Set Eye Light":
                 var placeholderBlock = Block(name: "Eye Light Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                block.addedBlocks.append(placeholderBlock!)
-                
                 
                 if block.addedBlocks.isEmpty{
                     let lightPattern = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
@@ -738,6 +736,33 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     lightPattern.isAccessibilityElement = true
                     
                     cell.addSubview(lightPattern)
+                } else {
+                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                    myConditionLabel.isAccessibilityElement = true
+                    cell.addSubview(myConditionLabel)
+                }
+                
+            case "Look Left", "Look Right", "Look Up", "Look Down":
+                var placeholderBlock = Block(name: "Look Angle Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                
+                if block.addedBlocks.isEmpty{
+                    let lookButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    lookButton.backgroundColor = .lightGray
+                    lookButton.setTitle("Angle", for: .normal)
+                    lookButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+                    lookButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    lookButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+                    lookButton.titleLabel?.numberOfLines = 0
+                    lookButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    lookButton.layer.borderWidth = 2.0
+                    lookButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    lookButton.accessibilityLabel = "Set look angle"
+                    lookButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(lookButton)
                 } else {
                     let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
                     myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
