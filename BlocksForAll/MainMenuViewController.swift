@@ -15,14 +15,14 @@ class MainMenuViewController: UIViewController {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
-    // on opening the workspace with get started it call load save
-    @IBAction func load(_ sender: Any) {
+    
+    func load() {
         print("load save called")
         
         var blockStackFromSave: [Block] = []
         //array of blocks loaded from the save
         if !blocksStack.isEmpty{
-        // prevents extra loading on get started button press after menu button press return in workspace
+            // prevents extra loading on get started button press after menu button press return in workspace
             do{
                 let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json"))
                 // creates a string type of the entire json file
@@ -79,7 +79,7 @@ class MainMenuViewController: UIViewController {
             }
         }
     }
-
+    
     var blockSize = 150 /* this controls the size of the blocks you put down in the Building Screen */
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
@@ -98,9 +98,9 @@ class MainMenuViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
@@ -117,6 +117,15 @@ class MainMenuViewController: UIViewController {
         }
         
     }
+    
+    
+    @IBAction func loadFromAddRobots(_ sender: Any) {
+        load()
+    }
+    @IBAction func loadFromGetStarted(_ sender: Any) {
+        load()
+    }
+    
     
 
 }
