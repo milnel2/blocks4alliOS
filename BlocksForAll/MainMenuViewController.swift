@@ -21,7 +21,6 @@ class MainMenuViewController: UIViewController {
         
         var blockStackFromSave: [Block] = []
         //array of blocks loaded from the save
-        if !blocksStack.isEmpty{
             // prevents extra loading on get started button press after menu button press return in workspace
             do{
                 let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json"))
@@ -50,7 +49,6 @@ class MainMenuViewController: UIViewController {
             }catch{
                 print("load failed")
             }
-        }
     }
     
     func ifAndRepeatCounterparts(_ aBlockStack: [Block]){
