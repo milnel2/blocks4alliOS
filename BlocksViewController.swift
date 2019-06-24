@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 //collection of blocks that are part of the program
-var running = true
+//var running = true
 var blocksStack = [Block]()
 
 //MARK: - Block Selection Delegate Protocol
@@ -170,7 +170,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
     
-    var pauseIsOpt = false
+    //var pauseIsOpt = false
     
     // run the actual program when the play button is clicked
     @IBAction func playButtonClicked(_ sender: Any) {
@@ -178,12 +178,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         print("in playButtonClicked")
         if(movingBlocks){
             trashClicked()
-        }else if pauseIsOpt{
-            pauseClicked()
-        }else{
+        }
+//        else if pauseIsOpt{
+//            pauseClicked()
+//        }
+        else{
             print("in play clicked")
             playClicked()
-            pauseIsOpt = true
+            //pauseIsOpt = true
         }
     }
     
@@ -213,24 +215,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             playTrashToggleButton.accessibilityLabel = announcement
             
         }else{
-            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            playTrashToggleButton.accessibilityLabel = "Pause"
-            playTrashToggleButton.accessibilityHint = "Pause your robot!"
+//            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "pause"), for: .normal)
+//            playTrashToggleButton.accessibilityLabel = "Pause"
+//            playTrashToggleButton.accessibilityHint = "Pause your robot!"
             let commands = createCommandSequence(blocksStack)
             play(commands)
         }
     }
     
-    func pauseClicked(){
-        print("in pause clicked")
-        if running == true{
-            print("in if statement")
-            running = false
-            pauseIsOpt = false
-            movingBlocks = false
-            changePlayTrashButton()
-        }
-    }
+//    func pauseClicked(){
+//        print("in pause clicked")
+//        if running == true{
+//            print("in if statement")
+//            running = false
+//            pauseIsOpt = false
+//            movingBlocks = false
+//            changePlayTrashButton()
+//        }
+//    }
     //MARK: Complier methods, converts from Blocks4All to robot code
     //MARK: Clean this up!!
     //Unrolls the repeat loops in the blocks program: converts to a list of commands to run
