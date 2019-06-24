@@ -203,8 +203,8 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                 //TODO: add repeat blocks
                 var myAction = WWCommandSet()
                 
-//                if running{
-                
+                if running{
+                    
                     
                     switch command{
                     //Animals Category
@@ -526,11 +526,11 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                         
                     }
                     
-//                }else {
-//                    //stop's can't restart
-//                    stopCommandSequenceToRobots(cmdSeq: cmdToSend)
-//                    running = true
-//                }
+                }else {
+                    //stop's can't restart
+                    stopCommandSequenceToRobots(cmdSeq: cmdToSend)
+                    running = true
+                }
                 //the code that actually sends and removes the command's action to the sequence of code
                 cmdToSend.add(myAction, withDuration: duration)
                 print(cmdToSend)
