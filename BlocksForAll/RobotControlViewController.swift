@@ -160,13 +160,18 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     }
     
     //decomposition of drive functions
-    func playDrive (command: String, driveConstant: Double, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
-        var distance: Double = 30
-        if(command.contains("0")){
-            var distanceString = command
-            distanceString = String(distanceString[distanceString.index(distanceString.endIndex, offsetBy: -2)...])
-            distance = Double(distanceString)!
+    func playDrive (command: String, driveConstant: Double,  cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+        var distance = 0.0
+        for block in blocksStack{
+            if block.name.contains("Drive Forward"){
+                distance = Double(block.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
+            }
         }
+//        if(command.contains("0")){
+//            var distanceString = command
+//            distanceString = String(distanceString[distanceString.index(distanceString.endIndex, offsetBy: -2)...])
+////            distance = Double(distanceString)!
+//        }
         let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * distance), angular: 0)
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)

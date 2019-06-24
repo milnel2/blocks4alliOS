@@ -1,6 +1,3 @@
-//Trying to work on plist
-//Info.plist removed from git ignore
-
 //  Block.swift
 //  BlocksForAll
 //
