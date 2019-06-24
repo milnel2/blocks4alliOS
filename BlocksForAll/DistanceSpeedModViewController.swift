@@ -22,8 +22,10 @@ class DistanceSpeedModViewController: UIViewController{
     
     @IBAction func distanceSliderChanged(_ sender: UISlider) {
         distance = Double(sender.value)
+        sender.accessibilityValue = "\(Int(distance)) centimeters"
     }
     @IBAction func speedSliderChanged(_ sender: UISlider) {
+        // TODO: custom VoiceOver for slider speed (see line 25 for example)
         speed = Double(sender.value)
     }
     

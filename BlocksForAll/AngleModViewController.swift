@@ -19,7 +19,9 @@ class AngleModViewController: UIViewController {
     @IBOutlet weak var angleSlider: UISlider!
     
     @IBAction func angleSliderChanged(_ sender: UISlider) {
+        // TODO: fix in/de-crement value
         angle = Double(sender.value)
+        sender.accessibilityValue = "\(Int(angle)) degrees"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
