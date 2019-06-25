@@ -1014,5 +1014,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if let destinationViewController = segue.destination as? WaitModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
+        
+        if let destinationViewController = segue.destination as? SetVariableModViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
     }
 }

@@ -11,27 +11,46 @@ import UIKit
 
 class SetVariableModViewController: UIViewController{
     
-    @IBAction func OrangeVariable(_ sender: Any) {
-    }
+    var modifierBlockIndexSender: Int?
+    var variableSelected: String = "orange"
+    var variableValue: Int?
     
+    @IBAction func OrangeVariable(_ sender: Any) {
+        variableSelected = "orange"
+    }
     
     
     @IBAction func WatermelonVariable(_ sender: Any) {
+        variableSelected = "watermelon"
     }
     
     @IBAction func CherryVariable(_ sender: Any) {
+        variableSelected = "cherry"
     }
     
     
     @IBAction func BananaVariable(_ sender: Any) {
+        variableSelected = "banana"
     }
     
     
     @IBAction func AppleVariable(_ sender: Any) {
+        variableSelected = "apple"
     }
     
+    @IBOutlet weak var VariableValue: UITextField!
     
-    @IBAction func VariableValue(_ sender: Any) {
+    @IBAction func VariableValue(_ sender: UITextField) {
+        variableValue = Int(VariableValue.text!)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.destination is BlocksViewController{
+            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = "\(String(variableSelected))"
+            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue!))"
+
+        }
+    }
+    
     
 }
