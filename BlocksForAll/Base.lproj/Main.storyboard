@@ -446,11 +446,12 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <segue destination="WWh-wG-F8c" kind="show" identifier="ColorModifier" id="iKl-5d-2xu"/>
                         <segue destination="Qcc-AD-WwK" kind="show" identifier="RepeatModifier" id="5OM-6I-IU4"/>
                         <segue destination="9VT-Qr-ako" kind="show" identifier="WaitModifier" id="1BY-eQ-UdM"/>
+                        <segue destination="WHd-IA-T2v" kind="show" identifier="EyeLightModifier" id="dLb-PI-jTc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W32-Q3-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-380.40201005025125" y="-558.27338129496411"/>
+            <point key="canvasLocation" x="-538" y="-1232"/>
         </scene>
         <!--Block Table View Controller-->
         <scene sceneID="OAu-TV-gtl">
@@ -853,14 +854,87 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
             </objects>
             <point key="canvasLocation" x="962.3115577889447" y="1242.4460431654677"/>
         </scene>
+        <!--Eye Light Modifier View Controller-->
+        <scene sceneID="WW5-Ff-hcc">
+            <objects>
+                <viewController id="WHd-IA-T2v" customClass="EyeLightModifierViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JCf-CV-V2w"/>
+                        <viewControllerLayoutGuide type="bottom" id="SgU-2o-CfO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2xj-6b-jPm">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0b-pj-PQ9">
+                                <rect key="frame" x="20" y="28" width="195" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uoc-nU-c4a" kind="show" id="w7l-uY-c2T"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Eye Light" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yI8-HC-zZc">
+                                <rect key="frame" x="215" y="173" width="594" height="231"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="The number of times to repeat" label="Eye Light"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6l-QQ-eDK">
+                                <rect key="frame" x="637" y="354" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="Turn the eye light off" label="Off"/>
+                                <state key="normal" title="Button" image="off"/>
+                                <connections>
+                                    <action selector="minusButtonPressed:" destination="Qcc-AD-WwK" eventType="touchUpInside" id="Wsm-ff-mV4"/>
+                                    <action selector="offButtonPressed:" destination="WHd-IA-T2v" eventType="touchUpInside" id="841-LH-jeI"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Off" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIq-QR-T6e">
+                                <rect key="frame" x="462" y="354" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="The number of times to repeat "/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CwL-cg-MQl">
+                                <rect key="frame" x="270" y="354" width="99" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="Turn the eye light on" label="On"/>
+                                <state key="normal" title="Button" image="on"/>
+                                <connections>
+                                    <action selector="minusButtonPressed:" destination="Qcc-AD-WwK" eventType="touchUpInside" id="23f-jq-BNS"/>
+                                    <action selector="onButtonPressed:" destination="WHd-IA-T2v" eventType="touchUpInside" id="8Jn-Sy-1gE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <outlet property="lightLabel" destination="FIq-QR-T6e" id="G1y-0c-hou"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wf4-Ji-xxk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="727.734375" y="2001.5625"/>
+        </scene>
     </scenes>
     <resources>
         <image name="GreenArrow" width="649" height="586"/>
         <image name="minus" width="100" height="100"/>
+        <image name="off" width="100" height="100"/>
+        <image name="on" width="100" height="100"/>
         <image name="plus" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IVp-4f-s1y"/>
+        <segue reference="w7l-uY-c2T"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>

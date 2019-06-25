@@ -74,7 +74,7 @@ class Block: Codable {
     var type: String = "Operation" //types: Operations, Booleans, Numbers
     var acceptedTypes: [String] = [] //list of types that can be added to current block (e.g. numbers for a repeat block)
     
-    var attributes = [String:String]() //dictionary that holds attibute values for block (e.g. distance and speed)
+    var attributes = [String:String]() //dictionary that holds attribute values for block (e.g. distance and speed)
     
     
     //MARK: - json variable
