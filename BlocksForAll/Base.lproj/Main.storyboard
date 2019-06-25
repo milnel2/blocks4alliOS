@@ -628,7 +628,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 <rect key="frame" x="722" y="530" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Faster"/>
-                                <state key="normal" title="Button" image="plus"/>
+                                <state key="normal" title="Button" image="brownPlus"/>
                                 <connections>
                                     <action selector="fastButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="Pqx-Zv-mgz"/>
                                 </connections>
@@ -644,7 +644,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 <rect key="frame" x="203" y="530" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Slower"/>
-                                <state key="normal" title="Button" image="minus"/>
+                                <state key="normal" title="Button" image="brownMinus"/>
                                 <connections>
                                     <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="hDu-fY-S5y"/>
                                 </connections>
@@ -945,6 +945,8 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
     </scenes>
     <resources>
         <image name="GreenArrow" width="649" height="586"/>
+        <image name="brownMinus" width="100" height="100"/>
+        <image name="brownPlus" width="100" height="100"/>
         <image name="minus" width="100" height="100"/>
         <image name="off" width="100" height="100"/>
         <image name="on" width="100" height="100"/>
