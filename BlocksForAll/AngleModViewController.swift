@@ -13,7 +13,7 @@ class AngleModViewController: UIViewController {
     /* Custom view controller for the Angle modifier scene */
     
     // TODO: decide on default angle
-    var angle: Double = 0
+    var angle: Double = 90
     var modifierBlockIndexSender: Int?
     let interval: Float = 15
 
