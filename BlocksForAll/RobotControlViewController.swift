@@ -270,7 +270,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                         
                         
                     //Control Category - might have to add to
-                    case "If":
+                    case "IfHear Voice":
                         //TODO: check blocks condition
                         let conditionString = command[command.index(command.startIndex, offsetBy: 2)...]
                         print("conditionString" , conditionString)

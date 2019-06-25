@@ -801,7 +801,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     setVariableButton.backgroundColor = .lightGray
                     setVariableButton.setTitle("Set Variable Value", for: .normal)
-                    setVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
                     setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     setVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
                     setVariableButton.titleLabel?.numberOfLines = 0
@@ -821,7 +821,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     setVariableButton.backgroundColor = .lightGray
                     setVariableButton.setTitle("Set Variable Value", for: .normal)
-                    setVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
                     setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     setVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
                     setVariableButton.titleLabel?.numberOfLines = 0
@@ -867,6 +867,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     @objc func repeatModifier(sender: UIButton!) {
         performSegue(withIdentifier: "RepeatModifier", sender: nil)
+    }
+    
+    @objc func variableModifier(sender: UIButton!) {
+        performSegue(withIdentifier: "VariableModifier", sender: nil)
     }
     
     @objc func buttonClicked(sender: UIButton!){
