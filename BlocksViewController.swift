@@ -178,12 +178,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         print("in playButtonClicked")
         if(movingBlocks){
             trashClicked()
-        }else if pauseIsOpt{
-            pauseClicked()
+//        }else if pauseIsOpt{
+//            pauseClicked()
         }else{
             print("in play clicked")
             playClicked()
-            pauseIsOpt = true
+//            pauseIsOpt = true
         }
         save()
     }
