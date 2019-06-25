@@ -567,7 +567,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Drive Forward", "Drive Backward":
                 if block.addedBlocks.isEmpty{
                     let initialDistance = 30
-                    let initialSpeed = 10
+                    let initialSpeed = "Normal"
                     // Creates distance button for modifier.
                     // TODO: change the Distance and Speed values in the placeholderBlock name according to Dash API
                     
@@ -575,14 +575,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "distance", value: "\(initialDistance)")
-                    placeholderBlock?.addAttributes(key: "speed", value:  "\(initialSpeed)")
+                    placeholderBlock?.addAttributes(key: "speed", value: initialSpeed)
                     
                     modifierBlockIndex = indexPath.row
                     
                     let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     distanceSpeedButton.backgroundColor = .lightGray
-                    distanceSpeedButton.setTitle("Distance = \(placeholderBlock?.attributes["distance"] ?? "30") \nSpeed = \(placeholderBlock?.attributes["speed"] ?? "10")", for: .normal)
+                    distanceSpeedButton.setTitle("Distance = \(placeholderBlock?.attributes["distance"] ?? "30") \nSpeed = \(placeholderBlock?.attributes["speed"] ?? "Normal")", for: .normal)
                     distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.titleLabel?.numberOfLines = 0
@@ -621,7 +621,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Turn Left", "Turn Right":
                 if block.addedBlocks.isEmpty{
                     //Creates angle button for modifier
-                    let initialAngle = 0
+                    let initialAngle = 90
                     
                     let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     

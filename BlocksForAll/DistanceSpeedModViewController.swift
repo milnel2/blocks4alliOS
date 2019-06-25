@@ -14,25 +14,67 @@ class DistanceSpeedModViewController: UIViewController{
     
     //TODO: update these based on Dash API
     var distance: Double = 30
-    var speed: Double = 10
+    var speed: String = "Normal"
     var modifierBlockIndexSender: Int?
     
     @IBOutlet weak var distanceSlider: UISlider!
-    @IBOutlet weak var speedSlider: UISlider!
+    @IBOutlet weak var slowButton: UIButton!
+    @IBOutlet weak var fastButton: UIButton!
+    @IBOutlet weak var speedLabel: UILabel!
+    
+    override func viewDidLoad() {
+        // default speed: Normal or preserve last selection
+        speedLabel.text = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+    }
     
     @IBAction func distanceSliderChanged(_ sender: UISlider) {
         distance = Double(sender.value)
         sender.accessibilityValue = "\(Int(distance)) centimeters"
     }
-    @IBAction func speedSliderChanged(_ sender: UISlider) {
-        // TODO: custom VoiceOver for slider speed (see line 25 for example)
-        speed = Double(sender.value)
+
+    @IBAction func slowButtonPressed(_ sender: UIButton) {
+        switch speed {
+        case "Fastest":
+            speed = "Fast"
+            speedLabel.text = speed
+        case "Fast":
+            speed = "Normal"
+            speedLabel.text = speed
+        case "Normal":
+            speed = "Slow"
+            speedLabel.text = speed
+        case "Slow":
+            speed = "Slowest"
+            speedLabel.text = speed
+        default:
+            print("can't be slowed")
+        }
     }
+    
+    @IBAction func fastButtonPressed(_ sender: UIButton) {
+        switch speed {
+        case "Slowest":
+            speed = "Slow"
+            speedLabel.text = speed
+        case "Slow":
+            speed = "Normal"
+            speedLabel.text = speed
+        case "Normal":
+            speed = "Fast"
+            speedLabel.text = speed
+        case "Fast":
+            speed = "Fastest"
+            speedLabel.text = speed
+        default:
+            print("can't make faster")
+        }
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = "\(Int(speed))"
+            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
         }
     }
 }
