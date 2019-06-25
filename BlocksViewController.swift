@@ -185,7 +185,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             playClicked()
             pauseIsOpt = true
         }
-        save()
     }
     
     // run the actual program when the trash button is clicked
@@ -789,6 +788,51 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     waitButton.isAccessibilityElement = true
                     
                     cell.addSubview(waitButton)
+                }
+            
+            case "Set Variable":
+                if block.addedBlocks.isEmpty{
+                    let placeholderBlock = Block(name: "Set Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+
+                    
+                    let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setVariableButton.backgroundColor = .lightGray
+                    setVariableButton.setTitle("Set Variable Value", for: .normal)
+                    setVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    setVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
+                    setVariableButton.titleLabel?.numberOfLines = 0
+                    setVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setVariableButton.layer.borderWidth = 2.0
+                    setVariableButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    setVariableButton.accessibilityLabel = "Set Variable Value"
+                    setVariableButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(setVariableButton)
+                } else {
+                    _ = block.addedBlocks[0]
+                    let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    modifierBlockIndex = indexPath.row
+                    
+                    setVariableButton.backgroundColor = .lightGray
+                    setVariableButton.setTitle("Set Variable Value", for: .normal)
+                    setVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    setVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    setVariableButton.titleLabel?.numberOfLines = 0
+                    setVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setVariableButton.layer.borderWidth = 2.0
+                    setVariableButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    setVariableButton.accessibilityLabel = "Set variable value"
+                    setVariableButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(setVariableButton)
                 }
                 
             default:
