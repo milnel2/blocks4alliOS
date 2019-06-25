@@ -847,7 +847,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GrT-2z-xvO">
-                                <rect key="frame" x="111" y="154" width="199" height="190"/>
+                                <rect key="frame" x="38" y="185" width="177" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.27790132169999998" green="0.86850605729999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Orange">
@@ -858,7 +858,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-YP-GZa">
-                                <rect key="frame" x="413" y="154" width="199" height="190"/>
+                                <rect key="frame" x="254" y="185" width="177" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.4987047100448786" blue="0.50866835259214405" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Watermelon">
@@ -869,7 +869,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5m-D2-7ru">
-                                <rect key="frame" x="733" y="154" width="199" height="190"/>
+                                <rect key="frame" x="38" y="564" width="177" height="168"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.20630127326026959" blue="0.53519869744855186" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Cherry">
@@ -880,7 +880,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uv9-Kz-RsF">
-                                <rect key="frame" x="260" y="394" width="199" height="190"/>
+                                <rect key="frame" x="38" y="375" width="177" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92537415618290808" green="1" blue="0.4097150530368403" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Banana">
@@ -891,7 +891,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rgQ-Jh-7kw">
-                                <rect key="frame" x="576" y="394" width="199" height="190"/>
+                                <rect key="frame" x="254" y="375" width="177" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.24135470068994391" green="1" blue="0.37577227403130564" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Apple">
@@ -901,26 +901,15 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <action selector="AppleVariable:" destination="B5M-ey-3HD" eventType="touchUpInside" id="lgO-Yn-Eff"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0EE-tA-7aY">
-                                <rect key="frame" x="386" y="636" width="533" height="88"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="VariableValue:" destination="B5M-ey-3HD" eventType="editingDidEnd" id="5qw-jx-cgh"/>
-                                </connections>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose your variable:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gb-Uk-oE9">
-                                <rect key="frame" x="355" y="64" width="315" height="41"/>
+                                <rect key="frame" x="42" y="118" width="315" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set your variable value:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCi-eq-XZm">
-                                <rect key="frame" x="42" y="660" width="336" height="41"/>
+                                <rect key="frame" x="575" y="118" width="336" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <nil key="textColor"/>
@@ -938,6 +927,17 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <segue destination="uoc-nU-c4a" kind="show" id="2YI-wg-iJ2"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0EE-tA-7aY">
+                                <rect key="frame" x="575" y="223" width="336" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="VariableValue:" destination="B5M-ey-3HD" eventType="editingDidEnd" id="5qw-jx-cgh"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
