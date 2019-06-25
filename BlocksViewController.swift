@@ -792,10 +792,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             
             case "Set Variable":
                 if block.addedBlocks.isEmpty{
+                    let initialVariable = "orange"
+                    let initialVariableValue = 0
+
                     let placeholderBlock = Block(name: "Set Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
-
+                    
+                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
+                    placeholderBlock?.addAttributes(key: "variableValue", value: "\(initialVariableValue)")
+                    
+                    modifierBlockIndex = indexPath.row
                     
                     let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
