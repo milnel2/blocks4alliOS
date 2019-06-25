@@ -15,19 +15,21 @@ class AngleModViewController: UIViewController {
     // TODO: decide on default angle
     var angle: Double = 0
     var modifierBlockIndexSender: Int?
+    let interval: Float = 15
 
     @IBOutlet weak var angleSlider: UISlider!
     
     @IBAction func angleSliderChanged(_ sender: UISlider) {
-        // TODO: fix in/de-crement value
+        let roundingNumber: Float = (interval/2.0)
         angle = Double(sender.value)
         sender.accessibilityValue = "\(Int(angle)) degrees"
+        //setValue(Float(angle), animated: true)
+        sender.setValue(interval*floorf(((sender.value+roundingNumber)/interval)), animated:false)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] = "\(Int(angle))"
+        blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] = "\(Int(angle))"
         }
     }
-    
 }
