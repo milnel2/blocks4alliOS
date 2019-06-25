@@ -186,6 +186,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             print("in play clicked")
             playClicked()
             //pauseIsOpt = true
+            save()
         }
     }
     
