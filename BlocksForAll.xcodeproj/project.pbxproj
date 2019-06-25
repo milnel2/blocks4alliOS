@@ -11,6 +11,7 @@
 		023D633122BC0B2E00A8002C /* RepeatModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D633022BC0B2E00A8002C /* RepeatModViewController.swift */; };
 		023D633322BD34EE00A8002C /* WaitModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D633222BD34EE00A8002C /* WaitModViewController.swift */; };
 		025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */; };
+		027BF74822C273FF0087A00D /* ReleaseBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 027BF74722C273FF0087A00D /* ReleaseBlocksMenu.plist */; };
 		02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */; };
 		02F5F94622C14EF2000F43B7 /* EyeLightModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F5F94522C14EF2000F43B7 /* EyeLightModifierViewController.swift */; };
 		701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701A43861EC26EFD00314599 /* BlocksViewController.swift */; };
@@ -22,7 +23,6 @@
 		F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121169E1EA823C8009976B1 /* RobotTableViewController.swift */; };
 		F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */; };
 		F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16BA3BB1F57919600A94FBA /* MainMenuViewController.swift */; };
-		F16BA3BE1F59103A00A94FBA /* BlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F16BA3BD1F59103A00A94FBA /* BlocksMenu.plist */; };
 		F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */; };
 		F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186EB871EE0D8B100C2FA4B /* BlockView.swift */; };
 		F186EB8A1EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist in Resources */ = {isa = PBXBuildFile; fileRef = F186EB891EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist */; };
@@ -53,8 +53,8 @@
 		023D633022BC0B2E00A8002C /* RepeatModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatModViewController.swift; sourceTree = "<group>"; };
 		023D633222BD34EE00A8002C /* WaitModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitModViewController.swift; sourceTree = "<group>"; };
 		025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleModViewController.swift; sourceTree = "<group>"; };
+		027BF74722C273FF0087A00D /* ReleaseBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ReleaseBlocksMenu.plist; sourceTree = "<group>"; };
 		02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceSpeedModViewController.swift; sourceTree = "<group>"; };
-		02F5F94122C12637000F43B7 /* ReleaseBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ReleaseBlocksMenu.plist; sourceTree = "<group>"; };
 		02F5F94522C14EF2000F43B7 /* EyeLightModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeLightModifierViewController.swift; sourceTree = "<group>"; };
 		701A43861EC26EFD00314599 /* BlocksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksViewController.swift; path = ../BlocksViewController.swift; sourceTree = "<group>"; };
 		F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewController.swift; sourceTree = "<group>"; };
@@ -66,7 +66,6 @@
 		F121169E1EA823C8009976B1 /* RobotTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotTableViewController.swift; sourceTree = "<group>"; };
 		F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlocksTypeTableViewController.swift; sourceTree = "<group>"; };
 		F16BA3BB1F57919600A94FBA /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
-		F16BA3BD1F59103A00A94FBA /* BlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenu.plist; sourceTree = "<group>"; };
 		F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedBlockViewController.swift; sourceTree = "<group>"; };
 		F186EB871EE0D8B100C2FA4B /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
 		F186EB891EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenuOldRepeat.plist; sourceTree = "<group>"; };
@@ -190,12 +189,11 @@
 		F1D395BA2006DBB300C6D993 /* BlocksMenus */ = {
 			isa = PBXGroup;
 			children = (
-				F16BA3BD1F59103A00A94FBA /* BlocksMenu.plist */,
+				027BF74722C273FF0087A00D /* ReleaseBlocksMenu.plist */,
 				F1F7CD312054A36A001ABD18 /* RhymesMenu.plist */,
 				F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */,
 				F186EB891EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist */,
 				F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */,
-				02F5F94122C12637000F43B7 /* ReleaseBlocksMenu.plist */,
 			);
 			path = BlocksMenus;
 			sourceTree = "<group>";
@@ -294,7 +292,7 @@
 				F186EB8A1EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist in Resources */,
 				F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */,
 				F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */,
-				F16BA3BE1F59103A00A94FBA /* BlocksMenu.plist in Resources */,
+				027BF74822C273FF0087A00D /* ReleaseBlocksMenu.plist in Resources */,
 				F1F7CD322054A36A001ABD18 /* RhymesMenu.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
