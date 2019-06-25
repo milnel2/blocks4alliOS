@@ -178,16 +178,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         print("in playButtonClicked")
         if(movingBlocks){
             trashClicked()
-        }
-//        else if pauseIsOpt{
-//            pauseClicked()
-//        }
-        else{
+        }else if pauseIsOpt{
+            pauseClicked()
+        }else{
             print("in play clicked")
             playClicked()
-            //pauseIsOpt = true
-            save()
+            pauseIsOpt = true
         }
+        save()
     }
     
     // run the actual program when the trash button is clicked
