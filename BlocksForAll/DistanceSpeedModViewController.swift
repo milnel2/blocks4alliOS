@@ -25,7 +25,15 @@ class DistanceSpeedModViewController: UIViewController{
     
     override func viewDidLoad() {
         // default speed: Normal or preserve last selection
+        var previousDistanceString: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
+        var previousDistance = Int(previousDistanceString)
+        distanceSlider.setValue(Float(previousDistance!), animated: true)
+        // preserve previously selected value
+        distance = Double(previousDistance!)
+        
         speedLabel.text = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+        // preserve previously selected value
+        speed = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
     }
     
     @IBAction func distanceSliderChanged(_ sender: UISlider) {

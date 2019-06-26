@@ -19,6 +19,14 @@ class AngleModViewController: UIViewController {
 
     @IBOutlet weak var angleSlider: UISlider!
     
+    override func viewDidLoad() {
+        var previousAngleString: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] ?? "90"
+        var previousAngle = Int(previousAngleString)
+        angleSlider.setValue(Float(previousAngle!), animated: false)
+        // MARK: preserve previously selected value 
+        angle = Double(previousAngle!)
+    }
+    
     @IBAction func angleSliderChanged(_ sender: UISlider) {
         let roundingNumber: Float = (interval/2.0)
         angle = Double(sender.value)
