@@ -155,7 +155,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     //decomposition of drive functions
     func playDrive (command: String, driveConstant: Double,  cmdToSend: WWCommandSetSequence) -> WWCommandSet{
         var distance = 0.0
-        var robotSpeed = 0
+        var robotSpeed = 0.0
         var speed: String
         for block in blocksStack{
             speed = block.addedBlocks[0].attributes["speed"] ?? "Normal"
@@ -163,17 +163,17 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     
             switch speed {
             case "Really Fast":
-                robotSpeed = 5
+                robotSpeed = 5.0
             case "Fast":
-                robotSpeed = 4
+                robotSpeed = 4.0
             case "Normal":
-                robotSpeed = 3
+                robotSpeed = 3.0
             case "Slow":
-                robotSpeed = 2
+                robotSpeed = 1.0
             case "Very Slow":
-                robotSpeed = 1
+                robotSpeed = 0.5
             default:
-                robotSpeed = 3
+                robotSpeed = 3.0
             }
         }
         
@@ -182,10 +182,10 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         //            distanceString = String(distanceString[distanceString.index(distanceString.endIndex, offsetBy: -2)...])
         ////            distance = Double(distanceString)!
         //        }
-            let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * distance * Double(robotSpeed)), angular: 0)
+            let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * distance * robotSpeed), angular: 0)
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
-        cmdToSend.add(drive, withDuration: 2.0)
+        cmdToSend.add(drive, withDuration: 10)
         return WWCommandToolbelt.moveStop()
     }
     
