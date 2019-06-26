@@ -32,7 +32,7 @@ class DistanceSpeedModViewController: UIViewController{
         distance = Double(previousDistance!)
         
         speedLabel.text = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
-        // preserve previously selected value
+        // preserves previously selected value
         speed = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
     }
     

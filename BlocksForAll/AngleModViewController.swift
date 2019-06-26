@@ -23,7 +23,7 @@ class AngleModViewController: UIViewController {
         var previousAngleString: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] ?? "90"
         var previousAngle = Int(previousAngleString)
         angleSlider.setValue(Float(previousAngle!), animated: false)
-        // MARK: preserve previously selected value 
+        // preserves previously selected value 
         angle = Double(previousAngle!)
     }
     
