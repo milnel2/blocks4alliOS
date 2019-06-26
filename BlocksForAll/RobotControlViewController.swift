@@ -61,10 +61,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         print("in play")
         let connectedRobots = robotManager?.allConnectedRobots
         if connectedRobots != nil{
-            //set up light dict
-//            let lightDict = [WWCommandLightRGB.init(red: 0.9, green: 0, blue: 0), WWCommandLightRGB.init(red: 0, green: 0.9, blue: 0), WWCommandLightRGB.init(red: 0, green: 0, blue: 0.9), WWCommandLightRGB.init(red: 0, green: 0, blue: 0), WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)]
-            
-            
+        
             // var repeatCommands = [WWCommandSet]()
             
             executingProgram = ExecutingProgram(commands: myCommands)
@@ -120,12 +117,6 @@ class ExecutingProgram {
         //TODO: add repeat blocks
         var myAction = WWCommandSet()
         let cmdToSend = WWCommandSetSequence()
-        
-        //                myAction.setEyeLight(WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9))
-        //                myAction.setChestLight(WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9))
-        //                myAction.setLeftEarLight(WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9))
-        //                myAction.setRightEarLight(WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9))
-        
         
         
         switch command{
