@@ -1192,6 +1192,18 @@
 				<key>double</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Variable Actions</string>
+				<key>color</key>
+				<string>#002041</string>
+				<key>double</key>
+				<string>NO</string>
+			</dict>
 		</array>
 	</dict>
 </array>
