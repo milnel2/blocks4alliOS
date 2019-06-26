@@ -20,8 +20,8 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
     }
     
     
-    @IBAction func WatermelonVariable(_ sender: Any) {
-        variableSelected = "watermelon"
+    @IBAction func MelonVariable(_ sender: Any) {
+        variableSelected = "melon"
     }
     
     @IBAction func CherryVariable(_ sender: Any) {

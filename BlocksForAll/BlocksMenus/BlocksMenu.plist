@@ -1198,11 +1198,11 @@
 				<key>editable</key>
 				<false/>
 				<key>name</key>
-				<string>Variable Actions</string>
+				<string>Actions and Variables</string>
 				<key>color</key>
 				<string>#002041</string>
 				<key>double</key>
-				<string>NO</string>
+				<false/>
 			</dict>
 		</array>
 	</dict>
