@@ -1202,7 +1202,7 @@
 				<key>color</key>
 				<string>#002041</string>
 				<key>double</key>
-				<string>NO</string>
+				<false/>
 			</dict>
 		</array>
 	</dict>
