@@ -832,7 +832,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     setVariableButton.backgroundColor = .lightGray
-                    setVariableButton.setTitle("Set Variable Value", for: .normal)
+                    setVariableButton.setTitle("Variable = \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \nValue = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
                     setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
                     setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     setVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
@@ -852,7 +852,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     modifierBlockIndex = indexPath.row
                     
                     setVariableButton.backgroundColor = .lightGray
-                    setVariableButton.setTitle("Set Variable Value", for: .normal)
+                    setVariableButton.setTitle("Variable = \(block.addedBlocks[0].attributes["variableSelected"]!) \nValue = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
                     setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
                     setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     setVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
