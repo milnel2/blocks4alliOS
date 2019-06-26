@@ -13,7 +13,7 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
     
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
-    var variableValue: Int?
+    var variableValue: Int = 0
     
     @IBAction func OrangeVariable(_ sender: Any) {
         variableSelected = "orange"
@@ -41,7 +41,7 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var VariableValue: UITextField!
     
     @IBAction func VariableValue(_ sender: UITextField) {
-        variableValue = Int(VariableValue.text!)
+        variableValue = Int(VariableValue?.text ?? "0") ?? 0
         viewTapped()
     }
     
@@ -58,7 +58,7 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        VariableValue.delegate = self
+        VariableValue!.delegate = self
         
         let tapRecogniser = UITapGestureRecognizer()
         tapRecogniser.addTarget(self, action: #selector(self.viewTapped))
@@ -72,7 +72,7 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue!))"
+            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
             
             
             
