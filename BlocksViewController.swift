@@ -669,18 +669,20 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
                 if block.addedBlocks.isEmpty{
                     // Creates button to allow light color change.
-                    // TODO: decide on initial/default color
-                    let initialColor = "white"
+                    // MARK: Blockly default color is purple
+                    let initialColor = "purple"
                     
-                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.purple) , double: false, type: "Boolean")
                     
+                    placeholderBlock?.addAttributes(key: "lightColor", value: initialColor)
+                    // MARK: modifier block color changes to what was selected
+                    placeholderBlock?.addAttributes(key: "modifierBlockColor", value: initialColor)
                     block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "lightColor", value: "\(initialColor)")
                     
                     let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     lightColorButton.tag = indexPath.row
-                    lightColorButton.backgroundColor = .lightGray
+                    lightColorButton.backgroundColor = UIColor(displayP3Red: 0.58188, green: 0.2157, blue: 1, alpha: 1) // default color
                     lightColorButton.setTitle("Light color is \(block.addedBlocks[0].attributes["lightColor"]!)", for: .normal)
                     lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
                     lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -699,14 +701,19 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
                     let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
+                    var modifierBlockColor: UIColor = changeModifierBlockColor(color: block.addedBlocks[0].attributes["modifierBlockColor"]!)
+                    
                     lightColorButton.tag = indexPath.row
-                    lightColorButton.backgroundColor = .lightGray
+                    lightColorButton.backgroundColor = modifierBlockColor
                     lightColorButton.setTitle("Light color is \(block.addedBlocks[0].attributes["lightColor"]!)", for: .normal)
                     lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
                     lightColorButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
                     lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     lightColorButton.titleLabel?.numberOfLines = 0
                     lightColorButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    if (modifierBlockColor == UIColor.yellow || modifierBlockColor == UIColor.green || modifierBlockColor == UIColor.white) {
+                        lightColorButton.setTitleColor(.black, for: .normal)
+                    }
                     lightColorButton.layer.borderWidth = 2.0
                     lightColorButton.layer.borderColor = UIColor.black.cgColor
                     lightColorButton.accessibilityLabel = "Set light color"
@@ -854,6 +861,35 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "RepeatModifier", sender: nil)
     }
     
+    func changeModifierBlockColor(color: String) -> UIColor {
+        // test with black
+        if color.elementsEqual("black"){
+           return UIColor.black
+        }
+        if color.elementsEqual("red"){
+            return UIColor.red
+        }
+        if color.elementsEqual("orange"){
+            return UIColor.orange
+        }
+        if color.elementsEqual("yellow"){
+            return UIColor.yellow
+        }
+        if color.elementsEqual("green"){
+            return UIColor.green
+        }
+        if color.elementsEqual("blue"){
+            // RGB values from Storyboard source code
+            return UIColor(displayP3Red: 0, green: 0.5898, blue: 1, alpha: 1)
+        }
+        if color.elementsEqual("purple"){
+            return UIColor(displayP3Red: 0.58188, green: 0.2157, blue: 1, alpha: 1)
+        }
+        if color.elementsEqual("white"){
+            return UIColor.white
+        }
+            return UIColor.purple // default color
+    }
     
     func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
         let myLabel = UILabel.init(frame: frame)
