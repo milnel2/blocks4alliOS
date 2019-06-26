@@ -717,30 +717,51 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
             case "Set Eye Light":
-                _ = Block(name: "Eye Light Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                
                 if block.addedBlocks.isEmpty{
-                    let lightPattern = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    let initialEyeLightStatus = "Off"
+                    let placeholderBlock = Block(name: "Eye Light Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
-                    lightPattern.backgroundColor = .lightGray
-                    lightPattern.setTitle("On / Off", for: .normal)
-                    lightPattern.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-                    lightPattern.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    lightPattern.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-                    lightPattern.titleLabel?.numberOfLines = 0
-                    lightPattern.titleLabel?.textAlignment = NSTextAlignment.left
-                    lightPattern.layer.borderWidth = 2.0
-                    lightPattern.layer.borderColor = UIColor.black.cgColor
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "eyeLight", value: "\(initialEyeLightStatus)")
                     
-                    lightPattern.accessibilityLabel = "Turn eye light on and off"
-                    lightPattern.isAccessibilityElement = true
+                    let eyeLightButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+
                     
-                    cell.addSubview(lightPattern)
+                    eyeLightButton.tag = indexPath.row
+                    eyeLightButton.backgroundColor = .lightGray
+                    eyeLightButton.setTitle("Eye lights are \(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
+                    eyeLightButton.addTarget(self, action: #selector(setEyeLightModifier(sender:)), for: .touchUpInside)
+                    eyeLightButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    eyeLightButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    eyeLightButton.titleLabel?.numberOfLines = 0
+                    eyeLightButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    eyeLightButton.layer.borderWidth = 2.0
+                    eyeLightButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    eyeLightButton.accessibilityLabel = "Turn eye light on and off"
+                    eyeLightButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(eyeLightButton)
                 } else {
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+                    _ = block.addedBlocks[0]
+                    let eyeLightButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    modifierBlockIndex = indexPath.row
+                    
+                    eyeLightButton.tag = indexPath.row
+                    eyeLightButton.backgroundColor = .lightGray
+                    eyeLightButton.setTitle("Eye lights are \(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
+                    eyeLightButton.addTarget(self, action: #selector(setEyeLightModifier(sender:)), for: .touchUpInside)
+                    eyeLightButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    eyeLightButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    eyeLightButton.titleLabel?.numberOfLines = 0
+                    eyeLightButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    eyeLightButton.layer.borderWidth = 2.0
+                    eyeLightButton.layer.borderColor = UIColor.black.cgColor
+                    eyeLightButton.accessibilityLabel = "Turn eye light on and off"
+                    eyeLightButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(eyeLightButton)
                 }
             
             case "Wait for Time":
@@ -861,26 +882,37 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     @objc func distanceSpeedModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
     }
     
     @objc  func waitModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "WaitModifier", sender: nil)
     }
     
     @objc func angleModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "TurnRightModifier", sender: nil)
     }
     
     @objc func lightColorModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "ColorModifier", sender: nil)
     }
     
+    @objc func setEyeLightModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "EyeLightModifier", sender: nil)
+    }
+    
     @objc func repeatModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "RepeatModifier", sender: nil)
     }
     
     @objc func variableModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "VariableModifier", sender: nil)
     }
     
