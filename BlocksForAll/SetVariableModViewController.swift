@@ -46,8 +46,10 @@ class SetVariableModViewController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = "\(String(variableSelected))"
+            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue!))"
+            
+            
 
         }
     }
