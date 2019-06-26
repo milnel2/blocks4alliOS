@@ -827,10 +827,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                     placeholderBlock?.addAttributes(key: "variableValue", value: "\(initialVariableValue)")
                     
-                    modifierBlockIndex = indexPath.row
                     
                     let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
+                    setVariableButton.tag = indexPath.row
                     setVariableButton.backgroundColor = .lightGray
                     setVariableButton.setTitle("Variable = \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \nValue = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
                     setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
@@ -849,8 +849,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     _ = block.addedBlocks[0]
                     let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
-                    modifierBlockIndex = indexPath.row
-                    
+                    setVariableButton.tag = indexPath.row
                     setVariableButton.backgroundColor = .lightGray
                     setVariableButton.setTitle("Variable = \(block.addedBlocks[0].attributes["variableSelected"]!) \nValue = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
                     setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
@@ -865,6 +864,57 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     setVariableButton.isAccessibilityElement = true
                     
                     cell.addSubview(setVariableButton)
+                }
+                
+            case "Actions and Variables":
+                if block.addedBlocks.isEmpty{
+//                    let initialVariable = "orange"
+//                    let initialVariableValue = 0
+                    
+                    let placeholderBlock = Block(name: "Actions and Variables", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    
+//                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
+//                    placeholderBlock?.addAttributes(key: "variableValue", value: "\(initialVariableValue)")
+                    
+                    
+                    let actionAndVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    actionAndVariableButton.tag = indexPath.row
+                    actionAndVariableButton.backgroundColor = .lightGray
+                    actionAndVariableButton.setTitle("Actions and Variables", for: .normal)
+                    actionAndVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    actionAndVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    actionAndVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
+                    actionAndVariableButton.titleLabel?.numberOfLines = 0
+                    actionAndVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    actionAndVariableButton.layer.borderWidth = 2.0
+                    actionAndVariableButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    actionAndVariableButton.accessibilityLabel = "Set Action and Variable"
+                    actionAndVariableButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(actionAndVariableButton)
+                } else {
+                    _ = block.addedBlocks[0]
+                    let actionAndVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+
+                    actionAndVariableButton.tag = indexPath.row
+                    actionAndVariableButton.backgroundColor = .lightGray
+                    actionAndVariableButton.setTitle("Actions and Variables", for: .normal)
+                    actionAndVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    actionAndVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    actionAndVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    actionAndVariableButton.titleLabel?.numberOfLines = 0
+                    actionAndVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    actionAndVariableButton.layer.borderWidth = 2.0
+                    actionAndVariableButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    actionAndVariableButton.accessibilityLabel = "Set Action and Variable"
+                    actionAndVariableButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(actionAndVariableButton)
                 }
                 
             default:
