@@ -15,6 +15,10 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
     var variableSelected: String = "orange"
     var variableValue: Int = 0
     
+    
+    //Reference for knowing which button is selected
+    // https://stackoverflow.com/questions/33906060/select-deselect-buttons-swift-xcode-7
+    
     @IBAction func OrangeVariable(_ sender: Any) {
         variableSelected = "orange"
         
