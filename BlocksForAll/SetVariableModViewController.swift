@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SetVariableModViewController: UIViewController{
+class SetVariableModViewController: UIViewController, UITextFieldDelegate{
     
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
@@ -42,6 +42,31 @@ class SetVariableModViewController: UIViewController{
     
     @IBAction func VariableValue(_ sender: UITextField) {
         variableValue = Int(VariableValue.text!)
+        viewTapped()
+    }
+    
+    
+    /** https://appsandbiscuits.com/getting-what-the-user-typed-ios-7-2e56a678e7a7
+     help from Andy O'Sullivan regarding how to dismiss keyboard when return clicked **/
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == VariableValue {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        VariableValue.delegate = self
+        
+        let tapRecogniser = UITapGestureRecognizer()
+        tapRecogniser.addTarget(self, action: #selector(self.viewTapped))
+        self.view.addGestureRecognizer(tapRecogniser)
+    }
+    
+    @objc func viewTapped(){
+        self.view.endEditing(true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -50,9 +75,10 @@ class SetVariableModViewController: UIViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue!))"
             
             
-
+            
         }
     }
     
     
 }
+
