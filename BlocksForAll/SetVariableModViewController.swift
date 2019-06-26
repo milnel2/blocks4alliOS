@@ -17,25 +17,87 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func OrangeVariable(_ sender: Any) {
         variableSelected = "orange"
+        
+        //Border when button is selected
+        if let button = sender as? UIButton {
+            if button.isSelected {
+                button.isSelected = false
+                button.layer.borderWidth = 0
+            } else {
+                button.isSelected = true
+                button.layer.borderWidth = 2
+                button.layer.borderColor = UIColor.black.cgColor
+            }
+        }
     }
     
     
     @IBAction func MelonVariable(_ sender: Any) {
         variableSelected = "melon"
+        
+        //Border when button is selected
+        if let button = sender as? UIButton {
+            if button.isSelected {
+                button.isSelected = false
+                button.layer.borderWidth = 0
+            } else {
+                button.isSelected = true
+                button.layer.borderWidth = 2
+                button.layer.borderColor = UIColor.black.cgColor
+            }
+        }
     }
     
     @IBAction func CherryVariable(_ sender: Any) {
         variableSelected = "cherry"
+        
+        //Border when button is selected
+        if let button = sender as? UIButton {
+            if button.isSelected {
+                button.isSelected = false
+                button.layer.borderWidth = 0
+            } else {
+                button.isSelected = true
+                button.layer.borderWidth = 2
+                button.layer.borderColor = UIColor.black.cgColor
+            }
+        }
     }
     
     
     @IBAction func BananaVariable(_ sender: Any) {
         variableSelected = "banana"
+        
+        //Border when button is selected
+        if let button = sender as? UIButton {
+            if button.isSelected {
+                button.isSelected = false
+                button.layer.borderWidth = 0
+            } else {
+                button.isSelected = true
+                button.layer.borderWidth = 2
+                button.layer.borderColor = UIColor.black.cgColor
+            }
+        }
+
     }
     
     
     @IBAction func AppleVariable(_ sender: Any) {
         variableSelected = "apple"
+        
+        //Border when button is selected
+        if let button = sender as? UIButton {
+            if button.isSelected {
+                button.isSelected = false
+                button.layer.borderWidth = 0
+            } else {
+                button.isSelected = true
+                button.layer.borderWidth = 2
+                button.layer.borderColor = UIColor.black.cgColor
+            }
+        }
+
     }
     
     @IBOutlet weak var VariableValue: UITextField!
