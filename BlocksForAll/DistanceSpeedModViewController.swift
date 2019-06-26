@@ -16,6 +16,7 @@ class DistanceSpeedModViewController: UIViewController{
     var distance: Double = 30
     var speed: String = "Normal"
     var modifierBlockIndexSender: Int?
+    var robotSpeed: Double = 3
     
     @IBOutlet weak var distanceSlider: UISlider!
     @IBOutlet weak var slowButton: UIButton!
