@@ -12,7 +12,6 @@
 		023D633322BD34EE00A8002C /* WaitModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D633222BD34EE00A8002C /* WaitModViewController.swift */; };
 		025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */; };
 		02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */; };
-		62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */; };
 		701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701A43861EC26EFD00314599 /* BlocksViewController.swift */; };
 		F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */; };
 		F10F71691E65BFF50049F3AA /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71681E65BFF50049F3AA /* Block.swift */; };
@@ -54,8 +53,6 @@
 		023D633222BD34EE00A8002C /* WaitModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitModViewController.swift; sourceTree = "<group>"; };
 		025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleModViewController.swift; sourceTree = "<group>"; };
 		02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceSpeedModViewController.swift; sourceTree = "<group>"; };
-		02F5F94122C12637000F43B7 /* ReleaseBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ReleaseBlocksMenu.plist; sourceTree = "<group>"; };
-		62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVariableModViewController.swift; sourceTree = "<group>"; };
 		701A43861EC26EFD00314599 /* BlocksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksViewController.swift; path = ../BlocksViewController.swift; sourceTree = "<group>"; };
 		F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewController.swift; sourceTree = "<group>"; };
 		F10F71681E65BFF50049F3AA /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
@@ -172,7 +169,6 @@
 				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
 				02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */,
 				023D633222BD34EE00A8002C /* WaitModViewController.swift */,
-				62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */,
 				F18FEEDB1EB115AF007C15B8 /* Helper */,
 			);
 			path = BlocksForAll;
@@ -195,7 +191,6 @@
 				F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */,
 				F186EB891EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist */,
 				F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */,
-				02F5F94122C12637000F43B7 /* ReleaseBlocksMenu.plist */,
 			);
 			path = BlocksMenus;
 			sourceTree = "<group>";
@@ -246,11 +241,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = "Nana Amoah";
+				ORGANIZATIONNAME = "Katie McCarthy";
 				TargetAttributes = {
 					F18FFFAE1E65B0FB0090C4B6 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = Z5QMR69A75;
+						DevelopmentTeam = 3BU44X3CR3;
 						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
@@ -316,7 +311,6 @@
 				025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */,
 				F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */,
 				F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */,
-				62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */,
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
 				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
@@ -487,7 +481,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z5QMR69A75;
+				DEVELOPMENT_TEAM = 3BU44X3CR3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -495,7 +489,7 @@
 				);
 				INFOPLIST_FILE = BlocksForAll/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All.nana;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All.kt1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
@@ -513,7 +507,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z5QMR69A75;
+				DEVELOPMENT_TEAM = 3BU44X3CR3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -521,7 +515,7 @@
 				);
 				INFOPLIST_FILE = BlocksForAll/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All.nana;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All.kt1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";

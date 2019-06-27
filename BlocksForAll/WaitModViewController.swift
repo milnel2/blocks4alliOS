@@ -26,11 +26,7 @@ class WaitModViewController: UIViewController{
     @IBAction func minusButtonPressed(_ sender: UIButton) {
         if (wait > 1) {
             wait = wait - 1
-            if (wait == 1){
-                waitLabel.text = "\(wait) second"
-            } else {
-                waitLabel.text = "\(wait) seconds"
-            }
+            waitLabel.text = "\(wait) seconds"
         }
     }
     
