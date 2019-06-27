@@ -1,4 +1,3 @@
-//
 //  Block.swift
 //  BlocksForAll
 //

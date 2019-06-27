@@ -888,6 +888,20 @@
 				<key>editable</key>
 				<false/>
 				<key>name</key>
+				<string>Say huhhh</string>
+				<key>color</key>
+				<string>#C63329</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>speak_huh.pdf</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
 				<string>Say Lets Go</string>
 				<key>color</key>
 				<string>#C63329</string>
@@ -979,6 +993,20 @@
 				<false/>
 				<key>imageName</key>
 				<string>speak_wah.pdf</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Say We</string>
+				<key>color</key>
+				<string>#C63329</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>speak_wee.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1142,6 +1170,39 @@
 				<false/>
 				<key>imageName</key>
 				<string>train.pdf</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>type</key>
+		<string>Variables</string>
+		<key>color</key>
+		<string>#002041</string>
+		<key>Blocks</key>
+		<array>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Set Variable</string>
+				<key>color</key>
+				<string>#002041</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Actions and Variables</string>
+				<key>color</key>
+				<string>#002041</string>
+				<key>double</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
