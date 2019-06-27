@@ -185,6 +185,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
             let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * distance * robotSpeed), angular: 0)
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
+        //cmdToSend.add(drive, withDuration: (distance/robotSpeed))
         cmdToSend.add(drive, withDuration: 10)
         return WWCommandToolbelt.moveStop()
     }
@@ -192,7 +193,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     //decomposition of turn functions
     func playTurn (turnConstantLW: Double, turnConstantRW: Double, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
         let rotate = WWCommandSet()
-        rotate.setBodyWheels(WWCommandBodyWheels.init(leftWheel: (turnConstantLW * 25.3), rightWheel: (turnConstantRW * 1)))
+        rotate.setBodyWheels(WWCommandBodyWheels.init(leftWheel: (turnConstantLW * 1), rightWheel: (turnConstantRW * 1)))
         //testing how to make turns better!
         cmdToSend.add(rotate, withDuration: 1)
         return WWCommandToolbelt.moveStop()

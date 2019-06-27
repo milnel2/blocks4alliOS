@@ -418,7 +418,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 <accessibility key="accessibilityConfiguration" hint="Delete all blocks on the screen" label="Delete All"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
-                                <state key="normal" title="Clear All">
+                                <state key="normal" title="Delete All">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
