@@ -9,6 +9,9 @@
 
 import UIKit
 
+//var isStopped = true
+var programComplete = false
+
 class RobotControlViewController: UIViewController, WWRobotObserver {
 
     var executingProgram: ExecutingProgram?
@@ -47,6 +50,10 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         }
     }
     
+    func robot(_ robot: WWRobot!, didFinishCommand sequence: WWCommandSetSequence!) {
+        pollForNextCommand()
+    }
+    
     
     func connectedRobots() -> Bool{
         if let connectedRobots = robotManager?.allConnectedRobots{
@@ -63,36 +70,40 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         if connectedRobots != nil{
         
             // var repeatCommands = [WWCommandSet]()
-            
             executingProgram = ExecutingProgram(commands: myCommands)
             pollForNextCommand()
-        } else{
+            
+            } else{
             print("no connected robots")
         }
     }
     
     func pollForNextCommand() {
+        print("in poll for next commnad")
         guard let executingProgram = executingProgram else {
             return  // not running
         }
         guard !executingProgram.isComplete else {
+            print("in if iscomplete")
+            programComplete = true
             self.executingProgram = nil
             return  // no more commands left
         }
-        
         // TODO: check if robot is already executing executingProgram's current command, and if so check back later
-        
+    
         executingProgram.executeNextCommand()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.pollForNextCommand()
-        }
+    
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            self.pollForNextCommand()
+//        }
     }
 }
 
 class ExecutingProgram {
     var position: Int = 0
     var commands: [String]
+    var currentCommandBeingExecuted: WWCommandSetSequence?
     
     // TODO: store command in this variable so you can check if it's executing later
     //var currentCommand: WWCommandOrSomething
@@ -105,14 +116,18 @@ class ExecutingProgram {
         return position >= commands.count
     }
     
+//    var isStopped: Bool {
+//        return notRunning
+//    }
     func executeNextCommand() {
+        print("in execute nextcommand")
         guard !isComplete else {
             return
         }
 
         var command = commands[position]
         //for command in myCommands{
-        //print(command)
+        print(command)
         var duration = 2.0
         //TODO: add repeat blocks
         var myAction = WWCommandSet()
@@ -435,8 +450,8 @@ class ExecutingProgram {
         cmdToSend.add(myAction, withDuration: duration)
         print(cmdToSend)
         sendCommandSequenceToRobots(cmdSeq: cmdToSend)
-        cmdToSend.removeAllEvents()
-        
+        //cmdToSend.removeAllEvents()
+        currentCommandBeingExecuted = cmdToSend
         position += 1
     }
 
