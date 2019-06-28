@@ -194,17 +194,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
     
-    override func programIsComplete() -> Bool {
-        print("in override program is complete")
-        if super.programIsComplete() == true{
-            movingBlocks = false
-            stopIsOption = false
-            changePlayTrashButton()
-            return true
-        }else{
-            return false
-        }
+    override func programHasCompleted(){
+        movingBlocks = false
+        stopIsOption = false
+        changePlayTrashButton()
     }
+
     // run the actual program when the trash button is clicked
     func trashClicked() {
         //trash
@@ -235,17 +230,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             changePlayTrashButton()
             let commands = createCommandSequence(blocksStack)
             play(commands)
-            _=programIsComplete()
         }
     }
     
     func stopClicked(){
         print("in stop clicked")
         self.executingProgram = nil
-        stopIsOption = false
-        movingBlocks = false
-        changePlayTrashButton()
-        _=programIsComplete()
+        programHasCompleted()
     }
     //MARK: Complier methods, converts from Blocks4All to robot code
     //MARK: Clean this up!!
