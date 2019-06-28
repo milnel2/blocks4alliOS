@@ -1040,6 +1040,39 @@
 	</dict>
 	<dict>
 		<key>type</key>
+		<string>Variables</string>
+		<key>color</key>
+		<string>#774B4B</string>
+		<key>Blocks</key>
+		<array>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Set Variable</string>
+				<key>color</key>
+				<string>#774B4B</string>
+				<key>double</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Actions and Variables</string>
+				<key>color</key>
+				<string>#774B4B</string>
+				<key>double</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>type</key>
 		<string>Vehicle</string>
 		<key>color</key>
 		<string>#002041</string>
@@ -1170,39 +1203,6 @@
 				<false/>
 				<key>imageName</key>
 				<string>train.pdf</string>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>type</key>
-		<string>Variables</string>
-		<key>color</key>
-		<string>#002041</string>
-		<key>Blocks</key>
-		<array>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Set Variable</string>
-				<key>color</key>
-				<string>#002041</string>
-				<key>double</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Actions and Variables</string>
-				<key>color</key>
-				<string>#002041</string>
-				<key>double</key>
-				<false/>
 			</dict>
 		</array>
 	</dict>

@@ -704,6 +704,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     lightColorButton.tag = indexPath.row
                     lightColorButton.backgroundColor = .lightGray
                     lightColorButton.setTitle("Light color is \(block.addedBlocks[0].attributes["lightColor"]!)", for: .normal)
+                    
                     lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
                     lightColorButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
                     lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
