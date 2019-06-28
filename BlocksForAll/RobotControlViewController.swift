@@ -163,7 +163,7 @@ class ExecutingProgram {
             
             
         //Control Category - might have to add to
-        case "IfHear Voice":
+        case "IfHear Voice", "IfObstacle in front":
             //TODO: check blocks condition
             let conditionString = command[command.index(command.startIndex, offsetBy: 2)...]
             print("conditionString" , conditionString)
