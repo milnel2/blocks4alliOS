@@ -15,7 +15,7 @@ class AngleModViewController: UIViewController {
     // TODO: decide on default angle
     var angle: Double = 90
     var modifierBlockIndexSender: Int?
-    let interval: Float = 15
+    let interval: Float = 45
 
     @IBOutlet weak var angleSlider: UISlider!
     @IBOutlet weak var angleDisplayed: UILabel!
@@ -27,15 +27,18 @@ class AngleModViewController: UIViewController {
         angleSlider.setValue(Float(previousAngle!), animated: false)
         // preserves previously selected value 
         angle = Double(previousAngle!)
+        angleDisplayed.accessibilityValue = "The current angle selected is \(Int(angle))degrees"
     }
     
     @IBAction func angleSliderChanged(_ sender: UISlider) {
         let roundingNumber: Float = (interval/2.0)
         angle = Double(sender.value)
-        sender.accessibilityValue = "\(Int(angle)) degrees"
-        //setValue(Float(angle), animated: true)
-        sender.setValue(interval*floorf(((sender.value+roundingNumber)/interval)), animated:false)
-        angleDisplayed.text = "\(Int(angle))"
+        var roundedAngle = (interval*floorf(((sender.value+roundingNumber)/interval)))
+        sender.accessibilityValue = "\(Int(roundedAngle)) degrees"
+        sender.setValue(roundedAngle, animated:false)
+        angleDisplayed.text = "\(Int(roundedAngle))"
+        
+        angleDisplayed.accessibilityValue = "The current angle selected is \(Int(roundedAngle)) degrees"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

@@ -17,6 +17,7 @@ class DistanceSpeedModViewController: UIViewController{
     var speed: String = "Normal"
     var modifierBlockIndexSender: Int?
     var robotSpeed: Double = 3
+    let interval: Float = 10
     
     @IBOutlet weak var distanceSlider: UISlider!
     @IBOutlet weak var slowButton: UIButton!
@@ -36,12 +37,19 @@ class DistanceSpeedModViewController: UIViewController{
         speedLabel.text = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
         // preserves previously selected value
         speed = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+        
+        distanceDisplayed.accessibilityValue = "The current distance selected is \(Int(distance)) centimeters"
     }
     
     @IBAction func distanceSliderChanged(_ sender: UISlider) {
+        let roundingNumber: Float = (interval/2.0)
         distance = Double(sender.value)
-        sender.accessibilityValue = "\(Int(distance)) centimeters"
-        distanceDisplayed.text = "\(Int(distance))"
+        var roundedDistance = (interval*floorf(((sender.value+roundingNumber)/interval)))
+        sender.accessibilityValue = "\(Int(roundedDistance)) centimeters"
+        sender.setValue(roundedDistance, animated:false)
+        distanceDisplayed.text = "\(Int(roundedDistance))"
+        
+        distanceDisplayed.accessibilityValue = "The current distance selected is \(Int(roundedDistance)) centimeters"
     }
 
     @IBAction func slowButtonPressed(_ sender: UIButton) {
