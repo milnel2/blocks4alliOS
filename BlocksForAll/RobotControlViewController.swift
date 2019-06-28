@@ -85,6 +85,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         }
         guard !executingProgram.isComplete else {
             print("in if iscomplete")
+            _=programIsComplete()
             programComplete = true
             self.executingProgram = nil
             return  // no more commands left
@@ -97,6 +98,12 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 //    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
 //            self.pollForNextCommand()
 //        }
+    }
+    
+    func programIsComplete() -> Bool{
+        print("in program is complete")
+        let complete = executingProgram?.isComplete ?? false
+        return complete
     }
 }
 
