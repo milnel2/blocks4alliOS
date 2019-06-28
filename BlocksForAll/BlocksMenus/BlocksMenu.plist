@@ -176,62 +176,62 @@
 				<key>imageName</key>
 				<string>repeat_forever.pdf</string>
 			</dict>
-			<dict>
-				<key>type</key>
-				<string>Number</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>two times</string>
-				<key>color</key>
-				<string>#B30DCB</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>2.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Number</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>three times</string>
-				<key>color</key>
-				<string>#B30DCB</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>3.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Number</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>four times</string>
-				<key>color</key>
-				<string>#B30DCB</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>4.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Number</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>five times</string>
-				<key>color</key>
-				<string>#B30DCB</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>5.pdf</string>
-			</dict>
+<!--            <dict>-->
+<!--                <key>type</key>-->
+<!--                <string>Number</string>-->
+<!--                <key>editable</key>-->
+<!--                <false/>-->
+<!--                <key>name</key>-->
+<!--                <string>two times</string>-->
+<!--                <key>color</key>-->
+<!--                <string>#B30DCB</string>-->
+<!--                <key>double</key>-->
+<!--                <false/>-->
+<!--                <key>imageName</key>-->
+<!--                <string>2.pdf</string>-->
+<!--            </dict>-->
+<!--            <dict>-->
+<!--                <key>type</key>-->
+<!--                <string>Number</string>-->
+<!--                <key>editable</key>-->
+<!--                <false/>-->
+<!--                <key>name</key>-->
+<!--                <string>three times</string>-->
+<!--                <key>color</key>-->
+<!--                <string>#B30DCB</string>-->
+<!--                <key>double</key>-->
+<!--                <false/>-->
+<!--                <key>imageName</key>-->
+<!--                <string>3.pdf</string>-->
+<!--            </dict>-->
+<!--            <dict>-->
+<!--                <key>type</key>-->
+<!--                <string>Number</string>-->
+<!--                <key>editable</key>-->
+<!--                <false/>-->
+<!--                <key>name</key>-->
+<!--                <string>four times</string>-->
+<!--                <key>color</key>-->
+<!--                <string>#B30DCB</string>-->
+<!--                <key>double</key>-->
+<!--                <false/>-->
+<!--                <key>imageName</key>-->
+<!--                <string>4.pdf</string>-->
+<!--            </dict>-->
+<!--            <dict>-->
+<!--                <key>type</key>-->
+<!--                <string>Number</string>-->
+<!--                <key>editable</key>-->
+<!--                <false/>-->
+<!--                <key>name</key>-->
+<!--                <string>five times</string>-->
+<!--                <key>color</key>-->
+<!--                <string>#B30DCB</string>-->
+<!--                <key>double</key>-->
+<!--                <false/>-->
+<!--                <key>imageName</key>-->
+<!--                <string>5.pdf</string>-->
+<!--            </dict>-->
 			<dict>
 				<key>type</key>
 				<string>Statement</string>

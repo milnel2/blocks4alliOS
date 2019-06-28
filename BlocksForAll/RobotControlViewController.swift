@@ -204,6 +204,9 @@ class ExecutingProgram {
             }
             
             
+        case "Wait for Time":
+            myAction = playWait(command: command, cmdToSend: cmdToSend)
+            
         //Drive Category
         case "Drive Forward":
             //drive constant is positive because this is drive forward
@@ -459,6 +462,21 @@ class ExecutingProgram {
         let speaker = WWCommandSpeaker.init(defaultSound: sound)
         myAction.setSound(speaker)
     }
+    
+    func playWait(command: String, cmdToSend: WWCommandSetSequence) -> WWCommandSet {
+        var wait = 0.0
+        for block in blocksStack{
+            if block.name.contains("Wait"){
+                wait = Double(block.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
+            }
+        }
+        
+        let waitingPeriod = WWCommandSet()
+        print("waiting", wait)
+        cmdToSend.add(waitingPeriod, withDuration: wait)
+        return WWCommandToolbelt.moveStop()
+    }
+
     
     //decomposition of drive functions
     func playDrive (command: String, driveConstant: Double,  cmdToSend: WWCommandSetSequence) -> WWCommandSet{
