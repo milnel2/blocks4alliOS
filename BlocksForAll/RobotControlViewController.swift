@@ -182,11 +182,10 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         //            distanceString = String(distanceString[distanceString.index(distanceString.endIndex, offsetBy: -2)...])
         ////            distance = Double(distanceString)!
         //        }
-            let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * distance * robotSpeed), angular: 0)
+            let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * robotSpeed), angular: 0)
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
-        //cmdToSend.add(drive, withDuration: (distance/robotSpeed))
-        cmdToSend.add(drive, withDuration: 10)
+        cmdToSend.add(drive, withDuration: (distance/robotSpeed))
         return WWCommandToolbelt.moveStop()
     }
     
