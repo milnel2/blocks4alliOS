@@ -13,7 +13,6 @@ import AVFoundation
 
 
 //collection of blocks that are part of the program
-var running = true
 var blocksStack = [Block]()
 
 //MARK: - Block Selection Delegate Protocol
@@ -168,6 +167,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Place in Trash"
             playTrashToggleButton.accessibilityHint = "Delete selected blocks"
+        }else if stopIsOption{
+            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "stop"), for: .normal)
+            playTrashToggleButton.accessibilityLabel = "Stop"
+            playTrashToggleButton.accessibilityHint = "Stop your robot!"
         }else{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Play"
@@ -175,7 +178,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
     
-    var pauseIsOpt = false
+    var stopIsOption = false
     
     // run the actual program when the play button is clicked
     @IBAction func playButtonClicked(_ sender: Any) {
@@ -183,12 +186,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         print("in playButtonClicked")
         if(movingBlocks){
             trashClicked()
-        }else if pauseIsOpt{
-            pauseClicked()
+        }else if stopIsOption{
+            stopClicked()
         }else{
             print("in play clicked")
             playClicked()
-            pauseIsOpt = true
         }
     }
     
@@ -218,23 +220,19 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             playTrashToggleButton.accessibilityLabel = announcement
             
         }else{
-            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            playTrashToggleButton.accessibilityLabel = "Pause"
-            playTrashToggleButton.accessibilityHint = "Pause your robot!"
+            stopIsOption = true
+            changePlayTrashButton()
             let commands = createCommandSequence(blocksStack)
             play(commands)
         }
     }
     
-    func pauseClicked(){
-        print("in pause clicked")
-        if running == true{
-            print("in if statement")
-            running = false
-            pauseIsOpt = false
-            movingBlocks = false
-            changePlayTrashButton()
-        }
+    func stopClicked(){
+        print("in stop clicked")
+        self.executingProgram = nil
+        stopIsOption = false
+        movingBlocks = false
+        changePlayTrashButton()
     }
     //MARK: Complier methods, converts from Blocks4All to robot code
     //MARK: Clean this up!!
