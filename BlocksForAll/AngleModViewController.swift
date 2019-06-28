@@ -18,10 +18,12 @@ class AngleModViewController: UIViewController {
     let interval: Float = 15
 
     @IBOutlet weak var angleSlider: UISlider!
+    @IBOutlet weak var angleDisplayed: UILabel!
     
     override func viewDidLoad() {
         var previousAngleString: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] ?? "90"
         var previousAngle = Int(previousAngleString)
+        angleDisplayed.text = "\(previousAngle ?? 90)"
         angleSlider.setValue(Float(previousAngle!), animated: false)
         // preserves previously selected value 
         angle = Double(previousAngle!)
@@ -33,6 +35,7 @@ class AngleModViewController: UIViewController {
         sender.accessibilityValue = "\(Int(angle)) degrees"
         //setValue(Float(angle), animated: true)
         sender.setValue(interval*floorf(((sender.value+roundingNumber)/interval)), animated:false)
+        angleDisplayed.text = "\(Int(angle))"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

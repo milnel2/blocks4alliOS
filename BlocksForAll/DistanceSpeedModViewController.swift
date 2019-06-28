@@ -22,11 +22,13 @@ class DistanceSpeedModViewController: UIViewController{
     @IBOutlet weak var slowButton: UIButton!
     @IBOutlet weak var fastButton: UIButton!
     @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var distanceDisplayed: UILabel!
     
     override func viewDidLoad() {
         // default speed: Normal or preserve last selection
         var previousDistanceString: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
         var previousDistance = Int(previousDistanceString)
+        distanceDisplayed.text = "\(previousDistance ?? 30)"
         distanceSlider.setValue(Float(previousDistance!), animated: true)
         // preserve previously selected value
         distance = Double(previousDistance!)
@@ -39,6 +41,7 @@ class DistanceSpeedModViewController: UIViewController{
     @IBAction func distanceSliderChanged(_ sender: UISlider) {
         distance = Double(sender.value)
         sender.accessibilityValue = "\(Int(distance)) centimeters"
+        distanceDisplayed.text = "\(Int(distance))"
     }
 
     @IBAction func slowButtonPressed(_ sender: UIButton) {
@@ -86,4 +89,6 @@ class DistanceSpeedModViewController: UIViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
         }
     }
+    
+   
 }
