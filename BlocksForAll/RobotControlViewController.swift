@@ -9,9 +9,6 @@
 
 import UIKit
 
-//var isStopped = true
-var programComplete = false
-
 class RobotControlViewController: UIViewController, WWRobotObserver {
 
     var executingProgram: ExecutingProgram?
@@ -50,11 +47,6 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         }
     }
     
-    func robot(_ robot: WWRobot!, didFinishCommand sequence: WWCommandSetSequence!) {
-        pollForNextCommand()
-    }
-    
-    
     func connectedRobots() -> Bool{
         if let connectedRobots = robotManager?.allConnectedRobots{
             return !connectedRobots.isEmpty
@@ -71,39 +63,39 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         
             // var repeatCommands = [WWCommandSet]()
             executingProgram = ExecutingProgram(commands: myCommands)
-            pollForNextCommand()
+            executeNextCommand()
             
             } else{
             print("no connected robots")
         }
     }
     
-    func pollForNextCommand() {
+    func executeNextCommand() {
         print("in poll for next commnad")
         guard let executingProgram = executingProgram else {
             return  // not running
         }
         guard !executingProgram.isComplete else {
             print("in if iscomplete")
-            _=programIsComplete()
-            programComplete = true
             self.executingProgram = nil
+            programHasCompleted()
             return  // no more commands left
         }
-        // TODO: check if robot is already executing executingProgram's current command, and if so check back later
     
         executingProgram.executeNextCommand()
-        
-    
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            self.pollForNextCommand()
-//        }
+    }
+
+    func robot(_ robot: WWRobot!, didFinishCommand sequence: WWCommandSetSequence!) {
+        executeNextCommand()
+    }
+
+    var isProgramComplete: Bool {
+        print("in program is complete")
+        return executingProgram?.isComplete ?? true
     }
     
-    func programIsComplete() -> Bool{
-        print("in program is complete")
-        let complete = executingProgram?.isComplete ?? false
-        return complete
+    func programHasCompleted() {
+        // subclasses may override
     }
 }
 
