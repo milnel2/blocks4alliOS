@@ -53,6 +53,7 @@
 		023D633222BD34EE00A8002C /* WaitModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitModViewController.swift; sourceTree = "<group>"; };
 		025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleModViewController.swift; sourceTree = "<group>"; };
 		02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceSpeedModViewController.swift; sourceTree = "<group>"; };
+		02F5F94122C12637000F43B7 /* ReleaseBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ReleaseBlocksMenu.plist; sourceTree = "<group>"; };
 		701A43861EC26EFD00314599 /* BlocksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksViewController.swift; path = ../BlocksViewController.swift; sourceTree = "<group>"; };
 		F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewController.swift; sourceTree = "<group>"; };
 		F10F71681E65BFF50049F3AA /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 				F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */,
 				F186EB891EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist */,
 				F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */,
+				02F5F94122C12637000F43B7 /* ReleaseBlocksMenu.plist */,
 			);
 			path = BlocksMenus;
 			sourceTree = "<group>";

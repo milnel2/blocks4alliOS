@@ -96,7 +96,7 @@
                                 <rect key="frame" x="44" y="129" width="924" height="617"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control.
+                                <string key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control.
 
 In order to use Blocks4All, you must have a Dash or Dot (limited commands) robot from Wonder Workshop.
 
@@ -105,7 +105,7 @@ To get started, select "Get Started" from the Main Menu. This takes you to the b
 To have the robot play the commands, press the play button in the lower right side of the screen. If no robot is selected, you will be taken to a menu of detected robots. Select the robot you want then press back then press play again.
 
 Most blocks such as animal noise blocks do not have extra parts. Some blocks though such as the “repeat” and “if” blocks have three parts, a beginning block with a modifier and an endblock. The modifier block can have conditions or numbers, repeat modifier block can be changed to repeat 2 times or more than that if you want. If blocks can have conditions such as if Dash bumps into something or if dash hears a voice. These repeat times and if conditions then affect what blocks you place between the If block and the end if block. Other blocks such as drive blocks also have modifiers such as distance. You can edit a modifier block by tapping on the block. 
-</mutableString>
+</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -231,7 +231,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ng-u7-4WV">
                                 <rect key="frame" x="536" y="297" width="192" height="153"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.14609925176056338" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <state key="normal" title="Orange">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -840,7 +840,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <image name="plus" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="t2J-Rr-un6"/>
+        <segue reference="QqG-dM-L1w"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>

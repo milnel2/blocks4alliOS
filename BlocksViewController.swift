@@ -185,6 +185,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             playClicked()
             pauseIsOpt = true
         }
+        save()
     }
     
     // run the actual program when the trash button is clicked

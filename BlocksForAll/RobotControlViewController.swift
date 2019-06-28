@@ -137,13 +137,6 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         }
     }
     
-    //initializing light variables so they start on white
-    var leftLightIndex = 0
-    var rightLightIndex = 0
-    var eyeLightIndex = 0
-    var chestLightIndex = 0
-    var allLightsIndex = 0
-    
     
     func connectedRobots() -> Bool{
         if let connectedRobots = robotManager?.allConnectedRobots{
@@ -160,13 +153,18 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     }
     
     //decomposition of drive functions
-    func playDrive (command: String, driveConstant: Double, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
-        var distance: Double = 30
-        if(command.contains("0")){
-            var distanceString = command
-            distanceString = String(distanceString[distanceString.index(distanceString.endIndex, offsetBy: -2)...])
-            distance = Double(distanceString)!
+    func playDrive (command: String, driveConstant: Double,  cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+        var distance = 0.0
+        for block in blocksStack{
+            if block.name.contains("Drive Forward"){
+                distance = Double(block.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
+            }
         }
+//        if(command.contains("0")){
+//            var distanceString = command
+//            distanceString = String(distanceString[distanceString.index(distanceString.endIndex, offsetBy: -2)...])
+////            distance = Double(distanceString)!
+//        }
         let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * distance), angular: 0)
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
@@ -183,13 +181,45 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         return WWCommandToolbelt.moveStop()
     }
     
+    func playLight () -> WWCommandLightRGB{
+        var color = ""
+        for block in blocksStack{
+            if block.name.contains("Light"){
+                color = String(block.addedBlocks[0].attributes["lightColor"] ?? "white")
+            }
+        }
+        
+        var selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
+        switch color{
+        case "black":
+            selectedColor = WWCommandLightRGB.init(red: 0, green: 0, blue: 0)
+        case "white":
+            selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
+        case "red":
+            selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0, blue: 0)
+        case "green":
+            selectedColor = WWCommandLightRGB.init(red: 0, green: 0.9, blue: 0)
+        case "blue":
+            selectedColor = WWCommandLightRGB.init(red: 0, green: 0, blue: 0.9)
+        case "orange":
+            selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.2, blue: 0)
+        case "yellow":
+            selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0)
+        case "purple":
+            selectedColor = WWCommandLightRGB.init(red: 75, green: 0, blue: 130)
+        default:
+            selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
+        }
+        return selectedColor!
+    }
+    
     //this function allows the blocks in the workspace to be sent to the robot
     func play(_ myCommands: [String]){
         print("in play")
         let connectedRobots = robotManager?.allConnectedRobots
         if connectedRobots != nil{
             //set up light dict
-            let lightDict = [WWCommandLightRGB.init(red: 0.9, green: 0, blue: 0), WWCommandLightRGB.init(red: 0, green: 0.9, blue: 0), WWCommandLightRGB.init(red: 0, green: 0, blue: 0.9), WWCommandLightRGB.init(red: 0, green: 0, blue: 0), WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)]
+//            let lightDict = [WWCommandLightRGB.init(red: 0.9, green: 0, blue: 0), WWCommandLightRGB.init(red: 0, green: 0.9, blue: 0), WWCommandLightRGB.init(red: 0, green: 0, blue: 0.9), WWCommandLightRGB.init(red: 0, green: 0, blue: 0), WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)]
             
             
             let cmdToSend = WWCommandSetSequence()
@@ -203,7 +233,11 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                 //TODO: add repeat blocks
                 var myAction = WWCommandSet()
                 
-                if running{
+//                myAction.setEyeLight(WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9))
+//                myAction.setChestLight(WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9))
+//                myAction.setLeftEarLight(WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9))
+//                myAction.setRightEarLight(WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9))
+                
                     
                     
                     switch command{
@@ -319,29 +353,24 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                         //Lights Category
                     //MARK: change this code and make is smoother once we have user input
                     case "Set Eye Light":
-                        let light = lightDict[eyeLightIndex%lightDict.count]
-                        eyeLightIndex += 1
+                        let light = playLight()
                         myAction.setEyeLight(light)
                         //                    myAction.setChestLight(light)
                         
                     case "Set Left Ear Light":
-                        let light = lightDict[leftLightIndex%lightDict.count]
-                        leftLightIndex += 1
+                        let light = playLight()
                         myAction.setLeftEarLight(light)
                         
                     case "Set Right Ear Light":
-                        let light = lightDict[rightLightIndex%lightDict.count]
-                        rightLightIndex += 1
+                        let light = playLight()
                         myAction.setRightEarLight(light)
                         
                     case "Set Chest Light":
-                        let light = lightDict[chestLightIndex%lightDict.count]
-                        chestLightIndex += 1
+                        let light = playLight()
                         myAction.setChestLight(light)
                         
                     case "Set All Lights":
-                        let light = lightDict[allLightsIndex%lightDict.count]
-                        allLightsIndex += 1
+                        let light = playLight()
                         myAction.setEyeLight(light)
                         myAction.setRightEarLight(light)
                         myAction.setLeftEarLight(light)
@@ -423,12 +452,10 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                         let rotateRight = WWCommandSet()
                         rotateRight.setBodyWheels(WWCommandBodyWheels.init(leftWheel: 30.0, rightWheel: -30.0))
                         let setLeft = WWCommandSet()
-                        let light = lightDict[leftLightIndex%lightDict.count]
-                        leftLightIndex += 1
+                        let light = playLight()
                         setLeft.setLeftEarLight(light)
                         let setRight = WWCommandSet()
                         setRight.setRightEarLight(light)
-                        rightLightIndex += 1
                         
                         var danceIndex = 0
                         while danceIndex < 2 {
@@ -525,12 +552,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                         print("There is no command")
                         
                     }
-                    
-                }else {
-                    //stop's can't restart
-                    stopCommandSequenceToRobots(cmdSeq: cmdToSend)
-                    running = true
-                }
+                
                 //the code that actually sends and removes the command's action to the sequence of code
                 cmdToSend.add(myAction, withDuration: duration)
                 print(cmdToSend)
