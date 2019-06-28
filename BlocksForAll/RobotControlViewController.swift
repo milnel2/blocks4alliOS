@@ -329,24 +329,53 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     }
                     
                     
-                //Drive Category
+                // Drive Category
                 case "Drive Forward":
-                    //drive constant is positive because this is drive forward
+                    // drive constant is positive because this is drive forward
                     myAction = playDrive(command: command, driveConstant: 1.0, cmdToSend: cmdToSend)
                     
                 case "Drive Backward":
-                    //drive constant is negative because this is drive backward
+                    // drive constant is negative because this is drive backward
                     myAction = playDrive(command: command, driveConstant: -1.0, cmdToSend: cmdToSend)
                     
                     /* right now this code allows Dash to pivot from the wheel in the direction he is turning in (e.g. right turn, pivot on right wheel),
                      if he needs to pivot from his head/center, then the direction he is turning in would need to be negative */
                 case "Turn Left":
-                    //25.3 in the right wheel (and 1 in the left) allows Dash to turn left 90 degrees
-                    myAction = playTurn(turnConstantLW: (1.0), turnConstantRW: (25.3), cmdToSend: cmdToSend)
+                    // 45 degrees
+                    myAction = playTurn(turnConstantLW: (1), turnConstantRW: (16), cmdToSend: cmdToSend)
+                    // 90 degrees
+                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (25.3), cmdToSend: cmdToSend)
+                    // 135 degrees
+                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (35), cmdToSend: cmdToSend)
+                    // 180 degrees
+                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (43), cmdToSend: cmdToSend)
+                    // 225 degrees
+                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (47), cmdToSend: cmdToSend)
+                    // 270 degrees
+                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (53), cmdToSend: cmdToSend)
+                    // 315 degrees
+                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (57), cmdToSend: cmdToSend)
+                    // 360 degrees
+                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (65), cmdToSend: cmdToSend)
                     
                 case "Turn Right":
-                    //25.3 in the left wheel (and 1 in the right) allows Dash to turn right 90 degrees
-                    myAction = playTurn(turnConstantLW: (25.3), turnConstantRW: (1.0), cmdToSend: cmdToSend)
+                    // 45 degrees
+                    myAction = playTurn(turnConstantLW: (16), turnConstantRW: (1), cmdToSend: cmdToSend)
+                    // 90 degrees
+                    // myAction = playTurn(turnConstantLW: (25.3), turnConstantRW: (1), cmdToSend: cmdToSend)
+                    // 135 degrees
+                    // myAction = playTurn(turnConstantLW: (35), turnConstantRW: (1), cmdToSend: cmdToSend)
+                    // 180 degrees
+                    // myAction = playTurn(turnConstantLW: (43), turnConstantRW: (1), cmdToSend: cmdToSend)
+                    // 225 degrees
+                    // myAction = playTurn(turnConstantLW: (47), turnConstantRW: (1), cmdToSend: cmdToSend)
+                    // 270 degrees
+                    // myAction = playTurn(turnConstantLW: (53), turnConstantRW: (1), cmdToSend: cmdToSend)
+                    // 315 degrees
+                    // myAction = playTurn(turnConstantLW: (57), turnConstantRW: (1), cmdToSend: cmdToSend)
+                    // 360 degrees
+                    // myAction = playTurn(turnConstantLW: (65), turnConstantRW: (1), cmdToSend: cmdToSend)
+                    
                     
                     
                     
