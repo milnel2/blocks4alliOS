@@ -158,30 +158,27 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         var robotSpeed = 0.0
         var speed: String
         for block in blocksStack{
-            speed = block.addedBlocks[0].attributes["speed"] ?? "Normal"
-            distance = Double(block.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
-    
-            switch speed {
-            case "Really Fast":
-                robotSpeed = 5.0
-            case "Fast":
-                robotSpeed = 4.0
-            case "Normal":
-                robotSpeed = 3.0
-            case "Slow":
-                robotSpeed = 1.0
-            case "Very Slow":
-                robotSpeed = 0.5
-            default:
-                robotSpeed = 3.0
+            if (block.name.contains("Drive Forward") || block.name.contains("Drive Backward")) {
+                speed = block.addedBlocks[0].attributes["speed"] ?? "Normal"
+                distance = Double(block.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
+                
+                switch speed {
+                case "Really Fast":
+                    robotSpeed = 5.0
+                case "Fast":
+                    robotSpeed = 4.0
+                case "Normal":
+                    robotSpeed = 3.0
+                case "Slow":
+                    robotSpeed = 1.0
+                case "Very Slow":
+                    robotSpeed = 0.5
+                default:
+                    robotSpeed = 3.0
+                }
             }
         }
         
-        //        if(command.contains("0")){
-        //            var distanceString = command
-        //            distanceString = String(distanceString[distanceString.index(distanceString.endIndex, offsetBy: -2)...])
-        ////            distance = Double(distanceString)!
-        //        }
             let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * robotSpeed), angular: 0)
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
@@ -189,11 +186,86 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         return WWCommandToolbelt.moveStop()
     }
     
-    //decomposition of turn functions
-    func playTurn (turnConstantLW: Double, turnConstantRW: Double, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+    // MARK: decomposition of turn functions
+    func playTurn (direction: Int, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+        var angleToTurn: Double = 45
+        var turnConstantLW: Double = 0
+        var turnConstantRW: Double = 0
+        
+        // TODO: clean up
+        for block in blocksStack{
+            if block.name.contains("Turn Left"){
+                angleToTurn = Double(block.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
+                if direction == 0 { // turn left
+                    switch angleToTurn{ // degrees
+                    case 45:
+                        turnConstantLW = 0
+                        turnConstantRW = 16
+                    case 90:
+                        turnConstantLW = 0
+                        turnConstantRW = 25.3
+                    case 135:
+                        turnConstantLW = 0
+                        turnConstantRW = 35
+                    case 180:
+                        turnConstantLW = 0
+                        turnConstantRW = 43
+                    case 225:
+                        turnConstantLW = 0
+                        turnConstantRW = 47
+                    case 270:
+                        turnConstantLW = 0
+                        turnConstantRW = 53
+                    case 315:
+                        turnConstantLW = 0
+                        turnConstantRW = 57
+                    case 360:
+                        turnConstantLW = 0
+                        turnConstantRW = 65
+                    default: // 45 degrees
+                        turnConstantLW = 0
+                        turnConstantRW = 16
+                    }
+                }
+            }
+            else if block.name.contains("Turn Right"){
+                angleToTurn = Double(block.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
+                if direction == 1 { // turn right
+                    switch angleToTurn{ // degrees
+                    case 45:
+                        turnConstantRW = 0
+                        turnConstantLW = 16
+                    case 90:
+                        turnConstantRW = 0
+                        turnConstantLW = 25.3
+                    case 135:
+                        turnConstantRW = 0
+                        turnConstantLW = 35
+                    case 180:
+                        turnConstantRW = 0
+                        turnConstantLW = 43
+                    case 225:
+                        turnConstantRW = 0
+                        turnConstantLW = 47
+                    case 270:
+                        turnConstantRW = 0
+                        turnConstantLW = 53
+                    case 315:
+                        turnConstantRW = 0
+                        turnConstantLW = 57
+                    case 360:
+                        turnConstantRW = 0
+                        turnConstantLW = 65
+                    default: // 45 degrees
+                        turnConstantRW = 0
+                        turnConstantLW = 16
+                    }
+                }
+            }
+        }
         let rotate = WWCommandSet()
         rotate.setBodyWheels(WWCommandBodyWheels.init(leftWheel: (turnConstantLW * 1), rightWheel: (turnConstantRW * 1)))
-        //testing how to make turns better!
+        // testing how to make turns better!
         cmdToSend.add(rotate, withDuration: 1)
         return WWCommandToolbelt.moveStop()
     }
@@ -230,12 +302,12 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         return selectedColor!
     }
     
-    //this function allows the blocks in the workspace to be sent to the robot
+    // MARK: this function allows the blocks in the workspace to be sent to the robot
     func play(_ myCommands: [String]){
         print("in play")
         let connectedRobots = robotManager?.allConnectedRobots
         if connectedRobots != nil{
-            //set up light dict
+            // set up light dict
             //            let lightDict = [WWCommandLightRGB.init(red: 0.9, green: 0, blue: 0), WWCommandLightRGB.init(red: 0, green: 0.9, blue: 0), WWCommandLightRGB.init(red: 0, green: 0, blue: 0.9), WWCommandLightRGB.init(red: 0, green: 0, blue: 0), WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)]
             
             
@@ -254,8 +326,6 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                 //                myAction.setChestLight(WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9))
                 //                myAction.setLeftEarLight(WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9))
                 //                myAction.setRightEarLight(WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9))
-                
-                
                 
                 switch command{
                 //Animals Category
@@ -340,44 +410,10 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                     /* right now this code allows Dash to pivot from the wheel in the direction he is turning in (e.g. right turn, pivot on right wheel),
                      if he needs to pivot from his head/center, then the direction he is turning in would need to be negative */
                 case "Turn Left":
-                    // 45 degrees
-                    myAction = playTurn(turnConstantLW: (1), turnConstantRW: (16), cmdToSend: cmdToSend)
-                    // 90 degrees
-                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (25.3), cmdToSend: cmdToSend)
-                    // 135 degrees
-                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (35), cmdToSend: cmdToSend)
-                    // 180 degrees
-                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (43), cmdToSend: cmdToSend)
-                    // 225 degrees
-                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (47), cmdToSend: cmdToSend)
-                    // 270 degrees
-                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (53), cmdToSend: cmdToSend)
-                    // 315 degrees
-                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (57), cmdToSend: cmdToSend)
-                    // 360 degrees
-                    // myAction = playTurn(turnConstantLW: (1), turnConstantRW: (65), cmdToSend: cmdToSend)
+                    myAction = playTurn(direction: 0, cmdToSend: cmdToSend)
                     
                 case "Turn Right":
-                    // 45 degrees
-                    myAction = playTurn(turnConstantLW: (16), turnConstantRW: (1), cmdToSend: cmdToSend)
-                    // 90 degrees
-                    // myAction = playTurn(turnConstantLW: (25.3), turnConstantRW: (1), cmdToSend: cmdToSend)
-                    // 135 degrees
-                    // myAction = playTurn(turnConstantLW: (35), turnConstantRW: (1), cmdToSend: cmdToSend)
-                    // 180 degrees
-                    // myAction = playTurn(turnConstantLW: (43), turnConstantRW: (1), cmdToSend: cmdToSend)
-                    // 225 degrees
-                    // myAction = playTurn(turnConstantLW: (47), turnConstantRW: (1), cmdToSend: cmdToSend)
-                    // 270 degrees
-                    // myAction = playTurn(turnConstantLW: (53), turnConstantRW: (1), cmdToSend: cmdToSend)
-                    // 315 degrees
-                    // myAction = playTurn(turnConstantLW: (57), turnConstantRW: (1), cmdToSend: cmdToSend)
-                    // 360 degrees
-                    // myAction = playTurn(turnConstantLW: (65), turnConstantRW: (1), cmdToSend: cmdToSend)
-                    
-                    
-                    
-                    
+                    myAction = playTurn(direction:1, cmdToSend: cmdToSend)
                     
                 //Emotes Category
                 case "Confused":

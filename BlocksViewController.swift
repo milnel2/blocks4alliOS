@@ -276,6 +276,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                             myCommand.append(blocks[i].addedBlocks[0].name)
                         }
                     }
+//                    if (blocks[i].name.contains("Turn Left") || blocks[i].name.contains("Turn Right")){
+//                        if !blocks[i].addedBlocks.isEmpty {
+//                            myCommand.append(blocks[i].addedBlocks[0].name)
+//                        }
+//                    }
                     commands.append(myCommand)
                 }
                 i+=1

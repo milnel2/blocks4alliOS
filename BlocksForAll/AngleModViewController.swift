@@ -16,6 +16,7 @@ class AngleModViewController: UIViewController {
     var angle: Double = 90
     var modifierBlockIndexSender: Int?
     let interval: Float = 45
+    var roundedAngle: Float = 90
 
     @IBOutlet weak var angleSlider: UISlider!
     @IBOutlet weak var angleDisplayed: UILabel!
@@ -33,7 +34,7 @@ class AngleModViewController: UIViewController {
     @IBAction func angleSliderChanged(_ sender: UISlider) {
         let roundingNumber: Float = (interval/2.0)
         angle = Double(sender.value)
-        var roundedAngle = (interval*floorf(((sender.value+roundingNumber)/interval)))
+        roundedAngle = (interval*floorf(((sender.value+roundingNumber)/interval)))
         sender.accessibilityValue = "\(Int(roundedAngle)) degrees"
         sender.setValue(roundedAngle, animated:false)
         angleDisplayed.text = "\(Int(roundedAngle))"
@@ -43,7 +44,7 @@ class AngleModViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
-        blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] = "\(Int(angle))"
+        blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] = "\(Int(roundedAngle))"
         }
     }
 }
