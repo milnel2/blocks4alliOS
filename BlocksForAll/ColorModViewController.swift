@@ -15,6 +15,15 @@ class ColorModViewController: UIViewController{
     var modifierBlockIndexSender: Int?
     var colorSelected: String = "white"
     
+    override func viewDidLoad() {
+        // default color: Purple or preserve last selection
+        var previousLightColor: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["lightColor"] ?? "purple"
+        var previousModifierBlockColor = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] ?? "purple"
+        
+        colorSelected = previousLightColor
+        colorSelected = previousModifierBlockColor
+    }
+    
     @IBAction func blackButtonPressed(_ sender: UIButton) {
         colorSelected = "black"
     }

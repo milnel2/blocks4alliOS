@@ -168,10 +168,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Place in Trash"
             playTrashToggleButton.accessibilityHint = "Delete selected blocks"
-        }else if stopIsOption{
-            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "stop"), for: .normal)
-            playTrashToggleButton.accessibilityLabel = "Stop"
-            playTrashToggleButton.accessibilityHint = "Stop your robot!"
+//        }else if stopIsOption{
+//            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "stop"), for: .normal)
+//            playTrashToggleButton.accessibilityLabel = "Stop"
+//            playTrashToggleButton.accessibilityHint = "Stop your robot!"
         }else{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Play"
@@ -645,7 +645,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     angleButton.tag = indexPath.row
                     angleButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 91/255, blue: 20/255, alpha: 1)
-                    angleButton.setTitle("\(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
+                    angleButton.setTitle("\(placeholderBlock?.attributes["angle"] ?? "90")", for: .normal)
                     angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
                     angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     angleButton.titleLabel?.numberOfLines = 0
