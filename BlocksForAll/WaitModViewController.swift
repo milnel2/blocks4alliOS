@@ -29,7 +29,7 @@ class WaitModViewController: UIViewController{
             if (wait == 1){
                 waitLabel.text = "\(wait) second"
             } else {
-                waitLabel.text = "\(wait) seconds"
+                 waitLabel.text = "\(wait) seconds"
             }
         }
     }

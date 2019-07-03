@@ -13,6 +13,7 @@ import AVFoundation
 
 
 //collection of blocks that are part of the program
+//var running = true
 var blocksStack = [Block]()
 
 //MARK: - Block Selection Delegate Protocol
@@ -178,7 +179,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
     
-    var stopIsOption = false
+    //var pauseIsOpt = false
     
     // run the actual program when the play button is clicked
     @IBAction func playButtonClicked(_ sender: Any) {
@@ -186,20 +187,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         print("in playButtonClicked")
         if(movingBlocks){
             trashClicked()
-        }else if stopIsOption{
-            stopClicked()
+//        }else if pauseIsOpt{
+//            pauseClicked()
         }else{
             print("in play clicked")
             playClicked()
+//            pauseIsOpt = true
         }
+        save()
     }
     
-    override func programHasCompleted(){
-        movingBlocks = false
-        stopIsOption = false
-        changePlayTrashButton()
-    }
-
     // run the actual program when the trash button is clicked
     func trashClicked() {
         //trash
@@ -226,18 +223,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             playTrashToggleButton.accessibilityLabel = announcement
             
         }else{
-            stopIsOption = true
-            changePlayTrashButton()
+//            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "pause"), for: .normal)
+//            playTrashToggleButton.accessibilityLabel = "Pause"
+//            playTrashToggleButton.accessibilityHint = "Pause your robot!"
             let commands = createCommandSequence(blocksStack)
             play(commands)
         }
     }
     
-    func stopClicked(){
-        print("in stop clicked")
-        self.executingProgram = nil
-        programHasCompleted()
-    }
+//    func pauseClicked(){
+//        print("in pause clicked")
+//        if running == true{
+//            print("in if statement")
+//            running = false
+//            pauseIsOpt = false
+//            movingBlocks = false
+//            changePlayTrashButton()
+//        }
+//    }
     //MARK: Complier methods, converts from Blocks4All to robot code
     //MARK: Clean this up!!
     //Unrolls the repeat loops in the blocks program: converts to a list of commands to run
@@ -259,7 +262,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         //default
                         timesToRepeat = 1000
                     }
-
                     
                     var ii = i+1
                     var blocksToUnroll = [Block]()
@@ -281,6 +283,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                             myCommand.append(blocks[i].addedBlocks[0].name)
                         }
                     }
+//                                        if (blocks[i].name.contains("Turn Left") || blocks[i].name.contains("Turn Right")){
+//                                            if !blocks[i].addedBlocks.isEmpty {
+//                                                myCommand.append(blocks[i].addedBlocks[0].attributes["angle"]!)
+//                        }
+//                    }
                     commands.append(myCommand)
                 }
                 i+=1
@@ -524,14 +531,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "timesToRepeat", value: "\(initialTimesToRepeat)")
-
-                    
+                   
                     let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     repeatNumberButton.tag = indexPath.row
-                    repeatNumberButton.backgroundColor = .lightGray
-                    repeatNumberButton.setTitle("Repeat \(placeholderBlock?.attributes["timesToRepeat"] ?? "1")", for: .normal)
-                    repeatNumberButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    repeatNumberButton.backgroundColor = .red
+                    repeatNumberButton.setTitle("\(placeholderBlock?.attributes["timesToRepeat"] ?? "1")", for: .normal)
+                    repeatNumberButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
                     repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     repeatNumberButton.titleLabel?.numberOfLines = 0
                     repeatNumberButton.titleLabel?.textAlignment = NSTextAlignment.left
@@ -549,10 +555,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     repeatNumberButton.tag = indexPath.row
-                    repeatNumberButton.backgroundColor = .lightGray
+                    repeatNumberButton.backgroundColor = .red
                     // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
-                    repeatNumberButton.setTitle("Repeat \(block.addedBlocks[0].attributes["timesToRepeat"] ?? "1")", for: .normal)
-                    repeatNumberButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    repeatNumberButton.setTitle("\(block.addedBlocks[0].attributes["timesToRepeat"] ?? "1")", for: .normal)
+                    repeatNumberButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
                     repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     repeatNumberButton.titleLabel?.numberOfLines = 0
                     repeatNumberButton.titleLabel?.textAlignment = NSTextAlignment.left
@@ -574,7 +580,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Drive Forward", "Drive Backward":
                 if block.addedBlocks.isEmpty{
                     let initialDistance = 30
-                    let initialSpeed = 10
+                    let initialSpeed = "Normal"
                     // Creates distance button for modifier.
                     // TODO: change the Distance and Speed values in the placeholderBlock name according to Dash API
                     
@@ -582,15 +588,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "distance", value: "\(initialDistance)")
-                    placeholderBlock?.addAttributes(key: "speed", value:  "\(initialSpeed)")
+                    placeholderBlock?.addAttributes(key: "speed", value: initialSpeed)
                     
                     
                     let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     distanceSpeedButton.tag = indexPath.row
-                    distanceSpeedButton.backgroundColor = .lightGray
-                    distanceSpeedButton.setTitle("Distance = \(placeholderBlock?.attributes["distance"] ?? "30") \nSpeed = \(placeholderBlock?.attributes["speed"] ?? "10")", for: .normal)
-                    distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 91/255, blue: 20/255, alpha: 1)
+                    distanceSpeedButton.setTitle("\(placeholderBlock?.attributes["distance"] ?? "30") cm, \(placeholderBlock?.attributes["speed"] ?? "Normal")", for: .normal)
+                    distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 40)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.titleLabel?.numberOfLines = 0
                     distanceSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
@@ -608,9 +614,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     distanceSpeedButton.tag = indexPath.row
-                    distanceSpeedButton.backgroundColor = .lightGray
-                    distanceSpeedButton.setTitle("Distance = \(block.addedBlocks[0].attributes["distance"]!) \nSpeed = \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
-                    distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 91/255, blue: 20/255, alpha: 1)
+                    distanceSpeedButton.setTitle("\(block.addedBlocks[0].attributes["distance"]!) cm, \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
+                    distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 40)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     distanceSpeedButton.titleLabel?.numberOfLines = 0
                     distanceSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
@@ -627,20 +633,20 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Turn Left", "Turn Right":
                 if block.addedBlocks.isEmpty{
                     //Creates angle button for modifier
-                    let initialAngle = 0
+                    let initialAngle = 90
                     
                     let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "angle", value: "\(initialAngle)")
-                    
+                   
                     
                     let angleButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     angleButton.tag = indexPath.row
-                    angleButton.backgroundColor = .lightGray
-                    angleButton.setTitle("Angle = \(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
-                    angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    angleButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 91/255, blue: 20/255, alpha: 1)
+                    angleButton.setTitle("\(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
+                    angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
                     angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     angleButton.titleLabel?.numberOfLines = 0
                     angleButton.titleLabel?.textAlignment = NSTextAlignment.left
@@ -655,12 +661,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 } else {
                     _ = block.addedBlocks[0]
                     let angleButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
+
                     angleButton.tag = indexPath.row
-                    angleButton.backgroundColor = .lightGray
-                    angleButton.setTitle("Angle = \(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
+                    angleButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 91/255, blue: 20/255, alpha: 1)
+                    angleButton.setTitle("\(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
                     angleButton.addTarget(self, action: #selector(angleModifier(sender:)), for: .touchUpInside)
-                    angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
                     angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     angleButton.titleLabel?.numberOfLines = 0
                     angleButton.titleLabel?.textAlignment = NSTextAlignment.left
@@ -675,25 +681,26 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
                 if block.addedBlocks.isEmpty{
                     // Creates button to allow light color change.
-                    // TODO: decide on initial/default color
-                    let initialColor = "white"
+                    // MARK: Blockly default color is purple
+                    let initialColor = "purple"
                     
-                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.purple) , double: false, type: "Boolean")
                     
+                    placeholderBlock?.addAttributes(key: "lightColor", value: initialColor)
+                    // MARK: modifier block color changes to what was selected
+                    placeholderBlock?.addAttributes(key: "modifierBlockColor", value: initialColor)
                     block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "lightColor", value: "\(initialColor)")
                     
-
                     let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     lightColorButton.tag = indexPath.row
-                    lightColorButton.backgroundColor = .lightGray
-                    lightColorButton.setTitle("Light color is \(block.addedBlocks[0].attributes["lightColor"]!)", for: .normal)
+                    lightColorButton.backgroundColor = UIColor(displayP3Red: 0.58188, green: 0.2157, blue: 1, alpha: 1) // default color
+//                    lightColorButton.setTitle("Light color is \(block.addedBlocks[0].attributes["lightColor"]!)", for: .normal)
                     lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
-                    lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    lightColorButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    lightColorButton.titleLabel?.numberOfLines = 0
-                    lightColorButton.titleLabel?.textAlignment = NSTextAlignment.left
+//                    lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    lightColorButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+//                    lightColorButton.titleLabel?.numberOfLines = 0
+//                    lightColorButton.titleLabel?.textAlignment = NSTextAlignment.left
                     lightColorButton.layer.borderWidth = 2.0
                     lightColorButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -703,17 +710,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(lightColorButton)
                 } else {
                     _ = block.addedBlocks[0]
+
                     let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
-                    lightColorButton.tag = indexPath.row
-                    lightColorButton.backgroundColor = .lightGray
-                    lightColorButton.setTitle("Light color is \(block.addedBlocks[0].attributes["lightColor"]!)", for: .normal)
+                    var modifierBlockColor: UIColor = changeModifierBlockColor(color: block.addedBlocks[0].attributes["modifierBlockColor"]!)
                     
+                    lightColorButton.tag = indexPath.row
+                    lightColorButton.backgroundColor = modifierBlockColor
+//                    lightColorButton.setTitle("Light color is \(block.addedBlocks[0].attributes["lightColor"]!)", for: .normal)
                     lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
-                    lightColorButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    lightColorButton.titleLabel?.numberOfLines = 0
-                    lightColorButton.titleLabel?.textAlignment = NSTextAlignment.left
+//                    lightColorButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+//                    lightColorButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    lightColorButton.titleLabel?.numberOfLines = 0
+//                    lightColorButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    if (modifierBlockColor == UIColor.yellow || modifierBlockColor == UIColor.green || modifierBlockColor == UIColor.white) {
+                        lightColorButton.setTitleColor(.black, for: .normal)
+                    }
                     lightColorButton.layer.borderWidth = 2.0
                     lightColorButton.layer.borderColor = UIColor.black.cgColor
                     lightColorButton.accessibilityLabel = "Set light color"
@@ -731,14 +743,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "eyeLight", value: "\(initialEyeLightStatus)")
                     
                     let eyeLightButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-
                     
                     eyeLightButton.tag = indexPath.row
-                    eyeLightButton.backgroundColor = .lightGray
-                    eyeLightButton.setTitle("Eye lights are \(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
+                    eyeLightButton.backgroundColor = UIColor(displayP3Red: 100/255, green: 4/255, blue: 195/255, alpha: 1)
+                    eyeLightButton.setTitle("\(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
                     eyeLightButton.addTarget(self, action: #selector(setEyeLightModifier(sender:)), for: .touchUpInside)
                     eyeLightButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    eyeLightButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    eyeLightButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
                     eyeLightButton.titleLabel?.numberOfLines = 0
                     eyeLightButton.titleLabel?.textAlignment = NSTextAlignment.left
                     eyeLightButton.layer.borderWidth = 2.0
@@ -752,13 +763,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     _ = block.addedBlocks[0]
                     let eyeLightButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
-                    modifierBlockIndex = indexPath.row
-                    
                     eyeLightButton.tag = indexPath.row
-                    eyeLightButton.backgroundColor = .lightGray
-                    eyeLightButton.setTitle("Eye lights are \(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
+                    eyeLightButton.backgroundColor = UIColor(displayP3Red: 100/255, green: 4/255, blue: 195/255, alpha: 1)
+                    eyeLightButton.setTitle("\(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
                     eyeLightButton.addTarget(self, action: #selector(setEyeLightModifier(sender:)), for: .touchUpInside)
-                    eyeLightButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    eyeLightButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
                     eyeLightButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     eyeLightButton.titleLabel?.numberOfLines = 0
                     eyeLightButton.titleLabel?.textAlignment = NSTextAlignment.left
@@ -777,18 +786,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "wait", value: "\(initialWait)")
-
                     
                     let waitTimeButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     waitTimeButton.tag = indexPath.row
-                    waitTimeButton.backgroundColor = .lightGray
-                    waitTimeButton.setTitle("Wait for \(placeholderBlock?.attributes["wait"] ?? "1") second", for: .normal)
+                    waitTimeButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 12/255, blue: 203/255, alpha: 1)
+                    waitTimeButton.setTitle("\(placeholderBlock?.attributes["wait"] ?? "1") second", for: .normal)
                     waitTimeButton.addTarget(self, action: #selector(waitModifier(sender:)), for: .touchUpInside)
                     waitTimeButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    waitTimeButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
+                    waitTimeButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 36)
                     waitTimeButton.titleLabel?.numberOfLines = 0
-                    waitTimeButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    waitTimeButton.titleLabel?.textAlignment = NSTextAlignment.center
                     waitTimeButton.layer.borderWidth = 2.0
                     waitTimeButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -801,17 +809,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let waitTimeButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     waitTimeButton.tag = indexPath.row
-                    waitTimeButton.backgroundColor = .lightGray
+                    waitTimeButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 12/255, blue: 203/255, alpha: 1)
                     if (block.addedBlocks[0].attributes["wait"] == "1"){
-                        waitTimeButton.setTitle("Wait for \(block.addedBlocks[0].attributes["wait"]!) second", for: .normal)
+                         waitTimeButton.setTitle("\(block.addedBlocks[0].attributes["wait"]!) second", for: .normal)
                     } else{
-                        waitTimeButton.setTitle("Wait for \(block.addedBlocks[0].attributes["wait"]!) seconds", for: .normal)
+                         waitTimeButton.setTitle("\(block.addedBlocks[0].attributes["wait"]!) seconds", for: .normal)
                     }
                     waitTimeButton.addTarget(self, action: #selector(waitModifier(sender:)), for: .touchUpInside)
                     waitTimeButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    waitTimeButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    waitTimeButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 36)
                     waitTimeButton.titleLabel?.numberOfLines = 0
-                    waitTimeButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    waitTimeButton.titleLabel?.textAlignment = NSTextAlignment.center
                     waitTimeButton.layer.borderWidth = 2.0
                     waitTimeButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -819,108 +827,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     waitTimeButton.isAccessibilityElement = true
                     
                     cell.addSubview(waitTimeButton)
-                }
-            
-            case "Set Variable":
-                if block.addedBlocks.isEmpty{
-                    let initialVariable = "orange"
-                    let initialVariableValue = 0
-
-                    let placeholderBlock = Block(name: "Set Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    
-                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
-                    placeholderBlock?.addAttributes(key: "variableValue", value: "\(initialVariableValue)")
-                    
-                    
-                    let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    setVariableButton.tag = indexPath.row
-                    setVariableButton.backgroundColor = .lightGray
-                    setVariableButton.setTitle("Variable = \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \nValue = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
-                    setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
-                    setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
-                    setVariableButton.titleLabel?.numberOfLines = 0
-                    setVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    setVariableButton.layer.borderWidth = 2.0
-                    setVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    setVariableButton.accessibilityLabel = "Set Variable Value"
-                    setVariableButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(setVariableButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    setVariableButton.tag = indexPath.row
-                    setVariableButton.backgroundColor = .lightGray
-                    setVariableButton.setTitle("Variable = \(block.addedBlocks[0].attributes["variableSelected"]!) \nValue = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
-                    setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
-                    setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    setVariableButton.titleLabel?.numberOfLines = 0
-                    setVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    setVariableButton.layer.borderWidth = 2.0
-                    setVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    setVariableButton.accessibilityLabel = "Set variable value"
-                    setVariableButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(setVariableButton)
-                }
-                
-            case "Actions and Variables":
-                if block.addedBlocks.isEmpty{
-//                    let initialVariable = "orange"
-//                    let initialVariableValue = 0
-                    
-                    let placeholderBlock = Block(name: "Actions and Variables", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    
-//                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
-//                    placeholderBlock?.addAttributes(key: "variableValue", value: "\(initialVariableValue)")
-                    
-                    
-                    let actionAndVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    actionAndVariableButton.tag = indexPath.row
-                    actionAndVariableButton.backgroundColor = .lightGray
-                    actionAndVariableButton.setTitle("Actions and Variables", for: .normal)
-                    actionAndVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
-                    actionAndVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    actionAndVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
-                    actionAndVariableButton.titleLabel?.numberOfLines = 0
-                    actionAndVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    actionAndVariableButton.layer.borderWidth = 2.0
-                    actionAndVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    actionAndVariableButton.accessibilityLabel = "Set Action and Variable"
-                    actionAndVariableButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(actionAndVariableButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let actionAndVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-
-                    actionAndVariableButton.tag = indexPath.row
-                    actionAndVariableButton.backgroundColor = .lightGray
-                    actionAndVariableButton.setTitle("Actions and Variables", for: .normal)
-                    actionAndVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
-                    actionAndVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    actionAndVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    actionAndVariableButton.titleLabel?.numberOfLines = 0
-                    actionAndVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    actionAndVariableButton.layer.borderWidth = 2.0
-                    actionAndVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    actionAndVariableButton.accessibilityLabel = "Set Action and Variable"
-                    actionAndVariableButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(actionAndVariableButton)
                 }
                 
             default:
@@ -967,13 +873,34 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "RepeatModifier", sender: nil)
     }
     
-    @objc func variableModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "VariableModifier", sender: nil)
-    }
-    
-    @objc func buttonClicked(sender: UIButton!){
-        print ("Button clicked")
+    func changeModifierBlockColor(color: String) -> UIColor {
+        // test with black
+        if color.elementsEqual("black"){
+           return UIColor.black
+        }
+        if color.elementsEqual("red"){
+            return UIColor.red
+        }
+        if color.elementsEqual("orange"){
+            return UIColor.orange
+        }
+        if color.elementsEqual("yellow"){
+            return UIColor.yellow
+        }
+        if color.elementsEqual("green"){
+            return UIColor.green
+        }
+        if color.elementsEqual("blue"){
+            // RGB values from Storyboard source code
+            return UIColor(displayP3Red: 0, green: 0.5898, blue: 1, alpha: 1)
+        }
+        if color.elementsEqual("purple"){
+            return UIColor(displayP3Red: 0.58188, green: 0.2157, blue: 1, alpha: 1)
+        }
+        if color.elementsEqual("white"){
+            return UIColor.white
+        }
+            return UIColor.purple // default color
     }
     
     func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
@@ -1114,7 +1041,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
         
-        if let destinationViewController = segue.destination as? SetVariableModViewController{
+        // Segue to EyeLightModifierViewController
+        if let destinationViewController = segue.destination as? EyeLightModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }

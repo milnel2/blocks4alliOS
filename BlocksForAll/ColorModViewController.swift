@@ -43,6 +43,7 @@ class ColorModViewController: UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["lightColor"] = colorSelected
+            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] = colorSelected
         }
     }
 }
