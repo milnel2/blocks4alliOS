@@ -513,18 +513,20 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     
                     let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    let image = UIImage(named: "hear_voice.pdf")
                     
                     ifButton.tag = indexPath.row
+                    ifButton.setBackgroundImage(image, for: .normal)
                     ifButton.backgroundColor = .lightGray
-                    ifButton.setTitle("Boolean \(placeholderBlock?.attributes["booleanSelected"] ?? "hear_voice")", for: .normal)
-                    ifButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    ifButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    ifButton.titleLabel?.numberOfLines = 0
-                    ifButton.titleLabel?.textAlignment = NSTextAlignment.left
+//                    ifButton.setTitle("Boolean \(placeholderBlock?.attributes["booleanSelected"] ?? "hear_voice")", for: .normal)
+//                    ifButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+//                    ifButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    ifButton.titleLabel?.numberOfLines = 0
+//                    ifButton.titleLabel?.textAlignment = NSTextAlignment.left
                     ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
-                    ifButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    ifButton.layer.borderWidth = 2.0
-                    ifButton.layer.borderColor = UIColor.black.cgColor
+//                    ifButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    ifButton.layer.borderWidth = 2.0
+//                    ifButton.layer.borderColor = UIColor.black.cgColor
                     
                     ifButton.accessibilityLabel = "Set Boolean Condition for If"
                     ifButton.isAccessibilityElement = true
@@ -534,18 +536,23 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     _ = block.addedBlocks[0]
                     let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
+                    let image = UIImage(named: "hear_voice.pdf")
+                    
                     ifButton.tag = indexPath.row
+                    ifButton.setBackgroundImage(image, for: .normal)
                     ifButton.backgroundColor = .lightGray
+                    
                     // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
-                    ifButton.setTitle("Boolean \(block.addedBlocks[0].attributes["booleanSelected"] ?? "hear_voice")", for: .normal)
-                    ifButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    ifButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    ifButton.titleLabel?.numberOfLines = 0
-                    ifButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    
+//                    ifButton.setTitle("Boolean \(block.addedBlocks[0].attributes["booleanSelected"] ?? "hear_voice")", for: .normal)
+//                    ifButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+//                    ifButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    ifButton.titleLabel?.numberOfLines = 0
+//                    ifButton.titleLabel?.textAlignment = NSTextAlignment.left
                     ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
-                    ifButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    ifButton.layer.borderWidth = 2.0
-                    ifButton.layer.borderColor = UIColor.black.cgColor
+//                    ifButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    ifButton.layer.borderWidth = 2.0
+//                    ifButton.layer.borderColor = UIColor.black.cgColor
                     ifButton.accessibilityLabel = "Set Boolean Condition for If"
                     ifButton.isAccessibilityElement = true
                     
@@ -874,8 +881,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     setVariableButton.tag = indexPath.row
-                    setVariableButton.backgroundColor = .lightGray
-                    setVariableButton.setTitle("Variable = \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \nValue = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
+                    setVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setVariableButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
                     setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
                     setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     setVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
@@ -893,8 +900,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     setVariableButton.tag = indexPath.row
-                    setVariableButton.backgroundColor = .lightGray
-                    setVariableButton.setTitle("Variable = \(block.addedBlocks[0].attributes["variableSelected"]!) \nValue = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
+                    setVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
                     setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
                     setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     setVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
