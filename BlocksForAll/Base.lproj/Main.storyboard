@@ -438,7 +438,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <segue destination="Qcc-AD-WwK" kind="show" identifier="RepeatModifier" id="5OM-6I-IU4"/>
                         <segue destination="9VT-Qr-ako" kind="show" identifier="WaitModifier" id="1BY-eQ-UdM"/>
                         <segue destination="B5M-ey-3HD" kind="show" identifier="VariableModifier" id="DJw-3M-vha"/>
-                        <segue destination="gst-Ns-i6X" kind="show" id="44b-hj-rp4"/>
+                        <segue destination="gst-Ns-i6X" kind="show" identifier="IfModifier" id="44b-hj-rp4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W32-Q3-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -972,7 +972,6 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 </state>
                                 <connections>
                                     <action selector="obstacleSensed:" destination="gst-Ns-i6X" eventType="touchUpInside" id="euE-g1-1xx"/>
-                                    <action selector="sense_obstacle:" destination="gst-Ns-i6X" eventType="touchUpInside" id="ccI-c3-KSy"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Boolean Expression:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGh-Sc-60y">
@@ -1027,7 +1026,6 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <image name="sense_obstacle" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="44b-hj-rp4"/>
         <segue reference="tEr-9n-TQZ"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="s7f-fy-WFP"/>

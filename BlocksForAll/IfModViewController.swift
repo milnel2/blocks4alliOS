@@ -15,9 +15,6 @@ class IfModViewController: UIViewController{
     var modifierBlockIndexSender: Int?
     var booleanSelected: String = "hear_voice"
     
-    
-    
-    
     @IBAction func hearVoiceBoolean(_ sender: Any) {
         booleanSelected = "hear_voice"
         

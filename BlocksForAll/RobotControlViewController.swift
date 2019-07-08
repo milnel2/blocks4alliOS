@@ -507,6 +507,7 @@ class ExecutingProgram {
         return WWCommandToolbelt.moveStop()
     }
     
+    //decomposition of light functions
     func playLight () -> WWCommandLightRGB{
         var color = ""
         for block in blocksStack{
@@ -514,6 +515,7 @@ class ExecutingProgram {
                 color = String(block.addedBlocks[0].attributes["lightColor"] ?? "white")
             }
         }
+        
         
         var selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
         switch color{
