@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
-class SetVariableModViewController: UIViewController, UITextFieldDelegate{
+class SetVariableModViewController: UIViewController {
     
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
     var variableValue: Int = 0
     
+
     
     //Reference for knowing which button is selected
     // https://stackoverflow.com/questions/33906060/select-deselect-buttons-swift-xcode-7
@@ -111,17 +112,16 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
         viewTapped()
     }
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
+    var activeField: UITextField?
+    var lastOffset: CGPoint!
+    var keyboardHeight: CGFloat!
+    @IBOutlet weak var constraintHeight: NSLayoutConstraint!
     
-    /** https://appsandbiscuits.com/getting-what-the-user-typed-ios-7-2e56a678e7a7
-     help from Andy O'Sullivan regarding how to dismiss keyboard when return clicked **/
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == VariableValue {
-            textField.resignFirstResponder()
-        }
-        return true
-    }
     
-    override func viewDidLoad() {
+  
+    @objc override func viewDidLoad() {
         super.viewDidLoad()
         
         VariableValue!.delegate = self
@@ -129,10 +129,28 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
         let tapRecogniser = UITapGestureRecognizer()
         tapRecogniser.addTarget(self, action: #selector(self.viewTapped))
         self.view.addGestureRecognizer(tapRecogniser)
+        
+        // Observe keyboard change
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        // Add touch gesture for contentView
+        self.contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnTextView(gesture:))))
     }
     
+    /** https://appsandbiscuits.com/getting-what-the-user-typed-ios-7-2e56a678e7a7
+     help from Andy O'Sullivan regarding how to dismiss keyboard when return clicked **/
     @objc func viewTapped(){
         self.view.endEditing(true)
+    }
+    
+    @objc func returnTextView(gesture: UIGestureRecognizer) {
+        guard activeField != nil else {
+            return
+        }
+        
+        activeField?.resignFirstResponder()
+        activeField = nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -146,5 +164,64 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
     }
     
     
+}
+
+//keyboard code below from https://github.com/dzungnguyen1993/KeyboardHandling
+// MARK: UITextFieldDelegate
+extension SetVariableModViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        activeField = textField
+        lastOffset = self.scrollView.contentOffset
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        activeField?.resignFirstResponder()
+        activeField = nil
+        return true
+    }
+}
+
+// MARK: Keyboard Handling
+extension SetVariableModViewController{
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if keyboardHeight != nil {
+            return
+        }
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            keyboardHeight = keyboardSize.height
+            
+            // so increase contentView's height by keyboard height
+            UIView.animate(withDuration: 0.3, animations: {
+                self.constraintHeight.constant += self.keyboardHeight
+            })
+            
+            // move if keyboard hide input field
+            let distanceToBottom = self.scrollView.frame.size.height - (activeField?.frame.origin.y)! - (activeField?.frame.size.height)!
+            let collapseSpace = keyboardHeight - distanceToBottom
+            
+            if collapseSpace < 0 {
+                // no collapse
+                return
+            }
+            
+            // set new offset for scroll view
+            UIView.animate(withDuration: 0.3, animations: {
+                // scroll to the position above keyboard 10 points
+                self.scrollView.contentOffset = CGPoint(x: self.lastOffset.x, y: collapseSpace + 10)
+            })
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.3) {
+            self.constraintHeight.constant -= self.keyboardHeight
+            
+            self.scrollView.contentOffset = self.lastOffset
+        }
+        
+        keyboardHeight = nil
+    }
 }
 
