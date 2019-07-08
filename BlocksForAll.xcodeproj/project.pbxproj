@@ -13,6 +13,7 @@
 		025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */; };
 		02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */; };
 		62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */; };
+		62EA50BC22CE52E7002BD4ED /* IfModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */; };
 		701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701A43861EC26EFD00314599 /* BlocksViewController.swift */; };
 		F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */; };
 		F10F71691E65BFF50049F3AA /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71681E65BFF50049F3AA /* Block.swift */; };
@@ -56,6 +57,7 @@
 		02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceSpeedModViewController.swift; sourceTree = "<group>"; };
 		02F5F94122C12637000F43B7 /* ReleaseBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ReleaseBlocksMenu.plist; sourceTree = "<group>"; };
 		62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVariableModViewController.swift; sourceTree = "<group>"; };
+		62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfModViewController.swift; sourceTree = "<group>"; };
 		701A43861EC26EFD00314599 /* BlocksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksViewController.swift; path = ../BlocksViewController.swift; sourceTree = "<group>"; };
 		F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewController.swift; sourceTree = "<group>"; };
 		F10F71681E65BFF50049F3AA /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */,
 				F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */,
 				023D633022BC0B2E00A8002C /* RepeatModViewController.swift */,
+				62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */,
 				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
 				02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */,
 				023D633222BD34EE00A8002C /* WaitModViewController.swift */,
@@ -317,6 +320,7 @@
 				F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */,
 				F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */,
 				62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */,
+				62EA50BC22CE52E7002BD4ED /* IfModViewController.swift in Sources */,
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
 				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
