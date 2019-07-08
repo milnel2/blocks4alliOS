@@ -992,9 +992,14 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                     </view>
                     <connections>
                         <outlet property="VariableValue" destination="0EE-tA-7aY" id="Rbn-tb-XMp"/>
+                        <outlet property="appleButton" destination="rgQ-Jh-7kw" id="3gN-A7-aMs"/>
+                        <outlet property="bananaButton" destination="Uv9-Kz-RsF" id="d8r-3m-dld"/>
+                        <outlet property="cherryButton" destination="e5m-D2-7ru" id="doI-uW-niP"/>
                         <outlet property="constraintHeight" destination="BBe-De-ksp" id="ThT-15-2jd"/>
                         <outlet property="contentView" destination="DI7-Nh-FeR" id="OoF-jB-EJN"/>
+                        <outlet property="orangeButton" destination="GrT-2z-xvO" id="QHV-fO-W9P"/>
                         <outlet property="scrollView" destination="pTL-dz-pnG" id="DH7-Tt-T1a"/>
+                        <outlet property="watermelonButton" destination="Skb-YP-GZa" id="sGD-6j-gt3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44J-gd-q9d" userLabel="First Responder" sceneMemberID="firstResponder"/>

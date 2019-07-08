@@ -15,7 +15,19 @@ class SetVariableModViewController: UIViewController {
     var variableSelected: String = "orange"
     var variableValue: Int = 0
     
-
+    @IBOutlet weak var orangeButton: UIButton!
+    @IBOutlet weak var bananaButton: UIButton!
+    @IBOutlet weak var cherryButton: UIButton!
+    @IBOutlet weak var watermelonButton: UIButton!
+    @IBOutlet weak var appleButton: UIButton!
+    
+    func deselectAll(){
+        orangeButton.layer.borderWidth = 0
+        bananaButton.layer.borderWidth = 0
+        cherryButton.layer.borderWidth = 0
+        watermelonButton.layer.borderWidth = 0
+        appleButton.layer.borderWidth = 0
+    }
     
     //Reference for knowing which button is selected
     // https://stackoverflow.com/questions/33906060/select-deselect-buttons-swift-xcode-7
@@ -29,6 +41,7 @@ class SetVariableModViewController: UIViewController {
                 button.isSelected = false
                 button.layer.borderWidth = 0
             } else {
+                deselectAll()
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = UIColor.green.cgColor
@@ -46,6 +59,7 @@ class SetVariableModViewController: UIViewController {
                 button.isSelected = false
                 button.layer.borderWidth = 0
             } else {
+                deselectAll()
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = UIColor.green.cgColor
@@ -62,6 +76,7 @@ class SetVariableModViewController: UIViewController {
                 button.isSelected = false
                 button.layer.borderWidth = 0
             } else {
+                deselectAll()
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = UIColor.green.cgColor
@@ -79,6 +94,7 @@ class SetVariableModViewController: UIViewController {
                 button.isSelected = false
                 button.layer.borderWidth = 0
             } else {
+                deselectAll()
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = UIColor.green.cgColor
@@ -97,6 +113,7 @@ class SetVariableModViewController: UIViewController {
                 button.isSelected = false
                 button.layer.borderWidth = 0
             } else {
+                deselectAll()
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = UIColor.green.cgColor
