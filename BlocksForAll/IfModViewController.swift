@@ -24,5 +24,10 @@ class IfModViewController: UIViewController{
         booleanSelected = "obstacle_sensed"
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.destination is BlocksViewController{
+    blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["booleanSelected"] = booleanSelected
+        }
+    }
     
 }
