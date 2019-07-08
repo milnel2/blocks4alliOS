@@ -14,23 +14,89 @@ class DistanceSpeedModViewController: UIViewController{
     
     //TODO: update these based on Dash API
     var distance: Double = 30
-    var speed: Double = 10
+    var speed: String = "Normal"
     var modifierBlockIndexSender: Int?
+    var robotSpeed: Double = 3
+    let interval: Float = 10
     
     @IBOutlet weak var distanceSlider: UISlider!
-    @IBOutlet weak var speedSlider: UISlider!
+    @IBOutlet weak var slowButton: UIButton!
+    @IBOutlet weak var fastButton: UIButton!
+    @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var distanceDisplayed: UILabel!
+    
+    override func viewDidLoad() {
+        // default speed: Normal or preserve last selection
+        var previousDistanceString: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
+        var previousDistance = Int(previousDistanceString)
+        distanceDisplayed.text = "\(previousDistance ?? 30)"
+        distanceSlider.setValue(Float(previousDistance!), animated: true)
+        // preserve previously selected value
+        distance = Double(previousDistance!)
+        
+        speedLabel.text = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+        // preserves previously selected value
+        speed = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+        
+        distanceDisplayed.accessibilityValue = "The current distance selected is \(Int(distance)) centimeters"
+    }
     
     @IBAction func distanceSliderChanged(_ sender: UISlider) {
+        let roundingNumber: Float = (interval/2.0)
         distance = Double(sender.value)
+        var roundedDistance = (interval*floorf(((sender.value+roundingNumber)/interval)))
+        sender.accessibilityValue = "\(Int(roundedDistance)) centimeters"
+        sender.setValue(roundedDistance, animated:false)
+        distanceDisplayed.text = "\(Int(roundedDistance))"
+        
+        distanceDisplayed.accessibilityValue = "The current distance selected is \(Int(roundedDistance)) centimeters"
     }
-    @IBAction func speedSliderChanged(_ sender: UISlider) {
-        speed = Double(sender.value)
+    
+    @IBAction func slowButtonPressed(_ sender: UIButton) {
+        switch speed {
+        case "Really Fast":
+            speed = "Fast"
+            speedLabel.text = speed
+        case "Fast":
+            speed = "Normal"
+            speedLabel.text = speed
+        case "Normal":
+            speed = "Slow"
+            speedLabel.text = speed
+        case "Slow":
+            speed = "Very Slow"
+            speedLabel.text = speed
+        default:
+            print("can't be slowed")
+        }
     }
+    
+    @IBAction func fastButtonPressed(_ sender: UIButton) {
+        switch speed {
+        case "Very Slow":
+            speed = "Slow"
+            speedLabel.text = speed
+        case "Slow":
+            speed = "Normal"
+            speedLabel.text = speed
+        case "Normal":
+            speed = "Fast"
+            speedLabel.text = speed
+        case "Fast":
+            speed = "Really Fast"
+            speedLabel.text = speed
+        default:
+            print("can't make faster")
+        }
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = "\(Int(speed))"
+            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
         }
     }
+    
+    
 }

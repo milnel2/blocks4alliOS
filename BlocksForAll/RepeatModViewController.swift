@@ -17,6 +17,16 @@ class RepeatModViewController: UIViewController{
     
     @IBOutlet weak var timesToRepeatLabel: UILabel!
     
+    override func viewDidLoad() {
+        // default times to repeat: 2 or preserve last selection
+        var previousRepsString: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["timesToRepeat"] ?? "2"
+        var previousReps = Int(previousRepsString)
+        timesToRepeatLabel.text = "\(previousReps ?? 2)"
+        
+        // preserve previously selected value
+        timesToRepeat = previousReps!
+    }
+    
     @IBAction func plusButtonPressed(_ sender: UIButton) {
         if (timesToRepeat < 20) {
             // prevents users from repeating more than 20 times (Blockly limit)

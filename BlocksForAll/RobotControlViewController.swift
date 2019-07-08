@@ -219,12 +219,10 @@ class ExecutingProgram {
             /* right now this code allows Dash to pivot from the wheel in the direction he is turning in (e.g. right turn, pivot on right wheel),
              if he needs to pivot from his head/center, then the direction he is turning in would need to be negative */
         case "Turn Left":
-            //25.3 in the right wheel (and 1 in the left) allows Dash to turn left 90 degrees
-            myAction = playTurn(turnConstantLW: (1.0), turnConstantRW: (25.3), cmdToSend: cmdToSend)
+            myAction = playTurn(direction: 0, cmdToSend: cmdToSend)
             
         case "Turn Right":
-            //25.3 in the left wheel (and 1 in the right) allows Dash to turn right 90 degrees
-            myAction = playTurn(turnConstantLW: (25.3), turnConstantRW: (1.0), cmdToSend: cmdToSend)
+            myAction = playTurn(direction:1, cmdToSend: cmdToSend)
             
             
             
@@ -481,28 +479,117 @@ class ExecutingProgram {
     //decomposition of drive functions
     func playDrive (command: String, driveConstant: Double,  cmdToSend: WWCommandSetSequence) -> WWCommandSet{
         var distance = 0.0
+        var robotSpeed = 0.0
+        var speed: String
         for block in blocksStack{
-            if block.name.contains("Drive Forward"){
+            if (block.name.contains("Drive Forward") || block.name.contains("Drive Backward")) {
+                speed = block.addedBlocks[0].attributes["speed"] ?? "Normal"
                 distance = Double(block.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
+                
+                switch speed {
+                case "Really Fast":
+                    robotSpeed = 5.0
+                case "Fast":
+                    robotSpeed = 4.0
+                case "Normal":
+                    robotSpeed = 3.0
+                case "Slow":
+                    robotSpeed = 1.0
+                case "Very Slow":
+                    robotSpeed = 0.5
+                default:
+                    robotSpeed = 3.0
+                }
             }
         }
-        //        if(command.contains("0")){
-        //            var distanceString = command
-        //            distanceString = String(distanceString[distanceString.index(distanceString.endIndex, offsetBy: -2)...])
-        ////            distance = Double(distanceString)!
-        //        }
-        let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * distance), angular: 0)
+        
+        let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * robotSpeed), angular: 0)
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
-        cmdToSend.add(drive, withDuration: 2.0)
+        cmdToSend.add(drive, withDuration: (distance/robotSpeed))
         return WWCommandToolbelt.moveStop()
     }
     
-    //decomposition of turn functions
-    func playTurn (turnConstantLW: Double, turnConstantRW: Double, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+    // MARK: decomposition of turn functions
+    func playTurn (direction: Int, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+        var angleToTurn: Double = 45
+        var turnConstantLW: Double = 0
+        var turnConstantRW: Double = 0
+        
+        // TODO: clean up
+        for block in blocksStack{
+            if block.name.contains("Turn Left"){
+                angleToTurn = Double(block.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
+                if direction == 0 { // turn left
+                    switch angleToTurn{ // degrees
+                    case 45:
+                        turnConstantLW = 0
+                        turnConstantRW = 16
+                    case 90:
+                        turnConstantLW = 0
+                        turnConstantRW = 25.3
+                    case 135:
+                        turnConstantLW = 0
+                        turnConstantRW = 35
+                    case 180:
+                        turnConstantLW = 0
+                        turnConstantRW = 43
+                    case 225:
+                        turnConstantLW = 0
+                        turnConstantRW = 47
+                    case 270:
+                        turnConstantLW = 0
+                        turnConstantRW = 53
+                    case 315:
+                        turnConstantLW = 0
+                        turnConstantRW = 57
+                    case 360:
+                        turnConstantLW = 0
+                        turnConstantRW = 65
+                    default: // 45 degrees
+                        turnConstantLW = 0
+                        turnConstantRW = 16
+                    }
+                }
+            }
+            else if block.name.contains("Turn Right"){
+                angleToTurn = Double(block.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
+                if direction == 1 { // turn right
+                    switch angleToTurn{ // degrees
+                    case 45:
+                        turnConstantRW = 0
+                        turnConstantLW = 16
+                    case 90:
+                        turnConstantRW = 0
+                        turnConstantLW = 25.3
+                    case 135:
+                        turnConstantRW = 0
+                        turnConstantLW = 35
+                    case 180:
+                        turnConstantRW = 0
+                        turnConstantLW = 43
+                    case 225:
+                        turnConstantRW = 0
+                        turnConstantLW = 47
+                    case 270:
+                        turnConstantRW = 0
+                        turnConstantLW = 53
+                    case 315:
+                        turnConstantRW = 0
+                        turnConstantLW = 57
+                    case 360:
+                        turnConstantRW = 0
+                        turnConstantLW = 65
+                    default: // 45 degrees
+                        turnConstantRW = 0
+                        turnConstantLW = 16
+                    }
+                }
+            }
+        }
         let rotate = WWCommandSet()
-        rotate.setBodyWheels(WWCommandBodyWheels.init(leftWheel: (turnConstantLW * 25.3), rightWheel: (turnConstantRW * 1)))
-        //testing how to make turns better!
+        rotate.setBodyWheels(WWCommandBodyWheels.init(leftWheel: (turnConstantLW * 1), rightWheel: (turnConstantRW * 1)))
+        // testing how to make turns better!
         cmdToSend.add(rotate, withDuration: 1)
         return WWCommandToolbelt.moveStop()
     }
