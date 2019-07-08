@@ -513,7 +513,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     
                     let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    let image = UIImage(named: "hear_voice.pdf")
+                    let image = UIImage(named: "false.pdf")
                     
                     ifButton.tag = indexPath.row
                     ifButton.setBackgroundImage(image, for: .normal)
@@ -536,7 +536,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     _ = block.addedBlocks[0]
                     let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
-                    let image = UIImage(named: "hear_voice.pdf")
+                    let image = UIImage(named: "false.pdf")
                     
                     ifButton.tag = indexPath.row
                     ifButton.setBackgroundImage(image, for: .normal)
