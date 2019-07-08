@@ -503,18 +503,55 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             switch name{
             case "If":
                 if block.addedBlocks.isEmpty{
-                    //draw false block
-                    let placeholderBlock = Block(name: "False", color: Color.init(uiColor:UIColor.red ) , double: false, imageName: "false.pdf", type: "Boolean")
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = "False"
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+                    // Creates repeat button for modifier.
+                    let initialBoolean = "hear_voice"
+                    
+                    let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "booleanSelected", value: "\(initialBoolean)")
+                    
+                    
+                    let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    ifButton.tag = indexPath.row
+                    ifButton.backgroundColor = .lightGray
+                    ifButton.setTitle("Boolean \(placeholderBlock?.attributes["booleanSelected"] ?? "hear_voice")", for: .normal)
+                    ifButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    ifButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    ifButton.titleLabel?.numberOfLines = 0
+                    ifButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
+                    ifButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    ifButton.layer.borderWidth = 2.0
+                    ifButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    ifButton.accessibilityLabel = "Set Boolean Condition for If"
+                    ifButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(ifButton)
                 } else {
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+                    _ = block.addedBlocks[0]
+                    let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    ifButton.tag = indexPath.row
+                    ifButton.backgroundColor = .lightGray
+                    // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
+                    ifButton.setTitle("Boolean \(block.addedBlocks[0].attributes["booleanSelected"] ?? "hear_voice")", for: .normal)
+                    ifButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    ifButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    ifButton.titleLabel?.numberOfLines = 0
+                    ifButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
+                    ifButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    ifButton.layer.borderWidth = 2.0
+                    ifButton.layer.borderColor = UIColor.black.cgColor
+                    ifButton.accessibilityLabel = "Set Boolean Condition for If"
+                    ifButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(ifButton)
                 }
+                
             case "Repeat":
                 if block.addedBlocks.isEmpty{
                     // Creates repeat button for modifier.
@@ -872,56 +909,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(setVariableButton)
                 }
                 
-            case "Actions and Variables":
-                if block.addedBlocks.isEmpty{
-//                    let initialVariable = "orange"
-//                    let initialVariableValue = 0
-                    
-                    let placeholderBlock = Block(name: "Actions and Variables", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    
-//                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
-//                    placeholderBlock?.addAttributes(key: "variableValue", value: "\(initialVariableValue)")
-                    
-                    
-                    let actionAndVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    actionAndVariableButton.tag = indexPath.row
-                    actionAndVariableButton.backgroundColor = .lightGray
-                    actionAndVariableButton.setTitle("Actions and Variables", for: .normal)
-                    actionAndVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
-                    actionAndVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    actionAndVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
-                    actionAndVariableButton.titleLabel?.numberOfLines = 0
-                    actionAndVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    actionAndVariableButton.layer.borderWidth = 2.0
-                    actionAndVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    actionAndVariableButton.accessibilityLabel = "Set Action and Variable"
-                    actionAndVariableButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(actionAndVariableButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let actionAndVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-
-                    actionAndVariableButton.tag = indexPath.row
-                    actionAndVariableButton.backgroundColor = .lightGray
-                    actionAndVariableButton.setTitle("Actions and Variables", for: .normal)
-                    actionAndVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
-                    actionAndVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    actionAndVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    actionAndVariableButton.titleLabel?.numberOfLines = 0
-                    actionAndVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    actionAndVariableButton.layer.borderWidth = 2.0
-                    actionAndVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    actionAndVariableButton.accessibilityLabel = "Set Action and Variable"
-                    actionAndVariableButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(actionAndVariableButton)
-                }
                 
             default:
                 print("This block does not need a modifier.")
@@ -970,6 +957,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @objc func variableModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "VariableModifier", sender: nil)
+    }
+    
+    @objc func ifModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "IfModifier", sender: nil)
     }
     
     @objc func buttonClicked(sender: UIButton!){
@@ -1114,7 +1106,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
         
+        // Segue to SetVariableModViewController
         if let destinationViewController = segue.destination as? SetVariableModViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to IfModViewController
+        if let destinationViewController = segue.destination as? IfModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }

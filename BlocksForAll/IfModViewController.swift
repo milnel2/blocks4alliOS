@@ -16,6 +16,8 @@ class IfModViewController: UIViewController{
     var booleanSelected: String = "hear_voice"
     
     
+    
+    
     @IBAction func hearVoiceBoolean(_ sender: Any) {
         booleanSelected = "hear_voice"
         
@@ -32,6 +34,7 @@ class IfModViewController: UIViewController{
         }
     }
     
+
     
     @IBAction func obstacleSensed(_ sender: Any) {
         booleanSelected = "obstacle_sensed"
