@@ -30,7 +30,7 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
             } else {
                 button.isSelected = true
                 button.layer.borderWidth = 10
-                button.layer.borderColor = UIColor.yellow.cgColor
+                button.layer.borderColor = UIColor.green.cgColor
             }
         }
     }
@@ -47,7 +47,7 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
             } else {
                 button.isSelected = true
                 button.layer.borderWidth = 10
-                button.layer.borderColor = UIColor.yellow.cgColor
+                button.layer.borderColor = UIColor.green.cgColor
             }
         }
     }
@@ -63,7 +63,7 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
             } else {
                 button.isSelected = true
                 button.layer.borderWidth = 10
-                button.layer.borderColor = UIColor.yellow.cgColor
+                button.layer.borderColor = UIColor.green.cgColor
             }
         }
     }
@@ -80,7 +80,7 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
             } else {
                 button.isSelected = true
                 button.layer.borderWidth = 10
-                button.layer.borderColor = UIColor.yellow.cgColor
+                button.layer.borderColor = UIColor.green.cgColor
             }
         }
 
@@ -98,7 +98,7 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
             } else {
                 button.isSelected = true
                 button.layer.borderWidth = 10
-                button.layer.borderColor = UIColor.yellow.cgColor
+                button.layer.borderColor = UIColor.green.cgColor
             }
         }
 
