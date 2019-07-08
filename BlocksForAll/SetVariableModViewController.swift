@@ -29,8 +29,8 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
                 button.layer.borderWidth = 0
             } else {
                 button.isSelected = true
-                button.layer.borderWidth = 2
-                button.layer.borderColor = UIColor.black.cgColor
+                button.layer.borderWidth = 10
+                button.layer.borderColor = UIColor.yellow.cgColor
             }
         }
     }
@@ -46,8 +46,8 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
                 button.layer.borderWidth = 0
             } else {
                 button.isSelected = true
-                button.layer.borderWidth = 2
-                button.layer.borderColor = UIColor.black.cgColor
+                button.layer.borderWidth = 10
+                button.layer.borderColor = UIColor.yellow.cgColor
             }
         }
     }
@@ -62,8 +62,8 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
                 button.layer.borderWidth = 0
             } else {
                 button.isSelected = true
-                button.layer.borderWidth = 2
-                button.layer.borderColor = UIColor.black.cgColor
+                button.layer.borderWidth = 10
+                button.layer.borderColor = UIColor.yellow.cgColor
             }
         }
     }
@@ -79,8 +79,8 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
                 button.layer.borderWidth = 0
             } else {
                 button.isSelected = true
-                button.layer.borderWidth = 2
-                button.layer.borderColor = UIColor.black.cgColor
+                button.layer.borderWidth = 10
+                button.layer.borderColor = UIColor.yellow.cgColor
             }
         }
 
@@ -97,8 +97,8 @@ class SetVariableModViewController: UIViewController, UITextFieldDelegate{
                 button.layer.borderWidth = 0
             } else {
                 button.isSelected = true
-                button.layer.borderWidth = 2
-                button.layer.borderColor = UIColor.black.cgColor
+                button.layer.borderWidth = 10
+                button.layer.borderColor = UIColor.yellow.cgColor
             }
         }
 
