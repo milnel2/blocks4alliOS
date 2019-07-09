@@ -965,7 +965,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(setDriveVariableButton)
                 }
                 
-            case "Look Left or Right":
+            case "Look Up or Down":
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
@@ -1012,6 +1012,55 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     setLookUpDownVariableButton.isAccessibilityElement = true
                     
                     cell.addSubview(setLookUpDownVariableButton)
+                }
+                
+            case "Look Left or Right":
+                if block.addedBlocks.isEmpty{
+                    let initialVariable = "orange"
+                    
+                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    
+                    //                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
+                    
+                    
+                    let setLookLeftRightVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setLookLeftRightVariableButton.tag = indexPath.row
+                    setLookLeftRightVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setLookLeftRightVariableButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
+                    setLookLeftRightVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setLookLeftRightVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    setLookLeftRightVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
+                    setLookLeftRightVariableButton.titleLabel?.numberOfLines = 0
+                    setLookLeftRightVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setLookLeftRightVariableButton.layer.borderWidth = 2.0
+                    setLookLeftRightVariableButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    setLookLeftRightVariableButton.accessibilityLabel = "Set Look Left or Right Variable"
+                    setLookLeftRightVariableButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(setLookLeftRightVariableButton)
+                } else {
+                    _ = block.addedBlocks[0]
+                    let setLookLeftRightVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setLookLeftRightVariableButton.tag = indexPath.row
+                    setLookLeftRightVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setLookLeftRightVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
+                    setLookLeftRightVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setLookLeftRightVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    setLookLeftRightVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    setLookLeftRightVariableButton.titleLabel?.numberOfLines = 0
+                    setLookLeftRightVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setLookLeftRightVariableButton.layer.borderWidth = 2.0
+                    setLookLeftRightVariableButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    setLookLeftRightVariableButton.accessibilityLabel = "Set Look Left or Right Variable"
+                    setLookLeftRightVariableButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(setLookLeftRightVariableButton)
                 }
                 
             default:
