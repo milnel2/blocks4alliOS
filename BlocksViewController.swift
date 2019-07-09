@@ -1097,6 +1097,55 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(setWheelSpeedButton)
                 }
                 
+            case "Turn":
+                if block.addedBlocks.isEmpty{
+                    let initialVariable = "orange"
+                    
+                    let placeholderBlock = Block(name: "Choose Turn Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    
+                    //                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
+                    
+                    
+                    let setTurnButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setTurnButton.tag = indexPath.row
+                    setTurnButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setTurnButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
+                    setTurnButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setTurnButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    setTurnButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
+                    setTurnButton.titleLabel?.numberOfLines = 0
+                    setTurnButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setTurnButton.layer.borderWidth = 2.0
+                    setTurnButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    setTurnButton.accessibilityLabel = "Choose turn variable"
+                    setTurnButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(setTurnButton)
+                } else {
+                    _ = block.addedBlocks[0]
+                    let setTurnButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setTurnButton.tag = indexPath.row
+                    setTurnButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setTurnButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
+                    setTurnButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setTurnButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    setTurnButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    setTurnButton.titleLabel?.numberOfLines = 0
+                    setTurnButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setTurnButton.layer.borderWidth = 2.0
+                    setTurnButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    setTurnButton.accessibilityLabel = "Choose Turn Variable"
+                    setTurnButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(setTurnButton)
+                }
+                
             default:
                 print("This block does not need a modifier.")
             }
