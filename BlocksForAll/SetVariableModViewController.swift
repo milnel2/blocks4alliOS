@@ -9,18 +9,21 @@
 import Foundation
 import UIKit
 
+var variableDict = Dictionary<String, Int>()
 
 class SetVariableModViewController: UIViewController {
     
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
     var variableValue: Int = 0
+
     
     @IBOutlet weak var orangeButton: UIButton!
     @IBOutlet weak var bananaButton: UIButton!
     @IBOutlet weak var cherryButton: UIButton!
     @IBOutlet weak var watermelonButton: UIButton!
     @IBOutlet weak var appleButton: UIButton!
+
     
     func deselectAll(){
         orangeButton.layer.borderWidth = 0
@@ -52,7 +55,7 @@ class SetVariableModViewController: UIViewController {
     
     
     @IBAction func MelonVariable(_ sender: Any) {
-        variableSelected = "melon"
+        variableSelected = "watermelon"
         
         //Border when button is selected
         if let button = sender as? UIButton {
@@ -173,6 +176,7 @@ class SetVariableModViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
+            variableDict.updateValue(variableValue, forKey: variableSelected)
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
             
