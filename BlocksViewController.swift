@@ -931,7 +931,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     setDriveVariableButton.tag = indexPath.row
                     setDriveVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setDriveVariableButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
+//                    setDriveVariableButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
                     setDriveVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
                     setDriveVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     setDriveVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
@@ -950,7 +950,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     setDriveVariableButton.tag = indexPath.row
                     setDriveVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setDriveVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
+//                    setDriveVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
                     setDriveVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
                     setDriveVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                     setDriveVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
@@ -1061,6 +1061,55 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     setLookLeftRightVariableButton.isAccessibilityElement = true
                     
                     cell.addSubview(setLookLeftRightVariableButton)
+                }
+                
+            case "Wheel Speed":
+                if block.addedBlocks.isEmpty{
+                    let initialVariable = "orange"
+                    
+                    let placeholderBlock = Block(name: "Set Wheel Speed Variables", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    
+                    //                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
+                    
+                    
+                    let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setWheelSpeedButton.tag = indexPath.row
+                    setWheelSpeedButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setWheelSpeedButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
+                    setWheelSpeedButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setWheelSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    setWheelSpeedButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
+                    setWheelSpeedButton.titleLabel?.numberOfLines = 0
+                    setWheelSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setWheelSpeedButton.layer.borderWidth = 2.0
+                    setWheelSpeedButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    setWheelSpeedButton.accessibilityLabel = "Set Wheel Speed Variables"
+                    setWheelSpeedButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(setWheelSpeedButton)
+                } else {
+                    _ = block.addedBlocks[0]
+                    let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setWheelSpeedButton.tag = indexPath.row
+                    setWheelSpeedButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setWheelSpeedButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
+                    setWheelSpeedButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setWheelSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    setWheelSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    setWheelSpeedButton.titleLabel?.numberOfLines = 0
+                    setWheelSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setWheelSpeedButton.layer.borderWidth = 2.0
+                    setWheelSpeedButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    setWheelSpeedButton.accessibilityLabel = "Set Wheel Speed Variables"
+                    setWheelSpeedButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(setWheelSpeedButton)
                 }
                 
             default:
