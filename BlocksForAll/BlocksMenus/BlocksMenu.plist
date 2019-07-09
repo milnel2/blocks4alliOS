@@ -974,6 +974,8 @@
 				<string>#774B4B</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>DriveBackwardnForward.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -981,23 +983,13 @@
 				<key>editable</key>
 				<false/>
 				<key>name</key>
-				<string>Look Left or Right</string>
+				<string>Turn</string>
 				<key>color</key>
 				<string>#774B4B</string>
 				<key>double</key>
 				<false/>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Look Up or Down</string>
-				<key>color</key>
-				<string>#774B4B</string>
-				<key>double</key>
-				<false/>
+				<key>imageName</key>
+				<string>turn_var.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -1010,6 +1002,36 @@
 				<string>#774B4B</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>Wheel_LR.pdf</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Up or Down</string>
+				<key>color</key>
+				<string>#774B4B</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>LookUpnDown.pdf</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Left or Right</string>
+				<key>color</key>
+				<string>#774B4B</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>LookLeftnRight.pdf</string>
 			</dict>
 		</array>
 	</dict>
