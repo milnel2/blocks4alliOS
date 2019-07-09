@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 class SetVariableModViewController: UIViewController {
     
     var modifierBlockIndexSender: Int?
@@ -44,7 +45,7 @@ class SetVariableModViewController: UIViewController {
                 deselectAll()
                 button.isSelected = true
                 button.layer.borderWidth = 10
-                button.layer.borderColor = UIColor.green.cgColor
+                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
     }
@@ -62,7 +63,7 @@ class SetVariableModViewController: UIViewController {
                 deselectAll()
                 button.isSelected = true
                 button.layer.borderWidth = 10
-                button.layer.borderColor = UIColor.green.cgColor
+                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
     }
@@ -79,7 +80,7 @@ class SetVariableModViewController: UIViewController {
                 deselectAll()
                 button.isSelected = true
                 button.layer.borderWidth = 10
-                button.layer.borderColor = UIColor.green.cgColor
+                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
     }
@@ -97,7 +98,7 @@ class SetVariableModViewController: UIViewController {
                 deselectAll()
                 button.isSelected = true
                 button.layer.borderWidth = 10
-                button.layer.borderColor = UIColor.green.cgColor
+                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
 
@@ -116,7 +117,7 @@ class SetVariableModViewController: UIViewController {
                 deselectAll()
                 button.isSelected = true
                 button.layer.borderWidth = 10
-                button.layer.borderColor = UIColor.green.cgColor
+                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
 
