@@ -488,17 +488,17 @@ class ExecutingProgram {
                 
                 switch speed {
                 case "Really Fast":
-                    robotSpeed = 5.0
+                    robotSpeed = 50.0
                 case "Fast":
-                    robotSpeed = 4.0
+                    robotSpeed = 40.0
                 case "Normal":
-                    robotSpeed = 3.0
+                    robotSpeed = 30.0
                 case "Slow":
-                    robotSpeed = 1.0
+                    robotSpeed = 10.0
                 case "Very Slow":
-                    robotSpeed = 0.5
+                    robotSpeed = 5.0
                 default:
-                    robotSpeed = 3.0
+                    robotSpeed = 30.0
                 }
             }
         }
@@ -506,7 +506,9 @@ class ExecutingProgram {
         let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * robotSpeed), angular: 0)
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
-        cmdToSend.add(drive, withDuration: (distance/robotSpeed))
+        cmdToSend.add(drive, withDuration: (distance/robotSpeed) * 1.25)
+        /*by multiplying by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
+        distance he needs to in the right time. However he travels a little too far on the very slow speed. */
         return WWCommandToolbelt.moveStop()
     }
     

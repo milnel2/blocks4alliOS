@@ -588,7 +588,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     distanceSpeedButton.tag = indexPath.row
-                    distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 91/255, blue: 20/255, alpha: 1)
+                    distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
                     distanceSpeedButton.setTitle("\(placeholderBlock?.attributes["distance"] ?? "30") cm, \(placeholderBlock?.attributes["speed"] ?? "Normal")", for: .normal)
                     distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 40)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -608,7 +608,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     distanceSpeedButton.tag = indexPath.row
-                    distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 91/255, blue: 20/255, alpha: 1)
+                    distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
                     distanceSpeedButton.setTitle("\(block.addedBlocks[0].attributes["distance"]!) cm, \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
                     distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 40)
                     distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -638,7 +638,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let angleButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     angleButton.tag = indexPath.row
-                    angleButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 91/255, blue: 20/255, alpha: 1)
+                    angleButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
                     angleButton.setTitle("\(placeholderBlock?.attributes["angle"] ?? "90")", for: .normal)
                     angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
                     angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -657,7 +657,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let angleButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     angleButton.tag = indexPath.row
-                    angleButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 91/255, blue: 20/255, alpha: 1)
+                    angleButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
                     angleButton.setTitle("\(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
                     angleButton.addTarget(self, action: #selector(angleModifier(sender:)), for: .touchUpInside)
                     angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
