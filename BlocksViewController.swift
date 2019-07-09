@@ -916,6 +916,103 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(setVariableButton)
                 }
                 
+            case "Drive":
+                if block.addedBlocks.isEmpty{
+                    let initialVariable = "orange"
+                    
+                    let placeholderBlock = Block(name: "Set Drive Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    
+//                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
+                    
+                    
+                    let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setDriveVariableButton.tag = indexPath.row
+                    setDriveVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setDriveVariableButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
+                    setDriveVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setDriveVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    setDriveVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
+                    setDriveVariableButton.titleLabel?.numberOfLines = 0
+                    setDriveVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setDriveVariableButton.layer.borderWidth = 2.0
+                    setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    setDriveVariableButton.accessibilityLabel = "Set Drive Variable"
+                    setDriveVariableButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(setDriveVariableButton)
+                } else {
+                    _ = block.addedBlocks[0]
+                    let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setDriveVariableButton.tag = indexPath.row
+                    setDriveVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setDriveVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
+                    setDriveVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setDriveVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    setDriveVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    setDriveVariableButton.titleLabel?.numberOfLines = 0
+                    setDriveVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setDriveVariableButton.layer.borderWidth = 2.0
+                    setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    setDriveVariableButton.accessibilityLabel = "Set Drive Variable"
+                    setDriveVariableButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(setDriveVariableButton)
+                }
+                
+            case "Look Left or Right":
+                if block.addedBlocks.isEmpty{
+                    let initialVariable = "orange"
+                    
+                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    
+                    //                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
+                    
+                    
+                    let setLookUpDownVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setLookUpDownVariableButton.tag = indexPath.row
+                    setLookUpDownVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setLookUpDownVariableButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
+                    setLookUpDownVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setLookUpDownVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    setLookUpDownVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
+                    setLookUpDownVariableButton.titleLabel?.numberOfLines = 0
+                    setLookUpDownVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setLookUpDownVariableButton.layer.borderWidth = 2.0
+                    setLookUpDownVariableButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    setLookUpDownVariableButton.accessibilityLabel = "Set Look Left or Right Variable"
+                    setLookUpDownVariableButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(setLookUpDownVariableButton)
+                } else {
+                    _ = block.addedBlocks[0]
+                    let setLookUpDownVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setLookUpDownVariableButton.tag = indexPath.row
+                    setLookUpDownVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setLookUpDownVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
+                    setLookUpDownVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
+                    setLookUpDownVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                    setLookUpDownVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                    setLookUpDownVariableButton.titleLabel?.numberOfLines = 0
+                    setLookUpDownVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setLookUpDownVariableButton.layer.borderWidth = 2.0
+                    setLookUpDownVariableButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    setLookUpDownVariableButton.accessibilityLabel = "Set Look Left or Right Variable"
+                    setLookUpDownVariableButton.isAccessibilityElement = true
+                    
+                    cell.addSubview(setLookUpDownVariableButton)
+                }
                 
             default:
                 print("This block does not need a modifier.")
