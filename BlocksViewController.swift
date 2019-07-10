@@ -912,16 +912,25 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                     
                     
-                    let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth/2, height: blockHeight/2))
                     
                     setDriveVariableButton.tag = indexPath.row
-                    setDriveVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setDriveVariableButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
-                    setDriveVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
-                    setDriveVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setDriveVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
-                    setDriveVariableButton.titleLabel?.numberOfLines = 0
-                    setDriveVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    switch block.addedBlocks[0].attributes["variableSelected"]{
+                    case "orange":
+                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                    case "cherry":
+                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                    case "banana":
+                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                    case "watermelon":
+                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                    case "apple":
+                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                    default:
+                        setDriveVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    }
+                    setDriveVariableButton.addTarget(self, action: #selector(driveModifier(sender:)), for: .touchUpInside)
+
                     setDriveVariableButton.layer.borderWidth = 2.0
                     setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -931,7 +940,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(setDriveVariableButton)
                 } else {
                     _ = block.addedBlocks[0]
-                    let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth/2, height: blockHeight/2))
                     
                     switch block.addedBlocks[0].attributes["variableSelected"]{
                     case "orange":
@@ -949,12 +958,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                     
                     setDriveVariableButton.tag = indexPath.row
-                    setDriveVariableButton.setTitle("\(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
-                    setDriveVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
-                    setDriveVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setDriveVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    setDriveVariableButton.titleLabel?.numberOfLines = 0
-                    setDriveVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    setDriveVariableButton.addTarget(self, action: #selector(driveModifier(sender:)), for: .touchUpInside)
                     setDriveVariableButton.layer.borderWidth = 2.0
                     setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -972,19 +976,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
-                    //                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
+                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                     
                     
                     let setLookUpDownVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     setLookUpDownVariableButton.tag = indexPath.row
-                    setLookUpDownVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setLookUpDownVariableButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
-                    setLookUpDownVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
-                    setLookUpDownVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setLookUpDownVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
-                    setLookUpDownVariableButton.titleLabel?.numberOfLines = 0
-                    setLookUpDownVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    switch block.addedBlocks[0].attributes["variableSelected"]{
+                    case "orange":
+                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                    case "cherry":
+                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                    case "banana":
+                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                    case "watermelon":
+                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                    case "apple":
+                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                    default:
+                        setLookUpDownVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    }
+                    setLookUpDownVariableButton.addTarget(self, action: #selector(lookUpDownModifier(sender:)), for: .touchUpInside)
                     setLookUpDownVariableButton.layer.borderWidth = 2.0
                     setLookUpDownVariableButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -997,13 +1009,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let setLookUpDownVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     setLookUpDownVariableButton.tag = indexPath.row
-                    setLookUpDownVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setLookUpDownVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
-                    setLookUpDownVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
-                    setLookUpDownVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setLookUpDownVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    setLookUpDownVariableButton.titleLabel?.numberOfLines = 0
-                    setLookUpDownVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    switch block.addedBlocks[0].attributes["variableSelected"]{
+                    case "orange":
+                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                    case "cherry":
+                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                    case "banana":
+                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                    case "watermelon":
+                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                    case "apple":
+                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                    default:
+                        setLookUpDownVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    }
+                   
+                    setLookUpDownVariableButton.addTarget(self, action: #selector(lookUpDownModifier(sender:)), for: .touchUpInside)
                     setLookUpDownVariableButton.layer.borderWidth = 2.0
                     setLookUpDownVariableButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -1021,19 +1042,29 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
-                    //                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
+                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                     
                     
                     let setLookLeftRightVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     setLookLeftRightVariableButton.tag = indexPath.row
-                    setLookLeftRightVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setLookLeftRightVariableButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
-                    setLookLeftRightVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
-                    setLookLeftRightVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setLookLeftRightVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
-                    setLookLeftRightVariableButton.titleLabel?.numberOfLines = 0
-                    setLookLeftRightVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    
+                    switch block.addedBlocks[0].attributes["variableSelected"]{
+                    case "orange":
+                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                    case "cherry":
+                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                    case "banana":
+                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                    case "watermelon":
+                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                    case "apple":
+                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                    default:
+                        setLookLeftRightVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    }
+                    
+                    setLookLeftRightVariableButton.addTarget(self, action: #selector(lookLeftRightModifier(sender:)), for: .touchUpInside)
                     setLookLeftRightVariableButton.layer.borderWidth = 2.0
                     setLookLeftRightVariableButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -1046,13 +1077,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let setLookLeftRightVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     setLookLeftRightVariableButton.tag = indexPath.row
-                    setLookLeftRightVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setLookLeftRightVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
-                    setLookLeftRightVariableButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
-                    setLookLeftRightVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setLookLeftRightVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    setLookLeftRightVariableButton.titleLabel?.numberOfLines = 0
-                    setLookLeftRightVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    switch block.addedBlocks[0].attributes["variableSelected"]{
+                    case "orange":
+                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                    case "cherry":
+                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                    case "banana":
+                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                    case "watermelon":
+                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                    case "apple":
+                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                    default:
+                        setLookLeftRightVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    }
+                    
+                    setLookLeftRightVariableButton.addTarget(self, action: #selector(lookLeftRightModifier(sender:)), for: .touchUpInside)
                     setLookLeftRightVariableButton.layer.borderWidth = 2.0
                     setLookLeftRightVariableButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -1065,24 +1105,52 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Wheel Speed":
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
+                    let initialVariableTwo = "orange"
                     
                     let placeholderBlock = Block(name: "Set Wheel Speed Variables", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
-                    //                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
+                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
+                    placeholderBlock?.addAttributes(key: "variableSelectedTwo", value: "\(initialVariableTwo)")
                     
                     
-                    let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth/2, height: blockHeight/2))
+                    
+                    let setWheelSpeedButtonTwo = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     setWheelSpeedButton.tag = indexPath.row
-                    setWheelSpeedButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setWheelSpeedButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
-                    setWheelSpeedButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
-                    setWheelSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setWheelSpeedButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
-                    setWheelSpeedButton.titleLabel?.numberOfLines = 0
-                    setWheelSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    switch block.addedBlocks[0].attributes["variableSelected"]{
+                    case "orange":
+                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                    case "cherry":
+                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                    case "banana":
+                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                    case "watermelon":
+                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                    case "apple":
+                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                    default:
+                        setWheelSpeedButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    }
+                    
+                    switch block.addedBlocks[0].attributes["variableSelectedTwo"]{
+                    case "orange":
+                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                    case "cherry":
+                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                    case "banana":
+                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                    case "watermelon":
+                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                    case "apple":
+                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                    default:
+                        setWheelSpeedButtonTwo.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    }
+                    
+                    setWheelSpeedButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
                     setWheelSpeedButton.layer.borderWidth = 2.0
                     setWheelSpeedButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -1092,16 +1160,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     cell.addSubview(setWheelSpeedButton)
                 } else {
                     _ = block.addedBlocks[0]
-                    let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth/2, height: blockHeight/2))
                     
                     setWheelSpeedButton.tag = indexPath.row
-                    setWheelSpeedButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setWheelSpeedButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
-                    setWheelSpeedButton.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
-                    setWheelSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setWheelSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    setWheelSpeedButton.titleLabel?.numberOfLines = 0
-                    setWheelSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
+                    switch block.addedBlocks[0].attributes["variableSelected"]{
+                    case "orange":
+                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                    case "cherry":
+                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                    case "banana":
+                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                    case "watermelon":
+                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                    case "apple":
+                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                    default:
+                        setWheelSpeedButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    }
+                    setWheelSpeedButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
                     setWheelSpeedButton.layer.borderWidth = 2.0
                     setWheelSpeedButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -1140,12 +1216,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         setTurnButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
                     }
                     
-//                    setTurnButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
                     setTurnButton.addTarget(self, action: #selector(turnModifier(sender:)), for: .touchUpInside)
-//                    setTurnButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-//                    setTurnButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
-//                    setTurnButton.titleLabel?.numberOfLines = 0
-//                    setTurnButton.titleLabel?.textAlignment = NSTextAlignment.left
                     setTurnButton.layer.borderWidth = 2.0
                     setTurnButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -1174,12 +1245,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         setTurnButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
                     }
 
-//                    setTurnButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
                     setTurnButton.addTarget(self, action: #selector(turnModifier(sender:)), for: .touchUpInside)
-//                    setTurnButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-//                    setTurnButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-//                    setTurnButton.titleLabel?.numberOfLines = 0
-//                    setTurnButton.titleLabel?.textAlignment = NSTextAlignment.left
                     setTurnButton.layer.borderWidth = 2.0
                     setTurnButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -1246,6 +1312,26 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @objc func turnModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "turnModifier", sender: nil)
+    }
+    
+    @objc func lookUpDownModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "lookUpDownModifier", sender: nil)
+    }
+    
+    @objc func lookLeftRightModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "lookLeftRightModifier", sender: nil)
+    }
+    
+    @objc func driveModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "driveModifier", sender: nil)
+    }
+    
+    @objc func wheelModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "wheelModifier", sender: nil)
     }
     
     @objc func buttonClicked(sender: UIButton!){
@@ -1402,6 +1488,26 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // Segue to TurnVariable
         if let destinationViewController = segue.destination as? TurnVariable{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to LookLeftRightVariables
+        if let destinationViewController = segue.destination as? LookLeftRightVariables{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to LookUpDownVariables
+        if let destinationViewController = segue.destination as? LookUpDownVariables{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to DriveVariables
+        if let destinationViewController = segue.destination as? DriveVariables{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to WheelVariables
+        if let destinationViewController = segue.destination as? WheelVariables{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }

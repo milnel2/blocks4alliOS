@@ -35,6 +35,7 @@ class TurnVariable: UIViewController {
     //https://stackoverflow.com/questions/33906060/select-deselect-buttons-swift-xcode-7
     
     @IBAction func orangeTurnPressed(_ sender: Any) {
+        variableSelected = "orange"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -50,6 +51,7 @@ class TurnVariable: UIViewController {
     }
  
     @IBAction func bananaTurnPressed(_ sender: Any) {
+        variableSelected = "banana"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -65,6 +67,7 @@ class TurnVariable: UIViewController {
     }
     
     @IBAction func appleTurnPressed(_ sender: Any) {
+        variableSelected = "apple"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -80,6 +83,7 @@ class TurnVariable: UIViewController {
     }
     
     @IBAction func cherryTurnPressed(_ sender: Any) {
+        variableSelected = "cherry"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -94,6 +98,7 @@ class TurnVariable: UIViewController {
         }
     }
     @IBAction func watermelonTurnPressed(_ sender: Any) {
+        variableSelected = "melon"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -112,6 +117,8 @@ class TurnVariable: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
+            print(variableSelected)
+            print(variableValue)
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
             

@@ -38,6 +38,7 @@ class LookLeftRightVariables: UIViewController {
     // https://stackoverflow.com/questions/33906060/select-deselect-buttons-swift-xcode-7
     @IBAction func orangeLeftPressed(_ sender: Any) {
         //Border when button is selected
+        variableSelected = "orange"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -54,6 +55,7 @@ class LookLeftRightVariables: UIViewController {
     
     @IBAction func bananaLeftPressed(_ sender: Any) {
         //Border when button is selected
+        variableSelected = "banana"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -70,6 +72,7 @@ class LookLeftRightVariables: UIViewController {
     
     @IBAction func appleLeftPressed(_ sender: Any) {
         //Border when button is selected
+        variableSelected = "apple"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -85,6 +88,7 @@ class LookLeftRightVariables: UIViewController {
     }
     @IBAction func cherryLeftPressed(_ sender: Any) {
         //Border when button is selected
+        variableSelected = "cherry"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -100,6 +104,7 @@ class LookLeftRightVariables: UIViewController {
     }
     @IBAction func watermelonLeftPressed(_ sender: Any) {
         //Border when button is selected
+        variableSelected = "melon"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -117,6 +122,8 @@ class LookLeftRightVariables: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
+            print(variableSelected)
+            print(variableValue)
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
             

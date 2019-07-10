@@ -55,7 +55,7 @@ class SetVariableModViewController: UIViewController {
     
     
     @IBAction func MelonVariable(_ sender: Any) {
-        variableSelected = "watermelon"
+        variableSelected = "melon"
         
         //Border when button is selected
         if let button = sender as? UIButton {
@@ -167,9 +167,12 @@ class SetVariableModViewController: UIViewController {
         activeField = nil
     }
     
+
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             variableDict.updateValue(variableValue, forKey: variableSelected)
+            print(variableDict)
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
         }

@@ -38,6 +38,7 @@ class LookUpDownVariables: UIViewController {
     // https://stackoverflow.com/questions/33906060/select-deselect-buttons-swift-xcode-7
     @IBAction func orangeUpPressed(_ sender: Any) {
         //Border when button is selected
+        variableSelected = "orange"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -53,6 +54,7 @@ class LookUpDownVariables: UIViewController {
     }
     @IBAction func bananaUpPressed(_ sender: Any) {
         //Border when button is selected
+        variableSelected = "banana"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -68,6 +70,7 @@ class LookUpDownVariables: UIViewController {
     }
     @IBAction func appleUpPressed(_ sender: Any) {
         //Border when button is selected
+        variableSelected = "apple"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -84,6 +87,7 @@ class LookUpDownVariables: UIViewController {
     
     @IBAction func cherryUpPressed(_ sender: Any) {
         //Border when button is selected
+        variableSelected = "cherry"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -99,6 +103,7 @@ class LookUpDownVariables: UIViewController {
     }
     @IBAction func watermelonUpPressed(_ sender: Any) {
         //Border when button is selected
+        variableSelected = "melon"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
