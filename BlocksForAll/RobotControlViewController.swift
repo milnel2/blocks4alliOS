@@ -506,9 +506,9 @@ class ExecutingProgram {
         let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * robotSpeed), angular: 0)
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
+        /*by multiplying (distance/robotSpped) by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
+         distance he needs to in the right time. However he travels a little too far on the very slow speed. */
         cmdToSend.add(drive, withDuration: (distance/robotSpeed) * 1.25)
-        /*by multiplying by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
-        distance he needs to in the right time. However he travels a little too far on the very slow speed. */
         return WWCommandToolbelt.moveStop()
     }
     
