@@ -14,7 +14,7 @@ class LookLeftRightVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
-    var variableValue: Int = 0
+//    var variableValue: Int = 0
     
     //left/right look variable buttons
     @IBOutlet weak var orangeLookLButton: UIButton!
@@ -45,7 +45,7 @@ class LookLeftRightVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-                variableValue = variableDict["orange"]!
+//                variableValue = variableDict["orange"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -62,7 +62,7 @@ class LookLeftRightVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-                variableValue = variableDict["banana"]!
+//                variableValue = variableDict["banana"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -79,7 +79,7 @@ class LookLeftRightVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-                variableValue = variableDict["apple"]!
+//                variableValue = variableDict["apple"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -95,7 +95,7 @@ class LookLeftRightVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-                variableValue = variableDict["cherry"]!
+//                variableValue = variableDict["cherry"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -111,7 +111,7 @@ class LookLeftRightVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-                variableValue = variableDict["watermelon"]!
+//                variableValue = variableDict["watermelon"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -123,9 +123,9 @@ class LookLeftRightVariables: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             print(variableSelected)
-            print(variableValue)
+//            print(variableValue)
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
+//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
             
             
             

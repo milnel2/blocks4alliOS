@@ -42,7 +42,6 @@ class TurnVariable: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllTurns()
-                variableValue = variableDict["orange"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -58,7 +57,6 @@ class TurnVariable: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllTurns()
-                variableValue = variableDict["banana"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -74,7 +72,6 @@ class TurnVariable: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllTurns()
-                variableValue = variableDict["apple"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -90,7 +87,6 @@ class TurnVariable: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllTurns()
-                variableValue = variableDict["cherry"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -105,7 +101,6 @@ class TurnVariable: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllTurns()
-                variableValue = variableDict["watermelon"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -120,7 +115,7 @@ class TurnVariable: UIViewController {
             print(variableSelected)
             print(variableValue)
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
+//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
             
             
             

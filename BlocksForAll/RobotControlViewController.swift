@@ -103,12 +103,14 @@ class ExecutingProgram {
     var position: Int = 0
     var commands: [String]
     var currentCommandBeingExecuted: WWCommandSetSequence?
+    //declare variable dictionary here
     
     // TODO: store command in this variable so you can check if it's executing later
     //var currentCommand: WWCommandOrSomething
 
     init(commands: [String]) {
         self.commands = commands
+        //initialize dictionary so every variable set to 0
     }
     
     var isComplete: Bool {

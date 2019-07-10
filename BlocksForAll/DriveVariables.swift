@@ -14,9 +14,9 @@ class DriveVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
-    var variableValue: Int = 0
+//    var variableValue: Int = 0
     var variableSelectedTwo: String = "orange"
-    var variableValueTwo: Int = 0
+//    var variableValueTwo: Int = 0
     
     //distance variable buttons
     @IBOutlet weak var orangeDistanceButton: UIButton!
@@ -61,7 +61,7 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllDistance()
-                variableValue = variableDict["orange"]!
+//                variableValue = variableDict["orange"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -78,7 +78,7 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllDistance()
-                variableValue = variableDict["banana"]!
+//                variableValue = variableDict["banana"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -94,7 +94,7 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllDistance()
-                variableValue = variableDict["apple"]!
+//                variableValue = variableDict["apple"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -110,7 +110,7 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllDistance()
-                variableValue = variableDict["cherry"]!
+//                variableValue = variableDict["cherry"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -125,7 +125,7 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllDistance()
-                variableValue = variableDict["watermelon"]!
+//                variableValue = variableDict["watermelon"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -141,7 +141,7 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllSpeed()
-                variableValueTwo = variableDict["orange"]!
+//                variableValueTwo = variableDict["orange"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -157,7 +157,7 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllSpeed()
-                variableValueTwo = variableDict["banana"]!
+//                variableValueTwo = variableDict["banana"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -173,7 +173,7 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllSpeed()
-                variableValueTwo = variableDict["apple"]!
+//                variableValueTwo = variableDict["apple"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -189,7 +189,7 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllSpeed()
-                variableValueTwo = variableDict["cherry"]!
+//                variableValueTwo = variableDict["cherry"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -205,7 +205,7 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllSpeed()
-                variableValueTwo = variableDict["watermelon"]!
+//                variableValueTwo = variableDict["watermelon"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -216,9 +216,9 @@ class DriveVariables: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
+//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelectedTwo"] = variableSelectedTwo
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValueTwo"] = "\(Int(variableValueTwo))"
+//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValueTwo"] = "\(Int(variableValueTwo))"
      
         }
     }

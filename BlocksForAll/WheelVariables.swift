@@ -15,8 +15,8 @@ class WheelVariables: UIViewController {
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
     var variableSelectedTwo: String = "orange"
-    var variableValue: Int = 0
-    var variableValueTwo: Int = 0
+//    var variableValue: Int = 0
+//    var variableValueTwo: Int = 0
     
     //left wheel buttons
     @IBOutlet weak var orangeWheelLButton: UIButton!
@@ -62,7 +62,7 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-                variableValue = variableDict["orange"]!
+//                variableValue = variableDict["orange"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -78,7 +78,7 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-                variableValue = variableDict["banana"]!
+//                variableValue = variableDict["banana"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -94,7 +94,7 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-                variableValue = variableDict["apple"]!
+//                variableValue = variableDict["apple"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -110,7 +110,7 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-                variableValue = variableDict["cherry"]!
+//                variableValue = variableDict["cherry"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -125,7 +125,7 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-                variableValue = variableDict["watermelon"]!
+//                variableValue = variableDict["watermelon"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -143,7 +143,7 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllRight()
-                variableValueTwo = variableDict["orange"]!
+//                variableValueTwo = variableDict["orange"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -158,7 +158,7 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllRight()
-                variableValueTwo = variableDict["banana"]!
+//                variableValueTwo = variableDict["banana"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -174,7 +174,7 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllRight()
-                variableValueTwo = variableDict["apple"]!
+//                variableValueTwo = variableDict["apple"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -190,7 +190,7 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllRight()
-                variableValueTwo = variableDict["cherry"]!
+//                variableValueTwo = variableDict["cherry"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -206,7 +206,7 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllRight()
-                variableValueTwo = variableDict["watermelon"]!
+//                variableValueTwo = variableDict["watermelon"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -218,9 +218,9 @@ class WheelVariables: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
+//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelectedTwo"] = variableSelectedTwo
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValueTwo"] = "\(Int(variableValueTwo))"
+//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValueTwo"] = "\(Int(variableValueTwo))"
             
             
             

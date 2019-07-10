@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-var variableDict = Dictionary<String, Int>()
 
 class SetVariableModViewController: UIViewController {
     
@@ -171,8 +170,8 @@ class SetVariableModViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
-            variableDict.updateValue(variableValue, forKey: variableSelected)
-            print(variableDict)
+//            variableDict.updateValue(variableValue, forKey: variableSelected)
+//            print(variableDict)
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
         }

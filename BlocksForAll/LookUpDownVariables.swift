@@ -14,7 +14,7 @@ class LookUpDownVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
-    var variableValue: Int = 0
+//    var variableValue: Int = 0
     
     //look up/down buttons
     @IBOutlet weak var orangeUpButton: UIButton!
@@ -45,7 +45,7 @@ class LookUpDownVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllUp()
-                variableValue = variableDict["orange"]!
+//                variableValue = variableDict["orange"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -61,7 +61,7 @@ class LookUpDownVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllUp()
-                variableValue = variableDict["banana"]!
+//                variableValue = variableDict["banana"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -77,7 +77,7 @@ class LookUpDownVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllUp()
-                variableValue = variableDict["apple"]!
+//                variableValue = variableDict["apple"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -94,7 +94,7 @@ class LookUpDownVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllUp()
-                variableValue = variableDict["cherry"]!
+//                variableValue = variableDict["cherry"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -110,7 +110,7 @@ class LookUpDownVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllUp()
-                variableValue = variableDict["watermelon"]!
+//                variableValue = variableDict["watermelon"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -122,7 +122,7 @@ class LookUpDownVariables: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
+//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
             
             
             
