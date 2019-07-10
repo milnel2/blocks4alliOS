@@ -133,13 +133,7 @@ class SetVariableModViewController: UIViewController {
         viewTapped()
     }
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var contentView: UIView!
     var activeField: UITextField?
-    var lastOffset: CGPoint!
-    var keyboardHeight: CGFloat!
-    @IBOutlet weak var constraintHeight: NSLayoutConstraint!
-    
     
   
     @objc override func viewDidLoad() {
@@ -156,7 +150,7 @@ class SetVariableModViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         // Add touch gesture for contentView
-        self.contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnTextView(gesture:))))
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnTextView(gesture:))))
     }
     
     /** https://appsandbiscuits.com/getting-what-the-user-typed-ios-7-2e56a678e7a7
@@ -169,7 +163,6 @@ class SetVariableModViewController: UIViewController {
         guard activeField != nil else {
             return
         }
-        
         activeField?.resignFirstResponder()
         activeField = nil
     }
@@ -179,9 +172,6 @@ class SetVariableModViewController: UIViewController {
             variableDict.updateValue(variableValue, forKey: variableSelected)
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
-            
-            
-            
         }
     }
     
@@ -193,7 +183,6 @@ class SetVariableModViewController: UIViewController {
 extension SetVariableModViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         activeField = textField
-        lastOffset = self.scrollView.contentOffset
         return true
     }
     
@@ -207,43 +196,17 @@ extension SetVariableModViewController: UITextFieldDelegate {
 // MARK: Keyboard Handling
 extension SetVariableModViewController{
     @objc func keyboardWillShow(notification: NSNotification) {
-        if keyboardHeight != nil {
-            return
-        }
-        
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            keyboardHeight = keyboardSize.height
-            
-            // so increase contentView's height by keyboard height
-            UIView.animate(withDuration: 0.3, animations: {
-                self.constraintHeight.constant += self.keyboardHeight
-            })
-            
-            // move if keyboard hide input field
-            let distanceToBottom = self.scrollView.frame.size.height - (activeField?.frame.origin.y)! - (activeField?.frame.size.height)!
-            let collapseSpace = keyboardHeight - distanceToBottom
-            
-            if collapseSpace < 0 {
-                // no collapse
-                return
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
             }
-            
-            // set new offset for scroll view
-            UIView.animate(withDuration: 0.3, animations: {
-                // scroll to the position above keyboard 10 points
-                self.scrollView.contentOffset = CGPoint(x: self.lastOffset.x, y: collapseSpace + 10)
-            })
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        UIView.animate(withDuration: 0.3) {
-            self.constraintHeight.constant -= self.keyboardHeight
-            
-            self.scrollView.contentOffset = self.lastOffset
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
         }
-        
-        keyboardHeight = nil
     }
 }
 
