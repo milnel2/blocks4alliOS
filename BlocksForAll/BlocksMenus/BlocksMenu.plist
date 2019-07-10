@@ -255,7 +255,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#b15c13ff</string>
+		<string>#b15c13</string>
 		<key>type</key>
 		<string>Drive</string>
 		<key>Blocks</key>
@@ -268,7 +268,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#b15c13ff</string>
+				<string>#b15c13</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -282,7 +282,7 @@
 				<key>name</key>
 				<string>Drive Backward</string>
 				<key>color</key>
-				<string>#b15c13ff</string>
+				<string>#b15c13</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -296,7 +296,7 @@
 				<key>name</key>
 				<string>Turn Left</string>
 				<key>color</key>
-				<string>#b15c13ff</string>
+				<string>#b15c13</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -310,7 +310,7 @@
 				<key>name</key>
 				<string>Turn Right</string>
 				<key>color</key>
-				<string>#b15c13ff</string>
+				<string>#b15c13</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
