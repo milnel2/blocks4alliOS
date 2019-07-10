@@ -1399,5 +1399,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if let destinationViewController = segue.destination as? IfModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
+        
+        // Segue to TurnVariable
+        if let destinationViewController = segue.destination as? TurnVariable{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
     }
 }
