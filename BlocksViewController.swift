@@ -514,7 +514,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     let image = UIImage(named: "false_plchldr.pdf")
-                    
+
                     ifButton.tag = indexPath.row
                     ifButton.setBackgroundImage(image, for: .normal)
                     ifButton.backgroundColor = .lightGray
@@ -1203,15 +1203,20 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     setTurnButton.tag = indexPath.row
                     switch block.addedBlocks[0].attributes["variableSelected"]{
                     case "orange":
-                        setTurnButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                        let image = UIImage(named: "Orange.pdf")
+                        setTurnButton.setBackgroundImage(image, for: .normal)
                     case "cherry":
-                        setTurnButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                        let image = UIImage(named: "Cherry.pdf")
+                        setTurnButton.setBackgroundImage(image, for: .normal)
                     case "banana":
-                        setTurnButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                        let image = UIImage(named: "Banana.pdf")
+                        setTurnButton.setBackgroundImage(image, for: .normal)
                     case "watermelon":
-                        setTurnButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                        let image = UIImage(named: "Watermelon.pdf")
+                        setTurnButton.setBackgroundImage(image, for: .normal)
                     case "apple":
-                        setTurnButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                        let image = UIImage(named: "Apple.pdf")
+                        setTurnButton.setBackgroundImage(image, for: .normal)
                     default:
                         setTurnButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
                     }
@@ -1229,22 +1234,26 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let setTurnButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     setTurnButton.tag = indexPath.row
-                    setTurnButton.tag = indexPath.row
+//                    setTurnButton.tag = indexPath.row
                     switch block.addedBlocks[0].attributes["variableSelected"]{
                     case "orange":
-                        setTurnButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                        let image = UIImage(named: "Orange.pdf")
+                        setTurnButton.setBackgroundImage(image, for: .normal)
                     case "cherry":
-                        setTurnButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                        let image = UIImage(named: "Cherry.pdf")
+                        setTurnButton.setBackgroundImage(image, for: .normal)
                     case "banana":
-                        setTurnButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                        let image = UIImage(named: "Banana.pdf")
+                        setTurnButton.setBackgroundImage(image, for: .normal)
                     case "watermelon":
-                        setTurnButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                        let image = UIImage(named: "Watermelon.pdf")
+                        setTurnButton.setBackgroundImage(image, for: .normal)
                     case "apple":
-                        setTurnButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                        let image = UIImage(named: "Apple.pdf")
+                        setTurnButton.setBackgroundImage(image, for: .normal)
                     default:
                         setTurnButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
                     }
-
                     setTurnButton.addTarget(self, action: #selector(turnModifier(sender:)), for: .touchUpInside)
                     setTurnButton.layer.borderWidth = 2.0
                     setTurnButton.layer.borderColor = UIColor.black.cgColor
