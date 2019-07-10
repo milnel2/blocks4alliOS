@@ -1142,10 +1142,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
 //                    setTurnButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
                     setTurnButton.addTarget(self, action: #selector(turnModifier(sender:)), for: .touchUpInside)
-                    setTurnButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setTurnButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
-                    setTurnButton.titleLabel?.numberOfLines = 0
-                    setTurnButton.titleLabel?.textAlignment = NSTextAlignment.left
+//                    setTurnButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    setTurnButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
+//                    setTurnButton.titleLabel?.numberOfLines = 0
+//                    setTurnButton.titleLabel?.textAlignment = NSTextAlignment.left
                     setTurnButton.layer.borderWidth = 2.0
                     setTurnButton.layer.borderColor = UIColor.black.cgColor
                     
@@ -1176,10 +1176,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
 //                    setTurnButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
                     setTurnButton.addTarget(self, action: #selector(turnModifier(sender:)), for: .touchUpInside)
-                    setTurnButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setTurnButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    setTurnButton.titleLabel?.numberOfLines = 0
-                    setTurnButton.titleLabel?.textAlignment = NSTextAlignment.left
+//                    setTurnButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+//                    setTurnButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+//                    setTurnButton.titleLabel?.numberOfLines = 0
+//                    setTurnButton.titleLabel?.textAlignment = NSTextAlignment.left
                     setTurnButton.layer.borderWidth = 2.0
                     setTurnButton.layer.borderColor = UIColor.black.cgColor
                     

@@ -1060,7 +1060,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Drive Variables-->
         <scene sceneID="fYN-sz-j03">
             <objects>
-                <viewController id="jdf-AY-L53" customClass="DriveVariables" sceneMemberID="viewController">
+                <viewController id="jdf-AY-L53" customClass="DriveVariables" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TiD-b4-zdy"/>
                         <viewControllerLayoutGuide type="bottom" id="vJ1-EE-v4N"/>
@@ -1258,7 +1258,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Turn Variable-->
         <scene sceneID="4b4-Db-LZI">
             <objects>
-                <viewController id="MKK-Db-JqX" customClass="TurnVariable" sceneMemberID="viewController">
+                <viewController id="MKK-Db-JqX" customClass="TurnVariable" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KA3-qF-icq"/>
                         <viewControllerLayoutGuide type="bottom" id="mw4-C1-oM0"/>
@@ -1378,7 +1378,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Wheel Variables-->
         <scene sceneID="qhY-c4-4Pr">
             <objects>
-                <viewController id="L98-PY-VOB" customClass="WheelVariables" sceneMemberID="viewController">
+                <viewController id="L98-PY-VOB" customClass="WheelVariables" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cjg-nA-C5l"/>
                         <viewControllerLayoutGuide type="bottom" id="07f-4A-DA3"/>
@@ -1576,7 +1576,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Look Up Down Variables-->
         <scene sceneID="t7L-d3-f2A">
             <objects>
-                <viewController id="yNb-Cd-YlI" customClass="LookUpDownVariables" sceneMemberID="viewController">
+                <viewController id="yNb-Cd-YlI" customClass="LookUpDownVariables" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IfY-qD-gGa"/>
                         <viewControllerLayoutGuide type="bottom" id="p73-ha-2Y1"/>
@@ -1696,7 +1696,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Look Left Right Variables-->
         <scene sceneID="SzZ-Hi-INf">
             <objects>
-                <viewController id="o6a-kf-Lsq" customClass="LookLeftRightVariables" sceneMemberID="viewController">
+                <viewController id="o6a-kf-Lsq" customClass="LookLeftRightVariables" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HRd-8l-AWc"/>
                         <viewControllerLayoutGuide type="bottom" id="pOh-Hn-TJN"/>
@@ -1827,7 +1827,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <image name="sense_obstacle" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kbj-oh-DCS"/>
+        <segue reference="bjZ-FF-gPg"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>
