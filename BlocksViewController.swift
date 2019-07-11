@@ -910,11 +910,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     block.addedBlocks.append(placeholderBlock!)
                     
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
+                    placeholderBlock?.addAttributes(key: "variableSelectedTwo", value: "\(initialVariable)")
                     
                     
-                    let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth/2, height: blockHeight/2))
+                    let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: 2 * blockWidth/3, height: blockHeight/2))
                     
-                    setDriveVariableButton.tag = indexPath.row
+                    let setDriveVariableButtonTwo = UIButton(frame: CGRect(x: blockWidth/3, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing) + blockHeight/2, width: 2 * blockWidth/3 , height: blockHeight/2))
+                    
+                    let setDriveVariableButtonBackground = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    let borderButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    borderButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 0)
+                    setDriveVariableButtonBackground.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    
+//                    setDriveVariableButton.tag = indexPath.row
+//                    setDriveVariableButtonTwo.tag = indexPath.row
+                    
                     switch block.addedBlocks[0].attributes["variableSelected"]{
                     case "orange":
                         setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
@@ -922,25 +933,56 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
                     case "banana":
                         setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "watermelon":
+                    case "melon":
                         setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
                     case "apple":
                         setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
                     default:
                         setDriveVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
                     }
+                    
+                    switch block.addedBlocks[0].attributes["variableSelectedTwo"]{
+                    case "orange":
+                        setDriveVariableButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                    case "cherry":
+                        setDriveVariableButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                    case "banana":
+                        setDriveVariableButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                    case "melon":
+                        setDriveVariableButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                    case "apple":
+                        setDriveVariableButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                    default:
+                        setDriveVariableButtonTwo.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    }
+                    
                     setDriveVariableButton.addTarget(self, action: #selector(driveModifier(sender:)), for: .touchUpInside)
-
-                    setDriveVariableButton.layer.borderWidth = 2.0
-                    setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
+                    setDriveVariableButtonTwo.addTarget(self, action: #selector(driveModifier(sender:)), for: .touchUpInside)
+                    borderButton.addTarget(self, action: #selector(driveModifier(sender:)), for: .touchUpInside)
                     
-                    setDriveVariableButton.accessibilityLabel = "Set Drive Variable"
-                    setDriveVariableButton.isAccessibilityElement = true
+                    borderButton.accessibilityLabel = "Set Drive Variable"
+                    borderButton.isAccessibilityElement = true
                     
+                    
+                    borderButton.layer.borderWidth = 2.0
+                    borderButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    cell.addSubview(setDriveVariableButtonBackground)
                     cell.addSubview(setDriveVariableButton)
+                    cell.addSubview(setDriveVariableButtonTwo)
+                    cell.addSubview(borderButton)
                 } else {
                     _ = block.addedBlocks[0]
-                    let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth/2, height: blockHeight/2))
+                    let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: 2 * blockWidth/3, height: blockHeight/2))
+                    
+                    let setDriveVariableButtonTwo = UIButton(frame: CGRect(x: blockWidth/3, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing) + blockHeight/2, width: 2 * blockWidth/3 , height: blockHeight/2))
+                    
+                    let setDriveVariableButtonBackground = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    let borderButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    borderButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 0)
+                    
+                    setDriveVariableButtonBackground.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
                     
                     switch block.addedBlocks[0].attributes["variableSelected"]{
                     case "orange":
@@ -949,7 +991,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
                     case "banana":
                         setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "watermelon":
+                    case "melon":
                         setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
                     case "apple":
                         setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
@@ -957,15 +999,38 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                           setDriveVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
                     }
                     
-                    setDriveVariableButton.tag = indexPath.row
-                    setDriveVariableButton.addTarget(self, action: #selector(driveModifier(sender:)), for: .touchUpInside)
-                    setDriveVariableButton.layer.borderWidth = 2.0
-                    setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
+                    switch block.addedBlocks[0].attributes["variableSelectedTwo"]{
+                    case "orange":
+                        setDriveVariableButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                    case "cherry":
+                        setDriveVariableButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                    case "banana":
+                        setDriveVariableButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                    case "melon":
+                        setDriveVariableButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                    case "apple":
+                        setDriveVariableButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                    default:
+                        setDriveVariableButtonTwo.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    }
                     
-                    setDriveVariableButton.accessibilityLabel = "Set Drive Variable"
-                    setDriveVariableButton.isAccessibilityElement = true
+//                    setDriveVariableButton.tag = indexPath.row
+//                    setDriveVariableButtonTwo.tag = indexPath.row
+
+                    borderButton.addTarget(self, action: #selector(driveModifier(sender:)), for: .touchUpInside)
+
+                    borderButton.accessibilityLabel = "Set Drive Variable"
+                    borderButton.isAccessibilityElement = true
+
                     
+                    borderButton.layer.borderWidth = 2.0
+                    borderButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    
+                    cell.addSubview(setDriveVariableButtonBackground)
                     cell.addSubview(setDriveVariableButton)
+                    cell.addSubview(setDriveVariableButtonTwo)
+                    cell.addSubview(borderButton)
                 }
                 
             case "Look Up or Down":
@@ -989,7 +1054,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
                     case "banana":
                         setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "watermelon":
+                    case "melon":
                         setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
                     case "apple":
                         setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
@@ -1016,7 +1081,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
                     case "banana":
                         setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "watermelon":
+                    case "melon":
                         setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
                     case "apple":
                         setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
@@ -1056,7 +1121,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
                     case "banana":
                         setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "watermelon":
+                    case "melon":
                         setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
                     case "apple":
                         setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
@@ -1084,7 +1149,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
                     case "banana":
                         setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "watermelon":
+                    case "melon":
                         setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
                     case "apple":
                         setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
@@ -1103,23 +1168,32 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
             case "Wheel Speed":
+                
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
-                    let initialVariableTwo = "orange"
                     
                     let placeholderBlock = Block(name: "Set Wheel Speed Variables", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
-                    placeholderBlock?.addAttributes(key: "variableSelectedTwo", value: "\(initialVariableTwo)")
+                    placeholderBlock?.addAttributes(key: "variableSelectedTwo", value: "\(initialVariable)")
                     
                     
-                    let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth/2, height: blockHeight/2))
+                    let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: 2 * blockWidth/3, height: blockHeight/2))
                     
-                    let setWheelSpeedButtonTwo = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    let setWheelSpeedButtonTwo = UIButton(frame: CGRect(x: blockWidth/3, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing) + blockHeight/2, width: 2 * blockWidth/3 , height: blockHeight/2))
                     
-                    setWheelSpeedButton.tag = indexPath.row
+                    let setBackgroundButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    let setBorderButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setBackgroundButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setBorderButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 0)
+                    
+                    //                    setWheelSpeedVariableButton.tag = indexPath.row
+                    //                    setWheelSpeedVariableButtonTwo.tag = indexPath.row
+                    
                     switch block.addedBlocks[0].attributes["variableSelected"]{
                     case "orange":
                         setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
@@ -1127,7 +1201,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
                     case "banana":
                         setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "watermelon":
+                    case "melon":
                         setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
                     case "apple":
                         setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
@@ -1142,7 +1216,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
                     case "banana":
                         setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "watermelon":
+                    case "melon":
                         setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
                     case "apple":
                         setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
@@ -1150,19 +1224,37 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         setWheelSpeedButtonTwo.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
                     }
                     
-                    setWheelSpeedButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-                    setWheelSpeedButton.layer.borderWidth = 2.0
-                    setWheelSpeedButton.layer.borderColor = UIColor.black.cgColor
+//                    setWheelSpeedButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
+//                    setWheelSpeedButtonTwo.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
+                    setBorderButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
                     
-                    setWheelSpeedButton.accessibilityLabel = "Set Wheel Speed Variables"
-                    setWheelSpeedButton.isAccessibilityElement = true
+                    setBorderButton.accessibilityLabel = "Set Wheel Variables"
+                    setBorderButton.isAccessibilityElement = true
                     
+                    
+                    setBorderButton.layer.borderWidth = 2.0
+                    setBorderButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    cell.addSubview(setBackgroundButton)
                     cell.addSubview(setWheelSpeedButton)
+                    cell.addSubview(setWheelSpeedButtonTwo)
+                    cell.addSubview(setBorderButton)
                 } else {
                     _ = block.addedBlocks[0]
-                    let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth/2, height: blockHeight/2))
+                    let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: 2 * blockWidth/3, height: blockHeight/2))
                     
-                    setWheelSpeedButton.tag = indexPath.row
+                    let setWheelSpeedButtonTwo = UIButton(frame: CGRect(x: blockWidth/3, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing) + blockHeight/2, width: 2 * blockWidth/3 , height: blockHeight/2))
+                    
+                    let setBackgroundButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    let setBorderButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                    
+                    setBackgroundButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    setBorderButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 0)
+                    
+                    //                    setWheelSpeedVariableButton.tag = indexPath.row
+                    //                    setWheelSpeedVariableButtonTwo.tag = indexPath.row
+                    
                     switch block.addedBlocks[0].attributes["variableSelected"]{
                     case "orange":
                         setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
@@ -1170,22 +1262,46 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
                     case "banana":
                         setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "watermelon":
+                    case "melon":
                         setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
                     case "apple":
                         setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
                     default:
                         setWheelSpeedButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
                     }
-                    setWheelSpeedButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-                    setWheelSpeedButton.layer.borderWidth = 2.0
-                    setWheelSpeedButton.layer.borderColor = UIColor.black.cgColor
                     
-                    setWheelSpeedButton.accessibilityLabel = "Set Wheel Speed Variables"
-                    setWheelSpeedButton.isAccessibilityElement = true
+                    switch block.addedBlocks[0].attributes["variableSelectedTwo"]{
+                    case "orange":
+                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                    case "cherry":
+                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                    case "banana":
+                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                    case "melon":
+                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                    case "apple":
+                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                    default:
+                        setWheelSpeedButtonTwo.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                    }
                     
+//                    setWheelSpeedButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
+//                    setWheelSpeedButtonTwo.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
+                    setBorderButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
+                    
+                    setBorderButton.accessibilityLabel = "Set Wheel Variables"
+                    setBorderButton.isAccessibilityElement = true
+                    
+                    
+                    setBorderButton.layer.borderWidth = 2.0
+                    setBorderButton.layer.borderColor = UIColor.black.cgColor
+                    
+                    cell.addSubview(setBackgroundButton)
                     cell.addSubview(setWheelSpeedButton)
-                }
+                    cell.addSubview(setWheelSpeedButtonTwo)
+                    cell.addSubview(setBorderButton)
+
+            }
                 
             case "Turn":
                 if block.addedBlocks.isEmpty{
@@ -1211,7 +1327,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     case "banana":
                         let image = UIImage(named: "Banana.pdf")
                         setTurnButton.setBackgroundImage(image, for: .normal)
-                    case "watermelon":
+                    case "melon":
                         let image = UIImage(named: "Watermelon.pdf")
                         setTurnButton.setBackgroundImage(image, for: .normal)
                     case "apple":
@@ -1245,7 +1361,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     case "banana":
                         let image = UIImage(named: "Banana.pdf")
                         setTurnButton.setBackgroundImage(image, for: .normal)
-                    case "watermelon":
+                    case "melon":
                         let image = UIImage(named: "Watermelon.pdf")
                         setTurnButton.setBackgroundImage(image, for: .normal)
                     case "apple":

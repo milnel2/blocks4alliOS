@@ -15,8 +15,7 @@ class WheelVariables: UIViewController {
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
     var variableSelectedTwo: String = "orange"
-//    var variableValue: Int = 0
-//    var variableValueTwo: Int = 0
+
     
     //left wheel buttons
     @IBOutlet weak var orangeWheelLButton: UIButton!
@@ -118,7 +117,7 @@ class WheelVariables: UIViewController {
         }
     }
     @IBAction func watermelonLeftPressed(_ sender: Any) {
-        variableSelected = "watermelon"
+        variableSelected = "melon"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -199,7 +198,7 @@ class WheelVariables: UIViewController {
     }
     
     @IBAction func watermelonRightPressed(_ sender: Any) {
-        variableSelectedTwo = "watermelon"
+        variableSelectedTwo = "melon"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false

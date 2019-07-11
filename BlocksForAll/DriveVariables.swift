@@ -118,7 +118,7 @@ class DriveVariables: UIViewController {
         }
     }
     @IBAction func watermelonDistancePressed(_ sender: Any) {
-        variableSelected = "watermelon"
+        variableSelected = "melon"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
@@ -198,7 +198,7 @@ class DriveVariables: UIViewController {
     }
     
     @IBAction func watermelonSpeedPressed(_ sender: Any) {
-        variableSelectedTwo = "watermelon"
+        variableSelectedTwo = "melon"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
