@@ -228,8 +228,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }else{
             stopIsOption = true
             changePlayTrashButton()
-            let commands = createCommandSequence(blocksStack)
-            play(commands)
+            play(blocksStackPlay: blocksStack)
         }
     }
     
@@ -237,65 +236,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         print("in stop clicked")
         self.executingProgram = nil
         programHasCompleted()
-    }
-    //MARK: Complier methods, converts from Blocks4All to robot code
-    //MARK: Clean this up!!
-    //Unrolls the repeat loops in the blocks program: converts to a list of commands to run
-    func unrollLoop(times: Int, blocks:[Block])->[String]{
-        var commands = [String]() //list of commands so far
-        for _ in 0..<times{
-            // times in the number of times unroll loop stuff is gone through
-            var i = 0
-            while i < blocks.count{
-                // for all blocks check
-                if blocks[i].name.contains("Repeat") {
-                    // if block contains repeat it will get added blocks and check how many times it needs to be looped through and adds the contents of the for loop the extra number of times
-                    
-                    // there's an easier way to redo this going to ignore commenting beyond here as it'll just be easier to work from scratch later.
-                    var timesToRepeat = 1
-                    if !blocks[i].addedBlocks.isEmpty {
-                        timesToRepeat = Int(blocks[i].addedBlocks[0].attributes["timesToRepeat"] ?? "2") ?? 2
-                    }else{
-                        //default
-                        timesToRepeat = 1000
-                    }
-
-                    
-                    var ii = i+1
-                    var blocksToUnroll = [Block]()
-                    while blocks[i].counterpart !== blocks[ii]{
-                        blocksToUnroll.append(blocks[ii])
-                        ii += 1
-                    }
-                    i = ii
-                    let items = unrollLoop(times: timesToRepeat, blocks: blocksToUnroll)
-                    //add items
-                    for item in items{
-                        commands.append(item)
-                    }
-                    
-                }else{
-                    var myCommand = blocks[i].name
-                    if blocks[i].name.contains("If"){
-                        if !blocks[i].addedBlocks.isEmpty {
-                            myCommand.append(blocks[i].addedBlocks[0].name)
-                        }
-                    }
-                    commands.append(myCommand)
-                }
-                i+=1
-            }
-        }
-        return commands
-    }
-    
-    //turns the blocks into robot commands
-    func createCommandSequence(_ blocks: [Block])->[String]{
-        let commands = unrollLoop(times: 1, blocks: blocks)
-        for c in commands{
-            print(c)
-        }
-        return commands
     }
     
     // MARK: - Blocks Methods

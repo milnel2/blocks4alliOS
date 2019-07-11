@@ -56,13 +56,13 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     }
     
     //this function allows the blocks in the workspace to be sent to the robot
-    func play(_ myCommands: [String]){
+    func play(blocksStackPlay: [Block]){
         print("in play")
         let connectedRobots = robotManager?.allConnectedRobots
         if connectedRobots != nil{
         
             // var repeatCommands = [WWCommandSet]()
-            executingProgram = ExecutingProgram(commands: myCommands)
+            executingProgram = ExecutingProgram(blocksStackExecute: blocksStackPlay)
             executeNextCommand()
             
             } else{
@@ -101,18 +101,18 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 
 class ExecutingProgram {
     var position: Int = 0
-    var commands: [String]
+    var blocksToExec: [Block]
     var currentCommandBeingExecuted: WWCommandSetSequence?
     
     // TODO: store command in this variable so you can check if it's executing later
     //var currentCommand: WWCommandOrSomething
 
-    init(commands: [String]) {
-        self.commands = commands
+    init(blocksStackExecute: [Block]) {
+        self.blocksToExec = blocksStackExecute
     }
     
     var isComplete: Bool {
-        return position >= commands.count
+        return position >= blocksToExec.count
     }
     
 //    var isStopped: Bool {
@@ -124,16 +124,16 @@ class ExecutingProgram {
             return
         }
 
-        var command = commands[position]
+        var blockToExec = blocksToExec[position]
         //for command in myCommands{
-        print(command)
+        print(blockToExec)
         var duration = 2.0
         //TODO: add repeat blocks
         var myAction = WWCommandSet()
         let cmdToSend = WWCommandSetSequence()
         
         
-        switch command{
+        switch blockToExec.name{
         //Animals Category
         case "Make Cat Noise":
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_CAT)
@@ -162,33 +162,15 @@ class ExecutingProgram {
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOBBLE)
             
             
-        //Control Category - might have to add to
-        case "IfHear Voice", "IfObstacle in front":
-            //TODO: check blocks condition
-            let conditionString = command[command.index(command.startIndex, offsetBy: 2)...]
-            print("conditionString" , conditionString)
+        case "IfHear Voice":
             var condition = false
-            if(conditionString == "Hear Voice"){
-                var data = getSensorData()
-                if(!data.isEmpty){
-                    //just checks first robot
-                    let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
-                    print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
-                    if(micData.amplitude > 0){
-                        condition = true
-                    }
-                }
-            }
-            if(conditionString == "Obstacle in front"){
-                var data = getSensorData()
-                if(!data.isEmpty){
-                    //just checks first robot
-                    let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
-                    let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
-                    print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
-                    if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
-                        condition = true
-                    }
+            var data = getSensorData()
+            if(!data.isEmpty){
+                //just checks first robot
+                let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
+                print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
+                if(micData.amplitude > 0){
+                    condition = true
                 }
             }
             if(condition){
@@ -196,25 +178,51 @@ class ExecutingProgram {
                 //if it's true, just keep going
             }else{
                 //if it's not true, keep going and don't do any of the blocks until you see endif
-                while(command != "End If"){
+                while(blockToExec.name != "End If"){
                     position += 1
-                    command = commands[position]
+                    blockToExec = blocksToExec[position]
+                    print("it is an endif")
+                }
+            }
+            
+            
+        //Control Category - might have to add to
+        case "IfObstacle in front":
+            var condition = false
+            var data = getSensorData()
+            if(!data.isEmpty){
+                    //just checks first robot
+                let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
+                let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
+                print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
+                if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
+                    condition = true
+                }
+            }
+            if(condition){
+                print("TRUE")
+                //if it's true, just keep going
+            }else{
+                //if it's not true, keep going and don't do any of the blocks until you see endif
+                while(blockToExec.name != "End If"){
+                    position += 1
+                    blockToExec = blocksToExec[position]
                     print("it is an endif")
                 }
             }
             
             
         case "Wait for Time":
-            myAction = playWait(command: command, cmdToSend: cmdToSend)
+            myAction = playWait(waitBlock: blockToExec, cmdToSend: cmdToSend)
             
         //Drive Category
         case "Drive Forward":
             //drive constant is positive because this is drive forward
-            myAction = playDrive(command: command, driveConstant: 1.0, cmdToSend: cmdToSend)
+            myAction = playDrive(driveBlock: blockToExec, driveConstant: 1.0, cmdToSend: cmdToSend)
             
         case "Drive Backward":
             //drive constant is negative because this is drive backward
-            myAction = playDrive(command: command, driveConstant: -1.0, cmdToSend: cmdToSend)
+            myAction = playDrive(driveBlock: blockToExec, driveConstant: -1.0, cmdToSend: cmdToSend)
             
             /* right now this code allows Dash to pivot from the wheel in the direction he is turning in (e.g. right turn, pivot on right wheel),
              if he needs to pivot from his head/center, then the direction he is turning in would need to be negative */
@@ -461,14 +469,15 @@ class ExecutingProgram {
         myAction.setSound(speaker)
     }
     
-    func playWait(command: String, cmdToSend: WWCommandSetSequence) -> WWCommandSet {
+    func playWait(waitBlock: Block, cmdToSend: WWCommandSetSequence) -> WWCommandSet {
         var wait = 0.0
-        for block in blocksStack{
-            if block.name.contains("Wait"){
-                wait = Double(block.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
-            }
-        }
-        
+//        for block in blocksStack{
+//            if block.name.contains("Wait"){
+//                wait = Double(block.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
+//            }
+//        }
+// old code prior to passing the block rather than string command
+        wait = Double(waitBlock.addedBlocks[0].attributes["wait:"] ?? "0") ?? 0
         let waitingPeriod = WWCommandSet()
         print("waiting", wait)
         cmdToSend.add(waitingPeriod, withDuration: wait)
@@ -477,31 +486,29 @@ class ExecutingProgram {
 
     
     //decomposition of drive functions
-    func playDrive (command: String, driveConstant: Double,  cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+    func playDrive (driveBlock: Block, driveConstant: Double,  cmdToSend: WWCommandSetSequence) -> WWCommandSet{
         var distance = 0.0
         var robotSpeed = 0.0
         var speed: String
-        for block in blocksStack{
-            if (block.name.contains("Drive Forward") || block.name.contains("Drive Backward")) {
-                speed = block.addedBlocks[0].attributes["speed"] ?? "Normal"
-                distance = Double(block.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
-                
-                switch speed {
-                case "Really Fast":
-                    robotSpeed = 50.0
-                case "Fast":
-                    robotSpeed = 40.0
-                case "Normal":
-                    robotSpeed = 30.0
-                case "Slow":
-                    robotSpeed = 10.0
-                case "Very Slow":
-                    robotSpeed = 5.0
-                default:
-                    robotSpeed = 30.0
-                }
-            }
+        speed = driveBlock.addedBlocks[0].attributes["speed"] ?? "Normal"
+        distance = Double(driveBlock.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
+    
+        switch speed {
+            case "Really Fast":
+                robotSpeed = 50.0
+            case "Fast":
+                robotSpeed = 40.0
+            case "Normal":
+                robotSpeed = 30.0
+            case "Slow":
+                robotSpeed = 10.0
+            case "Very Slow":
+                robotSpeed = 5.0
+            default:
+                robotSpeed = 30.0
         }
+            
+        
         
         let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * robotSpeed), angular: 0)
         let drive = WWCommandSet()
