@@ -506,7 +506,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "If":
                 if block.addedBlocks.isEmpty{
                     // Creates repeat button for modifier.
-                    let initialBoolean = "hear_voice"
+                    let initialBoolean = "false"
                     
                     let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
@@ -515,10 +515,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     
                     let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    let image = UIImage(named: "false_plchldr.pdf")
+//                    let image = UIImage(named: "false_plchldr.pdf")
 
                     ifButton.tag = indexPath.row
-                    ifButton.setBackgroundImage(image, for: .normal)
+                    switch block.addedBlocks[0].attributes["booleanSelected"]{
+                    case "hear_voice":
+                        let image = UIImage(named: "hear_voice.pdf")
+                        ifButton.setBackgroundImage(image, for: .normal)
+                    case "obstacle_sensed":
+                        let image = UIImage(named: "sense_obstacle")
+                        ifButton.setBackgroundImage(image, for: .normal)
+
+                    default:
+                        let image = UIImage(named: "false_plchldr.pdf")
+                        ifButton.setBackgroundImage(image, for: .normal)
+                    }
+//                    ifButton.setBackgroundImage(image, for: .normal)
                     ifButton.backgroundColor = .lightGray
                     ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
                     
@@ -530,10 +542,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     _ = block.addedBlocks[0]
                     let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
-                    let image = UIImage(named: "false_plchldr.pdf")
+//                    let image = UIImage(named: "false_plchldr.pdf")
                     
                     ifButton.tag = indexPath.row
-                    ifButton.setBackgroundImage(image, for: .normal)
+                    switch block.addedBlocks[0].attributes["booleanSelected"]{
+                    case "hear_voice":
+                        let image = UIImage(named: "hear_voice.pdf")
+                        ifButton.setBackgroundImage(image, for: .normal)
+                    case "obstacle_sensed":
+                        let image = UIImage(named: "sense_obstacle")
+                        ifButton.setBackgroundImage(image, for: .normal)
+                        
+                    default:
+                        let image = UIImage(named: "false_plchldr.pdf")
+                        ifButton.setBackgroundImage(image, for: .normal)
+                    }
+//                    ifButton.setBackgroundImage(image, for: .normal)
                     ifButton.backgroundColor = .lightGray
                     
                     // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
