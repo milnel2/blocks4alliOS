@@ -13,7 +13,7 @@ class IfModViewController: UIViewController{
     /* Custom view controller for the Repeat modifier scene */
     
     var modifierBlockIndexSender: Int?
-    var booleanSelected: String = "hear_voice"
+    var booleanSelected: String = "false"
     
     @IBOutlet weak var voiceButton: UIButton!
     @IBOutlet weak var senseButton: UIButton!
