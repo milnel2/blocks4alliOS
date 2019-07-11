@@ -30,7 +30,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     
     // below are all the buttons for this class
-    @IBOutlet weak var deleteAll: UIButton!
+    @IBOutlet weak var clearAll: UIButton!
     
     @IBOutlet weak var blocksProgram: UICollectionView!
     //View on the bottom of the screen that shows blocks in worksapce
@@ -140,7 +140,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     /** Function removes all blocks from the blocksStack and program **/
-    func deleteAllBlocks(){
+    func clearAllBlocks(){
         blocksStack = []
         blocksProgram.reloadData()
         save()
@@ -149,15 +149,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /** When a user clicks the 'Clear All' button, they receive an alert asking if they really want to
      delete all blocks or not. If yes, the screen is cleared. **/
-    @IBAction func deleteAll(_ sender: Any) {
-        deleteAll.accessibilityLabel = "Delete all"
-        deleteAll.accessibilityHint = "Delete all blocks on the screen"
+    @IBAction func clearAll(_ sender: Any) {
+        clearAll.accessibilityLabel = "Clear all"
+        clearAll.accessibilityHint = "Clear all blocks on the screen"
         
-        let alert = UIAlertController(title: "Do you want to delete all?", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Do you want to clear all?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
-            let announcement = "All blocks deleted."
-            self.deleteAll.accessibilityLabel = announcement
-            self.deleteAllBlocks()}))
+            let announcement = "All blocks cleared."
+            self.clearAll.accessibilityLabel = announcement
+            self.clearAllBlocks()}))
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true)
