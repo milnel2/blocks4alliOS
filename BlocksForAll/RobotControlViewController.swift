@@ -103,6 +103,7 @@ class ExecutingProgram {
     var position: Int = 0
     var blocksToExec: [Block]
     var currentCommandBeingExecuted: WWCommandSetSequence?
+    var repeatCountAndIndexArray: [(timesToR: Int, index: Int)] = []
     
     // TODO: store command in this variable so you can check if it's executing later
     //var currentCommand: WWCommandOrSomething
@@ -165,22 +166,24 @@ class ExecutingProgram {
         case "If":
             var condition = false
             var data = getSensorData()
-            if blocksToExec[position].name == "Hear Voice"{
+            if blocksToExec[position].addedBlocks[0].name == "Hear Voice"{
                 if(!data.isEmpty){
                     //just checks first robot
                     let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
                     print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
                     if(micData.amplitude > 0){
+                        print("hear Voice true")
                         condition = true
                     }
                 }
-            } else if blocksToExec[position].name == "Obstacle in front"{
+            } else if blocksToExec[position].addedBlocks[0].name == "Obstacle in front"{
                 if(!data.isEmpty){
                     //just checks first robot
                     let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
                     let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
                     print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
                     if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
+                        print("obstacle in front true")
                         condition = true
                     }
                 }
@@ -197,6 +200,23 @@ class ExecutingProgram {
 //                }
                 ifFalse()
             }
+            
+        case "Repeat":
+            print("in Repeat")
+            repeatCountAndIndexArray.append((timesToR: Int(blocksToExec[position].addedBlocks[0].attributes["timesToRepeat"] ?? "0") ?? 0, index: position))
+            print(repeatCountAndIndexArray)
+            //position += 1
+            //executeNextCommand()
+            
+        case "End Repeat" :
+            print("in End Repeat")
+            repeatCountAndIndexArray[repeatCountAndIndexArray.count - 1].timesToR -= 1
+            if repeatCountAndIndexArray[repeatCountAndIndexArray.count - 1].timesToR == 0{
+                repeatCountAndIndexArray.remove(at: (repeatCountAndIndexArray.count - 1) )
+            }else {
+                position = repeatCountAndIndexArray[(repeatCountAndIndexArray.count - 1)].index
+            }
+            print(repeatCountAndIndexArray)
             
             
         case "Wait for Time":
@@ -452,6 +472,7 @@ class ExecutingProgram {
 
     
     func ifFalse(){
+        print("ifFalse Entered")
         var openIfs = 1
         while openIfs > 0{
             position += 1
@@ -463,6 +484,7 @@ class ExecutingProgram {
         }
     }
     
+
     //decomposition of all actions that have to do with sound/noise
     func playNoise (myAction: WWCommandSet, sound: String){
         let speaker = WWCommandSpeaker.init(defaultSound: sound)
