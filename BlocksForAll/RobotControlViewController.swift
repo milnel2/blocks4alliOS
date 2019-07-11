@@ -161,42 +161,28 @@ class ExecutingProgram {
         case "Make Turkey Noise":
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOBBLE)
             
-            
-        case "IfHear Voice":
-            var condition = false
-            var data = getSensorData()
-            if(!data.isEmpty){
-                //just checks first robot
-                let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
-                print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
-                if(micData.amplitude > 0){
-                    condition = true
-                }
-            }
-            if(condition){
-                print("TRUE")
-                //if it's true, just keep going
-            }else{
-                //if it's not true, keep going and don't do any of the blocks until you see endif
-                while(blockToExec.name != "End If"){
-                    position += 1
-                    blockToExec = blocksToExec[position]
-                    print("it is an endif")
-                }
-            }
-            
-            
         //Control Category - might have to add to
-        case "IfObstacle in front":
+        case "If":
             var condition = false
             var data = getSensorData()
-            if(!data.isEmpty){
+            if blocksToExec[position].name == "Hear Voice"{
+                if(!data.isEmpty){
                     //just checks first robot
-                let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
-                let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
-                print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
-                if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
-                    condition = true
+                    let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
+                    print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
+                    if(micData.amplitude > 0){
+                        condition = true
+                    }
+                }
+            } else if blocksToExec[position].name == "Obstacle in front"{
+                if(!data.isEmpty){
+                    //just checks first robot
+                    let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
+                    let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
+                    print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
+                    if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
+                        condition = true
+                    }
                 }
             }
             if(condition){
@@ -204,11 +190,12 @@ class ExecutingProgram {
                 //if it's true, just keep going
             }else{
                 //if it's not true, keep going and don't do any of the blocks until you see endif
-                while(blockToExec.name != "End If"){
-                    position += 1
-                    blockToExec = blocksToExec[position]
-                    print("it is an endif")
-                }
+//                while(blockToExec.name != "End If"){
+//                    position += 1
+//                    blockToExec = blocksToExec[position]
+//                    print("it is an endif")
+//                }
+                ifFalse()
             }
             
             
@@ -463,6 +450,19 @@ class ExecutingProgram {
         position += 1
     }
 
+    
+    func ifFalse(){
+        var openIfs = 1
+        while openIfs > 0{
+            position += 1
+            if blocksToExec[position].name == "End If"{
+                openIfs -= 1
+            } else if ((blocksToExec[position].name == "IfObstacle in front") || (blocksToExec[position].name == "IfHear Voice")){
+                openIfs += 1
+            }
+        }
+    }
+    
     //decomposition of all actions that have to do with sound/noise
     func playNoise (myAction: WWCommandSet, sound: String){
         let speaker = WWCommandSpeaker.init(defaultSound: sound)
