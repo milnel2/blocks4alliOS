@@ -127,7 +127,7 @@ class BlockTableViewController: UITableViewController {
     private func createBlocksArray(){
         /*Creating the toolbox by reading in from the .plist file */
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
-            // blockTypes is a nsArray object with the contents of the blocksMenu.plist file, type index is an Int Var starts at 0, so it takes the contents of blocksMenu.plist and sets it to blockType as an NSDictionary
+            // blockTypes is a nsArray object with the contents of the ReleaseBlocksMenu.plist file, type index is an Int Var starts at 0, so it takes the contents of ReleaseBlocksMenu.plist and sets it to blockType as an NSDictionary
             if let blockArray = blockType.object(forKey: "Blocks") as? NSArray{
                 // creates array from the first object in blocksMenu.plist aka Animals, Controls, Drive, Sounds, etc.
                 for item in blockArray{

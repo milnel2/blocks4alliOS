@@ -156,7 +156,7 @@
 				<key>name</key>
 				<string>Repeat</string>
 				<key>color</key>
-				<string>#B30DCB</string>
+				<string>#E20000</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
@@ -794,20 +794,6 @@
 				<key>editable</key>
 				<false/>
 				<key>name</key>
-				<string>Say huhhh</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_huh.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
 				<string>Say Lets Go</string>
 				<key>color</key>
 				<string>#C63329</string>
@@ -899,20 +885,6 @@
 				<false/>
 				<key>imageName</key>
 				<string>speak_wah.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say We</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_wee.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>

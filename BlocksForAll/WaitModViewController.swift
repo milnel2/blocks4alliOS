@@ -16,7 +16,22 @@ class WaitModViewController: UIViewController{
     var wait: Int = 1
     
     @IBOutlet weak var waitLabel: UILabel!
-
+    
+    override func viewDidLoad() {
+        // default wait time: 1 second or preserve last selection
+        var previousWaitString: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["wait"] ?? "1"
+        var previousWait = Int(previousWaitString)
+        
+        if (previousWait == 1) {
+            waitLabel.text = "\(previousWait ?? 1) second"
+        }
+        else {
+            waitLabel.text = "\(previousWait ?? 1) seconds"
+        }
+        
+        wait = previousWait!
+    }
+    
     @IBAction func plusButtonPressed(_ sender: UIButton) {
         if (wait < 10) {
             wait = wait + 1

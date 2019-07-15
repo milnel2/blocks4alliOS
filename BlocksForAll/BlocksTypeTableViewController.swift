@@ -82,7 +82,7 @@ class BlocksTypeTableViewController: UITableViewController {
     //TODO: this is really convoluted, probably a better way of doing this
     private func createBlocksArray(){
         for item in blockDict{
-            //for item in blockDict which is a NSArray that contains contents of BlocksMenu.plist
+            //for item in blockDict which is a NSArray that contains contents of ReleaseBlocksMenu.plist
             if let blockType = item as? NSDictionary{
                 // for every item blockType is a constant set to the item as a NSDictionary
                 //initializes the block properities

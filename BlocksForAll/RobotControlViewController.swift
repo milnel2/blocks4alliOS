@@ -56,13 +56,13 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     }
     
     //this function allows the blocks in the workspace to be sent to the robot
-    func play(_ myCommands: [String]){
+    func play(blocksStackPlay: [Block]){
         print("in play")
         let connectedRobots = robotManager?.allConnectedRobots
         if connectedRobots != nil{
         
             // var repeatCommands = [WWCommandSet]()
-            executingProgram = ExecutingProgram(commands: myCommands)
+            executingProgram = ExecutingProgram(blocksStackExecute: blocksStackPlay)
             executeNextCommand()
             
             } else{
@@ -101,20 +101,19 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 
 class ExecutingProgram {
     var position: Int = 0
-    var commands: [String]
+    var blocksToExec: [Block]
     var currentCommandBeingExecuted: WWCommandSetSequence?
-    //declare variable dictionary here
+    var repeatCountAndIndexArray: [(timesToR: Int, index: Int)] = []
     
     // TODO: store command in this variable so you can check if it's executing later
     //var currentCommand: WWCommandOrSomething
 
-    init(commands: [String]) {
-        self.commands = commands
-        //initialize dictionary so every variable set to 0
+    init(blocksStackExecute: [Block]) {
+        self.blocksToExec = blocksStackExecute
     }
     
     var isComplete: Bool {
-        return position >= commands.count
+        return position >= blocksToExec.count
     }
     
 //    var isStopped: Bool {
@@ -126,16 +125,16 @@ class ExecutingProgram {
             return
         }
 
-        var command = commands[position]
+        var blockToExec = blocksToExec[position]
         //for command in myCommands{
-        print(command)
+        print(blockToExec)
         var duration = 2.0
         //TODO: add repeat blocks
         var myAction = WWCommandSet()
         let cmdToSend = WWCommandSetSequence()
         
         
-        switch command{
+        switch blockToExec.name{
         //Animals Category
         case "Make Cat Noise":
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_CAT)
@@ -163,32 +162,28 @@ class ExecutingProgram {
         case "Make Turkey Noise":
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOBBLE)
             
-            
         //Control Category - might have to add to
-        case "IfHear Voice", "IfObstacle in front":
-            //TODO: check blocks condition
-            let conditionString = command[command.index(command.startIndex, offsetBy: 2)...]
-            print("conditionString" , conditionString)
+        case "If":
             var condition = false
-            if(conditionString == "Hear Voice"){
-                var data = getSensorData()
+            var data = getSensorData()
+            if blocksToExec[position].addedBlocks[0].name == "Hear Voice"{
                 if(!data.isEmpty){
                     //just checks first robot
                     let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
                     print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
                     if(micData.amplitude > 0){
+                        print("hear Voice true")
                         condition = true
                     }
                 }
-            }
-            if(conditionString == "Obstacle in front"){
-                var data = getSensorData()
+            } else if blocksToExec[position].addedBlocks[0].name == "Obstacle in front"{
                 if(!data.isEmpty){
                     //just checks first robot
                     let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
                     let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
                     print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
                     if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
+                        print("obstacle in front true")
                         condition = true
                     }
                 }
@@ -198,35 +193,51 @@ class ExecutingProgram {
                 //if it's true, just keep going
             }else{
                 //if it's not true, keep going and don't do any of the blocks until you see endif
-                while(command != "End If"){
-                    position += 1
-                    command = commands[position]
-                    print("it is an endif")
-                }
+//                while(blockToExec.name != "End If"){
+//                    position += 1
+//                    blockToExec = blocksToExec[position]
+//                    print("it is an endif")
+//                }
+                ifFalse()
             }
+            
+        case "Repeat":
+            print("in Repeat")
+            repeatCountAndIndexArray.append((timesToR: Int(blocksToExec[position].addedBlocks[0].attributes["timesToRepeat"] ?? "0") ?? 0, index: position))
+            print(repeatCountAndIndexArray)
+            //position += 1
+            //executeNextCommand()
+            
+        case "End Repeat" :
+            print("in End Repeat")
+            repeatCountAndIndexArray[repeatCountAndIndexArray.count - 1].timesToR -= 1
+            if repeatCountAndIndexArray[repeatCountAndIndexArray.count - 1].timesToR == 0{
+                repeatCountAndIndexArray.remove(at: (repeatCountAndIndexArray.count - 1) )
+            }else {
+                position = repeatCountAndIndexArray[(repeatCountAndIndexArray.count - 1)].index
+            }
+            print(repeatCountAndIndexArray)
             
             
         case "Wait for Time":
-            myAction = playWait(command: command, cmdToSend: cmdToSend)
+            myAction = playWait(waitBlock: blockToExec, cmdToSend: cmdToSend)
             
         //Drive Category
         case "Drive Forward":
             //drive constant is positive because this is drive forward
-            myAction = playDrive(command: command, driveConstant: 1.0, cmdToSend: cmdToSend)
+            myAction = playDrive(driveBlock: blockToExec, driveConstant: 1.0, cmdToSend: cmdToSend)
             
         case "Drive Backward":
             //drive constant is negative because this is drive backward
-            myAction = playDrive(command: command, driveConstant: -1.0, cmdToSend: cmdToSend)
+            myAction = playDrive(driveBlock: blockToExec, driveConstant: -1.0, cmdToSend: cmdToSend)
             
             /* right now this code allows Dash to pivot from the wheel in the direction he is turning in (e.g. right turn, pivot on right wheel),
              if he needs to pivot from his head/center, then the direction he is turning in would need to be negative */
         case "Turn Left":
-            //25.3 in the right wheel (and 1 in the left) allows Dash to turn left 90 degrees
-            myAction = playTurn(turnConstantLW: (1.0), turnConstantRW: (25.3), cmdToSend: cmdToSend)
+            myAction = playTurn(direction: 0, cmdToSend: cmdToSend)
             
         case "Turn Right":
-            //25.3 in the left wheel (and 1 in the right) allows Dash to turn right 90 degrees
-            myAction = playTurn(turnConstantLW: (25.3), turnConstantRW: (1.0), cmdToSend: cmdToSend)
+            myAction = playTurn(direction:1, cmdToSend: cmdToSend)
             
             
             
@@ -459,20 +470,36 @@ class ExecutingProgram {
         position += 1
     }
 
+    
+    func ifFalse(){
+        print("ifFalse Entered")
+        var openIfs = 1
+        while openIfs > 0{
+            position += 1
+            if blocksToExec[position].name == "End If"{
+                openIfs -= 1
+            } else if ((blocksToExec[position].name == "IfObstacle in front") || (blocksToExec[position].name == "IfHear Voice")){
+                openIfs += 1
+            }
+        }
+    }
+    
+
     //decomposition of all actions that have to do with sound/noise
     func playNoise (myAction: WWCommandSet, sound: String){
         let speaker = WWCommandSpeaker.init(defaultSound: sound)
         myAction.setSound(speaker)
     }
     
-    func playWait(command: String, cmdToSend: WWCommandSetSequence) -> WWCommandSet {
+    func playWait(waitBlock: Block, cmdToSend: WWCommandSetSequence) -> WWCommandSet {
         var wait = 0.0
-        for block in blocksStack{
-            if block.name.contains("Wait"){
-                wait = Double(block.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
-            }
-        }
-        
+//        for block in blocksStack{
+//            if block.name.contains("Wait"){
+//                wait = Double(block.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
+//            }
+//        }
+// old code prior to passing the block rather than string command
+        wait = Double(waitBlock.addedBlocks[0].attributes["wait:"] ?? "0") ?? 0
         let waitingPeriod = WWCommandSet()
         print("waiting", wait)
         cmdToSend.add(waitingPeriod, withDuration: wait)
@@ -481,30 +508,119 @@ class ExecutingProgram {
 
     
     //decomposition of drive functions
-    func playDrive (command: String, driveConstant: Double,  cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+    func playDrive (driveBlock: Block, driveConstant: Double,  cmdToSend: WWCommandSetSequence) -> WWCommandSet{
         var distance = 0.0
-        for block in blocksStack{
-            if block.name.contains("Drive Forward"){
-                distance = Double(block.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
-            }
+        var robotSpeed = 0.0
+        var speed: String
+        speed = driveBlock.addedBlocks[0].attributes["speed"] ?? "Normal"
+        distance = Double(driveBlock.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
+    
+        switch speed {
+            case "Really Fast":
+                robotSpeed = 50.0
+            case "Fast":
+                robotSpeed = 40.0
+            case "Normal":
+                robotSpeed = 30.0
+            case "Slow":
+                robotSpeed = 10.0
+            case "Very Slow":
+                robotSpeed = 5.0
+            default:
+                robotSpeed = 30.0
         }
-        //        if(command.contains("0")){
-        //            var distanceString = command
-        //            distanceString = String(distanceString[distanceString.index(distanceString.endIndex, offsetBy: -2)...])
-        ////            distance = Double(distanceString)!
-        //        }
-        let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * distance), angular: 0)
+            
+        
+        
+        let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * robotSpeed), angular: 0)
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
-        cmdToSend.add(drive, withDuration: 2.0)
+        /*by multiplying (distance/robotSpped) by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
+         distance he needs to in the right time. However he travels a little too far on the very slow speed. */
+        cmdToSend.add(drive, withDuration: (distance/robotSpeed) * 1.25)
         return WWCommandToolbelt.moveStop()
     }
     
-    //decomposition of turn functions
-    func playTurn (turnConstantLW: Double, turnConstantRW: Double, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+    // MARK: decomposition of turn functions
+    func playTurn (direction: Int, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+        var angleToTurn: Double = 45
+        var turnConstantLW: Double = 0
+        var turnConstantRW: Double = 0
+        
+        // TODO: clean up
+        for block in blocksStack{
+            if block.name.contains("Turn Left"){
+                angleToTurn = Double(block.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
+                if direction == 0 { // turn left
+                    switch angleToTurn{ // degrees
+                    case 45:
+                        turnConstantLW = 0
+                        turnConstantRW = 16
+                    case 90:
+                        turnConstantLW = 0
+                        turnConstantRW = 25.3
+                    case 135:
+                        turnConstantLW = 0
+                        turnConstantRW = 35
+                    case 180:
+                        turnConstantLW = 0
+                        turnConstantRW = 43
+                    case 225:
+                        turnConstantLW = 0
+                        turnConstantRW = 47
+                    case 270:
+                        turnConstantLW = 0
+                        turnConstantRW = 53
+                    case 315:
+                        turnConstantLW = 0
+                        turnConstantRW = 57
+                    case 360:
+                        turnConstantLW = 0
+                        turnConstantRW = 65
+                    default: // 45 degrees
+                        turnConstantLW = 0
+                        turnConstantRW = 16
+                    }
+                }
+            }
+            else if block.name.contains("Turn Right"){
+                angleToTurn = Double(block.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
+                if direction == 1 { // turn right
+                    switch angleToTurn{ // degrees
+                    case 45:
+                        turnConstantRW = 0
+                        turnConstantLW = 16
+                    case 90:
+                        turnConstantRW = 0
+                        turnConstantLW = 25.3
+                    case 135:
+                        turnConstantRW = 0
+                        turnConstantLW = 35
+                    case 180:
+                        turnConstantRW = 0
+                        turnConstantLW = 43
+                    case 225:
+                        turnConstantRW = 0
+                        turnConstantLW = 47
+                    case 270:
+                        turnConstantRW = 0
+                        turnConstantLW = 53
+                    case 315:
+                        turnConstantRW = 0
+                        turnConstantLW = 57
+                    case 360:
+                        turnConstantRW = 0
+                        turnConstantLW = 65
+                    default: // 45 degrees
+                        turnConstantRW = 0
+                        turnConstantLW = 16
+                    }
+                }
+            }
+        }
         let rotate = WWCommandSet()
-        rotate.setBodyWheels(WWCommandBodyWheels.init(leftWheel: (turnConstantLW * 25.3), rightWheel: (turnConstantRW * 1)))
-        //testing how to make turns better!
+        rotate.setBodyWheels(WWCommandBodyWheels.init(leftWheel: (turnConstantLW * 1), rightWheel: (turnConstantRW * 1)))
+        // testing how to make turns better!
         cmdToSend.add(rotate, withDuration: 1)
         return WWCommandToolbelt.moveStop()
     }
