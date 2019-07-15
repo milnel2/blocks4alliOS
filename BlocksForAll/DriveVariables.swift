@@ -13,10 +13,6 @@ import UIKit
 class DriveVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
-    var variableSelected: String = "orange"
-//    var variableValue: Int = 0
-    var variableSelectedTwo: String = "orange"
-//    var variableValueTwo: Int = 0
     
     //distance variable buttons
     @IBOutlet weak var orangeDistanceButton: UIButton!
@@ -216,10 +212,7 @@ class DriveVariables: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelectedTwo"] = variableSelectedTwo
-//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValueTwo"] = "\(Int(variableValueTwo))"
-     
         }
     }
     

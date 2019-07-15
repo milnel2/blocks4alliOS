@@ -13,8 +13,6 @@ import UIKit
 class LookUpDownVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
-    var variableSelected: String = "orange"
-//    var variableValue: Int = 0
     
     //look up/down buttons
     @IBOutlet weak var orangeUpButton: UIButton!
@@ -121,10 +119,7 @@ class LookUpDownVariables: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
-            
-            
+            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected   
             
         }
     }

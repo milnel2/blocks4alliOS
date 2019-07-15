@@ -13,8 +13,6 @@ import UIKit
 class TurnVariable: UIViewController {
     
     var modifierBlockIndexSender: Int?
-    var variableSelected: String = "orange"
-    var variableValue: Int = 0
     
     @IBOutlet weak var orangeTurnButton: UIButton!
     @IBOutlet weak var bananaTurnButton: UIButton!
@@ -115,8 +113,6 @@ class TurnVariable: UIViewController {
             print(variableSelected)
             print(variableValue)
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
-            
             
             
         }

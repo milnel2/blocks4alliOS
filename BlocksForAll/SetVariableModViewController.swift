@@ -10,11 +10,13 @@ import Foundation
 import UIKit
 
 
+var variableSelected = String()
+var variableSelectedTwo = String()
+var variableValue = Int()
+
 class SetVariableModViewController: UIViewController {
     
     var modifierBlockIndexSender: Int?
-    var variableSelected: String = "orange"
-    var variableValue: Int = 0
 
     
     @IBOutlet weak var orangeButton: UIButton!

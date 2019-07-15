@@ -13,8 +13,6 @@ import UIKit
 class WheelVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
-    var variableSelected: String = "orange"
-    var variableSelectedTwo: String = "orange"
 
     
     //left wheel buttons
@@ -217,9 +215,7 @@ class WheelVariables: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelectedTwo"] = variableSelectedTwo
-//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValueTwo"] = "\(Int(variableValueTwo))"
             
             
             

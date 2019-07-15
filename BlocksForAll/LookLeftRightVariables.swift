@@ -13,8 +13,6 @@ import UIKit
 class LookLeftRightVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
-    var variableSelected: String = "orange"
-//    var variableValue: Int = 0
     
     //left/right look variable buttons
     @IBOutlet weak var orangeLookLButton: UIButton!
@@ -125,9 +123,7 @@ class LookLeftRightVariables: UIViewController {
             print(variableSelected)
 //            print(variableValue)
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-//            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
-            
-            
+    
             
         }
     }

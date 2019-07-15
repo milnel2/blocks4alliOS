@@ -9,11 +9,12 @@
 import Foundation
 import UIKit
 
+var booleanSelected = String()
+
 class IfModViewController: UIViewController{
     /* Custom view controller for the Repeat modifier scene */
     
     var modifierBlockIndexSender: Int?
-    var booleanSelected: String = "false"
     
     @IBOutlet weak var voiceButton: UIButton!
     @IBOutlet weak var senseButton: UIButton!
