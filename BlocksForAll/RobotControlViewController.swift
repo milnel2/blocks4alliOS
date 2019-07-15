@@ -104,12 +104,18 @@ class ExecutingProgram {
     var blocksToExec: [Block]
     var currentCommandBeingExecuted: WWCommandSetSequence?
     var repeatCountAndIndexArray: [(timesToR: Int, index: Int)] = []
+    var variablesDict: [String : Double] = [:]
     
     // TODO: store command in this variable so you can check if it's executing later
     //var currentCommand: WWCommandOrSomething
 
     init(blocksStackExecute: [Block]) {
         self.blocksToExec = blocksStackExecute
+        self.variablesDict["apple"] = 0.0
+        self.variablesDict["banana"] = 0.0
+        self.variablesDict["cherry"] = 0.0
+        self.variablesDict["melon"] = 0.0
+        self.variablesDict["orange"] = 0.0
     }
     
     var isComplete: Bool {
@@ -166,7 +172,7 @@ class ExecutingProgram {
         case "If":
             var condition = false
             var data = getSensorData()
-            if blocksToExec[position].addedBlocks[0].name == "Hear Voice"{
+            if blocksToExec[position].addedBlocks[0].attributes["booleanSelected"] == "hear_voice"{
                 if(!data.isEmpty){
                     //just checks first robot
                     let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
@@ -176,7 +182,7 @@ class ExecutingProgram {
                         condition = true
                     }
                 }
-            } else if blocksToExec[position].addedBlocks[0].name == "Obstacle in front"{
+            } else if blocksToExec[position].addedBlocks[0].attributes["booleanSelected"] == "obstacle_sensed"{
                 if(!data.isEmpty){
                     //just checks first robot
                     let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
@@ -192,24 +198,18 @@ class ExecutingProgram {
                 print("TRUE")
                 //if it's true, just keep going
             }else{
-                //if it's not true, keep going and don't do any of the blocks until you see endif
-//                while(blockToExec.name != "End If"){
-//                    position += 1
-//                    blockToExec = blocksToExec[position]
-//                    print("it is an endif")
-//                }
                 ifFalse()
             }
             
         case "Repeat":
             print("in Repeat")
+            //repeatCountAndIndexArray keeps track of how many times to repeat which loop
             repeatCountAndIndexArray.append((timesToR: Int(blocksToExec[position].addedBlocks[0].attributes["timesToRepeat"] ?? "0") ?? 0, index: position))
             print(repeatCountAndIndexArray)
-            //position += 1
-            //executeNextCommand()
             
         case "End Repeat" :
             print("in End Repeat")
+            //repeatCountAndIndexArray keeps track of how many times to repeat which loop
             repeatCountAndIndexArray[repeatCountAndIndexArray.count - 1].timesToR -= 1
             if repeatCountAndIndexArray[repeatCountAndIndexArray.count - 1].timesToR == 0{
                 repeatCountAndIndexArray.remove(at: (repeatCountAndIndexArray.count - 1) )
@@ -429,6 +429,58 @@ class ExecutingProgram {
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_YIPPE)
             
             
+        //variables Category
+        case "Set Variable":
+            variablesDict[ blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] = Double(blockToExec.addedBlocks[0].attributes["variableValue"] ?? "0.0") ?? 0.0
+            print("set variable, variablesDict:", variablesDict)
+            
+            
+        case "Drive":
+            var driveConstant = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelectedTwo"] ?? "orange"] ?? 0.0
+            if driveConstant > 0.0{
+                driveConstant = 1.0
+            } else if driveConstant < 0.0{
+                driveConstant = -1.0
+            } else{
+                driveConstant = 0
+            }
+            print("in Drive, driveConstant", driveConstant)
+            myAction = playDrive(driveBlock: blockToExec, driveConstant: driveConstant, cmdToSend: cmdToSend)
+            
+        
+        case "Turn":
+            var direction = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
+            if direction > 0{
+                direction = 1
+            } else{
+                direction = 0
+            }
+            print("in Turn, direction", direction)
+            myAction = playTurn(direction: Int(direction), cmdToSend: cmdToSend)
+            
+        
+        case "Wheel Speed":
+            print("not yet suppourted")
+        
+        case "Look Up or Down":
+            let lookUpOrDown = WWCommandSet()
+            let degree = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
+            lookUpOrDown.setHeadPositionTilt(WWCommandHeadPosition.init(degree: degree))
+            duration = 0.3
+            cmdToSend.add(lookUpOrDown, withDuration: duration)
+            myAction = WWCommandToolbelt.moveStop()
+            print("lookUpOrDown, degree", degree)
+            
+            
+        case "Look Left or Right":
+            let lookLeftOrRight = WWCommandSet()
+            let degree = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
+            lookLeftOrRight.setHeadPositionPan(WWCommandHeadPosition.init(degree: degree))
+            duration = 0.3
+            cmdToSend.add(lookLeftOrRight, withDuration: duration)
+            myAction =  WWCommandToolbelt.moveStop()
+            print("lookUpOrDown, degree", degree)
+            
         //vehicle Category - check on
         case "Airplane Noise":
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_AIRPLANE)
@@ -472,6 +524,7 @@ class ExecutingProgram {
 
     
     func ifFalse(){
+        // used to skip over blocks inside an IF statement if the IF statement returns false
         print("ifFalse Entered")
         var openIfs = 1
         while openIfs > 0{
@@ -512,10 +565,17 @@ class ExecutingProgram {
         var distance = 0.0
         var robotSpeed = 0.0
         var speed: String
-        speed = driveBlock.addedBlocks[0].attributes["speed"] ?? "Normal"
-        distance = Double(driveBlock.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
-    
-        switch speed {
+        
+        if driveBlock.name == "Drive"{
+            robotSpeed = variablesDict[driveBlock.addedBlocks[0].attributes["variableSelectedTwo"] ?? "orange"] ?? 0.0
+            distance = variablesDict[driveBlock.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
+            print("Drive variable, robot speed, distance", robotSpeed, " , ", distance)
+        } else {
+            speed = driveBlock.addedBlocks[0].attributes["speed"] ?? "Normal"
+            distance = Double(driveBlock.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
+            // gets speed an distance from the added block
+            
+            switch speed {
             case "Really Fast":
                 robotSpeed = 50.0
             case "Fast":
@@ -528,10 +588,8 @@ class ExecutingProgram {
                 robotSpeed = 5.0
             default:
                 robotSpeed = 30.0
+            }
         }
-            
-        
-        
         let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * robotSpeed), angular: 0)
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
