@@ -10,13 +10,12 @@ import Foundation
 import UIKit
 
 
-var variableSelected = String()
-var variableSelectedTwo = String()
-var variableValue = Int()
-
 class SetVariableModViewController: UIViewController {
     
     var modifierBlockIndexSender: Int?
+    
+    var variableSelected: String = "orange"
+    var variableValue: Int = 0
 
     
     @IBOutlet weak var orangeButton: UIButton!
@@ -140,6 +139,30 @@ class SetVariableModViewController: UIViewController {
     @objc override func viewDidLoad() {
         super.viewDidLoad()
         
+        var previousSetVariable: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+//        var previousModifierBlockColor = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] ?? "purple"
+        variableSelected = previousSetVariable
+        
+        switch variableSelected{
+        case "orange":
+            orangeButton.layer.borderWidth = 10
+            orangeButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "cherry":
+            cherryButton.layer.borderWidth = 10
+            cherryButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "melon":
+            watermelonButton.layer.borderWidth = 10
+            watermelonButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "apple":
+            appleButton.layer.borderWidth = 10
+            appleButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "banana":
+            bananaButton.layer.borderWidth = 10
+            bananaButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        default:
+            orangeButton.layer.borderWidth = 0
+        }
+        
         VariableValue!.delegate = self
         
         let tapRecogniser = UITapGestureRecognizer()
@@ -168,7 +191,6 @@ class SetVariableModViewController: UIViewController {
         activeField = nil
     }
     
-
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{

@@ -13,6 +13,7 @@ import UIKit
 class LookUpDownVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
+    var variableSelected: String = "orange"
     
     //look up/down buttons
     @IBOutlet weak var orangeUpButton: UIButton!
@@ -115,6 +116,35 @@ class LookUpDownVariables: UIViewController {
             }
         }
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        var previousSelectedVariableOne: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        
+        variableSelected = previousSelectedVariableOne
+        
+        switch variableSelected{
+        case "orange":
+            orangeUpButton.layer.borderWidth = 10
+            orangeUpButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "cherry":
+            cherryUpButton.layer.borderWidth = 10
+            cherryUpButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "melon":
+            watermelonUpButton.layer.borderWidth = 10
+            watermelonUpButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "apple":
+            appleUpButton.layer.borderWidth = 10
+            appleUpButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "banana":
+            bananaUpButton.layer.borderWidth = 10
+            bananaUpButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        default:
+            orangeUpButton.layer.borderWidth = 0
+        }
+    }
+    
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

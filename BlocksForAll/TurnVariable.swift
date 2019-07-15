@@ -13,6 +13,7 @@ import UIKit
 class TurnVariable: UIViewController {
     
     var modifierBlockIndexSender: Int?
+    var variableSelected: String = "orange"
     
     @IBOutlet weak var orangeTurnButton: UIButton!
     @IBOutlet weak var bananaTurnButton: UIButton!
@@ -106,12 +107,38 @@ class TurnVariable: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        var previousSelectedVariable: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        
+        variableSelected = previousSelectedVariable
+        
+        switch variableSelected{
+        case "orange":
+            orangeTurnButton.layer.borderWidth = 10
+            orangeTurnButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "cherry":
+            cherryTurnButton.layer.borderWidth = 10
+            cherryTurnButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "melon":
+            watermelonTurnButton.layer.borderWidth = 10
+            watermelonTurnButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "apple":
+            appleTurnButton.layer.borderWidth = 10
+            appleTurnButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "banana":
+            bananaTurnButton.layer.borderWidth = 10
+            bananaTurnButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        default:
+            orangeTurnButton.layer.borderWidth = 0
+        }
+    }
         
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             print(variableSelected)
-            print(variableValue)
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             
             

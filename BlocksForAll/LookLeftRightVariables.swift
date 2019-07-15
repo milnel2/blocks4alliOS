@@ -13,6 +13,7 @@ import UIKit
 class LookLeftRightVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
+    var variableSelected: String = "orange"
     
     //left/right look variable buttons
     @IBOutlet weak var orangeLookLButton: UIButton!
@@ -114,6 +115,34 @@ class LookLeftRightVariables: UIViewController {
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        var previousSelectedVariableOne: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        
+        variableSelected = previousSelectedVariableOne
+        
+        switch variableSelected{
+        case "orange":
+            orangeLookLButton.layer.borderWidth = 10
+            orangeLookLButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "cherry":
+            cherryLookLButton.layer.borderWidth = 10
+            cherryLookLButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "melon":
+            watermelonLookLButton.layer.borderWidth = 10
+            watermelonLookLButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "apple":
+            appleLookLButton.layer.borderWidth = 10
+            appleLookLButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "banana":
+            bananaLookLButton.layer.borderWidth = 10
+            bananaLookLButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        default:
+            orangeLookLButton.layer.borderWidth = 0
         }
     }
     

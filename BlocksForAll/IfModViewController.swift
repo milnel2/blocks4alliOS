@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
-var booleanSelected = String()
 
 class IfModViewController: UIViewController{
     /* Custom view controller for the Repeat modifier scene */
     
     var modifierBlockIndexSender: Int?
+    var booleanSelected: String = "false"
+    
     
     @IBOutlet weak var voiceButton: UIButton!
     @IBOutlet weak var senseButton: UIButton!
@@ -51,6 +52,25 @@ class IfModViewController: UIViewController{
                 button.layer.borderWidth = 5
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        var previousBooleanSelected: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["booleanSelected"] ?? "false"
+//        var previousModifierBlockSender = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockIndexSender"] ?? "purple"
+        booleanSelected = previousBooleanSelected
+        
+        switch booleanSelected{
+        case "obstacle_sensed":
+            senseButton.layer.borderWidth = 5
+            senseButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "hear_voice":
+            voiceButton.layer.borderWidth = 5
+            voiceButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        default:
+            senseButton.layer.borderWidth = 0
         }
     }
     

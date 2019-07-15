@@ -46,6 +46,35 @@ class ColorModViewController: UIViewController{
         
         colorSelected = previousLightColor
         colorSelected = previousModifierBlockColor
+        
+        switch colorSelected{
+        case "black":
+            blackButton.layer.borderWidth = 5
+            blackButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        case "purple":
+            purpleButton.layer.borderWidth = 5
+            purpleButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        case "green":
+            greenButton.layer.borderWidth = 5
+            greenButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        case "red":
+            redButton.layer.borderWidth = 5
+            redButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        case "blue":
+            blueButton.layer.borderWidth = 5
+            blueButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        case "yellow":
+            yellowButton.layer.borderWidth = 5
+            yellowButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        case "white":
+            whiteButton.layer.borderWidth = 5
+            whiteButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        case "orange":
+            orangeButton.layer.borderWidth = 5
+            orangeButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        default:
+            purpleButton.layer.borderWidth = 0
+        }
     }
     
     @IBAction func blackButtonPressed(_ sender: UIButton) {
@@ -179,6 +208,7 @@ class ColorModViewController: UIViewController{
             }
         }
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{

@@ -13,6 +13,8 @@ import UIKit
 class DriveVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
+    var variableSelected: String = "orange"
+    var variableSelectedTwo: String = "orange"
     
     //distance variable buttons
     @IBOutlet weak var orangeDistanceButton: UIButton!
@@ -206,6 +208,55 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        var previousSelectedVariableOne: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        var previousSelectedVariableTwo: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelectedTwo"] ?? "orange"
+        
+        variableSelected = previousSelectedVariableOne
+        variableSelectedTwo = previousSelectedVariableTwo
+        
+        switch variableSelected{
+        case "orange":
+            orangeDistanceButton.layer.borderWidth = 10
+            orangeDistanceButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "cherry":
+            cherryDistanceButton.layer.borderWidth = 10
+            cherryDistanceButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "melon":
+            watermelonDistanceButton.layer.borderWidth = 10
+            watermelonDistanceButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "apple":
+            appleDistanceButton.layer.borderWidth = 10
+            appleDistanceButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "banana":
+            bananaDistanceButton.layer.borderWidth = 10
+            bananaDistanceButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        default:
+            orangeDistanceButton.layer.borderWidth = 0
+        }
+        switch variableSelectedTwo{
+        case "orange":
+            orangeSpeedButton.layer.borderWidth = 10
+            orangeSpeedButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "cherry":
+            cherrySpeedButton.layer.borderWidth = 10
+            cherrySpeedButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "melon":
+            watermelonSpeedButton.layer.borderWidth = 10
+            watermelonSpeedButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "apple":
+            appleSpeedButton.layer.borderWidth = 10
+            appleSpeedButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "banana":
+            bananaSpeedButton.layer.borderWidth = 10
+            bananaSpeedButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        default:
+            orangeSpeedButton.layer.borderWidth = 0
         }
     }
     

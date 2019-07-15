@@ -13,6 +13,8 @@ import UIKit
 class WheelVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
+    var variableSelected: String = "orange"
+    var variableSelectedTwo: String = "orange"
 
     
     //left wheel buttons
@@ -211,6 +213,54 @@ class WheelVariables: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        var previousSelectedVariableOne: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        var previousSelectedVariableTwo: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelectedTwo"] ?? "orange"
+        
+        variableSelected = previousSelectedVariableOne
+        variableSelectedTwo = previousSelectedVariableTwo
+        
+        switch variableSelected{
+        case "orange":
+            orangeWheelLButton.layer.borderWidth = 10
+            orangeWheelLButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "cherry":
+            cherryWheelLButton.layer.borderWidth = 10
+            cherryWheelLButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "melon":
+            watermelonWheelLButton.layer.borderWidth = 10
+            watermelonWheelLButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "apple":
+            appleWheelLButton.layer.borderWidth = 10
+            appleWheelLButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "banana":
+            bananaWheelLButton.layer.borderWidth = 10
+            bananaWheelLButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        default:
+            orangeWheelLButton.layer.borderWidth = 0
+        }
+        switch variableSelectedTwo{
+        case "orange":
+            orangeWheelRButton.layer.borderWidth = 10
+            orangeWheelRButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "cherry":
+            cherryWheelRButton.layer.borderWidth = 10
+            cherryWheelRButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "melon":
+            watermelonWheelRButton.layer.borderWidth = 10
+            watermelonWheelRButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "apple":
+            appleWheelRButton.layer.borderWidth = 10
+            appleWheelRButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        case "banana":
+            bananaWheelRButton.layer.borderWidth = 10
+            bananaWheelRButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        default:
+            orangeWheelRButton.layer.borderWidth = 0
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
