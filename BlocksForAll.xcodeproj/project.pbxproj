@@ -12,11 +12,11 @@
 		023D633322BD34EE00A8002C /* WaitModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D633222BD34EE00A8002C /* WaitModViewController.swift */; };
 		025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */; };
 		02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */; };
-		57C1BCFE22D51F13003FCD70 /* DriveVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */; };
-		57C1BD0022D53C51003FCD70 /* TurnVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */; };
-		57C1BD0222D53C9B003FCD70 /* WheelVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0122D53C9B003FCD70 /* WheelVariables.swift */; };
-		57C1BD0422D53CB7003FCD70 /* LookLeftRightVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */; };
-		57C1BD0622D53CD1003FCD70 /* LookUpDownVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */; };
+		02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */; };
+		02FE3BCA22DCE4FB000C7C66 /* TurnVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */; };
+		02FE3BCB22DCE4FE000C7C66 /* WheelVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0122D53C9B003FCD70 /* WheelVariables.swift */; };
+		02FE3BCC22DCE501000C7C66 /* LookLeftRightVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */; };
+		02FE3BCD22DCE504000C7C66 /* LookUpDownVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */; };
 		62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */; };
 		62EA50BC22CE52E7002BD4ED /* IfModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */; };
 		701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701A43861EC26EFD00314599 /* BlocksViewController.swift */; };
@@ -337,30 +337,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57C1BD0022D53C51003FCD70 /* TurnVariable.swift in Sources */,
+				02FE3BCD22DCE504000C7C66 /* LookUpDownVariables.swift in Sources */,
+				02FE3BCC22DCE501000C7C66 /* LookLeftRightVariables.swift in Sources */,
+				02FE3BCB22DCE4FE000C7C66 /* WheelVariables.swift in Sources */,
+				02FE3BCA22DCE4FB000C7C66 /* TurnVariable.swift in Sources */,
+				02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */,
 				025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */,
 				F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */,
 				F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */,
 				62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */,
-				57C1BD0622D53CD1003FCD70 /* LookUpDownVariables.swift in Sources */,
 				62EA50BC22CE52E7002BD4ED /* IfModViewController.swift in Sources */,
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
 				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
 				F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */,
 				02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */,
-				57C1BD0222D53C9B003FCD70 /* WheelVariables.swift in Sources */,
 				84CFB36422D3AEB0002812EA /* EyeLightModifier.swift in Sources */,
 				F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */,
 				023D632F22BBF05700A8002C /* ColorModViewController.swift in Sources */,
 				023D633322BD34EE00A8002C /* WaitModViewController.swift in Sources */,
 				F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */,
-				57C1BCFE22D51F13003FCD70 /* DriveVariables.swift in Sources */,
 				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
 				84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */,
 				701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */,
 				023D633122BC0B2E00A8002C /* RepeatModViewController.swift in Sources */,
-				57C1BD0422D53CB7003FCD70 /* LookLeftRightVariables.swift in Sources */,
 				F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
