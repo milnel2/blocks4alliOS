@@ -49,28 +49,28 @@ class ColorModViewController: UIViewController{
         
         switch colorSelected{
         case "black":
-            blackButton.layer.borderWidth = 5
+            blackButton.layer.borderWidth = 10
             blackButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
         case "purple":
-            purpleButton.layer.borderWidth = 5
+            purpleButton.layer.borderWidth = 10
             purpleButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
         case "green":
-            greenButton.layer.borderWidth = 5
+            greenButton.layer.borderWidth = 10
             greenButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
         case "red":
-            redButton.layer.borderWidth = 5
+            redButton.layer.borderWidth = 10
             redButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
         case "blue":
-            blueButton.layer.borderWidth = 5
+            blueButton.layer.borderWidth = 10
             blueButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
         case "yellow":
-            yellowButton.layer.borderWidth = 5
+            yellowButton.layer.borderWidth = 10
             yellowButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
         case "white":
-            whiteButton.layer.borderWidth = 5
+            whiteButton.layer.borderWidth = 10
             whiteButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
         case "orange":
-            orangeButton.layer.borderWidth = 5
+            orangeButton.layer.borderWidth = 10
             orangeButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
         default:
             purpleButton.layer.borderWidth = 0
@@ -103,7 +103,7 @@ class ColorModViewController: UIViewController{
             } else {
                 deselectAll()
                 button.isSelected = true
-                button.layer.borderWidth = 5
+                button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
@@ -119,7 +119,7 @@ class ColorModViewController: UIViewController{
             } else {
                 deselectAll()
                 button.isSelected = true
-                button.layer.borderWidth = 5
+                button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
@@ -135,7 +135,7 @@ class ColorModViewController: UIViewController{
             } else {
                 deselectAll()
                 button.isSelected = true
-                button.layer.borderWidth = 5
+                button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
@@ -151,7 +151,7 @@ class ColorModViewController: UIViewController{
             } else {
                 deselectAll()
                 button.isSelected = true
-                button.layer.borderWidth = 5
+                button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
@@ -167,7 +167,7 @@ class ColorModViewController: UIViewController{
             } else {
                 deselectAll()
                 button.isSelected = true
-                button.layer.borderWidth = 5
+                button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
@@ -183,7 +183,7 @@ class ColorModViewController: UIViewController{
             } else {
                 deselectAll()
                 button.isSelected = true
-                button.layer.borderWidth = 5
+                button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
@@ -203,7 +203,7 @@ class ColorModViewController: UIViewController{
             } else {
                 deselectAll()
                 button.isSelected = true
-                button.layer.borderWidth = 5
+                button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }

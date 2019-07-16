@@ -15,6 +15,7 @@ class DriveVariables: UIViewController {
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
     var variableSelectedTwo: String = "orange"
+    var speed: String = "Normal"
     
     //distance variable buttons
     @IBOutlet weak var orangeDistanceButton: UIButton!
@@ -23,12 +24,10 @@ class DriveVariables: UIViewController {
     @IBOutlet weak var cherryDistanceButton: UIButton!
     @IBOutlet weak var watermelonDistanceButton: UIButton!
     
-    //speed variable buttons
-    @IBOutlet weak var orangeSpeedButton: UIButton!
-    @IBOutlet weak var bananaSpeedButton: UIButton!
-    @IBOutlet weak var appleSpeedButton: UIButton!
-    @IBOutlet weak var cherrySpeedButton: UIButton!
-    @IBOutlet weak var watermelonSpeedButton: UIButton!
+    //speed buttons and labels
+    @IBOutlet weak var slowButton: UIButton!
+    @IBOutlet weak var fastButton: UIButton!
+    @IBOutlet weak var speedLabel: UILabel!
     
     
     
@@ -38,14 +37,6 @@ class DriveVariables: UIViewController {
         cherryDistanceButton.layer.borderWidth = 0
         watermelonDistanceButton.layer.borderWidth = 0
         appleDistanceButton.layer.borderWidth = 0
-    }
-    
-    func deselectAllSpeed(){
-        orangeSpeedButton.layer.borderWidth = 0
-        bananaSpeedButton.layer.borderWidth = 0
-        cherrySpeedButton.layer.borderWidth = 0
-        watermelonSpeedButton.layer.borderWidth = 0
-        appleSpeedButton.layer.borderWidth = 0
     }
     
     //Reference for knowing which button is selected
@@ -131,94 +122,55 @@ class DriveVariables: UIViewController {
         }
     }
     
-    @IBAction func orangeSpeedPressed(_ sender: Any) {
-        variableSelectedTwo = "orange"
-        if let button = sender as? UIButton {
-            if button.isSelected {
-                button.isSelected = false
-                button.layer.borderWidth = 0
-            } else {
-                deselectAllSpeed()
-//                variableValueTwo = variableDict["orange"]!
-                button.isSelected = true
-                button.layer.borderWidth = 10
-                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-            }
+    @IBAction func slowButtonPressed(_ sender: UIButton) {
+        switch speed {
+        case "Really Fast":
+            speed = "Fast"
+            speedLabel.text = speed
+        case "Fast":
+            speed = "Normal"
+            speedLabel.text = speed
+        case "Normal":
+            speed = "Slow"
+            speedLabel.text = speed
+        case "Slow":
+            speed = "Very Slow"
+            speedLabel.text = speed
+        default:
+            print("can't be slowed")
         }
     }
     
-    @IBAction func bananaSpeedPressed(_ sender: Any) {
-        variableSelectedTwo = "banana"
-        if let button = sender as? UIButton {
-            if button.isSelected {
-                button.isSelected = false
-                button.layer.borderWidth = 0
-            } else {
-                deselectAllSpeed()
-//                variableValueTwo = variableDict["banana"]!
-                button.isSelected = true
-                button.layer.borderWidth = 10
-                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-            }
+    @IBAction func fastButtonPressed(_ sender: UIButton) {
+        switch speed {
+        case "Very Slow":
+            speed = "Slow"
+            speedLabel.text = speed
+        case "Slow":
+            speed = "Normal"
+            speedLabel.text = speed
+        case "Normal":
+            speed = "Fast"
+            speedLabel.text = speed
+        case "Fast":
+            speed = "Really Fast"
+            speedLabel.text = speed
+        default:
+            print("can't make faster")
         }
     }
     
-    @IBAction func appleSpeedPressed(_ sender: Any) {
-        variableSelectedTwo = "apple"
-        if let button = sender as? UIButton {
-            if button.isSelected {
-                button.isSelected = false
-                button.layer.borderWidth = 0
-            } else {
-                deselectAllSpeed()
-//                variableValueTwo = variableDict["apple"]!
-                button.isSelected = true
-                button.layer.borderWidth = 10
-                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-            }
-        }
-    }
-    
-    @IBAction func cherrySpeedPressed(_ sender: Any) {
-        variableSelectedTwo = "cherry"
-        if let button = sender as? UIButton {
-            if button.isSelected {
-                button.isSelected = false
-                button.layer.borderWidth = 0
-            } else {
-                deselectAllSpeed()
-//                variableValueTwo = variableDict["cherry"]!
-                button.isSelected = true
-                button.layer.borderWidth = 10
-                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-            }
-        }
-    }
-    
-    @IBAction func watermelonSpeedPressed(_ sender: Any) {
-        variableSelectedTwo = "melon"
-        if let button = sender as? UIButton {
-            if button.isSelected {
-                button.isSelected = false
-                button.layer.borderWidth = 0
-            } else {
-                deselectAllSpeed()
-//                variableValueTwo = variableDict["watermelon"]!
-                button.isSelected = true
-                button.layer.borderWidth = 10
-                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        speedLabel.text = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+        // preserves previously selected value
+        speed = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+        
         var previousSelectedVariableOne: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
-        var previousSelectedVariableTwo: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelectedTwo"] ?? "orange"
         
         variableSelected = previousSelectedVariableOne
-        variableSelectedTwo = previousSelectedVariableTwo
         
         switch variableSelected{
         case "orange":
@@ -239,31 +191,12 @@ class DriveVariables: UIViewController {
         default:
             orangeDistanceButton.layer.borderWidth = 0
         }
-        switch variableSelectedTwo{
-        case "orange":
-            orangeSpeedButton.layer.borderWidth = 10
-            orangeSpeedButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-        case "cherry":
-            cherrySpeedButton.layer.borderWidth = 10
-            cherrySpeedButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-        case "melon":
-            watermelonSpeedButton.layer.borderWidth = 10
-            watermelonSpeedButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-        case "apple":
-            appleSpeedButton.layer.borderWidth = 10
-            appleSpeedButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-        case "banana":
-            bananaSpeedButton.layer.borderWidth = 10
-            bananaSpeedButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-        default:
-            orangeSpeedButton.layer.borderWidth = 0
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelectedTwo"] = variableSelectedTwo
+            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
         }
     }
     

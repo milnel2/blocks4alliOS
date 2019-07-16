@@ -633,14 +633,6 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <segue destination="uoc-nU-c4a" kind="show" id="ebu-O5-0hJ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXq-Lg-wuF">
-                                <rect key="frame" x="215" y="361" width="594" height="205"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" hint="How fast should the robot travel " label="Speed"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3X-6I-Kgi">
                                 <rect key="frame" x="215" y="93" width="594" height="192"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -679,6 +671,14 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Selected Distance"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXq-Lg-wuF">
+                                <rect key="frame" x="215" y="361" width="594" height="205"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="How fast should the robot travel " label="Speed"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -926,11 +926,11 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select and Set a Variable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gb-Uk-oE9">
-                                <rect key="frame" x="347" y="43" width="360" height="41"/>
+                            <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select and Set a Variable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gb-Uk-oE9">
+                                <rect key="frame" x="233" y="38" width="684" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -985,25 +985,6 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <action selector="AppleVariable:" destination="B5M-ey-3HD" eventType="touchUpInside" id="lgO-Yn-Eff"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Variable value:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCi-eq-XZm">
-                                <rect key="frame" x="42" y="636" width="211" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0EE-tA-7aY">
-                                <rect key="frame" x="287" y="618" width="650" height="76"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <accessibility key="accessibilityConfiguration" label="Set your variable value"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                <connections>
-                                    <action selector="VariableValue:" destination="B5M-ey-3HD" eventType="editingDidEnd" id="5qw-jx-cgh"/>
-                                </connections>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5m-D2-7ru">
                                 <rect key="frame" x="618" y="166" width="150" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1017,6 +998,14 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <action selector="CherryVariable:" destination="B5M-ey-3HD" eventType="touchUpInside" id="9qh-hX-sPT"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Negative values = backwards,  downwards, or left actions " textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8l-wa-KJu">
+                                <rect key="frame" x="0.0" y="663" width="1024" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Enter a negative number to use a variable for backwards,  downwards, or left actions later on"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-YP-GZa">
                                 <rect key="frame" x="800" y="166" width="161" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1030,6 +1019,25 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <action selector="MelonVariable:" destination="B5M-ey-3HD" eventType="touchUpInside" id="mXk-TW-8Mr"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0EE-tA-7aY">
+                                <rect key="frame" x="275" y="579" width="520" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <accessibility key="accessibilityConfiguration" label="Set your variable value"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="VariableValue:" destination="B5M-ey-3HD" eventType="editingDidEnd" id="5qw-jx-cgh"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Variable value:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCi-eq-XZm">
+                                <rect key="frame" x="19" y="593" width="240" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -1202,71 +1210,6 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <action selector="cherryDistancePressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="Jxi-1P-z1J"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWA-J1-nmS">
-                                <rect key="frame" x="68" y="505" width="162" height="163"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.27790132169999998" green="0.86850605729999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Orange "/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="Orange">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="orangeSpeedPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="5xI-MF-ZUl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpW-XS-QpU">
-                                <rect key="frame" x="253" y="505" width="156" height="162"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.98230466640000003" green="1" blue="0.2861997409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Banana"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="Banana">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="bananaSpeedPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="isO-4N-b4d"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hy3-Ji-KT2">
-                                <rect key="frame" x="436" y="504" width="152" height="163"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.24135470070000001" green="1" blue="0.37577227400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Apple"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="Apple">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="appleSpeedPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="dgw-eh-2VL"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZAo-ct-gqI">
-                                <rect key="frame" x="796" y="505" width="161" height="162"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.68681763240000004" blue="0.72240925680000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Watermelon"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="Watermelon">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="watermelonSpeedPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="Rh7-6v-fq9"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w65-tf-NNd">
-                                <rect key="frame" x="613" y="505" width="150" height="162"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.35949486939999997" blue="0.61762648750000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Cherry"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="Cherry">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="cherrySpeedPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="nbm-aH-nPp"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CO9-t8-AAm">
                                 <rect key="frame" x="68" y="148" width="138" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1291,20 +1234,45 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBY-tV-GhI">
+                                <rect key="frame" x="700" y="538" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Faster"/>
+                                <state key="normal" title="Button" image="brownPlus"/>
+                                <connections>
+                                    <action selector="fastButtonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="dUL-82-SIY"/>
+                                    <action selector="fastButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="eZr-Up-ZS8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Normal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agB-BY-ixs">
+                                <rect key="frame" x="296" y="538" width="432" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beN-6U-HNX">
+                                <rect key="frame" x="220" y="538" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Slower"/>
+                                <state key="normal" title="Button" image="brownMinus"/>
+                                <connections>
+                                    <action selector="slowButtonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="bxq-A5-z9F"/>
+                                    <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="rle-AG-8Eg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
                         <outlet property="appleDistanceButton" destination="HeO-ti-YFz" id="98j-DJ-HgL"/>
-                        <outlet property="appleSpeedButton" destination="Hy3-Ji-KT2" id="EDg-cE-hts"/>
                         <outlet property="bananaDistanceButton" destination="ypF-Ea-lgn" id="WMn-oT-A4X"/>
-                        <outlet property="bananaSpeedButton" destination="BpW-XS-QpU" id="HYz-Lx-cDg"/>
                         <outlet property="cherryDistanceButton" destination="IoX-XS-X1x" id="V7m-5O-KS3"/>
-                        <outlet property="cherrySpeedButton" destination="w65-tf-NNd" id="Uz2-CF-Xxa"/>
+                        <outlet property="fastButton" destination="jBY-tV-GhI" id="SWA-mD-ceM"/>
                         <outlet property="orangeDistanceButton" destination="OWd-yU-SCQ" id="8bC-S3-ubJ"/>
-                        <outlet property="orangeSpeedButton" destination="KWA-J1-nmS" id="Rrc-ha-p9v"/>
+                        <outlet property="slowButton" destination="beN-6U-HNX" id="MXg-Xy-2Wy"/>
+                        <outlet property="speedLabel" destination="agB-BY-ixs" id="RNC-0a-Apz"/>
                         <outlet property="watermelonDistanceButton" destination="tKW-E7-HOd" id="fnZ-lQ-oek"/>
-                        <outlet property="watermelonSpeedButton" destination="ZAo-ct-gqI" id="zgT-1c-zN8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IeQ-ZC-B5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1948,9 +1916,9 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <image name="GreenArrow" width="649" height="586"/>
         <image name="Orange" width="100" height="100"/>
         <image name="Watermelon" width="100" height="100"/>
-        <image name="hear_voice" width="100" height="100"/>
         <image name="brownMinus" width="100" height="100"/>
         <image name="brownPlus" width="100" height="100"/>
+        <image name="hear_voice" width="100" height="100"/>
         <image name="minus" width="100" height="100"/>
         <image name="off" width="100" height="100"/>
         <image name="on" width="100" height="100"/>
@@ -1958,11 +1926,8 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <image name="sense_obstacle" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SiH-fe-zvu"/>
-        <segue reference="kEZ-rm-qpd"/>
-        <segue reference="PIe-sL-Fqa"/>
-        <segue reference="uRw-vH-lIn"/>
+        <segue reference="2YI-wg-iJ2"/>
         <segue reference="Var-Sg-Rcn"/>
-        <segue reference="s7f-fy-WFP"/>
+        <segue reference="KBE-C8-Ew2"/>
     </inferredMetricsTieBreakers>
 </document>

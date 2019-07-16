@@ -34,7 +34,7 @@ class IfModViewController: UIViewController{
             } else {
                 deselectAll()
                 button.isSelected = true
-                button.layer.borderWidth = 5
+                button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
@@ -49,7 +49,7 @@ class IfModViewController: UIViewController{
             } else {
                 deselectAll()
                 button.isSelected = true
-                button.layer.borderWidth = 5
+                button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
@@ -64,10 +64,10 @@ class IfModViewController: UIViewController{
         
         switch booleanSelected{
         case "obstacle_sensed":
-            senseButton.layer.borderWidth = 5
+            senseButton.layer.borderWidth = 10
             senseButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
         case "hear_voice":
-            voiceButton.layer.borderWidth = 5
+            voiceButton.layer.borderWidth = 10
             voiceButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
         default:
             senseButton.layer.borderWidth = 0
