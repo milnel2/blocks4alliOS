@@ -524,7 +524,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     repeatNumberButton.tag = indexPath.row
-                    repeatNumberButton.backgroundColor = .red
+                    repeatNumberButton.backgroundColor = #colorLiteral(red: 0.7019607843, green: 0.05098039216, blue: 0.7960784314, alpha: 1)
                     repeatNumberButton.setTitle("\(placeholderBlock?.attributes["timesToRepeat"] ?? "1")", for: .normal)
                     repeatNumberButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
                     repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -544,7 +544,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                     
                     repeatNumberButton.tag = indexPath.row
-                    repeatNumberButton.backgroundColor = .red
+                    repeatNumberButton.backgroundColor = #colorLiteral(red: 0.7019607843, green: 0.05098039216, blue: 0.7960784314, alpha: 1)
                     // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
                     repeatNumberButton.setTitle("\(block.addedBlocks[0].attributes["timesToRepeat"] ?? "1")", for: .normal)
                     repeatNumberButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
