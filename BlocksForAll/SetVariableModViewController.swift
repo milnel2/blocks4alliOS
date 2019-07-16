@@ -15,7 +15,7 @@ class SetVariableModViewController: UIViewController {
     var modifierBlockIndexSender: Int?
     
     var variableSelected: String = "orange"
-    var variableValue: Int = 0
+    var variableValue: Double = 0.0
 
     
     @IBOutlet weak var orangeButton: UIButton!
@@ -129,7 +129,7 @@ class SetVariableModViewController: UIViewController {
     @IBOutlet weak var VariableValue: UITextField!
     
     @IBAction func VariableValue(_ sender: UITextField) {
-        variableValue = Int(VariableValue?.text ?? "0") ?? 0
+        variableValue = Double(VariableValue?.text ?? "0") ?? 0
         viewTapped()
     }
     
@@ -197,7 +197,7 @@ class SetVariableModViewController: UIViewController {
 //            variableDict.updateValue(variableValue, forKey: variableSelected)
 //            print(variableDict)
             blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Int(variableValue))"
+            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Double(variableValue))"
         }
     }
     
