@@ -1469,8 +1469,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if myBlock.double == true{
                     var indexOfCounterpart = -1
                     for i in 0..<blocksStack.count {
-                        if blocksStack[i] === myBlock.counterpart! {
-                            indexOfCounterpart = i
+                        for block in myBlock.counterpart{
+                            if block === blocksStack[i]{
+                                indexOfCounterpart = i
+                            }
                         }
                     }
                     var indexPathArray = [IndexPath]()

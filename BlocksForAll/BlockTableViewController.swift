@@ -110,8 +110,8 @@ class BlockTableViewController: UITableViewController {
             if block.double{
                 let endBlockName = "End " + block.name
                 let endBlock = Block(name: endBlockName, color: block.color, double: true)
-                endBlock?.counterpart = block
-                block.counterpart = endBlock
+                endBlock?.counterpart.append(block)
+                block.counterpart.append(endBlock ?? block)
                 myDestination.blocks = [block, endBlock!]
             }else{
                 myDestination.blocks = [block]

@@ -64,7 +64,7 @@ class Block: Codable {
     var name: String
     var color: Color //Color struct rather than UIColor so as to be codable
     var double: Bool //true if needs both beginning and end block like repeat, if
-    var counterpart:Block? //start and end block counterpart for for etc.
+    var counterpart: [Block] = [] //start and end block counterpart for for etc.
     
     var imageName: String?
     
@@ -80,7 +80,7 @@ class Block: Codable {
     // From Paul, create a variable for creating the json encoded data, using the self data of the block in question
     var json: Data? {
         let blocksCounterpart = self.counterpart
-        self.counterpart = nil
+        self.counterpart = []
         // gets counterpart to be re-added later, then sets the counterpart to nil so its codable
         let jsonString = try? JSONEncoder().encode(self)
         // try to encode self to a JSON object

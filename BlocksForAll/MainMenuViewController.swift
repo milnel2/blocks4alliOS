@@ -58,23 +58,45 @@ class MainMenuViewController: UIViewController {
         //array of all of the "If" blocks but not the "End Repeat" blocks
         for block in aBlockStack{
             // iterates through the blocks in the array created from the save, goal is to assign counterparts to all of the For and If statements
-            if block.name == "Repeat" || block.name == "Repeat Forever"{
+            
+            switch block.name{
+            case "If":
+                //mirrors for loop stuff
+                ifOpen.append(block)
+            case "End if":
+                ifOpen.last?.counterpart.append(block)
+                block.counterpart.append(ifOpen.last ?? block)
+                ifOpen.removeLast()
+            case "Repeat", "Repeat Forever":
                 forOpen.append(block)
                 //adds "For" statements to an array
-            }else if block.name == "End Repeat" || block.name == "End Repeat Forever"{
-                forOpen.last?.counterpart = block
-                block.counterpart = forOpen.last
+            case "End Repeat", "End Repeat Forever":
+                forOpen.last?.counterpart.append(block)
+                block.counterpart.append(forOpen.last ?? block)
                 // matches the repeat start to the counter part repeat end
                 forOpen.removeLast()
                 // removes the open block that was matched to a close block
-            }else if block.name == "If"{
-                //mirrors for loop stuff
-                ifOpen.append(block)
-            }else if block.name == "End If"{
-                ifOpen.last?.counterpart = block
-                block.counterpart = ifOpen.last
-                ifOpen.removeLast()
+            default:
+                forOpen = []
             }
+            
+//            if block.name == "Repeat" || block.name == "Repeat Forever"{
+//                forOpen.append(block)
+//                //adds "For" statements to an array
+//            }else if block.name == "End Repeat" || block.name == "End Repeat Forever"{
+//                forOpen.last?.counterpart.append(block)
+//                block.counterpart.append(forOpen.last ?? block)
+//                // matches the repeat start to the counter part repeat end
+//                forOpen.removeLast()
+//                // removes the open block that was matched to a close block
+//            }else if block.name == "If"{
+//                //mirrors for loop stuff
+//                ifOpen.append(block)
+//            }else if block.name == "End If"{
+//                ifOpen.last?.counterpart.append(block)
+//                block.counterpart.append(ifOpen.last ?? block)
+//                ifOpen.removeLast()
+//            }
         }
     }
     
