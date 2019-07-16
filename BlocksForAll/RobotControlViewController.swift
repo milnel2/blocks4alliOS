@@ -236,6 +236,7 @@ class ExecutingProgram {
         case "Turn Left":
             myAction = playTurn(turnBlock: blockToExec, direction: 0, cmdToSend: cmdToSend)
             
+            
         case "Turn Right":
             myAction = playTurn(turnBlock: blockToExec, direction:1, cmdToSend: cmdToSend)
             
@@ -456,7 +457,7 @@ class ExecutingProgram {
                 direction = 0
             }
             print("in Turn, direction", direction)
-            myAction = playTurn(turnBlock: blockToExec, direction: Int(direction), cmdToSend: cmdToSend)
+            myAction = playTurn(turnBlock: blockToExec, direction: Double(direction), cmdToSend: cmdToSend)
             
         
         case "Wheel Speed":
@@ -619,95 +620,39 @@ class ExecutingProgram {
     }
     
     // MARK: decomposition of turn functions
-    func playTurn (turnBlock: Block, direction: Int, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+    func playTurn (turnBlock: Block, direction: Double, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
         var angleToTurn: Double = 45
-        var turnConstantLW: Double = 0
-        var turnConstantRW: Double = 0
-        
-        // TODO: clean up
-
         if turnBlock.name == "Turn"{
             angleToTurn = variablesDict[turnBlock.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
-            // Figure out the math for turning given a specific angle
-            if direction == 0{ //turn left
-                turnConstantLW = 0
-                turnConstantRW = angleToTurn //need to figure out math this is not correct
-            } else if direction == 1{
-                turnConstantRW = 0
-                turnConstantLW = angleToTurn //need to figure out math this is not correct
+            if angleToTurn > 0{
+                let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: -6.28318)
+                // clockwise
+                let turn = WWCommandSet()
+                turn.setBodyLinearAngular(setAngular)
+                cmdToSend.add(turn, withDuration: (angleToTurn/360))
+            } else {
+                let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: 6.28318)
+                //counter clockwise
+                let turn = WWCommandSet()
+                turn.setBodyLinearAngular(setAngular)
+                angleToTurn = angleToTurn * -1
+                cmdToSend.add(turn, withDuration: (angleToTurn/360))
             }
         } else if turnBlock.name.contains("Turn Left"){
             angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
-            if direction == 0 { // turn left
-                switch angleToTurn{ // degrees
-                case 45:
-                    turnConstantLW = 0
-                    turnConstantRW = 16
-                case 90:
-                    turnConstantLW = 0
-                    turnConstantRW = 25.3
-                case 135:
-                    turnConstantLW = 0
-                    turnConstantRW = 35
-                case 180:
-                    turnConstantLW = 0
-                    turnConstantRW = 43
-                case 225:
-                    turnConstantLW = 0
-                    turnConstantRW = 47
-                case 270:
-                    turnConstantLW = 0
-                    turnConstantRW = 53
-                case 315:
-                    turnConstantLW = 0
-                    turnConstantRW = 57
-                case 360:
-                    turnConstantLW = 0
-                    turnConstantRW = 65
-                default: // 45 degrees
-                    turnConstantLW = 0
-                    turnConstantRW = 16
-                }
-            }
+            let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: 6.28318)
+            //counter clockwise
+            let turn = WWCommandSet()
+            turn.setBodyLinearAngular(setAngular)
+            cmdToSend.add(turn, withDuration: (angleToTurn/360))
         } else if turnBlock.name.contains("Turn Right"){
             angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
-            if direction == 1 { // turn right
-                switch angleToTurn{ // degrees
-                case 45:
-                    turnConstantRW = 0
-                    turnConstantLW = 16
-                case 90:
-                    turnConstantRW = 0
-                    turnConstantLW = 25.3
-                case 135:
-                    turnConstantRW = 0
-                    turnConstantLW = 35
-                case 180:
-                    turnConstantRW = 0
-                    turnConstantLW = 43
-                case 225:
-                    turnConstantRW = 0
-                    turnConstantLW = 47
-                case 270:
-                    turnConstantRW = 0
-                    turnConstantLW = 53
-                case 315:
-                    turnConstantRW = 0
-                    turnConstantLW = 57
-                case 360:
-                    turnConstantRW = 0
-                    turnConstantLW = 65
-                default: // 45 degrees
-                    turnConstantRW = 0
-                    turnConstantLW = 16
-                }
-            }
+            let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: -6.28318)
+            //clockwise
+            let turn = WWCommandSet()
+            turn.setBodyLinearAngular(setAngular)
+            cmdToSend.add(turn, withDuration: (angleToTurn/360))
         }
-        
-        let rotate = WWCommandSet()
-        rotate.setBodyWheels(WWCommandBodyWheels.init(leftWheel: (turnConstantLW * 1), rightWheel: (turnConstantRW * 1)))
-        // testing how to make turns better!
-        cmdToSend.add(rotate, withDuration: 1)
         return WWCommandToolbelt.moveStop()
     }
     
