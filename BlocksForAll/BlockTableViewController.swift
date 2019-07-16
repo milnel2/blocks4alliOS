@@ -106,10 +106,21 @@ class BlockTableViewController: UITableViewController {
                 }
             }
             
+            //If-else
+            if block.tripleCounterpart{
+                let middleBlockName = "Else"
+                let middleBlock = Block(name: middleBlockName, color: block.color, double: true, tripleCounterpart: true)
+                middleBlock?.counterpart.append(block)
+                block.counterpart.append(middleBlock ?? block)
+                myDestination.blocks = [block, middleBlock!]
+            }else{
+                myDestination.blocks = [block]
+            }
+            
             //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
             if block.double{
                 let endBlockName = "End " + block.name
-                let endBlock = Block(name: endBlockName, color: block.color, double: true)
+                let endBlock = Block(name: endBlockName, color: block.color, double: true, tripleCounterpart: false)
                 endBlock?.counterpart.append(block)
                 block.counterpart.append(endBlock ?? block)
                 myDestination.blocks = [block, endBlock!]
@@ -139,20 +150,26 @@ class BlockTableViewController: UITableViewController {
                         if let colorString = dictItem.object(forKey: "color") as? String{
                             let color2 = Color.init(uiColor:UIColor.colorFrom(hexString: colorString))
                             if let double = dictItem.object(forKey: "double") as? Bool{
-                                guard let block = Block(name: name as! String, color: color2 , double: double) else {
-                                    fatalError("Unable to instantiate block")
+                                if let tripleCounterpart = dictItem.object(forKey: "tripleCounterpart") as? Bool{
+                                    guard Block(name: name as! String, color: color2 , double: double, tripleCounterpart: tripleCounterpart) != nil else {
+                                        fatalError("Unable to instantiate block")
+                                    }}else{
+                                        guard let block = Block(name: name as! String, color: color2 , double: double, tripleCounterpart: false) else {
+                                            fatalError("Unable to instantiate block")
+                                        }
+                                    if let imageName = dictItem.object(forKey: "imageName") as? String{
+                                        block.addImage(imageName)
+                                    }
+                                    if let type = dictItem.object(forKey: "type") as? String{
+                                        block.type = type
+                                    }
+                                    if let acceptedTypes = dictItem.object(forKey: "acceptedTypes") as? [String]{
+                                        block.acceptedTypes = acceptedTypes
+                                    }
+                                    toolBoxBlockArray += [block]
+                                    // adds block to the toolbox
                                 }
-                                if let imageName = dictItem.object(forKey: "imageName") as? String{
-                                    block.addImage(imageName)
-                                }
-                                if let type = dictItem.object(forKey: "type") as? String{
-                                    block.type = type
-                                }
-                                if let acceptedTypes = dictItem.object(forKey: "acceptedTypes") as? [String]{
-                                    block.acceptedTypes = acceptedTypes
-                                }
-                                toolBoxBlockArray += [block]
-                                // adds block to the toolbox
+                                
                             }
                         }
                     }

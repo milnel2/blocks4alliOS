@@ -81,6 +81,7 @@ class MainMenuViewController: UIViewController {
             case "If Else":
                 ifElseOpen.append(block)
             case "End If Else":
+                ifElseOpen.append(block)
                 ifElseOpen.last?.counterpart.append(block)
                 block.counterpart.append(ifElseOpen.last ?? block)
                 ifElseOpen.removeLast()

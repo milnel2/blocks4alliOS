@@ -65,6 +65,7 @@ class Block: Codable {
     var color: Color //Color struct rather than UIColor so as to be codable
     var double: Bool //true if needs both beginning and end block like repeat, if
     var counterpart: [Block] = [] //start and end block counterpart for for etc.
+    var tripleCounterpart: Bool //true if there's a block with multiple counterparts
     
     var imageName: String?
     
@@ -98,6 +99,7 @@ class Block: Codable {
         self.name = "hello"
         self.color = Color(uiColor: UIColor(white: 0, alpha: 0))
         self.double = true
+        self.tripleCounterpart = true
         self.imageName = nil
         self.addedBlocks = []
         self.type = "bool"
@@ -119,7 +121,7 @@ class Block: Codable {
     }
     
     
-    init?(name: String, color: Color, double: Bool, imageName: String? = nil, addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
+    init?(name: String, color: Color, double: Bool, tripleCounterpart: Bool, imageName: String? = nil, addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
         
         //TODO: check that color is initialized as well
         if name.isEmpty {
@@ -129,6 +131,7 @@ class Block: Codable {
         self.name = name
         self.color = color
         self.double = double
+        self.tripleCounterpart = tripleCounterpart
         self.imageName = imageName
         self.addedBlocks = addedBlocks
         self.type = type
@@ -146,7 +149,7 @@ class Block: Codable {
     
     func copy() -> Block{
         /*Used when selecting a block from the toolbox and copying into workspace*/
-        let newBlock = Block.init(name: self.name, color: self.color, double: self.double, imageName: self.imageName, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes)
+        let newBlock = Block.init(name: self.name, color: self.color, double: self.double, tripleCounterpart: self.tripleCounterpart, imageName: self.imageName, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes)
         return newBlock!
     }
     
