@@ -565,10 +565,17 @@ class ExecutingProgram {
         var distance = 0.0
         var robotSpeed = 0.0
         var speed: String
+        var driveDirection = driveConstant
         speed = driveBlock.addedBlocks[0].attributes["speed"] ?? "Normal"
         if driveBlock.name == "Drive"{
             // gets speed an distance from the added block
             distance = variablesDict[driveBlock.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
+            if distance > 0{
+                driveDirection = 1.0
+            } else if distance < 0{
+                distance = distance * -1
+                driveDirection = -1.0
+            }
             switch speed {
             case "Really Fast":
                 robotSpeed = 50.0
@@ -602,7 +609,7 @@ class ExecutingProgram {
                 robotSpeed = 30.0
             }
         }
-        let setAngular = WWCommandBodyLinearAngular(linear: ((driveConstant) * robotSpeed), angular: 0)
+        let setAngular = WWCommandBodyLinearAngular(linear: ((driveDirection) * robotSpeed), angular: 0)
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
         /*by multiplying (distance/robotSpped) by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
