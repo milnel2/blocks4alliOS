@@ -56,6 +56,8 @@ class MainMenuViewController: UIViewController {
         //array of all of the "Repeat" blocks but not the "End Repeat" blocks
         var ifOpen: [Block] = []
         //array of all of the "If" blocks but not the "End Repeat" blocks
+        var ifElseOpen: [Block] = []
+        //array of all of the If-Else blocks
         for block in aBlockStack{
             // iterates through the blocks in the array created from the save, goal is to assign counterparts to all of the For and If statements
             
@@ -76,8 +78,14 @@ class MainMenuViewController: UIViewController {
                 // matches the repeat start to the counter part repeat end
                 forOpen.removeLast()
                 // removes the open block that was matched to a close block
+            case "If Else":
+                ifElseOpen.append(block)
+            case "End If Else":
+                ifElseOpen.last?.counterpart.append(block)
+                block.counterpart.append(ifElseOpen.last ?? block)
+                ifElseOpen.removeLast()
             default:
-                forOpen = []
+                print("hello")
             }
             
 //            if block.name == "Repeat" || block.name == "Repeat Forever"{
