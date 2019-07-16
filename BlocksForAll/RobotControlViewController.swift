@@ -621,37 +621,37 @@ class ExecutingProgram {
     
     // MARK: decomposition of turn functions
     func playTurn (turnBlock: Block, direction: Double, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
-        var angleToTurn: Double = 45
+        var angleToTurn: Double = 90
         if turnBlock.name == "Turn"{
             angleToTurn = variablesDict[turnBlock.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
             if angleToTurn > 0{
-                let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: -6.28318)
+                let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: -1.570795)
                 // clockwise
                 let turn = WWCommandSet()
                 turn.setBodyLinearAngular(setAngular)
-                cmdToSend.add(turn, withDuration: (angleToTurn/360))
+                cmdToSend.add(turn, withDuration: (angleToTurn/90))
             } else {
-                let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: 6.28318)
+                let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: 1.570795)
                 //counter clockwise
                 let turn = WWCommandSet()
                 turn.setBodyLinearAngular(setAngular)
                 angleToTurn = angleToTurn * -1
-                cmdToSend.add(turn, withDuration: (angleToTurn/360))
+                cmdToSend.add(turn, withDuration: (angleToTurn/90))
             }
         } else if turnBlock.name.contains("Turn Left"){
             angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
-            let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: 6.28318)
+            let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: 1.570795)
             //counter clockwise
             let turn = WWCommandSet()
             turn.setBodyLinearAngular(setAngular)
-            cmdToSend.add(turn, withDuration: (angleToTurn/360))
+            cmdToSend.add(turn, withDuration: (angleToTurn/90))
         } else if turnBlock.name.contains("Turn Right"){
             angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
-            let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: -6.28318)
+            let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: -1.570795)
             //clockwise
             let turn = WWCommandSet()
             turn.setBodyLinearAngular(setAngular)
-            cmdToSend.add(turn, withDuration: (angleToTurn/360))
+            cmdToSend.add(turn, withDuration: (angleToTurn/90))
         }
         return WWCommandToolbelt.moveStop()
     }
