@@ -113,14 +113,18 @@ class BlockTableViewController: UITableViewController {
                 middleBlock?.counterpart.append(block)
                 block.counterpart.append(middleBlock ?? block)
                 myDestination.blocks = [block, middleBlock!]
-            }else{
-                myDestination.blocks = [block]
+                //print(myDestination.blocks)
+                print("in triple counterpart")
+
+                let endBlockName = "End " + block.name
+                let endBlock = Block(name: endBlockName, color: block.color, double: false, tripleCounterpart: true)
+                endBlock?.counterpart.append(block)
+                block.counterpart.append(endBlock!)
+                myDestination.blocks = [block, middleBlock!, endBlock!]
+                //print(myDestination.blocks)
             }
-            
-            
-            
             //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
-            if block.double{
+            else if block.double{
                 let endBlockName = "End " + block.name
                 let endBlock = Block(name: endBlockName, color: block.color, double: true, tripleCounterpart: false)
                 endBlock?.counterpart.append(block)

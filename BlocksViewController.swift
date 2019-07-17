@@ -257,7 +257,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         delay(announcement, 2)
         
         //add a completion block here
-        if(blocks[0].double){
+        if(blocks[0].double || blocks[0].tripleCounterpart){
             blocksStack.insert(contentsOf: blocks, at: index)
             blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
@@ -419,7 +419,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             
             //check if block is nested (or nested multiple times) and adds in "inside" repeat/if blocks
             for i in 0...indexPath.row {
-                if blocksStack[i].double {
+                if blocksStack[i].double{
                     if(!blocksStack[i].name.contains("End")){
                         if(i != indexPath.row){
                             blocksToAdd.append(blocksStack[i])
@@ -428,7 +428,23 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         blocksToAdd.removeLast()
                     }
                 }
+                else if blocksStack[i].tripleCounterpart{
+                    if (!blocksStack[i].name.contains("Else")){
+                        if(i != indexPath.row){
+                            blocksToAdd.append(blocksStack[i])
+                        }
+                    }
+                    if (!blocksStack[i].name.contains("End")){
+                        if(i != indexPath.row){
+                            blocksToAdd.append(blocksStack[i])
+                        }
+                    }else{
+                        blocksToAdd.removeLast()
+                    }
+
+                }
             }
+            
             var count = 0
             for b in blocksToAdd{
                 let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))

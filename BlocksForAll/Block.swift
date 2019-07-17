@@ -112,6 +112,7 @@ class Block: Codable {
             // initializes the new block information from the place holder block newValue.... can't remember how this works since it seems the block creation of the new value is recursive....
             self.color = newValue.color
             self.double = newValue.double
+            self.tripleCounterpart = newValue.tripleCounterpart
             self.imageName = newValue.imageName
             self.addedBlocks = newValue.addedBlocks
             self.type = newValue.type

@@ -73,7 +73,7 @@ class BlockView: UIView, UITextFieldDelegate {
             //                // Fallback on earlier versions
             //            }
             myView.addSubview(imv)
-        }else if !block.double{ //so end repeat blocks don't have names
+        }else if !block.double || !block.tripleCounterpart{ //so end repeat blocks don't have names
             let myLabel = UILabel.init(frame: myFrame)
             myLabel.text = block.name
             myLabel.textAlignment = .center
