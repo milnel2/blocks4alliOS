@@ -242,7 +242,7 @@
 				<key>color</key>
 				<string>#B30DCB</string>
 				<key>double</key>
-				<true/>
+				<false/>
 				<key>tripleCounterpart</key>
 				<true/>
 				<key>imageName</key>

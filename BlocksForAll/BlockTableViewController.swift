@@ -107,52 +107,30 @@ class BlockTableViewController: UITableViewController {
             }
             
             //If-else
-//            if block.tripleCounterpart{
-//                let middleBlockName = "Else"
-//                let middleBlock = Block(name: middleBlockName, color: block.color, double: true, tripleCounterpart: true)
-//                middleBlock?.counterpart.append(block)
-//                block.counterpart.append(middleBlock ?? block)
-//                myDestination.blocks = [block, middleBlock!]
-//            }else{
-//                myDestination.blocks = [block]
-//            }
+            if block.tripleCounterpart{
+                let middleBlockName = "Else"
+                let middleBlock = Block(name: middleBlockName, color: block.color, double: false, tripleCounterpart: true)
+                middleBlock?.counterpart.append(block)
+                block.counterpart.append(middleBlock ?? block)
+                myDestination.blocks = [block, middleBlock!]
+            }else{
+                myDestination.blocks = [block]
+            }
+            
             
             
             //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
             if block.double{
-                print("in block double")
-                if block.tripleCounterpart{
-                    print("in triplecounterpart")
-                    let middleBlockName = "Else"
-                    let middleBlock = Block(name: middleBlockName, color: block.color, double: true, tripleCounterpart: true)
-                    middleBlock?.counterpart.append(block)
-                    block.counterpart.append(middleBlock ?? block)
-                    myDestination.blocks = [block, middleBlock!]
-                }
                 let endBlockName = "End " + block.name
                 let endBlock = Block(name: endBlockName, color: block.color, double: true, tripleCounterpart: false)
                 endBlock?.counterpart.append(block)
                 block.counterpart.append(endBlock ?? block)
-//                myDestination.blocks = [block, endBlock!]
-                myDestination.blocks?.append(endBlock!)
+                myDestination.blocks = [block, endBlock!]
             }else{
                 myDestination.blocks = [block]
             }
             myDestination.delegate = self.delegate
         }
-            
-            //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
-//            if block.double{
-//                let endBlockName = "End " + block.name
-//                let endBlock = Block(name: endBlockName, color: block.color, double: true, tripleCounterpart: false)
-//                endBlock?.counterpart.append(block)
-//                block.counterpart.append(endBlock ?? block)
-//                myDestination.blocks = [block, endBlock!]
-//            }else{
-//                myDestination.blocks = [block]
-//            }
-//            myDestination.delegate = self.delegate
-//        }
     }
     
     
