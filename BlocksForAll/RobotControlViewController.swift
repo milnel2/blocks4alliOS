@@ -102,7 +102,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 class ExecutingProgram {
     var position: Int = 0
     var blocksToExec: [Block]
-    var currentCommandBeingExecuted: WWCommandSetSequence?
+//    var currentCommandBeingExecuted: WWCommandSetSequence?
     var repeatCountAndIndexArray: [(timesToR: Int, index: Int)] = []
     var variablesDict: [String : Double] = [:]
     
@@ -122,22 +122,24 @@ class ExecutingProgram {
         return position >= blocksToExec.count
     }
     
-//    var isStopped: Bool {
-//        return notRunning
-//    }
+
+
+    
     func executeNextCommand() {
         print("in execute nextcommand")
         guard !isComplete else {
             return
         }
-
+        var myAction = WWCommandSet()
         var blockToExec = blocksToExec[position]
         //for command in myCommands{
         print(blockToExec)
         var duration = 2.0
         //TODO: add repeat blocks
-        var myAction = WWCommandSet()
+        
         let cmdToSend = WWCommandSetSequence()
+        
+        
         
         
         switch blockToExec.name{
@@ -235,7 +237,7 @@ class ExecutingProgram {
              if he needs to pivot from his head/center, then the direction he is turning in would need to be negative */
         case "Turn Left":
             myAction = playTurn(turnBlock: blockToExec, direction: 0, cmdToSend: cmdToSend)
-            
+           
             
         case "Turn Right":
             myAction = playTurn(turnBlock: blockToExec, direction:1, cmdToSend: cmdToSend)
@@ -525,7 +527,6 @@ class ExecutingProgram {
         print(cmdToSend)
         sendCommandSequenceToRobots(cmdSeq: cmdToSend)
         //cmdToSend.removeAllEvents()
-        currentCommandBeingExecuted = cmdToSend
         position += 1
     }
 
@@ -620,7 +621,7 @@ class ExecutingProgram {
     }
     
     // MARK: decomposition of turn functions
-    func playTurn (turnBlock: Block, direction: Double, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+    func playTurn (turnBlock: Block, direction: Double, cmdToSend: WWCommandSetSequence)-> WWCommandSet{
         var angleToTurn: Double = 90
         if turnBlock.name == "Turn"{
             angleToTurn = variablesDict[turnBlock.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
@@ -639,22 +640,30 @@ class ExecutingProgram {
                 cmdToSend.add(turn, withDuration: (angleToTurn/90))
             }
         } else if turnBlock.name.contains("Turn Left"){
-            angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
+            angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90
             let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: 1.570795)
             //counter clockwise
             let turn = WWCommandSet()
             turn.setBodyLinearAngular(setAngular)
             cmdToSend.add(turn, withDuration: (angleToTurn/90))
         } else if turnBlock.name.contains("Turn Right"){
-            angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
+            angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90
             let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: -1.570795)
             //clockwise
             let turn = WWCommandSet()
             turn.setBodyLinearAngular(setAngular)
             cmdToSend.add(turn, withDuration: (angleToTurn/90))
         }
+        var waitAdd = 0.0
+        if angleToTurn > 314{
+            waitAdd = 0.1
+        }
+        let wait = (1.0 + waitAdd)
+        let waitingPeriod = WWCommandSet()
+        cmdToSend.add(waitingPeriod, withDuration: wait)
         return WWCommandToolbelt.moveStop()
     }
+
     
     //decomposition of light functions
     func playLight () -> WWCommandLightRGB{
