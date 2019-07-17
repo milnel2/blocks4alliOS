@@ -20,6 +20,8 @@
 				<string>#058900</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>cat_sound.pdf</string>
 			</dict>
@@ -33,6 +35,8 @@
 				<key>color</key>
 				<string>#058900</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>crocodile_sound.pdf</string>
@@ -48,6 +52,8 @@
 				<string>#058900</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>dinosaur_sound.pdf</string>
 			</dict>
@@ -61,6 +67,8 @@
 				<key>color</key>
 				<string>#058900</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>dog_sound.pdf</string>
@@ -76,6 +84,8 @@
 				<string>#058900</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>elephant_sound.pdf</string>
 			</dict>
@@ -89,6 +99,8 @@
 				<key>color</key>
 				<string>#058900</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>goat_sound.pdf</string>
@@ -104,6 +116,8 @@
 				<string>#058900</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>horse_sound.pdf</string>
 			</dict>
@@ -118,6 +132,8 @@
 				<string>#058900</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>lion_sound.pdf</string>
 			</dict>
@@ -131,6 +147,8 @@
 				<key>color</key>
 				<string>#058900</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>turkey_sound.pdf</string>
@@ -159,6 +177,8 @@
 				<string>#B30DCB</string>
 				<key>double</key>
 				<true/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>repeat.pdf</string>
 			</dict>
@@ -173,6 +193,8 @@
 				<string>#B30DCB</string>
 				<key>double</key>
 				<true/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>repeat_forever.pdf</string>
 			</dict>
@@ -196,6 +218,8 @@
 				<string>#B30DCB</string>
 				<key>double</key>
 				<true/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>new_if.pdf</string>
 			</dict>
@@ -219,6 +243,8 @@
 				<string>#B30DCB</string>
 				<key>double</key>
 				<true/>
+				<key>tripleCounterpart</key>
+				<true/>
 				<key>imageName</key>
 				<string>If_Else.pdf</string>
 			</dict>
@@ -232,6 +258,8 @@
 				<key>color</key>
 				<string>#B30DCB</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>wait.pdf</string>
@@ -256,6 +284,8 @@
 				<string>#B15C13</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>drive_forward.pdf</string>
 			</dict>
@@ -269,6 +299,8 @@
 				<key>color</key>
 				<string>#B15C13</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>drive_backward.pdf</string>
@@ -284,6 +316,8 @@
 				<string>#B15C13</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>turn_left.pdf</string>
 			</dict>
@@ -297,6 +331,8 @@
 				<key>color</key>
 				<string>#B15C13</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>turn_right.pdf</string>
@@ -321,6 +357,8 @@
 				<string>#6700C1</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>set_eye_light.pdf</string>
 			</dict>
@@ -334,6 +372,8 @@
 				<key>color</key>
 				<string>#6700C1</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>set_left_ear_light.pdf</string>
@@ -351,6 +391,8 @@
 				<string>#6700C1</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>set_right_ear_light.pdf</string>
 			</dict>
@@ -365,6 +407,8 @@
 				<string>#6700C1</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>set_chest_light.pdf</string>
 			</dict>
@@ -378,6 +422,8 @@
 				<key>color</key>
 				<string>#6700C1</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>set_all_lights.pdf</string>
@@ -402,6 +448,8 @@
 				<string>#836F53</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>look_up.pdf</string>
 			</dict>
@@ -415,6 +463,8 @@
 				<key>color</key>
 				<string>#836F53</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>look_down.pdf</string>
@@ -430,6 +480,8 @@
 				<string>#836F53</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>look_straight.pdf</string>
 			</dict>
@@ -443,6 +495,8 @@
 				<key>color</key>
 				<string>#836F53</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>look_left.pdf</string>
@@ -458,6 +512,8 @@
 				<string>#836F53</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>look_right.pdf</string>
 			</dict>
@@ -472,6 +528,8 @@
 				<string>#836F53</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>look_forward.pdf</string>
 			</dict>
@@ -485,6 +543,8 @@
 				<key>color</key>
 				<string>#836F53</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>look_toward_voice.pdf</string>
@@ -509,6 +569,8 @@
 				<string>#0066D0</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>wiggle.pdf</string>
 			</dict>
@@ -523,6 +585,8 @@
 				<string>#0066D0</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>nod.pdf</string>
 			</dict>
@@ -536,6 +600,8 @@
 				<key>color</key>
 				<string>#0066D0</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>dance.pdf</string>
@@ -560,6 +626,8 @@
 				<string>#A50C82</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>sound_bragging.pdf</string>
 			</dict>
@@ -573,6 +641,8 @@
 				<key>color</key>
 				<string>#A50C82</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>sound_confused.pdf</string>
@@ -588,6 +658,8 @@
 				<string>#A50C82</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>sound_giggle.pdf</string>
 			</dict>
@@ -601,6 +673,8 @@
 				<key>color</key>
 				<string>#A50C82</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>sound_grunt.pdf</string>
@@ -616,6 +690,8 @@
 				<string>#A50C82</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>sound_sigh.pdf</string>
 			</dict>
@@ -630,6 +706,8 @@
 				<string>#A50C82</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>sound_surprised.pdf</string>
 			</dict>
@@ -643,6 +721,8 @@
 				<key>color</key>
 				<string>#A50C82</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>sound_yawn.pdf</string>
@@ -673,6 +753,8 @@
 				<string>#227C7C</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>random_sound.pdf</string>
 			</dict>
@@ -686,6 +768,8 @@
 				<key>color</key>
 				<string>#227C7C</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>buzz_sound.pdf</string>
@@ -701,6 +785,8 @@
 				<string>#227C7C</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>laser_sound.pdf</string>
 			</dict>
@@ -714,6 +800,8 @@
 				<key>color</key>
 				<string>#227C7C</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>snore_sound.pdf</string>
@@ -729,6 +817,8 @@
 				<string>#227C7C</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>trumpet_sound.pdf</string>
 			</dict>
@@ -742,6 +832,8 @@
 				<key>color</key>
 				<string>#227C7C</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>squeak_sound.pdf</string>
@@ -766,6 +858,8 @@
 				<string>#C63329</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>speak_hi.pdf</string>
 			</dict>
@@ -779,6 +873,8 @@
 				<key>color</key>
 				<string>#C63329</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>speak_bye.pdf</string>
@@ -794,6 +890,8 @@
 				<string>#C63329</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>speak_cool.pdf</string>
 			</dict>
@@ -807,6 +905,8 @@
 				<key>color</key>
 				<string>#C63329</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>speak_haha.pdf</string>
@@ -822,6 +922,8 @@
 				<string>#C63329</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>speak_lets_go.pdf</string>
 			</dict>
@@ -835,6 +937,8 @@
 				<key>color</key>
 				<string>#C63329</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>speak_oh.pdf</string>
@@ -850,6 +954,8 @@
 				<string>#C63329</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>speak_wow.pdf</string>
 			</dict>
@@ -863,6 +969,8 @@
 				<key>color</key>
 				<string>#C63329</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>speak_tah_dah.pdf</string>
@@ -878,6 +986,8 @@
 				<string>#C63329</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>speak_uh_huh.pdf</string>
 			</dict>
@@ -891,6 +1001,8 @@
 				<key>color</key>
 				<string>#C63329</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>speak_uh_oh.pdf</string>
@@ -906,6 +1018,8 @@
 				<string>#C63329</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>speak_wah.pdf</string>
 			</dict>
@@ -920,6 +1034,8 @@
 				<string>#C63329</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>speak_wee_hee.pdf</string>
 			</dict>
@@ -933,6 +1049,8 @@
 				<key>color</key>
 				<string>#C63329</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>speak_yippe.pdf</string>
@@ -957,6 +1075,8 @@
 				<string>#774B4B</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -968,6 +1088,8 @@
 				<key>color</key>
 				<string>#774B4B</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>DriveBackwardnForward.pdf</string>
@@ -983,6 +1105,8 @@
 				<string>#774B4B</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>newTurn.pdf</string>
 			</dict>
@@ -996,6 +1120,8 @@
 				<key>color</key>
 				<string>#774B4B</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>Wheel_LR.pdf</string>
@@ -1011,6 +1137,8 @@
 				<string>#774B4B</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>LookUpnDown.pdf</string>
 			</dict>
@@ -1024,6 +1152,8 @@
 				<key>color</key>
 				<string>#774B4B</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>LookLeftnRight.pdf</string>
@@ -1048,6 +1178,8 @@
 				<string>#002041</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>airplane.pdf</string>
 			</dict>
@@ -1061,6 +1193,8 @@
 				<key>color</key>
 				<string>#002041</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>beep.pdf</string>
@@ -1076,6 +1210,8 @@
 				<string>#002041</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>boat.pdf</string>
 			</dict>
@@ -1089,6 +1225,8 @@
 				<key>color</key>
 				<string>#002041</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>helicopter.pdf</string>
@@ -1104,6 +1242,8 @@
 				<string>#002041</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>siren.pdf</string>
 			</dict>
@@ -1117,6 +1257,8 @@
 				<key>color</key>
 				<string>#002041</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>speed_boost.pdf</string>
@@ -1132,6 +1274,8 @@
 				<string>#002041</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>car_sound.pdf</string>
 			</dict>
@@ -1146,6 +1290,8 @@
 				<string>#002041</string>
 				<key>double</key>
 				<false/>
+				<key>tripleCounterpart</key>
+				<false/>
 				<key>imageName</key>
 				<string>tire_squeal.pdf</string>
 			</dict>
@@ -1159,6 +1305,8 @@
 				<key>color</key>
 				<string>#002041</string>
 				<key>double</key>
+				<false/>
+				<key>tripleCounterpart</key>
 				<false/>
 				<key>imageName</key>
 				<string>train.pdf</string>

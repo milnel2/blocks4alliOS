@@ -107,18 +107,31 @@ class BlockTableViewController: UITableViewController {
             }
             
             //If-else
-            if block.tripleCounterpart{
-                let middleBlockName = "Else"
-                let middleBlock = Block(name: middleBlockName, color: block.color, double: true, tripleCounterpart: true)
-                middleBlock?.counterpart.append(block)
-                block.counterpart.append(middleBlock ?? block)
-                myDestination.blocks = [block, middleBlock!]
-            }else{
-                myDestination.blocks = [block]
-            }
+//            if block.tripleCounterpart{
+//                let middleBlockName = "Else"
+//                let middleBlock = Block(name: middleBlockName, color: block.color, double: true, tripleCounterpart: true)
+//                middleBlock?.counterpart.append(block)
+//                block.counterpart.append(middleBlock ?? block)
+//                myDestination.blocks = [block, middleBlock!]
+//            }else{
+//                myDestination.blocks = [block]
+//            }
+            
             
             //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
             if block.double{
+                print("in block double")
+                if block.tripleCounterpart{
+                    print("in triplecounterpart")
+                    let middleBlockName = "Else"
+                    let middleBlock = Block(name: middleBlockName, color: block.color, double: true, tripleCounterpart: true)
+                    middleBlock?.counterpart.append(block)
+                    block.counterpart.append(middleBlock ?? block)
+                    myDestination.blocks = [block, middleBlock!, block]
+                }
+                else{
+                    myDestination.blocks = [block]
+                }
                 let endBlockName = "End " + block.name
                 let endBlock = Block(name: endBlockName, color: block.color, double: true, tripleCounterpart: false)
                 endBlock?.counterpart.append(block)
@@ -129,6 +142,19 @@ class BlockTableViewController: UITableViewController {
             }
             myDestination.delegate = self.delegate
         }
+            
+            //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
+//            if block.double{
+//                let endBlockName = "End " + block.name
+//                let endBlock = Block(name: endBlockName, color: block.color, double: true, tripleCounterpart: false)
+//                endBlock?.counterpart.append(block)
+//                block.counterpart.append(endBlock ?? block)
+//                myDestination.blocks = [block, endBlock!]
+//            }else{
+//                myDestination.blocks = [block]
+//            }
+//            myDestination.delegate = self.delegate
+//        }
     }
     
     
@@ -142,6 +168,7 @@ class BlockTableViewController: UITableViewController {
             if let blockArray = blockType.object(forKey: "Blocks") as? NSArray{
                 // creates array from the first object in blocksMenu.plist aka Animals, Controls, Drive, Sounds, etc.
                 for item in blockArray{
+                    print(item)
                     // for block in category Animal, Control, etc.
                     if let dictItem = item as? NSDictionary{
                         // take the block and using it as a dictionary dictItem
@@ -151,12 +178,9 @@ class BlockTableViewController: UITableViewController {
                             let color2 = Color.init(uiColor:UIColor.colorFrom(hexString: colorString))
                             if let double = dictItem.object(forKey: "double") as? Bool{
                                 if let tripleCounterpart = dictItem.object(forKey: "tripleCounterpart") as? Bool{
-                                    guard Block(name: name as! String, color: color2 , double: double, tripleCounterpart: true) != nil else {
+                                    guard let block = Block(name: name as! String, color: color2 , double: double, tripleCounterpart: tripleCounterpart)else {
                                         fatalError("Unable to instantiate block")
-                                    }}else{
-                                        guard let block = Block(name: name as! String, color: color2 , double: double, tripleCounterpart: false) else {
-                                            fatalError("Unable to instantiate block")
-                                        }
+                                    }
                                     if let imageName = dictItem.object(forKey: "imageName") as? String{
                                         block.addImage(imageName)
                                     }
@@ -169,7 +193,6 @@ class BlockTableViewController: UITableViewController {
                                     toolBoxBlockArray += [block]
                                     // adds block to the toolbox
                                 }
-                                
                             }
                         }
                     }
