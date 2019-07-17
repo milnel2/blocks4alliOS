@@ -151,7 +151,7 @@ class BlockTableViewController: UITableViewController {
                             let color2 = Color.init(uiColor:UIColor.colorFrom(hexString: colorString))
                             if let double = dictItem.object(forKey: "double") as? Bool{
                                 if let tripleCounterpart = dictItem.object(forKey: "tripleCounterpart") as? Bool{
-                                    guard Block(name: name as! String, color: color2 , double: double, tripleCounterpart: tripleCounterpart) != nil else {
+                                    guard Block(name: name as! String, color: color2 , double: double, tripleCounterpart: true) != nil else {
                                         fatalError("Unable to instantiate block")
                                     }}else{
                                         guard let block = Block(name: name as! String, color: color2 , double: double, tripleCounterpart: false) else {

@@ -219,8 +219,6 @@
 				<string>#B30DCB</string>
 				<key>double</key>
 				<true/>
-				<key>tripleCounterpart</key>
-				<true/>
 				<key>imageName</key>
 				<string>If_Else.pdf</string>
 			</dict>
