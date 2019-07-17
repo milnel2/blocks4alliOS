@@ -127,16 +127,14 @@ class BlockTableViewController: UITableViewController {
                     let middleBlock = Block(name: middleBlockName, color: block.color, double: true, tripleCounterpart: true)
                     middleBlock?.counterpart.append(block)
                     block.counterpart.append(middleBlock ?? block)
-                    myDestination.blocks = [block, middleBlock!, block]
-                }
-                else{
-                    myDestination.blocks = [block]
+                    myDestination.blocks = [block, middleBlock!]
                 }
                 let endBlockName = "End " + block.name
                 let endBlock = Block(name: endBlockName, color: block.color, double: true, tripleCounterpart: false)
                 endBlock?.counterpart.append(block)
                 block.counterpart.append(endBlock ?? block)
-                myDestination.blocks = [block, endBlock!]
+//                myDestination.blocks = [block, endBlock!]
+                myDestination.blocks?.append(endBlock!)
             }else{
                 myDestination.blocks = [block]
             }
