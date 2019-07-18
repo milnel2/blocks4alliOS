@@ -247,6 +247,7 @@ class ExecutingProgram {
             
         case "Wait for Time":
             myAction = playWait(waitBlock: blockToExec, cmdToSend: cmdToSend)
+            duration = 0.1
             
         //Drive Category
         case "Drive Forward":
@@ -581,7 +582,7 @@ class ExecutingProgram {
     
     func playWait(waitBlock: Block, cmdToSend: WWCommandSetSequence) -> WWCommandSet {
         var wait = 0.0
-        wait = Double(waitBlock.addedBlocks[0].attributes["wait:"] ?? "0") ?? 0
+        wait = Double(waitBlock.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
         let waitingPeriod = WWCommandSet()
         print("waiting", wait)
         cmdToSend.add(waitingPeriod, withDuration: wait)
