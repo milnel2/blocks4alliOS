@@ -103,25 +103,30 @@ class BlockTableViewController: UITableViewController {
             for myView in (b2?.subviews)!{
                 if let myBlockView = myView as? BlockView{
                     block = myBlockView.blocks[0].copy()
+                    
                 }
             }
             
             //If-else
             if block.tripleCounterpart{
+                let firstBlockName = "If"
+                let firstBlock = Block(name: firstBlockName, color: block.color, double: false, tripleCounterpart: true)
+                firstBlock?.imageName = "If_Else.pdf"
+                firstBlock?.counterpart.append(block)
+                block.counterpart.append(firstBlock ?? block)
+                
                 let middleBlockName = "Else"
                 let middleBlock = Block(name: middleBlockName, color: block.color, double: false, tripleCounterpart: true)
                 middleBlock?.counterpart.append(block)
-                block.counterpart.append(middleBlock ?? block)
-                myDestination.blocks = [block, middleBlock!]
-                //print(myDestination.blocks)
+                block.counterpart.append(middleBlock!)
                 print("in triple counterpart")
 
-                let endBlockName = "End " + block.name
+                let endBlockName = "End If Else"
                 let endBlock = Block(name: endBlockName, color: block.color, double: false, tripleCounterpart: true)
                 endBlock?.counterpart.append(block)
                 block.counterpart.append(endBlock!)
-                myDestination.blocks = [block, middleBlock!, endBlock!]
-                //print(myDestination.blocks)
+                myDestination.blocks = [firstBlock!, middleBlock!, endBlock!]
+
             }
             //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
             else if block.double{

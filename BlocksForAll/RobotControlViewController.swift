@@ -201,6 +201,40 @@ class ExecutingProgram {
                 ifFalse()
             }
             
+        case "If Else":
+            var condition = false
+            var data = getSensorData()
+            if blocksToExec[position].addedBlocks[0].attributes["booleanSelected"] == "hear_voice"{
+                if(!data.isEmpty){
+                    //just checks first robot
+                    let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
+                    print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
+                    if(micData.amplitude > 0){
+                        print("hear Voice true")
+                        condition = true
+                    }
+                }
+            } else if blocksToExec[position].addedBlocks[0].attributes["booleanSelected"] == "obstacle_sensed"{
+                if(!data.isEmpty){
+                    //just checks first robot
+                    let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
+                    let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
+                    print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
+                    if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
+                        print("obstacle in front true")
+                        condition = true
+                    }
+                }
+            }
+            if(condition){
+                print("TRUE")
+                //if it's true, just keep going
+            }else{
+                ifFalse()
+                
+                
+            }
+            
         case "Repeat":
             print("in Repeat")
             //repeatCountAndIndexArray keeps track of how many times to repeat which loop
@@ -535,9 +569,12 @@ class ExecutingProgram {
         var openIfs = 1
         while openIfs > 0{
             position += 1
-            if blocksToExec[position].name == "End If"{
-                openIfs -= 1
-            } else if ((blocksToExec[position].name == "IfObstacle in front") || (blocksToExec[position].name == "IfHear Voice")){
+            if blocksToExec[position].name == "End If" || blocksToExec[position].name == "End If Else"{
+                openIfs = 0
+            }else if blocksToExec[position].name == "Else"{
+                openIfs = 0
+            }
+            else if ((blocksToExec[position].name == "IfObstacle in front") || (blocksToExec[position].name == "IfHear Voice")){
                 openIfs += 1
             }
         }

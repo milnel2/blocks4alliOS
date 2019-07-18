@@ -257,16 +257,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         delay(announcement, 2)
         
         //add a completion block here
-        if(blocks[0].double || blocks[0].tripleCounterpart){
+        if(blocks[0].double) || (blocks[0].tripleCounterpart){
             blocksStack.insert(contentsOf: blocks, at: index)
             blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
-        }else{
+        }
+        else{
             blocksStack.insert(blocks[0], at: index)
             //NEED TO DO THIS?
             blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
         }
+        
     }
     
     func makeAnnouncement(_ announcement: String){
@@ -434,11 +436,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                             blocksToAdd.append(blocksStack[i])
                         }
                     }
+                    else{
+                        blocksToAdd.removeLast()
+                    }
                     if (!blocksStack[i].name.contains("End")){
                         if(i != indexPath.row){
                             blocksToAdd.append(blocksStack[i])
                         }
-                    }else{
+                    }
+                else{
                         blocksToAdd.removeLast()
                     }
 
