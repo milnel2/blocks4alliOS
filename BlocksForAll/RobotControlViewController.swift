@@ -121,7 +121,6 @@ class ExecutingProgram {
     var isComplete: Bool {
         return position >= blocksToExec.count
     }
-    
 
 
     
@@ -131,7 +130,7 @@ class ExecutingProgram {
             return
         }
         var myAction = WWCommandSet()
-        var blockToExec = blocksToExec[position]
+        let blockToExec = blocksToExec[position]
         //for command in myCommands{
         print(blockToExec)
         var duration = 2.0
@@ -521,12 +520,10 @@ class ExecutingProgram {
             print("There is no command")
             
         }
-        
         //the code that actually sends and removes the command's action to the sequence of code
         cmdToSend.add(myAction, withDuration: duration)
         print(cmdToSend)
         sendCommandSequenceToRobots(cmdSeq: cmdToSend)
-        //cmdToSend.removeAllEvents()
         position += 1
     }
 
