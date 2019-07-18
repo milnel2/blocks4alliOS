@@ -15,7 +15,6 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -63,30 +62,34 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         
             // var repeatCommands = [WWCommandSet]()
             executingProgram = ExecutingProgram(blocksStackExecute: blocksStackPlay)
-            executeNextCommand()
+            //creates executing program
+            executeNextCommandRobotControllVC()
+            //makes initial executeNextCommandRobotControllVC call
             
             } else{
             print("no connected robots")
         }
     }
     
-    func executeNextCommand() {
+    func executeNextCommandRobotControllVC() {
         print("in poll for next commnad")
         guard let executingProgram = executingProgram else {
             return  // not running
         }
         guard !executingProgram.isComplete else {
+        //if command is running
             print("in if iscomplete")
             self.executingProgram = nil
             programHasCompleted()
             return  // no more commands left
         }
     
-        executingProgram.executeNextCommand()
+        executingProgram.executeNextCommandExecProgram()
+        // initial call of executeNextCommand on an executingProgram
     }
 
     func robot(_ robot: WWRobot!, didFinishCommand sequence: WWCommandSetSequence!) {
-        executeNextCommand()
+        executeNextCommandRobotControllVC()
     }
 
     var isProgramComplete: Bool {
@@ -101,6 +104,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 
 class ExecutingProgram {
     var position: Int = 0
+    // position used to find index of block in blocksToExec
     var blocksToExec: [Block]
     //array blocks (blocksStack) to be executed by the executing program
     var repeatCountAndIndexArray: [(timesToR: Int, index: Int)] = []
@@ -121,11 +125,12 @@ class ExecutingProgram {
     
     var isComplete: Bool {
         return position >= blocksToExec.count
+        //checks if position in blocksToExec is at end marks as complete used for preventing crashing out of index
     }
 
 
     
-    func executeNextCommand() {
+    func executeNextCommandExecProgram() {
         print("in execute nextcommand")
         guard !isComplete else {
             return
