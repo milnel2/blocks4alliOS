@@ -435,18 +435,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         if(i != indexPath.row){
                             blocksToAdd.append(blocksStack[i])
                         }
+                        blocksToAdd.removeAll()
                     }
                     else{
-                        blocksToAdd.removeLast()
+                        blocksToAdd.removeAll()
+//                        blocksToAdd.removeLast()
+//                        print(blocksToAdd.count)
                     }
                     if (!blocksStack[i].name.contains("End")){
                         if(i != indexPath.row){
                             blocksToAdd.append(blocksStack[i])
                         }
                     }
-                else{
-                        blocksToAdd.removeLast()
-                    }
+//                else{
+//                        blocksToAdd.removeLast()
+//                    }
 
                 }
             }
@@ -466,70 +469,140 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             //            print(name)
             switch name{
             case "If":
-                if block.addedBlocks.isEmpty{
-                    // Creates repeat button for modifier.
-                    let initialBoolean = "false"
-                    
-                    let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray), double: false, tripleCounterpart: false, type: "Boolean")
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "booleanSelected", value: "\(initialBoolean)")
-                    
-                    
-                    let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-//                    let image = UIImage(named: "false_plchldr.pdf")
-
-                    ifButton.tag = indexPath.row
-                    switch block.addedBlocks[0].attributes["booleanSelected"]{
-                    case "hear_voice":
-                        let image = UIImage(named: "hear_voice.pdf")
-                        ifButton.setBackgroundImage(image, for: .normal)
-                    case "obstacle_sensed":
-                        let image = UIImage(named: "sense_obstacle")
-                        ifButton.setBackgroundImage(image, for: .normal)
-
-                    default:
-                        let image = UIImage(named: "false_plchldr.pdf")
-                        ifButton.setBackgroundImage(image, for: .normal)
-                    }
-//                    ifButton.setBackgroundImage(image, for: .normal)
-                    ifButton.backgroundColor = .lightGray
-                    ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
-                    
-                    ifButton.accessibilityLabel = "Set Boolean Condition for If"
-                    ifButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(ifButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-//                    let image = UIImage(named: "false_plchldr.pdf")
-                    
-                    ifButton.tag = indexPath.row
-                    switch block.addedBlocks[0].attributes["booleanSelected"]{
-                    case "hear_voice":
-                        let image = UIImage(named: "hear_voice.pdf")
-                        ifButton.setBackgroundImage(image, for: .normal)
-                    case "obstacle_sensed":
-                        let image = UIImage(named: "sense_obstacle")
-                        ifButton.setBackgroundImage(image, for: .normal)
+                if !block.tripleCounterpart{
+                    if block.addedBlocks.isEmpty{
+                        // Creates repeat button for modifier.
+                        let initialBoolean = "false"
                         
-                    default:
-                        let image = UIImage(named: "false_plchldr.pdf")
-                        ifButton.setBackgroundImage(image, for: .normal)
-                    }
-//                    ifButton.setBackgroundImage(image, for: .normal)
-                    ifButton.backgroundColor = .lightGray
-                    
-                    // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
-                    
+                        let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray), double: false, tripleCounterpart: false, type: "Boolean")
+                        
+                        block.addedBlocks.append(placeholderBlock!)
+                        placeholderBlock?.addAttributes(key: "booleanSelected", value: "\(initialBoolean)")
+                        
+                        
+                        let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+    //                    let image = UIImage(named: "false_plchldr.pdf")
 
-                    ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
-                    ifButton.accessibilityLabel = "Set Boolean Condition for If"
-                    ifButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(ifButton)
+                        ifButton.tag = indexPath.row
+                        switch block.addedBlocks[0].attributes["booleanSelected"]{
+                        case "hear_voice":
+                            let image = UIImage(named: "hear_voice.pdf")
+                            ifButton.setBackgroundImage(image, for: .normal)
+                        case "obstacle_sensed":
+                            let image = UIImage(named: "sense_obstacle")
+                            ifButton.setBackgroundImage(image, for: .normal)
+
+                        default:
+                            let image = UIImage(named: "false_plchldr.pdf")
+                            ifButton.setBackgroundImage(image, for: .normal)
+                        }
+    //                    ifButton.setBackgroundImage(image, for: .normal)
+                        ifButton.backgroundColor = .lightGray
+                        ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
+                        
+                        ifButton.accessibilityLabel = "Set Boolean Condition for If"
+                        ifButton.isAccessibilityElement = true
+                        
+                        cell.addSubview(ifButton)
+                    } else {
+                        _ = block.addedBlocks[0]
+                        let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                        
+    //                    let image = UIImage(named: "false_plchldr.pdf")
+                        
+                        ifButton.tag = indexPath.row
+                        switch block.addedBlocks[0].attributes["booleanSelected"]{
+                        case "hear_voice":
+                            let image = UIImage(named: "hear_voice.pdf")
+                            ifButton.setBackgroundImage(image, for: .normal)
+                        case "obstacle_sensed":
+                            let image = UIImage(named: "sense_obstacle")
+                            ifButton.setBackgroundImage(image, for: .normal)
+                            
+                        default:
+                            let image = UIImage(named: "false_plchldr.pdf")
+                            ifButton.setBackgroundImage(image, for: .normal)
+                        }
+    //                    ifButton.setBackgroundImage(image, for: .normal)
+                        ifButton.backgroundColor = .lightGray
+                        
+                        // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
+                        
+
+                        ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
+                        ifButton.accessibilityLabel = "Set Boolean Condition for If"
+                        ifButton.isAccessibilityElement = true
+                        
+                        cell.addSubview(ifButton)
+                    }
+                }
+                else{
+                    block.imageName = "smallIf.pdf"
+                    if block.addedBlocks.isEmpty{
+                        // Creates repeat button for modifier.
+                        let initialBoolean = "false"
+                        
+                        let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray), double: false, tripleCounterpart: false, type: "Boolean")
+                        
+                        block.addedBlocks.append(placeholderBlock!)
+                        placeholderBlock?.addAttributes(key: "booleanSelected", value: "\(initialBoolean)")
+                        
+                        
+                        let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                        //                    let image = UIImage(named: "false_plchldr.pdf")
+                        
+                        ifButton.tag = indexPath.row
+                        switch block.addedBlocks[0].attributes["booleanSelected"]{
+                        case "hear_voice":
+                            let image = UIImage(named: "hear_voice.pdf")
+                            ifButton.setBackgroundImage(image, for: .normal)
+                        case "obstacle_sensed":
+                            let image = UIImage(named: "sense_obstacle")
+                            ifButton.setBackgroundImage(image, for: .normal)
+                            
+                        default:
+                            let image = UIImage(named: "false_plchldr.pdf")
+                            ifButton.setBackgroundImage(image, for: .normal)
+                        }
+                        //                    ifButton.setBackgroundImage(image, for: .normal)
+                        ifButton.backgroundColor = .lightGray
+                        ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
+                        
+                        ifButton.accessibilityLabel = "Set Boolean Condition for If"
+                        ifButton.isAccessibilityElement = true
+                        
+                        cell.addSubview(ifButton)
+                    } else {
+                        _ = block.addedBlocks[0]
+                        let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                        
+                        //                    let image = UIImage(named: "false_plchldr.pdf")
+                        
+                        ifButton.tag = indexPath.row
+                        switch block.addedBlocks[0].attributes["booleanSelected"]{
+                        case "hear_voice":
+                            let image = UIImage(named: "hear_voice.pdf")
+                            ifButton.setBackgroundImage(image, for: .normal)
+                        case "obstacle_sensed":
+                            let image = UIImage(named: "sense_obstacle")
+                            ifButton.setBackgroundImage(image, for: .normal)
+                            
+                        default:
+                            let image = UIImage(named: "false_plchldr.pdf")
+                            ifButton.setBackgroundImage(image, for: .normal)
+                        }
+                        //                    ifButton.setBackgroundImage(image, for: .normal)
+                        ifButton.backgroundColor = .lightGray
+                        
+                        // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
+                        
+                        
+                        ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
+                        ifButton.accessibilityLabel = "Set Boolean Condition for If"
+                        ifButton.isAccessibilityElement = true
+                        
+                        cell.addSubview(ifButton)
+                    }
                 }
                 
             case "Repeat":

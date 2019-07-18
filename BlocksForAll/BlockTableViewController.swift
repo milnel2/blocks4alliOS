@@ -117,6 +117,7 @@ class BlockTableViewController: UITableViewController {
                 
                 let middleBlockName = "Else"
                 let middleBlock = Block(name: middleBlockName, color: block.color, double: false, tripleCounterpart: true)
+                middleBlock?.imageName = "Else.pdf"
                 middleBlock?.counterpart.append(block)
                 block.counterpart.append(middleBlock!)
                 print("in triple counterpart")
