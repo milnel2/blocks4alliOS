@@ -105,6 +105,7 @@ class ExecutingProgram {
     var currentCommandBeingExecuted: WWCommandSetSequence?
     var repeatCountAndIndexArray: [(timesToR: Int, index: Int)] = []
     var variablesDict: [String : Double] = [:]
+    var ifCondition: Bool = false
     
     // TODO: store command in this variable so you can check if it's executing later
     //var currentCommand: WWCommandOrSomething
@@ -170,7 +171,6 @@ class ExecutingProgram {
             
         //Control Category - might have to add to
         case "If":
-            var condition = false
             var data = getSensorData()
             if blocksToExec[position].addedBlocks[0].attributes["booleanSelected"] == "hear_voice"{
                 if(!data.isEmpty){
@@ -179,7 +179,7 @@ class ExecutingProgram {
                     print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
                     if(micData.amplitude > 0){
                         print("hear Voice true")
-                        condition = true
+                        ifCondition = true
                     }
                 }
             } else if blocksToExec[position].addedBlocks[0].attributes["booleanSelected"] == "obstacle_sensed"{
@@ -190,50 +190,33 @@ class ExecutingProgram {
                     print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
                     if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
                         print("obstacle in front true")
-                        condition = true
+                        ifCondition = true
                     }
                 }
             }
-            if(condition){
+
+            if(ifCondition){
                 print("TRUE")
                 //if it's true, just keep going
-            }else{
-                ifFalse()
-            }
             
-        case "If Else":
-            var condition = false
-            var data = getSensorData()
-            if blocksToExec[position].addedBlocks[0].attributes["booleanSelected"] == "hear_voice"{
-                if(!data.isEmpty){
-                    //just checks first robot
-                    let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
-                    print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
-                    if(micData.amplitude > 0){
-                        print("hear Voice true")
-                        condition = true
-                    }
-                }
-            } else if blocksToExec[position].addedBlocks[0].attributes["booleanSelected"] == "obstacle_sensed"{
-                if(!data.isEmpty){
-                    //just checks first robot
-                    let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
-                    let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
-                    print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
-                    if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
-                        print("obstacle in front true")
-                        condition = true
-                    }
-                }
-            }
-            if(condition){
-                print("TRUE")
-                //if it's true, just keep going
             }else{
                 ifFalse()
-                
-                
+                if blocksToExec[position].name == "Else"{
+                    print("got to else")
+                }
             }
+            print(ifCondition)
+            
+        case "Else":
+            print("in else case")
+            if ifCondition{
+                elseFalse()
+            }
+            else{
+                print("True")
+            }
+
+
             
         case "Repeat":
             print("in Repeat")
@@ -562,7 +545,7 @@ class ExecutingProgram {
         position += 1
     }
 
-    
+  
     func ifFalse(){
         // used to skip over blocks inside an IF statement if the IF statement returns false
         print("ifFalse Entered")
@@ -571,11 +554,29 @@ class ExecutingProgram {
             position += 1
             if blocksToExec[position].name == "End If" || blocksToExec[position].name == "End If Else"{
                 openIfs = 0
-            }else if blocksToExec[position].name == "Else"{
+            }
+            else if blocksToExec[position].name == "Else"{
+                print("in else")
                 openIfs = 0
             }
             else if ((blocksToExec[position].name == "IfObstacle in front") || (blocksToExec[position].name == "IfHear Voice")){
                 openIfs += 1
+            }
+        }
+    }
+    
+    func elseFalse(){
+        // used to skip over blocks inside an ELSE statement if the ELSE statement returns false
+        print("elseFalse Entered")
+        var openElse = 1
+        while openElse > 0 {
+            position += 1
+            if blocksToExec[position].name == "End If Else"{
+                openElse = 0
+            }
+            else if blocksToExec[position].name == "Else"{
+                print("in else")
+                openElse += 1
             }
         }
     }
