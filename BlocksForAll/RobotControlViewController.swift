@@ -183,7 +183,6 @@ class ExecutingProgram {
             
         //Control Category
         case "If":
-            var condition = false
             // what the statement evaluates to
             var data = getSensorData()
             // what info we get from the robot
@@ -196,7 +195,6 @@ class ExecutingProgram {
                     if(micData.amplitude > 0){
                         print("hear Voice true")
                         ifCondition = true
-                        condition = true
                         // if it does hear a voice, evaluate the if statement to true
                     }
                     // check if hearing voice, tbh not quite sure how this one works dash is rarely consistent with these if statements but the code is solid
@@ -211,7 +209,6 @@ class ExecutingProgram {
                     if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
                         print("obstacle in front true")
                         ifCondition = true
-                        condition = true
                         // checks to see if there is a obstacle sensed, if so changes the condition, to evaluate true
                     }
                 }
