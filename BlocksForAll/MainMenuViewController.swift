@@ -19,13 +19,15 @@ class MainMenuViewController: UIViewController {
     func load() {
         print("load save called")
         
-        var blockStackFromSave: [Block] = []
+        var functionsDictFromSave: [String : [Block]] = [:]
+        var functionNamePart = true
         //array of blocks loaded from the save
             // prevents extra loading on get started button press after menu button press return in workspace
             do{
                 let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json"))
                 // creates a string type of the entire json file
-                let jsonStrings = jsonString.components(separatedBy: "\n Next Object \n")
+                
+                let jsonStrings = jsonString.components(separatedBy: "\n New Function \n")
                 // the string of the json file parsed out into each object in the file
                 
                 for part in jsonStrings {
@@ -33,61 +35,84 @@ class MainMenuViewController: UIViewController {
                     if part == "" {
                         break
                     }
-                    // this covers the last string parsed out that's just a new line
-                    let jsonPart = part.data(using: .utf8)
-                    // this takes the json object as a string and turns it into a data object named jsonPart
-                    let blockBeingCreated = Block(json: jsonPart!)
-                    // this is the block being made, it's created using the block initializer that takes a data format json
-                    blockStackFromSave.append(blockBeingCreated!)
-                    // adds the created block to the array of blocks that will later be set to the blocksStack
+                    let jsonObjs = part.components(separatedBy: "\n Next Object \n")
+                    functionNamePart = true
+                    var functionBlockStack = [Block]()
+                    var functionName = String()
+                    for obj in jsonObjs{
+                        if functionNamePart{
+                            functionName = obj
+                            functionNamePart = false
+                        }else{
+                            // this covers the last string parsed out that's just a new line
+                            let jsonPart = part.data(using: .utf8)
+                            // this takes the json object as a string and turns it into a data object named jsonPart
+                            let blockBeingCreated = Block(json: jsonPart!)
+                            // this is the block being made, it's created using the block initializer that takes a data format json
+                            functionBlockStack.append(blockBeingCreated!)
+                            // adds the created block to the array of blocks that will later be set to the blocksStack
+                        }
+                    }
+                    functionsDictFromSave[functionName] = functionBlockStack
+                    
                 }
                 
-                ifAndRepeatCounterparts(blockStackFromSave)
-                blocksStack = blockStackFromSave
+                ifAndRepeatCounterparts(functionBlocksDictCounter: functionsDictFromSave)
+                functionsDict = functionsDictFromSave
                 // blockStackFrom save is array of blocks created from save file in this function, sets it to the global array of blocks used
                 print("load completed")
             }catch{
                 print("load failed")
+//                functionsDict["Main Workspace"] = [Block.init(name: "nameTest", color: Color.init(uiColor: UIColor(displayP3Red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)), double: false, tripleCounterpart: false)] as! [Block]
+                functionsDict["Main Workspace"] = []
+                currentWorkspace = "Main Workspace"
+                
             }
+        currentWorkspace = "Main Workspace"
     }
     
-    func ifAndRepeatCounterparts(_ aBlockStack: [Block]){
+    func ifAndRepeatCounterparts(functionBlocksDictCounter: [String : [Block]]){
         var forOpen: [Block] = []
         //array of all of the "Repeat" blocks but not the "End Repeat" blocks
         var ifOpen: [Block] = []
         //array of all of the "If" blocks but not the "End Repeat" blocks
         var ifElseOpen: [Block] = []
         //array of all of the If-Else blocks
-        for block in aBlockStack{
-            // iterates through the blocks in the array created from the save, goal is to assign counterparts to all of the For and If statements
-            
-            switch block.name{
-            case "If":
-                //mirrors for loop stuff
-                ifOpen.append(block)
-            case "End if":
-                ifOpen.last?.counterpart.append(block)
-                block.counterpart.append(ifOpen.last ?? block)
-                ifOpen.removeLast()
-            case "Repeat", "Repeat Forever":
-                forOpen.append(block)
+        let functions = functionBlocksDictCounter.keys
+        
+        for function in functions{
+            for block in functionBlocksDictCounter[function]!{
+                // iterates through the blocks in the array created from the save, goal is to assign counterparts to all of the For and If statements
+                switch block.name{
+                case "If":
+                    //mirrors for loop stuff
+                    ifOpen.append(block)
+                case "End if":
+                    ifOpen.last?.counterpart.append(block)
+                    block.counterpart.append(ifOpen.last ?? block)
+                    ifOpen.removeLast()
+                case "Repeat", "Repeat Forever":
+                    forOpen.append(block)
                 //adds "For" statements to an array
-            case "End Repeat", "End Repeat Forever":
-                forOpen.last?.counterpart.append(block)
-                block.counterpart.append(forOpen.last ?? block)
-                // matches the repeat start to the counter part repeat end
-                forOpen.removeLast()
+                case "End Repeat", "End Repeat Forever":
+                    forOpen.last?.counterpart.append(block)
+                    block.counterpart.append(forOpen.last ?? block)
+                    // matches the repeat start to the counter part repeat end
+                    forOpen.removeLast()
                 // removes the open block that was matched to a close block
-            case "If Else":
-                ifElseOpen.append(block)
-            case "End If Else":
-                ifElseOpen.append(block)
-                ifElseOpen.last?.counterpart.append(block)
-                block.counterpart.append(ifElseOpen.last ?? block)
-                ifElseOpen.removeLast()
-            default:
-                print("hello")
-            }
+                case "If Else":
+                    ifElseOpen.append(block)
+                case "End If Else":
+                    ifElseOpen.append(block)
+                    ifElseOpen.last?.counterpart.append(block)
+                    block.counterpart.append(ifElseOpen.last ?? block)
+                    ifElseOpen.removeLast()
+                default:
+                    print("hello")
+                }
+        }
+        
+        
             
 //            if block.name == "Repeat" || block.name == "Repeat Forever"{
 //                forOpen.append(block)

@@ -110,7 +110,7 @@ class TurnVariable: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var previousSelectedVariable: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        var previousSelectedVariable: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
         
         variableSelected = previousSelectedVariable
         
@@ -139,9 +139,7 @@ class TurnVariable: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             print(variableSelected)
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            
-            
+            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
         }
     }
     

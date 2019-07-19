@@ -27,16 +27,16 @@ class DistanceSpeedModViewController: UIViewController{
     
     override func viewDidLoad() {
         // default speed: Normal or preserve last selection
-        var previousDistanceString: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
+        var previousDistanceString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
         var previousDistance = Int(previousDistanceString)
         distanceDisplayed.text = "\(previousDistance ?? 30)"
         distanceSlider.setValue(Float(previousDistance!), animated: true)
         // preserve previously selected value
         distance = Double(previousDistance!)
         
-        speedLabel.text = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+        speedLabel.text = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
         // preserves previously selected value
-        speed = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+        speed = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
         
         distanceDisplayed.accessibilityValue = "The current distance selected is \(Int(distance)) centimeters"
     }
@@ -93,8 +93,8 @@ class DistanceSpeedModViewController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
+            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
+            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
         }
     }
     

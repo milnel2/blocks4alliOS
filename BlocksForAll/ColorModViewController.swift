@@ -41,8 +41,8 @@ class ColorModViewController: UIViewController{
     
     override func viewDidLoad() {
         // default color: Purple or preserve last selection
-        var previousLightColor: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["lightColor"] ?? "purple"
-        var previousModifierBlockColor = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] ?? "purple"
+        var previousLightColor: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["lightColor"] ?? "purple"
+        var previousModifierBlockColor = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] ?? "purple"
         
         colorSelected = previousLightColor
         colorSelected = previousModifierBlockColor
@@ -212,8 +212,8 @@ class ColorModViewController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["lightColor"] = colorSelected
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] = colorSelected
+            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["lightColor"] = colorSelected
+            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] = colorSelected
         }
     }
 }
