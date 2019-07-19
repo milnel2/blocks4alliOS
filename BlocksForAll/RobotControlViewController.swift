@@ -15,7 +15,6 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -63,30 +62,34 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         
             // var repeatCommands = [WWCommandSet]()
             executingProgram = ExecutingProgram(blocksStackExecute: blocksStackPlay)
-            executeNextCommand()
+            //creates executing program
+            executeNextCommandRobotControllVC()
+            //makes initial executeNextCommandRobotControllVC call
             
             } else{
             print("no connected robots")
         }
     }
     
-    func executeNextCommand() {
+    func executeNextCommandRobotControllVC() {
         print("in poll for next commnad")
         guard let executingProgram = executingProgram else {
             return  // not running
         }
         guard !executingProgram.isComplete else {
+        //if command is running
             print("in if iscomplete")
             self.executingProgram = nil
             programHasCompleted()
             return  // no more commands left
         }
     
-        executingProgram.executeNextCommand()
+        executingProgram.executeNextCommandExecProgram()
+        // initial call of executeNextCommand on an executingProgram
     }
 
     func robot(_ robot: WWRobot!, didFinishCommand sequence: WWCommandSetSequence!) {
-        executeNextCommand()
+        executeNextCommandRobotControllVC()
     }
 
     var isProgramComplete: Bool {
@@ -101,44 +104,53 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 
 class ExecutingProgram {
     var position: Int = 0
+    // position used to find index of block in blocksToExec
     var blocksToExec: [Block]
-    var currentCommandBeingExecuted: WWCommandSetSequence?
+    //array blocks (blocksStack) to be executed by the executing program
     var repeatCountAndIndexArray: [(timesToR: Int, index: Int)] = []
+    //an array of tuples, each tuple keeps track of the number of times left to repeat that repeat loop as well as the index of the start of the repeat loop
     var variablesDict: [String : Double] = [:]
+    //variablesDict is used to keep track of the variables and their values, string is the name of the variable, double is the value of the variable
     var ifCondition: Bool = false
     
-    // TODO: store command in this variable so you can check if it's executing later
-    //var currentCommand: WWCommandOrSomething
-
     init(blocksStackExecute: [Block]) {
         self.blocksToExec = blocksStackExecute
+        // we can latter change this for functions so it takes a dictionary of names and blocksstacks to execute yada yada
         self.variablesDict["apple"] = 0.0
         self.variablesDict["banana"] = 0.0
         self.variablesDict["cherry"] = 0.0
         self.variablesDict["melon"] = 0.0
         self.variablesDict["orange"] = 0.0
+        // initializes the variablesDictionary with the five variables we currently have in place and sets them to 0
     }
     
     var isComplete: Bool {
         return position >= blocksToExec.count
+        //checks if position in blocksToExec is at end marks as complete used for preventing crashing out of index
     }
+
+
     
-//    var isStopped: Bool {
-//        return notRunning
-//    }
-    func executeNextCommand() {
+    func executeNextCommandExecProgram() {
         print("in execute nextcommand")
         guard !isComplete else {
             return
         }
+        // stops if completed
+        
+        var myAction = WWCommandSet()
+        // set of commands to be executed
 
-        var blockToExec = blocksToExec[position]
-        //for command in myCommands{
+        let blockToExec = blocksToExec[position]
+        //the current block being check for executing it's from the [] of blocks that are being executed at the position value that we increment with this function (and repeat and if functions)
         print(blockToExec)
         var duration = 2.0
-        //TODO: add repeat blocks
-        var myAction = WWCommandSet()
+        // default duration of any command
+        
         let cmdToSend = WWCommandSetSequence()
+        //an array of command sets to be sent, made of myAction type things
+        
+        
         
         
         switch blockToExec.name{
@@ -169,28 +181,38 @@ class ExecutingProgram {
         case "Make Turkey Noise":
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOBBLE)
             
-        //Control Category - might have to add to
+        //Control Category
         case "If":
+            var condition = false
+            // what the statement evaluates to
             var data = getSensorData()
+            // what info we get from the robot
             if blocksToExec[position].addedBlocks[0].attributes["booleanSelected"] == "hear_voice"{
+            // check if the if statement is evaluating for a hear_voice
                 if(!data.isEmpty){
-                    //just checks first robot
+                // if there is some data from the robot
                     let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
                     print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
                     if(micData.amplitude > 0){
                         print("hear Voice true")
                         ifCondition = true
+                        condition = true
+                        // if it does hear a voice, evaluate the if statement to true
                     }
+                    // check if hearing voice, tbh not quite sure how this one works dash is rarely consistent with these if statements but the code is solid
                 }
             } else if blocksToExec[position].addedBlocks[0].attributes["booleanSelected"] == "obstacle_sensed"{
+            // check if the if statement is evaluating for a obstacle_sensed
                 if(!data.isEmpty){
-                    //just checks first robot
+                // checks if there is data from the robot
                     let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
                     let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
                     print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
                     if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
                         print("obstacle in front true")
                         ifCondition = true
+                        condition = true
+                        // checks to see if there is a obstacle sensed, if so changes the condition, to evaluate true
                     }
                 }
             }
@@ -201,6 +223,7 @@ class ExecutingProgram {
             
             }else{
                 ifFalse()
+                // run the ifFalse function, this is to skip over blocks that aren't supposed to be executed
                 if blocksToExec[position].name == "Else"{
                     print("got to else")
                 }
@@ -222,22 +245,29 @@ class ExecutingProgram {
             print("in Repeat")
             //repeatCountAndIndexArray keeps track of how many times to repeat which loop
             repeatCountAndIndexArray.append((timesToR: Int(blocksToExec[position].addedBlocks[0].attributes["timesToRepeat"] ?? "0") ?? 0, index: position))
+            // adds to repeatCountAndIndexArray the current blocks index and the value of howmany times it has left to repeat
             print(repeatCountAndIndexArray)
             
         case "End Repeat" :
             print("in End Repeat")
             //repeatCountAndIndexArray keeps track of how many times to repeat which loop
             repeatCountAndIndexArray[repeatCountAndIndexArray.count - 1].timesToR -= 1
+            // end repeat get the last element in the array and tells it that it has repeated once by removing 1 from the timesToR(times left to repeat)
             if repeatCountAndIndexArray[repeatCountAndIndexArray.count - 1].timesToR == 0{
+            // if the last index of the repeatCountAndIndexArray and if we're done repeating it and there are 0 timesToR(times left to repeat)
                 repeatCountAndIndexArray.remove(at: (repeatCountAndIndexArray.count - 1) )
+                // remove the tuple at the end of the array where the timesToR(times left to repeat) to repeat count is 0
             }else {
+            // if the loop needs to be repeated it goes to the last index of repeatCountAndIndexArray so that you get to the innermost repeat loop
                 position = repeatCountAndIndexArray[(repeatCountAndIndexArray.count - 1)].index
+                // change the position to the begining of the repeat loop
             }
             print(repeatCountAndIndexArray)
             
             
         case "Wait for Time":
             myAction = playWait(waitBlock: blockToExec, cmdToSend: cmdToSend)
+            duration = 0.1
             
         //Drive Category
         case "Drive Forward":
@@ -252,6 +282,7 @@ class ExecutingProgram {
              if he needs to pivot from his head/center, then the direction he is turning in would need to be negative */
         case "Turn Left":
             myAction = playTurn(turnBlock: blockToExec, direction: 0, cmdToSend: cmdToSend)
+           
             
         case "Turn Right":
             myAction = playTurn(turnBlock: blockToExec, direction:1, cmdToSend: cmdToSend)
@@ -453,7 +484,8 @@ class ExecutingProgram {
             
             
         case "Drive":
-            var driveConstant = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelectedTwo"] ?? "orange"] ?? 0.0
+            var driveConstant = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
+            // gets distance by getting the block, getting its added block, getting the block attribute for variable selected then taking that variable and running it through variablesDict to get it's current value and set that to the distance, defualt orange and 0.0
             if driveConstant > 0.0{
                 driveConstant = 1.0
             } else if driveConstant < 0.0{
@@ -461,19 +493,22 @@ class ExecutingProgram {
             } else{
                 driveConstant = 0
             }
+            // if the variable value is positive then set the drive constant to go forward, if negative set it to go backwards, the distance value for the drive will be gathered the same way as the driveconstant was initialized and that's handled in the playDrive function
             print("in Drive, driveConstant", driveConstant)
             myAction = playDrive(driveBlock: blockToExec, driveConstant: driveConstant, cmdToSend: cmdToSend)
             
         
         case "Turn":
             var direction = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
+            // gets direction by getting the block, getting its added block, getting the block attribute for variable selected then taking that variable and running it through variablesDict to get it's current value and set that to the direction, defualt orange and 0.0
             if direction > 0{
                 direction = 1
             } else{
                 direction = 0
             }
+            // if postive turn clockwise, else counter clockwise(might have that mixed up)
             print("in Turn, direction", direction)
-            myAction = playTurn(turnBlock: blockToExec, direction: Int(direction), cmdToSend: cmdToSend)
+            myAction = playTurn(turnBlock: blockToExec, direction: Double(direction), cmdToSend: cmdToSend)
             
         
         case "Wheel Speed":
@@ -535,14 +570,12 @@ class ExecutingProgram {
             print("There is no command")
             
         }
-        
-        //the code that actually sends and removes the command's action to the sequence of code
         cmdToSend.add(myAction, withDuration: duration)
+        // and command set myAction set by cases above to cmdToSend which a sequence of command sets
         print(cmdToSend)
         sendCommandSequenceToRobots(cmdSeq: cmdToSend)
-        //cmdToSend.removeAllEvents()
-        currentCommandBeingExecuted = cmdToSend
         position += 1
+        // increase the position so that the blockToExec is updated to the next block in the block stack
     }
 
   
@@ -590,7 +623,7 @@ class ExecutingProgram {
     
     func playWait(waitBlock: Block, cmdToSend: WWCommandSetSequence) -> WWCommandSet {
         var wait = 0.0
-        wait = Double(waitBlock.addedBlocks[0].attributes["wait:"] ?? "0") ?? 0
+        wait = Double(waitBlock.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
         let waitingPeriod = WWCommandSet()
         print("waiting", wait)
         cmdToSend.add(waitingPeriod, withDuration: wait)
@@ -603,17 +636,21 @@ class ExecutingProgram {
         var distance = 0.0
         var robotSpeed = 0.0
         var speed: String
+        //used for cases since speed has 6 set speeds
         var driveDirection = driveConstant
+        // drive constant choose direction 1.0 for forwards, -1.0 for backwards
         speed = driveBlock.addedBlocks[0].attributes["speed"] ?? "Normal"
         if driveBlock.name == "Drive"{
-            // gets speed an distance from the added block
+            // block named Drive rather than Drive Forward or Drive Backward, Drive is for variables
             distance = variablesDict[driveBlock.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
+            // gets distance by getting the block, getting its added block, getting the block attribute for variable selected then taking that variable and running it through variablesDict to get it's current value and set that to the distance, defualt orange and 0.0
             if distance > 0{
                 driveDirection = 1.0
             } else if distance < 0{
                 distance = distance * -1
                 driveDirection = -1.0
             }
+            // sets up negative distance values to result in a backwards drive constant
             switch speed {
             case "Really Fast":
                 robotSpeed = 50.0
@@ -628,6 +665,7 @@ class ExecutingProgram {
             default:
                 robotSpeed = 30.0
             }
+            // speed cases
             print("Drive variable, robot speed, distance", robotSpeed, " , ", distance)
         } else {
             distance = Double(driveBlock.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
@@ -646,108 +684,96 @@ class ExecutingProgram {
             default:
                 robotSpeed = 30.0
             }
+            // speed cases
         }
         let setAngular = WWCommandBodyLinearAngular(linear: ((driveDirection) * robotSpeed), angular: 0)
+        //linear velocity is the speed times the direction, aka speed times the positive forward or negative backwards, 0 angular momentum so no turning
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
         /*by multiplying (distance/robotSpped) by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
          distance he needs to in the right time. However he travels a little too far on the very slow speed. */
+        // this needs fine tuning, generally works fine, but probably a better way to account for this
         cmdToSend.add(drive, withDuration: (distance/robotSpeed) * 1.25)
         return WWCommandToolbelt.moveStop()
     }
     
     // MARK: decomposition of turn functions
-    func playTurn (turnBlock: Block, direction: Int, cmdToSend: WWCommandSetSequence) -> WWCommandSet{
-        var angleToTurn: Double = 45
-        var turnConstantLW: Double = 0
-        var turnConstantRW: Double = 0
-        
-        // TODO: clean up
-
+    func playTurn (turnBlock: Block, direction: Double, cmdToSend: WWCommandSetSequence)-> WWCommandSet{
+        var angleToTurn: Double = 90
+        //matches defualt displayed angle
         if turnBlock.name == "Turn"{
+        //name of variable turn block is "Turn"
             angleToTurn = variablesDict[turnBlock.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
-            // Figure out the math for turning given a specific angle
-            if direction == 0{ //turn left
-                turnConstantLW = 0
-                turnConstantRW = angleToTurn //need to figure out math this is not correct
-            } else if direction == 1{
-                turnConstantRW = 0
-                turnConstantLW = angleToTurn //need to figure out math this is not correct
+            //get the variable selected value for the turn block, go through added and get the added block atttribues, default orange, default 0 degrees
+            if angleToTurn > 0{
+                // if angle to turn is positve turn clockwise
+                let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: -1.570795)
+                // 0 linear velocity in cm/s then angular is pi for 1/2, tau for 1 a revolution in one second, that's too fast to be accuturate so doing 1/4 tau for quater turn per second, -value for a clockwise direction
+                let turn = WWCommandSet()
+                turn.setBodyLinearAngular(setAngular)
+                cmdToSend.add(turn, withDuration: (angleToTurn/90))
+                //duration is cut to time basesd of of angular momentum right now 90 because the velocity is 1/4 turn(90degrees) a second
+            } else {
+                // if angle to turn is negative turn counter clockwise
+                let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: 1.570795)
+                // 0 linear velocity in cm/s then angular is pi for 1/2, tau for 1 a revolution in one second, that's too fast to be accuturate so doing 1/4 tau for quater turn per second, +value for a counterclockwise direction
+                let turn = WWCommandSet()
+                turn.setBodyLinearAngular(setAngular)
+                cmdToSend.add(turn, withDuration: ((angleToTurn/90) * -1))
+                //duration is cut to time basesd of of angular momentum right now 90 because the velocity is 1/4 turn(90degrees) a second angle to turn is a negative value(which this else statement is for) change the angle to turn to a postive value to calculate duration better
             }
         } else if turnBlock.name.contains("Turn Left"){
-            angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
-            if direction == 0 { // turn left
-                switch angleToTurn{ // degrees
-                case 45:
-                    turnConstantLW = 0
-                    turnConstantRW = 16
-                case 90:
-                    turnConstantLW = 0
-                    turnConstantRW = 25.3
-                case 135:
-                    turnConstantLW = 0
-                    turnConstantRW = 35
-                case 180:
-                    turnConstantLW = 0
-                    turnConstantRW = 43
-                case 225:
-                    turnConstantLW = 0
-                    turnConstantRW = 47
-                case 270:
-                    turnConstantLW = 0
-                    turnConstantRW = 53
-                case 315:
-                    turnConstantLW = 0
-                    turnConstantRW = 57
-                case 360:
-                    turnConstantLW = 0
-                    turnConstantRW = 65
-                default: // 45 degrees
-                    turnConstantLW = 0
-                    turnConstantRW = 16
-                }
-            }
+            angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90
+            // go through added block to find the attribute angle
+            let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: 1.570795)
+            //0 linear velocity in cm/s then angular is pi for 1/2, tau for 1 a revolution in one second, that's too fast to be accuturate so doing 1/4 tau for quater turn per second, +value for a counterclockwise direction
+            let turn = WWCommandSet()
+            turn.setBodyLinearAngular(setAngular)
+            cmdToSend.add(turn, withDuration: (angleToTurn/90))
+            //duration is cut to time basesd of of angular momentum right now 90 because the velocity is 1/4 turn(90degrees) a second
         } else if turnBlock.name.contains("Turn Right"){
-            angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "45") ?? 45
-            if direction == 1 { // turn right
-                switch angleToTurn{ // degrees
-                case 45:
-                    turnConstantRW = 0
-                    turnConstantLW = 16
-                case 90:
-                    turnConstantRW = 0
-                    turnConstantLW = 25.3
-                case 135:
-                    turnConstantRW = 0
-                    turnConstantLW = 35
-                case 180:
-                    turnConstantRW = 0
-                    turnConstantLW = 43
-                case 225:
-                    turnConstantRW = 0
-                    turnConstantLW = 47
-                case 270:
-                    turnConstantRW = 0
-                    turnConstantLW = 53
-                case 315:
-                    turnConstantRW = 0
-                    turnConstantLW = 57
-                case 360:
-                    turnConstantRW = 0
-                    turnConstantLW = 65
-                default: // 45 degrees
-                    turnConstantRW = 0
-                    turnConstantLW = 16
-                }
-            }
+            angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90
+            let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: -1.570795)
+            // 0 linear velocity in cm/s then angular is pi for 1/2, tau for 1 a revolution in one second, that's too fast to be accuturate so doing 1/4 tau for quater turn per second, -value for a clockwise direction
+            let turn = WWCommandSet()
+            turn.setBodyLinearAngular(setAngular)
+            cmdToSend.add(turn, withDuration: (angleToTurn/90))
+            //duration is cut to time basesd of of angular momentum right now 90 because the velocity is 1/4 turn(90degrees) a second
         }
-        
-        let rotate = WWCommandSet()
-        rotate.setBodyWheels(WWCommandBodyWheels.init(leftWheel: (turnConstantLW * 1), rightWheel: (turnConstantRW * 1)))
-        // testing how to make turns better!
-        cmdToSend.add(rotate, withDuration: 1)
+        var waitAdd = 0.0
+        // variable used for fine tuning duration of commands for accurate turning
+        if angleToTurn > 314{
+            waitAdd = 0.1
+        }
+        // use this for fine turning
+//        if angleToTurn <= 45{
+//            waitAdd = -0.01
+//        } else if angleToTurn <= 90{
+//            waitAdd = 0.0
+//        } else if angleToTurn <= 135{
+//            waitAdd = 0.01
+//        } else if angleToTurn <= 180{
+//            waitAdd = 0.02
+//        } else if angleToTurn <= 225{
+//            waitAdd = 0.03
+//        } else if angleToTurn <= 270{
+//            waitAdd = 0.04
+//        } else if angleToTurn <= 225{
+//            waitAdd = 0.05
+//        } else if angleToTurn <= 315{
+//            waitAdd = 0.06
+//        }  else if angleToTurn <= 360{
+//            waitAdd = 0.07
+//        }
+        let wait = (1.0 + waitAdd)
+        // need to wait 1.0 seconds then add a value for fine tuneing
+        let waitingPeriod = WWCommandSet()
+        cmdToSend.add(waitingPeriod, withDuration: wait)
+        //send a wait command so that the stop command below doesn't interupt the turn
+        // there's got to be a better way but this works for now, sorry goodluck! -Mariella
         return WWCommandToolbelt.moveStop()
     }
+
     
     //decomposition of light functions
     func playLight () -> WWCommandLightRGB{

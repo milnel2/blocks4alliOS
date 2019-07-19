@@ -231,6 +231,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             stopIsOption = true
             changePlayTrashButton()
             play(blocksStackPlay: blocksStack)
+            //calls RobotControllerViewController play function which
         }
     }
     
