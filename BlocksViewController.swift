@@ -106,6 +106,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // viewDidLoad = on appear
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
     }
