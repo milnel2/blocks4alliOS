@@ -382,11 +382,11 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-F9-VES">
-                                <rect key="frame" x="486" y="60" width="104" height="34"/>
+                                <rect key="frame" x="368" y="37" width="171" height="45"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
-                                <state key="normal" title="Menu">
+                                <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
+                                <state key="normal" title="Main Menu">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -409,7 +409,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l66-Lb-Pdn">
-                                <rect key="frame" x="243" y="122" width="650" height="646"/>
+                                <rect key="frame" x="243" y="155" width="650" height="613"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="tWc-fW-BLq">
@@ -420,7 +420,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BlockCell" id="Z2H-jN-O7E">
-                                        <rect key="frame" x="0.0" y="-116.5" width="98" height="879"/>
+                                        <rect key="frame" x="0.0" y="-133" width="98" height="879"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="98" height="879"/>
@@ -431,11 +431,11 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-Fa-yDY" userLabel="ClearAll">
-                                <rect key="frame" x="673" y="60" width="300" height="32"/>
+                                <rect key="frame" x="820" y="37" width="153" height="45"/>
                                 <color key="backgroundColor" red="0.80248137953367871" green="0.28850571533125552" blue="0.2153958467552054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Clear all blocks on the screen" label="Clear All"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
                                 <state key="normal" title="Clear All">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -443,14 +443,37 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <action selector="clearAll:" destination="uoc-nU-c4a" eventType="touchUpInside" id="rhm-Pp-SQV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yBH-LX-xHN">
+                                <rect key="frame" x="565" y="37" width="225" height="45"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" hint="Click to create or edit a function" label="Functions Menu"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
+                                <state key="normal" title="Functions Menu ">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="HGb-qL-brd" kind="show" identifier="toFunctions" id="o1M-v0-64F"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Workspace" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="252" translatesAutoresizingMaskIntoConstraints="NO" id="BES-Vc-hSx">
+                                <rect key="frame" x="490" y="120" width="214" height="36"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="leading" secondItem="yBH-LX-xHN" secondAttribute="trailing" constant="30" id="1Hv-vj-k62"/>
                             <constraint firstAttribute="trailing" secondItem="Ztu-9b-vFh" secondAttribute="trailing" constant="10" id="C2P-V3-lJQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jq3-Fa-yDY" secondAttribute="trailing" constant="18" id="LYM-wv-3Du"/>
-                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="leading" secondItem="Ipa-F9-VES" secondAttribute="trailing" constant="130" id="RL2-FR-Ai3"/>
-                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="40" id="ZzS-pr-hTU"/>
-                            <constraint firstItem="Ipa-F9-VES" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="40" id="rlH-lT-iry"/>
+                            <constraint firstItem="yBH-LX-xHN" firstAttribute="leading" secondItem="Ipa-F9-VES" secondAttribute="trailing" constant="30" id="LsC-Ab-jds"/>
+                            <constraint firstItem="yBH-LX-xHN" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="20" id="YYJ-sE-Dwq"/>
+                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="20" id="ZzS-pr-hTU"/>
+                            <constraint firstItem="BES-Vc-hSx" firstAttribute="leading" secondItem="Qkj-vq-g4U" secondAttribute="trailing" constant="-534" id="oza-5C-31u"/>
+                            <constraint firstItem="BES-Vc-hSx" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="100" id="rCa-1p-B1y"/>
+                            <constraint firstItem="Ipa-F9-VES" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="20" id="rlH-lT-iry"/>
                             <constraint firstItem="sdp-BB-7Wl" firstAttribute="top" secondItem="Ztu-9b-vFh" secondAttribute="bottom" constant="25" id="xt9-le-DG4"/>
                         </constraints>
                     </view>
@@ -476,7 +499,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W32-Q3-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-438" y="-489"/>
+            <point key="canvasLocation" x="-438.28125" y="-489.0625"/>
         </scene>
         <!--Block Table View Controller-->
         <scene sceneID="OAu-TV-gtl">
@@ -1908,6 +1931,83 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
             </objects>
             <point key="canvasLocation" x="727.734375" y="2001.5625"/>
         </scene>
+        <!--Function Table View Controller-->
+        <scene sceneID="aDN-GG-hnK">
+            <objects>
+                <tableViewController id="hNp-po-htE" userLabel="Function Table View Controller" customClass="FunctionTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QmC-VP-0hq">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aOU-ox-hHe" userLabel="FunctionTableViewCell" customClass="FunctionTableViewCell" customModule="BlocksForAll" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="1024" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aOU-ox-hHe" id="PV9-Gx-WXQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dI6-Ao-OWl" customClass="FunctionView" customModule="BlocksForAll" customModuleProvider="target">
+                                            <rect key="frame" x="392" y="-43" width="240" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXb-9z-Abu" userLabel="Name Label">
+                                                    <rect key="frame" x="-392" y="42" width="1024" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="functionView" destination="dI6-Ao-OWl" id="NjU-qe-YGg"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hNp-po-htE" id="6zg-sy-UZW"/>
+                            <outlet property="delegate" destination="hNp-po-htE" id="cPh-M2-0d2"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Vam-65-pIo">
+                        <barButtonItem key="leftBarButtonItem" title="Return to Main Workspace" id="Rqi-nO-wQj">
+                            <connections>
+                                <segue destination="uoc-nU-c4a" kind="show" id="PLS-oC-HTw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="JWi-Kn-6yy">
+                            <connections>
+                                <action selector="insertFunction:" destination="hNp-po-htE" id="kPd-Y5-PGs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="INc-z4-ayR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="285.9375" y="-1227.34375"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Gnb-E2-Od5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HGb-qL-brd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bP9-Ui-112">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hNp-po-htE" kind="relationship" relationship="rootViewController" id="DpE-Fd-NEq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h5h-dR-6GG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-438.28125" y="-1227.34375"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Apple" width="100" height="100"/>
@@ -1926,8 +2026,8 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <image name="sense_obstacle" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2YI-wg-iJ2"/>
-        <segue reference="Var-Sg-Rcn"/>
-        <segue reference="KBE-C8-Ew2"/>
+        <segue reference="PLS-oC-HTw"/>
+        <segue reference="PIe-sL-Fqa"/>
+        <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>
 </document>
