@@ -1567,7 +1567,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let blocksStackIndex = indexPath.row
                 let myBlock = functionsDict[currentWorkspace]![blocksStackIndex]
                 //remove block from collection and program
-                if myBlock.double == true{
+                if myBlock.tripleCounterpart == true{
+                    var indexOfCounterparts = [Int]()
+                    var counterpartBlocks = [Block]()
+                    for i in 0..<functionsDict[currentWorkspace]!.count {
+                        if functionsDict[currentWorkspace]![i].name == "If" || functionsDict[currentWorkspace]![i].name == "Else" ||  functionsDict[currentWorkspace]![i].name == "End If Else"{
+                            indexOfCounterparts.append(i)
+                            counterpartBlocks.append(functionsDict[currentWorkspace]![i])
+                        }
+                    }
+                    print(indexOfCounterparts)
+                    blocksBeingMoved = counterpartBlocks
+                    blocksBeingMoved[0].addImage("If_Else")
+                    functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterparts.first!, blocksStackIndex)...max(indexOfCounterparts.last!, blocksStackIndex))
+                }
+                else if myBlock.double == true{
                     var indexOfCounterpart = -1
                     for i in 0..<functionsDict[currentWorkspace]!.count {
                         for block in myBlock.counterpart{
