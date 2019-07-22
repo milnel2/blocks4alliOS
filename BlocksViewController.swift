@@ -75,39 +75,35 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             //Deletes previous save in order to rewrite for each save action (therefore, no excess blocks)
             try fileManager.removeItem(at: filename)
         }catch{
-            print("couldn't delete")
+            print("couldn't delete save")
         }
         
         // string that json text is appended too
         var writeText = String()
         /** block represents each block belonging to the global array of blocks in the workspace. blocksStack holds all blocks on the screen. **/
-        let functionNames = functionsDict.keys
-        for name in functionNames{
-            writeText.append("\n New Function \n")
+        let funcNames = functionsDict.keys
+        
+        for name in funcNames{
+            writeText.append("New Function \n")
             writeText.append(name)
             writeText.append("\n Next Object \n")
             for block in functionsDict[name]!{
-                // sets jsonText to the var type json in block that takes a Data object
-                if let jsonText = block.json {
-                    /** appends the data from jsonText in string form to the string writeText. writeText is then saved as a json save file **/
+                if let jsonText = block.jsonVar{
                     writeText.append(String(data: jsonText, encoding: .utf8)!)
-                    
-                    /** Appending "\n Next Object \n" is meant to separate each encoded block's data in order to make it easier to fetch at a later time **/
                     writeText.append("\n Next Object \n")
                 }
                 do{
                     // writes the accumlated string of json objects to a single file
                     try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-                }catch {
-                    print("couldn't print json")
+                    print("write text: ", writeText)
+                }catch{
+                    print("couldn't create json for", block)
                 }
             }
         }
+        
     }
-    
 
-    
-    
     // MARK: - - View Set Up
     // MARK: - viewDidLoad
     
@@ -1394,7 +1390,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             cell.addSubview(myLabel)
         }
         cell.accessibilityElements = cell.accessibilityElements?.reversed()
-        save()
+//        save()
+// think this save is extra
         return cell
     }
     
