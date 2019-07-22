@@ -445,25 +445,26 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                 }
                 else if functionsDict[currentWorkspace]![i].tripleCounterpart{
+                    if (!functionsDict[currentWorkspace]![i].name.contains("If")){
+                        print(("in if true"))
+                        if(i != indexPath.row){
+                            blocksToAdd.append(functionsDict[currentWorkspace]![i])
+                        }
+                    }else{
+                    if !blocksToAdd.isEmpty{
+                        blocksToAdd.removeLast()
+                    }
+                    }
                     if (!functionsDict[currentWorkspace]![i].name.contains("Else")){
                         if(i != indexPath.row){
                             blocksToAdd.append(functionsDict[currentWorkspace]![i])
                         }
-                        blocksToAdd.removeAll()
                     }
                     else{
-                        blocksToAdd.removeAll()
-//                        blocksToAdd.removeLast()
-//                        print(blocksToAdd.count)
-                    }
-                    if (!functionsDict[currentWorkspace]![i].name.contains("End")){
-                        if(i != indexPath.row){
-                            blocksToAdd.append(functionsDict[currentWorkspace]![i])
+                        if !blocksToAdd.isEmpty{
+                            blocksToAdd.removeLast()
                         }
                     }
-//                else{
-//                        blocksToAdd.removeLast()
-//                    }
 
                 }
             }
