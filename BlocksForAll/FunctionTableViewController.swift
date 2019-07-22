@@ -22,7 +22,7 @@ class FunctionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        removeMainWorkspace()
+        
         self.tableView.register(FunctionTableViewCell.self, forCellReuseIdentifier: "FunctionTableViewCell")
 
 
@@ -31,10 +31,6 @@ class FunctionTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    func removeMainWorkspace(){
-        functions = functions.filter {$0 != "Main Workspace"}
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,8 +53,7 @@ class FunctionTableViewController: UITableViewController {
         tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
         functionsDict[functions[functions.count - 1]] = []
     }
-    
-   
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -95,11 +90,10 @@ class FunctionTableViewController: UITableViewController {
     }
     
     func deleteCell(cell: UITableViewCell) {
-        currentWorkspace = "Main Workspace"
         if let deletionIndexPath = tableView.indexPath(for: cell) {
-            functionsDict.removeValue(forKey: functions[deletionIndexPath.row])
             functions.remove(at: deletionIndexPath.row)
             tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
+            functionsDict.removeValue(forKey: functions[deletionIndexPath.row])
         }
     }
     

@@ -1313,11 +1313,5 @@
 			</dict>
 		</array>
 	</dict>
-	<dict>
-		<key>type</key>
-		<string>Functions</string>
-		<key>color</key>
-		<string>#002041</string>
-	</dict>
 </array>
 </plist>
