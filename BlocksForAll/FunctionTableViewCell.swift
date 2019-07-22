@@ -59,7 +59,7 @@ class FunctionTableViewCell: UITableViewCell {
     
     @objc func editFunction(sender: UIButton){
         print("tapped")
-        functionTableViewController?.blockModifier(sender: nil)
+        functionTableViewController?.blockModifier(cell: self, sender: nil)
     }
     
 

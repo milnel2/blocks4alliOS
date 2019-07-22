@@ -97,7 +97,9 @@ class FunctionTableViewController: UITableViewController {
         }
     }
     
-    @objc func blockModifier(sender: UIButton!) {
+    @objc func blockModifier(cell: UITableViewCell, sender: UIButton!) {
+        let functionIndexPath = tableView.indexPath(for: cell)
+        currentWorkspace = functions[(functionIndexPath?.row)!]
         performSegue(withIdentifier: "functionsToBlocks", sender: nil)
     }
     
