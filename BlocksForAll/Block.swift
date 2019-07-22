@@ -84,9 +84,6 @@ class Block: Codable {
         self.counterpart = []
         // gets counterpart to be re-added later, then sets the counterpart to nil so its codable
         let jsonString = try? JSONEncoder().encode(self)
-        print("jsonString:", jsonString)
-        print("jsonString")
-        print(jsonString)
         // try to encode self to a JSON object
         self.counterpart = blocksCounterpart
         // adds the counterpart back to the block
