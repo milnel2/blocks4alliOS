@@ -381,10 +381,10 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <segue destination="zor-jh-2cz" kind="embed" id="Mdl-ke-gN7"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-F9-VES">
-                                <rect key="frame" x="368" y="37" width="171" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-F9-VES">
+                                <rect key="frame" x="310" y="100" width="165" height="42"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
                                 <state key="normal" title="Main Menu">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -430,11 +430,11 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-Fa-yDY" userLabel="ClearAll">
-                                <rect key="frame" x="820" y="37" width="153" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-Fa-yDY" userLabel="ClearAll">
+                                <rect key="frame" x="784" y="100" width="134" height="42"/>
                                 <color key="backgroundColor" red="0.80248137953367871" green="0.28850571533125552" blue="0.2153958467552054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Clear all blocks on the screen" label="Clear All"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
                                 <state key="normal" title="Clear All">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -443,11 +443,17 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <action selector="clearAll:" destination="uoc-nU-c4a" eventType="touchUpInside" id="rhm-Pp-SQV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yBH-LX-xHN">
-                                <rect key="frame" x="565" y="37" width="225" height="45"/>
+                            <label opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Workspace" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="252" translatesAutoresizingMaskIntoConstraints="NO" id="BES-Vc-hSx">
+                                <rect key="frame" x="490" y="170" width="214" height="36"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yBH-LX-xHN">
+                                <rect key="frame" x="512" y="100" width="226" height="42"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" hint="Click to create or edit a function" label="Functions Menu"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
                                 <state key="normal" title="Functions Menu ">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -456,24 +462,18 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <segue destination="HGb-qL-brd" kind="show" identifier="toFunctions" id="o1M-v0-64F"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Workspace" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="252" translatesAutoresizingMaskIntoConstraints="NO" id="BES-Vc-hSx">
-                                <rect key="frame" x="490" y="170" width="214" height="36"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="leading" secondItem="yBH-LX-xHN" secondAttribute="trailing" constant="30" id="1Hv-vj-k62"/>
                             <constraint firstAttribute="trailing" secondItem="Ztu-9b-vFh" secondAttribute="trailing" constant="10" id="C2P-V3-lJQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="jq3-Fa-yDY" secondAttribute="trailing" constant="18" id="LYM-wv-3Du"/>
-                            <constraint firstItem="yBH-LX-xHN" firstAttribute="leading" secondItem="Ipa-F9-VES" secondAttribute="trailing" constant="30" id="LsC-Ab-jds"/>
-                            <constraint firstItem="yBH-LX-xHN" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="20" id="YYJ-sE-Dwq"/>
-                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="20" id="ZzS-pr-hTU"/>
+                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="leading" secondItem="yBH-LX-xHN" secondAttribute="trailing" constant="46" id="DKe-qb-Rt3"/>
+                            <constraint firstItem="jq3-Fa-yDY" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="30" id="NRf-HH-C9a"/>
+                            <constraint firstItem="Ipa-F9-VES" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="30" id="g6G-Qy-ZZd"/>
+                            <constraint firstItem="yBH-LX-xHN" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="30" id="mSc-W2-RqU"/>
+                            <constraint firstItem="yBH-LX-xHN" firstAttribute="leading" secondItem="Ipa-F9-VES" secondAttribute="trailing" constant="37" id="naq-3E-GG1"/>
                             <constraint firstItem="BES-Vc-hSx" firstAttribute="leading" secondItem="Qkj-vq-g4U" secondAttribute="trailing" constant="-534" id="oza-5C-31u"/>
                             <constraint firstItem="BES-Vc-hSx" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="100" id="rCa-1p-B1y"/>
-                            <constraint firstItem="Ipa-F9-VES" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="20" id="rlH-lT-iry"/>
+                            <constraint firstItem="Ipa-F9-VES" firstAttribute="leading" secondItem="Qkj-vq-g4U" secondAttribute="trailing" constant="-714" id="wgy-wd-49J"/>
                             <constraint firstItem="sdp-BB-7Wl" firstAttribute="top" secondItem="Ztu-9b-vFh" secondAttribute="bottom" constant="25" id="xt9-le-DG4"/>
                         </constraints>
                     </view>
@@ -481,6 +481,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <outlet property="blocksProgram" destination="l66-Lb-Pdn" id="aCz-wf-cUf"/>
                         <outlet property="clearAll" destination="jq3-Fa-yDY" id="wwW-ba-wyI"/>
                         <outlet property="playTrashToggleButton" destination="Ztu-9b-vFh" id="LFC-BT-ZaG"/>
+                        <outlet property="workspaceLabel" destination="BES-Vc-hSx" id="Zsg-nW-SmE"/>
                         <segue destination="cJF-Nc-M7L" kind="show" identifier="AddRobotSegue" id="PIe-sL-Fqa"/>
                         <segue destination="PBc-35-QW0" kind="show" identifier="DistanceSpeedModifier" id="CWQ-aM-vhy"/>
                         <segue destination="JzC-8L-d8W" kind="show" identifier="TurnRightModifier" id="cqe-hd-fim"/>
