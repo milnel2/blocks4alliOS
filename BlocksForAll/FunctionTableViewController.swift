@@ -12,11 +12,12 @@ import UIKit
 class FunctionTableViewController: UITableViewController {
 
     
-    var functions: [String] = ["function 1", "function 2"]
-    
+
+    var functions: [String] = Array(functionsDict.keys)
     var functionWidth = 500
     var functionHeight = 150
     let functionSpacing = 0
+
     
     
     override func viewDidLoad() {
@@ -43,10 +44,14 @@ class FunctionTableViewController: UITableViewController {
     
     @IBAction func insertFunction(_ sender: Any) {
         functions.append("function \(functions.count + 1)")
+        for function in functions{
+            print(function)
+        }
         
         let insertionIndexPath = NSIndexPath(row: functions.count - 1, section: 0)
         
         tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
+        functionsDict[functions[functions.count - 1]] = []
     }
 
     // MARK: - Table view data source
@@ -70,7 +75,7 @@ class FunctionTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FunctionTableViewCell else{
             fatalError("The dequeued cell is not an instance of FunctionTableViewCell.")
         }
-        cell.nameLabel.text = functions[indexPath.row]
+        cell.nameButton.setTitle(functions[indexPath.row], for: .normal)
         cell.functionTableViewController = self
         
 //        let function = functions[indexPath.row]
@@ -88,7 +93,12 @@ class FunctionTableViewController: UITableViewController {
         if let deletionIndexPath = tableView.indexPath(for: cell) {
             functions.remove(at: deletionIndexPath.row)
             tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
+            functionsDict.removeValue(forKey: functions[deletionIndexPath.row])
         }
+    }
+    
+    @objc func blockModifier(sender: UIButton!) {
+        performSegue(withIdentifier: "functionsToBlocks", sender: nil)
     }
     
 
@@ -126,18 +136,11 @@ class FunctionTableViewController: UITableViewController {
         return true
     }
     */
-
    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//            navigationItem.title = nil
-//            if segue.identifier == "toFunctions"{
-//                let vc = segue.destination as UIViewController
-//                vc.navigationItem.title = "Functions Menu"
-//                navigationItem.title = "Return to Main Workspace"
-//            }
         }
 
 }

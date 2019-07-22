@@ -18,7 +18,7 @@ class MainMenuViewController: UIViewController {
     
     func load() {
         
-        
+// THE CODE BELOW IS TO DELTE PREVIOUS SAVE
 //        let fileManager = FileManager.default
 //        //filename refers to the url found at "Blocks4AllSave.json"
 //        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
@@ -28,58 +28,67 @@ class MainMenuViewController: UIViewController {
 //        }catch{
 //            print("couldn't delete save")
 //        }
+// THE CODE ABOVE IS TO DELETE PREVIOUS SAVE
         
         
         print("load save called")
         var functionNamePart = true
+        // used to see if the section being parsed/decoded is the name of a function
         var functionsDictFromSave: [String : [Block] ] = [:]
-        //array of blocks loaded from the save
-        // prevents extra loading on get started button press after menu button press return in workspace
+        // used to store the loaded stuff and later normal functionsDict is set to the from save version
         do{
             let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json"))
             // creates a string type of the entire json file
-            let jsonStrings = jsonString.components(separatedBy: "New Function \n")
-            // the string of the json file parsed out into each object in the file
+            let functionStrings = jsonString.components(separatedBy: "New Function \n")
+            // the string of the json file parsed out into each function in the file
             
-            for part in jsonStrings {
-                // for each json object in the array of json objects as strings
-                if part == "" {
+            for function in functionStrings {
+                // for each function in the array of functions
+                if function == "" {
                     continue
                 }
                 functionNamePart = true
+                //for every new function set this to true again so that the new function will be named
                 var functionBlockStack = [Block]()
+                // temporary function blockStack
                 var functionName = String()
-                var jsonObjs = part.components(separatedBy: "\n Next Object \n")
+                var jsonObjs = function.components(separatedBy: "\n Next Object \n")
                 
-                for obj in jsonObjs{
-                    if obj == "" {
+                for object in jsonObjs{
+                    if object == "" {
+                        // this covers empty strings at beginings and ends
                         continue
+                        // same as i++
                     }
                     if functionNamePart{
-                        functionName = obj
+                        // if the current object is supposed to be the name then
+                        functionName = object
+                        // set the function name to the current object
                         functionNamePart = false
+                        // set function name to false until next function is being decoded/parsed
                     }else{
-                        // this covers the last string parsed out that's just a new line
-                        let jsonPart = obj.data(using: .utf8)
-                        print("jsonPart:", jsonPart)
-                        // this takes the json object as a string and turns it into a data object named jsonPart
-                        let blockBeingCreated = try? JSONDecoder().decode(Block.self, from: jsonPart!)
-                        // this is the block being made, it's created using the block initializer that takes a data format json
+                        let jsonObject = object.data(using: .utf8)
+                        // this takes the object as a string and turns it into a data object named jsonPart
+                        let blockBeingCreated = try? JSONDecoder().decode(Block.self, from: jsonObject!)
+                        // this is the block being made
                         functionBlockStack.append(blockBeingCreated!)
-                        // adds the created block to the array of blocks that will later be set to the blocksStack
+                        // adds the created block to the array of blocks that will later be set to the array of blocks for the current function
                     }
                     functionsDictFromSave[functionName] = functionBlockStack
+                    //addes current function to the functionsDict from save includes name and [Block]
                 }
             }
             ifAndRepeatCounterparts(functionBlocksDictCounter: functionsDictFromSave)
+            //adds proper counterparts
             functionsDict = functionsDictFromSave
-            // blockStackFrom save is array of blocks created from save file in this function, sets it to the global array of blocks used
+            // sets global functionsDict to the functionsDictFrom Save
             print("load completed")
         }catch{
             print("load failed")
             functionsDict["Main Workspace"] = []
             currentWorkspace = "Main Workspace"
         }
+        // sets current workspace to main workspace so you don't load and wind up on a random function screen
         currentWorkspace = "Main Workspace"
     }
     
