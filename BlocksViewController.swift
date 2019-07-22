@@ -82,20 +82,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         var writeText = String()
         /** block represents each block belonging to the global array of blocks in the workspace. blocksStack holds all blocks on the screen. **/
         let funcNames = functionsDict.keys
+        //gets all the function names in functionsDict as an array of strings
         
         for name in funcNames{
+        // for all functions
             writeText.append("New Function \n")
             writeText.append(name)
+            //adds name of function immediately after the new function and prior to the next object so that it can be parsed same way as blocks
             writeText.append("\n Next Object \n")
+            // allows name to be handled in load at the same time as blocks
             for block in functionsDict[name]!{
+                // for block in the current fuctionsDict function's array of blocks
                 if let jsonText = block.jsonVar{
+                    // sets jsonText to block.jsonVar which removes counterparts so it doesn't wind up with an infite amount of counterparts
                     writeText.append(String(data: jsonText, encoding: .utf8)!)
+                    //adds the jsonText as .utf8 as a string to the writeText string
                     writeText.append("\n Next Object \n")
+                    //marks next object
                 }
                 do{
-                    // writes the accumlated string of json objects to a single file
                     try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-                    print("write text: ", writeText)
+                    // writes the accumlated string of json objects to a single file
                 }catch{
                     print("couldn't create json for", block)
                 }
