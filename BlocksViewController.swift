@@ -209,6 +209,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
     
+    
     override func programHasCompleted(){
         movingBlocks = false
         stopIsOption = false
@@ -322,7 +323,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return functionsDict[currentWorkspace]!.count + 1
+        return functionsDict[currentWorkspace]!.count - 1
     }
     
     
