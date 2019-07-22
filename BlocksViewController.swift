@@ -32,6 +32,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     // below are all the buttons for this class
     @IBOutlet weak var clearAll: UIButton!
+    @IBOutlet weak var workspaceLabel: UILabel!
     
     @IBOutlet weak var blocksProgram: UICollectionView!
     //View on the bottom of the screen that shows blocks in worksapce
@@ -117,6 +118,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // viewDidLoad = on appear
     override func viewDidLoad() {
         super.viewDidLoad()
+        workspaceLabel.text = currentWorkspace
         self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
