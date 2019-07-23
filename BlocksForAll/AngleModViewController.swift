@@ -30,7 +30,7 @@ class AngleModViewController: UIViewController {
         // preserves previously selected value
         
         roundedAngle = Float(Double(previousAngle!))
-        angleDisplayed.accessibilityValue = "The current angle selected is \(Int(angle))degrees"
+        angleDisplayed.accessibilityValue = "Current angle is \(Int(angle))degrees"
     }
     
     @IBAction func angleSliderChanged(_ sender: UISlider) {
@@ -41,7 +41,7 @@ class AngleModViewController: UIViewController {
         sender.setValue(roundedAngle, animated:false)
         angleDisplayed.text = "\(Int(roundedAngle))"
         
-        angleDisplayed.accessibilityValue = "The current angle selected is \(Int(roundedAngle)) degrees"
+        angleDisplayed.accessibilityValue = "Current angle is \(Int(roundedAngle)) degrees"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

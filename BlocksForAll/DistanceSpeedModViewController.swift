@@ -38,7 +38,7 @@ class DistanceSpeedModViewController: UIViewController{
         // preserves previously selected value
         speed = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
         
-        distanceDisplayed.accessibilityValue = "The current distance selected is \(Int(distance)) centimeters"
+        distanceDisplayed.accessibilityValue = "Current distance is \(Int(distance)) centimeters"
     }
     
     @IBAction func distanceSliderChanged(_ sender: UISlider) {
@@ -49,7 +49,7 @@ class DistanceSpeedModViewController: UIViewController{
         sender.setValue(roundedDistance, animated:false)
         distanceDisplayed.text = "\(Int(roundedDistance))"
         
-        distanceDisplayed.accessibilityValue = "The current distance selected is \(Int(roundedDistance)) centimeters"
+        distanceDisplayed.accessibilityValue = "Current distance is \(Int(roundedDistance)) centimeters"
     }
     
     @IBAction func slowButtonPressed(_ sender: UIButton) {
