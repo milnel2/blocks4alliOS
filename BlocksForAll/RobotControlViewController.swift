@@ -111,8 +111,12 @@ class ExecutingProgram {
     var currentFunction: String
     //currentWorkspace/function being read
     
-    var blocksToExec: [Block]
+    var blocksToExec: [Block]{
+        return functionsDictToExec[currentFunction]!
+    }
     //array blocks (blocksStack) to be executed by the executing program
+    
+    
     var repeatCountAndIndexArray: [(timesToR: Int, index: Int)] = []
     //an array of tuples, each tuple keeps track of the number of times left to repeat that repeat loop as well as the index of the start of the repeat loop
     var variablesDict: [String : Double] = [:]
@@ -129,12 +133,16 @@ class ExecutingProgram {
         self.variablesDict["orange"] = 0.0
         // initializes the variablesDictionary with the five variables we currently have in place and sets them to 0
         self.currentFunction = "Main Workspace"
-        self.blocksToExec = functionsDictToExec[currentFunction]!
+//        self.blocksToExec = functionsDictToExec[currentFunction]!
         self.positions = [(currentFunction, 0)]
     }
     
     var funcIsComplete: Bool {
-        return positions[positions.count - 1].position >= blocksToExec.count
+        if positions.count != 0{
+            return positions[positions.count - 1].position >= blocksToExec.count
+        }else{
+            return true
+        }
         //checks if position in blocksToExec is at end marks as complete used for preventing crashing out of index
     }
     
@@ -153,9 +161,11 @@ class ExecutingProgram {
         
         var myAction = WWCommandSet()
         // set of commands to be executed
+        
 
         let blockToExec = functionsDictToExec[positions[positions.count - 1].funcName]![(positions[positions.count - 1].position)]
         //the current block being check for executing it's from the [] of blocks that are being executed at the position value that we increment with this function (and repeat and if functions)
+        
         print(blockToExec)
         var duration = 2.0
         // default duration of any command
@@ -570,24 +580,38 @@ class ExecutingProgram {
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_TIRE_SQUEAL)
         case "Train Noise":
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRAIN)
-            
-        //Functions Category
-            
+
             
         //not in a category or plist? add
         case "Say Okay":
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_OKAY)
+         
             
+        // not best way but using default for Functions
         default:
-            print("There is no command")
-            
+            if blockToExec.type == "Operation"{
+                currentFunction = blockToExec.name
+                positions.append((funcName: currentFunction, position: -1))
+                print("in function")
+            }else{
+                print("There is no command")
+            }
         }
+        
         cmdToSend.add(myAction, withDuration: duration)
         // and command set myAction set by cases above to cmdToSend which a sequence of command sets
         print(cmdToSend)
         sendCommandSequenceToRobots(cmdSeq: cmdToSend)
         positions[positions.count - 1].position += 1
         // increase the position so that the blockToExec is updated to the next block in the block stack
+        if positions[positions.count - 1].position == functionsDictToExec[positions[positions.count - 1].funcName]?.count{
+            positions.removeLast()
+            if positions.count != 0{
+                currentFunction = positions[positions.count - 1].funcName
+                positions[positions.count - 1].position += 1
+            }
+            print("current function:", currentFunction)
+        }
     }
 
   
