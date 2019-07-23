@@ -13,7 +13,7 @@ class FunctionTableViewController: UITableViewController {
 
     
 
-    var functions = [String]()
+    var functions: [String] = Array(functionsDict.keys)
     var functionWidth = 500
     var functionHeight = 150
     let functionSpacing = 0
