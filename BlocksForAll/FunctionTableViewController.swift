@@ -23,6 +23,8 @@ class FunctionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        removeMainWorkspace()
+        
         self.tableView.register(FunctionTableViewCell.self, forCellReuseIdentifier: "FunctionTableViewCell")
 
 
@@ -87,6 +89,10 @@ class FunctionTableViewController: UITableViewController {
 //        cell.function = function
 
         return cell
+    }
+    
+    func removeMainWorkspace(){
+        functions = functions.filter {$0 != "Main Workspace"}
     }
     
     func deleteCell(cell: UITableViewCell) {
