@@ -35,6 +35,7 @@ class BlockTableViewController: UITableViewController {
         self.accessibilityHint = "Double tap from toolbox to add block to workspace"
         
         createBlocksArray()
+        
         //self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"
     }
     
@@ -151,6 +152,21 @@ class BlockTableViewController: UITableViewController {
         /*Creating the toolbox by reading in from the .plist file */
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
             // blockTypes is a nsArray object with the contents of the ReleaseBlocksMenu.plist file, type index is an Int Var starts at 0, so it takes the contents of ReleaseBlocksMenu.plist and sets it to blockType as an NSDictionary
+            
+            if (blockType.object(forKey: "type") as? String == "Functions"){
+                var functionsDictToUse = functionsDict
+                functionsDictToUse.removeValue(forKey: "Main Workspace")
+                let functionBlocks = Array(functionsDictToUse.keys)
+                var functionToolBlockArray = [Block]()
+                for function in functionBlocks{
+                    var blockBeingCreated: Block
+                        blockBeingCreated = Block(name: function, color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: false, tripleCounterpart: false)!
+                    functionToolBlockArray.append(blockBeingCreated)
+                    toolBoxBlockArray += [blockBeingCreated]
+                }
+            }
+
+            
             if let blockArray = blockType.object(forKey: "Blocks") as? NSArray{
                 // creates array from the first object in blocksMenu.plist aka Animals, Controls, Drive, Sounds, etc.
                 for item in blockArray{

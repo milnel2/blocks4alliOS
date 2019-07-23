@@ -571,6 +571,8 @@ class ExecutingProgram {
         case "Train Noise":
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRAIN)
             
+        //Functions Category
+            
             
         //not in a category or plist? add
         case "Say Okay":
