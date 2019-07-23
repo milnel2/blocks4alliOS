@@ -146,8 +146,8 @@
 			children = (
 				F1D395BA2006DBB300C6D993 /* BlocksMenus */,
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
-				F16BA3BB1F57919600A94FBA /* MainMenuViewController.swift */,
 				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
+				F16BA3BB1F57919600A94FBA /* MainMenuViewController.swift */,
 				F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */,
 				F18FFFB91E65B0FC0090C4B6 /* Assets.xcassets */,
 				F18FFFBB1E65B0FC0090C4B6 /* LaunchScreen.storyboard */,

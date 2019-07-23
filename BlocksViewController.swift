@@ -441,7 +441,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                             blocksToAdd.append(functionsDict[currentWorkspace]![i])
                         }
                     }else{
-                        blocksToAdd.removeLast()
+                        if !blocksToAdd.isEmpty{
+                            blocksToAdd.removeLast()
+                        }
                     }
                 }
                 else if functionsDict[currentWorkspace]![i].tripleCounterpart{

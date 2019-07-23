@@ -284,6 +284,19 @@ class ExecutingProgram {
             }
             print(repeatCountAndIndexArray)
             
+        case "Repeat Forever":
+            print("in Repeat")
+            //repeatCountAndIndexArray keeps track of how many times to repeat which loop
+            repeatCountAndIndexArray.append((timesToR: 1, index: (positions[positions.count - 1].position) ))
+            // adds to repeatCountAndIndexArray the current blocks index and the value of howmany times it has left to repeat
+            print(repeatCountAndIndexArray)
+            
+        case "End Repeat Forever" :
+            print("in End Repeat")
+            positions[positions.count - 1].position = repeatCountAndIndexArray[(repeatCountAndIndexArray.count - 1)].index
+            // change the position to the begining of the repeat loop
+            print(repeatCountAndIndexArray)
+            
             
         case "Wait for Time":
             myAction = playWait(waitBlock: blockToExec, cmdToSend: cmdToSend)
@@ -589,7 +602,7 @@ class ExecutingProgram {
             
         // not best way but using default for Functions
         default:
-            if blockToExec.type == "Operation"{
+            if blockToExec.type == "Function"{
                 currentFunction = blockToExec.name
                 positions.append((funcName: currentFunction, position: -1))
                 print("in function")
