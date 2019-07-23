@@ -13,7 +13,7 @@ class FunctionTableViewController: UITableViewController {
 
     
 
-    var functions: [String] = Array(functionsDict.keys)
+    var functions = [String]()
     var functionWidth = 500
     var functionHeight = 150
     let functionSpacing = 0
@@ -43,15 +43,20 @@ class FunctionTableViewController: UITableViewController {
     }
     
     @IBAction func insertFunction(_ sender: Any) {
-        functions.append("function \(functions.count + 1)")
-        for function in functions{
-            print(function)
+        let alert = UIAlertController(title: "Enter function name", message: "", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Your file name"
         }
-        
-        let insertionIndexPath = NSIndexPath(row: functions.count - 1, section: 0)
-        
-        tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
-        functionsDict[functions[functions.count - 1]] = []
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
+            let textField = alert.textFields![0] as UITextField
+            self.functions.append(textField.text!)
+            functionsDict.updateValue([], forKey: self.functions[self.functions.count - 1])
+            let insertionIndexPath = NSIndexPath(row: self.functions.count-1, section: 0)
+            self.tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
+        }))
+
+        self.present(alert, animated: true)
     }
 
     // MARK: - Table view data source
@@ -80,20 +85,15 @@ class FunctionTableViewController: UITableViewController {
         
 //        let function = functions[indexPath.row]
 //        cell.function = function
-//
-//        //let functionString = functions[indexPath.row]
-//        let myView = FunctionView.init(frame: CGRect.init(x: 0, y: 0, width: 150, height: 150), function: functions,  myFunctionWidth: functionWidth, myFunctionHeight: functionHeight)
-//
-//        cell.addSubview(myView)
 
         return cell
     }
     
     func deleteCell(cell: UITableViewCell) {
         if let deletionIndexPath = tableView.indexPath(for: cell) {
+            functionsDict.removeValue(forKey: functions[deletionIndexPath.row])
             functions.remove(at: deletionIndexPath.row)
             tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
-            functionsDict.removeValue(forKey: functions[deletionIndexPath.row])
         }
     }
     
@@ -103,7 +103,11 @@ class FunctionTableViewController: UITableViewController {
         performSegue(withIdentifier: "functionsToBlocks", sender: nil)
     }
     
-
+    @IBAction func backToMainWorkspace(_ sender: Any) {
+        currentWorkspace = "Main Workspace"
+        performSegue(withIdentifier: "functionsToBlocks", sender: nil)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

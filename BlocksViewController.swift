@@ -1578,6 +1578,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let myBlock = functionsDict[currentWorkspace]![blocksStackIndex]
                 //remove block from collection and program
                 if myBlock.tripleCounterpart == true{
+                    for block in functionsDict[currentWorkspace]!{
+                        print("block", block.name)
+                    }
                     var indexOfCounterparts = [Int]()
                     var counterpartBlocks = [Block]()
                     for i in 0..<functionsDict[currentWorkspace]!.count {
@@ -1590,13 +1593,19 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     blocksBeingMoved = counterpartBlocks
                     blocksBeingMoved[0].addImage("If_Else")
                     functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterparts.first!, blocksStackIndex)...max(indexOfCounterparts.last!, blocksStackIndex))
+                    for block in functionsDict[currentWorkspace]!{
+                        print("block", block.name)
+                    save()
+                    }
                 }
                 else if myBlock.double == true{
                     var indexOfCounterpart = -1
+                    var blockcounterparts = [Block]()
                     for i in 0..<functionsDict[currentWorkspace]!.count {
                         for block in myBlock.counterpart{
                             if block === functionsDict[currentWorkspace]![i]{
                                 indexOfCounterpart = i
+                                blockcounterparts.append(block)
                             }
                         }
                     }
@@ -1608,7 +1617,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                     blocksBeingMoved = tempBlockStack
                     functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
-                    
                 }else{ //only a single block to be removed
                     blocksBeingMoved = [functionsDict[currentWorkspace]![blocksStackIndex]]
                     functionsDict[currentWorkspace]!.remove(at: blocksStackIndex)
@@ -1616,6 +1624,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 blocksProgram.reloadData()
                 let mySelectedBlockVC = SelectedBlockViewController()
                 mySelectedBlockVC.blocks = blocksBeingMoved
+                
                 containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
                 changePlayTrashButton()
             }
