@@ -18,7 +18,7 @@ import AVFoundation
 var functionsDict = [String : [Block]]()
 var currentWorkspace = String()
 let startIndex = 0
-let endIndex = functionsDict[currentWorkspace]!.count-1
+let endIndex = functionsDict[currentWorkspace]!.count
 
 //MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
@@ -169,9 +169,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /** Function removes all blocks from the blocksStack and program **/
     func clearAllBlocks(){
-        functionsDict[currentWorkspace] = []
-        blocksProgram.reloadData()
-        save()
+        if currentWorkspace == "Main Workspace"{
+            functionsDict[currentWorkspace] = []
+            blocksProgram.reloadData()
+            save()
+        }
+        else{
+            functionsDict[currentWorkspace]!.removeSubrange(1..<functionsDict[currentWorkspace]!.count-1)
+            blocksProgram.reloadData()
+            save()
+        }
     }
     
     /** When a user clicks the 'Clear All' button, they receive an alert asking if they really want to
