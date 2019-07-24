@@ -17,6 +17,8 @@ import AVFoundation
 //collection of blocks that are part of the program
 var functionsDict = [String : [Block]]()
 var currentWorkspace = String()
+let startIndex = 0
+let endIndex = functionsDict[currentWorkspace]!.count-1
 
 //MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
@@ -123,6 +125,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if workspaceLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
+            let startBlock = Block.init(name: "Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: true, tripleCounterpart: false)
+            let endBlock = Block.init(name: "Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: true, tripleCounterpart: false)
+            startBlock!.counterpart = [endBlock!]
+            endBlock!.counterpart = [startBlock!]
+            functionsDict[currentWorkspace]?.append(startBlock!)
+            functionsDict[currentWorkspace]?.append(endBlock!)
+        }
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -272,19 +286,37 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         //add a completion block here
         if(blocks[0].double) || (blocks[0].tripleCounterpart){
+            if currentWorkspace != "Main Workspace" && index > endIndex {
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }else if currentWorkspace != "Main Workspace" && index <= startIndex {
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }
+            else{
             functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
             blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
+            }
         }
         else{
-            functionsDict[currentWorkspace]!.insert(blocks[0], at: index)
-            //NEED TO DO THIS?
-            blocksBeingMoved.removeAll()
-            blocksProgram.reloadData()
+            if currentWorkspace != "Main Workspace" && index > endIndex{
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }else if currentWorkspace != "Main Workspace" && index <= startIndex {
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }
+            else{
+                //NEED TO DO THIS?
+                functionsDict[currentWorkspace]!.insert(blocks[0], at: index)
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }
         }
-        
     }
     
+  
     func makeAnnouncement(_ announcement: String){
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
     }
