@@ -8,6 +8,9 @@
 
 import UIKit
 
+var oldKey = [String]()
+var newKey = [String]()
+
 //help from Brian Voong
 class FunctionTableViewController: UITableViewController {
 
@@ -107,6 +110,7 @@ class FunctionTableViewController: UITableViewController {
     
     func renameCell(cell: UITableViewCell) {
         if let renameIndexPath = tableView.indexPath(for: cell) {
+            oldKey.append(functions[renameIndexPath.row])
             var val = functionsDict[functions[renameIndexPath.row]]
             functionsDict.removeValue(forKey: functions[renameIndexPath.row])
             functions.remove(at: renameIndexPath.row)
@@ -120,6 +124,7 @@ class FunctionTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
             let textField = alert.textFields![0] as UITextField
             self.functions.append(textField.text!)
+            newKey.append(self.functions[self.functions.count - 1])
             functionsDict.updateValue(val!, forKey: self.functions[self.functions.count - 1])
             let insertionIndexPath = NSIndexPath(row: self.functions.count-1, section: 0)
             self.tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
