@@ -18,7 +18,9 @@ import AVFoundation
 var functionsDict = [String : [Block]]()
 var currentWorkspace = String()
 let startIndex = 0
-var endIndex = functionsDict[currentWorkspace]!.count - 1
+var endIndex: Int{
+    return functionsDict[currentWorkspace]!.count - 1
+}
 
 //MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
@@ -124,6 +126,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
+        
+        if workspaceLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
+            let startBlock = Block.init(name: "Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: true, tripleCounterpart: false)
+            let endBlock = Block.init(name: "Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: true, tripleCounterpart: false)
+            startBlock!.counterpart = [endBlock!]
+            endBlock!.counterpart = [startBlock!]
+            functionsDict[currentWorkspace]?.append(startBlock!)
+            functionsDict[currentWorkspace]?.append(endBlock!)
+        }
     }
     
 //    override func viewWillAppear(_ animated: Bool) {
@@ -312,28 +323,36 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         //add a completion block here
         if(blocks[0].double) || (blocks[0].tripleCounterpart){
+//            functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
+//            blocksBeingMoved.removeAll()
+//            blocksProgram.reloadData()
+            if currentWorkspace != "Main Workspace" && index > endIndex {
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }else if currentWorkspace != "Main Workspace" && index <= startIndex {
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }
+            else{
             functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
             blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
-//            if currentWorkspace != "Main Workspace" && index > endIndex {
-//                blocksBeingMoved.removeAll()
-//                blocksProgram.reloadData()
-//            }else if currentWorkspace != "Main Workspace" && index <= startIndex {
-//                blocksBeingMoved.removeAll()
-//                blocksProgram.reloadData()
-//            }
-//            else{
-//            functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
-//            endIndex += 1
-//            blocksBeingMoved.removeAll()
-//            blocksProgram.reloadData()
-//            }
+            }
         }
         else{
-            //NEED TO DO THIS?
-            functionsDict[currentWorkspace]!.insert(blocks[0], at: index)
-            blocksBeingMoved.removeAll()
-            blocksProgram.reloadData()
+            if currentWorkspace != "Main Workspace" && index > endIndex {
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }else if currentWorkspace != "Main Workspace" && index <= startIndex {
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }
+            else{
+                functionsDict[currentWorkspace]!.insert(blocks[0], at: index)
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+
+            }
             }
     }
     
@@ -1631,14 +1650,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 movingBlocks = true
                 let blocksStackIndex = indexPath.row
                 let myBlock = functionsDict[currentWorkspace]![blocksStackIndex]
-//                guard !myBlock.name.contains("Function Start") else{
-//                    movingBlocks = false
-//                    return
-//                }
-//                guard !myBlock.name.contains("Function End") else{
-//                    movingBlocks = false
-//                    return
-//                }
+                guard !myBlock.name.contains("Function Start") else{
+                    movingBlocks = false
+                    return
+                }
+                guard !myBlock.name.contains("Function End") else{
+                    movingBlocks = false
+                    return
+                }
                 //remove block from collection and program
                 if myBlock.tripleCounterpart == true{
                     var indexOfCounterpart = [Int]()
