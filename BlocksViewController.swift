@@ -1660,42 +1660,50 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 //remove block from collection and program
                 if myBlock.tripleCounterpart == true{
-                    var indexOfCounterpart = [Int]()
+                    var indexOfCounterPartBlocks = [Int]()
                     var blockCounterParts = [Block]()
                     if myBlock.name == "If" || myBlock.name ==  "Else" || myBlock.name ==  "End If Else"{
                         for block in myBlock.counterpart[0].counterpart{
                             blockCounterParts.append(block)
                         }
                     }
-                    
                     for i in 0..<functionsDict[currentWorkspace]!.count{
+                        // goes through all the blocks in the current workspace
                         for blockInPart in blockCounterParts{
+                            // block class is not equatable can't compare counterpart which is an arryay of blocks to another array, best we can do is block to block
+                            // goes through each block in the counterparts of the conterpart
                             if functionsDict[currentWorkspace]![i].name == "If" || functionsDict[currentWorkspace]![i].name ==  "Else" || functionsDict[currentWorkspace]![i].name ==  "End If Else"{
+                                //this if statement is so when you get the blocks inbetween an If and an Else or an Else and and End If Else we don't try and search for their counterpart in the following for loop because they don't have it, this also covers our back for a few other things
                                 for block in functionsDict[currentWorkspace]![i].counterpart[0].counterpart{
+                                    // for block that is being iterated over in the whole function block stack get that block's counter parts counterparts list and then for each block in that list do the following
                                     if blockInPart === block{
-                                        if indexOfCounterpart.count == 0{
-                                            indexOfCounterpart.append(i)
-                                            print("matched: ", block.name, " and ", blockInPart.name, " at index of: ", i)
-                                            print("blockCounterParts: ", blockCounterParts, "\n counterparts in functionsDict[currentWorkspace]![i].counterpart[0].counterpart: ", functionsDict[currentWorkspace]![i].counterpart[0].counterpart)
-                                        }else if indexOfCounterpart[indexOfCounterpart.count - 1] != i{
-                                            indexOfCounterpart.append(i)
-                                            print("matched: ", block.name, " and ", blockInPart.name, " at index of: ", i)
-                                            print("blockCounterParts: ", blockCounterParts, "\n counterparts in functionsDict[currentWorkspace]![i].counterpart[0].counterpart: ", functionsDict[currentWorkspace]![i].counterpart[0].counterpart)
+                                    // compares if the block in the initail myblock's counterpart list matches the blocks in the counterpart list of the current block being iterated over by the functions dict i for loop at the very top
+                                        if indexOfCounterPartBlocks.count == 0{
+                                            // for the first case append i to the index of counterpart blocks this allows us to later know where the End If else block is so we know what chuncks of blocks to move
+                                            indexOfCounterPartBlocks.append(i)
+//                                            print("matched: ", block.name, " and ", blockInPart.name, " at index of: ", i)
+//                                            print("blockCounterParts: ", blockCounterParts, "\n counterparts in functionsDict[currentWorkspace]![i].counterpart[0].counterpart: ", functionsDict[currentWorkspace]![i].counterpart[0].counterpart)
+                                        }else if indexOfCounterPartBlocks[indexOfCounterPartBlocks.count - 1] != i{
+                                            //this is so we don't end up with triplicate in the indexOfCounterPartBlocks, since we can't compare the arrays of blocks we end up doing 9 comparisons for each of the three counterparts so this whole chunk requires 27 comparisions, we should change this when we have time to make the Block class equatable, otherwise swift doesn't play nice and you have to do this
+                                            indexOfCounterPartBlocks.append(i)
+//                                            print("matched: ", block.name, " and ", blockInPart.name, " at index of: ", i)
+//                                            print("blockCounterParts: ", blockCounterParts, "\n counterparts in functionsDict[currentWorkspace]![i].counterpart[0].counterpart: ", functionsDict[currentWorkspace]![i].counterpart[0].counterpart)
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                    print("indexofCounterpart: ", indexOfCounterpart)
+//                    print("indexofCounterpart: ", indexOfCounterPartBlocks)
+                    // below mirros the other double/counterpart style blocks
                     var indexPathArray = [IndexPath]()
                     var tempBlockStack = [Block]()
-                    for i in min(indexOfCounterpart[0],blocksStackIndex)...max(indexOfCounterpart[indexOfCounterpart.count - 1], blocksStackIndex){
+                    for i in min(indexOfCounterPartBlocks[0],blocksStackIndex)...max(indexOfCounterPartBlocks[indexOfCounterPartBlocks.count - 1], blocksStackIndex){
                         indexPathArray += [IndexPath.init(row: i, section: 0)]
                         tempBlockStack += [functionsDict[currentWorkspace]![i]]
                     }
                     blocksBeingMoved = tempBlockStack
-                    functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart[0],blocksStackIndex)...max(indexOfCounterpart[indexOfCounterpart.count - 1], blocksStackIndex))
+                    functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterPartBlocks[0],blocksStackIndex)...max(indexOfCounterPartBlocks[indexOfCounterPartBlocks.count - 1], blocksStackIndex))
                     
                 }
                 else if myBlock.double == true{
