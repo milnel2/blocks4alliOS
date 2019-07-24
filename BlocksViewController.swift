@@ -18,7 +18,7 @@ import AVFoundation
 var functionsDict = [String : [Block]]()
 var currentWorkspace = String()
 let startIndex = 0
-let endIndex = functionsDict[currentWorkspace]!.count
+let endIndex = functionsDict[currentWorkspace]!.count-1
 
 //MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
@@ -1617,6 +1617,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 movingBlocks = true
                 let blocksStackIndex = indexPath.row
                 let myBlock = functionsDict[currentWorkspace]![blocksStackIndex]
+                guard !myBlock.name.contains("Function Start") else{
+                    movingBlocks = false
+                    return
+                }
+                guard !myBlock.name.contains("Function End") else{
+                    movingBlocks = false
+                    return
+                }
                 //remove block from collection and program
                 if myBlock.tripleCounterpart == true{
                     for block in functionsDict[currentWorkspace]!{
