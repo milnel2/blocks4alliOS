@@ -60,6 +60,8 @@ class FunctionTableViewController: UITableViewController {
 
         self.present(alert, animated: true)
     }
+    
+    
 
     // MARK: - Table view data source
 
@@ -101,6 +103,30 @@ class FunctionTableViewController: UITableViewController {
             functions.remove(at: deletionIndexPath.row)
             tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
         }
+    }
+    
+    func renameCell(cell: UITableViewCell) {
+        if let renameIndexPath = tableView.indexPath(for: cell) {
+            var val = functionsDict[functions[renameIndexPath.row]]
+            functionsDict.removeValue(forKey: functions[renameIndexPath.row])
+            functions.remove(at: renameIndexPath.row)
+            tableView.deleteRows(at: [renameIndexPath], with: .automatic)
+            
+        let alert = UIAlertController(title: "Enter function name", message: "", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Your file name"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
+            let textField = alert.textFields![0] as UITextField
+            self.functions.append(textField.text!)
+            functionsDict.updateValue(val!, forKey: self.functions[self.functions.count - 1])
+            let insertionIndexPath = NSIndexPath(row: self.functions.count-1, section: 0)
+            self.tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
+        }))
+        
+        self.present(alert, animated: true)
+    }
     }
     
     @objc func blockModifier(cell: UITableViewCell, sender: UIButton!) {
