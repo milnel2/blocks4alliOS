@@ -15,7 +15,7 @@ class AngleModViewController: UIViewController {
     // TODO: decide on default angle
     var angle: Double = 90
     var modifierBlockIndexSender: Int?
-    let interval: Float = 45
+    let interval: Float = 15
     var roundedAngle: Float = 90
     
     @IBOutlet weak var angleSlider: UISlider!
