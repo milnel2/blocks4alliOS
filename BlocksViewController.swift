@@ -1629,25 +1629,43 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 //remove block from collection and program
                 if myBlock.tripleCounterpart == true{
-                    for block in functionsDict[currentWorkspace]!{
-                        print("block", block.name)
-                    }
-                    var indexOfCounterparts = [Int]()
-                    var counterpartBlocks = [Block]()
-                    for i in 0..<functionsDict[currentWorkspace]!.count {
-                        if functionsDict[currentWorkspace]![i].name == "If" || functionsDict[currentWorkspace]![i].name == "Else" ||  functionsDict[currentWorkspace]![i].name == "End If Else"{
-                            indexOfCounterparts.append(i)
-                            counterpartBlocks.append(functionsDict[currentWorkspace]![i])
+                    var indexOfCounterpart = [Int]()
+                    var blockCounterParts = [Block]()
+                    if myBlock.name == "If" || myBlock.name ==  "Else" || myBlock.name ==  "End If Else"{
+                        for block in myBlock.counterpart[0].counterpart{
+                            blockCounterParts.append(block)
                         }
                     }
-                    print(indexOfCounterparts)
-                    blocksBeingMoved = counterpartBlocks
-                    blocksBeingMoved[0].addImage("If_Else")
-                    functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterparts.first!, blocksStackIndex)...max(indexOfCounterparts.last!, blocksStackIndex))
-                    for block in functionsDict[currentWorkspace]!{
-                        print("block", block.name)
-                    save()
+                    
+                    for i in 0..<functionsDict[currentWorkspace]!.count{
+                        for blockInPart in blockCounterParts{
+                            if functionsDict[currentWorkspace]![i].name == "If" || functionsDict[currentWorkspace]![i].name ==  "Else" || functionsDict[currentWorkspace]![i].name ==  "End If Else"{
+                                for block in functionsDict[currentWorkspace]![i].counterpart[0].counterpart{
+                                    if blockInPart === block{
+                                        if indexOfCounterpart.count == 0{
+                                            indexOfCounterpart.append(i)
+                                            print("matched: ", block.name, " and ", blockInPart.name, " at index of: ", i)
+                                            print("blockCounterParts: ", blockCounterParts, "\n counterparts in functionsDict[currentWorkspace]![i].counterpart[0].counterpart: ", functionsDict[currentWorkspace]![i].counterpart[0].counterpart)
+                                        }else if indexOfCounterpart[indexOfCounterpart.count - 1] != i{
+                                            indexOfCounterpart.append(i)
+                                            print("matched: ", block.name, " and ", blockInPart.name, " at index of: ", i)
+                                            print("blockCounterParts: ", blockCounterParts, "\n counterparts in functionsDict[currentWorkspace]![i].counterpart[0].counterpart: ", functionsDict[currentWorkspace]![i].counterpart[0].counterpart)
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
+                    print("indexofCounterpart: ", indexOfCounterpart)
+                    var indexPathArray = [IndexPath]()
+                    var tempBlockStack = [Block]()
+                    for i in min(indexOfCounterpart[0],blocksStackIndex)...max(indexOfCounterpart[indexOfCounterpart.count - 1], blocksStackIndex){
+                        indexPathArray += [IndexPath.init(row: i, section: 0)]
+                        tempBlockStack += [functionsDict[currentWorkspace]![i]]
+                    }
+                    blocksBeingMoved = tempBlockStack
+                    functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart[0],blocksStackIndex)...max(indexOfCounterpart[indexOfCounterpart.count - 1], blocksStackIndex))
+                    
                 }
                 else if myBlock.double == true{
                     var indexOfCounterpart = -1

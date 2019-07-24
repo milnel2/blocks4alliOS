@@ -38,6 +38,7 @@ class MainMenuViewController: UIViewController {
         // used to store the loaded stuff and later normal functionsDict is set to the from save version
         do{
             let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json"))
+            print(jsonString)
             // creates a string type of the entire json file
             let functionStrings = jsonString.components(separatedBy: "New Function \n")
             // the string of the json file parsed out into each function in the file
