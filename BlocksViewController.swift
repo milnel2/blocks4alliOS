@@ -18,7 +18,7 @@ import AVFoundation
 var functionsDict = [String : [Block]]()
 var currentWorkspace = String()
 let startIndex = 0
-let endIndex = functionsDict[currentWorkspace]!.count-1
+var endIndex = functionsDict[currentWorkspace]!.count - 1
 
 //MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
@@ -302,6 +302,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
             else{
             functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
+            endIndex += 1
             blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
             }
@@ -317,6 +318,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             else{
                 //NEED TO DO THIS?
                 functionsDict[currentWorkspace]!.insert(blocks[0], at: index)
+                endIndex += 1
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             }
