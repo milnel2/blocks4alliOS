@@ -15,7 +15,12 @@ import AVFoundation
 
 
 //collection of blocks that are part of the program
-var blocksStack = [Block]()
+var functionsDict = [String : [Block]]()
+var currentWorkspace = String()
+let startIndex = 0
+var endIndex: Int{
+    return functionsDict[currentWorkspace]!.count - 1
+}
 
 //MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
@@ -31,6 +36,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     // below are all the buttons for this class
     @IBOutlet weak var clearAll: UIButton!
+    @IBOutlet weak var workspaceLabel: UILabel!
     
     @IBOutlet weak var blocksProgram: UICollectionView!
     //View on the bottom of the screen that shows blocks in worksapce
@@ -38,6 +44,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     @IBOutlet weak var menuButton: UIButton!
     // above are all the buttons for this class
+    
     
     
     
@@ -73,42 +80,108 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             //Deletes previous save in order to rewrite for each save action (therefore, no excess blocks)
             try fileManager.removeItem(at: filename)
         }catch{
-            print("couldn't delete")
+            print("couldn't delete save")
         }
         
         // string that json text is appended too
         var writeText = String()
         /** block represents each block belonging to the global array of blocks in the workspace. blocksStack holds all blocks on the screen. **/
-        for block in blocksStack{
-            // sets jsonText to the var type json in block that takes a Data object
-            if let jsonText = block.json {
-                /** appends the data from jsonText in string form to the string writeText. writeText is then saved as a json save file **/
-                writeText.append(String(data: jsonText, encoding: .utf8)!)
-                
-                /** Appending "\n Next Object \n" is meant to separate each encoded block's data in order to make it easier to fetch at a later time **/
-                writeText.append("\n Next Object \n")
-            }
-            do{
-                // writes the accumlated string of json objects to a single file
-                try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-            }catch {
-                print("couldn't print json")
+        let funcNames = functionsDict.keys
+        //gets all the function names in functionsDict as an array of strings
+        
+        for name in funcNames{
+        // for all functions
+            writeText.append("New Function \n")
+            writeText.append(name)
+            //adds name of function immediately after the new function and prior to the next object so that it can be parsed same way as blocks
+            writeText.append("\n Next Object \n")
+            // allows name to be handled in load at the same time as blocks
+            for block in functionsDict[name]!{
+                // for block in the current fuctionsDict function's array of blocks
+                if let jsonText = block.jsonVar{
+                    // sets jsonText to block.jsonVar which removes counterparts so it doesn't wind up with an infite amount of counterparts
+                    writeText.append(String(data: jsonText, encoding: .utf8)!)
+                    //adds the jsonText as .utf8 as a string to the writeText string
+                    writeText.append("\n Next Object \n")
+                    //marks next object
+                }
+                do{
+                    try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+                    // writes the accumlated string of json objects to a single file
+                }catch{
+                    print("couldn't create json for", block)
+                }
             }
         }
+        
     }
-    
 
-    
-    
     // MARK: - - View Set Up
     // MARK: - viewDidLoad
     
     // viewDidLoad = on appear
     override func viewDidLoad() {
         super.viewDidLoad()
+        workspaceLabel.text = currentWorkspace
+        self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
+        
+        if workspaceLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
+            let startBlock = Block.init(name: "Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: true, tripleCounterpart: false)
+            let endBlock = Block.init(name: "Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: true, tripleCounterpart: false)
+            startBlock!.counterpart = [endBlock!]
+            endBlock!.counterpart = [startBlock!]
+            functionsDict[currentWorkspace]?.append(startBlock!)
+            functionsDict[currentWorkspace]?.append(endBlock!)
+        }
+        var keyExists = false
+            if workspaceLabel.text == "Main Workspace"{
+                for var i in 0..<functionsDict[currentWorkspace]!.count{
+                    if functionsDict[currentWorkspace]![i].type == "Function"{
+                        var block = functionsDict[currentWorkspace]![i]
+                        for j in 0..<oldKey.count{
+                            if block.name == oldKey[j]{
+                                keyExists = true
+                                block.name = newKey[j]
+                            }
+                        }
+                    }
+    
+            }
+        }
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+////        if workspaceLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
+////            let startBlock = Block.init(name: "Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: true, tripleCounterpart: false)
+////            let endBlock = Block.init(name: "Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: true, tripleCounterpart: false)
+////            startBlock!.counterpart = [endBlock!]
+////            endBlock!.counterpart = [startBlock!]
+////            functionsDict[currentWorkspace]?.append(startBlock!)
+////            functionsDict[currentWorkspace]?.append(endBlock!)
+////        }
+//        var keyExists = false
+//        if workspaceLabel.text == "Main Workspace"{
+//            for var i in 0..<functionsDict[currentWorkspace]!.count{
+//                if functionsDict[currentWorkspace]![i].type == "Function"{
+//                    var block = functionsDict[currentWorkspace]![i]
+//                    for j in 0..<oldKey.count{
+//                        if block.name == oldKey[j]{
+//                            keyExists = true
+//                            block.name = newKey[j]
+//                        }
+//                    }
+//                    //                    if keyExists == false{
+//                    //                        functionsDict[currentWorkspace]!.removeSubrange(i-1)
+//                    //                         i -= 1
+//                    //                    }
+//                }
+//
+//            }
+//        }
+//    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -141,10 +214,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /** Function removes all blocks from the blocksStack and program **/
     func clearAllBlocks(){
-        blocksStack = []
-        blocksProgram.reloadData()
-        save()
-
+        if currentWorkspace == "Main Workspace"{
+            functionsDict[currentWorkspace] = []
+            blocksProgram.reloadData()
+            save()
+        }
+        else{
+            functionsDict[currentWorkspace]!.removeSubrange(1..<functionsDict[currentWorkspace]!.count-1)
+            blocksProgram.reloadData()
+            save()
+        }
     }
     
     /** When a user clicks the 'Clear All' button, they receive an alert asking if they really want to
@@ -222,7 +301,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             print("No robots")
             performSegue(withIdentifier: "AddRobotSegue", sender: nil)
             
-        }else if(blocksStack.isEmpty){
+        }else if(functionsDict[currentWorkspace]!.isEmpty){
             changePlayTrashButton()
             let announcement = "Your robot has nothing to do! Add some blocks to your workspace."
             playTrashToggleButton.accessibilityLabel = announcement
@@ -230,7 +309,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }else{
             stopIsOption = true
             changePlayTrashButton()
-            play(blocksStackPlay: blocksStack)
+            play(functionsDictToPlay: functionsDict)
             //calls RobotControllerViewController play function which
         }
     }
@@ -250,7 +329,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //change for beginning
         var announcement = ""
         if(index != 0){
-            let myBlock = blocksStack[index-1]
+            let myBlock = functionsDict[currentWorkspace]![index-1]
             announcement = blocks[0].name + " placed after " + myBlock.name
         }else{
             announcement = blocks[0].name + " placed at beginning"
@@ -259,19 +338,40 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         //add a completion block here
         if(blocks[0].double) || (blocks[0].tripleCounterpart){
-            blocksStack.insert(contentsOf: blocks, at: index)
+//            functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
+//            blocksBeingMoved.removeAll()
+//            blocksProgram.reloadData()
+            if currentWorkspace != "Main Workspace" && index > endIndex {
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }else if currentWorkspace != "Main Workspace" && index <= startIndex {
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }
+            else{
+            functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
             blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
+            }
         }
         else{
-            blocksStack.insert(blocks[0], at: index)
-            //NEED TO DO THIS?
-            blocksBeingMoved.removeAll()
-            blocksProgram.reloadData()
-        }
-        
+            if currentWorkspace != "Main Workspace" && index > endIndex {
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }else if currentWorkspace != "Main Workspace" && index <= startIndex {
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+            }
+            else{
+                functionsDict[currentWorkspace]!.insert(blocks[0], at: index)
+                blocksBeingMoved.removeAll()
+                blocksProgram.reloadData()
+
+            }
+            }
     }
     
+  
     func makeAnnouncement(_ announcement: String){
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
     }
@@ -309,7 +409,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return blocksStack.count + 1
+        return functionsDict[currentWorkspace]!.count + 1
     }
     
     
@@ -318,10 +418,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: CGFloat(blockWidth), height: collectionView.frame.height)
         //        print(indexPath)
-        if indexPath.row == blocksStack.count {
+        if indexPath.row == functionsDict[currentWorkspace]!.count {
             // expands the size of the last cell in the collectionView, so it's easier to add a block at the end
             // with VoiceOver on
-            if blocksStack.count < 8 {
+            if functionsDict[currentWorkspace]!.count < 8 {
                 // TODO: eventually simplify this section without blocksStack.count < 8
                 // blocksStack.count < 8 means that the orignal editor only fit up to 8 blocks of a fixed size horizontally, but we may want to change that too
                 let myWidth = collectionView.frame.width
@@ -341,7 +441,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         myLabel.isAccessibilityElement = true
         var accessibilityLabel = ""
         //is blocksStack.count always correct?
-        let blockPlacementInfo = ". Workspace block " + String(number) + " of " + String(blocksStack.count)
+        let blockPlacementInfo = ". Workspace block " + String(number) + " of " + String(functionsDict[currentWorkspace]!.count)
         var accessibilityHint = ""
         var movementInfo = ". Double tap to move block."
         
@@ -399,12 +499,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             myView.removeFromSuperview()
         }
         cell.isAccessibilityElement = false
-        if indexPath.row == blocksStack.count {
+        if indexPath.row == functionsDict[currentWorkspace]!.count {
             // The last cell in the collectionView is an empty cell so you can place blocks at the end
             if !blocksBeingMoved.isEmpty{
                 cell.isAccessibilityElement = true
                 
-                if blocksStack.count == 0 {
+                if functionsDict[currentWorkspace]!.count == 0 {
                     cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at Beginning"
                 }else{
                     cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End"
@@ -417,40 +517,39 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             
             let startingHeight = Int(cell.frame.height)-blockHeight
             
-            let block = blocksStack[indexPath.row]
+            let block = functionsDict[currentWorkspace]![indexPath.row]
             var blocksToAdd = [Block]()
             
             //check if block is nested (or nested multiple times) and adds in "inside" repeat/if blocks
             for i in 0...indexPath.row {
-                if blocksStack[i].double{
-                    if(!blocksStack[i].name.contains("End")){
+                if functionsDict[currentWorkspace]![i].double{
+                    if(!functionsDict[currentWorkspace]![i].name.contains("End")){
                         if(i != indexPath.row){
-                            blocksToAdd.append(blocksStack[i])
+                            blocksToAdd.append(functionsDict[currentWorkspace]![i])
                         }
                     }else{
-                        blocksToAdd.removeLast()
+                        if !blocksToAdd.isEmpty{
+                            blocksToAdd.removeLast()
+                        }
                     }
                 }
-                else if blocksStack[i].tripleCounterpart{
-                    if (!blocksStack[i].name.contains("Else")){
+                else if functionsDict[currentWorkspace]![i].tripleCounterpart{
+                    if (!functionsDict[currentWorkspace]![i].name.contains("If")){
+                        print(("in if true"))
                         if(i != indexPath.row){
-                            blocksToAdd.append(blocksStack[i])
+                            blocksToAdd.append(functionsDict[currentWorkspace]![i])
                         }
-                        blocksToAdd.removeAll()
+                    }
+                    if (!functionsDict[currentWorkspace]![i].name.contains("Else")){
+                        if(i != indexPath.row){
+                            blocksToAdd.append(functionsDict[currentWorkspace]![i])
+                        }
                     }
                     else{
-                        blocksToAdd.removeAll()
-//                        blocksToAdd.removeLast()
-//                        print(blocksToAdd.count)
-                    }
-                    if (!blocksStack[i].name.contains("End")){
-                        if(i != indexPath.row){
-                            blocksToAdd.append(blocksStack[i])
+                        if !blocksToAdd.isEmpty{
+                            blocksToAdd.removeLast()
                         }
                     }
-//                else{
-//                        blocksToAdd.removeLast()
-//                    }
 
                 }
             }
@@ -1387,7 +1486,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             cell.addSubview(myLabel)
         }
         cell.accessibilityElements = cell.accessibilityElements?.reversed()
-        save()
+//        save()
+// think this save is extra
         return cell
     }
     
@@ -1510,8 +1610,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 //TODO: can only be added above conditional
                 var acceptsBooleans = false
                 var acceptsNumbers = false
-                if(indexPath.row < blocksStack.count){//otherwise empty block at end
-                    let myBlock = blocksStack[indexPath.row]
+                if(indexPath.row < functionsDict[currentWorkspace]!.count){//otherwise empty block at end
+                    let myBlock = functionsDict[currentWorkspace]![indexPath.row]
                     for type in myBlock.acceptedTypes{
                         if type == "Boolean"{
                             acceptsBooleans = true
@@ -1557,17 +1657,74 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 unsetBlocks()
             }
         }else{
-            if(indexPath.row < blocksStack.count){ //otherwise empty block at end
+            if(indexPath.row < functionsDict[currentWorkspace]!.count){ //otherwise empty block at end
                 movingBlocks = true
                 let blocksStackIndex = indexPath.row
-                let myBlock = blocksStack[blocksStackIndex]
+                let myBlock = functionsDict[currentWorkspace]![blocksStackIndex]
+                guard !myBlock.name.contains("Function Start") else{
+                    movingBlocks = false
+                    return
+                }
+                guard !myBlock.name.contains("Function End") else{
+                    movingBlocks = false
+                    return
+                }
                 //remove block from collection and program
-                if myBlock.double == true{
+                if myBlock.tripleCounterpart == true{
+                    var indexOfCounterPartBlocks = [Int]()
+                    var blockCounterParts = [Block]()
+                    if myBlock.name == "If" || myBlock.name ==  "Else" || myBlock.name ==  "End If Else"{
+                        for block in myBlock.counterpart[0].counterpart{
+                            blockCounterParts.append(block)
+                        }
+                    }
+                    for i in 0..<functionsDict[currentWorkspace]!.count{
+                        // goes through all the blocks in the current workspace
+                        for blockInPart in blockCounterParts{
+                            // block class is not equatable can't compare counterpart which is an arryay of blocks to another array, best we can do is block to block
+                            // goes through each block in the counterparts of the conterpart
+                            if functionsDict[currentWorkspace]![i].name == "If" || functionsDict[currentWorkspace]![i].name ==  "Else" || functionsDict[currentWorkspace]![i].name ==  "End If Else"{
+                                //this if statement is so when you get the blocks inbetween an If and an Else or an Else and and End If Else we don't try and search for their counterpart in the following for loop because they don't have it, this also covers our back for a few other things
+                                for block in functionsDict[currentWorkspace]![i].counterpart[0].counterpart{
+                                    // for block that is being iterated over in the whole function block stack get that block's counter parts counterparts list and then for each block in that list do the following
+                                    if blockInPart === block{
+                                    // compares if the block in the initail myblock's counterpart list matches the blocks in the counterpart list of the current block being iterated over by the functions dict i for loop at the very top
+                                        if indexOfCounterPartBlocks.count == 0{
+                                            // for the first case append i to the index of counterpart blocks this allows us to later know where the End If else block is so we know what chuncks of blocks to move
+                                            indexOfCounterPartBlocks.append(i)
+//                                            print("matched: ", block.name, " and ", blockInPart.name, " at index of: ", i)
+//                                            print("blockCounterParts: ", blockCounterParts, "\n counterparts in functionsDict[currentWorkspace]![i].counterpart[0].counterpart: ", functionsDict[currentWorkspace]![i].counterpart[0].counterpart)
+                                        }else if indexOfCounterPartBlocks[indexOfCounterPartBlocks.count - 1] != i{
+                                            //this is so we don't end up with triplicate in the indexOfCounterPartBlocks, since we can't compare the arrays of blocks we end up doing 9 comparisons for each of the three counterparts so this whole chunk requires 27 comparisions, we should change this when we have time to make the Block class equatable, otherwise swift doesn't play nice and you have to do this
+                                            indexOfCounterPartBlocks.append(i)
+//                                            print("matched: ", block.name, " and ", blockInPart.name, " at index of: ", i)
+//                                            print("blockCounterParts: ", blockCounterParts, "\n counterparts in functionsDict[currentWorkspace]![i].counterpart[0].counterpart: ", functionsDict[currentWorkspace]![i].counterpart[0].counterpart)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+//                    print("indexofCounterpart: ", indexOfCounterPartBlocks)
+                    // below mirros the other double/counterpart style blocks
+                    var indexPathArray = [IndexPath]()
+                    var tempBlockStack = [Block]()
+                    for i in min(indexOfCounterPartBlocks[0],blocksStackIndex)...max(indexOfCounterPartBlocks[indexOfCounterPartBlocks.count - 1], blocksStackIndex){
+                        indexPathArray += [IndexPath.init(row: i, section: 0)]
+                        tempBlockStack += [functionsDict[currentWorkspace]![i]]
+                    }
+                    blocksBeingMoved = tempBlockStack
+                    functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterPartBlocks[0],blocksStackIndex)...max(indexOfCounterPartBlocks[indexOfCounterPartBlocks.count - 1], blocksStackIndex))
+                    
+                }
+                else if myBlock.double == true{
                     var indexOfCounterpart = -1
-                    for i in 0..<blocksStack.count {
+                    var blockcounterparts = [Block]()
+                    for i in 0..<functionsDict[currentWorkspace]!.count {
                         for block in myBlock.counterpart{
-                            if block === blocksStack[i]{
+                            if block === functionsDict[currentWorkspace]![i]{
                                 indexOfCounterpart = i
+                                blockcounterparts.append(block)
                             }
                         }
                     }
@@ -1575,19 +1732,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     var tempBlockStack = [Block]()
                     for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
                         indexPathArray += [IndexPath.init(row: i, section: 0)]
-                        tempBlockStack += [blocksStack[i]]
+                        tempBlockStack += [functionsDict[currentWorkspace]![i]]
                     }
                     blocksBeingMoved = tempBlockStack
-                    
-                    blocksStack.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
-                    
+                    functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
                 }else{ //only a single block to be removed
-                    blocksBeingMoved = [blocksStack[blocksStackIndex]]
-                    blocksStack.remove(at: blocksStackIndex)
+                    blocksBeingMoved = [functionsDict[currentWorkspace]![blocksStackIndex]]
+                    functionsDict[currentWorkspace]!.remove(at: blocksStackIndex)
                 }
                 blocksProgram.reloadData()
                 let mySelectedBlockVC = SelectedBlockViewController()
                 mySelectedBlockVC.blocks = blocksBeingMoved
+                
                 containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
                 changePlayTrashButton()
             }

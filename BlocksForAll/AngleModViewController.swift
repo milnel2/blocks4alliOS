@@ -23,7 +23,7 @@ class AngleModViewController: UIViewController {
     
     override func viewDidLoad() {
         // default angle: 90 or preserve last selection
-        var previousAngleString: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] ?? "90"
+        var previousAngleString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] ?? "90"
         var previousAngle = Int(previousAngleString)
         angleDisplayed.text = "\(previousAngle ?? 90)"
         angleSlider.setValue(Float(previousAngle!), animated: false)
@@ -47,7 +47,7 @@ class AngleModViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             print("\(roundedAngle)")
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] = "\(Int(roundedAngle))"
+            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] = "\(Int(roundedAngle))"
         }
     }
 }

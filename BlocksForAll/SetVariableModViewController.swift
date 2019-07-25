@@ -139,7 +139,7 @@ class SetVariableModViewController: UIViewController {
     @objc override func viewDidLoad() {
         super.viewDidLoad()
         
-        var previousSetVariable: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        var previousSetVariable: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
 //        var previousModifierBlockColor = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] ?? "purple"
         variableSelected = previousSetVariable
         
@@ -196,8 +196,8 @@ class SetVariableModViewController: UIViewController {
         if segue.destination is BlocksViewController{
 //            variableDict.updateValue(variableValue, forKey: variableSelected)
 //            print(variableDict)
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Double(variableValue))"
+            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
+            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Double(variableValue))"
         }
     }
     

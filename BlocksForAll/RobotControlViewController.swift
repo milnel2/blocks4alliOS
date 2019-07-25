@@ -55,13 +55,13 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     }
     
     //this function allows the blocks in the workspace to be sent to the robot
-    func play(blocksStackPlay: [Block]){
+    func play(functionsDictToPlay: [String : [Block]]){
         print("in play")
         let connectedRobots = robotManager?.allConnectedRobots
         if connectedRobots != nil{
         
             // var repeatCommands = [WWCommandSet]()
-            executingProgram = ExecutingProgram(blocksStackExecute: blocksStackPlay)
+            executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay)
             //creates executing program
             executeNextCommandRobotControllVC()
             //makes initial executeNextCommandRobotControllVC call
@@ -76,7 +76,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         guard let executingProgram = executingProgram else {
             return  // not running
         }
-        guard !executingProgram.isComplete else {
+        guard !executingProgram.funcIsComplete else {
         //if command is running
             print("in if iscomplete")
             self.executingProgram = nil
@@ -94,7 +94,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 
     var isProgramComplete: Bool {
         print("in program is complete")
-        return executingProgram?.isComplete ?? true
+        return executingProgram?.funcIsComplete ?? true
     }
     
     func programHasCompleted() {
@@ -103,18 +103,28 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 }
 
 class ExecutingProgram {
-    var position: Int = 0
+    var positions: [(funcName: String, position: Int)]
     // position used to find index of block in blocksToExec
-    var blocksToExec: [Block]
+    var functionsDictToExec: [String : [Block]]
+    //all functions in program
+    
+    var currentFunction: String
+    //currentWorkspace/function being read
+    
+    var blocksToExec: [Block]{
+        return functionsDictToExec[currentFunction]!
+    }
     //array blocks (blocksStack) to be executed by the executing program
+    
+    
     var repeatCountAndIndexArray: [(timesToR: Int, index: Int)] = []
     //an array of tuples, each tuple keeps track of the number of times left to repeat that repeat loop as well as the index of the start of the repeat loop
     var variablesDict: [String : Double] = [:]
     //variablesDict is used to keep track of the variables and their values, string is the name of the variable, double is the value of the variable
     var ifCondition: Bool = false
     
-    init(blocksStackExecute: [Block]) {
-        self.blocksToExec = blocksStackExecute
+    init(functionsDictToExecute: [String:[Block]]) {
+        self.functionsDictToExec = functionsDictToExecute
         // we can latter change this for functions so it takes a dictionary of names and blocksstacks to execute yada yada
         self.variablesDict["apple"] = 0.0
         self.variablesDict["banana"] = 0.0
@@ -122,27 +132,40 @@ class ExecutingProgram {
         self.variablesDict["melon"] = 0.0
         self.variablesDict["orange"] = 0.0
         // initializes the variablesDictionary with the five variables we currently have in place and sets them to 0
+        self.currentFunction = "Main Workspace"
+//        self.blocksToExec = functionsDictToExec[currentFunction]!
+        self.positions = [(currentFunction, 0)]
     }
     
-    var isComplete: Bool {
-        return position >= blocksToExec.count
+    var funcIsComplete: Bool {
+        if positions.count != 0{
+            return positions[positions.count - 1].position >= blocksToExec.count
+        }else{
+            return true
+        }
         //checks if position in blocksToExec is at end marks as complete used for preventing crashing out of index
+    }
+    
+    var programIsComplete: Bool {
+        return positions[0].position >= functionsDictToExec["Main Workspace"]!.count
     }
 
 
     
     func executeNextCommandExecProgram() {
         print("in execute nextcommand")
-        guard !isComplete else {
+        guard !funcIsComplete else {
             return
         }
         // stops if completed
         
         var myAction = WWCommandSet()
         // set of commands to be executed
+        
 
-        let blockToExec = blocksToExec[position]
+        let blockToExec = functionsDictToExec[positions[positions.count - 1].funcName]![(positions[positions.count - 1].position)]
         //the current block being check for executing it's from the [] of blocks that are being executed at the position value that we increment with this function (and repeat and if functions)
+        
         print(blockToExec)
         var duration = 2.0
         // default duration of any command
@@ -186,7 +209,7 @@ class ExecutingProgram {
             // what the statement evaluates to
             var data = getSensorData()
             // what info we get from the robot
-            if blocksToExec[position].addedBlocks[0].attributes["booleanSelected"] == "hear_voice"{
+            if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "hear_voice"{
             // check if the if statement is evaluating for a hear_voice
                 if(!data.isEmpty){
                 // if there is some data from the robot
@@ -199,7 +222,7 @@ class ExecutingProgram {
                     }
                     // check if hearing voice, tbh not quite sure how this one works dash is rarely consistent with these if statements but the code is solid
                 }
-            } else if blocksToExec[position].addedBlocks[0].attributes["booleanSelected"] == "obstacle_sensed"{
+            } else if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "obstacle_sensed"{
             // check if the if statement is evaluating for a obstacle_sensed
                 if(!data.isEmpty){
                 // checks if there is data from the robot
@@ -221,7 +244,7 @@ class ExecutingProgram {
             }else{
                 ifFalse()
                 // run the ifFalse function, this is to skip over blocks that aren't supposed to be executed
-                if blocksToExec[position].name == "Else"{
+                if blockToExec.name == "Else"{
                     print("got to else")
                 }
             }
@@ -241,7 +264,7 @@ class ExecutingProgram {
         case "Repeat":
             print("in Repeat")
             //repeatCountAndIndexArray keeps track of how many times to repeat which loop
-            repeatCountAndIndexArray.append((timesToR: Int(blocksToExec[position].addedBlocks[0].attributes["timesToRepeat"] ?? "0") ?? 0, index: position))
+            repeatCountAndIndexArray.append((timesToR: Int(blockToExec.addedBlocks[0].attributes["timesToRepeat"] ?? "0") ?? 0, index: (positions[positions.count - 1].position) ))
             // adds to repeatCountAndIndexArray the current blocks index and the value of howmany times it has left to repeat
             print(repeatCountAndIndexArray)
             
@@ -256,9 +279,22 @@ class ExecutingProgram {
                 // remove the tuple at the end of the array where the timesToR(times left to repeat) to repeat count is 0
             }else {
             // if the loop needs to be repeated it goes to the last index of repeatCountAndIndexArray so that you get to the innermost repeat loop
-                position = repeatCountAndIndexArray[(repeatCountAndIndexArray.count - 1)].index
+                positions[positions.count - 1].position = repeatCountAndIndexArray[(repeatCountAndIndexArray.count - 1)].index
                 // change the position to the begining of the repeat loop
             }
+            print(repeatCountAndIndexArray)
+            
+        case "Repeat Forever":
+            print("in Repeat")
+            //repeatCountAndIndexArray keeps track of how many times to repeat which loop
+            repeatCountAndIndexArray.append((timesToR: 1, index: (positions[positions.count - 1].position) ))
+            // adds to repeatCountAndIndexArray the current blocks index and the value of howmany times it has left to repeat
+            print(repeatCountAndIndexArray)
+            
+        case "End Repeat Forever" :
+            print("in End Repeat")
+            positions[positions.count - 1].position = repeatCountAndIndexArray[(repeatCountAndIndexArray.count - 1)].index
+            // change the position to the begining of the repeat loop
             print(repeatCountAndIndexArray)
             
             
@@ -307,24 +343,24 @@ class ExecutingProgram {
             //Lights Category
         //MARK: change this code and make is smoother once we have user input
         case "Set Eye Light":
-            let light = playLight()
+            let light = playLight(lightBlock: blockToExec)
             myAction.setEyeLight(light)
             //                    myAction.setChestLight(light)
             
         case "Set Left Ear Light":
-            let light = playLight()
+            let light = playLight(lightBlock: blockToExec)
             myAction.setLeftEarLight(light)
             
         case "Set Right Ear Light":
-            let light = playLight()
+            let light = playLight(lightBlock: blockToExec)
             myAction.setRightEarLight(light)
             
         case "Set Chest Light":
-            let light = playLight()
+            let light = playLight(lightBlock: blockToExec)
             myAction.setChestLight(light)
             
         case "Set All Lights":
-            let light = playLight()
+            let light = playLight(lightBlock: blockToExec)
             myAction.setEyeLight(light)
             myAction.setRightEarLight(light)
             myAction.setLeftEarLight(light)
@@ -406,7 +442,7 @@ class ExecutingProgram {
             let rotateRight = WWCommandSet()
             rotateRight.setBodyWheels(WWCommandBodyWheels.init(leftWheel: 30.0, rightWheel: -30.0))
             let setLeft = WWCommandSet()
-            let light = playLight()
+            let light = playLight(lightBlock: blockToExec)
             setLeft.setLeftEarLight(light)
             let setRight = WWCommandSet()
             setRight.setRightEarLight(light)
@@ -557,22 +593,38 @@ class ExecutingProgram {
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_TIRE_SQUEAL)
         case "Train Noise":
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRAIN)
-            
+
             
         //not in a category or plist? add
         case "Say Okay":
             playNoise(myAction: myAction, sound: WW_SOUNDFILE_OKAY)
+         
             
+        // not best way but using default for Functions
         default:
-            print("There is no command")
-            
+            if blockToExec.type == "Function"{
+                currentFunction = blockToExec.name
+                positions.append((funcName: currentFunction, position: -1))
+                print("in function")
+            }else{
+                print("There is no command")
+            }
         }
+        
         cmdToSend.add(myAction, withDuration: duration)
         // and command set myAction set by cases above to cmdToSend which a sequence of command sets
         print(cmdToSend)
         sendCommandSequenceToRobots(cmdSeq: cmdToSend)
-        position += 1
+        positions[positions.count - 1].position += 1
         // increase the position so that the blockToExec is updated to the next block in the block stack
+        if positions[positions.count - 1].position == functionsDictToExec[positions[positions.count - 1].funcName]?.count{
+            positions.removeLast()
+            if positions.count != 0{
+                currentFunction = positions[positions.count - 1].funcName
+                positions[positions.count - 1].position += 1
+            }
+            print("current function:", currentFunction)
+        }
     }
 
   
@@ -581,15 +633,15 @@ class ExecutingProgram {
         print("ifFalse Entered")
         var openIfs = 1
         while openIfs > 0{
-            position += 1
-            if blocksToExec[position].name == "End If" || blocksToExec[position].name == "End If Else"{
+            positions[positions.count - 1].position += 1
+            if blocksToExec[(positions[positions.count - 1].position)].name == "End If" || blocksToExec[(positions[positions.count - 1].position)].name == "End If Else"{
                 openIfs = 0
             }
-            else if blocksToExec[position].name == "Else"{
+            else if blocksToExec[(positions[positions.count - 1].position)].name == "Else"{
                 print("in else")
                 openIfs = 0
             }
-            else if ((blocksToExec[position].name == "IfObstacle in front") || (blocksToExec[position].name == "IfHear Voice")){
+            else if ((blocksToExec[(positions[positions.count - 1].position)].name == "IfObstacle in front") || (blocksToExec[(positions[positions.count - 1].position)].name == "IfHear Voice")){
                 openIfs += 1
             }
         }
@@ -600,11 +652,11 @@ class ExecutingProgram {
         print("elseFalse Entered")
         var openElse = 1
         while openElse > 0 {
-            position += 1
-            if blocksToExec[position].name == "End If Else"{
+            positions[positions.count - 1].position += 1
+            if blocksToExec[(positions[positions.count - 1].position)].name == "End If Else"{
                 openElse = 0
             }
-            else if blocksToExec[position].name == "Else"{
+            else if blocksToExec[(positions[positions.count - 1].position)].name == "Else"{
                 print("in else")
                 openElse += 1
             }
@@ -690,7 +742,13 @@ class ExecutingProgram {
         /*by multiplying (distance/robotSpped) by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
          distance he needs to in the right time. However he travels a little too far on the very slow speed. */
         // this needs fine tuning, generally works fine, but probably a better way to account for this
-        cmdToSend.add(drive, withDuration: (distance/robotSpeed) * 1.25)
+        var durationModifier = 1.25
+        if distance > 89{
+            durationModifier = 1.05
+        } else if distance > 59{
+            durationModifier = 1.1
+        }
+        cmdToSend.add(drive, withDuration: (distance/robotSpeed) * durationModifier)
         return WWCommandToolbelt.moveStop()
     }
     
@@ -762,7 +820,7 @@ class ExecutingProgram {
 //        }  else if angleToTurn <= 360{
 //            waitAdd = 0.07
 //        }
-        let wait = (1.0 + waitAdd)
+        let wait = (0.75 + waitAdd)
         // need to wait 1.0 seconds then add a value for fine tuneing
         let waitingPeriod = WWCommandSet()
         cmdToSend.add(waitingPeriod, withDuration: wait)
@@ -773,15 +831,8 @@ class ExecutingProgram {
 
     
     //decomposition of light functions
-    func playLight () -> WWCommandLightRGB{
-        var color = ""
-        for block in blocksStack{
-            if block.name.contains("Light"){
-                color = String(block.addedBlocks[0].attributes["lightColor"] ?? "white")
-            }
-        }
-        
-        
+    func playLight (lightBlock: Block) -> WWCommandLightRGB{
+        var color = lightBlock.addedBlocks[0].attributes["lightColor"] ?? "white"
         var selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
         switch color{
         case "black":

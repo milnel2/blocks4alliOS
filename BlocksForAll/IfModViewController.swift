@@ -58,7 +58,7 @@ class IfModViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var previousBooleanSelected: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["booleanSelected"] ?? "false"
+        var previousBooleanSelected: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["booleanSelected"] ?? "false"
 //        var previousModifierBlockSender = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockIndexSender"] ?? "purple"
         booleanSelected = previousBooleanSelected
         
@@ -76,7 +76,7 @@ class IfModViewController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
-    blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["booleanSelected"] = booleanSelected
+            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["booleanSelected"] = booleanSelected
         }
     }
     

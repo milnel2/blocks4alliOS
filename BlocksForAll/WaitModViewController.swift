@@ -19,7 +19,7 @@ class WaitModViewController: UIViewController{
     
     override func viewDidLoad() {
         // default wait time: 1 second or preserve last selection
-        var previousWaitString: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["wait"] ?? "1"
+        var previousWaitString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["wait"] ?? "1"
         var previousWait = Int(previousWaitString)
         
         if (previousWait == 1) {
@@ -51,7 +51,7 @@ class WaitModViewController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is BlocksViewController{
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["wait"] = "\(wait)"
+            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["wait"] = "\(wait)"
         }
     }
 }

@@ -79,7 +79,7 @@ class Block: Codable {
     
     //MARK: - json variable
     // From Paul, create a variable for creating the json encoded data, using the self data of the block in question
-    var json: Data? {
+    var jsonVar: Data? {
         let blocksCounterpart = self.counterpart
         self.counterpart = []
         // gets counterpart to be re-added later, then sets the counterpart to nil so its codable
@@ -92,36 +92,7 @@ class Block: Codable {
     
     
     //MARK: - Initialization
-    
-    init? (json: Data){
-        // initializes a block from a json format data object
-        // below declarations are to provide a default so the actual initialzation could be use, needs to be removed later but can't figure out error that occurs when there is no defualt
-        self.name = "hello"
-        self.color = Color(uiColor: UIColor(white: 0, alpha: 0))
-        self.double = true
-        self.tripleCounterpart = true
-        self.imageName = nil
-        self.addedBlocks = []
-        self.type = "bool"
-        self.acceptedTypes = ["bool"]
-        self.attributes = [String:String]()
-        
-        if let newValue = try? JSONDecoder().decode(Block.self, from: json){
-            // tries to take the json file passed in initialization and set the placeholder block newValue to the information in the
-            self.name = newValue.name
-            // initializes the new block information from the place holder block newValue.... can't remember how this works since it seems the block creation of the new value is recursive....
-            self.color = newValue.color
-            self.double = newValue.double
-            self.tripleCounterpart = newValue.tripleCounterpart
-            self.imageName = newValue.imageName
-            self.addedBlocks = newValue.addedBlocks
-            self.type = newValue.type
-            self.acceptedTypes = newValue.acceptedTypes
-            self.attributes = newValue.attributes
-        }
-    }
-    
-    
+
     init?(name: String, color: Color, double: Bool, tripleCounterpart: Bool, imageName: String? = nil, addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
         
         //TODO: check that color is initialized as well

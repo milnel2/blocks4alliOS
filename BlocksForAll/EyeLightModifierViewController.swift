@@ -17,9 +17,9 @@ class EyeLightModifierViewController: UIViewController{
     
     override func viewDidLoad() {
         // default status: On or preserve last selection
-        var previousSelection: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] ?? "Off"
+        var previousSelection: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] ?? "Off"
         
-        lightLabel.text = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] ?? "Off"
+        lightLabel.text = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] ?? "Off"
         
         eyeLightStatus = previousSelection
     }
@@ -36,7 +36,7 @@ class EyeLightModifierViewController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is BlocksViewController{
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] = "\(eyeLightStatus)"
+            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] = "\(eyeLightStatus)"
         }
     }
 }

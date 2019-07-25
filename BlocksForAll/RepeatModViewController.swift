@@ -19,7 +19,7 @@ class RepeatModViewController: UIViewController{
     
     override func viewDidLoad() {
         // default times to repeat: 2 or preserve last selection
-        var previousRepsString: String = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["timesToRepeat"] ?? "2"
+        var previousRepsString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["timesToRepeat"] ?? "2"
         var previousReps = Int(previousRepsString)
         timesToRepeatLabel.text = "\(previousReps ?? 2)"
         
@@ -44,7 +44,7 @@ class RepeatModViewController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is BlocksViewController{
-            blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["timesToRepeat"] = "\(timesToRepeat)"
+            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["timesToRepeat"] = "\(timesToRepeat)"
         }
     }
     
