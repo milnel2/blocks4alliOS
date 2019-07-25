@@ -742,7 +742,13 @@ class ExecutingProgram {
         /*by multiplying (distance/robotSpped) by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
          distance he needs to in the right time. However he travels a little too far on the very slow speed. */
         // this needs fine tuning, generally works fine, but probably a better way to account for this
-        cmdToSend.add(drive, withDuration: (distance/robotSpeed) * 1.25)
+        var durationModifier = 1.25
+        if distance > 89{
+            durationModifier = 1.05
+        } else if distance > 59{
+            durationModifier = 1.1
+        }
+        cmdToSend.add(drive, withDuration: (distance/robotSpeed) * durationModifier)
         return WWCommandToolbelt.moveStop()
     }
     
@@ -814,7 +820,7 @@ class ExecutingProgram {
 //        }  else if angleToTurn <= 360{
 //            waitAdd = 0.07
 //        }
-        let wait = (1.0 + waitAdd)
+        let wait = (0.75 + waitAdd)
         // need to wait 1.0 seconds then add a value for fine tuneing
         let waitingPeriod = WWCommandSet()
         cmdToSend.add(waitingPeriod, withDuration: wait)
