@@ -434,32 +434,32 @@ class ExecutingProgram {
             cmdToSend.add(lookforward, withDuration: duration)
             myAction =  WWCommandToolbelt.moveStop()
             
-            
-        case "Dance":
-            duration = 0.5
-            let rotateLeft = WWCommandSet()
-            rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -30.0, rightWheel: 30.0))
-            let rotateRight = WWCommandSet()
-            rotateRight.setBodyWheels(WWCommandBodyWheels.init(leftWheel: 30.0, rightWheel: -30.0))
-            let setLeft = WWCommandSet()
-            let light = playLight(lightBlock: blockToExec)
-            setLeft.setLeftEarLight(light)
-            let setRight = WWCommandSet()
-            setRight.setRightEarLight(light)
-            
-            var danceIndex = 0
-            while danceIndex < 2 {
-                cmdToSend.add(rotateLeft, withDuration: duration)
-                cmdToSend.add(rotateRight, withDuration: duration)
-                cmdToSend.add(setLeft, withDuration: duration)
-                cmdToSend.add(setRight, withDuration: duration)
-                danceIndex += 1
-            }
-            let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_WOOHOO)
-            myAction.setSound(speaker)
-            
-            myAction = WWCommandToolbelt.moveStop()
-            danceIndex = 0
+            //tosses light error due to light not having an added block for play light to find.
+//        case "Dance":
+//            duration = 0.5
+//            let rotateLeft = WWCommandSet()
+//            rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -30.0, rightWheel: 30.0))
+//            let rotateRight = WWCommandSet()
+//            rotateRight.setBodyWheels(WWCommandBodyWheels.init(leftWheel: 30.0, rightWheel: -30.0))
+//            let setLeft = WWCommandSet()
+//            let light = playLight(lightBlock: blockToExec)
+//            setLeft.setLeftEarLight(light)
+//            let setRight = WWCommandSet()
+//            setRight.setRightEarLight(light)
+//
+//            var danceIndex = 0
+//            while danceIndex < 2 {
+//                cmdToSend.add(rotateLeft, withDuration: duration)
+//                cmdToSend.add(rotateRight, withDuration: duration)
+//                cmdToSend.add(setLeft, withDuration: duration)
+//                cmdToSend.add(setRight, withDuration: duration)
+//                danceIndex += 1
+//            }
+//            let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_WOOHOO)
+//            myAction.setSound(speaker)
+//
+//            myAction = WWCommandToolbelt.moveStop()
+//            danceIndex = 0
             
             
         //Sound Category

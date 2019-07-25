@@ -135,21 +135,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             functionsDict[currentWorkspace]?.append(startBlock!)
             functionsDict[currentWorkspace]?.append(endBlock!)
         }
-        var keyExists = false
-            if workspaceLabel.text == "Main Workspace"{
-                for var i in 0..<functionsDict[currentWorkspace]!.count{
-                    if functionsDict[currentWorkspace]![i].type == "Function"{
-                        var block = functionsDict[currentWorkspace]![i]
-                        for j in 0..<oldKey.count{
-                            if block.name == oldKey[j]{
-                                keyExists = true
-                                block.name = newKey[j]
-                            }
-                        }
-                    }
-    
-            }
-        }
+//        var keyExists = false
+//            if workspaceLabel.text == "Main Workspace"{
+//                for i in 0..<functionsDict[currentWorkspace]!.count{
+//                    if functionsDict[currentWorkspace]![i].type == "Function"{
+//                        var block = functionsDict[currentWorkspace]![i]
+//                        for j in 0..<oldKey.count{
+//                            if block.name == oldKey[j]{
+//                                keyExists = true
+//                                block.name = newKey[j]
+//                            }
+//                        }
+//                    }
+//
+//            }
+//        }
     }
     
 //    override func viewWillAppear(_ animated: Bool) {
