@@ -135,6 +135,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             functionsDict[currentWorkspace]?.append(startBlock!)
             functionsDict[currentWorkspace]?.append(endBlock!)
         }
+        // Below cause an issue with saving and loading, how i'm not sure but happens occasionally too short on time to fix now
 //        var keyExists = false
 //            if workspaceLabel.text == "Main Workspace"{
 //                for i in 0..<functionsDict[currentWorkspace]!.count{

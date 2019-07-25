@@ -82,6 +82,7 @@ class Block: Codable {
     var jsonVar: Data? {
         let blocksCounterpart = self.counterpart
         self.counterpart = []
+        // TODO: needs to have altered to work with IfElse blocks properly, right now their counterparts are not stored after a save, need to set each item in the array of counterparts counterparts to nil so it only saves one level and not recursively
         // gets counterpart to be re-added later, then sets the counterpart to nil so its codable
         let jsonString = try? JSONEncoder().encode(self)
         // try to encode self to a JSON object

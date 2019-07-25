@@ -513,6 +513,7 @@ class ExecutingProgram {
         //variables Category
         case "Set Variable":
             variablesDict[ blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] = Double(blockToExec.addedBlocks[0].attributes["variableValue"] ?? "0.0") ?? 0.0
+            //assigns the variable value from current block attributes to the variables dict in executing program
             print("set variable, variablesDict:", variablesDict)
             
             
@@ -604,7 +605,9 @@ class ExecutingProgram {
         default:
             if blockToExec.type == "Function"{
                 currentFunction = blockToExec.name
+                // changes current function to the function being called
                 positions.append((funcName: currentFunction, position: -1))
+                // adds this call of the function to the positions array of tuples so that executing current function knows where to start, -1 value is because beneth here the position value is increased this lets the next block start at an index of 0
                 print("in function")
             }else{
                 print("There is no command")
@@ -618,8 +621,11 @@ class ExecutingProgram {
         positions[positions.count - 1].position += 1
         // increase the position so that the blockToExec is updated to the next block in the block stack
         if positions[positions.count - 1].position == functionsDictToExec[positions[positions.count - 1].funcName]?.count{
+            //checks to see if the function is completed
             positions.removeLast()
+            // remove the function from position list
             if positions.count != 0{
+                // if the main workspace isn't finished then set the current worksapce to the latests one in position
                 currentFunction = positions[positions.count - 1].funcName
                 positions[positions.count - 1].position += 1
             }
@@ -632,8 +638,10 @@ class ExecutingProgram {
         // used to skip over blocks inside an IF statement if the IF statement returns false
         print("ifFalse Entered")
         var openIfs = 1
+        // number of open ifs to skip if the prior if is false
         while openIfs > 0{
             positions[positions.count - 1].position += 1
+            //moves through the block stack by upping the position, if the position results in something related to ifs drop or add the number of open ifs until you wind up with 0 open ifs then the position should be correct to continue executing
             if blocksToExec[(positions[positions.count - 1].position)].name == "End If" || blocksToExec[(positions[positions.count - 1].position)].name == "End If Else"{
                 openIfs = 0
             }
@@ -742,6 +750,7 @@ class ExecutingProgram {
         /*by multiplying (distance/robotSpped) by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
          distance he needs to in the right time. However he travels a little too far on the very slow speed. */
         // this needs fine tuning, generally works fine, but probably a better way to account for this
+        // really need internal API from wonderworkshop to make this work
         var durationModifier = 1.25
         if distance > 89{
             durationModifier = 1.05
