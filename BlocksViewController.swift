@@ -128,8 +128,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksProgram.dataSource = self
         
         if workspaceLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
-            let startBlock = Block.init(name: "Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: true, tripleCounterpart: false)
-            let endBlock = Block.init(name: "Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: true, tripleCounterpart: false)
+            let startBlock = Block.init(name: "Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
+            let endBlock = Block.init(name: "Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
             startBlock!.counterpart = [endBlock!]
             endBlock!.counterpart = [startBlock!]
             functionsDict[currentWorkspace]?.append(startBlock!)
