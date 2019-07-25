@@ -590,22 +590,6 @@
 				<key>imageName</key>
 				<string>nod.pdf</string>
 			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Dance</string>
-				<key>color</key>
-				<string>#0066D0</string>
-				<key>double</key>
-				<false/>
-				<key>tripleCounterpart</key>
-				<false/>
-				<key>imageName</key>
-				<string>dance.pdf</string>
-			</dict>
 		</array>
 	</dict>
 	<dict>
