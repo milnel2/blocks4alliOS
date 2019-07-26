@@ -152,36 +152,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 //            }
 //        }
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-////        if workspaceLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
-////            let startBlock = Block.init(name: "Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: true, tripleCounterpart: false)
-////            let endBlock = Block.init(name: "Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#058900")), double: true, tripleCounterpart: false)
-////            startBlock!.counterpart = [endBlock!]
-////            endBlock!.counterpart = [startBlock!]
-////            functionsDict[currentWorkspace]?.append(startBlock!)
-////            functionsDict[currentWorkspace]?.append(endBlock!)
-////        }
-//        var keyExists = false
-//        if workspaceLabel.text == "Main Workspace"{
-//            for var i in 0..<functionsDict[currentWorkspace]!.count{
-//                if functionsDict[currentWorkspace]![i].type == "Function"{
-//                    var block = functionsDict[currentWorkspace]![i]
-//                    for j in 0..<oldKey.count{
-//                        if block.name == oldKey[j]{
-//                            keyExists = true
-//                            block.name = newKey[j]
-//                        }
-//                    }
-//                    //                    if keyExists == false{
-//                    //                        functionsDict[currentWorkspace]!.removeSubrange(i-1)
-//                    //                         i -= 1
-//                    //                    }
-//                }
-//
-//            }
-//        }
-//    }
 
     
     override func didReceiveMemoryWarning() {
@@ -335,13 +305,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }else{
             announcement = blocks[0].name + " placed at beginning"
         }
-        delay(announcement, 2)
+        makeAnnouncement(announcement)
+//        delay(announcement, 2)
         
         //add a completion block here
         if(blocks[0].double) || (blocks[0].tripleCounterpart){
-//            functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
-//            blocksBeingMoved.removeAll()
-//            blocksProgram.reloadData()
             if currentWorkspace != "Main Workspace" && index > endIndex {
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
@@ -377,11 +345,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
     }
     
-    func delay(_ announcement: String, _ seconds: Int){
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: {
-            self.makeAnnouncement(announcement)
-        })
-    }
+//    func delay(_ announcement: String, _ seconds: Int){
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: {
+//            self.makeAnnouncement(announcement)
+//        })
+//    }
     
     func createViewRepresentation(FromBlocks blocksRep: [Block]) -> UIView {
         /*Given a list of blocks, creates the views that will be displayed in the blocksProgram*/
@@ -1628,7 +1596,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         containerViewController?.popViewController(animated: false)
                         let condition = myBlock.addedBlocks[0].name
                         let announcement = condition + "placed in if statement"
-                        delay(announcement, 2)
+                        makeAnnouncement(announcement)
+//                        delay(announcement, 2)
                         blocksProgram.reloadData()
                         unsetBlocks()
                     }else if blocksBeingMoved[0].type == "Number" && acceptsNumbers{
@@ -1638,19 +1607,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         containerViewController?.popViewController(animated: false)
                         let condition = myBlock.addedBlocks[0].name
                         let announcement = condition + "placed in repeat statement"
-                        delay(announcement, 2)
+                        makeAnnouncement(announcement)
+//                        delay(announcement, 2)
                         blocksProgram.reloadData()
                         unsetBlocks()
                     }else{
                         //say you can't add it here
                         print("you can't add it here")
-                        delay("you can't add it here", 2)
+                        makeAnnouncement("you can't add it here")
+//                        delay("you can't add it here", 2)
                         
                     }
                 }else{
                     //say you can't add it here
                     print("you can't add it here")
-                    delay("you can't add it here", 2)
+                    makeAnnouncement("you can't add it here")
+//                    delay("you can't add it here", 2)
                 }
             }else{
                 addBlocks(blocksBeingMoved, at: indexPath.row)
