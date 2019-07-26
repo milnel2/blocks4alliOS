@@ -81,8 +81,14 @@ class MainMenuViewController: UIViewController {
             }
             ifAndRepeatCounterparts(functionBlocksDictCounter: functionsDictFromSave)
             //adds proper counterparts
+            if functionsDictFromSave["Main Workspace"] == nil{
+                functionsDictFromSave["Main Workspace"] = []
+            }
             functionsDict = functionsDictFromSave
+            currentWorkspace = "Main Workspace"
             // sets global functionsDict to the functionsDictFrom Save
+            
+            
             print("load completed")
         }catch{
             print("load failed")
