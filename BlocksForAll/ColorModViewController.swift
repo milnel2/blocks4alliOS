@@ -15,6 +15,7 @@ class ColorModViewController: UIViewController{
     var modifierBlockIndexSender: Int?
     var colorSelected: String = "white"
     
+    //color options for Dash's lights
     @IBOutlet weak var blackButton: UIButton!
     @IBOutlet weak var redButton: UIButton!
     @IBOutlet weak var orangeButton: UIButton!
@@ -26,7 +27,7 @@ class ColorModViewController: UIViewController{
     
     
     
-    
+    //only one color ever going to be highlighted after this function called
     func deselectAll(){
         blackButton.layer.borderWidth = 0
         redButton.layer.borderWidth = 0

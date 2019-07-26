@@ -33,6 +33,8 @@ class AngleModViewController: UIViewController {
         angleDisplayed.accessibilityValue = "Current angle is \(Int(angle))degrees"
     }
     
+    
+    //when angle slider moved, get rounded value and convert to degrees 
     @IBAction func angleSliderChanged(_ sender: UISlider) {
         let roundingNumber: Float = (interval/2.0)
         angle = Double(sender.value)
