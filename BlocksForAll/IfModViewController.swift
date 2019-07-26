@@ -14,17 +14,20 @@ class IfModViewController: UIViewController{
     /* Custom view controller for the Repeat modifier scene */
     
     var modifierBlockIndexSender: Int?
+    //default is always false
     var booleanSelected: String = "false"
     
     
     @IBOutlet weak var voiceButton: UIButton!
     @IBOutlet weak var senseButton: UIButton!
     
+    //function to guarantee either voiceButton or senseButton highlighted, never both
     func deselectAll(){
         voiceButton.layer.borderWidth = 0
         senseButton.layer.borderWidth = 0
     }
     
+    //if hear voice is selected
     @IBAction func hearVoiceBoolean(_ sender: Any) {
         booleanSelected = "hear_voice"
         if let button = sender as? UIButton {
@@ -40,6 +43,7 @@ class IfModViewController: UIViewController{
         }
     }
     
+    //if sense obstacle selected
     @IBAction func senseObstacleBoolean(_ sender: Any) {
         booleanSelected = "obstacle_sensed"
         if let button = sender as? UIButton {
@@ -58,8 +62,8 @@ class IfModViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //saves previous selection when re-entering if mod view controller screen 
         var previousBooleanSelected: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["booleanSelected"] ?? "false"
-//        var previousModifierBlockSender = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockIndexSender"] ?? "purple"
         booleanSelected = previousBooleanSelected
         
         switch booleanSelected{

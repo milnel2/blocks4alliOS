@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//this class switches eyelight off and on at this screen
 class EyeLightModifierViewController: UIViewController{
     
     @IBOutlet weak var lightLabel: UILabel!
@@ -24,11 +25,13 @@ class EyeLightModifierViewController: UIViewController{
         eyeLightStatus = previousSelection
     }
     
+    //changes status and label on screen
     @IBAction func onButtonPressed(_ sender: Any) {
         eyeLightStatus = "On"
         lightLabel.text = "On"
     }
     
+    //changes status and label on screen
     @IBAction func offButtonPressed(_ sender: Any) {
         eyeLightStatus = "Off"
         lightLabel.text = "Off"

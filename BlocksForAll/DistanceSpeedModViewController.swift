@@ -41,6 +41,7 @@ class DistanceSpeedModViewController: UIViewController{
         distanceDisplayed.accessibilityValue = "Current distance is \(Int(distance)) centimeters"
     }
     
+    //updates distance value when slider moved
     @IBAction func distanceSliderChanged(_ sender: UISlider) {
         let roundingNumber: Float = (interval/2.0)
         distance = Double(sender.value)
@@ -52,6 +53,8 @@ class DistanceSpeedModViewController: UIViewController{
         distanceDisplayed.accessibilityValue = "Current distance is \(Int(roundedDistance)) centimeters"
     }
     
+    
+    //if minus button pressed, speed changes to one less and speed label updated with this value
     @IBAction func slowButtonPressed(_ sender: UIButton) {
         switch speed {
         case "Really Fast":
@@ -71,6 +74,7 @@ class DistanceSpeedModViewController: UIViewController{
         }
     }
     
+    //if plus button pressed, speed changes to one more and speed label updated with this value
     @IBAction func fastButtonPressed(_ sender: UIButton) {
         switch speed {
         case "Very Slow":
