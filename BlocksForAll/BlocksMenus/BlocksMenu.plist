@@ -1075,22 +1075,6 @@
 				<key>editable</key>
 				<false/>
 				<key>name</key>
-				<string>Wheel Speed</string>
-				<key>color</key>
-				<string>#774B4B</string>
-				<key>double</key>
-				<false/>
-				<key>tripleCounterpart</key>
-				<false/>
-				<key>imageName</key>
-				<string>Wheel_LR.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
 				<string>Look Up or Down</string>
 				<key>color</key>
 				<string>#774B4B</string>
