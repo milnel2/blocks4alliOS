@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-
+/**
+screen for selecting what variable should be used for driving forward or backward.
+**/
 class DriveVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
@@ -30,7 +32,7 @@ class DriveVariables: UIViewController {
     @IBOutlet weak var speedLabel: UILabel!
     
     
-    
+    //guarantees only one variable is visibly selected at once
     func deselectAllDistance(){
         orangeDistanceButton.layer.borderWidth = 0
         bananaDistanceButton.layer.borderWidth = 0
@@ -50,7 +52,6 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllDistance()
-//                variableValue = variableDict["orange"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -67,7 +68,6 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllDistance()
-//                variableValue = variableDict["banana"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -83,7 +83,6 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllDistance()
-//                variableValue = variableDict["apple"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -99,7 +98,6 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllDistance()
-//                variableValue = variableDict["cherry"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -114,7 +112,6 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllDistance()
-//                variableValue = variableDict["watermelon"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -122,6 +119,7 @@ class DriveVariables: UIViewController {
         }
     }
     
+    //possible speed options for when the steppers are clicked
     @IBAction func slowButtonPressed(_ sender: UIButton) {
         switch speed {
         case "Really Fast":
@@ -164,8 +162,8 @@ class DriveVariables: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        // preserves previously selected distance variable and speed value 
         speedLabel.text = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
-        // preserves previously selected value
         speed = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
         
         var previousSelectedVariableOne: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"

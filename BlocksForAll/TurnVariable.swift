@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-
+/**
+ screen for selecting what variable should be used for turning left and right.
+ **/
 class TurnVariable: UIViewController {
     
     var modifierBlockIndexSender: Int?
@@ -21,7 +23,7 @@ class TurnVariable: UIViewController {
     @IBOutlet weak var cherryTurnButton: UIButton!
     @IBOutlet weak var watermelonTurnButton: UIButton!
     
-    
+    //guarantees only last selected variable is highlighted
     func deselectAllTurns(){
         orangeTurnButton.layer.borderWidth = 0
         bananaTurnButton.layer.borderWidth = 0
@@ -110,6 +112,7 @@ class TurnVariable: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //previous turn variable always highlighted if already in workspace
         var previousSelectedVariable: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
         
         variableSelected = previousSelectedVariable

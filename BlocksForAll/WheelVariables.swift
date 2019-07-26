@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-
+/**
+ screen for selecting what variables should be used for the left and right wheel speeds of robot.
+ **/
 class WheelVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
@@ -61,7 +63,6 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-//                variableValue = variableDict["orange"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -77,7 +78,6 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-//                variableValue = variableDict["banana"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -93,7 +93,6 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-//                variableValue = variableDict["apple"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -109,7 +108,6 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-//                variableValue = variableDict["cherry"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -124,7 +122,6 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllLeft()
-//                variableValue = variableDict["watermelon"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -142,7 +139,6 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllRight()
-//                variableValueTwo = variableDict["orange"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -157,7 +153,6 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllRight()
-//                variableValueTwo = variableDict["banana"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -173,7 +168,6 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllRight()
-//                variableValueTwo = variableDict["apple"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -189,7 +183,6 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllRight()
-//                variableValueTwo = variableDict["cherry"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -205,7 +198,6 @@ class WheelVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllRight()
-//                variableValueTwo = variableDict["watermelon"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -213,6 +205,7 @@ class WheelVariables: UIViewController {
         }
     }
     
+    //saves previous selected variables when re-entering wheel variable page
     override func viewDidLoad() {
         super.viewDidLoad()
         

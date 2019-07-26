@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+//class sets the width and height of the rows in the function table view controller
 class FunctionView: UIView {
     
     var functions: [String]

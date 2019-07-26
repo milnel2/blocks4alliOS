@@ -9,33 +9,34 @@
 import Foundation
 import UIKit
 
-
+/**
+ screen for selecting what variables should be used for looking up and down.
+ **/
 class LookUpDownVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
     
     //look up/down buttons
-    @IBOutlet weak var orangeUpButton: UIButton!
-    @IBOutlet weak var bananaUpButton: UIButton!
-    @IBOutlet weak var appleUpButton: UIButton!
-    @IBOutlet weak var cherryUpButton: UIButton!
-    @IBOutlet weak var watermelonUpButton: UIButton!
+    @IBOutlet weak var orangeButton: UIButton!
+    @IBOutlet weak var bananaButton: UIButton!
+    @IBOutlet weak var appleButton: UIButton!
+    @IBOutlet weak var cherryButton: UIButton!
+    @IBOutlet weak var watermelonButton: UIButton!
     
 
     
     func deselectAllUp(){
-        orangeUpButton.layer.borderWidth = 0
-        bananaUpButton.layer.borderWidth = 0
-        cherryUpButton.layer.borderWidth = 0
-        watermelonUpButton.layer.borderWidth = 0
-        appleUpButton.layer.borderWidth = 0
+        orangeButton.layer.borderWidth = 0
+        bananaButton.layer.borderWidth = 0
+        cherryButton.layer.borderWidth = 0
+        watermelonButton.layer.borderWidth = 0
+        appleButton.layer.borderWidth = 0
     }
  
-    
     //Reference for knowing which button is selected
     // https://stackoverflow.com/questions/33906060/select-deselect-buttons-swift-xcode-7
-    @IBAction func orangeUpPressed(_ sender: Any) {
+    @IBAction func orangePressed(_ sender: Any) {
         //Border when button is selected
         variableSelected = "orange"
         if let button = sender as? UIButton {
@@ -44,14 +45,13 @@ class LookUpDownVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllUp()
-//                variableValue = variableDict["orange"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
     }
-    @IBAction func bananaUpPressed(_ sender: Any) {
+    @IBAction func bananaPressed(_ sender: Any) {
         //Border when button is selected
         variableSelected = "banana"
         if let button = sender as? UIButton {
@@ -60,14 +60,13 @@ class LookUpDownVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllUp()
-//                variableValue = variableDict["banana"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
     }
-    @IBAction func appleUpPressed(_ sender: Any) {
+    @IBAction func applePressed(_ sender: Any) {
         //Border when button is selected
         variableSelected = "apple"
         if let button = sender as? UIButton {
@@ -76,7 +75,6 @@ class LookUpDownVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllUp()
-//                variableValue = variableDict["apple"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -84,7 +82,7 @@ class LookUpDownVariables: UIViewController {
         }
     }
     
-    @IBAction func cherryUpPressed(_ sender: Any) {
+    @IBAction func cherryPressed(_ sender: Any) {
         //Border when button is selected
         variableSelected = "cherry"
         if let button = sender as? UIButton {
@@ -93,14 +91,13 @@ class LookUpDownVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllUp()
-//                variableValue = variableDict["cherry"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
     }
-    @IBAction func watermelonUpPressed(_ sender: Any) {
+    @IBAction func watermelonPressed(_ sender: Any) {
         //Border when button is selected
         variableSelected = "melon"
         if let button = sender as? UIButton {
@@ -109,7 +106,6 @@ class LookUpDownVariables: UIViewController {
                 button.layer.borderWidth = 0
             } else {
                 deselectAllUp()
-//                variableValue = variableDict["watermelon"]!
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -126,22 +122,22 @@ class LookUpDownVariables: UIViewController {
         
         switch variableSelected{
         case "orange":
-            orangeUpButton.layer.borderWidth = 10
-            orangeUpButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+            orangeButton.layer.borderWidth = 10
+            orangeButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
         case "cherry":
-            cherryUpButton.layer.borderWidth = 10
-            cherryUpButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+            cherryButton.layer.borderWidth = 10
+            cherryButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
         case "melon":
-            watermelonUpButton.layer.borderWidth = 10
-            watermelonUpButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+            watermelonButton.layer.borderWidth = 10
+            watermelonButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
         case "apple":
-            appleUpButton.layer.borderWidth = 10
-            appleUpButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+            appleButton.layer.borderWidth = 10
+            appleButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
         case "banana":
-            bananaUpButton.layer.borderWidth = 10
-            bananaUpButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+            bananaButton.layer.borderWidth = 10
+            bananaButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
         default:
-            orangeUpButton.layer.borderWidth = 0
+            orangeButton.layer.borderWidth = 0
         }
     }
     

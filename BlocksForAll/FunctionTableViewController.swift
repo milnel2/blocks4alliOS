@@ -8,6 +8,7 @@
 
 import UIKit
 
+//keeps old function name when renamed so it can then be renamed in main workspace
 var oldKey = [String]()
 var newKey = [String]()
 
@@ -15,7 +16,7 @@ var newKey = [String]()
 class FunctionTableViewController: UITableViewController {
 
     
-
+    //functions are all the names of the functions a user creates
     var functions: [String] = Array(functionsDict.keys)
     var functionWidth = 500
     var functionHeight = 150
@@ -47,6 +48,7 @@ class FunctionTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //adds a new row after plus button tapped, then alert allows you to name the function
     @IBAction func insertFunction(_ sender: Any) {
         let alert = UIAlertController(title: "Enter function name", message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
@@ -81,7 +83,7 @@ class FunctionTableViewController: UITableViewController {
     }
 
 
-    
+    //row has function name displayed
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "FunctionTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FunctionTableViewCell else{
@@ -96,10 +98,12 @@ class FunctionTableViewController: UITableViewController {
         return cell
     }
     
+    //prevents main workspace from being in the functions menu
     func removeMainWorkspace(){
         functions = functions.filter {$0 != "Main Workspace"}
     }
     
+    //deletes a row from functions menu and gets rid of this function's values
     func deleteCell(cell: UITableViewCell) {
         if let deletionIndexPath = tableView.indexPath(for: cell) {
             functionsDict.removeValue(forKey: functions[deletionIndexPath.row])
@@ -108,6 +112,7 @@ class FunctionTableViewController: UITableViewController {
         }
     }
     
+    //delete row with old function name and replace with new name. Value for both remains consistent.
     func renameCell(cell: UITableViewCell) {
         if let renameIndexPath = tableView.indexPath(for: cell) {
             oldKey.append(functions[renameIndexPath.row])
@@ -140,6 +145,7 @@ class FunctionTableViewController: UITableViewController {
         performSegue(withIdentifier: "functionsToBlocks", sender: nil)
     }
     
+    //leave function's menu and return to main workspace window when button pressed
     @IBAction func backToMainWorkspace(_ sender: Any) {
         currentWorkspace = "Main Workspace"
         performSegue(withIdentifier: "functionsToBlocks", sender: nil)

@@ -9,6 +9,7 @@
 import UIKit
 
 //help from Brian Voong
+//this class creates the actual cells in the function table view controller.
 class FunctionTableViewCell: UITableViewCell {
 
     var functionTableViewController: FunctionTableViewController?
@@ -25,6 +26,7 @@ class FunctionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var functionView: FunctionView!
     
+    //button to delete functions
     let deleteButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Delete", for: .normal)
@@ -32,6 +34,7 @@ class FunctionTableViewCell: UITableViewCell {
         return button
     }()
     
+    //button to rename functions
     let renameButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Rename", for: .normal)
@@ -39,6 +42,7 @@ class FunctionTableViewCell: UITableViewCell {
         return button
     }()
     
+    //button for initial naming of function
     let nameButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sample Function", for: .normal)
@@ -46,6 +50,7 @@ class FunctionTableViewCell: UITableViewCell {
         return button
     }()
 
+    //organizes function name to be in center of row, rename and delete at end.
     func setUpViews(){
         addSubview(nameButton)
         addSubview(deleteButton)

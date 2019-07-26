@@ -9,15 +9,20 @@
 import Foundation
 import UIKit
 
+/**
+ this class allows users to select a variable and set its value
+ **/
 
 class SetVariableModViewController: UIViewController {
     
     var modifierBlockIndexSender: Int?
     
+    //initialize the variable selected and variable value
     var variableSelected: String = "orange"
     var variableValue: Double = 0.0
 
     
+    //all possible variable choices
     @IBOutlet weak var orangeButton: UIButton!
     @IBOutlet weak var bananaButton: UIButton!
     @IBOutlet weak var cherryButton: UIButton!
@@ -25,6 +30,9 @@ class SetVariableModViewController: UIViewController {
     @IBOutlet weak var appleButton: UIButton!
 
     
+    /**
+     deselectAll unselects all variables so that only the latest one clicked is highlighted
+     **/
     func deselectAll(){
         orangeButton.layer.borderWidth = 0
         bananaButton.layer.borderWidth = 0
@@ -36,6 +44,7 @@ class SetVariableModViewController: UIViewController {
     //Reference for knowing which button is selected
     // https://stackoverflow.com/questions/33906060/select-deselect-buttons-swift-xcode-7
     
+    //below functions set variable selected to the string name of whichever fruit button is clicked
     @IBAction func OrangeVariable(_ sender: Any) {
         variableSelected = "orange"
         
@@ -128,6 +137,7 @@ class SetVariableModViewController: UIViewController {
     
     @IBOutlet weak var VariableValue: UITextField!
     
+    //stores variable value when entered
     @IBAction func VariableValue(_ sender: UITextField) {
         variableValue = Double(VariableValue?.text ?? "0") ?? 0
         viewTapped()
@@ -139,6 +149,7 @@ class SetVariableModViewController: UIViewController {
     @objc override func viewDidLoad() {
         super.viewDidLoad()
         
+        //previous set variable makes sure that when reloaded, the previously selected variable is still highlighted
         var previousSetVariable: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
 //        var previousModifierBlockColor = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] ?? "purple"
         variableSelected = previousSetVariable
@@ -165,6 +176,7 @@ class SetVariableModViewController: UIViewController {
         
         VariableValue!.delegate = self
         
+        //below code brings up number keyboard when variable value text field clicked.
         let tapRecogniser = UITapGestureRecognizer()
         tapRecogniser.addTarget(self, action: #selector(self.viewTapped))
         self.view.addGestureRecognizer(tapRecogniser)
@@ -183,6 +195,7 @@ class SetVariableModViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    //returns actual field for the variable value text
     @objc func returnTextView(gesture: UIGestureRecognizer) {
         guard activeField != nil else {
             return
@@ -212,6 +225,7 @@ extension SetVariableModViewController: UITextFieldDelegate {
         return true
     }
     
+    //can hit return when value entered into number pad
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         activeField?.resignFirstResponder()
         activeField = nil
@@ -221,6 +235,7 @@ extension SetVariableModViewController: UITextFieldDelegate {
 
 // MARK: Keyboard Handling
 extension SetVariableModViewController{
+    // when keyboard appears, the text on the set variable page is all shifted up so nothing is covered by the keyboard
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -229,6 +244,7 @@ extension SetVariableModViewController{
         }
     }
     
+    //when keyboard no longer being used, it disappears and the original set variable view is restored
     @objc func keyboardWillHide(notification: NSNotification) {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
