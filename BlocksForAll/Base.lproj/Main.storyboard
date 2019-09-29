@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
-    <device id="ipad9_7" orientation="landscape">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Main Menu View Controller-->
         <scene sceneID="On8-Fi-nz2">
             <objects>
-                <viewController id="YEE-PZ-SjD" customClass="MainMenuViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="YEE-PZ-SjD" customClass="MainMenuViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FH7-oO-4nu"/>
                         <viewControllerLayoutGuide type="bottom" id="uNC-fx-WtB"/>
@@ -71,7 +68,7 @@
         <!--View Controller-->
         <scene sceneID="EBT-KX-h8k">
             <objects>
-                <viewController id="1qS-gh-lht" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="1qS-gh-lht" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bQ0-TH-tyC"/>
                         <viewControllerLayoutGuide type="bottom" id="dhE-H1-Vfr"/>
@@ -121,7 +118,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--View Controller-->
         <scene sceneID="SPr-eB-gMC">
             <objects>
-                <viewController id="cJF-Nc-M7L" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="cJF-Nc-M7L" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yhr-81-ujC"/>
                         <viewControllerLayoutGuide type="bottom" id="Zck-g6-6V2"/>
@@ -167,7 +164,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Robot Table View Controller-->
         <scene sceneID="c6j-qc-ZGN">
             <objects>
-                <tableViewController id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="206"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -177,7 +174,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 <rect key="frame" x="0.0" y="28" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KUQ-1B-5Sg" id="ZfT-J5-i3d">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -195,7 +192,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Color-->
         <scene sceneID="Qka-YS-wZj">
             <objects>
-                <viewController title="Color" id="WWh-wG-F8c" customClass="ColorModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Color" modalPresentationStyle="fullScreen" id="WWh-wG-F8c" customClass="ColorModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qYo-Av-aNp"/>
                         <viewControllerLayoutGuide type="bottom" id="Y2X-sY-PwO"/>
@@ -364,7 +361,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Blocks View Controller-->
         <scene sceneID="xPO-0B-V5c">
             <objects>
-                <viewController id="uoc-nU-c4a" customClass="BlocksViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="uoc-nU-c4a" customClass="BlocksViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w5A-1f-CL8"/>
                         <viewControllerLayoutGuide type="bottom" id="sdp-BB-7Wl"/>
@@ -382,7 +379,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-F9-VES">
-                                <rect key="frame" x="310" y="50" width="165" height="42"/>
+                                <rect key="frame" x="310" y="30" width="165" height="42"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
@@ -431,7 +428,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-Fa-yDY" userLabel="ClearAll">
-                                <rect key="frame" x="784" y="50" width="134" height="42"/>
+                                <rect key="frame" x="784" y="30" width="134" height="42"/>
                                 <color key="backgroundColor" red="0.80248137953367871" green="0.28850571533125552" blue="0.2153958467552054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Clear all blocks on the screen" label="Clear All"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -444,13 +441,13 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 </connections>
                             </button>
                             <label opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Workspace" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="252" translatesAutoresizingMaskIntoConstraints="NO" id="BES-Vc-hSx">
-                                <rect key="frame" x="490" y="120" width="214" height="36"/>
+                                <rect key="frame" x="490" y="100" width="214" height="36"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yBH-LX-xHN">
-                                <rect key="frame" x="512" y="50" width="226" height="42"/>
+                                <rect key="frame" x="512" y="30" width="226" height="42"/>
                                 <color key="backgroundColor" red="1" green="0.57647058823529407" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Click to create or edit a function" label="Functions Menu"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -507,7 +504,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
             <objects>
                 <tableViewController id="qsn-gg-TPc" customClass="BlockTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" id="u2M-AO-l53">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="698"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="718"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -515,7 +512,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 <rect key="frame" x="0.0" y="28" width="235" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" tableViewCell="LoD-Y1-Y1Y" id="pIh-s5-DHa">
-                                    <rect key="frame" x="0.0" y="0.0" width="235" height="149.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="235" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFZ-xN-h8Z">
@@ -573,7 +570,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <viewControllerLayoutGuide type="bottom" id="M8X-LY-ONh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gng-WS-M5w">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="698"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="718"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -587,7 +584,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
             <objects>
                 <tableViewController id="2Tn-yf-DgT" customClass="BlocksTypeTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6cp-t1-mWw">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="698"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="718"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -595,11 +592,11 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 <rect key="frame" x="0.0" y="28" width="235" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TPR-VH-FnZ" id="Kx7-b8-S84">
-                                    <rect key="frame" x="0.0" y="0.0" width="235" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="235" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Drive" textAlignment="natural" lineBreakMode="wordWrap" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="4FW-BL-NbK">
-                                            <rect key="frame" x="16" y="0.0" width="203" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="203" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
@@ -626,7 +623,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Distance and Speed-->
         <scene sceneID="EcS-ih-qYG">
             <objects>
-                <viewController title="Distance and Speed" id="PBc-35-QW0" customClass="DistanceSpeedModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Distance and Speed" modalPresentationStyle="fullScreen" id="PBc-35-QW0" customClass="DistanceSpeedModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zJX-ce-Uh5"/>
                         <viewControllerLayoutGuide type="bottom" id="ukk-FT-0dn"/>
@@ -727,7 +724,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zor-jh-2cz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translucent="NO" id="3of-s2-3mf">
-                        <rect key="frame" x="0.0" y="20" width="235" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -742,7 +739,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Turn-->
         <scene sceneID="M8C-xf-t1F">
             <objects>
-                <viewController title="Turn" id="JzC-8L-d8W" customClass="AngleModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Turn" modalPresentationStyle="fullScreen" id="JzC-8L-d8W" customClass="AngleModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pSJ-xI-sbp"/>
                         <viewControllerLayoutGuide type="bottom" id="hik-92-oYa"/>
@@ -803,7 +800,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Wait-->
         <scene sceneID="JKT-FS-9T9">
             <objects>
-                <viewController title="Wait" id="9VT-Qr-ako" customClass="WaitModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Wait" modalPresentationStyle="fullScreen" id="9VT-Qr-ako" customClass="WaitModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0se-Sx-jtE"/>
                         <viewControllerLayoutGuide type="bottom" id="Ukf-4m-gPz"/>
@@ -872,7 +869,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Repeat-->
         <scene sceneID="zCU-JJ-aje">
             <objects>
-                <viewController title="Repeat" id="Qcc-AD-WwK" customClass="RepeatModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Repeat" modalPresentationStyle="fullScreen" id="Qcc-AD-WwK" customClass="RepeatModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TZF-8U-7r0"/>
                         <viewControllerLayoutGuide type="bottom" id="Opv-aB-563"/>
@@ -941,7 +938,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Set Variable Mod View Controller-->
         <scene sceneID="nes-7T-TeT">
             <objects>
-                <viewController id="B5M-ey-3HD" customClass="SetVariableModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="B5M-ey-3HD" customClass="SetVariableModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SV0-Mq-XPC"/>
                         <viewControllerLayoutGuide type="bottom" id="A5c-IO-lHl"/>
@@ -1081,7 +1078,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--If-->
         <scene sceneID="lIm-xh-HTd">
             <objects>
-                <viewController title="If" id="gst-Ns-i6X" customClass="IfModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="If" modalPresentationStyle="fullScreen" id="gst-Ns-i6X" customClass="IfModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CoF-vt-G4f"/>
                         <viewControllerLayoutGuide type="bottom" id="EpT-xQ-gD6"/>
@@ -1148,7 +1145,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Drive Variables-->
         <scene sceneID="fYN-sz-j03">
             <objects>
-                <viewController id="jdf-AY-L53" customClass="DriveVariables" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="jdf-AY-L53" customClass="DriveVariables" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TiD-b4-zdy"/>
                         <viewControllerLayoutGuide type="bottom" id="vJ1-EE-v4N"/>
@@ -1306,7 +1303,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Turn Variable-->
         <scene sceneID="4b4-Db-LZI">
             <objects>
-                <viewController id="MKK-Db-JqX" customClass="TurnVariable" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="MKK-Db-JqX" customClass="TurnVariable" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KA3-qF-icq"/>
                         <viewControllerLayoutGuide type="bottom" id="mw4-C1-oM0"/>
@@ -1426,7 +1423,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Wheel Variables-->
         <scene sceneID="qhY-c4-4Pr">
             <objects>
-                <viewController id="L98-PY-VOB" customClass="WheelVariables" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="L98-PY-VOB" customClass="WheelVariables" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cjg-nA-C5l"/>
                         <viewControllerLayoutGuide type="bottom" id="07f-4A-DA3"/>
@@ -1624,7 +1621,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Look Up Down Variables-->
         <scene sceneID="t7L-d3-f2A">
             <objects>
-                <viewController id="yNb-Cd-YlI" customClass="LookUpDownVariables" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="yNb-Cd-YlI" customClass="LookUpDownVariables" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IfY-qD-gGa"/>
                         <viewControllerLayoutGuide type="bottom" id="p73-ha-2Y1"/>
@@ -1758,7 +1755,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Look Left Right Variables-->
         <scene sceneID="SzZ-Hi-INf">
             <objects>
-                <viewController id="o6a-kf-Lsq" customClass="LookLeftRightVariables" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="o6a-kf-Lsq" customClass="LookLeftRightVariables" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HRd-8l-AWc"/>
                         <viewControllerLayoutGuide type="bottom" id="pOh-Hn-TJN"/>
@@ -1892,7 +1889,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Eye Light Modifier View Controller-->
         <scene sceneID="WW5-Ff-hcc">
             <objects>
-                <viewController id="WHd-IA-T2v" customClass="EyeLightModifierViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="WHd-IA-T2v" customClass="EyeLightModifierViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JCf-CV-V2w"/>
                         <viewControllerLayoutGuide type="bottom" id="SgU-2o-CfO"/>
@@ -1963,17 +1960,17 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Function Table View Controller-->
         <scene sceneID="aDN-GG-hnK">
             <objects>
-                <tableViewController id="hNp-po-htE" userLabel="Function Table View Controller" customClass="FunctionTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="hNp-po-htE" userLabel="Function Table View Controller" customClass="FunctionTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QmC-VP-0hq">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="712" height="728"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aOU-ox-hHe" userLabel="FunctionTableViewCell" customClass="FunctionTableViewCell" customModule="BlocksForAll" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="1024" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="712" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aOU-ox-hHe" id="PV9-Gx-WXQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="712" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dI6-Ao-OWl" customClass="FunctionView" customModule="BlocksForAll" customModuleProvider="target">
@@ -2023,10 +2020,10 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Navigation Controller-->
         <scene sceneID="Gnb-E2-Od5">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HGb-qL-brd" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="HGb-qL-brd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bP9-Ui-112">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
