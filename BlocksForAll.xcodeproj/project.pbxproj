@@ -25,9 +25,9 @@
 		844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */; };
 		84CFB36422D3AEB0002812EA /* EyeLightModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CFB36322D3AEB0002812EA /* EyeLightModifier.swift */; };
 		84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */; };
+		D8DFD3FF234E538C00874892 /* WWRobotAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12116981EA7E0DD009976B1 /* WWRobotAPI.framework */; };
 		F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */; };
 		F10F71691E65BFF50049F3AA /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71681E65BFF50049F3AA /* Block.swift */; };
-		F12116991EA7E0DD009976B1 /* WWRobotAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12116981EA7E0DD009976B1 /* WWRobotAPI.framework */; };
 		F121169B1EA7E153009976B1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F121169A1EA7E153009976B1 /* CoreBluetooth.framework */; };
 		F121169D1EA7E1D5009976B1 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F121169C1EA7E1D5009976B1 /* libc++.tbd */; };
 		F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121169E1EA823C8009976B1 /* RobotTableViewController.swift */; };
@@ -115,9 +115,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8DFD3FF234E538C00874892 /* WWRobotAPI.framework in Frameworks */,
 				F121169D1EA7E1D5009976B1 /* libc++.tbd in Frameworks */,
 				F121169B1EA7E153009976B1 /* CoreBluetooth.framework in Frameworks */,
-				F12116991EA7E0DD009976B1 /* WWRobotAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

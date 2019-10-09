@@ -11,8 +11,6 @@ import UIKit
 
 class AngleModViewController: UIViewController {
     /* Custom view controller for the Angle modifier scene */
-    
-    // TODO: decide on default angle
     var angle: Double = 90
     var modifierBlockIndexSender: Int?
     let interval: Float = 15
@@ -21,7 +19,7 @@ class AngleModViewController: UIViewController {
     @IBOutlet weak var angleSlider: UISlider!
     @IBOutlet weak var angleDisplayed: UILabel!
     
-    override func viewDidLoad() {
+    override func viewDidLoad() {        
         // default angle: 90 or preserve last selection
         var previousAngleString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] ?? "90"
         var previousAngle = Int(previousAngleString)
