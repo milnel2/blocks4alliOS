@@ -26,3 +26,6 @@ DerivedData/
 
 ## Gcc Patch
 /*.gcno
+BlocksForAll/Assets.xcassets/.DS_Store
+BlocksForAll/.DS_Store
+.DS_Store
