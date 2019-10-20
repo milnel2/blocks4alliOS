@@ -8,13 +8,15 @@
 
 import UIKit
 
-//keeps old function name when renamed so it can then be renamed in main workspace
-var oldKey = [String]()
-var newKey = [String]()
+////keeps old function name when renamed so it can then be renamed in main workspace
+//var oldKey = [String]()
+//var newKey = [String]()
 
 //help from Brian Voong
 class FunctionTableViewController: UITableViewController {
 
+    var oldKey = [String]()
+    var newKey = [String]()
     
     //functions are all the names of the functions a user creates
     var functions: [String] = Array(functionsDict.keys)
@@ -129,14 +131,26 @@ class FunctionTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
             let textField = alert.textFields![0] as UITextField
             self.functions.append(textField.text!)
-            newKey.append(self.functions[self.functions.count - 1])
+            self.newKey.append(self.functions[self.functions.count - 1])
             functionsDict.updateValue(val!, forKey: self.functions[self.functions.count - 1])
             let insertionIndexPath = NSIndexPath(row: self.functions.count-1, section: 0)
             self.tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
+            //below updates all blocks in the app to show the right name after a rename, it literally goes through every block and every possible old name so this is really not efficent but hopefully this fixes the crashing from a long time
+            for function in functionsDict.keys{
+                for block in functionsDict[function]!{
+                    for oldFunctionName in self.oldKey{
+                        if block.name == oldFunctionName{
+                            block.name = self.newKey[self.oldKey.firstIndex(of: oldFunctionName)!]
+                        }
+                    }
+                }
+            }
+            functionsDict.updateValue(val!, forKey: self.functions[self.functions.count - 1])
         }))
         
         self.present(alert, animated: true)
-    }
+        }
+        
     }
     
     @objc func blockModifier(cell: UITableViewCell, sender: UIButton!) {

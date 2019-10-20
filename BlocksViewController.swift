@@ -135,22 +135,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             functionsDict[currentWorkspace]?.append(startBlock!)
             functionsDict[currentWorkspace]?.append(endBlock!)
         }
-        // Below cause an issue with saving and loading, how i'm not sure but happens occasionally too short on time to fix now
+        // Below causes issues with memory and cause app to die if not used frequently enough leave the app alone for too long and it dies and has to be reinstalled, even if you comment this out the issue still happens
+        
+        // I think this is used for when you have function that has been renamed and you go back to the main workspace that the rename action is shown up on all of the blocks properly????
+        
 //        var keyExists = false
-//            if workspaceLabel.text == "Main Workspace"{
-//                for i in 0..<functionsDict[currentWorkspace]!.count{
-//                    if functionsDict[currentWorkspace]![i].type == "Function"{
-//                        var block = functionsDict[currentWorkspace]![i]
-//                        for j in 0..<oldKey.count{
-//                            if block.name == oldKey[j]{
-//                                keyExists = true
-//                                block.name = newKey[j]
-//                            }
+//        if workspaceLabel.text == "Main Workspace"{
+//            for i in 0..<functionsDict[currentWorkspace]!.count{
+//                if functionsDict[currentWorkspace]![i].type == "Function"{
+//                    var block = functionsDict[currentWorkspace]![i]
+//                    for j in 0..<oldKey.count{
+//                        if block.name == oldKey[j]{
+//                            keyExists = true
+//                            block.name = newKey[j]
 //                        }
 //                    }
-//
+//                }
 //            }
 //        }
+  
+        // Rewrote the way block names are changed when a function is renamed, the changes are in functionTableViewController rename function at the very bottom
+    
     }
 
     
