@@ -18,7 +18,7 @@ class EyeLightModifierViewController: UIViewController{
     
     override func viewDidLoad() {
         // default status: On or preserve last selection
-        var previousSelection: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] ?? "Off"
+        let previousSelection: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] ?? "Off"
         
         lightLabel.text = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] ?? "Off"
         

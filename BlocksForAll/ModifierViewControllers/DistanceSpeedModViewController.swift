@@ -27,8 +27,8 @@ class DistanceSpeedModViewController: UIViewController{
     
     override func viewDidLoad() {
         // default speed: Normal or preserve last selection
-        var previousDistanceString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
-        var previousDistance = Int(previousDistanceString)
+        let previousDistanceString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
+        let previousDistance = Int(previousDistanceString)
         distanceDisplayed.text = "\(previousDistance ?? 30)"
         distanceSlider.setValue(Float(previousDistance!), animated: true)
         // preserve previously selected value
@@ -45,7 +45,7 @@ class DistanceSpeedModViewController: UIViewController{
     @IBAction func distanceSliderChanged(_ sender: UISlider) {
         let roundingNumber: Float = (interval/2.0)
         distance = Double(sender.value)
-        var roundedDistance = (interval*floorf(((sender.value+roundingNumber)/interval)))
+        let roundedDistance = (interval*floorf(((sender.value+roundingNumber)/interval)))
         sender.accessibilityValue = "\(Int(roundedDistance)) centimeters"
         sender.setValue(roundedDistance, animated:false)
         distanceDisplayed.text = "\(Int(roundedDistance))"

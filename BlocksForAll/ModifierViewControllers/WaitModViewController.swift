@@ -19,8 +19,8 @@ class WaitModViewController: UIViewController{
     
     override func viewDidLoad() {
         // default wait time: 1 second or preserve last selection
-        var previousWaitString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["wait"] ?? "1"
-        var previousWait = Int(previousWaitString)
+        let previousWaitString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["wait"] ?? "1"
+        let previousWait = Int(previousWaitString)
         
         if (previousWait == 1) {
             waitLabel.text = "\(previousWait ?? 1) second"

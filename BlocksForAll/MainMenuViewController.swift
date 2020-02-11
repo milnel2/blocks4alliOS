@@ -53,7 +53,7 @@ class MainMenuViewController: UIViewController {
                 var functionBlockStack = [Block]()
                 // temporary function blockStack
                 var functionName = String()
-                var jsonObjs = function.components(separatedBy: "\n Next Object \n")
+                let jsonObjs = function.components(separatedBy: "\n Next Object \n")
                 
                 for object in jsonObjs{
                     if object == "" {
@@ -104,7 +104,7 @@ class MainMenuViewController: UIViewController {
         var forOpen: [Block] = []
         //array of all of the "Repeat" blocks but not the "End Repeat" blocks
         var ifOpen: [Block] = []
-        //array of all of the "If" blocks but not the "End Repeat" blocks
+        //array of all of the "If" blocks but not the "End If" blocks
         var ifElseOpen: [Block] = []
         //array of all of the If-Else blocks
         let functions = functionBlocksDictCounter.keys
@@ -116,7 +116,7 @@ class MainMenuViewController: UIViewController {
                 case "If":
                     //mirrors for loop stuff
                     ifOpen.append(block)
-                case "End if":
+                case "End If":
                     ifOpen.last?.counterpart.append(block)
                     block.counterpart.append(ifOpen.last ?? block)
                     ifOpen.removeLast()

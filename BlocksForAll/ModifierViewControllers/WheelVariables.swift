@@ -209,8 +209,8 @@ class WheelVariables: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var previousSelectedVariableOne: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
-        var previousSelectedVariableTwo: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelectedTwo"] ?? "orange"
+        let previousSelectedVariableOne: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        let previousSelectedVariableTwo: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelectedTwo"] ?? "orange"
         
         variableSelected = previousSelectedVariableOne
         variableSelectedTwo = previousSelectedVariableTwo

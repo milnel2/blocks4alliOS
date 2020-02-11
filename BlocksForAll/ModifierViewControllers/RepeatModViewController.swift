@@ -19,8 +19,8 @@ class RepeatModViewController: UIViewController{
     
     override func viewDidLoad() {
         // default times to repeat: 2 or preserve last selection
-        var previousRepsString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["timesToRepeat"] ?? "2"
-        var previousReps = Int(previousRepsString)
+        let previousRepsString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["timesToRepeat"] ?? "2"
+        let previousReps = Int(previousRepsString)
         timesToRepeatLabel.text = "\(previousReps ?? 2)"
         
         // preserve previously selected value

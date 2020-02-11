@@ -32,14 +32,13 @@ class BlockTableViewCell: UITableViewCell {
     }
     
     override func accessibilityElementDidBecomeFocused() {
-        //print(nameLabel.text! + " is focused")
-        //AudioServicesPlaySystemSound(1024)
+        //plays sound to indicate type of block when screenreader focuses on it
         if block!.type ==  "Number" || (!block!.acceptedTypes.isEmpty && block!.acceptedTypes[0] == "Number"){
             print("1")
-            AudioServicesPlaySystemSound(1257)
+            //AudioServicesPlaySystemSound(1257)
         }else if block!.type ==  "Boolean" || (!block!.acceptedTypes.isEmpty && block!.acceptedTypes[0] == "Boolean"){
             print("2")
-            AudioServicesPlaySystemSound(1255)
+            //AudioServicesPlaySystemSound(1255)
         }
     }
 

@@ -35,10 +35,10 @@ class BlockView: UIView, UITextFieldDelegate {
         //AudioServicesPlaySystemSound(1024)
         if blocks[0].type ==  "Number" || (!blocks[0].acceptedTypes.isEmpty && blocks[0].acceptedTypes[0] == "Number"){
             print("1")
-            AudioServicesPlaySystemSound(1257)
+            //AudioServicesPlaySystemSound(1257)
         }else if blocks[0].type ==  "Boolean" || (!blocks[0].acceptedTypes.isEmpty && blocks[0].acceptedTypes[0] == "Boolean"){
             print("2")
-            AudioServicesPlaySystemSound(1255)
+            //AudioServicesPlaySystemSound(1255)
         }
     }
     

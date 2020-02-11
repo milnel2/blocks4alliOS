@@ -1,5 +1,5 @@
 //
-//  TurnVariable.swift
+//  LookLeftRightVariables.swift
 //  BlocksForAll
 //
 //  Created by Alison Garrett-Engele on 7/9/19.
@@ -10,54 +10,57 @@ import Foundation
 import UIKit
 
 /**
- screen for selecting what variable should be used for turning left and right.
+ screen for selecting what variables should be used for looking left and right.
  **/
-class TurnVariable: UIViewController {
+class LookLeftRightVariables: UIViewController {
     
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
     
-    @IBOutlet weak var orangeTurnButton: UIButton!
-    @IBOutlet weak var bananaTurnButton: UIButton!
-    @IBOutlet weak var appleTurnButton: UIButton!
-    @IBOutlet weak var cherryTurnButton: UIButton!
-    @IBOutlet weak var watermelonTurnButton: UIButton!
+    //left/right look variable buttons
+    @IBOutlet weak var orangeLookButton: UIButton!
+    @IBOutlet weak var bananaLookButton: UIButton!
+    @IBOutlet weak var appleLookButton: UIButton!
+    @IBOutlet weak var cherryLookButton: UIButton!
+    @IBOutlet weak var watermelonLookButton: UIButton!
     
-    //guarantees only last selected variable is highlighted
-    func deselectAllTurns(){
-        orangeTurnButton.layer.borderWidth = 0
-        bananaTurnButton.layer.borderWidth = 0
-        cherryTurnButton.layer.borderWidth = 0
-        watermelonTurnButton.layer.borderWidth = 0
-        appleTurnButton.layer.borderWidth = 0
+    
+    func deselectAllLeft(){
+        orangeLookButton.layer.borderWidth = 0
+        bananaLookButton.layer.borderWidth = 0
+        cherryLookButton.layer.borderWidth = 0
+        watermelonLookButton.layer.borderWidth = 0
+        appleLookButton.layer.borderWidth = 0
     }
     
-    //Reference for knowing which button is selected
-    //https://stackoverflow.com/questions/33906060/select-deselect-buttons-swift-xcode-7
     
-    @IBAction func orangeTurnPressed(_ sender: Any) {
+    //Reference for knowing which button is selected
+    // https://stackoverflow.com/questions/33906060/select-deselect-buttons-swift-xcode-7
+    @IBAction func orangePressed(_ sender: Any) {
+        //Border when button is selected
         variableSelected = "orange"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
                 button.layer.borderWidth = 0
             } else {
-                deselectAllTurns()
+                deselectAllLeft()
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
     }
- 
-    @IBAction func bananaTurnPressed(_ sender: Any) {
+    
+    @IBAction func bananaPressed(_ sender: Any) {
+        //Border when button is selected
         variableSelected = "banana"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
                 button.layer.borderWidth = 0
             } else {
-                deselectAllTurns()
+                deselectAllLeft()
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -65,43 +68,45 @@ class TurnVariable: UIViewController {
         }
     }
     
-    @IBAction func appleTurnPressed(_ sender: Any) {
+    @IBAction func applePressed(_ sender: Any) {
+        //Border when button is selected
         variableSelected = "apple"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
                 button.layer.borderWidth = 0
             } else {
-                deselectAllTurns()
+                deselectAllLeft()
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
     }
-    
-    @IBAction func cherryTurnPressed(_ sender: Any) {
+    @IBAction func cherryPressed(_ sender: Any) {
+        //Border when button is selected
         variableSelected = "cherry"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
                 button.layer.borderWidth = 0
             } else {
-                deselectAllTurns()
+                deselectAllLeft()
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
             }
         }
     }
-    @IBAction func watermelonTurnPressed(_ sender: Any) {
+    @IBAction func watermelonPressed(_ sender: Any) {
+        //Border when button is selected
         variableSelected = "melon"
         if let button = sender as? UIButton {
             if button.isSelected {
                 button.isSelected = false
                 button.layer.borderWidth = 0
             } else {
-                deselectAllTurns()
+                deselectAllLeft()
                 button.isSelected = true
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
@@ -112,39 +117,42 @@ class TurnVariable: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //previous turn variable always highlighted if already in workspace
-        var previousSelectedVariable: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        let previousSelectedVariableOne: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
         
-        variableSelected = previousSelectedVariable
+        variableSelected = previousSelectedVariableOne
         
         switch variableSelected{
         case "orange":
-            orangeTurnButton.layer.borderWidth = 10
-            orangeTurnButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+            orangeLookButton.layer.borderWidth = 10
+            orangeLookButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
         case "cherry":
-            cherryTurnButton.layer.borderWidth = 10
-            cherryTurnButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+            cherryLookButton.layer.borderWidth = 10
+            cherryLookButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
         case "melon":
-            watermelonTurnButton.layer.borderWidth = 10
-            watermelonTurnButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+            watermelonLookButton.layer.borderWidth = 10
+            watermelonLookButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
         case "apple":
-            appleTurnButton.layer.borderWidth = 10
-            appleTurnButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+            appleLookButton.layer.borderWidth = 10
+            appleLookButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
         case "banana":
-            bananaTurnButton.layer.borderWidth = 10
-            bananaTurnButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+            bananaLookButton.layer.borderWidth = 10
+            bananaLookButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
         default:
-            orangeTurnButton.layer.borderWidth = 0
+            orangeLookButton.layer.borderWidth = 0
         }
     }
-        
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             print(variableSelected)
+//            print(variableValue)
             functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
+    
+            
         }
     }
     
 }
+
 

@@ -63,7 +63,7 @@ class IfModViewController: UIViewController{
         super.viewDidLoad()
         
         //saves previous selection when re-entering if mod view controller screen 
-        var previousBooleanSelected: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["booleanSelected"] ?? "false"
+        let previousBooleanSelected: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["booleanSelected"] ?? "false"
         booleanSelected = previousBooleanSelected
         
         switch booleanSelected{

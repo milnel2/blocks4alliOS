@@ -207,7 +207,7 @@ class ExecutingProgram {
         //Control Category
         case "If":
             // what the statement evaluates to
-            var data = getSensorData()
+            let data = getSensorData()
             // what info we get from the robot
             if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "hear_voice"{
             // check if the if statement is evaluating for a hear_voice
@@ -841,7 +841,7 @@ class ExecutingProgram {
     
     //decomposition of light functions
     func playLight (lightBlock: Block) -> WWCommandLightRGB{
-        var color = lightBlock.addedBlocks[0].attributes["lightColor"] ?? "white"
+        let color = lightBlock.addedBlocks[0].attributes["lightColor"] ?? "white"
         var selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
         switch color{
         case "black":

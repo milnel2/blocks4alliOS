@@ -118,7 +118,7 @@ class FunctionTableViewController: UITableViewController {
     func renameCell(cell: UITableViewCell) {
         if let renameIndexPath = tableView.indexPath(for: cell) {
             oldKey.append(functions[renameIndexPath.row])
-            var val = functionsDict[functions[renameIndexPath.row]]
+            let val = functionsDict[functions[renameIndexPath.row]]
             functionsDict.removeValue(forKey: functions[renameIndexPath.row])
             functions.remove(at: renameIndexPath.row)
             tableView.deleteRows(at: [renameIndexPath], with: .automatic)

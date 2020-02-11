@@ -126,7 +126,6 @@ class Block: Codable {
         return newBlock!
     }
     
-    // from Paul
     func getDocumentsDirectory() -> URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]

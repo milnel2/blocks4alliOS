@@ -150,7 +150,7 @@ class SetVariableModViewController: UIViewController {
         super.viewDidLoad()
         
         //previous set variable makes sure that when reloaded, the previously selected variable is still highlighted
-        var previousSetVariable: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        let previousSetVariable: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
 //        var previousModifierBlockColor = blocksStack[modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] ?? "purple"
         variableSelected = previousSetVariable
         

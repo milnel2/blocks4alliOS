@@ -6,15 +6,10 @@
 //  Copyright © 2017 Lauren Milne. All rights reserved.
 //
 
-//Comment
-
 import UIKit
 import AVFoundation
 
-//test push comment
-
-
-//collection of blocks that are part of the program
+/// dictionary containing the different functions (composed as a list of Blocks) in the program
 var functionsDict = [String : [Block]]()
 var currentWorkspace = String()
 let startIndex = 0
@@ -25,37 +20,27 @@ var endIndex: Int{
 //MARK: - Block Selection Delegate Protocol
 protocol BlockSelectionDelegate{
     /*Used to send information to SelectedBlockViewController when moving blocks in workspace*/
-    func setSelectedBlocks(_ blocks:[Block])
-    func unsetBlocks()
+    func beginMovingBlocks(_ blocks:[Block])
+    func finishMovingBlocks()
     func setParentViewController(_ myVC:UIViewController)
 }
-
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
     
-    
-    // below are all the buttons for this class
-    @IBOutlet weak var clearAll: UIButton!
-    @IBOutlet weak var workspaceLabel: UILabel!
-    
-    @IBOutlet weak var blocksProgram: UICollectionView!
-    //View on the bottom of the screen that shows blocks in worksapce
+    @IBOutlet weak var clearAllButton: UIButton!
     @IBOutlet weak var playTrashToggleButton: UIButton!
+    @IBOutlet weak var mainMenuButton: UIButton!
     
-    @IBOutlet weak var menuButton: UIButton!
-    // above are all the buttons for this class
+    @IBOutlet weak var workspaceLabel: UILabel!
+    /// view on bottom of screen that shows blocks in workspace
+    @IBOutlet weak var blocksProgram: UICollectionView!
     
-    
-    
-    
-    var blocksBeingMoved = [Block]() /* List of blocks that are currently being moved (moving repeat and if blocks
-     also move the blocks nested inside */
-    var movingBlocks = false    //True if currently moving blocks in the workspace
-    // used in moving as well as deleting, plural for for and if statements and nesting
+    var movingBlocks = false
+    var blocksBeingMoved = [Block]() /* blocks currently being moved (includes nested blocks */
     
     var containerViewController: UINavigationController? //Top-level controller for toolbox view controllers
     
-    // FIXME: the blockWidth and blockHeight are not the same as the variable blockSize (= 100) - discuss
+    // TODO: the blockWidth and blockHeight are not the same as the variable blockSize (= 100)
     var blockWidth = 150
     var blockHeight = 150
     let blockSpacing = 1
@@ -70,17 +55,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return paths[0]
     }
     
-    /** This function saves each block in the superview as a json object cast as a String to a growing file. The function uses fileManager to be able to add and remove blocks from previous saves to stay up to date. **/
-    
+    /// Saves each block as a json object cast as a String to a file. Uses fileManager to add and remove blocks from previous saves to stay up to date.
     func save(){
         let fileManager = FileManager.default
-        //filename refers to the url found at "Blocks4AllSave.json"
+
         let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
         do{
-            //Deletes previous save in order to rewrite for each save action (therefore, no excess blocks)
+            //Deletes previous save in order to rewrite for each save action
             try fileManager.removeItem(at: filename)
         }catch{
-            print("couldn't delete save")
+            print("couldn't delete previous Blocks4AllSave")
         }
         
         // string that json text is appended too
@@ -116,10 +100,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
     }
 
-    // MARK: - - View Set Up
-    // MARK: - viewDidLoad
-    
-    // viewDidLoad = on appear
     override func viewDidLoad() {
         super.viewDidLoad()
         workspaceLabel.text = currentWorkspace
@@ -165,17 +145,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     // MARK: - - Block Selection Delegate functions
-    func unsetBlocks() {
-        /*Called after Blocks have been placed in final destination, so unset everything*/
+    /// Called when blocks are placed in workspace, so clears blocksBeingMoved
+    func finishMovingBlocks() {
         movingBlocks = false
         blocksBeingMoved.removeAll()
         changePlayTrashButton() //Toggling the play/trash button
         save()
     }
     
-    // MARK: add save function to function
-    func setSelectedBlocks(_ blocks: [Block]) {
-        /*Called when moving moving blocks*/
+    /// Called when blocks have been selected to be moved, saves them to blocksBeingMoved
+    /// - Parameter blocks: blocks selected to be moved
+    func beginMovingBlocks(_ blocks: [Block]) {
+        /*Called when moving blocks*/
         movingBlocks = true
         blocksBeingMoved = blocks
         blocksProgram.reloadData()
@@ -188,30 +169,29 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         containerViewController = myVC as? UINavigationController
     }
     
-    /** Function removes all blocks from the blocksStack and program **/
+    /// Removes blocks from current function and updates the saved data file.
     func clearAllBlocks(){
         if currentWorkspace == "Main Workspace"{
             functionsDict[currentWorkspace] = []
             blocksProgram.reloadData()
             save()
         }
-        else{
-            functionsDict[currentWorkspace]!.removeSubrange(1..<functionsDict[currentWorkspace]!.count-1)
+        else{ functionsDict[currentWorkspace]!.removeSubrange(1..<functionsDict[currentWorkspace]!.count-1)
             blocksProgram.reloadData()
             save()
         }
     }
     
-    /** When a user clicks the 'Clear All' button, they receive an alert asking if they really want to
-     delete all blocks or not. If yes, the screen is cleared. **/
+    /// Alerts the user that all the blocks will be deleted. If user selects yes, blocks in current function are delected
+    /// - Parameter sender: Clear All button
     @IBAction func clearAll(_ sender: Any) {
-        clearAll.accessibilityLabel = "Clear all"
-        clearAll.accessibilityHint = "Clear all blocks on the screen"
+        clearAllButton.accessibilityLabel = "Clear all"
+        clearAllButton.accessibilityHint = "Clear all blocks on the screen"
         
         let alert = UIAlertController(title: "Do you want to clear all?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
             let announcement = "All blocks cleared."
-            self.clearAll.accessibilityLabel = announcement
+            self.clearAllButton.accessibilityLabel = announcement
             self.clearAllBlocks()}))
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
@@ -266,7 +246,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             self.containerViewController?.popViewController(animated: false)})
         print("put in trash")
         blocksProgram.reloadData()
-        unsetBlocks()
+        finishMovingBlocks()
     }
     
     func playClicked(){
@@ -407,25 +387,23 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return size
     }
     
-    
-    /* adds in label for voiceOver
-     */
-    func addAccessibilityLabel(myLabel: UIView, block:Block, number: Int, blocksToAdd: [Block], spatial: Bool, interface: Int){
-        //TODO: if condition change accessibility label
-        myLabel.isAccessibilityElement = true
+    /// Adds VoiceOver label to blockView, which changes to placement info if blocks are being moved
+    /// - Parameters:
+    ///   - blockView: view to be given the label
+    ///   - block:  block being displayed
+    ///   - blockModifier:  describes the state of the block modifier (e.g. 2 times for repeat 2 times)
+    ///   - blockLocation: location of block in workspace (e.g. 2 of 4)
+    func addAccessibilityLabel(blockView: UIView, block:Block, blockModifier:String, blockLocation: Int){
+
+        blockView.isAccessibilityElement = true
         var accessibilityLabel = ""
-        //is blocksStack.count always correct?
-        let blockPlacementInfo = ". Workspace block " + String(number) + " of " + String(functionsDict[currentWorkspace]!.count)
+        let blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(functionsDict[currentWorkspace]!.count)
         var accessibilityHint = ""
         var movementInfo = ". Double tap to move block."
         
         if(!blocksBeingMoved.isEmpty){
             //Moving blocks, so switch labels to indicated where blocks can be placed
-            if(interface == 0){
-                accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before "
-            }else{
-                accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " after "
-            }
+            accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before "
             movementInfo = ". Double tap to add " + blocksBeingMoved[0].name + " block here"
             
             if(blocksBeingMoved[0].type == "Boolean" || blocksBeingMoved[0].type == "Number"){
@@ -451,15 +429,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
         
-        if(interface == 1){
-            movementInfo = ". tap and hold to move block."
-        }
-        
-        accessibilityLabel +=  block.name + blockPlacementInfo
+        accessibilityLabel +=  block.name + " " + blockModifier + " " + blockPlacementInfo
         accessibilityHint += movementInfo
         
-        myLabel.accessibilityLabel = accessibilityLabel
-        myLabel.accessibilityHint = accessibilityHint
+        blockView.accessibilityLabel = accessibilityLabel
+        blockView.accessibilityHint = accessibilityHint
     }
     
     /* CollectionView contains the actual collection of blocks (i.e. the program that is being created with the blocks)
@@ -540,144 +514,44 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
             
             let name = block.name
-            //            print(name)
+            var modifierInformation = ""
+
             switch name{
             case "If":
-                if !block.tripleCounterpart{
-                    if block.addedBlocks.isEmpty{
-                        // Creates repeat button for modifier.
-                        let initialBoolean = "false"
-                        
-                        let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray), double: false, tripleCounterpart: false, type: "Boolean")
-                        
-                        block.addedBlocks.append(placeholderBlock!)
-                        placeholderBlock?.addAttributes(key: "booleanSelected", value: "\(initialBoolean)")
-                        
-                        
-                        let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-    //                    let image = UIImage(named: "false_plchldr.pdf")
-
-                        ifButton.tag = indexPath.row
-                        switch block.addedBlocks[0].attributes["booleanSelected"]{
-                        case "hear_voice":
-                            let image = UIImage(named: "hear_voice.pdf")
-                            ifButton.setBackgroundImage(image, for: .normal)
-                        case "obstacle_sensed":
-                            let image = UIImage(named: "sense_obstacle")
-                            ifButton.setBackgroundImage(image, for: .normal)
-
-                        default:
-                            let image = UIImage(named: "false_plchldr.pdf")
-                            ifButton.setBackgroundImage(image, for: .normal)
-                        }
-    //                    ifButton.setBackgroundImage(image, for: .normal)
-                        ifButton.backgroundColor = .lightGray
-                        ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
-                        
-                        ifButton.accessibilityLabel = "Set Boolean Condition for If"
-                        ifButton.isAccessibilityElement = true
-                        
-                        cell.addSubview(ifButton)
-                    } else {
-                        _ = block.addedBlocks[0]
-                        let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                        
-    //                    let image = UIImage(named: "false_plchldr.pdf")
-                        
-                        ifButton.tag = indexPath.row
-                        switch block.addedBlocks[0].attributes["booleanSelected"]{
-                        case "hear_voice":
-                            let image = UIImage(named: "hear_voice.pdf")
-                            ifButton.setBackgroundImage(image, for: .normal)
-                        case "obstacle_sensed":
-                            let image = UIImage(named: "sense_obstacle")
-                            ifButton.setBackgroundImage(image, for: .normal)
-                            
-                        default:
-                            let image = UIImage(named: "false_plchldr.pdf")
-                            ifButton.setBackgroundImage(image, for: .normal)
-                        }
-    //                    ifButton.setBackgroundImage(image, for: .normal)
-                        ifButton.backgroundColor = .lightGray
-                        
-                        // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
-                        
-
-                        ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
-                        ifButton.accessibilityLabel = "Set Boolean Condition for If"
-                        ifButton.isAccessibilityElement = true
-                        
-                        cell.addSubview(ifButton)
-                    }
+                if block.addedBlocks.isEmpty{
+                    let initialBoolean = "false"
+                    
+                    let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray), double: false, tripleCounterpart: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "booleanSelected", value: "\(initialBoolean)")
+                    modifierInformation = " false"
+                    
                 }
-                else{
-                    block.imageName = "smallIf.pdf"
-                    if block.addedBlocks.isEmpty{
-                        // Creates repeat button for modifier.
-                        let initialBoolean = "false"
-                        
-                        let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray), double: false, tripleCounterpart: false, type: "Boolean")
-                        
-                        block.addedBlocks.append(placeholderBlock!)
-                        placeholderBlock?.addAttributes(key: "booleanSelected", value: "\(initialBoolean)")
-                        
-                        
-                        let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                        //                    let image = UIImage(named: "false_plchldr.pdf")
-                        
-                        ifButton.tag = indexPath.row
-                        switch block.addedBlocks[0].attributes["booleanSelected"]{
-                        case "hear_voice":
-                            let image = UIImage(named: "hear_voice.pdf")
-                            ifButton.setBackgroundImage(image, for: .normal)
-                        case "obstacle_sensed":
-                            let image = UIImage(named: "sense_obstacle")
-                            ifButton.setBackgroundImage(image, for: .normal)
-                            
-                        default:
-                            let image = UIImage(named: "false_plchldr.pdf")
-                            ifButton.setBackgroundImage(image, for: .normal)
-                        }
-                        //                    ifButton.setBackgroundImage(image, for: .normal)
-                        ifButton.backgroundColor = .lightGray
-                        ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
-                        
-                        ifButton.accessibilityLabel = "Set Boolean Condition for If"
-                        ifButton.isAccessibilityElement = true
-                        
-                        cell.addSubview(ifButton)
-                    } else {
-                        _ = block.addedBlocks[0]
-                        let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                        
-                        //                    let image = UIImage(named: "false_plchldr.pdf")
-                        
-                        ifButton.tag = indexPath.row
-                        switch block.addedBlocks[0].attributes["booleanSelected"]{
-                        case "hear_voice":
-                            let image = UIImage(named: "hear_voice.pdf")
-                            ifButton.setBackgroundImage(image, for: .normal)
-                        case "obstacle_sensed":
-                            let image = UIImage(named: "sense_obstacle")
-                            ifButton.setBackgroundImage(image, for: .normal)
-                            
-                        default:
-                            let image = UIImage(named: "false_plchldr.pdf")
-                            ifButton.setBackgroundImage(image, for: .normal)
-                        }
-                        //                    ifButton.setBackgroundImage(image, for: .normal)
-                        ifButton.backgroundColor = .lightGray
-                        
-                        // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
-                        
-                        
-                        ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
-                        ifButton.accessibilityLabel = "Set Boolean Condition for If"
-                        ifButton.isAccessibilityElement = true
-                        
-                        cell.addSubview(ifButton)
-                    }
+                let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+
+                ifButton.tag = indexPath.row
+                switch block.addedBlocks[0].attributes["booleanSelected"]{
+                case "hear_voice":
+                    let image = UIImage(named: "hear_voice.pdf")
+                    ifButton.setBackgroundImage(image, for: .normal)
+                    modifierInformation = " robot hears voice"
+                case "obstacle_sensed":
+                    let image = UIImage(named: "sense_obstacle")
+                    ifButton.setBackgroundImage(image, for: .normal)
+                    modifierInformation = " robot senses obstacle"
+                default:
+                    let image = UIImage(named: "false.pdf")
+                    ifButton.setBackgroundImage(image, for: .normal)
+                    modifierInformation = " false"
                 }
+                ifButton.backgroundColor = .lightGray
+                ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
+                
+                ifButton.accessibilityHint = "Double tap to set Boolean Condition for If"
+                ifButton.isAccessibilityElement = true
+                
+                cell.addSubview(ifButton)
                 
             case "Repeat":
                 if block.addedBlocks.isEmpty{
@@ -688,47 +562,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "timesToRepeat", value: "\(initialTimesToRepeat)")
-
-                    
-                    let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    repeatNumberButton.tag = indexPath.row
-                    repeatNumberButton.backgroundColor = #colorLiteral(red: 0.7019607843, green: 0.05098039216, blue: 0.7960784314, alpha: 1)
-                    repeatNumberButton.setTitle("\(placeholderBlock?.attributes["timesToRepeat"] ?? "1")", for: .normal)
-                    repeatNumberButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
-                    repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    repeatNumberButton.titleLabel?.numberOfLines = 0
-                    repeatNumberButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    repeatNumberButton.addTarget(self, action: #selector(repeatModifier(sender:)), for: .touchUpInside)
-                    repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    repeatNumberButton.layer.borderWidth = 2.0
-                    repeatNumberButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    repeatNumberButton.accessibilityLabel = "Set number of times to repeat"
-                    repeatNumberButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(repeatNumberButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    repeatNumberButton.tag = indexPath.row
-                    repeatNumberButton.backgroundColor = #colorLiteral(red: 0.7019607843, green: 0.05098039216, blue: 0.7960784314, alpha: 1)
-                    // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
-                    repeatNumberButton.setTitle("\(block.addedBlocks[0].attributes["timesToRepeat"] ?? "1")", for: .normal)
-                    repeatNumberButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
-                    repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    repeatNumberButton.titleLabel?.numberOfLines = 0
-                    repeatNumberButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    repeatNumberButton.addTarget(self, action: #selector(repeatModifier(sender:)), for: .touchUpInside)
-                    repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    repeatNumberButton.layer.borderWidth = 2.0
-                    repeatNumberButton.layer.borderColor = UIColor.black.cgColor
-                    repeatNumberButton.accessibilityLabel = "Set number of times to repeat"
-                    repeatNumberButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(repeatNumberButton)
                 }
+                let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                repeatNumberButton.tag = indexPath.row
+                repeatNumberButton.backgroundColor = #colorLiteral(red: 0.7019607843, green: 0.05098039216, blue: 0.7960784314, alpha: 1)
+                // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
+                let numberOfTimesToRepeat =  "\(block.addedBlocks[0].attributes["timesToRepeat"] ?? "1")"
+                repeatNumberButton.setTitle(numberOfTimesToRepeat, for: .normal)
+                repeatNumberButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
+                repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                repeatNumberButton.titleLabel?.numberOfLines = 0
+                repeatNumberButton.titleLabel?.textAlignment = NSTextAlignment.left
+                repeatNumberButton.addTarget(self, action: #selector(repeatModifier(sender:)), for: .touchUpInside)
+                repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                repeatNumberButton.layer.borderWidth = 2.0
+                repeatNumberButton.layer.borderColor = UIColor.black.cgColor
+                repeatNumberButton.accessibilityHint = "Double tap to Set number of times to repeat"
+                repeatNumberButton.isAccessibilityElement = true
+                modifierInformation = numberOfTimesToRepeat + " times"
+                
+                cell.addSubview(repeatNumberButton)
                 
             case "Repeat Forever":
                 if block.addedBlocks.isEmpty{
@@ -741,52 +595,35 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let initialSpeed = "Normal"
                     // Creates distance button for modifier.
                     // TODO: change the Distance and Speed values in the placeholderBlock name according to Dash API
-                    
                     let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "distance", value: "\(initialDistance)")
                     placeholderBlock?.addAttributes(key: "speed", value: initialSpeed)
-                    
-                    
-                    let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    distanceSpeedButton.tag = indexPath.row
-                    distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
-                    distanceSpeedButton.setTitle("\(placeholderBlock?.attributes["distance"] ?? "30") cm, \(placeholderBlock?.attributes["speed"] ?? "Normal")", for: .normal)
-                    distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 40)
-                    distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    distanceSpeedButton.titleLabel?.numberOfLines = 0
-                    distanceSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    distanceSpeedButton.addTarget(self, action: #selector(distanceSpeedModifier(sender:)), for: .touchUpInside)
-                    distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    distanceSpeedButton.layer.borderWidth = 2.0
-                    distanceSpeedButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    distanceSpeedButton.accessibilityLabel = "Set distance and speed"
-                    distanceSpeedButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(distanceSpeedButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    distanceSpeedButton.tag = indexPath.row
-                    distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
-                    distanceSpeedButton.setTitle("\(block.addedBlocks[0].attributes["distance"]!) cm, \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
-                    distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 40)
-                    distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    distanceSpeedButton.titleLabel?.numberOfLines = 0
-                    distanceSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    distanceSpeedButton.addTarget(self, action: #selector(distanceSpeedModifier(sender:)), for: .touchUpInside)
-                    distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    distanceSpeedButton.layer.borderWidth = 2.0
-                    distanceSpeedButton.layer.borderColor = UIColor.black.cgColor
-                    distanceSpeedButton.accessibilityLabel = "Set distance and speed"
-                    distanceSpeedButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(distanceSpeedButton)
+
                 }
+                let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                let distanceSet = "\(block.addedBlocks[0].attributes["distance"]!)"
+                let speedSet = "\(block.addedBlocks[0].attributes["speed"]!)"
+                
+
+                distanceSpeedButton.tag = indexPath.row
+                distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
+                distanceSpeedButton.setTitle("\(block.addedBlocks[0].attributes["distance"]!) cm, \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
+                distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 40)
+                distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                distanceSpeedButton.titleLabel?.numberOfLines = 0
+                distanceSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
+                distanceSpeedButton.addTarget(self, action: #selector(distanceSpeedModifier(sender:)), for: .touchUpInside)
+                distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                distanceSpeedButton.layer.borderWidth = 2.0
+                distanceSpeedButton.layer.borderColor = UIColor.black.cgColor
+                distanceSpeedButton.accessibilityHint = "Double tap to Set distance and speed"
+                distanceSpeedButton.isAccessibilityElement = true
+                modifierInformation = distanceSet + " centimeters at " + speedSet + "Speed"
+                
+                cell.addSubview(distanceSpeedButton)
                 
             case "Turn Left", "Turn Right":
                 if block.addedBlocks.isEmpty{
@@ -798,43 +635,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "angle", value: "\(initialAngle)")
                     
-                    
-                    let angleButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    angleButton.tag = indexPath.row
-                    angleButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
-                    angleButton.setTitle("\(placeholderBlock?.attributes["angle"] ?? "90")", for: .normal)
-                    angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
-                    angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    angleButton.titleLabel?.numberOfLines = 0
-                    angleButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    angleButton.addTarget(self, action: #selector(angleModifier(sender:)), for: .touchUpInside)
-                    angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    angleButton.layer.borderWidth = 2.0
-                    angleButton.layer.borderColor = UIColor.black.cgColor
-                    angleButton.accessibilityLabel = "Set turn angle"
-                    angleButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(angleButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let angleButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    angleButton.tag = indexPath.row
-                    angleButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
-                    angleButton.setTitle("\(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
-                    angleButton.addTarget(self, action: #selector(angleModifier(sender:)), for: .touchUpInside)
-                    angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
-                    angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    angleButton.titleLabel?.numberOfLines = 0
-                    angleButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    angleButton.layer.borderWidth = 2.0
-                    angleButton.layer.borderColor = UIColor.black.cgColor
-                    angleButton.accessibilityLabel = "Set turn angle"
-                    angleButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(angleButton)
                 }
+                let angleButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                angleButton.tag = indexPath.row
+                angleButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
+                angleButton.setTitle("\(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
+                angleButton.addTarget(self, action: #selector(angleModifier(sender:)), for: .touchUpInside)
+                angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
+                angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                angleButton.titleLabel?.numberOfLines = 0
+                angleButton.titleLabel?.textAlignment = NSTextAlignment.left
+                angleButton.layer.borderWidth = 2.0
+                angleButton.layer.borderColor = UIColor.black.cgColor
+                angleButton.accessibilityHint = "Double tap to Set turn angle"
+                angleButton.isAccessibilityElement = true
+                modifierInformation = "\(block.addedBlocks[0].attributes["angle"]!) degrees"
+                
+                cell.addSubview(angleButton)
                 
             case "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
                 if block.addedBlocks.isEmpty{
@@ -850,40 +668,28 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "lightColor", value: "\(initialColor)")
-                    
 
-                    let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    lightColorButton.tag = indexPath.row
-                    lightColorButton.backgroundColor = UIColor(displayP3Red: 0.58188, green: 0.2157, blue: 1, alpha: 1) // default color
-                    lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
-                    lightColorButton.layer.borderWidth = 2.0
-                    lightColorButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    lightColorButton.accessibilityLabel = "Set light color"
-                    lightColorButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(lightColorButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    var modifierBlockColor: UIColor = changeModifierBlockColor(color: block.addedBlocks[0].attributes["modifierBlockColor"]!)
-                    
-                    lightColorButton.tag = indexPath.row
-                    lightColorButton.backgroundColor = modifierBlockColor
-                    
-                    lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
-                    if (modifierBlockColor == UIColor.yellow || modifierBlockColor == UIColor.green || modifierBlockColor == UIColor.white) {
-                        lightColorButton.setTitleColor(.black, for: .normal)
-                    }
-                    lightColorButton.layer.borderWidth = 2.0
-                    lightColorButton.layer.borderColor = UIColor.black.cgColor
-                    lightColorButton.accessibilityLabel = "Set light color"
-                    lightColorButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(lightColorButton)
                 }
+                let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                let modifierBlockColor: UIColor = changeModifierBlockColor(color: block.addedBlocks[0].attributes["modifierBlockColor"]!)
+                
+                lightColorButton.tag = indexPath.row
+                lightColorButton.backgroundColor = modifierBlockColor
+                
+                lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
+                if (modifierBlockColor == UIColor.yellow || modifierBlockColor == UIColor.green || modifierBlockColor == UIColor.white) {
+                    lightColorButton.setTitleColor(.black, for: .normal)
+                }
+                lightColorButton.layer.borderWidth = 2.0
+                lightColorButton.layer.borderColor = UIColor.black.cgColor
+                lightColorButton.accessibilityLabel = block.addedBlocks[0].attributes["modifierBlockColor"] ?? ""
+                lightColorButton.accessibilityHint = "Double tap to Set light color"
+                lightColorButton.isAccessibilityElement = true
+                
+                modifierInformation = " " + (block.addedBlocks[0].attributes["modifierBlockColor"] ?? "")
+                
+                cell.addSubview(lightColorButton)
                 
             case "Set Eye Light":
                 if block.addedBlocks.isEmpty{
@@ -892,46 +698,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "eyeLight", value: "\(initialEyeLightStatus)")
-                    
-                    let eyeLightButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-
-                    
-                    eyeLightButton.tag = indexPath.row
-                    eyeLightButton.backgroundColor = UIColor(displayP3Red: 100/255, green: 4/255, blue: 195/255, alpha: 1)
-                    eyeLightButton.setTitle("\(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
-                    eyeLightButton.addTarget(self, action: #selector(setEyeLightModifier(sender:)), for: .touchUpInside)
-                    eyeLightButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    eyeLightButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
-                    eyeLightButton.titleLabel?.numberOfLines = 0
-                    eyeLightButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    eyeLightButton.layer.borderWidth = 2.0
-                    eyeLightButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    eyeLightButton.accessibilityLabel = "Turn eye light on and off"
-                    eyeLightButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(eyeLightButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let eyeLightButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    modifierBlockIndex = indexPath.row
-                    
-                    eyeLightButton.tag = indexPath.row
-                    eyeLightButton.backgroundColor = UIColor(displayP3Red: 100/255, green: 4/255, blue: 195/255, alpha: 1)
-                    eyeLightButton.setTitle("\(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
-                    eyeLightButton.addTarget(self, action: #selector(setEyeLightModifier(sender:)), for: .touchUpInside)
-                    eyeLightButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
-                    eyeLightButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    eyeLightButton.titleLabel?.numberOfLines = 0
-                    eyeLightButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    eyeLightButton.layer.borderWidth = 2.0
-                    eyeLightButton.layer.borderColor = UIColor.black.cgColor
-                    eyeLightButton.accessibilityLabel = "Turn eye light on and off"
-                    eyeLightButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(eyeLightButton)
+                
                 }
+                let eyeLightButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                modifierBlockIndex = indexPath.row
+                
+                eyeLightButton.tag = indexPath.row
+                eyeLightButton.backgroundColor = UIColor(displayP3Red: 100/255, green: 4/255, blue: 195/255, alpha: 1)
+                eyeLightButton.setTitle("\(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
+                eyeLightButton.addTarget(self, action: #selector(setEyeLightModifier(sender:)), for: .touchUpInside)
+                eyeLightButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
+                eyeLightButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                eyeLightButton.titleLabel?.numberOfLines = 0
+                eyeLightButton.titleLabel?.textAlignment = NSTextAlignment.left
+                eyeLightButton.layer.borderWidth = 2.0
+                eyeLightButton.layer.borderColor = UIColor.black.cgColor
+                eyeLightButton.accessibilityHint = "Double tap to turn eye light on or off"
+                eyeLightButton.isAccessibilityElement = true
+                modifierInformation = "\(block.addedBlocks[0].attributes["eyeLight"]!)"
+                
+                cell.addSubview(eyeLightButton)
             
             case "Wait for Time":
                 if block.addedBlocks.isEmpty{
@@ -941,48 +728,29 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "wait", value: "\(initialWait)")
 
-                    
-                    let waitTimeButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    waitTimeButton.tag = indexPath.row
-                    waitTimeButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 12/255, blue: 203/255, alpha: 1)
-                    waitTimeButton.setTitle("\(placeholderBlock?.attributes["wait"] ?? "1") second", for: .normal)
-                    waitTimeButton.addTarget(self, action: #selector(waitModifier(sender:)), for: .touchUpInside)
-                    waitTimeButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    waitTimeButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 36)
-                    waitTimeButton.titleLabel?.numberOfLines = 0
-                    waitTimeButton.titleLabel?.textAlignment = NSTextAlignment.center
-                    waitTimeButton.layer.borderWidth = 2.0
-                    waitTimeButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    waitTimeButton.accessibilityLabel = "Set Wait Time"
-                    waitTimeButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(waitTimeButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let waitTimeButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    waitTimeButton.tag = indexPath.row
-                    waitTimeButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 12/255, blue: 203/255, alpha: 1)
-                    if (block.addedBlocks[0].attributes["wait"] == "1"){
-                        waitTimeButton.setTitle("\(block.addedBlocks[0].attributes["wait"]!) second", for: .normal)
-                    } else{
-                        waitTimeButton.setTitle("\(block.addedBlocks[0].attributes["wait"]!) seconds", for: .normal)
-                    }
-                    waitTimeButton.addTarget(self, action: #selector(waitModifier(sender:)), for: .touchUpInside)
-                    waitTimeButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    waitTimeButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 36)
-                    waitTimeButton.titleLabel?.numberOfLines = 0
-                    waitTimeButton.titleLabel?.textAlignment = NSTextAlignment.center
-                    waitTimeButton.layer.borderWidth = 2.0
-                    waitTimeButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    waitTimeButton.accessibilityLabel = "Set wait time"
-                    waitTimeButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(waitTimeButton)
                 }
+                let waitTimeButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                waitTimeButton.tag = indexPath.row
+                waitTimeButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 12/255, blue: 203/255, alpha: 1)
+                if (block.addedBlocks[0].attributes["wait"] == "1"){
+                    waitTimeButton.setTitle("\(block.addedBlocks[0].attributes["wait"]!) second", for: .normal)
+                } else{
+                    waitTimeButton.setTitle("\(block.addedBlocks[0].attributes["wait"]!) seconds", for: .normal)
+                }
+                waitTimeButton.addTarget(self, action: #selector(waitModifier(sender:)), for: .touchUpInside)
+                waitTimeButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                waitTimeButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 36)
+                waitTimeButton.titleLabel?.numberOfLines = 0
+                waitTimeButton.titleLabel?.textAlignment = NSTextAlignment.center
+                waitTimeButton.layer.borderWidth = 2.0
+                waitTimeButton.layer.borderColor = UIColor.black.cgColor
+                
+                waitTimeButton.accessibilityHint = "Double tap to set wait time"
+                waitTimeButton.isAccessibilityElement = true
+                modifierInformation = "\(block.addedBlocks[0].attributes["wait"]!) seconds"
+                
+                cell.addSubview(waitTimeButton)
             
             case "Set Variable":
                 if block.addedBlocks.isEmpty{
@@ -995,45 +763,25 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                     placeholderBlock?.addAttributes(key: "variableValue", value: "\(initialVariableValue)")
-                    
-                    
-                    let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    setVariableButton.tag = indexPath.row
-                    setVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setVariableButton.setTitle(" \(placeholderBlock?.attributes["variableSelected"] ?? "Orange") \n = \(placeholderBlock?.attributes["variableValue"] ?? "0")", for: .normal)
-                    setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
-                    setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setVariableButton.titleLabel?.font = UIFont (name:"Helvetica Neue", size: 30)
-                    setVariableButton.titleLabel?.numberOfLines = 0
-                    setVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    setVariableButton.layer.borderWidth = 2.0
-                    setVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    setVariableButton.accessibilityLabel = "Set Variable Value"
-                    setVariableButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(setVariableButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    setVariableButton.tag = indexPath.row
-                    setVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
-                    setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
-                    setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                    setVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
-                    setVariableButton.titleLabel?.numberOfLines = 0
-                    setVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
-                    setVariableButton.layer.borderWidth = 2.0
-                    setVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    setVariableButton.accessibilityLabel = "Set variable value"
-                    setVariableButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(setVariableButton)
+
                 }
+                let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                setVariableButton.tag = indexPath.row
+                setVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                setVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
+                setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
+                setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                setVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                setVariableButton.titleLabel?.numberOfLines = 0
+                setVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+                setVariableButton.layer.borderWidth = 2.0
+                setVariableButton.layer.borderColor = UIColor.black.cgColor
+                
+                setVariableButton.accessibilityHint = "Double tap to set variable value"
+                setVariableButton.isAccessibilityElement = true
+                modifierInformation = "\(block.addedBlocks[0].attributes["variableSelected"]!) set to  \(block.addedBlocks[0].attributes["variableValue"]!)"
+                cell.addSubview(setVariableButton)
                 
             case "Drive":
                 if block.addedBlocks.isEmpty{
@@ -1045,61 +793,32 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                     
-                    
-                    let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width:  blockWidth, height: blockHeight))
-                    
-                    setDriveVariableButton.tag = indexPath.row
-                    
-                    switch block.addedBlocks[0].attributes["variableSelected"]{
-                    case "orange":
-                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-                    case "cherry":
-                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-                    case "banana":
-                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "melon":
-                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-                    case "apple":
-                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-                    default:
-                        setDriveVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    }
-                    
-                    
-                    setDriveVariableButton.addTarget(self, action: #selector(driveModifier(sender:)), for: .touchUpInside)
-                    setDriveVariableButton.layer.borderWidth = 2.0
-                    setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
-                
-                    
-                    cell.addSubview(setDriveVariableButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    switch block.addedBlocks[0].attributes["variableSelected"]{
-                    case "orange":
-                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-                    case "cherry":
-                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-                    case "banana":
-                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "melon":
-                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-                    case "apple":
-                        setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-                    default:
-                          setDriveVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    }
-                    
-                    setDriveVariableButton.tag = indexPath.row
-                    
-                    setDriveVariableButton.addTarget(self, action: #selector(driveModifier(sender:)), for: .touchUpInside)
-                    
-                    setDriveVariableButton.layer.borderWidth = 2.0
-                    setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    cell.addSubview(setDriveVariableButton)
                 }
+                let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                switch block.addedBlocks[0].attributes["variableSelected"]{
+                case "orange":
+                    setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                case "cherry":
+                    setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                case "banana":
+                    setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                case "melon":
+                    setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                case "apple":
+                    setDriveVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                default:
+                      setDriveVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                }
+                
+                setDriveVariableButton.tag = indexPath.row
+                
+                setDriveVariableButton.addTarget(self, action: #selector(driveModifier(sender:)), for: .touchUpInside)
+                
+                setDriveVariableButton.layer.borderWidth = 2.0
+                setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
+                modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
+                cell.addSubview(setDriveVariableButton)
                 
             case "Look Up or Down":
                 if block.addedBlocks.isEmpty{
@@ -1111,61 +830,34 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                     
-                    
-                    let setLookUpDownVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    setLookUpDownVariableButton.tag = indexPath.row
-                    switch block.addedBlocks[0].attributes["variableSelected"]{
-                    case "orange":
-                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-                    case "cherry":
-                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-                    case "banana":
-                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "melon":
-                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-                    case "apple":
-                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-                    default:
-                        setLookUpDownVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    }
-                    setLookUpDownVariableButton.addTarget(self, action: #selector(lookUpDownModifier(sender:)), for: .touchUpInside)
-                    setLookUpDownVariableButton.layer.borderWidth = 2.0
-                    setLookUpDownVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    setLookUpDownVariableButton.accessibilityLabel = "Set Look Left or Right Variable"
-                    setLookUpDownVariableButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(setLookUpDownVariableButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let setLookUpDownVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    setLookUpDownVariableButton.tag = indexPath.row
-                    switch block.addedBlocks[0].attributes["variableSelected"]{
-                    case "orange":
-                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-                    case "cherry":
-                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-                    case "banana":
-                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "melon":
-                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-                    case "apple":
-                        setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-                    default:
-                        setLookUpDownVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    }
-                   
-                    setLookUpDownVariableButton.addTarget(self, action: #selector(lookUpDownModifier(sender:)), for: .touchUpInside)
-                    setLookUpDownVariableButton.layer.borderWidth = 2.0
-                    setLookUpDownVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    setLookUpDownVariableButton.accessibilityLabel = "Set Look Left or Right Variable"
-                    setLookUpDownVariableButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(setLookUpDownVariableButton)
                 }
+                let setLookUpDownVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                 
+                 setLookUpDownVariableButton.tag = indexPath.row
+                 switch block.addedBlocks[0].attributes["variableSelected"]{
+                 case "orange":
+                     setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                 case "cherry":
+                     setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                 case "banana":
+                     setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                 case "melon":
+                     setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                 case "apple":
+                     setLookUpDownVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                 default:
+                     setLookUpDownVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                 }
+                
+                 setLookUpDownVariableButton.addTarget(self, action: #selector(lookUpDownModifier(sender:)), for: .touchUpInside)
+                 setLookUpDownVariableButton.layer.borderWidth = 2.0
+                 setLookUpDownVariableButton.layer.borderColor = UIColor.black.cgColor
+                 
+                 setLookUpDownVariableButton.accessibilityLabel = "Set Look Up or Down Variable"
+                 setLookUpDownVariableButton.isAccessibilityElement = true
+                modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
+                 
+                 cell.addSubview(setLookUpDownVariableButton)
                 
             case "Look Left or Right":
                 if block.addedBlocks.isEmpty{
@@ -1176,64 +868,34 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     block.addedBlocks.append(placeholderBlock!)
                     
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
-                    
-                    
-                    let setLookLeftRightVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    setLookLeftRightVariableButton.tag = indexPath.row
-                    
-                    switch block.addedBlocks[0].attributes["variableSelected"]{
-                    case "orange":
-                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-                    case "cherry":
-                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-                    case "banana":
-                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "melon":
-                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-                    case "apple":
-                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-                    default:
-                        setLookLeftRightVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    }
-                    
-                    setLookLeftRightVariableButton.addTarget(self, action: #selector(lookLeftRightModifier(sender:)), for: .touchUpInside)
-                    setLookLeftRightVariableButton.layer.borderWidth = 2.0
-                    setLookLeftRightVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    setLookLeftRightVariableButton.accessibilityLabel = "Set Look Left or Right Variable"
-                    setLookLeftRightVariableButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(setLookLeftRightVariableButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let setLookLeftRightVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    setLookLeftRightVariableButton.tag = indexPath.row
-                    switch block.addedBlocks[0].attributes["variableSelected"]{
-                    case "orange":
-                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-                    case "cherry":
-                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-                    case "banana":
-                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "melon":
-                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-                    case "apple":
-                        setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-                    default:
-                        setLookLeftRightVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    }
-                    
-                    setLookLeftRightVariableButton.addTarget(self, action: #selector(lookLeftRightModifier(sender:)), for: .touchUpInside)
-                    setLookLeftRightVariableButton.layer.borderWidth = 2.0
-                    setLookLeftRightVariableButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    setLookLeftRightVariableButton.accessibilityLabel = "Set Look Left or Right Variable"
-                    setLookLeftRightVariableButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(setLookLeftRightVariableButton)
+
                 }
+                let setLookLeftRightVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                setLookLeftRightVariableButton.tag = indexPath.row
+                switch block.addedBlocks[0].attributes["variableSelected"]{
+                case "orange":
+                    setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                case "cherry":
+                    setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                case "banana":
+                    setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                case "melon":
+                    setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                case "apple":
+                    setLookLeftRightVariableButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                default:
+                    setLookLeftRightVariableButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                }
+                
+                setLookLeftRightVariableButton.addTarget(self, action: #selector(lookLeftRightModifier(sender:)), for: .touchUpInside)
+                setLookLeftRightVariableButton.layer.borderWidth = 2.0
+                setLookLeftRightVariableButton.layer.borderColor = UIColor.black.cgColor
+                
+                setLookLeftRightVariableButton.accessibilityLabel = "Set Look Left or Right Variable"
+                setLookLeftRightVariableButton.isAccessibilityElement = true
+                modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
+                cell.addSubview(setLookLeftRightVariableButton)
                 
             case "Wheel Speed":
                 
@@ -1247,131 +909,67 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                     placeholderBlock?.addAttributes(key: "variableSelectedTwo", value: "\(initialVariable)")
                     
-                    
-                    let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: 2 * blockWidth/3, height: blockHeight/2))
-                    
-                    let setWheelSpeedButtonTwo = UIButton(frame: CGRect(x: blockWidth/3, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing) + blockHeight/2, width: 2 * blockWidth/3 , height: blockHeight/2))
-                    
-                    let setBackgroundButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    let setBorderButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    setBackgroundButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setBorderButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 0)
-                    
-                    setWheelSpeedButton.tag = indexPath.row
-                    setWheelSpeedButtonTwo.tag = indexPath.row
-                    setBorderButton.tag = indexPath.row
-                    
-                    switch block.addedBlocks[0].attributes["variableSelected"]{
-                    case "orange":
-                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-                    case "cherry":
-                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-                    case "banana":
-                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "melon":
-                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-                    case "apple":
-                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-                    default:
-                        setWheelSpeedButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    }
-                    
-                    switch block.addedBlocks[0].attributes["variableSelectedTwo"]{
-                    case "orange":
-                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-                    case "cherry":
-                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-                    case "banana":
-                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "melon":
-                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-                    case "apple":
-                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-                    default:
-                        setWheelSpeedButtonTwo.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    }
-                    
-//                    setWheelSpeedButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-//                    setWheelSpeedButtonTwo.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-                    setBorderButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-                    
-                    setBorderButton.accessibilityLabel = "Set Wheel Variables"
-                    setBorderButton.isAccessibilityElement = true
-                    
-                    
-                    setBorderButton.layer.borderWidth = 2.0
-                    setBorderButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    cell.addSubview(setBackgroundButton)
-                    cell.addSubview(setWheelSpeedButton)
-                    cell.addSubview(setWheelSpeedButtonTwo)
-                    cell.addSubview(setBorderButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: 2 * blockWidth/3, height: blockHeight/2))
-                    
-                    let setWheelSpeedButtonTwo = UIButton(frame: CGRect(x: blockWidth/3, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing) + blockHeight/2, width: 2 * blockWidth/3 , height: blockHeight/2))
-                    
-                    let setBackgroundButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    let setBorderButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    setBackgroundButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    setBorderButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 0)
-                    
-                    setWheelSpeedButton.tag = indexPath.row
-                    setWheelSpeedButtonTwo.tag = indexPath.row
-                    setBorderButton.tag = indexPath.row
-                    
-                    switch block.addedBlocks[0].attributes["variableSelected"]{
-                    case "orange":
-                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-                    case "cherry":
-                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-                    case "banana":
-                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "melon":
-                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-                    case "apple":
-                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-                    default:
-                        setWheelSpeedButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    }
-                    
-                    switch block.addedBlocks[0].attributes["variableSelectedTwo"]{
-                    case "orange":
-                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-                    case "cherry":
-                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-                    case "banana":
-                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                    case "melon":
-                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-                    case "apple":
-                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-                    default:
-                        setWheelSpeedButtonTwo.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    }
-                    
-//                    setWheelSpeedButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-//                    setWheelSpeedButtonTwo.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-                    setBorderButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-                    
-                    setBorderButton.accessibilityLabel = "Set Wheel Variables"
-                    setBorderButton.isAccessibilityElement = true
-                    
-                    
-                    setBorderButton.layer.borderWidth = 2.0
-                    setBorderButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    cell.addSubview(setBackgroundButton)
-                    cell.addSubview(setWheelSpeedButton)
-                    cell.addSubview(setWheelSpeedButtonTwo)
-                    cell.addSubview(setBorderButton)
-
-            }
+                }
+                let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: 2 * blockWidth/3, height: blockHeight/2))
+                                    
+                                    let setWheelSpeedButtonTwo = UIButton(frame: CGRect(x: blockWidth/3, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing) + blockHeight/2, width: 2 * blockWidth/3 , height: blockHeight/2))
+                                    
+                                    let setBackgroundButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                                    
+                                    let setBorderButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                                    
+                                    setBackgroundButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                                    setBorderButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 0)
+                                    
+                                    setWheelSpeedButton.tag = indexPath.row
+                                    setWheelSpeedButtonTwo.tag = indexPath.row
+                                    setBorderButton.tag = indexPath.row
+                                    
+                                    switch block.addedBlocks[0].attributes["variableSelected"]{
+                                    case "orange":
+                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                                    case "cherry":
+                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                                    case "banana":
+                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                                    case "melon":
+                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                                    case "apple":
+                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                                    default:
+                                        setWheelSpeedButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                                    }
+                                    
+                                    switch block.addedBlocks[0].attributes["variableSelectedTwo"]{
+                                    case "orange":
+                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
+                                    case "cherry":
+                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
+                                    case "banana":
+                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
+                                    case "melon":
+                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
+                                    case "apple":
+                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
+                                    default:
+                                        setWheelSpeedButtonTwo.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                                    }
+                                    
+                //                    setWheelSpeedButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
+                //                    setWheelSpeedButtonTwo.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
+                                    setBorderButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
+                                    
+                                    setBorderButton.accessibilityLabel = "Set Wheel Variables"
+                                    setBorderButton.isAccessibilityElement = true
+                                    
+                                    
+                                    setBorderButton.layer.borderWidth = 2.0
+                                    setBorderButton.layer.borderColor = UIColor.black.cgColor
+                                    
+                                    cell.addSubview(setBackgroundButton)
+                                    cell.addSubview(setWheelSpeedButton)
+                                    cell.addSubview(setWheelSpeedButtonTwo)
+                                    cell.addSubview(setBorderButton)
                 
             case "Turn":
                 if block.addedBlocks.isEmpty{
@@ -1382,72 +980,39 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     block.addedBlocks.append(placeholderBlock!)
                     
                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
-                    
-                    
-                    let setTurnButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    setTurnButton.tag = indexPath.row
-                    switch block.addedBlocks[0].attributes["variableSelected"]{
-                    case "orange":
-                        let image = UIImage(named: "Orange.pdf")
-                        setTurnButton.setBackgroundImage(image, for: .normal)
-                    case "cherry":
-                        let image = UIImage(named: "Cherry.pdf")
-                        setTurnButton.setBackgroundImage(image, for: .normal)
-                    case "banana":
-                        let image = UIImage(named: "Banana.pdf")
-                        setTurnButton.setBackgroundImage(image, for: .normal)
-                    case "melon":
-                        let image = UIImage(named: "Watermelon.pdf")
-                        setTurnButton.setBackgroundImage(image, for: .normal)
-                    case "apple":
-                        let image = UIImage(named: "Apple.pdf")
-                        setTurnButton.setBackgroundImage(image, for: .normal)
-                    default:
-                        setTurnButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    }
-                    
-                    setTurnButton.addTarget(self, action: #selector(turnModifier(sender:)), for: .touchUpInside)
-                    setTurnButton.layer.borderWidth = 2.0
-                    setTurnButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    setTurnButton.accessibilityLabel = "Choose turn variable"
-                    setTurnButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(setTurnButton)
-                } else {
-                    _ = block.addedBlocks[0]
-                    let setTurnButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                    
-                    setTurnButton.tag = indexPath.row
-                    switch block.addedBlocks[0].attributes["variableSelected"]{
-                    case "orange":
-                        let image = UIImage(named: "Orange.pdf")
-                        setTurnButton.setBackgroundImage(image, for: .normal)
-                    case "cherry":
-                        let image = UIImage(named: "Cherry.pdf")
-                        setTurnButton.setBackgroundImage(image, for: .normal)
-                    case "banana":
-                        let image = UIImage(named: "Banana.pdf")
-                        setTurnButton.setBackgroundImage(image, for: .normal)
-                    case "melon":
-                        let image = UIImage(named: "Watermelon.pdf")
-                        setTurnButton.setBackgroundImage(image, for: .normal)
-                    case "apple":
-                        let image = UIImage(named: "Apple.pdf")
-                        setTurnButton.setBackgroundImage(image, for: .normal)
-                    default:
-                        setTurnButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                    }
-                    setTurnButton.addTarget(self, action: #selector(turnModifier(sender:)), for: .touchUpInside)
-                    setTurnButton.layer.borderWidth = 2.0
-                    setTurnButton.layer.borderColor = UIColor.black.cgColor
-                    
-                    setTurnButton.accessibilityLabel = "Choose Turn Variable"
-                    setTurnButton.isAccessibilityElement = true
-                    
-                    cell.addSubview(setTurnButton)
                 }
+                let setTurnButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                setTurnButton.tag = indexPath.row
+                switch block.addedBlocks[0].attributes["variableSelected"]{
+                case "orange":
+                    let image = UIImage(named: "Orange.pdf")
+                    setTurnButton.setBackgroundImage(image, for: .normal)
+                case "cherry":
+                    let image = UIImage(named: "Cherry.pdf")
+                    setTurnButton.setBackgroundImage(image, for: .normal)
+                case "banana":
+                    let image = UIImage(named: "Banana.pdf")
+                    setTurnButton.setBackgroundImage(image, for: .normal)
+                case "melon":
+                    let image = UIImage(named: "Watermelon.pdf")
+                    setTurnButton.setBackgroundImage(image, for: .normal)
+                case "apple":
+                    let image = UIImage(named: "Apple.pdf")
+                    setTurnButton.setBackgroundImage(image, for: .normal)
+                default:
+                    setTurnButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                }
+                
+                setTurnButton.addTarget(self, action: #selector(turnModifier(sender:)), for: .touchUpInside)
+                setTurnButton.layer.borderWidth = 2.0
+                setTurnButton.layer.borderColor = UIColor.black.cgColor
+                
+                setTurnButton.accessibilityLabel = "Choose turn variable"
+                setTurnButton.isAccessibilityElement = true
+                modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
+                
+                cell.addSubview(setTurnButton)
                 
             default:
                 print("This block does not need a modifier.")
@@ -1456,12 +1021,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             //add main label
             
             let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-            addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row+1, blocksToAdd: blocksToAdd, spatial: true, interface: 0)
+            addAccessibilityLabel(blockView: myLabel, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1)
             cell.addSubview(myLabel)
         }
         cell.accessibilityElements = cell.accessibilityElements?.reversed()
-//        save()
-// think this save is extra
+
         return cell
     }
     
@@ -1604,7 +1168,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         makeAnnouncement(announcement)
 //                        delay(announcement, 2)
                         blocksProgram.reloadData()
-                        unsetBlocks()
+                        finishMovingBlocks()
                     }else if blocksBeingMoved[0].type == "Number" && acceptsNumbers{
                         //add it here
                         myBlock.addedBlocks.removeAll()
@@ -1615,7 +1179,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         makeAnnouncement(announcement)
 //                        delay(announcement, 2)
                         blocksProgram.reloadData()
-                        unsetBlocks()
+                        finishMovingBlocks()
                     }else{
                         //say you can't add it here
                         print("you can't add it here")
@@ -1632,7 +1196,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }else{
                 addBlocks(blocksBeingMoved, at: indexPath.row)
                 containerViewController?.popViewController(animated: false)
-                unsetBlocks()
+                finishMovingBlocks()
             }
         }else{
             if(indexPath.row < functionsDict[currentWorkspace]!.count){ //otherwise empty block at end
@@ -1805,3 +1369,4 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
 }
+

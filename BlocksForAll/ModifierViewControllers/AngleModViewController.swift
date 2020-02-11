@@ -21,8 +21,8 @@ class AngleModViewController: UIViewController {
     
     override func viewDidLoad() {        
         // default angle: 90 or preserve last selection
-        var previousAngleString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] ?? "90"
-        var previousAngle = Int(previousAngleString)
+        let previousAngleString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] ?? "90"
+        let previousAngle = Int(previousAngleString)
         angleDisplayed.text = "\(previousAngle ?? 90)"
         angleSlider.setValue(Float(previousAngle!), animated: false)
         // preserves previously selected value
