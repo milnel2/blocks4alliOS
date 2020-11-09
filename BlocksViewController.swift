@@ -1,6 +1,7 @@
-//  edit 6/18/19 by jacqueline
 //  BlocksViewController.swift
 //  BlocksForAll
+//
+// ViewController for the workspace where the block program is being created
 //
 //  Created by Lauren Milne on 5/9/17.
 //  Copyright © 2017 Lauren Milne. All rights reserved.
@@ -11,19 +12,23 @@ import AVFoundation
 
 /// dictionary containing the different functions (composed as a list of Blocks) in the program
 var functionsDict = [String : [Block]]()
+
+/// workspace you are currently editing on screen (i.e. the main workspace or a user-defined function)
 var currentWorkspace = String()
+
 let startIndex = 0
 var endIndex: Int{
     return functionsDict[currentWorkspace]!.count - 1
 }
 
 //MARK: - Block Selection Delegate Protocol
+/// Sends information about which blocks are selected to SelectedBlockViewController when moving blocks in workspace.
 protocol BlockSelectionDelegate{
-    /*Used to send information to SelectedBlockViewController when moving blocks in workspace*/
     func beginMovingBlocks(_ blocks:[Block])
     func finishMovingBlocks()
     func setParentViewController(_ myVC:UIViewController)
 }
+
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
     
@@ -31,20 +36,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var playTrashToggleButton: UIButton!
     @IBOutlet weak var mainMenuButton: UIButton!
     
-    @IBOutlet weak var workspaceLabel: UILabel!
+    @IBOutlet weak var workspaceNameLabel: UILabel!
+    
     /// view on bottom of screen that shows blocks in workspace
     @IBOutlet weak var blocksProgram: UICollectionView!
     
     var movingBlocks = false
-    var blocksBeingMoved = [Block]() /* blocks currently being moved (includes nested blocks */
+    /// blocks currently being moved (includes nested blocks)
+    var blocksBeingMoved = [Block]()
     
-    var containerViewController: UINavigationController? //Top-level controller for toolbox view controllers
+    /// Top-level controller for toolbox view controllers
+    var containerViewController: UINavigationController?
     
     // TODO: the blockWidth and blockHeight are not the same as the variable blockSize (= 100)
     var blockWidth = 150
     var blockHeight = 150
     let blockSpacing = 1
     
+    // TODO: what are these variables?
     var modifierBlockIndex: Int?
     var tappedModifierIndex: Int?
 
@@ -102,12 +111,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        workspaceLabel.text = currentWorkspace
+        workspaceNameLabel.text = currentWorkspace
         self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
         
-        if workspaceLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
+        if workspaceNameLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
             let startBlock = Block.init(name: "Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
             let endBlock = Block.init(name: "Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
             startBlock!.counterpart = [endBlock!]
