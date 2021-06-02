@@ -284,7 +284,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = "Katie McCarthy";
+				ORGANIZATIONNAME = Blocks4All;
 				TargetAttributes = {
 					F18FFFAE1E65B0FB0090C4B6 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -538,7 +538,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = 5Z9DP5C8DQ;
+				DEVELOPMENT_TEAM = DTFPBKN8SR;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -551,7 +551,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 5.2;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.HarisAhmed.Blocks4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
@@ -570,7 +570,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = 5Z9DP5C8DQ;
+				DEVELOPMENT_TEAM = DTFPBKN8SR;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -583,7 +583,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 5.2;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.HarisAhmed.Blocks4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";

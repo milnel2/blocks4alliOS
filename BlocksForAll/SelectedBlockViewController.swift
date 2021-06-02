@@ -23,7 +23,7 @@ class SelectedBlockViewController: UIViewController {
         print("\n")
         print("entered viewDidLoad")
         super.viewDidLoad()
-        self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"
+        self.navigationItem.backBarButtonItem?.accessibilityLabel = "Back"
         
         let myFrame = CGRect(x: 0, y: Int(self.view.bounds.height/2), width: 0, height: 0)
         
