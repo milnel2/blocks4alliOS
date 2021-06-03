@@ -33,13 +33,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     
     @IBOutlet weak var clearAllButton: UIButton!
+    
+    @IBOutlet weak var functionsMenuButton: UIButton!
+    
     @IBOutlet weak var playTrashToggleButton: UIButton!
+    
     @IBOutlet weak var mainMenuButton: UIButton!
     
     @IBOutlet weak var workspaceNameLabel: UILabel!
     
     /// view on bottom of screen that shows blocks in workspace
     @IBOutlet weak var blocksProgram: UICollectionView!
+    
+    @IBOutlet weak var containerView: UIView!
+    
+    @IBOutlet weak var toolboxView: UIView!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        containerView.accessibilityElements = [toolboxView!, workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, mainMenuButton!, functionsMenuButton!, clearAllButton!]
+    }
     
     var movingBlocks = false
     /// blocks currently being moved (includes nested blocks)

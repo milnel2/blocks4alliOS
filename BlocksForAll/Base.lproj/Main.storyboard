@@ -373,6 +373,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLx-VG-2JW">
                                 <rect key="frame" x="0.0" y="0.0" width="235" height="896"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLx-VG-2JW" userLabel="View">
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <connections>
@@ -478,7 +479,11 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                     <connections>
                         <outlet property="blocksProgram" destination="l66-Lb-Pdn" id="aCz-wf-cUf"/>
                         <outlet property="clearAllButton" destination="jq3-Fa-yDY" id="wwW-ba-wyI"/>
+                        <outlet property="containerView" destination="Qkj-vq-g4U" id="JXO-DM-gJn"/>
+                        <outlet property="functionsMenuButton" destination="yBH-LX-xHN" id="Ssg-aF-aXf"/>
+                        <outlet property="mainMenuButton" destination="Ipa-F9-VES" id="TzB-p7-nkW"/>
                         <outlet property="playTrashToggleButton" destination="Ztu-9b-vFh" id="LFC-BT-ZaG"/>
+                        <outlet property="toolboxView" destination="rLx-VG-2JW" id="US0-wx-Yiw"/>
                         <outlet property="workspaceNameLabel" destination="BES-Vc-hSx" id="Zsg-nW-SmE"/>
                         <segue destination="cJF-Nc-M7L" kind="show" identifier="AddRobotSegue" id="PIe-sL-Fqa"/>
                         <segue destination="PBc-35-QW0" kind="show" identifier="DistanceSpeedModifier" id="CWQ-aM-vhy"/>
