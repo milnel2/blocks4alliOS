@@ -94,6 +94,10 @@ class FunctionTableViewController: UITableViewController {
         cell.nameButton.setTitle(functions[indexPath.row], for: .normal)
         cell.functionTableViewController = self
         
+        cell.nameButton.superview?.bringSubview(toFront: cell.nameButton)
+        cell.renameButton.superview?.bringSubview(toFront: cell.renameButton)
+        cell.deleteButton.superview?.bringSubview(toFront: cell.deleteButton)
+        
 //        let function = functions[indexPath.row]
 //        cell.function = function
 
