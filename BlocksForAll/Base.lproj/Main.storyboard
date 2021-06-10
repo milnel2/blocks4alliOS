@@ -933,10 +933,10 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5S-qN-qEp">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5S-qN-qEp" userLabel="Increase Button">
                                 <rect key="frame" x="590" y="406" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" hint="Repeat more times " label="Increment "/>
+                                <accessibility key="accessibilityConfiguration" hint="Repeat more times " label="Increase"/>
                                 <state key="normal" title="Button" image="plus"/>
                                 <connections>
                                     <action selector="plusButtonPressed:" destination="Qcc-AD-WwK" eventType="touchUpInside" id="Lnp-DN-qsy"/>
@@ -950,10 +950,10 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBE-Zo-wct">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBE-Zo-wct" userLabel="Decrease Button">
                                 <rect key="frame" x="333" y="406" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" hint="Repeat fewer times" label="Decrement "/>
+                                <accessibility key="accessibilityConfiguration" hint="Repeat fewer times" label="Decrease"/>
                                 <state key="normal" title="Button" image="minus"/>
                                 <connections>
                                     <action selector="minusButtonPressed:" destination="Qcc-AD-WwK" eventType="touchUpInside" id="5f2-Xa-w9H"/>
@@ -963,6 +963,8 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
+                        <outlet property="decreaseButton" destination="XBE-Zo-wct" id="C7Q-vx-enm"/>
+                        <outlet property="increaseButton" destination="Y5S-qN-qEp" id="IPH-VD-yZI"/>
                         <outlet property="timesToRepeatLabel" destination="off-d0-Hga" id="h2H-Ry-d88"/>
                     </connections>
                 </viewController>
@@ -2072,7 +2074,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tjn-hR-3fo"/>
+        <segue reference="cA8-ae-od9"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>

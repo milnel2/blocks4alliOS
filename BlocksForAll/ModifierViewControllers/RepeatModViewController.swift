@@ -17,6 +17,10 @@ class RepeatModViewController: UIViewController{
     
     @IBOutlet weak var timesToRepeatLabel: UILabel!
     
+    @IBOutlet weak var increaseButton: UIButton!
+    
+    @IBOutlet weak var decreaseButton: UIButton!
+    
     override func viewDidLoad() {
         // default times to repeat: 2 or preserve last selection
         let previousRepsString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["timesToRepeat"] ?? "2"
@@ -32,6 +36,7 @@ class RepeatModViewController: UIViewController{
             // prevents users from repeating more than 20 times (Blockly limit)
             timesToRepeat = timesToRepeat + 1
             timesToRepeatLabel.text = "\(timesToRepeat)"
+            updateAccessibilityLabel()
         }
     }
     @IBAction func minusButtonPressed(_ sender: Any) {
@@ -40,6 +45,7 @@ class RepeatModViewController: UIViewController{
             timesToRepeat = timesToRepeat - 1
         }
         timesToRepeatLabel.text = "\(timesToRepeat)"
+        updateAccessibilityLabel()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -48,4 +54,8 @@ class RepeatModViewController: UIViewController{
         }
     }
     
+    func updateAccessibilityLabel() {
+        increaseButton.accessibilityLabel = "Increase. Current value: \(timesToRepeat)"
+        decreaseButton.accessibilityLabel = "Decrease. Current value: \(timesToRepeat)"
+    }
 }
