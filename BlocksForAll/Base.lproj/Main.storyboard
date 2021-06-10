@@ -894,6 +894,8 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
+                        <outlet property="decreaseButton" destination="je8-kt-IQ9" id="R3b-vN-cwx"/>
+                        <outlet property="increaseButton" destination="CVI-Mg-Hbg" id="nJz-0j-Stm"/>
                         <outlet property="waitLabel" destination="SbS-E8-DcQ" id="POZ-YI-yIQ"/>
                     </connections>
                 </viewController>

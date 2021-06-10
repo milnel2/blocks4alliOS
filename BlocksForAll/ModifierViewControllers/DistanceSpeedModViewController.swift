@@ -72,6 +72,7 @@ class DistanceSpeedModViewController: UIViewController{
         default:
             print("can't be slowed")
         }
+        updateAccessibilityLabel()
     }
     
     //if plus button pressed, speed changes to one more and speed label updated with this value
@@ -92,6 +93,7 @@ class DistanceSpeedModViewController: UIViewController{
         default:
             print("can't make faster")
         }
+        updateAccessibilityLabel()
     }
     
     
@@ -102,5 +104,9 @@ class DistanceSpeedModViewController: UIViewController{
         }
     }
     
+    func updateAccessibilityLabel() {
+        slowButton.accessibilityLabel = "Slower. Current speed: \(speed)"
+        fastButton.accessibilityLabel = "Faster. Current speed: \(speed)"
+    }
     
 }

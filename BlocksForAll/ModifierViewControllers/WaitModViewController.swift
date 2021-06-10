@@ -17,6 +17,10 @@ class WaitModViewController: UIViewController{
     
     @IBOutlet weak var waitLabel: UILabel!
     
+    @IBOutlet weak var increaseButton: UIButton!
+    
+    @IBOutlet weak var decreaseButton: UIButton!
+    
     override func viewDidLoad() {
         // default wait time: 1 second or preserve last selection
         let previousWaitString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["wait"] ?? "1"
@@ -37,6 +41,7 @@ class WaitModViewController: UIViewController{
             wait = wait + 1
             waitLabel.text = "\(wait) seconds"
         }
+        updateAccessibilityLabel()
     }
     @IBAction func minusButtonPressed(_ sender: UIButton) {
         if (wait > 1) {
@@ -47,11 +52,17 @@ class WaitModViewController: UIViewController{
                 waitLabel.text = "\(wait) seconds"
             }
         }
+        updateAccessibilityLabel()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is BlocksViewController{
             functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["wait"] = "\(wait)"
         }
+    }
+    
+    func updateAccessibilityLabel() {
+        increaseButton.accessibilityLabel = "Increase. Current value: \(wait)"
+        decreaseButton.accessibilityLabel = "Decrease. Current value: \(wait)"
     }
 }
