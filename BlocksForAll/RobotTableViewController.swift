@@ -48,7 +48,6 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return robots.count
     }
 
@@ -59,10 +58,10 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         // From WW sample code
         let robot = robots[indexPath.row]
         if(robot.isConnected()){
-            cell.backgroundColor = UIColor.green
             cell.contentView.backgroundColor = UIColor.green
+            cell.accessibilityLabel = "Connected"
+            
         }else{
-            cell.backgroundColor = UIColor.white
             cell.contentView.backgroundColor = UIColor.white
         }
         cell.textLabel?.text = robot.name
