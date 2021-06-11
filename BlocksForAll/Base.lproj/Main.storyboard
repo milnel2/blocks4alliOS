@@ -61,6 +61,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <connections>
+                        <outlet property="addRobots" destination="RT2-NS-4g9" id="o5b-0n-fX1"/>
+                        <outlet property="getStarted" destination="CMD-Kc-2pq" id="a5L-17-cMF"/>
+                        <outlet property="instructions" destination="bed-2B-QED" id="RLo-K8-D4d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVo-bF-iCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
