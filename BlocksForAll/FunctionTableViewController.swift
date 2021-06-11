@@ -123,9 +123,9 @@ class FunctionTableViewController: UITableViewController {
         if let renameIndexPath = tableView.indexPath(for: cell) {
             oldKey.append(functions[renameIndexPath.row])
             let val = functionsDict[functions[renameIndexPath.row]]
-            functionsDict.removeValue(forKey: functions[renameIndexPath.row])
-            functions.remove(at: renameIndexPath.row)
-            tableView.deleteRows(at: [renameIndexPath], with: .automatic)
+//            functionsDict.removeValue(forKey: functions[renameIndexPath.row])
+//            functions.remove(at: renameIndexPath.row)
+//            tableView.deleteRows(at: [renameIndexPath], with: .automatic)
             
         let alert = UIAlertController(title: "Enter function name", message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
@@ -149,6 +149,9 @@ class FunctionTableViewController: UITableViewController {
                     }
                 }
             }
+            functionsDict.removeValue(forKey: self.functions[renameIndexPath.row])
+            self.functions.remove(at: renameIndexPath.row)
+            self.tableView.deleteRows(at: [renameIndexPath], with: .automatic)
             functionsDict.updateValue(val!, forKey: self.functions[self.functions.count - 1])
         }))
         
