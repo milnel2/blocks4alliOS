@@ -195,92 +195,54 @@ class DragAndDropViewController: BlocksViewController, OBDropZone, OBOvumSource 
                 }
             }
         }
-        if !spatialLayout {
-            blocksToAdd.reverse()
+        var count = 0
+        for b in blocksToAdd{
+            let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
             
-            let block = blocksStack[indexPath.row]
+            myView.accessibilityLabel = "Inside " + b.name
+            myView.text = "Inside " + b.name
             
-            //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth))
-            
-            let myView = BlockView.init(frame: CGRect.init(x: 0, y: Int(cell.frame.height)-blockHeight, width: blockWidth, height: blockWidth),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-            myView.isAccessibilityElement = true
-            addAccessibilityLabel(myLabel: myView, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd, spatial: false, interface: 1)
-            //myView.isAccessibilityElement = true
             cell.addSubview(myView)
-
-            if block.name == "If" || block.name == "Repeat" {
-                if block.addedBlocks.isEmpty{
-                    //draw false block
-                    var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.pdf", type: "Boolean")
-                    if block.name == "Repeat"{
-                        placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.pdf", type: "Number")
-                    }
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = "False"
-                    if block.name == "Repeat"{
-                        myConditionLabel.accessibilityLabel = "two times"
-                    }
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
-                }else{
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight, width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+            count += 1
+        }
+        //let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
+        
+        //var movementInfo = "Tap and hold to move block."
+        
+        //add main label
+        let myLabel = BlockView.init(frame: CGRect.init(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockWidth), block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+        addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd, /*interface: 1*/)
+        
+        //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+        //myLabel.isAccessibilityElement = true
+        //myLabel.accessibilityLabel = block.name + blockPlacementInfo + movementInfo
+        //myLabel.picker?.isAccessibilityElement = true
+        cell.addSubview(myLabel)
+        /*if(block.imageName != nil){
+            let imageName = block.imageName!
+            let image = UIImage(named: imageName)
+            let imv = UIImageView.init(image: image)
+            myLabel.addSubview(imv)
+        }*/
+        if block.name == "If" || block.name ==  "Repeat" {
+            if block.addedBlocks.isEmpty{
+                //draw false block
+                var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.pdf", type: "Boolean")
+                if block.name == "Repeat"{
+                    placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.pdf", type: "Number")
                 }
-            }
-            
-            
-        }else {
-            var count = 0
-            for b in blocksToAdd{
-                let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
-                
-                myView.accessibilityLabel = "Inside " + b.name
-                myView.text = "Inside " + b.name
-                
-                cell.addSubview(myView)
-                count += 1
-            }
-            //let blockPlacementInfo = ". Workspace block " + String(indexPath.row + 1) + " of " + String(blocksStack.count)
-            
-            //var movementInfo = "Tap and hold to move block."
-            
-            //add main label
-            let myLabel = BlockView.init(frame: CGRect.init(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockWidth), block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-            addAccessibilityLabel(myLabel: myLabel, block: block, number: indexPath.row + 1, blocksToAdd: blocksToAdd, spatial: true, interface: 1)
-            
-            //let myLabel = createBlock(block, withFrame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-            //myLabel.isAccessibilityElement = true
-            //myLabel.accessibilityLabel = block.name + blockPlacementInfo + movementInfo
-            //myLabel.picker?.isAccessibilityElement = true
-            cell.addSubview(myLabel)
-            /*if(block.imageName != nil){
-                let imageName = block.imageName!
-                let image = UIImage(named: imageName)
-                let imv = UIImageView.init(image: image)
-                myLabel.addSubview(imv)
-            }*/
-            if block.name == "If" || block.name ==  "Repeat" {
-                if block.addedBlocks.isEmpty{
-                    //draw false block
-                    var placeholderBlock = Block(name: "False", color: UIColor.red, double: false, editable: false, imageName: "false.pdf", type: "Boolean")
-                    if block.name == "Repeat"{
-                        placeholderBlock = Block(name: "two times", color: UIColor.red, double: false, editable: false, imageName: "2.pdf", type: "Number")
-                    }
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = "False"
-                    if block.name == "Repeat"{
-                        myConditionLabel.accessibilityLabel = "two times"
-                    }
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
-                }else{
-                    let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-                    myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
-                    myConditionLabel.isAccessibilityElement = true
-                    cell.addSubview(myConditionLabel)
+                let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [placeholderBlock!], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                myConditionLabel.accessibilityLabel = "False"
+                if block.name == "Repeat"{
+                    myConditionLabel.accessibilityLabel = "two times"
                 }
+                myConditionLabel.isAccessibilityElement = true
+                cell.addSubview(myConditionLabel)
+            }else{
+                let myConditionLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block.addedBlocks[0]], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+                myConditionLabel.accessibilityLabel = block.addedBlocks[0].name
+                myConditionLabel.isAccessibilityElement = true
+                cell.addSubview(myConditionLabel)
             }
         }
         addGestureRecognizer(cell)

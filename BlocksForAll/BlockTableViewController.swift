@@ -35,6 +35,7 @@ class BlockTableViewController: UITableViewController {
         self.accessibilityHint = "Double tap from toolbox to add block to workspace"
         
         createBlocksArray()
+        
         //self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"
     }
     
@@ -103,15 +104,38 @@ class BlockTableViewController: UITableViewController {
             for myView in (b2?.subviews)!{
                 if let myBlockView = myView as? BlockView{
                     block = myBlockView.blocks[0].copy()
+                    
                 }
             }
             
+            //If-else
+            if block.tripleCounterpart{
+                let firstBlockName = "If"
+                let firstBlock = Block(name: firstBlockName, color: block.color, double: false, tripleCounterpart: true)
+                firstBlock?.imageName = "If_Else.pdf"
+                firstBlock?.counterpart.append(block)
+                block.counterpart.append(firstBlock ?? block)
+                
+                let middleBlockName = "Else"
+                let middleBlock = Block(name: middleBlockName, color: block.color, double: false, tripleCounterpart: true)
+                middleBlock?.imageName = "Else.pdf"
+                middleBlock?.counterpart.append(block)
+                block.counterpart.append(middleBlock!)
+                print("in triple counterpart")
+
+                let endBlockName = "End If Else"
+                let endBlock = Block(name: endBlockName, color: block.color, double: false, tripleCounterpart: true)
+                endBlock?.counterpart.append(block)
+                block.counterpart.append(endBlock!)
+                myDestination.blocks = [firstBlock!, middleBlock!, endBlock!]
+
+            }
             //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
-            if block.double{
+            else if block.double{
                 let endBlockName = "End " + block.name
-                let endBlock = Block(name: endBlockName, color: block.color, double: true)
-                endBlock?.counterpart = block
-                block.counterpart = endBlock
+                let endBlock = Block(name: endBlockName, color: block.color, double: true, tripleCounterpart: false)
+                endBlock?.counterpart.append(block)
+                block.counterpart.append(endBlock ?? block)
                 myDestination.blocks = [block, endBlock!]
             }else{
                 myDestination.blocks = [block]
@@ -128,9 +152,26 @@ class BlockTableViewController: UITableViewController {
         /*Creating the toolbox by reading in from the .plist file */
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
             // blockTypes is a nsArray object with the contents of the ReleaseBlocksMenu.plist file, type index is an Int Var starts at 0, so it takes the contents of ReleaseBlocksMenu.plist and sets it to blockType as an NSDictionary
+            
+            if (blockType.object(forKey: "type") as? String == "Functions"){
+                var functionsDictToUse = functionsDict
+                functionsDictToUse.removeValue(forKey: "Main Workspace")
+                let functionBlocks = Array(functionsDictToUse.keys)
+                var functionToolBlockArray = [Block]()
+                for function in functionBlocks{
+                    var blockBeingCreated: Block
+                        blockBeingCreated = Block(name: function, color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: false, tripleCounterpart: false)!
+                    blockBeingCreated.type = "Function"
+                    functionToolBlockArray.append(blockBeingCreated)
+                    toolBoxBlockArray += [blockBeingCreated]
+                }
+            }
+
+            
             if let blockArray = blockType.object(forKey: "Blocks") as? NSArray{
                 // creates array from the first object in blocksMenu.plist aka Animals, Controls, Drive, Sounds, etc.
                 for item in blockArray{
+                    print(item)
                     // for block in category Animal, Control, etc.
                     if let dictItem = item as? NSDictionary{
                         // take the block and using it as a dictionary dictItem
@@ -139,20 +180,22 @@ class BlockTableViewController: UITableViewController {
                         if let colorString = dictItem.object(forKey: "color") as? String{
                             let color2 = Color.init(uiColor:UIColor.colorFrom(hexString: colorString))
                             if let double = dictItem.object(forKey: "double") as? Bool{
-                                guard let block = Block(name: name as! String, color: color2 , double: double) else {
-                                    fatalError("Unable to instantiate block")
+                                if let tripleCounterpart = dictItem.object(forKey: "tripleCounterpart") as? Bool{
+                                    guard let block = Block(name: name as! String, color: color2 , double: double, tripleCounterpart: tripleCounterpart)else {
+                                        fatalError("Unable to instantiate block")
+                                    }
+                                    if let imageName = dictItem.object(forKey: "imageName") as? String{
+                                        block.addImage(imageName)
+                                    }
+                                    if let type = dictItem.object(forKey: "type") as? String{
+                                        block.type = type
+                                    }
+                                    if let acceptedTypes = dictItem.object(forKey: "acceptedTypes") as? [String]{
+                                        block.acceptedTypes = acceptedTypes
+                                    }
+                                    toolBoxBlockArray += [block]
+                                    // adds block to the toolbox
                                 }
-                                if let imageName = dictItem.object(forKey: "imageName") as? String{
-                                    block.addImage(imageName)
-                                }
-                                if let type = dictItem.object(forKey: "type") as? String{
-                                    block.type = type
-                                }
-                                if let acceptedTypes = dictItem.object(forKey: "acceptedTypes") as? [String]{
-                                    block.acceptedTypes = acceptedTypes
-                                }
-                                toolBoxBlockArray += [block]
-                                // adds block to the toolbox
                             }
                         }
                     }

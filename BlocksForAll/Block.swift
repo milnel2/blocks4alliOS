@@ -64,7 +64,8 @@ class Block: Codable {
     var name: String
     var color: Color //Color struct rather than UIColor so as to be codable
     var double: Bool //true if needs both beginning and end block like repeat, if
-    var counterpart:Block? //start and end block counterpart for for etc.
+    var counterpart: [Block] = [] //start and end block counterpart for for etc.
+    var tripleCounterpart: Bool //true if there's a block with multiple counterparts
     
     var imageName: String?
     
@@ -78,9 +79,10 @@ class Block: Codable {
     
     //MARK: - json variable
     // From Paul, create a variable for creating the json encoded data, using the self data of the block in question
-    var json: Data? {
+    var jsonVar: Data? {
         let blocksCounterpart = self.counterpart
-        self.counterpart = nil
+        self.counterpart = []
+        // TODO: needs to have altered to work with IfElse blocks properly, right now their counterparts are not stored after a save, need to set each item in the array of counterparts counterparts to nil so it only saves one level and not recursively
         // gets counterpart to be re-added later, then sets the counterpart to nil so its codable
         let jsonString = try? JSONEncoder().encode(self)
         // try to encode self to a JSON object
@@ -91,35 +93,8 @@ class Block: Codable {
     
     
     //MARK: - Initialization
-    
-    init? (json: Data){
-        // initializes a block from a json format data object
-        // below declarations are to provide a default so the actual initialzation could be use, needs to be removed later but can't figure out error that occurs when there is no defualt
-        self.name = "hello"
-        self.color = Color(uiColor: UIColor(white: 0, alpha: 0))
-        self.double = true
-        self.imageName = nil
-        self.addedBlocks = []
-        self.type = "bool"
-        self.acceptedTypes = ["bool"]
-        self.attributes = [String:String]()
-        
-        if let newValue = try? JSONDecoder().decode(Block.self, from: json){
-            // tries to take the json file passed in initialization and set the placeholder block newValue to the information in the
-            self.name = newValue.name
-            // initializes the new block information from the place holder block newValue.... can't remember how this works since it seems the block creation of the new value is recursive....
-            self.color = newValue.color
-            self.double = newValue.double
-            self.imageName = newValue.imageName
-            self.addedBlocks = newValue.addedBlocks
-            self.type = newValue.type
-            self.acceptedTypes = newValue.acceptedTypes
-            self.attributes = newValue.attributes
-        }
-    }
-    
-    
-    init?(name: String, color: Color, double: Bool, imageName: String? = nil, addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
+
+    init?(name: String, color: Color, double: Bool, tripleCounterpart: Bool, imageName: String? = nil, addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
         
         //TODO: check that color is initialized as well
         if name.isEmpty {
@@ -129,6 +104,7 @@ class Block: Codable {
         self.name = name
         self.color = color
         self.double = double
+        self.tripleCounterpart = tripleCounterpart
         self.imageName = imageName
         self.addedBlocks = addedBlocks
         self.type = type
@@ -146,11 +122,10 @@ class Block: Codable {
     
     func copy() -> Block{
         /*Used when selecting a block from the toolbox and copying into workspace*/
-        let newBlock = Block.init(name: self.name, color: self.color, double: self.double, imageName: self.imageName, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes)
+        let newBlock = Block.init(name: self.name, color: self.color, double: self.double, tripleCounterpart: self.tripleCounterpart, imageName: self.imageName, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes)
         return newBlock!
     }
     
-    // from Paul
     func getDocumentsDirectory() -> URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]

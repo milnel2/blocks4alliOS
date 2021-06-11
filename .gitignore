@@ -1,5 +1,5 @@
-admin.xcuserdatad
-info.plist
-BlocksForAll.xcscheme
 
-BlocksForAll.xcodeproj/project.pbxproj
+.DS_Store
+*.xcbkptlist
+*.xcuserstate
+BlocksForAll/Assets.xcassets/.DS_Store

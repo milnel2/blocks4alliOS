@@ -31,11 +31,6 @@ class BlocksTypeTableViewController: UITableViewController {
         blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
         
         createBlocksArray()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func didReceiveMemoryWarning() {
@@ -91,7 +86,7 @@ class BlocksTypeTableViewController: UITableViewController {
                 if let colorString = blockType.object(forKey: "color") as? String{
                     color = Color.init(uiColor: UIColor.colorFrom(hexString: colorString))
                 }
-                guard let block = Block(name: name!, color: color, double: false) else {
+                guard let block = Block(name: name!, color: color, double: false, tripleCounterpart: false) else {
                     fatalError("Unable to instantiate block")
                 }
                 blockTypes += [block]
@@ -117,8 +112,6 @@ class BlocksTypeTableViewController: UITableViewController {
         }
     }
 }
-
-
 
 
 extension UIColor{

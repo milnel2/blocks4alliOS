@@ -23,7 +23,7 @@ class SelectedBlockViewController: UIViewController {
         print("\n")
         print("entered viewDidLoad")
         super.viewDidLoad()
-        self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"
+        self.navigationItem.backBarButtonItem?.accessibilityLabel = "Back"
         
         let myFrame = CGRect(x: 0, y: Int(self.view.bounds.height/2), width: 0, height: 0)
         
@@ -39,7 +39,7 @@ class SelectedBlockViewController: UIViewController {
         self.view.accessibilityLabel = label
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
         
-        delegate?.setSelectedBlocks(blocks!)
+        delegate?.beginMovingBlocks(blocks!)
         delegate?.setParentViewController(self.parent!)
         
     }
@@ -53,7 +53,7 @@ class SelectedBlockViewController: UIViewController {
         super.willMove(toParentViewController: parent)
         if parent == nil {
             // view controller is popping
-            delegate?.unsetBlocks()
+            delegate?.finishMovingBlocks()
         }
     }
     
