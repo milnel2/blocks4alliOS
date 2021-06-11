@@ -21,6 +21,8 @@ class WaitModViewController: UIViewController{
     
     @IBOutlet weak var decreaseButton: UIButton!
     
+    @IBOutlet weak var back: UIButton!
+    
     override func viewDidLoad() {
         // default wait time: 1 second or preserve last selection
         let previousWaitString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["wait"] ?? "1"
@@ -34,6 +36,8 @@ class WaitModViewController: UIViewController{
         }
         
         wait = previousWait!
+        
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
     @IBAction func plusButtonPressed(_ sender: UIButton) {

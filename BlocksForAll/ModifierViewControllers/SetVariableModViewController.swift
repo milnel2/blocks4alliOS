@@ -29,6 +29,7 @@ class SetVariableModViewController: UIViewController {
     @IBOutlet weak var watermelonButton: UIButton!
     @IBOutlet weak var appleButton: UIButton!
 
+    @IBOutlet weak var back: UIButton!
     
     /**
      deselectAll unselects all variables so that only the latest one clicked is highlighted
@@ -187,6 +188,8 @@ class SetVariableModViewController: UIViewController {
         
         // Add touch gesture for contentView
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnTextView(gesture:))))
+        
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
     /** https://appsandbiscuits.com/getting-what-the-user-typed-ios-7-2e56a678e7a7

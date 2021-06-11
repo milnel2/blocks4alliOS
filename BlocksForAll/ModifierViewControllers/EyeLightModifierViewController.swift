@@ -16,6 +16,8 @@ class EyeLightModifierViewController: UIViewController{
     var modifierBlockIndexSender: Int?
     var eyeLightStatus: String = "On"
     
+    @IBOutlet weak var back: UIButton!
+    
     override func viewDidLoad() {
         // default status: On or preserve last selection
         let previousSelection: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] ?? "Off"
@@ -23,6 +25,8 @@ class EyeLightModifierViewController: UIViewController{
         lightLabel.text = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] ?? "Off"
         
         eyeLightStatus = previousSelection
+        
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
     //changes status and label on screen

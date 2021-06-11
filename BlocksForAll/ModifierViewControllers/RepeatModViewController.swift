@@ -21,6 +21,8 @@ class RepeatModViewController: UIViewController{
     
     @IBOutlet weak var decreaseButton: UIButton!
     
+    @IBOutlet weak var back: UIButton!
+    
     override func viewDidLoad() {
         // default times to repeat: 2 or preserve last selection
         let previousRepsString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["timesToRepeat"] ?? "2"
@@ -29,6 +31,8 @@ class RepeatModViewController: UIViewController{
         
         // preserve previously selected value
         timesToRepeat = previousReps!
+        
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
     @IBAction func plusButtonPressed(_ sender: UIButton) {

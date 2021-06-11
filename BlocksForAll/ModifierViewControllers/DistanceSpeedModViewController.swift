@@ -24,6 +24,7 @@ class DistanceSpeedModViewController: UIViewController{
     @IBOutlet weak var fastButton: UIButton!
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var distanceDisplayed: UILabel!
+    @IBOutlet weak var back: UIButton!
     
     override func viewDidLoad() {
         // default speed: Normal or preserve last selection
@@ -39,6 +40,8 @@ class DistanceSpeedModViewController: UIViewController{
         speed = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
         
         distanceDisplayed.accessibilityValue = "Current distance is \(Int(distance)) centimeters"
+        
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
     //updates distance value when slider moved

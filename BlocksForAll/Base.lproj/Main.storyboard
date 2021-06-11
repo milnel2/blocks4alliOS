@@ -350,6 +350,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
+                        <outlet property="back" destination="nKa-YP-2xv" id="aFl-0j-5rs"/>
                         <outlet property="blackButton" destination="iyU-jO-bvk" id="jwX-hD-q0e"/>
                         <outlet property="blueButton" destination="bye-mA-9jc" id="Mpt-ab-iJy"/>
                         <outlet property="greenButton" destination="NR1-3C-bm3" id="VP8-s5-AhO"/>
@@ -727,7 +728,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="hDu-fY-S5y"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MuZ-k8-W3G">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MuZ-k8-W3G">
                                 <rect key="frame" x="847" y="241" width="145" height="145"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Selected Distance"/>
@@ -747,6 +748,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
+                        <outlet property="back" destination="Rqa-ry-KPK" id="tar-dH-76z"/>
                         <outlet property="distanceDisplayed" destination="MuZ-k8-W3G" id="d3b-Fl-LO5"/>
                         <outlet property="distanceSlider" destination="33V-6u-7DC" id="0JE-We-bFu"/>
                         <outlet property="fastButton" destination="X6X-ia-LTz" id="OHL-ID-D61"/>
@@ -817,7 +819,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="90" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52s-Ei-stU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="90" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52s-Ei-stU">
                                 <rect key="frame" x="841" y="335" width="145" height="145"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Angle"/>
@@ -831,6 +833,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                     <connections>
                         <outlet property="angleDisplayed" destination="52s-Ei-stU" id="ztt-0Z-rzi"/>
                         <outlet property="angleSlider" destination="HuR-8Y-sXT" id="ctg-yU-TaL"/>
+                        <outlet property="back" destination="4jM-yw-zZG" id="DcI-pZ-HCm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLF-rh-Lei" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -899,6 +902,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
+                        <outlet property="back" destination="1xg-ms-ubf" id="tN4-yN-XIV"/>
                         <outlet property="decreaseButton" destination="je8-kt-IQ9" id="R3b-vN-cwx"/>
                         <outlet property="increaseButton" destination="CVI-Mg-Hbg" id="nJz-0j-Stm"/>
                         <outlet property="waitLabel" destination="SbS-E8-DcQ" id="POZ-YI-yIQ"/>
@@ -970,6 +974,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
+                        <outlet property="back" destination="eNK-wk-KcV" id="glj-Fh-YRh"/>
                         <outlet property="decreaseButton" destination="XBE-Zo-wct" id="C7Q-vx-enm"/>
                         <outlet property="increaseButton" destination="Y5S-qN-qEp" id="IPH-VD-yZI"/>
                         <outlet property="timesToRepeatLabel" destination="off-d0-Hga" id="h2H-Ry-d88"/>
@@ -1109,6 +1114,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                     <connections>
                         <outlet property="VariableValue" destination="0EE-tA-7aY" id="Rbn-tb-XMp"/>
                         <outlet property="appleButton" destination="rgQ-Jh-7kw" id="3gN-A7-aMs"/>
+                        <outlet property="back" destination="lJh-zd-RGp" id="qTr-vv-bAT"/>
                         <outlet property="bananaButton" destination="Uv9-Kz-RsF" id="d8r-3m-dld"/>
                         <outlet property="cherryButton" destination="e5m-D2-7ru" id="doI-uW-niP"/>
                         <outlet property="orangeButton" destination="GrT-2z-xvO" id="QHV-fO-W9P"/>
@@ -1178,6 +1184,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
+                        <outlet property="back" destination="Isk-8p-Zb9" id="BwH-AS-m69"/>
                         <outlet property="senseButton" destination="9k4-s6-Hn4" id="9rf-uT-l4k"/>
                         <outlet property="voiceButton" destination="Pne-Bh-W0v" id="kHX-xf-Ul2"/>
                     </connections>
@@ -1994,6 +2001,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
+                        <outlet property="back" destination="v0b-pj-PQ9" id="uwC-sN-tUf"/>
                         <outlet property="lightLabel" destination="FIq-QR-T6e" id="G1y-0c-hou"/>
                     </connections>
                 </viewController>
