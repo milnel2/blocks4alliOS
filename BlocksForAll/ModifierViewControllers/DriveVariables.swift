@@ -138,6 +138,7 @@ class DriveVariables: UIViewController {
         default:
             print("can't be slowed")
         }
+        updateAccessibilityLabel()
     }
     
     @IBAction func fastButtonPressed(_ sender: UIButton) {
@@ -157,6 +158,7 @@ class DriveVariables: UIViewController {
         default:
             print("can't make faster")
         }
+        updateAccessibilityLabel()
     }
     
     
@@ -201,4 +203,8 @@ class DriveVariables: UIViewController {
         }
     }
     
+    func updateAccessibilityLabel() {
+        slowButton.accessibilityLabel = "Slower. Current speed: \(speed)"
+        fastButton.accessibilityLabel = "Faster. Current speed: \(speed)"
+    }
 }
