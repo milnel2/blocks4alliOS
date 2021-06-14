@@ -10,6 +10,18 @@ import UIKit
 
 class MainMenuViewController: UIViewController {
 
+    @IBOutlet weak var getStarted: UIButton!
+    
+    @IBOutlet weak var instructions: UIButton!
+    
+    @IBOutlet weak var addRobots: UIButton!
+    
+    override func viewDidLoad() {
+        getStarted.titleLabel?.adjustsFontForContentSizeCategory = true
+        instructions.titleLabel?.adjustsFontForContentSizeCategory = true
+        addRobots.titleLabel?.adjustsFontForContentSizeCategory = true
+    }
+    
     // from Paul Hegarty, lectures 13 and 14
     func getDocumentsDirectory() -> URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)

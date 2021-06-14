@@ -17,9 +17,10 @@ class IfModViewController: UIViewController{
     //default is always false
     var booleanSelected: String = "false"
     
-    
     @IBOutlet weak var voiceButton: UIButton!
     @IBOutlet weak var senseButton: UIButton!
+    
+    @IBOutlet weak var back: UIButton!
     
     //function to guarantee either voiceButton or senseButton highlighted, never both
     func deselectAll(){
@@ -76,6 +77,8 @@ class IfModViewController: UIViewController{
         default:
             senseButton.layer.borderWidth = 0
         }
+        
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

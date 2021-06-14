@@ -24,6 +24,7 @@ class ColorModViewController: UIViewController{
     @IBOutlet weak var blueButton: UIButton!
     @IBOutlet weak var purpleButton: UIButton!
     @IBOutlet weak var whiteButton: UIButton!
+    @IBOutlet weak var back: UIButton!
     
     
     //only one color ever going to be highlighted after this function called
@@ -75,6 +76,8 @@ class ColorModViewController: UIViewController{
         default:
             purpleButton.layer.borderWidth = 0
         }
+        
+        adjustFontSizes()
     }
     
     func selectOrDeselectColor(button: UIButton){
@@ -137,5 +140,16 @@ class ColorModViewController: UIViewController{
             functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["lightColor"] = colorSelected
             functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] = colorSelected
         }
+    }
+    
+    func adjustFontSizes() {
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
+        blackButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        redButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        orangeButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        yellowButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        greenButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        blueButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        purpleButton.titleLabel?.adjustsFontForContentSizeCategory = true
     }
 }

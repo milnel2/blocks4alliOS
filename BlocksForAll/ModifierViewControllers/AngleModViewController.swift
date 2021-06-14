@@ -19,7 +19,9 @@ class AngleModViewController: UIViewController {
     @IBOutlet weak var angleSlider: UISlider!
     @IBOutlet weak var angleDisplayed: UILabel!
     
-    override func viewDidLoad() {        
+    @IBOutlet weak var back: UIButton!
+    
+    override func viewDidLoad() {
         // default angle: 90 or preserve last selection
         let previousAngleString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] ?? "90"
         let previousAngle = Int(previousAngleString)
@@ -29,6 +31,8 @@ class AngleModViewController: UIViewController {
         
         roundedAngle = Float(Double(previousAngle!))
         angleDisplayed.accessibilityValue = "Current angle is \(Int(angle))degrees"
+        
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
     
