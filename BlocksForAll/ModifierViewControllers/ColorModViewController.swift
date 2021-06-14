@@ -151,5 +151,6 @@ class ColorModViewController: UIViewController{
         greenButton.titleLabel?.adjustsFontForContentSizeCategory = true
         blueButton.titleLabel?.adjustsFontForContentSizeCategory = true
         purpleButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        whiteButton.titleLabel?.adjustsFontForContentSizeCategory = true
     }
 }
