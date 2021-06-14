@@ -22,6 +22,7 @@ class TurnVariable: UIViewController {
     @IBOutlet weak var appleTurnButton: UIButton!
     @IBOutlet weak var cherryTurnButton: UIButton!
     @IBOutlet weak var watermelonTurnButton: UIButton!
+    @IBOutlet weak var back: UIButton!
     
     //guarantees only last selected variable is highlighted
     func deselectAllTurns(){
@@ -136,6 +137,8 @@ class TurnVariable: UIViewController {
         default:
             orangeTurnButton.layer.borderWidth = 0
         }
+        
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
         
     

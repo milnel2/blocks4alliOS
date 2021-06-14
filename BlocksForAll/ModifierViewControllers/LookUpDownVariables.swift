@@ -24,7 +24,8 @@ class LookUpDownVariables: UIViewController {
     @IBOutlet weak var cherryButton: UIButton!
     @IBOutlet weak var watermelonButton: UIButton!
     
-
+    @IBOutlet weak var back: UIButton!
+    
     
     func deselectAllUp(){
         orangeButton.layer.borderWidth = 0
@@ -139,6 +140,8 @@ class LookUpDownVariables: UIViewController {
         default:
             orangeButton.layer.borderWidth = 0
         }
+        
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
 

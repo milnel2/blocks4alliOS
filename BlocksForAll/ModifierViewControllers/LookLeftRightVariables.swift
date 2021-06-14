@@ -24,6 +24,7 @@ class LookLeftRightVariables: UIViewController {
     @IBOutlet weak var cherryLookButton: UIButton!
     @IBOutlet weak var watermelonLookButton: UIButton!
     
+    @IBOutlet weak var back: UIButton!
     
     func deselectAllLeft(){
         orangeLookButton.layer.borderWidth = 0
@@ -140,6 +141,8 @@ class LookLeftRightVariables: UIViewController {
         default:
             orangeLookButton.layer.borderWidth = 0
         }
+        
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
     

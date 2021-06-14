@@ -31,6 +31,7 @@ class DriveVariables: UIViewController {
     @IBOutlet weak var fastButton: UIButton!
     @IBOutlet weak var speedLabel: UILabel!
     
+    @IBOutlet weak var back: UIButton!
     
     //guarantees only one variable is visibly selected at once
     func deselectAllDistance(){
@@ -189,6 +190,8 @@ class DriveVariables: UIViewController {
         default:
             orangeDistanceButton.layer.borderWidth = 0
         }
+        
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

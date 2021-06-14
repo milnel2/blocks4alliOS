@@ -1330,6 +1330,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                     </view>
                     <connections>
                         <outlet property="appleDistanceButton" destination="HeO-ti-YFz" id="98j-DJ-HgL"/>
+                        <outlet property="back" destination="Iih-8Y-Qzv" id="ymK-wi-zvT"/>
                         <outlet property="bananaDistanceButton" destination="ypF-Ea-lgn" id="WMn-oT-A4X"/>
                         <outlet property="cherryDistanceButton" destination="IoX-XS-X1x" id="V7m-5O-KS3"/>
                         <outlet property="fastButton" destination="jBY-tV-GhI" id="SWA-mD-ceM"/>
@@ -1453,6 +1454,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                     </view>
                     <connections>
                         <outlet property="appleTurnButton" destination="AxW-nQ-bJf" id="UKp-j2-VSi"/>
+                        <outlet property="back" destination="nlP-Do-HRh" id="MZe-wY-ieB"/>
                         <outlet property="bananaTurnButton" destination="SAR-ES-jhg" id="pZR-lF-wBD"/>
                         <outlet property="cherryTurnButton" destination="9IC-Kx-unA" id="gEf-eJ-8a6"/>
                         <outlet property="orangeTurnButton" destination="por-t8-2aZ" id="3HT-A0-VyS"/>
@@ -1785,6 +1787,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                     </view>
                     <connections>
                         <outlet property="appleButton" destination="dR9-Bd-O6a" id="n86-vn-Chm"/>
+                        <outlet property="back" destination="8yI-Oz-RY0" id="lty-nE-Mqf"/>
                         <outlet property="bananaButton" destination="4q1-vE-soU" id="4yP-Xg-pts"/>
                         <outlet property="cherryButton" destination="bsK-ZT-SLl" id="tB2-Bk-xlf"/>
                         <outlet property="orangeButton" destination="eQd-mf-6EI" id="aNL-sK-ihT"/>
@@ -1919,6 +1922,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                     </view>
                     <connections>
                         <outlet property="appleLookButton" destination="7Y1-ba-EMm" id="mxf-g9-YRg"/>
+                        <outlet property="back" destination="3GE-OP-u2B" id="0g0-zN-m8l"/>
                         <outlet property="bananaLookButton" destination="ISD-H4-eTo" id="bYh-f4-3lP"/>
                         <outlet property="cherryLookButton" destination="lfR-07-Evo" id="w79-aB-9dX"/>
                         <outlet property="orangeLookButton" destination="Z0d-WD-cmP" id="KZf-9Z-8Lo"/>
