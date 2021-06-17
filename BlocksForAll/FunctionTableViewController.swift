@@ -92,10 +92,6 @@ class FunctionTableViewController: UITableViewController {
         cell.nameButton.setTitle(functions[indexPath.row], for: .normal)
         cell.functionTableViewController = self
         
-        cell.nameButton.superview?.bringSubview(toFront: cell.nameButton)
-        cell.renameButton.superview?.bringSubview(toFront: cell.renameButton)
-        cell.deleteButton.superview?.bringSubview(toFront: cell.deleteButton)
-        
 //        let function = functions[indexPath.row]
 //        cell.function = function
 
@@ -109,7 +105,7 @@ class FunctionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-    
+
     //prevents main workspace from being in the functions menu
     func removeMainWorkspace(){
         functions = functions.filter {$0 != "Main Workspace"}

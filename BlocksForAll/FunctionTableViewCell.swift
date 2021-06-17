@@ -74,9 +74,9 @@ class FunctionTableViewCell: UITableViewCell {
     }()
 
     func setUpViews(){
-        addSubview(nameButton)
-        addSubview(deleteButton)
-        addSubview(renameButton)
+        contentView.addSubview(nameButton)
+        contentView.addSubview(deleteButton)
+        contentView.addSubview(renameButton)
         
         deleteButton.addTarget(self, action: #selector(deleteAction(sender:)), for: .touchUpInside)
         nameButton.addTarget(self, action: #selector(nameFunction(sender:)), for: .touchUpInside)
