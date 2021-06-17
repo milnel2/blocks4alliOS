@@ -27,43 +27,52 @@ class FunctionTableViewCell: UITableViewCell {
     @IBOutlet weak var functionView: FunctionView!
     
     //button to delete functions
-    let deleteButton: UIButton = {
-        let button = UIButton(type: .system)
+    let deleteButton: CustomButton = {
+        let button = CustomButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.setTitle("Delete", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        button.backgroundColor = UIColor(red: 1.0, green: CGFloat(60.0/255.0), blue: 0.0, alpha: 1.0)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
+        button.sizeToFit()    //makes button wider with larger text
+        
+        button.backgroundColor = UIColor(red: 1.0, green: CGFloat(60.0/255.0), blue: 0.0, alpha: 1.0)    //red
         button.setTitleColor(.white, for: .normal)
+        
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         return button
     }()
     
     //button to rename functions
-    let renameButton: UIButton = {
-        let button = UIButton(type: .system)
+    let renameButton: CustomButton = {
+        let button = CustomButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.setTitle("Rename", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        button.backgroundColor = UIColor(red: 0.0, green: CGFloat(166.0/255.0), blue: 1.0, alpha: 1.0)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
+        button.sizeToFit()   //makes button wider with larger text
+        
+        button.backgroundColor = UIColor(red: 0.0, green: CGFloat(166.0/255.0), blue: 1.0, alpha: 1.0)   //blue
         button.setTitleColor(.white, for: .normal)
+        
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         return button
     }()
     
     //button for initial naming of function
-    let nameButton: UIButton = {
-        let button = UIButton(type: .system)
+    let nameButton: CustomButton = {
+        let button = CustomButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.setTitle("Sample Function", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        //Same color as function blocks
-        button.backgroundColor = UIColor(red: 1.0, green: CGFloat(147.0/255.0), blue: 0.0, alpha: 1.0)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
+        
+        button.backgroundColor = UIColor(red: 1.0, green: CGFloat(147.0/255.0), blue: 0.0, alpha: 1.0)    //Same color as function blocks
         button.setTitleColor(.white, for: .normal)
+        
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         return button
     }()
 
-    //organizes function name to be in center of row, rename and delete at end.
     func setUpViews(){
         addSubview(nameButton)
         addSubview(deleteButton)
@@ -73,8 +82,10 @@ class FunctionTableViewCell: UITableViewCell {
         nameButton.addTarget(self, action: #selector(nameFunction(sender:)), for: .touchUpInside)
         renameButton.addTarget(self, action: #selector(renameFunction(sender:)), for: .touchUpInside)
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]-8-[v1(80)]-8-[v2(80)]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameButton, "v1": renameButton, "v2": deleteButton]))
+        //organizes function name to be in center of row, rename and delete at end.
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]-8-[v1]-8-[v2]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameButton, "v1": renameButton, "v2": deleteButton]))
 
+        //Center buttons vertically in tableView cell (with padding)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[v0]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameButton]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[v0]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": deleteButton]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[v0]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": renameButton]))
@@ -84,12 +95,12 @@ class FunctionTableViewCell: UITableViewCell {
         print("tapped")
         functionTableViewController?.deleteCell(cell: self)
     }
-    
+
     @objc func nameFunction(sender: UIButton){
         print("tapped")
         functionTableViewController?.blockModifier(cell: self, sender: nil)
     }
-    
+
     @objc func renameFunction(sender: UIButton){
         print("tapped")
         functionTableViewController?.renameCell(cell: self)

@@ -32,8 +32,6 @@ class FunctionTableViewController: UITableViewController {
         removeMainWorkspace()
         
         self.tableView.register(FunctionTableViewCell.self, forCellReuseIdentifier: "FunctionTableViewCell")
-
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -102,6 +100,14 @@ class FunctionTableViewController: UITableViewController {
 //        cell.function = function
 
         return cell
+    }
+    
+    //Cell auto-resizes based on accessibility font
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     //prevents main workspace from being in the functions menu

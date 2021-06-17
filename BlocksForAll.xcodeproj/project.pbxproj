@@ -24,6 +24,7 @@
 		844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */; };
 		844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */; };
 		84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */; };
+		A9937EA9267BAB3B00A56E8A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9937EA8267BAB3B00A56E8A /* CustomButton.swift */; };
 		D8DFD3FF234E538C00874892 /* WWRobotAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12116981EA7E0DD009976B1 /* WWRobotAPI.framework */; };
 		F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */; };
 		F10F71691E65BFF50049F3AA /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71681E65BFF50049F3AA /* Block.swift */; };
@@ -77,6 +78,7 @@
 		844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewCell.swift; sourceTree = "<group>"; };
 		844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewController.swift; sourceTree = "<group>"; };
 		84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeLightModifierViewController.swift; sourceTree = "<group>"; };
+		A9937EA8267BAB3B00A56E8A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewController.swift; sourceTree = "<group>"; };
 		F10F71681E65BFF50049F3AA /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlocksForAll-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */,
 				844EAEF322E60CBB00BB1A62 /* FunctionView.swift */,
 				F18FEEDB1EB115AF007C15B8 /* Helper */,
+				A9937EA8267BAB3B00A56E8A /* CustomButton.swift */,
 			);
 			path = BlocksForAll;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				02FE3BCC22DCE501000C7C66 /* LookLeftRightVariables.swift in Sources */,
 				02FE3BCB22DCE4FE000C7C66 /* WheelVariables.swift in Sources */,
 				02FE3BCA22DCE4FB000C7C66 /* TurnVariable.swift in Sources */,
+				A9937EA9267BAB3B00A56E8A /* CustomButton.swift in Sources */,
 				02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */,
 				025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */,
 				844EAEF622E60CBB00BB1A62 /* FunctionView.swift in Sources */,
