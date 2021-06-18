@@ -114,9 +114,21 @@ class FunctionTableViewController: UITableViewController {
     //deletes a row from functions menu and gets rid of this function's values
     func deleteCell(cell: UITableViewCell) {
         if let deletionIndexPath = tableView.indexPath(for: cell) {
+            oldKey.append(functions[deletionIndexPath.row])
             functionsDict.removeValue(forKey: functions[deletionIndexPath.row])
             functions.remove(at: deletionIndexPath.row)
             tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
+            
+            //Removes deleted function blocks from main workspace
+            for function in functionsDict.keys{
+                for block in functionsDict[function]!{
+                    for oldFunctionName in self.oldKey{
+                        if block.name == oldFunctionName{
+                            functionsDict[function]!.remove(at: functionsDict[function]!.firstIndex{$0 === block}!)
+                        }
+                    }
+                }
+            }
         }
     }
     
