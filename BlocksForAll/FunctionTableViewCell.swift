@@ -30,7 +30,7 @@ class FunctionTableViewCell: UITableViewCell {
     let deleteButton: CustomButton = {
         let button = CustomButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.setTitle("Delete", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
         button.sizeToFit()    //makes button wider with larger text
         
         button.backgroundColor = UIColor(red: 1.0, green: CGFloat(60.0/255.0), blue: 0.0, alpha: 1.0)    //red
@@ -46,7 +46,7 @@ class FunctionTableViewCell: UITableViewCell {
     let renameButton: CustomButton = {
         let button = CustomButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.setTitle("Rename", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
         button.sizeToFit()   //makes button wider with larger text
         
         button.backgroundColor = UIColor(red: 0.0, green: CGFloat(166.0/255.0), blue: 1.0, alpha: 1.0)   //blue
@@ -62,7 +62,7 @@ class FunctionTableViewCell: UITableViewCell {
     let nameButton: CustomButton = {
         let button = CustomButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.setTitle("Sample Function", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
         
         button.backgroundColor = UIColor(red: 1.0, green: CGFloat(147.0/255.0), blue: 0.0, alpha: 1.0)    //Same color as function blocks
         button.setTitleColor(.white, for: .normal)
