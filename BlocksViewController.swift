@@ -122,13 +122,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         super.viewDidAppear(animated)
         
         //Orders contents of workspace to be more intuitive with Switch Control
-        workspaceContainerView.accessibilityElements = [ workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, buttonsStackView!]
+        workspaceContainerView.accessibilityElements = [workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, buttonsStackView!]
 
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        workspaceNameLabel.text = currentWorkspace
+        if currentWorkspace != "Main Workspace" {
+            workspaceNameLabel.text = "\(currentWorkspace) Function"
+        }
         self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
@@ -139,8 +141,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         clearAllButton.layer.cornerRadius = 10
         
         if workspaceNameLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
-            let startBlock = Block.init(name: "Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
-            let endBlock = Block.init(name: "Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
+            let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
+            let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
             startBlock!.counterpart = [endBlock!]
             endBlock!.counterpart = [startBlock!]
             functionsDict[currentWorkspace]?.append(startBlock!)
@@ -537,8 +539,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             for b in blocksToAdd{
                 let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
                 
-                myView.accessibilityLabel = "Inside " + b.name
-                myView.text = "Inside " + b.name
+                if b.name.contains("Function Start") {
+                    myView.accessibilityLabel = "Inside \(currentWorkspace) function"
+                    myView.text = "Inside \(currentWorkspace) function"
+                }
+                else {
+                    myView.accessibilityLabel = "Inside " + b.name
+                    myView.text = "Inside " + b.name
+                }
                 
                 cell.addSubview(myView)
                 count += 1
