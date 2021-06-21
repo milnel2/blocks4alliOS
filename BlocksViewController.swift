@@ -31,29 +31,24 @@ protocol BlockSelectionDelegate{
 
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
-    
-    @IBOutlet weak var clearAllButton: UIButton!
-    
-    @IBOutlet weak var functionsMenuButton: UIButton!
+    //Larger views
+    @IBOutlet var mainView: UIView!
+    @IBOutlet weak var workspaceContainerView: UIView!
+    @IBOutlet weak var toolboxView: UIView!
+
+    //The three main workspace menu buttons
+    @IBOutlet weak var buttonsStackView: UIStackView!
+    @IBOutlet weak var mainMenuButton: CustomButton!
+    @IBOutlet weak var functionsMenuButton: CustomButton!
+    @IBOutlet weak var clearAllButton: CustomButton!
     
     @IBOutlet weak var playTrashToggleButton: UIButton!
-    
-    @IBOutlet weak var mainMenuButton: UIButton!
     
     @IBOutlet weak var workspaceNameLabel: UILabel!
     
     /// view on bottom of screen that shows blocks in workspace
     @IBOutlet weak var blocksProgram: UICollectionView!
-    
-    @IBOutlet weak var containerView: UIView!
-    
-    @IBOutlet weak var toolboxView: UIView!
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        containerView.accessibilityElements = [toolboxView!, workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, mainMenuButton!, functionsMenuButton!, clearAllButton!]
-    }
+
     
     var movingBlocks = false
     /// blocks currently being moved (includes nested blocks)
@@ -122,6 +117,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //Orders contents of workspace to be more intuitive with Switch Control
+        workspaceContainerView.accessibilityElements = [ workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, buttonsStackView!]
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,6 +132,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
+        
+        //Makes buttons rounded
+        mainMenuButton.layer.cornerRadius = 10
+        functionsMenuButton.layer.cornerRadius = 10
+        clearAllButton.layer.cornerRadius = 10
         
         if workspaceNameLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
             let startBlock = Block.init(name: "Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
