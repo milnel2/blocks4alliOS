@@ -113,8 +113,30 @@ class FunctionTableViewController: UITableViewController {
     
     //deletes a row from functions menu and gets rid of this function's values
     func deleteCell(cell: UITableViewCell) {
+        
         if let deletionIndexPath = tableView.indexPath(for: cell) {
             oldKey.append(functions[deletionIndexPath.row])
+
+            // Declare Alert message
+            let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+            
+            // Create Yes button with action handler
+            let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+                 print("yes button tapped")
+            })
+            
+            // Create Cancel button with action handlder
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel button tapped")
+            }
+            //Add OK and Cancel button to dialog message
+            dialogMessage.addAction(yes)
+            dialogMessage.addAction(cancel)
+            
+            // Present dialog message to user
+            self.present(dialogMessage, animated: true, completion: nil)
+        
+        
             functionsDict.removeValue(forKey: functions[deletionIndexPath.row])
             functions.remove(at: deletionIndexPath.row)
             tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
