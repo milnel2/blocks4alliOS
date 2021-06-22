@@ -124,6 +124,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //Orders contents of workspace to be more intuitive with Switch Control
         workspaceContainerView.accessibilityElements = [workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, buttonsStackView!]
 
+        workspaceContainerView.bringSubview(toFront: workspaceNameLabel)
     }
 
     override func viewDidLoad() {
