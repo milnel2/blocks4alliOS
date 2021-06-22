@@ -32,6 +32,8 @@ class DistanceSpeedModViewController: UIViewController{
         let previousDistance = Int(previousDistanceString)
         distanceDisplayed.text = "\(previousDistance ?? 30)"
         distanceSlider.setValue(Float(previousDistance!), animated: true)
+        distanceSlider.accessibilityValue = "\(previousDistance ?? 30) centimeters"
+        
         // preserve previously selected value
         distance = Double(previousDistance!)
         

@@ -680,7 +680,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 angleButton.tag = indexPath.row
                 angleButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
-                angleButton.setTitle("\(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
+                
+                //Title: <angle>°
+                angleButton.setTitle("\(block.addedBlocks[0].attributes["angle"]!)\u{00B0}", for: .normal)
+                
                 angleButton.addTarget(self, action: #selector(angleModifier(sender:)), for: .touchUpInside)
                 angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
                 angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
