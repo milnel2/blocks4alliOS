@@ -80,6 +80,7 @@ class BlockView: UIView, UITextFieldDelegate {
             myLabel.textColor = UIColor.white
             myLabel.font = UIFont.preferredFont(forTextStyle: .title2)
             myLabel.numberOfLines = 0
+            myLabel.adjustsFontForContentSizeCategory = true
             myView.addSubview(myLabel)
         }
         return myView

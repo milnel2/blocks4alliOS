@@ -27,6 +27,8 @@ class AngleModViewController: UIViewController {
         let previousAngle = Int(previousAngleString)
         angleDisplayed.text = "\(previousAngle ?? 90)"
         angleSlider.setValue(Float(previousAngle!), animated: false)
+        angleSlider.accessibilityValue = "\(previousAngle ?? 90) degrees"
+        
         // preserves previously selected value
         
         roundedAngle = Float(Double(previousAngle!))
