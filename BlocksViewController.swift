@@ -688,10 +688,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
                 if block.addedBlocks.isEmpty{
                     // Creates button to allow light color change.
-                    // MARK: Blockly default color is purple
-                    let initialColor = "purple"
+                    // MARK: Blockly default color is yellow
+                    let initialColor = "yellow"
                     
-                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.purple) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.yellow) , double: false, tripleCounterpart: false, type: "Boolean")
                     
                     placeholderBlock?.addAttributes(key: "lightColor", value: initialColor)
                     // MARK: modifier block color changes to what was selected
@@ -1156,7 +1156,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if color.elementsEqual("white"){
             return UIColor.white
         }
-        return UIColor.purple // default color
+        return UIColor.yellow //default color
     }
     
     func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
