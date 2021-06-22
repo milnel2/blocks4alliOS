@@ -146,9 +146,13 @@ class SetVariableModViewController: UIViewController {
     
     var activeField: UITextField?
     
-  
     @objc override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Makes text field easier to select with Voice Control
+        if #available(iOS 13.0, *) {
+            VariableValue.accessibilityUserInputLabels = ["Value"]
+        }
         
         //previous set variable makes sure that when reloaded, the previously selected variable is still highlighted
         let previousSetVariable: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"

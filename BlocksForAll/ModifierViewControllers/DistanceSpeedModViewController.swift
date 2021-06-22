@@ -27,6 +27,12 @@ class DistanceSpeedModViewController: UIViewController{
     @IBOutlet weak var back: UIButton!
     
     override func viewDidLoad() {
+        //Makes buttons easier to select with Voice Control
+        if #available(iOS 13.0, *) {
+            slowButton.accessibilityUserInputLabels = ["Slower"]
+            fastButton.accessibilityUserInputLabels = ["Faster"]
+        }
+        
         // default speed: Normal or preserve last selection
         let previousDistanceString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
         let previousDistance = Int(previousDistanceString)

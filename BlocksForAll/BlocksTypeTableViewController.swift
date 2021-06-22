@@ -66,6 +66,11 @@ class BlocksTypeTableViewController: UITableViewController {
         //cell.bounds.height = 200
         cell.accessibilityLabel = blockType.name + " category"
         cell.accessibilityHint = "Double tap to explore blocks in this category"
+        
+        if #available(iOS 13.0, *) {
+            cell.accessibilityUserInputLabels = ["\(blockType.name)"]
+        }
+        
         return cell
     }
     

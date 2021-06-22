@@ -164,6 +164,12 @@ class DriveVariables: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Makes buttons easier to select with Voice Control
+        if #available(iOS 13.0, *) {
+            slowButton.accessibilityUserInputLabels = ["Slower"]
+            fastButton.accessibilityUserInputLabels = ["Faster"]
+        }
     
         // preserves previously selected distance variable and speed value 
         speedLabel.text = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
