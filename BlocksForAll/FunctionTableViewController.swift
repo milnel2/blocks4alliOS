@@ -122,7 +122,21 @@ class FunctionTableViewController: UITableViewController {
             
             // Create Yes button with action handler
             let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
-                 print("yes button tapped")
+                print("yes button tapped")
+                functionsDict.removeValue(forKey: self.functions[deletionIndexPath.row])
+                self.functions.remove(at: deletionIndexPath.row)
+                self.tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
+                
+                //Removes deleted function blocks from main workspace
+                for function in functionsDict.keys{
+                    for block in functionsDict[function]!{
+                        for oldFunctionName in self.oldKey{
+                            if block.name == oldFunctionName{
+                                functionsDict[function]!.remove(at: functionsDict[function]!.firstIndex{$0 === block}!)
+                            }
+                        }
+                    }
+                }
             })
             
             // Create Cancel button with action handlder
@@ -137,20 +151,7 @@ class FunctionTableViewController: UITableViewController {
             self.present(dialogMessage, animated: true, completion: nil)
         
         
-            functionsDict.removeValue(forKey: functions[deletionIndexPath.row])
-            functions.remove(at: deletionIndexPath.row)
-            tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
             
-            //Removes deleted function blocks from main workspace
-            for function in functionsDict.keys{
-                for block in functionsDict[function]!{
-                    for oldFunctionName in self.oldKey{
-                        if block.name == oldFunctionName{
-                            functionsDict[function]!.remove(at: functionsDict[function]!.firstIndex{$0 === block}!)
-                        }
-                    }
-                }
-            }
         }
     }
     
