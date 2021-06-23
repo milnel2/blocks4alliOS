@@ -42,8 +42,8 @@ class ColorModViewController: UIViewController{
     
     override func viewDidLoad() {
         // default color: Purple or preserve last selection
-        let previousLightColor: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["lightColor"] ?? "purple"
-        let previousModifierBlockColor = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] ?? "purple"
+        let previousLightColor: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["lightColor"] ?? "yellow"
+        let previousModifierBlockColor = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] ?? "yellow"
         
         colorSelected = previousLightColor
         colorSelected = previousModifierBlockColor
@@ -74,7 +74,7 @@ class ColorModViewController: UIViewController{
             orangeButton.layer.borderWidth = 10
             orangeButton.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
         default:
-            purpleButton.layer.borderWidth = 0
+            yellowButton.layer.borderWidth = 0
         }
         
         adjustFontSizes()

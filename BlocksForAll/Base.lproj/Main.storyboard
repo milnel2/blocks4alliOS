@@ -2064,7 +2064,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="hNp-po-htE" userLabel="Function Table View Controller" customClass="FunctionTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QmC-VP-0hq">
-                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <rect key="frame" x="0.0" y="0.0" width="704" height="770"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -2140,7 +2140,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hQ1-ks-vYz"/>
+        <segue reference="tEr-9n-TQZ"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="s7f-fy-WFP"/>
     </inferredMetricsTieBreakers>
