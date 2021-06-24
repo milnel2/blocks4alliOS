@@ -300,7 +300,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             stopIsOption = true
             changePlayTrashButton()
             play(functionsDictToPlay: functionsDict)
-            //calls RobotControllerViewController play function which
+            //Calls RobotControllerViewController play function
         }
     }
     

@@ -132,8 +132,10 @@ class ExecutingProgram {
         self.variablesDict["melon"] = 0.0
         self.variablesDict["orange"] = 0.0
         // initializes the variablesDictionary with the five variables we currently have in place and sets them to 0
-        self.currentFunction = "Main Workspace"
-//        self.blocksToExec = functionsDictToExec[currentFunction]!
+        self.currentFunction = currentWorkspace
+        //Either main workspace or a user-created function
+        
+        //self.blocksToExec = functionsDictToExec[currentFunction]!
         self.positions = [(currentFunction, 0)]
     }
     
