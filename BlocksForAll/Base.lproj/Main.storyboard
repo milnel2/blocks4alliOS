@@ -401,7 +401,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="YEE-PZ-SjD" kind="show" id="s7f-fy-WFP"/>
+                                                    <action selector="goToMainMenu:" destination="uoc-nU-c4a" eventType="touchUpInside" id="ydH-sT-g1W"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yBH-LX-xHN" customClass="CustomButton" customModule="BlocksForAll" customModuleProvider="target">
@@ -550,6 +550,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <segue destination="L98-PY-VOB" kind="show" identifier="wheelModifier" id="SiH-fe-zvu"/>
                         <segue destination="yNb-Cd-YlI" kind="show" identifier="lookUpDownModifier" id="z8t-BU-cQf"/>
                         <segue destination="o6a-kf-Lsq" kind="show" identifier="lookLeftRightModifier" id="mZm-Fl-nr3"/>
+                        <segue destination="YEE-PZ-SjD" kind="show" identifier="toMainMenu" id="XsQ-5G-ZnB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W32-Q3-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2138,11 +2139,19 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
             </objects>
             <point key="canvasLocation" x="-438.28125" y="-1227.34375"/>
         </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="cS1-mx-kwp">
+            <objects>
+                <viewControllerPlaceholder id="Cxp-3J-pfY" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cgI-OQ-2dO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-488" y="-891"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tEr-9n-TQZ"/>
+        <segue reference="hQ1-ks-vYz"/>
         <segue reference="PIe-sL-Fqa"/>
-        <segue reference="s7f-fy-WFP"/>
+        <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Apple" width="100" height="100"/>

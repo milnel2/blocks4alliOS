@@ -131,7 +131,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         super.viewDidLoad()
         if currentWorkspace != "Main Workspace" {
             workspaceNameLabel.text = "\(currentWorkspace) Function"
+            mainMenuButton.setTitle("Main Workspace", for: .normal)
         }
+        
         self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
@@ -172,6 +174,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     }
 
+    @IBAction func goToMainMenu(_ sender: CustomButton) {
+        if currentWorkspace == "Main Workspace" {
+            performSegue(withIdentifier: "toMainMenu", sender: self)
+        } else {
+            currentWorkspace = "Main Workspace"
+            //self.view.setNeedsLayout()
+            //self.view.layoutIfNeeded()
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -215,6 +226,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             save()
         }
     }
+    
+    
     
     /// Alerts the user that all the blocks will be deleted. If user selects yes, blocks in current function are delected
     /// - Parameter sender: Clear All button
