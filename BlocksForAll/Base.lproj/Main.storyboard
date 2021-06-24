@@ -366,7 +366,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Blocks View Controller-->
         <scene sceneID="xPO-0B-V5c">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="uoc-nU-c4a" customClass="BlocksViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainWorkspace" modalPresentationStyle="fullScreen" id="uoc-nU-c4a" customClass="BlocksViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w5A-1f-CL8"/>
                         <viewControllerLayoutGuide type="bottom" id="sdp-BB-7Wl"/>
@@ -401,7 +401,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="goToMainMenu:" destination="uoc-nU-c4a" eventType="touchUpInside" id="ydH-sT-g1W"/>
+                                                    <action selector="goToMainMenuOrWorkspace:" destination="uoc-nU-c4a" eventType="touchUpInside" id="lmI-Ym-7rW"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yBH-LX-xHN" customClass="CustomButton" customModule="BlocksForAll" customModuleProvider="target">
@@ -551,6 +551,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <segue destination="yNb-Cd-YlI" kind="show" identifier="lookUpDownModifier" id="z8t-BU-cQf"/>
                         <segue destination="o6a-kf-Lsq" kind="show" identifier="lookLeftRightModifier" id="mZm-Fl-nr3"/>
                         <segue destination="YEE-PZ-SjD" kind="show" identifier="toMainMenu" id="XsQ-5G-ZnB"/>
+                        <segue destination="Cxp-3J-pfY" kind="show" identifier="mainToMain" id="vzO-l2-EmX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W32-Q3-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2139,17 +2140,20 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
             </objects>
             <point key="canvasLocation" x="-438.28125" y="-1227.34375"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--mainWorkspace-->
         <scene sceneID="cS1-mx-kwp">
             <objects>
-                <viewControllerPlaceholder id="Cxp-3J-pfY" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="mainWorkspace" id="Cxp-3J-pfY" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="s86-Jh-lqT"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgI-OQ-2dO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-488" y="-891"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hQ1-ks-vYz"/>
+        <segue reference="mZm-Fl-nr3"/>
+        <segue reference="bjZ-FF-gPg"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
