@@ -603,7 +603,6 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                 <connections>
                                     <outlet property="blockView" destination="aFZ-xN-h8Z" id="47o-YN-F3j"/>
                                     <outlet property="nameLabel" destination="nml-mO-L4d" id="sWN-Fl-DGN"/>
-                                    <segue destination="R6q-tf-1pR" kind="show" id="osd-bs-nWx"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -615,6 +614,10 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                     <navigationItem key="navigationItem" id="3NK-g5-B9N">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Qbf-MI-927"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="R6q-tf-1pR" kind="show" identifier="blockSelected" id="LmU-bK-FPw"/>
+                        <segue destination="HGb-qL-brd" kind="presentation" identifier="createFunctionPressed" modalPresentationStyle="fullScreen" id="YGB-Zo-qhq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P15-Pw-S0V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -680,7 +683,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="qsn-gg-TPc" kind="show" id="ekI-8a-VBt"/>
+                                    <segue destination="qsn-gg-TPc" kind="show" id="9tr-Ys-Myf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2152,8 +2155,8 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mZm-Fl-nr3"/>
-        <segue reference="bjZ-FF-gPg"/>
+        <segue reference="YGB-Zo-qhq"/>
+        <segue reference="ebu-O5-0hJ"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>

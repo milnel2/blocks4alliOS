@@ -76,10 +76,15 @@ class BlockTableViewController: UITableViewController {
         
         let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockWidth)
         cell.accessibilityLabel = block.name
-        cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
+        
+        if block.name == "Create/Edit Functions" {
+            cell.accessibilityHint = "Double tap to go to functions menu."
+        }
+        else {
+            cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
+        }
         
         cell.addSubview(myView)
-        //cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
         
         return cell
     }
@@ -89,58 +94,71 @@ class BlockTableViewController: UITableViewController {
         return CGFloat(blockWidth + blockSpacing)
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let block = toolBoxBlockArray[(tableView.indexPathForSelectedRow?.row)!]
+        //If Create/Edit Functions button is pressed, segues to functions menu
+        if block.name == "Create/Edit Functions" {
+            performSegue(withIdentifier: "createFunctionPressed", sender: self)
+        }
+        //Otherwise, segues to selectedBlockViewController
+        else {
+            performSegue(withIdentifier: "blockSelected", sender: self)
+        }
+    }
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         // Letting destination controller know which blocks type was picked
-        if let myDestination = segue.destination as? SelectedBlockViewController{
-            //copy to ensure that you get a new id for each block
-            let b2 = tableView.cellForRow(at: tableView.indexPathForSelectedRow!)
-            var block = toolBoxBlockArray[(tableView.indexPathForSelectedRow?.row)!].copy()
-            for myView in (b2?.subviews)!{
-                if let myBlockView = myView as? BlockView{
-                    block = myBlockView.blocks[0].copy()
+        if segue.identifier == "blockSelected" {
+            if let myDestination = segue.destination as? SelectedBlockViewController{
+                //copy to ensure that you get a new id for each block
+                let b2 = tableView.cellForRow(at: tableView.indexPathForSelectedRow!)
+                var block = toolBoxBlockArray[(tableView.indexPathForSelectedRow?.row)!].copy()
+                for myView in (b2?.subviews)!{
+                    if let myBlockView = myView as? BlockView{
+                        block = myBlockView.blocks[0].copy()
+                        
+                    }
+                }
+                
+                //If-else
+                if block.tripleCounterpart{
+                    let firstBlockName = "If"
+                    let firstBlock = Block(name: firstBlockName, color: block.color, double: false, tripleCounterpart: true)
+                    firstBlock?.imageName = "If_Else.pdf"
+                    firstBlock?.counterpart.append(block)
+                    block.counterpart.append(firstBlock ?? block)
+                    
+                    let middleBlockName = "Else"
+                    let middleBlock = Block(name: middleBlockName, color: block.color, double: false, tripleCounterpart: true)
+                    middleBlock?.imageName = "Else.pdf"
+                    middleBlock?.counterpart.append(block)
+                    block.counterpart.append(middleBlock!)
+                    print("in triple counterpart")
+                    
+                    let endBlockName = "End If Else"
+                    let endBlock = Block(name: endBlockName, color: block.color, double: false, tripleCounterpart: true)
+                    endBlock?.counterpart.append(block)
+                    block.counterpart.append(endBlock!)
+                    myDestination.blocks = [firstBlock!, middleBlock!, endBlock!]
                     
                 }
+                //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
+                else if block.double{
+                    let endBlockName = "End " + block.name
+                    let endBlock = Block(name: endBlockName, color: block.color, double: true, tripleCounterpart: false)
+                    endBlock?.counterpart.append(block)
+                    block.counterpart.append(endBlock ?? block)
+                    myDestination.blocks = [block, endBlock!]
+                }else{
+                    myDestination.blocks = [block]
+                }
+                myDestination.delegate = self.delegate
             }
-            
-            //If-else
-            if block.tripleCounterpart{
-                let firstBlockName = "If"
-                let firstBlock = Block(name: firstBlockName, color: block.color, double: false, tripleCounterpart: true)
-                firstBlock?.imageName = "If_Else.pdf"
-                firstBlock?.counterpart.append(block)
-                block.counterpart.append(firstBlock ?? block)
-                
-                let middleBlockName = "Else"
-                let middleBlock = Block(name: middleBlockName, color: block.color, double: false, tripleCounterpart: true)
-                middleBlock?.imageName = "Else.pdf"
-                middleBlock?.counterpart.append(block)
-                block.counterpart.append(middleBlock!)
-                print("in triple counterpart")
-
-                let endBlockName = "End If Else"
-                let endBlock = Block(name: endBlockName, color: block.color, double: false, tripleCounterpart: true)
-                endBlock?.counterpart.append(block)
-                block.counterpart.append(endBlock!)
-                myDestination.blocks = [firstBlock!, middleBlock!, endBlock!]
-
-            }
-            //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
-            else if block.double{
-                let endBlockName = "End " + block.name
-                let endBlock = Block(name: endBlockName, color: block.color, double: true, tripleCounterpart: false)
-                endBlock?.counterpart.append(block)
-                block.counterpart.append(endBlock ?? block)
-                myDestination.blocks = [block, endBlock!]
-            }else{
-                myDestination.blocks = [block]
-            }
-            myDestination.delegate = self.delegate
         }
     }
     
@@ -158,6 +176,13 @@ class BlockTableViewController: UITableViewController {
                 functionsDictToUse.removeValue(forKey: "Main Workspace")
                 let functionBlocks = Array(functionsDictToUse.keys)
                 var functionToolBlockArray = [Block]()
+                
+                //Adds Create/Edit Functions button to Functions category
+                let createFunctionBlock = Block(name: "Create/Edit Functions", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#00A6FF")), double: false, tripleCounterpart: false)!
+                createFunctionBlock.type = "Function"
+                functionToolBlockArray.append(createFunctionBlock)
+                toolBoxBlockArray += [createFunctionBlock]
+                
                 for function in functionBlocks{
                     var blockBeingCreated: Block
                         blockBeingCreated = Block(name: function, color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: false, tripleCounterpart: false)!
