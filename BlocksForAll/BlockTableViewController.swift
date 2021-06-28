@@ -25,6 +25,7 @@ class BlockTableViewController: UITableViewController {
     
     //MARK: - viewDidLoad function
     override func viewDidLoad() {
+    
         super.viewDidLoad()
         //self.title = "Toolbox"
         
@@ -76,6 +77,91 @@ class BlockTableViewController: UITableViewController {
         
         let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockWidth)
         cell.accessibilityLabel = block.name
+        
+
+        
+        if #available (iOS 13.0, *)
+        {
+            if self.title == "Animals" {
+
+            var voicecontrollerlabel = block.name
+                let wordToRemove = "Make "
+                if let range = voicecontrollerlabel.range(of: wordToRemove){
+                    voicecontrollerlabel.removeSubrange(range)}
+
+                var voicecontrollerlabel2 = voicecontrollerlabel
+                let wordToRemove2 = " Noise"
+                    if let range = voicecontrollerlabel2.range(of: wordToRemove2) {
+                    voicecontrollerlabel2.removeSubrange(range)}
+
+                cell.accessibilityUserInputLabels = ["\(voicecontrollerlabel)", "\(block.name)", "\(voicecontrollerlabel2)"]
+    
+            }
+    
+            else if self.title == "Control"{
+                if block.name == "Wait for Time"{
+                    cell.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
+                }
+                
+            }
+            else if self.title == "Drive"{
+                var voicecontrollerlabel = block.name
+                let wordToRemove = "Drive "
+                    if let range = voicecontrollerlabel.range(of: wordToRemove){
+                    voicecontrollerlabel.removeSubrange(range)}
+                
+                cell.accessibilityUserInputLabels = ["\(voicecontrollerlabel)", "\(block.name)"]}
+
+            else if self.title == "Lights"{
+            var voicecontrollerlabel = block.name
+            let wordToRemove = "Set "
+                if let range = voicecontrollerlabel.range(of: wordToRemove){
+                voicecontrollerlabel.removeSubrange(range)}
+            
+            var voicecontrollerlabel2 = voicecontrollerlabel
+                if block.name != "Set All Lights"{
+                    let wordToRemove2 = " Light"
+                    if let range = voicecontrollerlabel2.range(of: wordToRemove2) {
+                    voicecontrollerlabel2.removeSubrange(range)}
+                }
+            
+            cell.accessibilityUserInputLabels = ["\(voicecontrollerlabel2)", "\(voicecontrollerlabel)", "\(block.name)"]
+
+            }
+            else if self.title == "Look"{
+                var voicecontrollerlabel = block.name
+                let wordToRemove = "Look "
+                    if let range = voicecontrollerlabel.range(of: wordToRemove){
+                    voicecontrollerlabel.removeSubrange(range)}
+                
+                cell.accessibilityUserInputLabels = ["\(voicecontrollerlabel)", "\(block.name)"]
+                
+            }
+            else if self.title == "Sound"{
+                var voicecontrollerlabel = block.name
+                if block.name == "Make Random Noise"{
+                    let wordToRemove2 = "Make "
+                    if let range = voicecontrollerlabel.range(of: wordToRemove2) {
+                    voicecontrollerlabel.removeSubrange(range)}
+                }
+                else if block.name.contains("Say "){
+                let wordToRemove = "Say "
+                    if let range = voicecontrollerlabel.range(of: wordToRemove){
+                    voicecontrollerlabel.removeSubrange(range)}
+                }
+                cell.accessibilityUserInputLabels = ["\(voicecontrollerlabel)","\(block.name)"]
+            }
+            else if self.title == "Vehicle"{
+                var voicecontrollerlabel = block.name
+                if block.name.contains("Noise"){
+                    let wordToRemove2 = " Noise"
+                    if let range = voicecontrollerlabel.range(of: wordToRemove2) {
+                    voicecontrollerlabel.removeSubrange(range)}
+                }
+                    cell.accessibilityUserInputLabels = ["\(voicecontrollerlabel)","\(block.name)"]
+                }
+
+        }
         
         if block.name == "Create/Edit Functions" {
             cell.accessibilityHint = "Double tap to go to functions menu."

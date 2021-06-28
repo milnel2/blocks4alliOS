@@ -253,14 +253,23 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if movingBlocks{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Place in Trash"
+            if #available(iOS 13.0, *) {
+                playTrashToggleButton.accessibilityUserInputLabels = ["Trash"]
+            }
             playTrashToggleButton.accessibilityHint = "Delete selected blocks"
         }else if stopIsOption{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "stop"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Stop"
+            if #available(iOS 13.0, *) {
+                playTrashToggleButton.accessibilityUserInputLabels = ["Stop"]
+            }
             playTrashToggleButton.accessibilityHint = "Stop your robot!"
         }else{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Play"
+            if #available(iOS 13.0, *) {
+                playTrashToggleButton.accessibilityUserInputLabels = ["Play"]
+            }
             playTrashToggleButton.accessibilityHint = "Make your robot go!"
         }
     }
@@ -483,6 +492,97 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         accessibilityHint += movementInfo
         
         blockView.accessibilityLabel = accessibilityLabel
+        
+        var blockTypes = NSArray()
+        var typeIndex: Int! = 0
+
+        if #available (iOS 13.0, *)
+        
+        {
+            blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
+            if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
+                  // blockTypes is a nsArray object with the contents of the ReleaseBlocksMenu.plist file, type index is an Int Var starts at 0, so it takes the contents of ReleaseBlocksMenu.plist and sets it to blockType as an NSDictionary
+            
+                if (blockType.object(forKey: "type") as? String == "Animals") {
+
+            var voicecontrollerlabel = block.name
+                let wordToRemove = "Make "
+                if let range = voicecontrollerlabel.range(of: wordToRemove){
+                    voicecontrollerlabel.removeSubrange(range)}
+
+                var voicecontrollerlabel2 = voicecontrollerlabel
+                let wordToRemove2 = " Noise"
+                    if let range = voicecontrollerlabel2.range(of: wordToRemove2) {
+                    voicecontrollerlabel2.removeSubrange(range)}
+
+                blockView.accessibilityUserInputLabels = ["Before \(voicecontrollerlabel)", "Before \(block.name)",  "Before \(voicecontrollerlabel2)"]
+    
+            }
+    
+            else if (blockType.object(forKey: "type") as? String == "Control") {
+                if block.name == "Wait for Time"{
+                    blockView.accessibilityUserInputLabels = ["Before Wait", "Before \(block.name)"]
+                }
+
+            }
+            else if (blockType.object(forKey: "type") as? String == "Drive") {
+                var voicecontrollerlabel = block.name
+                let wordToRemove = "Drive "
+                    if let range = voicecontrollerlabel.range(of: wordToRemove){
+                    voicecontrollerlabel.removeSubrange(range)}
+
+                blockView.accessibilityUserInputLabels = ["Before \(voicecontrollerlabel)", "Before \(block.name)"]}
+
+            else if (blockType.object(forKey: "type") as? String == "Lights") {
+            var voicecontrollerlabel = block.name
+            let wordToRemove = "Set "
+                if let range = voicecontrollerlabel.range(of: wordToRemove){
+                voicecontrollerlabel.removeSubrange(range)}
+
+            var voicecontrollerlabel2 = voicecontrollerlabel
+                if block.name != "Set All Lights"{
+                    let wordToRemove2 = " Light"
+                    if let range = voicecontrollerlabel2.range(of: wordToRemove2) {
+                    voicecontrollerlabel2.removeSubrange(range)}
+                }
+
+            blockView.accessibilityUserInputLabels = ["Before \(voicecontrollerlabel2)", "Before \(voicecontrollerlabel)", "Before \(block.name)"]
+
+            }
+            else if (blockType.object(forKey: "type") as? String == "Look") {
+                var voicecontrollerlabel = block.name
+                let wordToRemove = "Look "
+                    if let range = voicecontrollerlabel.range(of: wordToRemove){
+                    voicecontrollerlabel.removeSubrange(range)}
+
+                blockView.accessibilityUserInputLabels = ["Before \(voicecontrollerlabel)", "Before \(block.name)"]
+
+            }
+            else if (blockType.object(forKey: "type") as? String == "Sound") {
+                var voicecontrollerlabel = block.name
+                if block.name == "Make Random Noise"{
+                    let wordToRemove2 = "Make "
+                    if let range = voicecontrollerlabel.range(of: wordToRemove2) {
+                    voicecontrollerlabel.removeSubrange(range)}
+                }
+                else if block.name.contains("Say "){
+                let wordToRemove = "Say "
+                    if let range = voicecontrollerlabel.range(of: wordToRemove){
+                    voicecontrollerlabel.removeSubrange(range)}
+                }
+                blockView.accessibilityUserInputLabels = ["Before \(voicecontrollerlabel)","Before \(block.name)"]
+            }
+            else if (blockType.object(forKey: "type") as? String == "Vehicle") {
+                var voicecontrollerlabel = block.name
+                if block.name.contains("Noise"){
+                    let wordToRemove2 = " Noise"
+                    if let range = voicecontrollerlabel.range(of: wordToRemove2) {
+                    voicecontrollerlabel.removeSubrange(range)}
+                }
+                    blockView.accessibilityUserInputLabels = ["Before \(voicecontrollerlabel)","Before \(block.name)"]
+                }
+                }
+        }
         blockView.accessibilityHint = accessibilityHint
     }
     
@@ -504,9 +604,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 if functionsDict[currentWorkspace]!.count == 0 {
                     cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at Beginning"
-                }else{
-                    cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End"
+                    if #available (iOS 13.0, *){
+                        cell.accessibilityUserInputLabels = ["Workspace"]
+                    }
                 }
+                else{
+                    cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End"
+                    if #available (iOS 13.0, *){
+                        cell.accessibilityUserInputLabels = ["End of workspace"]
+                    }
+                }
+                
                 if(blocksBeingMoved[0].type == "Boolean" || blocksBeingMoved[0].type == "Number"){
                     cell.accessibilityLabel = "Cannot place at end "
                 }

@@ -35,6 +35,10 @@ class SelectedBlockViewController: UIViewController {
         // Do any additional setup after loading the view.
         let label = (blocks?[0].name)! + " selected. Select location in workspace to place it"
         
+        if #available (iOS 13.0, *){
+            self.view.accessibilityUserInputLabels = [""]
+        }
+        
         self.view.isAccessibilityElement = true
         self.view.accessibilityLabel = label
         UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
