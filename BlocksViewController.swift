@@ -39,7 +39,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     //The three main workspace menu buttons
     @IBOutlet weak var buttonsStackView: UIStackView!
     @IBOutlet weak var mainMenuButton: CustomButton!
-    @IBOutlet weak var functionsMenuButton: CustomButton!
     @IBOutlet weak var clearAllButton: CustomButton!
     
     @IBOutlet weak var playTrashToggleButton: UIButton!
@@ -140,7 +139,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         //Makes buttons rounded
         mainMenuButton.layer.cornerRadius = 10
-        functionsMenuButton.layer.cornerRadius = 10
         clearAllButton.layer.cornerRadius = 10
         
         if workspaceNameLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
