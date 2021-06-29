@@ -24,7 +24,7 @@ class FunctionTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @IBOutlet weak var functionView: FunctionView!
+//    @IBOutlet weak var functionView: FunctionView!
     
     //button to delete functions
     let deleteButton: CustomButton = {
@@ -92,26 +92,6 @@ class FunctionTableViewCell: UITableViewCell {
     }
 
     @objc func deleteAction(sender: UIButton){
-        // Declare Alert message
-//        let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
-//
-//        // Create Yes button with action handler
-//        let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
-//             print("yes button tapped")
-//             self.delete(<#T##sender: Any?##Any?#>)
-//        })
-//
-//        // Create Cancel button with action handlder
-//        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-//            print("Cancel button tapped")
-//        }
-//        //Add OK and Cancel button to dialog message
-//        dialogMessage.addAction(yes)
-//        dialogMessage.addAction(cancel)
-//
-//        // Present dialog message to user
-//        self.present(dialogMessage, animated: true, completion: nil)
-        
         print("tapped")
         functionTableViewController?.deleteCell(cell: self)
         
