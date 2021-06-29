@@ -626,6 +626,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 ifButton.isAccessibilityElement = true
                 
                 cell.addSubview(ifButton)
+                save()
                 
             case "Repeat":
                 if block.addedBlocks.isEmpty{
@@ -654,6 +655,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = numberOfTimesToRepeat + " times"
                 
                 cell.addSubview(repeatNumberButton)
+                save()
                 
             case "Repeat Forever":
                 if block.addedBlocks.isEmpty{
@@ -692,6 +694,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = distanceSet + " centimeters at " + speedSet + "Speed"
                 
                 cell.addSubview(distanceSpeedButton)
+                save()
                 
             case "Turn Left", "Turn Right":
                 if block.addedBlocks.isEmpty{
@@ -722,6 +725,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = "\(block.addedBlocks[0].attributes["angle"]!) degrees"
                 
                 cell.addSubview(angleButton)
+                save()
                 
             case "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
                 if block.addedBlocks.isEmpty{
@@ -759,6 +763,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = " " + (block.addedBlocks[0].attributes["modifierBlockColor"] ?? "")
                 
                 cell.addSubview(lightColorButton)
+                save()
                 
             case "Set Eye Light":
                 if block.addedBlocks.isEmpty{
@@ -786,6 +791,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = "\(block.addedBlocks[0].attributes["eyeLight"]!)"
                 
                 cell.addSubview(eyeLightButton)
+                save()
             
             case "Wait for Time":
                 if block.addedBlocks.isEmpty{
@@ -816,6 +822,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = "\(block.addedBlocks[0].attributes["wait"]!) seconds"
                 
                 cell.addSubview(waitTimeButton)
+                save()
             
             case "Set Variable":
                 if block.addedBlocks.isEmpty{
@@ -847,6 +854,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 setVariableButton.isAccessibilityElement = true
                 modifierInformation = "\(block.addedBlocks[0].attributes["variableSelected"]!) set to  \(block.addedBlocks[0].attributes["variableValue"]!)"
                 cell.addSubview(setVariableButton)
+                save()
                 
             case "Drive":
                 if block.addedBlocks.isEmpty{
@@ -884,6 +892,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                 cell.addSubview(setDriveVariableButton)
+                save()
                 
             case "Look Up or Down":
                 if block.addedBlocks.isEmpty{
@@ -923,6 +932,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                  
                  cell.addSubview(setLookUpDownVariableButton)
+                save()
                 
             case "Look Left or Right":
                 if block.addedBlocks.isEmpty{
@@ -961,6 +971,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 setLookLeftRightVariableButton.isAccessibilityElement = true
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                 cell.addSubview(setLookLeftRightVariableButton)
+                save()
                 
             case "Wheel Speed":
                 
@@ -1078,9 +1089,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                 
                 cell.addSubview(setTurnButton)
+                save()
                 
             default:
-                print("This block does not need a modifier.")
+                save()
             }
             
             //add main label
