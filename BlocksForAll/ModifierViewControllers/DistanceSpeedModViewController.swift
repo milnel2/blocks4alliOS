@@ -29,8 +29,8 @@ class DistanceSpeedModViewController: UIViewController{
     override func viewDidLoad() {
         //Makes buttons easier to select with Voice Control
         if #available(iOS 13.0, *) {
-            slowButton.accessibilityUserInputLabels = ["Slower"]
-            fastButton.accessibilityUserInputLabels = ["Faster"]
+            slowButton.accessibilityUserInputLabels = ["Slower", "Decrease", "Minus", "Subtract"]
+            fastButton.accessibilityUserInputLabels = ["Faster", "Increase", "Plus", "Add"]
         }
         
         // default speed: Normal or preserve last selection
