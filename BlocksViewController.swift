@@ -52,7 +52,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var movingBlocks = false
     /// blocks currently being moved (includes nested blocks)
     var blocksBeingMoved = [Block]()
-    
     /// Top-level controller for toolbox view controllers
     var containerViewController: UINavigationController?
     
@@ -167,9 +166,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 //        }
   
         // Rewrote the way block names are changed when a function is renamed, the changes are in functionTableViewController rename function at the very bottom
+        
+
     
     }
-
+    
     @IBAction func goToMainMenuOrWorkspace(_ sender: CustomButton) {
         
         //If user is in the main workspace, main menu button takes them to the main menu
@@ -420,6 +421,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        collectionView.remembersLastFocusedIndexPath = true
         return functionsDict[currentWorkspace]!.count + 1
     }
     
@@ -428,6 +430,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: CGFloat(blockWidth), height: collectionView.frame.height)
+        collectionView.remembersLastFocusedIndexPath = true
         //        print(indexPath)
         if indexPath.row == functionsDict[currentWorkspace]!.count {
             // expands the size of the last cell in the collectionView, so it's easier to add a block at the end
@@ -498,6 +501,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
      This method creates and returns the cell at a given index
      */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        collectionView.remembersLastFocusedIndexPath = true
         let collectionReuseIdentifier = "BlockCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath)
         // Configure the cell
@@ -1217,6 +1221,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.remembersLastFocusedIndexPath = true
         /*Called when a block is selected in the collectionView, so either selects block to move or places blocks*/
         if(movingBlocks){
             if blocksBeingMoved[0].type == "Boolean" || blocksBeingMoved[0].type == "Number"{
