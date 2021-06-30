@@ -23,6 +23,11 @@ class BlockTableViewController: UITableViewController {
     var blockWidth = 150
     let blockSpacing = 0
     
+    func getDocumentsDirectory() -> URL{
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
     //MARK: - viewDidLoad function
     override func viewDidLoad() {
     
@@ -165,7 +170,49 @@ class BlockTableViewController: UITableViewController {
         }
     }
     
-    
+    func save(){
+        let fileManager = FileManager.default
+
+        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave2.json")
+        do{
+            //Deletes previous save in order to rewrite for each save action
+            try fileManager.removeItem(at: filename)
+        }catch{
+            print("couldn't delete previous Blocks4AllSave")
+        }
+        
+        // string that json text is appended too
+        var writeText = String()
+        /** block represents each block belonging to the global array of blocks in the workspace. blocksStack holds all blocks on the screen. **/
+        let funcNames = functionsDict.keys
+        //gets all the function names in functionsDict as an array of strings
+        
+        for name in funcNames{
+        // for all functions
+            writeText.append("New Function \n")
+            writeText.append(name)
+            //adds name of function immediately after the new function and prior to the next object so that it can be parsed same way as blocks
+            writeText.append("\n Next Object \n")
+            // allows name to be handled in load at the same time as blocks
+            for block in functionsDict[name]!{
+                // for block in the current fuctionsDict function's array of blocks
+                if let jsonText = block.jsonVar{
+                    // sets jsonText to block.jsonVar which removes counterparts so it doesn't wind up with an infite amount of counterparts
+                    writeText.append(String(data: jsonText, encoding: .utf8)!)
+                    //adds the jsonText as .utf8 as a string to the writeText string
+                    writeText.append("\n Next Object \n")
+                    //marks next object
+                }
+                do{
+                    try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+                    // writes the accumlated string of json objects to a single file
+                }catch{
+                    print("couldn't create json for", block)
+                }
+            }
+        }
+        
+    }
     //MARK: Private Methods
     
     //TODO: Clean this method it's a bit convoluted
@@ -249,11 +296,13 @@ class BlockTableViewController: UITableViewController {
                     voiceControlLabel2.removeSubrange(range)}
                 
                 cell.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)",  "\(voiceControlLabel2)"]
+                save()
                 
             case "Control":
                 if block.name == "Wait for Time"{
                     cell.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
                 }
+                save()
                 
             case "Drive":
                 var voiceControlLabel = block.name
@@ -272,6 +321,7 @@ class BlockTableViewController: UITableViewController {
                 }
                     
                 cell.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
+                save()
                 
             case "Lights":
                 var voiceControlLabel = block.name
@@ -289,6 +339,7 @@ class BlockTableViewController: UITableViewController {
                 }
                 
                 cell.accessibilityUserInputLabels = ["\(voiceControlLabel2)", "\(voiceControlLabel)", "\(block.name)"]
+                save()
                 
             case "Look":
                 var voiceControlLabel = block.name
@@ -298,6 +349,7 @@ class BlockTableViewController: UITableViewController {
                 }
                 
                 cell.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
+                save()
                 
             case "Sound":
                 var voiceControlLabel = block.name
@@ -314,6 +366,7 @@ class BlockTableViewController: UITableViewController {
                     }
                 }
                 cell.accessibilityUserInputLabels = ["\(voiceControlLabel)","\(block.name)"]
+                save()
                 
             case "Vehicle":
                 var voiceControlLabel = block.name
@@ -323,9 +376,11 @@ class BlockTableViewController: UITableViewController {
                         voiceControlLabel.removeSubrange(range)}
                 }
                 cell.accessibilityUserInputLabels = ["\(voiceControlLabel)","\(block.name)"]
+                save()
                 
             default:
                 cell.accessibilityUserInputLabels = ["\(block.name)"]
+                save()
             }
         }
     }
