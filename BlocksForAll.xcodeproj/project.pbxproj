@@ -36,7 +36,6 @@
 		F16BA3BE1F59103A00A94FBA /* BlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F16BA3BD1F59103A00A94FBA /* BlocksMenu.plist */; };
 		F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */; };
 		F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186EB871EE0D8B100C2FA4B /* BlockView.swift */; };
-		F186EB8A1EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist in Resources */ = {isa = PBXBuildFile; fileRef = F186EB891EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist */; };
 		F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */; };
 		F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */; };
 		F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */; };
@@ -44,9 +43,6 @@
 		F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18FFFBB1E65B0FC0090C4B6 /* LaunchScreen.storyboard */; };
 		F18FFFC81E65B0FC0090C4B6 /* BlocksForAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFC71E65B0FC0090C4B6 /* BlocksForAllTests.swift */; };
 		F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */; };
-		F1B1F4811EF0A1A8003C2827 /* BlocksMenuSession1.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */; };
-		F1BC90B61FA43D13008EC60C /* AssetsBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */; };
-		F1F7CD322054A36A001ABD18 /* RhymesMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CD312054A36A001ABD18 /* RhymesMenu.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +61,6 @@
 		023D633222BD34EE00A8002C /* WaitModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitModViewController.swift; sourceTree = "<group>"; };
 		025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleModViewController.swift; sourceTree = "<group>"; };
 		02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceSpeedModViewController.swift; sourceTree = "<group>"; };
-		02F5F94122C12637000F43B7 /* ReleaseBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ReleaseBlocksMenu.plist; sourceTree = "<group>"; };
 		57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveVariables.swift; sourceTree = "<group>"; };
 		57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnVariable.swift; sourceTree = "<group>"; };
 		57C1BD0122D53C9B003FCD70 /* WheelVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelVariables.swift; sourceTree = "<group>"; };
@@ -91,7 +86,6 @@
 		F16BA3BD1F59103A00A94FBA /* BlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenu.plist; sourceTree = "<group>"; };
 		F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedBlockViewController.swift; sourceTree = "<group>"; };
 		F186EB871EE0D8B100C2FA4B /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
-		F186EB891EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenuOldRepeat.plist; sourceTree = "<group>"; };
 		F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotControlViewController.swift; sourceTree = "<group>"; };
 		F18FFFAF1E65B0FB0090C4B6 /* BlocksForAll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocksForAll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,11 +97,8 @@
 		F18FFFC71E65B0FC0090C4B6 /* BlocksForAllTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksForAllTests.swift; sourceTree = "<group>"; };
 		F18FFFC91E65B0FC0090C4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
-		F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenuSession1.plist; sourceTree = "<group>"; };
-		F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AssetsBlocksMenu.plist; sourceTree = "<group>"; };
 		F1F68E7E207715CC00BFBD8E /* BlocksForAll */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BlocksForAll; sourceTree = "<group>"; };
 		F1F68E7F20771C7900BFBD8E /* Installation Manual.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Installation Manual.pdf"; sourceTree = "<group>"; };
-		F1F7CD312054A36A001ABD18 /* RhymesMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RhymesMenu.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,11 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				F16BA3BD1F59103A00A94FBA /* BlocksMenu.plist */,
-				F1F7CD312054A36A001ABD18 /* RhymesMenu.plist */,
-				F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */,
-				F186EB891EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist */,
-				F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */,
-				02F5F94122C12637000F43B7 /* ReleaseBlocksMenu.plist */,
 			);
 			path = BlocksMenus;
 			sourceTree = "<group>";
@@ -326,14 +312,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1B1F4811EF0A1A8003C2827 /* BlocksMenuSession1.plist in Resources */,
 				F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */,
-				F1BC90B61FA43D13008EC60C /* AssetsBlocksMenu.plist in Resources */,
-				F186EB8A1EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist in Resources */,
 				F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */,
 				F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */,
 				F16BA3BE1F59103A00A94FBA /* BlocksMenu.plist in Resources */,
-				F1F7CD322054A36A001ABD18 /* RhymesMenu.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2079,7 +2079,6 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="functionView" destination="dI6-Ao-OWl" id="NjU-qe-YGg"/>
                                     <segue destination="uoc-nU-c4a" kind="show" identifier="functionsToBlocks" id="hQ1-ks-vYz"/>
                                 </connections>
                             </tableViewCell>
