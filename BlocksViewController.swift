@@ -1220,10 +1220,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     functionsDict[currentWorkspace]!.remove(at: blocksStackIndex)
                 }
                 blocksProgram.reloadData()
-                let mySelectedBlockVC = SelectedBlockViewController()
-                mySelectedBlockVC.blocks = blocksBeingMoved
+                
+                
+                let mySelectedBlockVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectedBlockViewController") as! SelectedBlockViewController
                 
                 containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
+                mySelectedBlockVC.blocks = blocksBeingMoved
                 changePlayTrashButton()
             }
         }

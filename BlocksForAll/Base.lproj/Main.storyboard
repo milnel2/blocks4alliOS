@@ -608,7 +608,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Selected Block View Controller-->
         <scene sceneID="5FT-Oz-ag0">
             <objects>
-                <viewController id="R6q-tf-1pR" customClass="SelectedBlockViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectedBlockViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="R6q-tf-1pR" customClass="SelectedBlockViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MzG-pc-5Lh"/>
                         <viewControllerLayoutGuide type="bottom" id="M8X-LY-ONh"/>
