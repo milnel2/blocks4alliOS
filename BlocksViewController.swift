@@ -64,7 +64,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // TODO: what are these variables?
     var modifierBlockIndex: Int?
     var tappedModifierIndex: Int?
-
     
     // from Paul Hegarty, lectures 13 and 14
     func getDocumentsDirectory() -> URL{
@@ -132,7 +131,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             workspaceNameLabel.text = "\(currentWorkspace) Function"
             mainMenuButton.setTitle("Main Workspace", for: .normal)
         }
-        
         self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
@@ -1371,146 +1369,139 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     func createVoiceControlLabels(for block: Block, in blockView: UIView) {
         if #available (iOS 13.0, *) {
-            var blockTypes = NSArray()
-            let typeIndex: Int! = 0
-        
-            blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
-            if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
-                // blockTypes is a nsArray object with the contents of the ReleaseBlocksMenu.plist file, type index is an Int Var starts at 0, so it takes the contents of ReleaseBlocksMenu.plist and sets it to blockType as an NSDictionary
-                let type = blockType.object(forKey: "type") as? String
+            let color = block.color.uiColor
+            
+            switch color {
+            //Animals
+            case UIColor.colorFrom(hexString: "#058900"):
+                var voiceControlLabel = block.name
+                let wordToRemove = "Make "
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)}
                 
-                switch type {
-                case "Animals":
-                    var voiceControlLabel = block.name
-                    let wordToRemove = "Make "
+                var voiceControlLabel2 = voiceControlLabel
+                let wordToRemove2 = " Noise"
+                if let range = voiceControlLabel2.range(of: wordToRemove2) {
+                    voiceControlLabel2.removeSubrange(range)}
+                
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)",  "Before \(voiceControlLabel2)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)",  "\(voiceControlLabel2)"]
+                }
+            //Control
+            case UIColor.colorFrom(hexString: "#B30DCB"):
+                if movingBlocks {
+                    if block.name == "Wait for Time"{
+                        blockView.accessibilityUserInputLabels = ["Before Wait", "Before \(block.name)"]
+                    }
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
+                }
+            //Drive
+            case UIColor.colorFrom(hexString: "#B15C13"):
+                var voiceControlLabel = block.name
+                if block.name.contains("Drive") {
+                    let wordToRemove = "Drive "
                     if let range = voiceControlLabel.range(of: wordToRemove){
-                        voiceControlLabel.removeSubrange(range)}
-                    
-                    var voiceControlLabel2 = voiceControlLabel
-                    let wordToRemove2 = " Noise"
+                        voiceControlLabel.removeSubrange(range)
+                    }
+                }
+                else if block.name.contains("Turn") {
+                    let wordToRemove = "Turn "
+                    if let range = voiceControlLabel.range(of: wordToRemove){
+                        voiceControlLabel.removeSubrange(range)
+                    }
+                }
+                
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
+                }
+            //Lights
+            case UIColor.colorFrom(hexString: "#6700C1"):
+                var voiceControlLabel = block.name
+                let wordToRemove = "Set "
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                var voiceControlLabel2 = voiceControlLabel
+                if block.name != "Set All Lights"{
+                    let wordToRemove2 = " Light"
                     if let range = voiceControlLabel2.range(of: wordToRemove2) {
-                        voiceControlLabel2.removeSubrange(range)}
-                    
-                    if movingBlocks {
-                        blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)",  "Before \(voiceControlLabel2)"]
+                        voiceControlLabel2.removeSubrange(range)
                     }
-                    else {
-                        blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)",  "\(voiceControlLabel2)"]
+                }
+                
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel2)", "Before \(voiceControlLabel)", "Before \(block.name)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel2)", "\(voiceControlLabel)", "\(block.name)"]
+                }
+            //Look
+            case UIColor.colorFrom(hexString: "#836F53"):
+                var voiceControlLabel = block.name
+                let wordToRemove = "Look "
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
+                }
+            //Sound
+            case UIColor.colorFrom(hexString: "#227C7C"):
+                var voiceControlLabel = block.name
+                if block.name == "Make Random Noise"{
+                    let wordToRemove2 = "Make "
+                    if let range = voiceControlLabel.range(of: wordToRemove2) {
+                        voiceControlLabel.removeSubrange(range)
                     }
-                    
-                case "Control":
-                    if movingBlocks {
-                        if block.name == "Wait for Time"{
-                            blockView.accessibilityUserInputLabels = ["Before Wait", "Before \(block.name)"]
-                        }
-                    }
-                    else {
-                        blockView.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
-                    }
-                    
-                    
-                case "Drive":
-                    var voiceControlLabel = block.name
-                    if block.name.contains("Drive") {
-                        let wordToRemove = "Drive "
-                        if let range = voiceControlLabel.range(of: wordToRemove){
-                            voiceControlLabel.removeSubrange(range)
-                        }
-                    }
-                    else if block.name.contains("Turn") {
-                        let wordToRemove = "Turn "
-                        if let range = voiceControlLabel.range(of: wordToRemove){
-                            voiceControlLabel.removeSubrange(range)
-                        }
-                    }
-                    
-                    if movingBlocks {
-                        blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)"]
-                    }
-                    else {
-                        blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
-                    }
-                    
-                case "Lights":
-                    var voiceControlLabel = block.name
-                    let wordToRemove = "Set "
+                }
+                else if block.name.contains("Say "){
+                    let wordToRemove = "Say "
                     if let range = voiceControlLabel.range(of: wordToRemove){
                         voiceControlLabel.removeSubrange(range)
                     }
-                    
-                    var voiceControlLabel2 = voiceControlLabel
-                    if block.name != "Set All Lights"{
-                        let wordToRemove2 = " Light"
-                        if let range = voiceControlLabel2.range(of: wordToRemove2) {
-                            voiceControlLabel2.removeSubrange(range)
-                        }
-                    }
-                    
-                    if movingBlocks {
-                        blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel2)", "Before \(voiceControlLabel)", "Before \(block.name)"]
-                    }
-                    else {
-                        blockView.accessibilityUserInputLabels = ["\(voiceControlLabel2)", "\(voiceControlLabel)", "\(block.name)"]
-                    }
-                                        
-                case "Look":
-                    var voiceControlLabel = block.name
-                    let wordToRemove = "Look "
-                    if let range = voiceControlLabel.range(of: wordToRemove){
-                        voiceControlLabel.removeSubrange(range)
-                    }
-                    
-                    if movingBlocks {
-                        blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)"]
-                    }
-                    else {
-                        blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
-                    }
-                    
-                case "Sound":
-                    var voiceControlLabel = block.name
-                    if block.name == "Make Random Noise"{
-                        let wordToRemove2 = "Make "
-                        if let range = voiceControlLabel.range(of: wordToRemove2) {
-                            voiceControlLabel.removeSubrange(range)
-                        }
-                    }
-                    else if block.name.contains("Say "){
-                        let wordToRemove = "Say "
-                        if let range = voiceControlLabel.range(of: wordToRemove){
-                            voiceControlLabel.removeSubrange(range)
-                        }
-                    }
-                    
-                    if movingBlocks {
-                        blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)"]
-                    }
-                    else {
-                        blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
-                    }
-                    
-                case "Vehicle":
-                    var voiceControlLabel = block.name
-                    if block.name.contains("Noise"){
-                        let wordToRemove2 = " Noise"
-                        if let range = voiceControlLabel.range(of: wordToRemove2) {
-                            voiceControlLabel.removeSubrange(range)}
-                    }
-                    
-                    if movingBlocks {
-                        blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)"]
-                    }
-                    else {
-                        blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
-                    }
-                    
-                default:
-                    if movingBlocks {
-                        blockView.accessibilityUserInputLabels = ["Before \(block.name)"]
-                    }
-                    else {
-                        blockView.accessibilityUserInputLabels = ["\(block.name)"]
-                    }
+                }
+                
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
+                }
+            //Vehicle
+            case UIColor.colorFrom(hexString: "#002041"):
+                var voiceControlLabel = block.name
+                if block.name.contains("Noise"){
+                    let wordToRemove2 = " Noise"
+                    if let range = voiceControlLabel.range(of: wordToRemove2) {
+                        voiceControlLabel.removeSubrange(range)}
+                }
+                
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
+                }
+                
+            default:
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(block.name)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(block.name)"]
                 }
             }
         }

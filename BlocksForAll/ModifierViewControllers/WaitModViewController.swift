@@ -26,8 +26,8 @@ class WaitModViewController: UIViewController{
     override func viewDidLoad() {
         //Makes buttons easier to select with Voice Control
         if #available(iOS 13.0, *) {
-            increaseButton.accessibilityUserInputLabels = ["Increase"]
-            decreaseButton.accessibilityUserInputLabels = ["Decrease"]
+            increaseButton.accessibilityUserInputLabels = ["Increase", "Plus", "Add"]
+            decreaseButton.accessibilityUserInputLabels = ["Decrease", "Minus", "Subtract"]
         }
         
         // default wait time: 1 second or preserve last selection
