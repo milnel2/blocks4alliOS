@@ -1281,10 +1281,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 if movingBlocks {
-                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)"]
+                    blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
                 }
                 else {
-                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
+                    blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
                 }
             //Lights
             case UIColor.colorFrom(hexString: "#6700C1"):
@@ -1303,10 +1303,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 if movingBlocks {
-                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel2)", "Before \(voiceControlLabel)", "Before \(block.name)"]
+                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(voiceControlLabel2)", "Before \(block.name)"]
                 }
                 else {
-                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel2)", "\(voiceControlLabel)", "\(block.name)"]
+                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(voiceControlLabel2)", "\(block.name)"]
                 }
             //Look
             case UIColor.colorFrom(hexString: "#836F53"):
@@ -1317,10 +1317,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 if movingBlocks {
-                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)"]
+                    blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
                 }
                 else {
-                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
+                    blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
                 }
             //Sound
             case UIColor.colorFrom(hexString: "#227C7C"):
@@ -1339,7 +1339,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 if movingBlocks {
-                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)"]
+                    blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
                 }
                 else {
                     blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
