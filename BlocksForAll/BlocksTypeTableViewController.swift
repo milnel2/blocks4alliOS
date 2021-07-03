@@ -67,6 +67,7 @@ class BlocksTypeTableViewController: UITableViewController {
         cell.accessibilityLabel = blockType.name + " category"
         cell.accessibilityHint = "Double tap to explore blocks in this category"
         
+        //Makes label more intuitive for Voice Control
         if #available(iOS 13.0, *) {
             cell.accessibilityUserInputLabels = ["\(blockType.name)"]
         }

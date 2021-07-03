@@ -234,7 +234,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="redButtonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="AkO-35-IZy"/>
+                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="oGK-cA-BoN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ng-u7-4WV">
@@ -248,7 +248,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="orangeButtonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="G7M-6p-mkO"/>
+                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="0ih-2A-3j1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUo-Od-miF">
@@ -262,7 +262,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="yellowButtonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="ad8-Lf-DqA"/>
+                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="bgy-OU-cyn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NR1-3C-bm3">
@@ -276,7 +276,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="greenButtonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="IoU-yj-aCD"/>
+                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="Lhb-Pz-aaW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bye-mA-9jc">
@@ -290,7 +290,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="blueButtonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="2a5-cP-KFB"/>
+                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="okb-uF-kSZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyU-jO-bvk">
@@ -304,7 +304,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="blackButtonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="VSh-ib-gSQ"/>
+                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="PJB-Ng-TJU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPl-tl-LSn">
@@ -318,7 +318,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="purpleButtonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="BFW-rx-5iz"/>
+                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="Qsl-Pb-Ri2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwE-wm-MaT">
@@ -331,7 +331,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="whiteButtonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="5uM-jO-2D9"/>
+                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="fFF-Ok-MJm"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYn-Uw-o5x">
@@ -348,14 +348,14 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                     <navigationItem key="navigationItem" id="4aN-d1-jU6"/>
                     <connections>
                         <outlet property="back" destination="nKa-YP-2xv" id="aFl-0j-5rs"/>
-                        <outlet property="blackButton" destination="iyU-jO-bvk" id="jwX-hD-q0e"/>
-                        <outlet property="blueButton" destination="bye-mA-9jc" id="Mpt-ab-iJy"/>
-                        <outlet property="greenButton" destination="NR1-3C-bm3" id="VP8-s5-AhO"/>
-                        <outlet property="orangeButton" destination="3Ng-u7-4WV" id="eZZ-pk-ceF"/>
-                        <outlet property="purpleButton" destination="FPl-tl-LSn" id="VDN-nA-ngj"/>
-                        <outlet property="redButton" destination="uBS-jv-FLd" id="RUN-lL-vWe"/>
-                        <outlet property="whiteButton" destination="kwE-wm-MaT" id="882-KN-bRt"/>
-                        <outlet property="yellowButton" destination="gUo-Od-miF" id="lfy-pV-JrO"/>
+                        <outletCollection property="buttons" destination="iyU-jO-bvk" collectionClass="NSMutableArray" id="pMW-oG-w8n"/>
+                        <outletCollection property="buttons" destination="uBS-jv-FLd" collectionClass="NSMutableArray" id="Flg-v3-8wP"/>
+                        <outletCollection property="buttons" destination="3Ng-u7-4WV" collectionClass="NSMutableArray" id="sNB-ET-x3t"/>
+                        <outletCollection property="buttons" destination="gUo-Od-miF" collectionClass="NSMutableArray" id="s3E-tv-goJ"/>
+                        <outletCollection property="buttons" destination="NR1-3C-bm3" collectionClass="NSMutableArray" id="gQy-tO-ZM2"/>
+                        <outletCollection property="buttons" destination="bye-mA-9jc" collectionClass="NSMutableArray" id="ee6-OA-253"/>
+                        <outletCollection property="buttons" destination="FPl-tl-LSn" collectionClass="NSMutableArray" id="fvy-ns-sVb"/>
+                        <outletCollection property="buttons" destination="kwE-wm-MaT" collectionClass="NSMutableArray" id="IbH-Dz-sps"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EXh-xT-7Co" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -608,7 +608,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <!--Selected Block View Controller-->
         <scene sceneID="5FT-Oz-ag0">
             <objects>
-                <viewController id="R6q-tf-1pR" customClass="SelectedBlockViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectedBlockViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="R6q-tf-1pR" customClass="SelectedBlockViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MzG-pc-5Lh"/>
                         <viewControllerLayoutGuide type="bottom" id="M8X-LY-ONh"/>
@@ -2079,7 +2079,6 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="functionView" destination="dI6-Ao-OWl" id="NjU-qe-YGg"/>
                                     <segue destination="uoc-nU-c4a" kind="show" identifier="functionsToBlocks" id="hQ1-ks-vYz"/>
                                 </connections>
                             </tableViewCell>
