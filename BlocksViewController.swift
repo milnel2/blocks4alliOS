@@ -224,7 +224,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             blocksProgram.reloadData()
             save()
         }
-        else{ functionsDict[currentWorkspace]!.removeSubrange(1..<functionsDict[currentWorkspace]!.count-1)
+        else{
+            functionsDict[currentWorkspace]!.removeSubrange(1..<functionsDict[currentWorkspace]!.count-1)
             blocksProgram.reloadData()
             save()
         }
@@ -355,9 +356,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //add a completion block here
         if(blocks[0].double) || (blocks[0].tripleCounterpart){
             if currentWorkspace != "Main Workspace" && index > endIndex {
+                functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: endIndex)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             }else if currentWorkspace != "Main Workspace" && index <= startIndex {
+                functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: startIndex+1)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             }
@@ -369,9 +372,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         else{
             if currentWorkspace != "Main Workspace" && index > endIndex {
+                functionsDict[currentWorkspace]!.insert(blocks[0], at: endIndex)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             }else if currentWorkspace != "Main Workspace" && index <= startIndex {
+                functionsDict[currentWorkspace]!.insert(blocks[0], at: startIndex+1)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             }
