@@ -458,7 +458,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     ///   - block:  block being displayed
     ///   - blockModifier:  describes the state of the block modifier (e.g. 2 times for repeat 2 times)
     ///   - blockLocation: location of block in workspace (e.g. 2 of 4)
-    func addAccessibilityLabel(blockView: UIView, block:Block, blockModifier:String, blockLocation: Int){
+    
+    func addAccessibilityLabel(blockView: UIView, block:Block, blockModifier:String, blockLocation: Int, blockIndex: Int){
         
         blockView.isAccessibilityElement = true
         var accessibilityLabel = ""
@@ -468,17 +469,28 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         if(!blocksBeingMoved.isEmpty){
             //Moving blocks, so switch labels to indicated where blocks can be placed
-            accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before "
+            if (currentWorkspace != "Main Workspace" && blockIndex == 0){
+                accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning of " + currentWorkspace + " function."
+            } else if (currentWorkspace == "Main Workspace" && blockIndex == 0){
+                //in main workspace and setting 1st block accessibility info
+                accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning, before "
+                accessibilityLabel +=  block.name + " " + blockModifier + " " + blockPlacementInfo
+            } else {
+                accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before "
+                accessibilityLabel +=  block.name + " " + blockModifier + " " + blockPlacementInfo
+            }
             movementInfo = ". Double tap to add " + blocksBeingMoved[0].name + " block here"
+        } else {
+            accessibilityLabel =  block.name + " " + blockModifier + " " + blockPlacementInfo
         }
         
-        accessibilityLabel +=  block.name + " " + blockModifier + " " + blockPlacementInfo
         accessibilityHint += movementInfo
         
         blockView.accessibilityLabel = accessibilityLabel
         createVoiceControlLabels(for: block, in: blockView)
         blockView.accessibilityHint = accessibilityHint
     }
+    
     
     /* CollectionView contains the actual collection of blocks (i.e. the program that is being created with the blocks)
      This method creates and returns the cell at a given index
@@ -504,9 +516,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                 }
                 else{
-                    cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End"
-                    if #available (iOS 13.0, *){
-                        cell.accessibilityUserInputLabels = ["End of workspace"]
+                    if currentWorkspace == "Main Workspace" {
+                        cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End"
+                        if #available (iOS 13.0, *){
+                            cell.accessibilityUserInputLabels = ["End of workspace"]
+                        }
+                    } else {
+                        cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End of " + currentWorkspace + " function"
+                        if #available (iOS 13.0, *){
+                            cell.accessibilityUserInputLabels = ["End of function workspace"]
+                        }
                     }
                 }
             }
@@ -1060,7 +1079,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             //add main label
             
             let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-            addAccessibilityLabel(blockView: myLabel, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1)
+            addAccessibilityLabel(blockView: myLabel, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
             cell.addSubview(myLabel)
         }
         cell.accessibilityElements = cell.accessibilityElements?.reversed()
