@@ -719,7 +719,7 @@ class ExecutingProgram {
                 robotSpeed = 30.0
             case "Slow":
                 robotSpeed = 10.0
-            case "Very Slow":
+            case "Really Slow":
                 robotSpeed = 5.0
             default:
                 robotSpeed = 30.0
@@ -738,7 +738,7 @@ class ExecutingProgram {
                 robotSpeed = 30.0
             case "Slow":
                 robotSpeed = 10.0
-            case "Very Slow":
+            case "Really Slow":
                 robotSpeed = 5.0
             default:
                 robotSpeed = 30.0
@@ -750,7 +750,7 @@ class ExecutingProgram {
         let drive = WWCommandSet()
         drive.setBodyLinearAngular(setAngular)
         /*by multiplying (distance/robotSpped) by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
-         distance he needs to in the right time. However he travels a little too far on the very slow speed. */
+         distance he needs to in the right time. However he travels a little too far on the really slow speed. */
         // this needs fine tuning, generally works fine, but probably a better way to account for this
         // really need internal API from wonderworkshop to make this work
         var durationModifier = 1.25
