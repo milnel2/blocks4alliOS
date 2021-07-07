@@ -135,32 +135,9 @@ class BlockTableViewController: UITableViewController {
                     }
                 }
                 
-                //If-else
-                if block.tripleCounterpart{
-                    let firstBlockName = "If"
-                    let firstBlock = Block(name: firstBlockName, color: block.color, double: false, tripleCounterpart: true)
-                    firstBlock?.imageName = "If_Else.pdf"
-                    firstBlock?.counterpart.append(block)
-                    block.counterpart.append(firstBlock ?? block)
-                    
-                    let middleBlockName = "Else"
-                    let middleBlock = Block(name: middleBlockName, color: block.color, double: false, tripleCounterpart: true)
-                    middleBlock?.imageName = "Else.pdf"
-                    middleBlock?.counterpart.append(block)
-                    block.counterpart.append(middleBlock!)
-                    print("in triple counterpart")
-                    
-                    let endBlockName = "End If Else"
-                    let endBlock = Block(name: endBlockName, color: block.color, double: false, tripleCounterpart: true)
-                    endBlock?.counterpart.append(block)
-                    block.counterpart.append(endBlock!)
-                    myDestination.blocks = [firstBlock!, middleBlock!, endBlock!]
-                    
-                }
-                //let block = blocks[(tableView.indexPathForSelectedRow?.row)!].copy()
-                else if block.double{
+                if block.double{
                     let endBlockName = "End " + block.name
-                    let endBlock = Block(name: endBlockName, color: block.color, double: true, tripleCounterpart: false)
+                    let endBlock = Block(name: endBlockName, color: block.color, double: true)
                     endBlock?.counterpart.append(block)
                     block.counterpart.append(endBlock ?? block)
                     myDestination.blocks = [block, endBlock!]
@@ -230,14 +207,14 @@ class BlockTableViewController: UITableViewController {
                 var functionToolBlockArray = [Block]()
                 
                 //Adds Create/Edit Functions button to Functions category
-                let createFunctionBlock = Block(name: "Create/Edit Functions", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#00A6FF")), double: false, tripleCounterpart: false)!
+                let createFunctionBlock = Block(name: "Create/Edit Functions", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#00A6FF")), double: false)!
                 createFunctionBlock.type = "Function"
                 functionToolBlockArray.append(createFunctionBlock)
                 toolBoxBlockArray += [createFunctionBlock]
                 
                 for function in functionBlocks{
                     var blockBeingCreated: Block
-                        blockBeingCreated = Block(name: function, color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: false, tripleCounterpart: false)!
+                        blockBeingCreated = Block(name: function, color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: false)!
                     blockBeingCreated.type = "Function"
                     functionToolBlockArray.append(blockBeingCreated)
                     toolBoxBlockArray += [blockBeingCreated]
@@ -257,22 +234,20 @@ class BlockTableViewController: UITableViewController {
                         if let colorString = dictItem.object(forKey: "color") as? String{
                             let color2 = Color.init(uiColor:UIColor.colorFrom(hexString: colorString))
                             if let double = dictItem.object(forKey: "double") as? Bool{
-                                if let tripleCounterpart = dictItem.object(forKey: "tripleCounterpart") as? Bool{
-                                    guard let block = Block(name: name as! String, color: color2 , double: double, tripleCounterpart: tripleCounterpart)else {
-                                        fatalError("Unable to instantiate block")
-                                    }
-                                    if let imageName = dictItem.object(forKey: "imageName") as? String{
-                                        block.addImage(imageName)
-                                    }
-                                    if let type = dictItem.object(forKey: "type") as? String{
-                                        block.type = type
-                                    }
-                                    if let acceptedTypes = dictItem.object(forKey: "acceptedTypes") as? [String]{
-                                        block.acceptedTypes = acceptedTypes
-                                    }
-                                    toolBoxBlockArray += [block]
-                                    // adds block to the toolbox
+                                guard let block = Block(name: name as! String, color: color2 , double: double) else {
+                                    fatalError("Unable to instantiate block")
                                 }
+                                if let imageName = dictItem.object(forKey: "imageName") as? String{
+                                    block.addImage(imageName)
+                                }
+                                if let type = dictItem.object(forKey: "type") as? String{
+                                    block.type = type
+                                }
+                                if let acceptedTypes = dictItem.object(forKey: "acceptedTypes") as? [String]{
+                                    block.acceptedTypes = acceptedTypes
+                                }
+                                toolBoxBlockArray += [block]
+                                // adds block to the toolbox
                             }
                         }
                     }

@@ -103,7 +103,7 @@ class BlocksTypeTableViewController: UITableViewController {
                 if let colorString = blockType.object(forKey: "color") as? String{
                     color = Color.init(uiColor: UIColor.colorFrom(hexString: colorString))
                 }
-                guard let block = Block(name: name!, color: color, double: false, tripleCounterpart: false) else {
+                guard let block = Block(name: name!, color: color, double: false) else {
                     fatalError("Unable to instantiate block")
                 }
                 blockTypes += [block]

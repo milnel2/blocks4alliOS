@@ -139,8 +139,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         clearAllButton.layer.cornerRadius = 10
         
         if workspaceNameLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
-            let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
-            let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
+            let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true)
+            let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true)
             startBlock!.counterpart = [endBlock!]
             endBlock!.counterpart = [startBlock!]
             functionsDict[currentWorkspace]?.append(startBlock!)
@@ -576,7 +576,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialBoolean = "false"
                     
-                    let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray), double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray), double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "booleanSelected", value: "\(initialBoolean)")
@@ -614,7 +614,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     // Creates repeat button for modifier.
                     let initialTimesToRepeat = 2
                    
-                    let placeholderBlock = Block(name: "Repeat Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Repeat Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "timesToRepeat", value: "\(initialTimesToRepeat)")
@@ -640,7 +640,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
             case "Repeat Forever":
                 if block.addedBlocks.isEmpty{
-                    _ = Block(name: "forever", color: Color.init(uiColor:UIColor.red ) , double: false, tripleCounterpart: false, type: "Boolean")
+                    _ = Block(name: "forever", color: Color.init(uiColor:UIColor.red ) , double: false, type: "Boolean")
                 }
                 
             case "Drive Forward", "Drive Backward":
@@ -649,7 +649,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let initialSpeed = "Normal"
                     // Creates distance button for modifier.
                     // TODO: change the Distance and Speed values in the placeholderBlock name according to Dash API
-                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "distance", value: "\(initialDistance)")
@@ -682,7 +682,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     //Creates angle button for modifier
                     let initialAngle = 90
                     
-                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "angle", value: "\(initialAngle)")
@@ -714,7 +714,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     // MARK: Blockly default color is yellow
                     let initialColor = "yellow"
                     
-                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.yellow) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.yellow) , double: false, type: "Boolean")
                     
                     placeholderBlock?.addAttributes(key: "lightColor", value: initialColor)
                     // MARK: modifier block color changes to what was selected
@@ -749,7 +749,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Set Eye Light":
                 if block.addedBlocks.isEmpty{
                     let initialEyeLightStatus = "Off"
-                    let placeholderBlock = Block(name: "Eye Light Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Eye Light Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "eyeLight", value: "\(initialEyeLightStatus)")
@@ -777,7 +777,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Wait for Time":
                 if block.addedBlocks.isEmpty{
                     let initialWait = 1
-                    let placeholderBlock = Block(name: "Wait Time", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Wait Time", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "wait", value: "\(initialWait)")
@@ -810,7 +810,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let initialVariable = "orange"
                     let initialVariableValue = 0
 
-                    let placeholderBlock = Block(name: "Set Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Set Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -841,7 +841,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
-                    let placeholderBlock = Block(name: "Set Drive Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Set Drive Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -879,7 +879,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
-                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -919,7 +919,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
-                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -954,85 +954,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 cell.addSubview(setLookLeftRightVariableButton)
                 save()
                 
-//            case "Wheel Speed":
-//
-//                if block.addedBlocks.isEmpty{
-//                    let initialVariable = "orange"
-//
-//                    let placeholderBlock = Block(name: "Set Wheel Speed Variables", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
-//
-//                    block.addedBlocks.append(placeholderBlock!)
-//
-//                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
-//                    placeholderBlock?.addAttributes(key: "variableSelectedTwo", value: "\(initialVariable)")
-//
-//                }
-//                let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: 2 * blockWidth/3, height: blockHeight/2))
-//
-//                                    let setWheelSpeedButtonTwo = UIButton(frame: CGRect(x: blockWidth/3, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing) + blockHeight/2, width: 2 * blockWidth/3 , height: blockHeight/2))
-//
-//                                    let setBackgroundButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-//
-//                                    let setBorderButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-//
-//                                    setBackgroundButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-//                                    setBorderButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 0)
-//
-//                                    setWheelSpeedButton.tag = indexPath.row
-//                                    setWheelSpeedButtonTwo.tag = indexPath.row
-//                                    setBorderButton.tag = indexPath.row
-//
-//                                    switch block.addedBlocks[0].attributes["variableSelected"]{
-//                                    case "orange":
-//                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-//                                    case "cherry":
-//                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-//                                    case "banana":
-//                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-//                                    case "melon":
-//                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-//                                    case "apple":
-//                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-//                                    default:
-//                                        setWheelSpeedButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-//                                    }
-//
-//                                    switch block.addedBlocks[0].attributes["variableSelectedTwo"]{
-//                                    case "orange":
-//                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-//                                    case "cherry":
-//                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-//                                    case "banana":
-//                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-//                                    case "melon":
-//                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-//                                    case "apple":
-//                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-//                                    default:
-//                                        setWheelSpeedButtonTwo.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-//                                    }
-//
-//                //                    setWheelSpeedButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-//                //                    setWheelSpeedButtonTwo.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-//                                    setBorderButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-//
-//                                    setBorderButton.accessibilityLabel = "Set Wheel Variables"
-//                                    setBorderButton.isAccessibilityElement = true
-//
-//
-//                                    setBorderButton.layer.borderWidth = 2.0
-//                                    setBorderButton.layer.borderColor = UIColor.black.cgColor
-//
-//                                    cell.addSubview(setBackgroundButton)
-//                                    cell.addSubview(setWheelSpeedButton)
-//                                    cell.addSubview(setWheelSpeedButtonTwo)
-//                                    cell.addSubview(setBorderButton)
-                
             case "Turn":
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
-                    let placeholderBlock = Block(name: "Choose Turn Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Choose Turn Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
