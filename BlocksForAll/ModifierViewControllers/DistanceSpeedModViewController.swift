@@ -78,7 +78,7 @@ class DistanceSpeedModViewController: UIViewController{
             speed = "Slow"
             speedLabel.text = speed
         case "Slow":
-            speed = "Very Slow"
+            speed = "Really Slow"
             speedLabel.text = speed
         default:
             print("can't be slowed")
@@ -89,7 +89,7 @@ class DistanceSpeedModViewController: UIViewController{
     //if plus button pressed, speed changes to one more and speed label updated with this value
     @IBAction func fastButtonPressed(_ sender: UIButton) {
         switch speed {
-        case "Very Slow":
+        case "Really Slow":
             speed = "Slow"
             speedLabel.text = speed
         case "Slow":
