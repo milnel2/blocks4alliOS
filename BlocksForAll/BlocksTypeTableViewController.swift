@@ -19,11 +19,18 @@ class BlocksTypeTableViewController: UITableViewController {
     //used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
     
-    
     //MARK: - viewDidLoad function
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Toolbox"
+        
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+            self.navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        }
+        
+        self.tableView.bounces = true
+        
         self.accessibilityLabel = "Toolbox Menu"
         self.accessibilityHint = "Double tap from menu to select block category"
         //self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: CGFloat(blockWidth), height: CGFloat(blockWidth))
@@ -32,6 +39,10 @@ class BlocksTypeTableViewController: UITableViewController {
         
         createBlocksArray()
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        navigationController!.navigationBar.sizeToFit()
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -32,7 +32,10 @@ class BlockTableViewController: UITableViewController {
     override func viewDidLoad() {
     
         super.viewDidLoad()
-        //self.title = "Toolbox"
+        
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        }
         
         blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
@@ -44,7 +47,6 @@ class BlockTableViewController: UITableViewController {
         
         //self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -25,6 +25,11 @@ class SelectedBlockViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem?.accessibilityLabel = "Back"
         
+        //Puts top of selected block view at the top of the screen
+        if #available(iOS 11.0, *) {
+            navigationItem.largeTitleDisplayMode = .never
+        }
+        
         let myFrame = CGRect(x: 0, y: Int(self.view.bounds.height/2), width: 0, height: 0)
         
         
@@ -45,7 +50,6 @@ class SelectedBlockViewController: UIViewController {
         
         delegate?.beginMovingBlocks(blocks!)
         delegate?.setParentViewController(self.parent!)
-        
     }
     
     override func didReceiveMemoryWarning() {
