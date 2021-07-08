@@ -179,34 +179,135 @@ class ExecutingProgram {
         
         
         switch blockToExec.name{
-        //Animals Category
-        case "Make Cat Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_CAT)
+        //SOUNDS CATEGORY
+        case "Animal Noise":
+            let animal = blockToExec.addedBlocks[0].attributes["animalNoise"]
             
-        case "Make Crocodile Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_CROCODILE)
+            switch animal {
+            case "cat":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_CAT)
+            case "crocodile":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_CROCODILE)
+            case "dinosaur":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_DINOSAUR)
+            case "dog":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_DOG)
+            case "elephant":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_ELEPHANT)
+            case "goat":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOAT)
+            case "horse":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_HORSE)
+            case "lion":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_LION)
+            case "turkey":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOBBLE)
+            default:
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_CAT)
+            }
             
-        case "Make Dinosaur Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_DINOSAUR)
+        case "Vehicle Noise":
+            let vehicle = blockToExec.addedBlocks[0].attributes["vehicleNoise"]
             
-        case "Make Dog Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_DOG)
+            switch vehicle {
+            case "airplane":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_AIRPLANE)
+            case "beep":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BEEP)
+            case "boat":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BOAT)
+            case "helicopter":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_HELICOPTER)
+            case "siren":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SIREN)
+            case "speedBoost":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SPEED_BOOST)
+            case "startEngine":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_ENGINE_REV)
+            case "tireSqueal":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_TIRE_SQUEAL)
+            case "train":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRAIN)
+            default:
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_AIRPLANE)
+            }
             
-        case "Make Elephant Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_ELEPHANT)
+        case "Object Noise":
+            let object = blockToExec.addedBlocks[0].attributes["objectNoise"]
             
-        case "Make Goat Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOAT)
+            switch object {
+            case "random":
+                playNoise(myAction: myAction, sound: soundFiles[.random(in: soundFiles.indices)])
+            case "buzz":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BUZZ)
+            case "laser":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_LASERS)
+            case "snore":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SNORING)
+            case "trumpet":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRUMPET)
+            case "squeak":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SQUEAK)
+            default: playNoise(myAction: myAction, sound: soundFiles[.random(in: soundFiles.indices)])
+            }
             
-        case "Make Horse Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_HORSE)
+        case "Emotion Noise":
+            let emotion = blockToExec.addedBlocks[0].attributes["emotionNoise"]
             
-        case "Make Lion Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_LION)
-        case "Make Turkey Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOBBLE)
+            switch emotion {
+            case "bragging":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BRAGGING)
+            case "confused":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_CONFUSED)
+            case "giggle":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_GIGGLE)
+            case "grunt":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_GRUNT)
+            case "sigh":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SIGH)
+            case "surprised":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SURPRISED)
+            case "yawn":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_YAWN)
+            default:
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BRAGGING)
+            }
             
-        //Control Category
+        case "Speak":
+            let word = blockToExec.addedBlocks[0].attributes["speakWord"]
+
+            switch word {
+            case "hi":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_HI)
+            case "bye":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BYE)
+            case "cool":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_COOL)
+            case "haha":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_HAHA)
+            case "letsGo":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_LETS_GO)
+            case "oh":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_OOH)
+            case "wow":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_WOW)
+            case "tahDah":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_TAH_DAH)
+            case "uhHuh":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_HUH)
+            case "uhOh":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_OH)
+            case "wah":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_WAH)
+            case "weeHee":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEEHEE)
+            case "yippe":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_YIPPE)
+            default:
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_HI)
+            }
+            
+        //CONTROL CATEGORY
         case "If":
             // what the statement evaluates to
             let data = getSensorData()
@@ -304,7 +405,7 @@ class ExecutingProgram {
             myAction = playWait(waitBlock: blockToExec, cmdToSend: cmdToSend)
             duration = 0.1
             
-        //Drive Category
+        //DRIVE CATEGORY
         case "Drive Forward":
             //drive constant is positive because this is drive forward
             myAction = playDrive(driveBlock: blockToExec, driveConstant: 1.0, cmdToSend: cmdToSend)
@@ -322,27 +423,7 @@ class ExecutingProgram {
         case "Turn Right":
             myAction = playTurn(turnBlock: blockToExec, direction:1, cmdToSend: cmdToSend)
             
-            
-            
-            
-        //Emotes Category
-        case "Confused":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_CONFUSED)
-        case "Bragging":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_BRAGGING)
-        case "Giggle":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_GIGGLE)
-        case "Grunt":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_GRUNT)
-        case "Sigh":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_SIGH)
-        case "Surprised":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_SURPRISED)
-        case "Yawn":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_YAWN)
-            
-            
-            //Lights Category
+            //LIGHTS CATEGORY
         //MARK: change this code and make is smoother once we have user input
         case "Set Eye Light":
             let light = playLight(lightBlock: blockToExec)
@@ -368,7 +449,7 @@ class ExecutingProgram {
             myAction.setLeftEarLight(light)
             myAction.setChestLight(light)
             
-        //Motion Category
+        //MOTION CATEGORY
         case "Wiggle":
             duration = 2.0
             let rotateLeft = WWCommandSet()
@@ -400,7 +481,7 @@ class ExecutingProgram {
             myAction = WWCommandToolbelt.moveStop()
             nodIndex = 0
             
-        //Look Category
+        //LOOK CATEGORY
         case "Look Up":
             let lookup = WWCommandSet()
             lookup.setHeadPositionTilt(WWCommandHeadPosition.init(degree: -30))
@@ -463,56 +544,7 @@ class ExecutingProgram {
 //            myAction = WWCommandToolbelt.moveStop()
 //            danceIndex = 0
             
-            
-        //Sound Category
-        case "Make Random Noise":
-            playNoise(myAction: myAction, sound: soundFiles[.random(in: soundFiles.indices)])
-        case "Buzz":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_BUZZ)
-        case "Lasers":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_LASERS)
-        case "Snore":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_SNORING)
-        case "Trumpet":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRUMPET)
-        case "Squeak":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_SQUEAK)
-            
-            
-        //Speak Category
-        case "Say Hi":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_HI)
-        case "Say Bye":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_BYE)
-        case "Say Cool":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_COOL)
-        case "Say Ha ha":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_HAHA)
-        case "Say huhhh":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_HUH)
-        case "Say Lets Go":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_LETS_GO)
-        case "Say O":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_OOH)
-        case "Say Wow":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_WOW)
-        case "Say Tahhh Dahhhh":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_TAH_DAH)
-        case "Say Uh Huhhh":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_HUH)
-        case "Say Uh O":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_OH)
-        case "Say Wah":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_WAH)
-        case "Say We":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEE)
-        case "Say We he":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEEHEE)
-        case "Say Yipp e":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_YIPPE)
-            
-            
-        //variables Category
+        //VARIABLES CATEGORY
         case "Set Variable":
             variablesDict[ blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] = Double(blockToExec.addedBlocks[0].attributes["variableValue"] ?? "0.0") ?? 0.0
             //assigns the variable value from current block attributes to the variables dict in executing program
@@ -574,29 +606,6 @@ class ExecutingProgram {
             cmdToSend.add(lookLeftOrRight, withDuration: duration)
             myAction =  WWCommandToolbelt.moveStop()
             print("lookUpOrDown, degree", degree)
-            
-        //vehicle Category - check on
-        case "Airplane Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_AIRPLANE)
-        case "Beep":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_BEEP)
-        case "Boat Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_BOAT)
-        case "Helicopter Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_HELICOPTER)
-        case "Horn":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_HORN)
-        case "Siren Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_SIREN)
-        case "Speed Boost":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_SPEED_BOOST)
-        case "Start Engine Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_ENGINE_REV)
-        case "Tire Squeal":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_TIRE_SQUEAL)
-        case "Train Noise":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRAIN)
-
             
         //not in a category or plist? add
         case "Say Okay":

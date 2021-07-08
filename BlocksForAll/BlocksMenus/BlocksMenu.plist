@@ -4,7 +4,7 @@
 <array>
 	<dict>
 		<key>type</key>
-		<string>Animals</string>
+		<string>Sounds</string>
 		<key>color</key>
 		<string>#058900</string>
 		<key>Blocks</key>
@@ -15,13 +15,11 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
-				<string>Make Cat Noise</string>
+				<string>Animal Noise</string>
 				<key>color</key>
 				<string>#058900</string>
 				<key>double</key>
 				<false/>
-				<key>imageName</key>
-				<string>cat_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -29,13 +27,11 @@
 				<key>editable</key>
 				<false/>
 				<key>name</key>
-				<string>Make Crocodile Noise</string>
+				<string>Vehicle Noise</string>
 				<key>color</key>
-				<string>#058900</string>
+				<string>#002041</string>
 				<key>double</key>
 				<false/>
-				<key>imageName</key>
-				<string>crocodile_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -43,13 +39,11 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
-				<string>Make Dinosaur Noise</string>
+				<string>Object Noise</string>
 				<key>color</key>
-				<string>#058900</string>
+				<string>#227C7C</string>
 				<key>double</key>
 				<false/>
-				<key>imageName</key>
-				<string>dinosaur_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -57,55 +51,11 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
-				<string>Make Dog Noise</string>
+				<string>Emotion Noise</string>
 				<key>color</key>
-				<string>#058900</string>
+				<string>#A50C82</string>
 				<key>double</key>
 				<false/>
-				<key>imageName</key>
-				<string>dog_sound.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Make Elephant Noise</string>
-				<key>color</key>
-				<string>#058900</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>elephant_sound.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Make Goat Noise</string>
-				<key>color</key>
-				<string>#058900</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>goat_sound.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Make Horse Noise</string>
-				<key>color</key>
-				<string>#058900</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>horse_sound.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -113,27 +63,11 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
-				<string>Make Lion Noise</string>
+				<string>Speak</string>
 				<key>color</key>
-				<string>#058900</string>
+				<string>#C63329</string>
 				<key>double</key>
 				<false/>
-				<key>imageName</key>
-				<string>lion_sound.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Make Turkey Noise</string>
-				<key>color</key>
-				<string>#058900</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>turkey_sound.pdf</string>
 			</dict>
 		</array>
 	</dict>
@@ -507,385 +441,6 @@
 	</dict>
 	<dict>
 		<key>type</key>
-		<string>Sound</string>
-		<key>color</key>
-		<string>#227C7C</string>
-		<key>Blocks</key>
-		<array>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>options</key>
-				<array>
-					<string>Dog</string>
-					<string>Horse</string>
-					<string>Cat</string>
-				</array>
-				<key>name</key>
-				<string>Make Random Noise</string>
-				<key>color</key>
-				<string>#227C7C</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>random_sound.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Buzz</string>
-				<key>color</key>
-				<string>#227C7C</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>buzz_sound.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Lasers</string>
-				<key>color</key>
-				<string>#227C7C</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>laser_sound.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Snore</string>
-				<key>color</key>
-				<string>#227C7C</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>snore_sound.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Trumpet</string>
-				<key>color</key>
-				<string>#227C7C</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>trumpet_sound.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Squeak</string>
-				<key>color</key>
-				<string>#227C7C</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>squeak_sound.pdf</string>
-			</dict>
-			<dict>
-				<key>editable</key>
-				<false/>
-				<key>type</key>
-				<string>Statement</string>
-				<key>name</key>
-				<string>Bragging</string>
-				<key>color</key>
-				<string>#A50C82</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>sound_bragging.pdf</string>
-			</dict>
-			<dict>
-				<key>editable</key>
-				<false/>
-				<key>type</key>
-				<string>Statement</string>
-				<key>name</key>
-				<string>Confused</string>
-				<key>color</key>
-				<string>#A50C82</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>sound_confused.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Giggle</string>
-				<key>color</key>
-				<string>#A50C82</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>sound_giggle.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Grunt</string>
-				<key>color</key>
-				<string>#A50C82</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>sound_grunt.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Sigh</string>
-				<key>color</key>
-				<string>#A50C82</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>sound_sigh.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Surprised</string>
-				<key>color</key>
-				<string>#A50C82</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>sound_surprised.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Yawn</string>
-				<key>color</key>
-				<string>#A50C82</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>sound_yawn.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say Hi</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_hi.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say Bye</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_bye.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say Cool</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_cool.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say Ha ha</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_haha.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say Lets Go</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_lets_go.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say O</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_oh.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say Wow</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_wow.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say Tahhh Dahhhh</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_tah_dah.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say Uh Huhhh</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_uh_huh.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say Uh O</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_uh_oh.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say Wah</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_wah.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say We he</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_wee_hee.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Say Yipp e</string>
-				<key>color</key>
-				<string>#C63329</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speak_yippe.pdf</string>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>type</key>
 		<string>Variables</string>
 		<key>color</key>
 		<string>#774B4B</string>
@@ -958,141 +513,6 @@
 				<false/>
 				<key>imageName</key>
 				<string>LookLeftnRight.pdf</string>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>type</key>
-		<string>Vehicle</string>
-		<key>color</key>
-		<string>#002041</string>
-		<key>Blocks</key>
-		<array>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Airplane Noise</string>
-				<key>color</key>
-				<string>#002041</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>airplane.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Beep</string>
-				<key>color</key>
-				<string>#002041</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>beep.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Boat Noise</string>
-				<key>color</key>
-				<string>#002041</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>boat.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Helicopter Noise</string>
-				<key>color</key>
-				<string>#002041</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>helicopter.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Siren Noise</string>
-				<key>color</key>
-				<string>#002041</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>siren.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Speed Boost</string>
-				<key>color</key>
-				<string>#002041</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speed_boost.pdf</string>
-			</dict>
-			<dict>
-				<key>editable</key>
-				<false/>
-				<key>type</key>
-				<string>Statement</string>
-				<key>name</key>
-				<string>Start Engine Noise</string>
-				<key>color</key>
-				<string>#002041</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>car_sound.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Tire Squeal</string>
-				<key>color</key>
-				<string>#002041</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>tire_squeal.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Train Noise</string>
-				<key>color</key>
-				<string>#002041</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>train.pdf</string>
 			</dict>
 		</array>
 	</dict>

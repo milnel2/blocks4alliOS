@@ -223,10 +223,10 @@ class BlockTableViewController: UITableViewController {
 
             
             if let blockArray = blockType.object(forKey: "Blocks") as? NSArray{
-                // creates array from the first object in blocksMenu.plist aka Animals, Controls, Drive, Sounds, etc.
+                // creates array from the first object in blocksMenu.plist aka Sounds, Controls, Drive, Sounds, etc.
                 for item in blockArray{
                     print(item)
-                    // for block in category Animal, Control, etc.
+                    // for block in category Sounds, Control, etc.
                     if let dictItem = item as? NSDictionary{
                         // take the block and using it as a dictionary dictItem
                         // below takes the blocks and initalizes their properties

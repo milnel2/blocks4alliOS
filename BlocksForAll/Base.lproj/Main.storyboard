@@ -109,7 +109,7 @@ To get started, select "Get Started" from the Main Menu. This takes you to the b
 
 To have the robot play the commands, press the play button in the lower right side of the screen. If no robot is selected, you will be taken to a menu of detected robots. Select the robot you want then press back then press play again.
 
-Most blocks such as animal noise blocks do not have extra parts. Some blocks though such as the “repeat” and “if” blocks have three parts, a beginning block with a modifier and an endblock. The modifier block can have conditions or numbers, repeat modifier block can be changed to repeat 2 times or more than that if you want. If blocks can have conditions such as if Dash bumps into something or if dash hears a voice. These repeat times and if conditions then affect what blocks you place between the If block and the end if block. Other blocks such as drive blocks also have modifiers such as distance. You can edit a modifier block by tapping on the block.
+Some blocks, like "look," do not have extra parts. Some blocks though such as the “repeat” and “if” blocks have three parts, a beginning block with a modifier and an endblock. The modifier block can have conditions or numbers, repeat modifier block can be changed to repeat 2 times or more than that if you want. If blocks can have conditions such as if Dash bumps into something or if dash hears a voice. These repeat times and if conditions then affect what blocks you place between the If block and the end if block. Other blocks such as drive blocks also have modifiers such as distance. You can edit a modifier block by tapping on the block.
 </string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -545,11 +545,16 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                         <segue destination="o6a-kf-Lsq" kind="show" identifier="lookLeftRightModifier" id="mZm-Fl-nr3"/>
                         <segue destination="YEE-PZ-SjD" kind="show" identifier="toMainMenu" id="XsQ-5G-ZnB"/>
                         <segue destination="Cxp-3J-pfY" kind="show" identifier="mainToMain" id="vzO-l2-EmX"/>
+                        <segue destination="kT8-cI-XdI" kind="presentation" identifier="AnimalModifier" modalPresentationStyle="fullScreen" id="k75-rV-mrc"/>
+                        <segue destination="Rpy-3h-A9i" kind="presentation" identifier="VehicleModifier" modalPresentationStyle="fullScreen" id="an9-kF-889"/>
+                        <segue destination="D14-Ci-rni" kind="presentation" identifier="ObjectNoiseModifier" modalPresentationStyle="fullScreen" id="zfR-jz-Ddn"/>
+                        <segue destination="Ft7-SX-K6V" kind="presentation" identifier="EmotionModifier" modalPresentationStyle="fullScreen" id="lbw-4I-Lh8"/>
+                        <segue destination="x8y-ON-Vke" kind="presentation" identifier="SpeakModifier" modalPresentationStyle="fullScreen" id="Kg2-Z9-dwx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W32-Q3-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-438.33333333333331" y="-489.62962962962962"/>
+            <point key="canvasLocation" x="-438" y="-490"/>
         </scene>
         <!--Block Table View Controller-->
         <scene sceneID="OAu-TV-gtl">
@@ -943,7 +948,406 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gWd-G8-6Lp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1735.546875" y="1029.6875"/>
+            <point key="canvasLocation" x="1808" y="615"/>
+        </scene>
+        <!--Emotion Mod View Controller-->
+        <scene sceneID="JN8-3k-Mtf">
+            <objects>
+                <viewController id="Ft7-SX-K6V" customClass="EmotionModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bAN-cP-T5M"/>
+                        <viewControllerLayoutGuide type="bottom" id="UeI-DI-mbE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jO2-Ue-Pph">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="ZXQ-QZ-GhH">
+                                <rect key="frame" x="165" y="372" width="750" height="365"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Fd8-ji-DVY">
+                                        <rect key="frame" x="0.0" y="0.0" width="750" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nci-IV-rCV">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="bragging" label="Bragging Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="Rze-51-LIg"/>
+                                                    <constraint firstAttribute="width" constant="150" id="dwt-9Y-RGK"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="sound_bragging"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="UrQ-H8-aOK"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WVj-Fa-7NP">
+                                                <rect key="frame" x="200" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="confused" label="Confused Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="bvh-zk-gbG"/>
+                                                    <constraint firstAttribute="height" constant="150" id="mS6-hA-Gf8"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="sound_confused"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="z5h-QF-DEp"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09y-XU-QgC">
+                                                <rect key="frame" x="400" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="giggle" label="Giggle"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="FMz-5O-DuF"/>
+                                                    <constraint firstAttribute="width" constant="150" id="VKs-hT-5su"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="sound_giggle"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="muU-8L-VBR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2o-tj-jGE">
+                                                <rect key="frame" x="600" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="grunt" label="Grunt"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="e9f-DA-JOW"/>
+                                                    <constraint firstAttribute="height" constant="150" id="k0g-Mf-M39"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="sound_grunt"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="aUD-o0-GD4"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="KOP-hK-sOD">
+                                        <rect key="frame" x="100" y="215" width="550" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fV3-Xl-ca5">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="sigh" label="Sigh"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="2Sa-qE-XFq"/>
+                                                    <constraint firstAttribute="height" constant="150" id="Ye4-AV-kuu"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="sound_sigh"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="psd-Wi-jwn"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2DW-BS-mf8">
+                                                <rect key="frame" x="200" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="surprised" label="Surprised Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="FQs-1z-q7O"/>
+                                                    <constraint firstAttribute="height" constant="150" id="e8c-OS-AFX"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="sound_surprised"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="ONG-BJ-zdd"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BC9-wP-kOF">
+                                                <rect key="frame" x="400" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="yawn" label="Yawn"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="Qbr-am-DCs"/>
+                                                    <constraint firstAttribute="height" constant="150" id="axz-o9-2ZH"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="sound_yawn"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="oXI-1w-3PX"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFQ-xx-rgF">
+                                <rect key="frame" x="20" y="28" width="195" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uoc-nU-c4a" kind="show" id="6gY-Qk-Ui8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emotion Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="999-kk-5uY">
+                                <rect key="frame" x="243" y="79" width="594" height="261"/>
+                                <accessibility key="accessibilityConfiguration" label="Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="594" id="1aI-0i-E7Y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="UeI-DI-mbE" firstAttribute="top" secondItem="999-kk-5uY" secondAttribute="bottom" constant="470" id="29y-C1-KHG"/>
+                            <constraint firstItem="999-kk-5uY" firstAttribute="top" secondItem="bAN-cP-T5M" secondAttribute="bottom" constant="79" id="4xF-Pi-8aR"/>
+                            <constraint firstItem="ZXQ-QZ-GhH" firstAttribute="centerX" secondItem="jO2-Ue-Pph" secondAttribute="centerX" id="BpN-O6-P9y"/>
+                            <constraint firstItem="999-kk-5uY" firstAttribute="centerX" secondItem="jO2-Ue-Pph" secondAttribute="centerX" id="IxB-Bb-hpT"/>
+                            <constraint firstItem="UeI-DI-mbE" firstAttribute="top" secondItem="ZXQ-QZ-GhH" secondAttribute="bottom" constant="73" id="pL0-sO-ABf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="back" destination="kFQ-xx-rgF" id="XwR-mD-6g1"/>
+                        <outletCollection property="buttons" destination="nci-IV-rCV" collectionClass="NSMutableArray" id="kl3-UB-RH3"/>
+                        <outletCollection property="buttons" destination="WVj-Fa-7NP" collectionClass="NSMutableArray" id="vCM-Ae-Ea2"/>
+                        <outletCollection property="buttons" destination="09y-XU-QgC" collectionClass="NSMutableArray" id="WAY-F2-Sit"/>
+                        <outletCollection property="buttons" destination="R2o-tj-jGE" collectionClass="NSMutableArray" id="wka-3U-Mxf"/>
+                        <outletCollection property="buttons" destination="fV3-Xl-ca5" collectionClass="NSMutableArray" id="4db-TE-90J"/>
+                        <outletCollection property="buttons" destination="2DW-BS-mf8" collectionClass="NSMutableArray" id="H3m-wD-yzh"/>
+                        <outletCollection property="buttons" destination="BC9-wP-kOF" collectionClass="NSMutableArray" id="Nfl-2p-53S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g0W-0K-ijc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1901.6666666666665" y="1540"/>
+        </scene>
+        <!--Speak Mod View Controller-->
+        <scene sceneID="xRw-SB-m7b">
+            <objects>
+                <viewController id="x8y-ON-Vke" customClass="SpeakModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="14U-7O-LHm"/>
+                        <viewControllerLayoutGuide type="bottom" id="GEb-Nz-FhR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UCx-ge-NQu">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Uh-uO-kta">
+                                <rect key="frame" x="20" y="28" width="195" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uoc-nU-c4a" kind="show" id="U8M-r6-gBL"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speak" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVD-3J-Gmw">
+                                <rect key="frame" x="243" y="28" width="594" height="150"/>
+                                <accessibility key="accessibilityConfiguration" label="Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="594" id="oYt-LV-0W0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="6rM-52-gId">
+                                <rect key="frame" x="85" y="246" width="910" height="510"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="hlI-yJ-Jq1">
+                                        <rect key="frame" x="95" y="0.0" width="720" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31y-JH-o8S">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="hi" label="Say Hi"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="8jA-bG-QLB"/>
+                                                    <constraint firstAttribute="height" constant="150" id="8lS-sY-cer"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_hi"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="CVj-Hf-bAp"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OxV-aP-mjM">
+                                                <rect key="frame" x="190" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="bye" label="Say Bye"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="0Gq-3a-tgf"/>
+                                                    <constraint firstAttribute="height" constant="150" id="gq9-uE-zbX"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_bye"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="w9u-wm-iXb"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4J-3T-oKv">
+                                                <rect key="frame" x="380" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="cool" label="Say cool"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="Ibl-12-Gr9"/>
+                                                    <constraint firstAttribute="width" constant="150" id="Y0U-Qm-05D"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_cool"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="c5L-Ee-IUP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ajt-Ma-gI6">
+                                                <rect key="frame" x="570" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="haha" label="Say Haha"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="Wr3-lG-6J1"/>
+                                                    <constraint firstAttribute="width" constant="150" id="qss-r4-XZU"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_haha"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="GXo-gG-cEf"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="2vb-oi-txb">
+                                        <rect key="frame" x="0.0" y="180" width="910" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Flf-VW-PqB">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="letsGo" label="Say Let's Go"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="6Ka-gR-9EM"/>
+                                                    <constraint firstAttribute="width" constant="150" id="COE-DO-7L1"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_lets_go"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="2a2-Hr-00v"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gs8-ZN-5q5">
+                                                <rect key="frame" x="190" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="oh" label="Say Oh"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="FSG-Sf-7hP"/>
+                                                    <constraint firstAttribute="width" constant="150" id="uG2-89-tdQ"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_oh"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="uiA-jo-A0g"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAG-D4-7VZ">
+                                                <rect key="frame" x="380" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="wow" label="Say Wow"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="GiQ-M0-RFx"/>
+                                                    <constraint firstAttribute="width" constant="150" id="its-ML-iAo"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_wow"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="4WK-mo-MDM"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5N-Jf-ymZ">
+                                                <rect key="frame" x="570" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="tahDah" label="Say Tah Dah"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="Uk1-XJ-fky"/>
+                                                    <constraint firstAttribute="width" constant="150" id="hTh-nD-jbp"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_tah_dah"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="4cd-Gt-laV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EB-PU-AS9">
+                                                <rect key="frame" x="760" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="uhHuh" label="Say Uh Huh"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="Avt-B2-Nqt"/>
+                                                    <constraint firstAttribute="width" constant="150" id="ejG-3f-TlQ"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_uh_huh"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="gbn-xq-k0Y"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="e03-HF-ZhM">
+                                        <rect key="frame" x="95" y="360" width="720" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugd-W1-gk6">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="uhOh" label="Say Uh Oh"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="dPO-Na-B7g"/>
+                                                    <constraint firstAttribute="height" constant="150" id="mZ7-x4-hzg"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_uh_oh"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="vvM-Ht-foF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3k-u5-TMa">
+                                                <rect key="frame" x="190" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="wah" label="Say Wah"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="44N-1f-USM"/>
+                                                    <constraint firstAttribute="width" constant="150" id="ULI-G5-O0q"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_wah"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="6nU-ab-gS7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HxD-xO-G0F">
+                                                <rect key="frame" x="380" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="weeHee" label="Say Wee Hee"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="A21-86-rAN"/>
+                                                    <constraint firstAttribute="width" constant="150" id="vzu-ur-ltM"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_wee_hee"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="tYV-J7-PKe"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blC-fO-53g">
+                                                <rect key="frame" x="570" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="yippe" label="Say Yippee"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="reJ-QI-ZXY"/>
+                                                    <constraint firstAttribute="width" constant="150" id="yNJ-W9-naS"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speak_yippe"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="Ngo-uj-nKd"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GEb-Nz-FhR" firstAttribute="top" secondItem="6rM-52-gId" secondAttribute="bottom" constant="54" id="DBc-QR-Iq0"/>
+                            <constraint firstItem="GEb-Nz-FhR" firstAttribute="top" secondItem="xVD-3J-Gmw" secondAttribute="bottom" constant="632" id="QBV-ql-EOn"/>
+                            <constraint firstItem="6rM-52-gId" firstAttribute="centerX" secondItem="UCx-ge-NQu" secondAttribute="centerX" id="im6-pr-7Ej"/>
+                            <constraint firstItem="xVD-3J-Gmw" firstAttribute="centerX" secondItem="UCx-ge-NQu" secondAttribute="centerX" id="zhF-i6-zic"/>
+                            <constraint firstItem="xVD-3J-Gmw" firstAttribute="top" secondItem="14U-7O-LHm" secondAttribute="bottom" constant="28" id="zig-Rk-yD6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="back" destination="6Uh-uO-kta" id="xxp-tv-UEk"/>
+                        <outletCollection property="buttons" destination="31y-JH-o8S" collectionClass="NSMutableArray" id="kmm-DU-GOs"/>
+                        <outletCollection property="buttons" destination="OxV-aP-mjM" collectionClass="NSMutableArray" id="SNZ-EV-RCL"/>
+                        <outletCollection property="buttons" destination="g4J-3T-oKv" collectionClass="NSMutableArray" id="eaD-ue-k5H"/>
+                        <outletCollection property="buttons" destination="Ajt-Ma-gI6" collectionClass="NSMutableArray" id="RwS-1d-Yt8"/>
+                        <outletCollection property="buttons" destination="H5N-Jf-ymZ" collectionClass="NSMutableArray" id="VMN-pX-2P4"/>
+                        <outletCollection property="buttons" destination="Flf-VW-PqB" collectionClass="NSMutableArray" id="8nO-Dg-Vp9"/>
+                        <outletCollection property="buttons" destination="gs8-ZN-5q5" collectionClass="NSMutableArray" id="eJM-Qf-J6c"/>
+                        <outletCollection property="buttons" destination="OAG-D4-7VZ" collectionClass="NSMutableArray" id="V6a-fg-CO5"/>
+                        <outletCollection property="buttons" destination="7EB-PU-AS9" collectionClass="NSMutableArray" id="c9a-D6-QJJ"/>
+                        <outletCollection property="buttons" destination="ugd-W1-gk6" collectionClass="NSMutableArray" id="vS8-wj-NYp"/>
+                        <outletCollection property="buttons" destination="W3k-u5-TMa" collectionClass="NSMutableArray" id="00o-jR-jd0"/>
+                        <outletCollection property="buttons" destination="HxD-xO-G0F" collectionClass="NSMutableArray" id="vbM-li-ncV"/>
+                        <outletCollection property="buttons" destination="blC-fO-53g" collectionClass="NSMutableArray" id="b7z-4z-45c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6PC-Zd-Qss" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2387.7777777777778" y="2358.5185185185182"/>
         </scene>
         <!--Repeat-->
         <scene sceneID="zCU-JJ-aje">
@@ -2057,6 +2461,521 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
             </objects>
             <point key="canvasLocation" x="727.734375" y="2001.5625"/>
         </scene>
+        <!--Animal Mod View Controller-->
+        <scene sceneID="7tK-u8-qgz">
+            <objects>
+                <viewController id="kT8-cI-XdI" customClass="AnimalModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uSQ-mj-f2u"/>
+                        <viewControllerLayoutGuide type="bottom" id="hmO-IZ-dxb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LSQ-79-hWm">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="WSb-H4-3eh">
+                                <rect key="frame" x="85" y="372" width="910" height="365"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="0sc-ML-1N9">
+                                        <rect key="frame" x="0.0" y="0.0" width="910" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ab2-cI-hgX">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="cat" label="Cat Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="kjc-OQ-mVL"/>
+                                                    <constraint firstAttribute="width" constant="150" id="leB-RV-OUq"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="cat_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="c0v-J9-EDd"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NiD-nr-M4c">
+                                                <rect key="frame" x="190" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="crocodile" label="Crocodile Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="5zo-YG-VOH"/>
+                                                    <constraint firstAttribute="width" constant="150" id="epq-My-rxI"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="crocodile_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="8gr-03-ZpY"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2I-Fh-YX7">
+                                                <rect key="frame" x="380" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="dinosaur" label="Dinosaur Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="INj-P9-2Wu"/>
+                                                    <constraint firstAttribute="width" constant="150" id="XKn-v2-JhO"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="dinosaur_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="3de-lU-aRB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQy-ch-07V">
+                                                <rect key="frame" x="570" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="dog" label="Dog Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="dco-dB-cng"/>
+                                                    <constraint firstAttribute="width" constant="150" id="dpt-bD-miE"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="dog_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="PcG-hM-FTx"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UpS-IY-ART">
+                                                <rect key="frame" x="760" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="elephant" label="Elephant Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="6Bj-2R-2LM"/>
+                                                    <constraint firstAttribute="height" constant="150" id="PVm-Rg-5st"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="elephant_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="fPW-Aw-mD7"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="3Tb-qW-gsf">
+                                        <rect key="frame" x="95" y="215" width="720" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11z-tH-agL">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="goat" label="Goat Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="dvd-Cc-ljl"/>
+                                                    <constraint firstAttribute="width" constant="150" id="jLQ-1c-Qab"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="goat_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="iC8-HY-hNG"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOD-D3-CjJ">
+                                                <rect key="frame" x="190" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="horse" label="Horse Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="cwh-IE-TYu"/>
+                                                    <constraint firstAttribute="height" constant="150" id="frT-We-4gK"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="horse_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="G8d-YP-h0E"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAt-AX-C9N">
+                                                <rect key="frame" x="380" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="lion" label="Lion Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="Olz-Fr-kub"/>
+                                                    <constraint firstAttribute="height" constant="150" id="i1K-Cr-aQk"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="lion_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="dKI-hw-sg7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJv-o2-0GQ">
+                                                <rect key="frame" x="570" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="turkey" label="Turkey Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="Wt6-MY-LWY"/>
+                                                    <constraint firstAttribute="width" constant="150" id="sNA-IR-2Ti"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="turkey_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="LRJ-jm-Adi"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zl5-vt-fBF">
+                                <rect key="frame" x="20" y="28" width="195" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uoc-nU-c4a" kind="show" id="REf-Ph-mB1"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animal Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RP0-th-39x">
+                                <rect key="frame" x="243" y="79" width="594" height="261"/>
+                                <accessibility key="accessibilityConfiguration" label="Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="594" id="hCq-4G-RYU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RP0-th-39x" firstAttribute="top" secondItem="uSQ-mj-f2u" secondAttribute="bottom" constant="79" id="Cf4-I2-D4R"/>
+                            <constraint firstItem="hmO-IZ-dxb" firstAttribute="top" secondItem="WSb-H4-3eh" secondAttribute="bottom" constant="73" id="IfS-Pt-ZNS"/>
+                            <constraint firstItem="WSb-H4-3eh" firstAttribute="centerX" secondItem="LSQ-79-hWm" secondAttribute="centerX" id="L4Y-CQ-9c5"/>
+                            <constraint firstItem="RP0-th-39x" firstAttribute="centerX" secondItem="LSQ-79-hWm" secondAttribute="centerX" id="uHa-GL-pip"/>
+                            <constraint firstItem="hmO-IZ-dxb" firstAttribute="top" secondItem="RP0-th-39x" secondAttribute="bottom" constant="470" id="yYr-Mf-eHb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="OeK-y1-TTH"/>
+                    <connections>
+                        <outlet property="back" destination="zl5-vt-fBF" id="Byn-UR-Igj"/>
+                        <outletCollection property="buttons" destination="ab2-cI-hgX" collectionClass="NSMutableArray" id="0wC-rM-Oj9"/>
+                        <outletCollection property="buttons" destination="NiD-nr-M4c" collectionClass="NSMutableArray" id="lQn-Be-4Jx"/>
+                        <outletCollection property="buttons" destination="C2I-Fh-YX7" collectionClass="NSMutableArray" id="bDy-FL-3Wb"/>
+                        <outletCollection property="buttons" destination="AQy-ch-07V" collectionClass="NSMutableArray" id="QMe-E3-JEq"/>
+                        <outletCollection property="buttons" destination="UpS-IY-ART" collectionClass="NSMutableArray" id="4Mc-66-eih"/>
+                        <outletCollection property="buttons" destination="11z-tH-agL" collectionClass="NSMutableArray" id="ERC-6p-kZE"/>
+                        <outletCollection property="buttons" destination="jOD-D3-CjJ" collectionClass="NSMutableArray" id="QI5-lK-FTV"/>
+                        <outletCollection property="buttons" destination="kAt-AX-C9N" collectionClass="NSMutableArray" id="bFM-T5-gMq"/>
+                        <outletCollection property="buttons" destination="FJv-o2-0GQ" collectionClass="NSMutableArray" id="Q30-U6-jo5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M4M-np-pmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1565.5555555555554" y="2261.4814814814813"/>
+        </scene>
+        <!--Object Noise Mod View Controller-->
+        <scene sceneID="uKa-u0-YOS">
+            <objects>
+                <viewController id="D14-Ci-rni" customClass="ObjectNoiseModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9eb-pv-oEK"/>
+                        <viewControllerLayoutGuide type="bottom" id="qdw-mh-xiP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8Rx-ye-jcA">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QiG-Hb-gjY">
+                                <rect key="frame" x="20" y="28" width="195" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uoc-nU-c4a" kind="show" id="RBV-uj-Rac"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Object Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvv-rd-Qyi">
+                                <rect key="frame" x="243" y="79" width="594" height="261"/>
+                                <accessibility key="accessibilityConfiguration" label="Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="594" id="z7b-Ys-BTH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="DTS-aq-2Ow">
+                                <rect key="frame" x="245" y="372" width="590" height="365"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="8uI-Pt-xBL">
+                                        <rect key="frame" x="0.0" y="0.0" width="590" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oOD-hn-gVe">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="random" label="Random Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="8ad-DR-ffI"/>
+                                                    <constraint firstAttribute="height" constant="150" id="Yxt-GH-WPS"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="random_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="qhh-eJ-YoR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9n-3x-Boc">
+                                                <rect key="frame" x="220" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="buzz" label="Buzz"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="79o-FZ-KYs"/>
+                                                    <constraint firstAttribute="height" constant="150" id="Y7i-tn-MrF"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="buzz_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="ovP-b9-PM4"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJ9-Mh-HyN">
+                                                <rect key="frame" x="440" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="laser" label="Laser Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="2Qq-9n-xUz"/>
+                                                    <constraint firstAttribute="height" constant="150" id="wcx-fk-ZNS"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="laser_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="TLi-RF-1iG"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="kLP-yA-tLB">
+                                        <rect key="frame" x="0.0" y="215" width="590" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qS-nG-Q9p">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="snore" label="Snore"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="WQa-1l-YLh"/>
+                                                    <constraint firstAttribute="height" constant="150" id="lcl-Yz-cqs"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="snore_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="Rbg-ar-lnq"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9y-vQ-KQh">
+                                                <rect key="frame" x="220" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="trumpet" label="Trumpet Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="FxE-rY-r40"/>
+                                                    <constraint firstAttribute="height" constant="150" id="uXH-5s-KcB"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="trumpet_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="4Tb-oA-BU2"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBL-sO-54m">
+                                                <rect key="frame" x="440" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="squeak" label="Squeak"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="WWC-hq-JdS"/>
+                                                    <constraint firstAttribute="width" constant="150" id="mcL-UL-Uor"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="squeak_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="pID-2X-7Xf"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fvv-rd-Qyi" firstAttribute="top" secondItem="9eb-pv-oEK" secondAttribute="bottom" constant="79" id="HUK-e2-Ba0"/>
+                            <constraint firstItem="fvv-rd-Qyi" firstAttribute="centerX" secondItem="8Rx-ye-jcA" secondAttribute="centerX" id="PEH-iA-acg"/>
+                            <constraint firstItem="DTS-aq-2Ow" firstAttribute="centerX" secondItem="8Rx-ye-jcA" secondAttribute="centerX" id="aHm-mQ-8UL"/>
+                            <constraint firstItem="qdw-mh-xiP" firstAttribute="top" secondItem="DTS-aq-2Ow" secondAttribute="bottom" constant="73" id="lYN-Jr-ksu"/>
+                            <constraint firstItem="qdw-mh-xiP" firstAttribute="top" secondItem="fvv-rd-Qyi" secondAttribute="bottom" constant="470" id="zjt-qJ-Akm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="back" destination="QiG-Hb-gjY" id="UxV-z9-Tjh"/>
+                        <outletCollection property="buttons" destination="oOD-hn-gVe" collectionClass="NSMutableArray" id="wvM-YQ-xQB"/>
+                        <outletCollection property="buttons" destination="J9n-3x-Boc" collectionClass="NSMutableArray" id="yz2-CM-Qj2"/>
+                        <outletCollection property="buttons" destination="VJ9-Mh-HyN" collectionClass="NSMutableArray" id="zIb-Au-M7c"/>
+                        <outletCollection property="buttons" destination="2qS-nG-Q9p" collectionClass="NSMutableArray" id="eQ8-fW-yvU"/>
+                        <outletCollection property="buttons" destination="Q9y-vQ-KQh" collectionClass="NSMutableArray" id="E9G-Kz-X5l"/>
+                        <outletCollection property="buttons" destination="sBL-sO-54m" collectionClass="NSMutableArray" id="ug8-J4-hbI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TWh-Ic-5JV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1671" y="3065"/>
+        </scene>
+        <!--Vehicle Mod View Controller-->
+        <scene sceneID="5HY-6R-wxL">
+            <objects>
+                <viewController id="Rpy-3h-A9i" customClass="VehicleModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rvv-wr-QDE"/>
+                        <viewControllerLayoutGuide type="bottom" id="jgC-ox-eYY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="g8A-ot-N9u">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aab-aO-9JE">
+                                <rect key="frame" x="20" y="28" width="195" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uoc-nU-c4a" kind="show" id="KFf-UI-r6k"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehicle Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4n-c1-So3">
+                                <rect key="frame" x="243" y="79" width="594" height="261"/>
+                                <accessibility key="accessibilityConfiguration" label="Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="594" id="BQf-Sv-0rC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="Rek-rQ-Kwr">
+                                <rect key="frame" x="85" y="372" width="910" height="365"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="QeC-6a-RRw">
+                                        <rect key="frame" x="0.0" y="0.0" width="910" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdw-Ig-Sbl">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="airplane" label="Airplane Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="bj1-0n-KGP"/>
+                                                    <constraint firstAttribute="width" constant="150" id="t8G-a5-kkI"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="airplane"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="juD-7C-bam"/>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="tfw-oA-pLK"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3BQ-Tj-KVW">
+                                                <rect key="frame" x="190" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="beep" label="Car Horn Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="Hy4-3I-n1f"/>
+                                                    <constraint firstAttribute="width" constant="150" id="OSg-lw-bRO"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="beep"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="fVU-CI-KQd"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAw-Zf-WxJ">
+                                                <rect key="frame" x="380" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="boat" label="Boat Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="Qf4-pp-EGo"/>
+                                                    <constraint firstAttribute="width" constant="150" id="uUB-lS-91r"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="boat"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="B2D-gU-4vO"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Xx-pk-SkJ">
+                                                <rect key="frame" x="570" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="helicopter" label="Helicopter Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="XEN-DV-DJd"/>
+                                                    <constraint firstAttribute="width" constant="150" id="kxx-tf-Fc6"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="helicopter"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="S98-Hm-tjN"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LtX-dY-0wm">
+                                                <rect key="frame" x="760" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="siren" label="Siren Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="iAd-gb-Rym"/>
+                                                    <constraint firstAttribute="height" constant="150" id="vWU-nd-aOg"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="siren"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="uEv-Xz-Sap"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Uvx-fQ-xNU">
+                                        <rect key="frame" x="95" y="215" width="720" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UpD-IK-kCg">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="speedBoost" label="Speed Boost Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="3Zn-gL-afP"/>
+                                                    <constraint firstAttribute="width" constant="150" id="OQE-GQ-9BM"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="speed_boost"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="A1i-U4-X0O"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83K-po-FyG">
+                                                <rect key="frame" x="190" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="startEngine" label="Start Engine Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="Ae2-dQ-Mxl"/>
+                                                    <constraint firstAttribute="height" constant="150" id="SxK-M5-ESb"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="car_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="Qga-Tu-roo"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faN-Hd-ihO">
+                                                <rect key="frame" x="380" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="tireSqueal" label="Tire Squeal Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="Os2-3P-IPe"/>
+                                                    <constraint firstAttribute="height" constant="150" id="Z6i-p6-fbX"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="tire_squeal"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="eji-6V-eog"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smC-LR-4f1">
+                                                <rect key="frame" x="570" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="train" label="trainNoise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="qXX-Mi-ieO"/>
+                                                    <constraint firstAttribute="height" constant="150" id="til-YO-6T5"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="train"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="FYj-3h-Lv9"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jgC-ox-eYY" firstAttribute="top" secondItem="Rek-rQ-Kwr" secondAttribute="bottom" constant="73" id="2Mi-lu-DVf"/>
+                            <constraint firstItem="G4n-c1-So3" firstAttribute="top" secondItem="Rvv-wr-QDE" secondAttribute="bottom" constant="79" id="2wt-wp-pjh"/>
+                            <constraint firstItem="jgC-ox-eYY" firstAttribute="top" secondItem="G4n-c1-So3" secondAttribute="bottom" constant="470" id="BuS-m8-6Wa"/>
+                            <constraint firstItem="Rek-rQ-Kwr" firstAttribute="centerX" secondItem="g8A-ot-N9u" secondAttribute="centerX" id="MDV-7D-wXn"/>
+                            <constraint firstItem="G4n-c1-So3" firstAttribute="centerX" secondItem="g8A-ot-N9u" secondAttribute="centerX" id="yub-RP-pR9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="back" destination="Aab-aO-9JE" id="rqr-ta-k8k"/>
+                        <outletCollection property="buttons" destination="Cdw-Ig-Sbl" collectionClass="NSMutableArray" id="xHA-OS-5S9"/>
+                        <outletCollection property="buttons" destination="3BQ-Tj-KVW" collectionClass="NSMutableArray" id="4D7-GQ-Rig"/>
+                        <outletCollection property="buttons" destination="CAw-Zf-WxJ" collectionClass="NSMutableArray" id="2MY-c0-Jet"/>
+                        <outletCollection property="buttons" destination="1Xx-pk-SkJ" collectionClass="NSMutableArray" id="NSM-g5-kCE"/>
+                        <outletCollection property="buttons" destination="LtX-dY-0wm" collectionClass="NSMutableArray" id="Lqy-cS-kel"/>
+                        <outletCollection property="buttons" destination="UpD-IK-kCg" collectionClass="NSMutableArray" id="QmM-Ab-qF3"/>
+                        <outletCollection property="buttons" destination="83K-po-FyG" collectionClass="NSMutableArray" id="lx8-hD-QGg"/>
+                        <outletCollection property="buttons" destination="faN-Hd-ihO" collectionClass="NSMutableArray" id="FQ0-t5-C1M"/>
+                        <outletCollection property="buttons" destination="smC-LR-4f1" collectionClass="NSMutableArray" id="bdl-wT-315"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="km1-1u-qav" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1026" y="2976"/>
+        </scene>
         <!--Function Table View Controller-->
         <scene sceneID="aDN-GG-hnK">
             <objects>
@@ -2149,6 +3068,7 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
     <inferredMetricsTieBreakers>
         <segue reference="YGB-Zo-qhq"/>
         <segue reference="ebu-O5-0hJ"/>
+        <segue reference="U8M-r6-gBL"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
@@ -2159,14 +3079,58 @@ Most blocks such as animal noise blocks do not have extra parts. Some blocks tho
         <image name="GreenArrow" width="649" height="586"/>
         <image name="Orange" width="100" height="100"/>
         <image name="Watermelon" width="100" height="100"/>
+        <image name="airplane" width="100" height="100"/>
+        <image name="beep" width="100" height="100"/>
+        <image name="boat" width="100" height="100"/>
         <image name="brownMinus" width="100" height="100"/>
         <image name="brownPlus" width="100" height="100"/>
+        <image name="buzz_sound" width="100" height="100"/>
+        <image name="car_sound" width="100" height="100"/>
+        <image name="cat_sound" width="100" height="100"/>
+        <image name="crocodile_sound" width="100" height="100"/>
+        <image name="dinosaur_sound" width="100" height="100"/>
+        <image name="dog_sound" width="100" height="100"/>
+        <image name="elephant_sound" width="100" height="100"/>
+        <image name="goat_sound" width="100" height="100"/>
         <image name="hear_voice" width="100" height="100"/>
+        <image name="helicopter" width="100" height="100"/>
+        <image name="horse_sound" width="100" height="100"/>
+        <image name="laser_sound" width="100" height="100"/>
+        <image name="lion_sound" width="100" height="100"/>
         <image name="minus" width="100" height="100"/>
         <image name="off" width="100" height="100"/>
         <image name="on" width="100" height="100"/>
         <image name="plus" width="100" height="100"/>
+        <image name="random_sound" width="100" height="100"/>
         <image name="sense_obstacle" width="100" height="100"/>
+        <image name="siren" width="100" height="100"/>
+        <image name="snore_sound" width="100" height="100"/>
+        <image name="sound_bragging" width="100" height="100"/>
+        <image name="sound_confused" width="100" height="100"/>
+        <image name="sound_giggle" width="100" height="100"/>
+        <image name="sound_grunt" width="100" height="100"/>
+        <image name="sound_sigh" width="100" height="100"/>
+        <image name="sound_surprised" width="100" height="100"/>
+        <image name="sound_yawn" width="100" height="100"/>
+        <image name="speak_bye" width="100" height="100"/>
+        <image name="speak_cool" width="100" height="100"/>
+        <image name="speak_haha" width="100" height="100"/>
+        <image name="speak_hi" width="100" height="100"/>
+        <image name="speak_lets_go" width="100" height="100"/>
+        <image name="speak_oh" width="100" height="100"/>
+        <image name="speak_tah_dah" width="100" height="100"/>
+        <image name="speak_uh_huh" width="100" height="100"/>
+        <image name="speak_uh_oh" width="100" height="100"/>
+        <image name="speak_wah" width="100" height="100"/>
+        <image name="speak_wee_hee" width="100" height="100"/>
+        <image name="speak_wow" width="100" height="100"/>
+        <image name="speak_yippe" width="100" height="100"/>
+        <image name="speed_boost" width="100" height="100"/>
+        <image name="squeak_sound" width="100" height="100"/>
+        <image name="tire_squeal" width="100" height="100"/>
+        <image name="train" width="100" height="100"/>
+        <image name="trumpet_sound" width="100" height="100"/>
+        <image name="turkey_sound" width="100" height="100"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
