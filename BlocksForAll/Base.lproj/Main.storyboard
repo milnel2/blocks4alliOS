@@ -3024,7 +3024,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <action selector="backToMainWorkspace:" destination="hNp-po-htE" id="h5J-Br-Acs"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="JWi-Kn-6yy">
+                        <barButtonItem key="rightBarButtonItem" title="Add Function" id="JWi-Kn-6yy">
                             <connections>
                                 <action selector="insertFunction:" destination="hNp-po-htE" id="kPd-Y5-PGs"/>
                             </connections>
