@@ -202,6 +202,8 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_LION)
             case "turkey":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOBBLE)
+            case "randomAnimal":
+                playNoise(myAction: myAction, sound: animalSoundFiles[.random(in: animalSoundFiles.indices)])
             default:
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_CAT)
             }
@@ -228,6 +230,8 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_TIRE_SQUEAL)
             case "train":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRAIN)
+            case "randomVehicle":
+                playNoise(myAction: myAction, sound: vehicleSoundFiles[.random(in: vehicleSoundFiles.indices)])
             default:
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_AIRPLANE)
             }
@@ -236,8 +240,6 @@ class ExecutingProgram {
             let object = blockToExec.addedBlocks[0].attributes["objectNoise"]
             
             switch object {
-            case "random":
-                playNoise(myAction: myAction, sound: soundFiles[.random(in: soundFiles.indices)])
             case "buzz":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_BUZZ)
             case "laser":
@@ -248,7 +250,10 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRUMPET)
             case "squeak":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_SQUEAK)
-            default: playNoise(myAction: myAction, sound: soundFiles[.random(in: soundFiles.indices)])
+            case "randomObject":
+                playNoise(myAction: myAction, sound: objectSoundFiles[.random(in: objectSoundFiles.indices)])
+            default:
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BUZZ)
             }
             
         case "Emotion Noise":
@@ -269,6 +274,8 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_SURPRISED)
             case "yawn":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_YAWN)
+            case "randomEmotion":
+                playNoise(myAction: myAction, sound: emotionSoundFiles[.random(in: emotionSoundFiles.indices)])
             default:
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_BRAGGING)
             }
@@ -303,6 +310,8 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEEHEE)
             case "yippe":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_YIPPE)
+            case "randomWord":
+                playNoise(myAction: myAction, sound: speakSoundFiles[.random(in: speakSoundFiles.indices)])
             default:
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_HI)
             }
@@ -898,53 +907,56 @@ class ExecutingProgram {
         }
     }
 
-    let soundFiles =
-        [WW_SOUNDFILE_AIRPLANE,
-         WW_SOUNDFILE_BEEP,
-         WW_SOUNDFILE_BOAT,
-         WW_SOUNDFILE_BRAGGING,
-         WW_SOUNDFILE_BUZZ,
-         WW_SOUNDFILE_BYE,
-         WW_SOUNDFILE_CAT,
-         WW_SOUNDFILE_CONFUSED,
-         WW_SOUNDFILE_COOL,
+    let animalSoundFiles =
+        [WW_SOUNDFILE_CAT,
          WW_SOUNDFILE_CROCODILE,
          WW_SOUNDFILE_DINOSAUR,
          WW_SOUNDFILE_DOG,
          WW_SOUNDFILE_ELEPHANT,
-         WW_SOUNDFILE_ENGINE_REV,
-         WW_SOUNDFILE_GIGGLE,
          WW_SOUNDFILE_GOAT,
-         WW_SOUNDFILE_GOBBLE,
-         WW_SOUNDFILE_GRUNT,
-         WW_SOUNDFILE_HAHA,
-         WW_SOUNDFILE_HELICOPTER,
-         WW_SOUNDFILE_HI,
-         WW_SOUNDFILE_HORN,
          WW_SOUNDFILE_HORSE,
-         WW_SOUNDFILE_HUH,
-         WW_SOUNDFILE_LASERS,
-         WW_SOUNDFILE_LETS_GO,
          WW_SOUNDFILE_LION,
-         WW_SOUNDFILE_OOH,
-         WW_SOUNDFILE_OKAY,
-         WW_SOUNDFILE_SIGH,
+         WW_SOUNDFILE_GOBBLE]
+    
+    let vehicleSoundFiles =
+        [WW_SOUNDFILE_AIRPLANE,
+         WW_SOUNDFILE_BEEP,
+         WW_SOUNDFILE_BOAT,
+         WW_SOUNDFILE_HELICOPTER,
          WW_SOUNDFILE_SIREN,
-         WW_SOUNDFILE_SNORING,
          WW_SOUNDFILE_SPEED_BOOST,
-         WW_SOUNDFILE_SQUEAK,
-         WW_SOUNDFILE_SURPRISED,
-         WW_SOUNDFILE_TAH_DAH,
+         WW_SOUNDFILE_ENGINE_REV,
          WW_SOUNDFILE_TIRE_SQUEAL,
-         WW_SOUNDFILE_TRAIN,
+         WW_SOUNDFILE_TRAIN]
+    
+    let objectSoundFiles =
+        [WW_SOUNDFILE_BUZZ,
+         WW_SOUNDFILE_LASERS,
+         WW_SOUNDFILE_SNORING,
          WW_SOUNDFILE_TRUMPET,
+         WW_SOUNDFILE_SQUEAK]
+    
+    let emotionSoundFiles =
+        [WW_SOUNDFILE_BRAGGING,
+         WW_SOUNDFILE_CONFUSED,
+         WW_SOUNDFILE_GIGGLE,
+         WW_SOUNDFILE_GRUNT,
+         WW_SOUNDFILE_SIGH,
+         WW_SOUNDFILE_SURPRISED,
+         WW_SOUNDFILE_YAWN]
+    
+    let speakSoundFiles =
+        [WW_SOUNDFILE_HI,
+         WW_SOUNDFILE_BYE,
+         WW_SOUNDFILE_COOL,
+         WW_SOUNDFILE_HAHA,
+         WW_SOUNDFILE_LETS_GO,
+         WW_SOUNDFILE_OOH,
+         WW_SOUNDFILE_WOW,
+         WW_SOUNDFILE_TAH_DAH,
          WW_SOUNDFILE_UH_HUH,
          WW_SOUNDFILE_UH_OH,
          WW_SOUNDFILE_WAH,
-         WW_SOUNDFILE_WEE,
          WW_SOUNDFILE_WEEHEE,
-         WW_SOUNDFILE_WOOHOO,
-         WW_SOUNDFILE_WOW,
-         WW_SOUNDFILE_YAWN,
          WW_SOUNDFILE_YIPPE]
 }

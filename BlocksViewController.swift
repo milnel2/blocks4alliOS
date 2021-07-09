@@ -572,6 +572,300 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             var modifierInformation = ""
 
             switch name{
+            case "Animal Noise":
+                if block.addedBlocks.isEmpty{
+                    let initialNoise = "cat"
+                    
+                    let placeholderBlock = Block(name: "Animal Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "animalNoise", value: "\(initialNoise)")
+
+                }
+                let animalNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                animalNoiseButton.tag = indexPath.row
+                
+                switch block.addedBlocks[0].attributes["animalNoise"]{
+                case "cat":
+                    let image = UIImage(named: "cat_sound.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "crocodile":
+                    let image = UIImage(named: "crocodile_sound.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "dinosaur":
+                    let image = UIImage(named: "dinosaur_sound.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "dog":
+                    let image = UIImage(named: "dog_sound.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "elephant":
+                    let image = UIImage(named: "elephant_sound.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "goat":
+                    let image = UIImage(named: "goat_sound.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "horse":
+                    let image = UIImage(named: "horse_sound.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "lion":
+                    let image = UIImage(named: "lion_sound.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "turkey":
+                    let image = UIImage(named: "turkey_sound.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "randomAnimal":
+                    let image = UIImage(named: "random_animal.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                default:
+                    animalNoiseButton.backgroundColor =  UIColor(displayP3Red: 5/255, green: 137/255, blue: 0/255, alpha: 1)
+                }
+                
+                animalNoiseButton.addTarget(self, action: #selector(animalModifier(sender:)), for: .touchUpInside)
+                animalNoiseButton.layer.borderWidth = 2.0
+                animalNoiseButton.layer.borderColor = UIColor.black.cgColor
+                
+                animalNoiseButton.accessibilityHint = "Double tap to choose animal noise"
+                animalNoiseButton.isAccessibilityElement = true
+                modifierInformation = ("\(block.addedBlocks[0].attributes["animalNoise"]!) noise")
+                
+                cell.addSubview(animalNoiseButton)
+                save()
+                
+            case "Vehicle Noise":
+                if block.addedBlocks.isEmpty{
+                    let initialNoise = "airplane"
+                    
+                    let placeholderBlock = Block(name: "Vehicle Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "vehicleNoise", value: "\(initialNoise)")
+
+                }
+                let vehicleNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                vehicleNoiseButton.tag = indexPath.row
+                
+                switch block.addedBlocks[0].attributes["vehicleNoise"]{
+                case "airplane":
+                    let image = UIImage(named: "airplane.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "beep":
+                    let image = UIImage(named: "beep.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "boat":
+                    let image = UIImage(named: "boat.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "helicopter":
+                    let image = UIImage(named: "helicopter.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "siren":
+                    let image = UIImage(named: "siren.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "speedBoost":
+                    let image = UIImage(named: "speed_boost.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "startEngine":
+                    let image = UIImage(named: "car_sound.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "tireSqueal":
+                    let image = UIImage(named: "tire_squeal.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "train":
+                    let image = UIImage(named: "train.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "randomVehicle":
+                    let image = UIImage(named: "random_vehicle.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                default:
+                    vehicleNoiseButton.backgroundColor =  UIColor(displayP3Red: 0/255, green: 32/255, blue: 65/255, alpha: 1)
+                }
+                
+                vehicleNoiseButton.addTarget(self, action: #selector(vehicleModifier(sender:)), for: .touchUpInside)
+                vehicleNoiseButton.layer.borderWidth = 2.0
+                vehicleNoiseButton.layer.borderColor = UIColor.black.cgColor
+                
+                vehicleNoiseButton.accessibilityHint = "Double tap to choose vehicle noise"
+                vehicleNoiseButton.isAccessibilityElement = true
+                modifierInformation = ("\(block.addedBlocks[0].attributes["vehicleNoise"]!) noise")
+                
+                cell.addSubview(vehicleNoiseButton)
+                save()
+                
+            case "Object Noise":
+                if block.addedBlocks.isEmpty{
+                    let initialNoise = "buzz"
+                    
+                    let placeholderBlock = Block(name: "Object Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "objectNoise", value: "\(initialNoise)")
+
+                }
+                let objectNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                objectNoiseButton.tag = indexPath.row
+                
+                switch block.addedBlocks[0].attributes["objectNoise"]{
+                case "buzz":
+                    let image = UIImage(named: "buzz_sound.pdf")
+                    objectNoiseButton.setBackgroundImage(image, for: .normal)
+                case "laser":
+                    let image = UIImage(named: "laser_sound.pdf")
+                    objectNoiseButton.setBackgroundImage(image, for: .normal)
+                case "snore":
+                    let image = UIImage(named: "snore_sound.pdf")
+                    objectNoiseButton.setBackgroundImage(image, for: .normal)
+                case "trumpet":
+                    let image = UIImage(named: "trumpet_sound.pdf")
+                    objectNoiseButton.setBackgroundImage(image, for: .normal)
+                case "squeak":
+                    let image = UIImage(named: "squeak_sound.pdf")
+                    objectNoiseButton.setBackgroundImage(image, for: .normal)
+                case "randomObject":
+                    let image = UIImage(named: "random_object.pdf")
+                    objectNoiseButton.setBackgroundImage(image, for: .normal)
+                default:
+                    objectNoiseButton.backgroundColor =  UIColor(displayP3Red: 34/255, green: 124/255, blue: 124/255, alpha: 1)
+                }
+                
+                objectNoiseButton.addTarget(self, action: #selector(objectNoiseModifier(sender:)), for: .touchUpInside)
+                objectNoiseButton.layer.borderWidth = 2.0
+                objectNoiseButton.layer.borderColor = UIColor.black.cgColor
+                
+                objectNoiseButton.accessibilityHint = "Double tap to choose object noise"
+                objectNoiseButton.isAccessibilityElement = true
+                modifierInformation = ("\(block.addedBlocks[0].attributes["objectNoise"]!) noise")
+                
+                cell.addSubview(objectNoiseButton)
+                save()
+                
+            case "Emotion Noise":
+                if block.addedBlocks.isEmpty{
+                    let initialNoise = "bragging"
+                    
+                    let placeholderBlock = Block(name: "Emotion Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "emotionNoise", value: "\(initialNoise)")
+
+                }
+                let emotionNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                emotionNoiseButton.tag = indexPath.row
+                
+                switch block.addedBlocks[0].attributes["emotionNoise"]{
+                case "bragging":
+                    let image = UIImage(named: "sound_bragging.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "confused":
+                    let image = UIImage(named: "sound_confused.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "giggle":
+                    let image = UIImage(named: "sound_giggle.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "grunt":
+                    let image = UIImage(named: "sound_grunt.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "sigh":
+                    let image = UIImage(named: "sound_sigh.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "surprised":
+                    let image = UIImage(named: "sound_surprised.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "yawn":
+                    let image = UIImage(named: "sound_yawn.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "randomEmotion":
+                    let image = UIImage(named: "random_emotion.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                default:
+                    emotionNoiseButton.backgroundColor =  UIColor(displayP3Red: 165/255, green: 12/255, blue: 130/255, alpha: 1)
+                }
+                
+                emotionNoiseButton.addTarget(self, action: #selector(emotionModifier(sender:)), for: .touchUpInside)
+                emotionNoiseButton.layer.borderWidth = 2.0
+                emotionNoiseButton.layer.borderColor = UIColor.black.cgColor
+                
+                emotionNoiseButton.accessibilityHint = "Double tap to choose emotion noise"
+                emotionNoiseButton.isAccessibilityElement = true
+                modifierInformation = ("\(block.addedBlocks[0].attributes["emotionNoise"]!) noise")
+                
+                cell.addSubview(emotionNoiseButton)
+                save()
+                
+            case "Speak":
+                if block.addedBlocks.isEmpty{
+                    let initialWord = "hi"
+                    
+                    let placeholderBlock = Block(name: "Speak Word", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "speakWord", value: "\(initialWord)")
+
+                }
+                let speakButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                speakButton.tag = indexPath.row
+                
+                switch block.addedBlocks[0].attributes["speakWord"]{
+                case "hi":
+                    let image = UIImage(named: "speak_hi.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "bye":
+                    let image = UIImage(named: "speak_bye.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "cool":
+                    let image = UIImage(named: "speak_cool.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "haha":
+                    let image = UIImage(named: "speak_haha.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "letsGo":
+                    let image = UIImage(named: "speak_lets_go.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "oh":
+                    let image = UIImage(named: "speak_oh.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "wow":
+                    let image = UIImage(named: "speak_wow.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "tahDah":
+                    let image = UIImage(named: "speak_tah_dah.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "uhHuh":
+                    let image = UIImage(named: "speak_uh_huh.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "uhOh":
+                    let image = UIImage(named: "speak_uh_oh.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "wah":
+                    let image = UIImage(named: "speak_wah.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "weeHee":
+                    let image = UIImage(named: "speak_wee_hee.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "yippe":
+                    let image = UIImage(named: "speak_yippe.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "randomWord":
+                    let image = UIImage(named: "random_word.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                default:
+                    speakButton.backgroundColor =  UIColor(displayP3Red: 198/255, green: 51/255, blue: 41/255, alpha: 1)
+                }
+                
+                speakButton.addTarget(self, action: #selector(speakModifier(sender:)), for: .touchUpInside)
+                speakButton.layer.borderWidth = 2.0
+                speakButton.layer.borderColor = UIColor.black.cgColor
+                
+                speakButton.accessibilityHint = "Double tap to choose word"
+                speakButton.isAccessibilityElement = true
+                modifierInformation = ("Say \(block.addedBlocks[0].attributes["speakWord"]!)")
+                
+                cell.addSubview(speakButton)
+                save()
+                
             case "If":
                 if block.addedBlocks.isEmpty{
                     let initialBoolean = "false"
@@ -996,288 +1290,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                 
                 cell.addSubview(setTurnButton)
-                save()
-                
-            case "Animal Noise":
-                if block.addedBlocks.isEmpty{
-                    let initialNoise = "cat"
-                    
-                    let placeholderBlock = Block(name: "Animal Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "animalNoise", value: "\(initialNoise)")
-
-                }
-                let animalNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                
-                animalNoiseButton.tag = indexPath.row
-                
-                switch block.addedBlocks[0].attributes["animalNoise"]{
-                case "cat":
-                    let image = UIImage(named: "cat_sound.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "crocodile":
-                    let image = UIImage(named: "crocodile_sound.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "dinosaur":
-                    let image = UIImage(named: "dinosaur_sound.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "dog":
-                    let image = UIImage(named: "dog_sound.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "elephant":
-                    let image = UIImage(named: "elephant_sound.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "goat":
-                    let image = UIImage(named: "goat_sound.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "horse":
-                    let image = UIImage(named: "horse_sound.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "lion":
-                    let image = UIImage(named: "lion_sound.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "turkey":
-                    let image = UIImage(named: "turkey_sound.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                default:
-                    animalNoiseButton.backgroundColor =  UIColor(displayP3Red: 5/255, green: 137/255, blue: 0/255, alpha: 1)
-                }
-                
-                animalNoiseButton.addTarget(self, action: #selector(animalModifier(sender:)), for: .touchUpInside)
-                animalNoiseButton.layer.borderWidth = 2.0
-                animalNoiseButton.layer.borderColor = UIColor.black.cgColor
-                
-                animalNoiseButton.accessibilityLabel = "Choose animal noise"
-                animalNoiseButton.isAccessibilityElement = true
-                modifierInformation = ("\(block.addedBlocks[0].attributes["animalNoise"]!) noise")
-                
-                cell.addSubview(animalNoiseButton)
-                save()
-                
-            case "Vehicle Noise":
-                if block.addedBlocks.isEmpty{
-                    let initialNoise = "airplane"
-                    
-                    let placeholderBlock = Block(name: "Vehicle Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "vehicleNoise", value: "\(initialNoise)")
-
-                }
-                let vehicleNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                
-                vehicleNoiseButton.tag = indexPath.row
-                
-                switch block.addedBlocks[0].attributes["vehicleNoise"]{
-                case "airplane":
-                    let image = UIImage(named: "airplane.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "beep":
-                    let image = UIImage(named: "beep.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "boat":
-                    let image = UIImage(named: "boat.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "helicopter":
-                    let image = UIImage(named: "helicopter.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "siren":
-                    let image = UIImage(named: "siren.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "speedBoost":
-                    let image = UIImage(named: "speed_boost.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "startEngine":
-                    let image = UIImage(named: "car_sound.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "tireSqueal":
-                    let image = UIImage(named: "tire_squeal.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "train":
-                    let image = UIImage(named: "train.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                default:
-                    vehicleNoiseButton.backgroundColor =  UIColor(displayP3Red: 0/255, green: 32/255, blue: 65/255, alpha: 1)
-                }
-                
-                vehicleNoiseButton.addTarget(self, action: #selector(vehicleModifier(sender:)), for: .touchUpInside)
-                vehicleNoiseButton.layer.borderWidth = 2.0
-                vehicleNoiseButton.layer.borderColor = UIColor.black.cgColor
-                
-                vehicleNoiseButton.accessibilityLabel = "Choose vehicle noise"
-                vehicleNoiseButton.isAccessibilityElement = true
-                modifierInformation = ("\(block.addedBlocks[0].attributes["vehicleNoise"]!) noise")
-                
-                cell.addSubview(vehicleNoiseButton)
-                save()
-                
-            case "Object Noise":
-                if block.addedBlocks.isEmpty{
-                    let initialNoise = "random"
-                    
-                    let placeholderBlock = Block(name: "Object Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "objectNoise", value: "\(initialNoise)")
-
-                }
-                let objectNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                
-                objectNoiseButton.tag = indexPath.row
-                
-                switch block.addedBlocks[0].attributes["objectNoise"]{
-                case "random":
-                    let image = UIImage(named: "random_sound.pdf")
-                    objectNoiseButton.setBackgroundImage(image, for: .normal)
-                case "buzz":
-                    let image = UIImage(named: "buzz_sound.pdf")
-                    objectNoiseButton.setBackgroundImage(image, for: .normal)
-                case "laser":
-                    let image = UIImage(named: "laser_sound.pdf")
-                    objectNoiseButton.setBackgroundImage(image, for: .normal)
-                case "snore":
-                    let image = UIImage(named: "snore_sound.pdf")
-                    objectNoiseButton.setBackgroundImage(image, for: .normal)
-                case "trumpet":
-                    let image = UIImage(named: "trumpet_sound.pdf")
-                    objectNoiseButton.setBackgroundImage(image, for: .normal)
-                case "squeak":
-                    let image = UIImage(named: "squeak_sound.pdf")
-                    objectNoiseButton.setBackgroundImage(image, for: .normal)
-                default:
-                    objectNoiseButton.backgroundColor =  UIColor(displayP3Red: 34/255, green: 124/255, blue: 124/255, alpha: 1)
-                }
-                
-                objectNoiseButton.addTarget(self, action: #selector(objectNoiseModifier(sender:)), for: .touchUpInside)
-                objectNoiseButton.layer.borderWidth = 2.0
-                objectNoiseButton.layer.borderColor = UIColor.black.cgColor
-                
-                objectNoiseButton.accessibilityLabel = "Choose object noise"
-                objectNoiseButton.isAccessibilityElement = true
-                modifierInformation = ("\(block.addedBlocks[0].attributes["objectNoise"]!) noise")
-                
-                cell.addSubview(objectNoiseButton)
-                save()
-                
-            case "Emotion Noise":
-                if block.addedBlocks.isEmpty{
-                    let initialNoise = "bragging"
-                    
-                    let placeholderBlock = Block(name: "Emotion Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "emotionNoise", value: "\(initialNoise)")
-
-                }
-                let emotionNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                
-                emotionNoiseButton.tag = indexPath.row
-                
-                switch block.addedBlocks[0].attributes["emotionNoise"]{
-                case "bragging":
-                    let image = UIImage(named: "sound_bragging.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "confused":
-                    let image = UIImage(named: "sound_confused.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "giggle":
-                    let image = UIImage(named: "sound_giggle.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "grunt":
-                    let image = UIImage(named: "sound_grunt.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "sigh":
-                    let image = UIImage(named: "sound_sigh.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "surprised":
-                    let image = UIImage(named: "sound_surprised.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "yawn":
-                    let image = UIImage(named: "sound_yawn.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                default:
-                    emotionNoiseButton.backgroundColor =  UIColor(displayP3Red: 165/255, green: 12/255, blue: 130/255, alpha: 1)
-                }
-                
-                emotionNoiseButton.addTarget(self, action: #selector(emotionModifier(sender:)), for: .touchUpInside)
-                emotionNoiseButton.layer.borderWidth = 2.0
-                emotionNoiseButton.layer.borderColor = UIColor.black.cgColor
-                
-                emotionNoiseButton.accessibilityLabel = "Choose emotion noise"
-                emotionNoiseButton.isAccessibilityElement = true
-                modifierInformation = ("\(block.addedBlocks[0].attributes["emotionNoise"]!) noise")
-                
-                cell.addSubview(emotionNoiseButton)
-                save()
-                
-            case "Speak":
-                if block.addedBlocks.isEmpty{
-                    let initialWord = "hi"
-                    
-                    let placeholderBlock = Block(name: "Speak Word", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "speakWord", value: "\(initialWord)")
-
-                }
-                let speakButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                
-                speakButton.tag = indexPath.row
-                
-                switch block.addedBlocks[0].attributes["speakWord"]{
-                case "hi":
-                    let image = UIImage(named: "speak_hi.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "bye":
-                    let image = UIImage(named: "speak_bye.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "cool":
-                    let image = UIImage(named: "speak_cool.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "haha":
-                    let image = UIImage(named: "speak_haha.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "letsGo":
-                    let image = UIImage(named: "speak_lets_go.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "oh":
-                    let image = UIImage(named: "speak_oh.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "wow":
-                    let image = UIImage(named: "speak_wow.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "tahDah":
-                    let image = UIImage(named: "speak_tah_dah.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "uhHuh":
-                    let image = UIImage(named: "speak_uh_huh.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "uhOh":
-                    let image = UIImage(named: "speak_uh_oh.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "wah":
-                    let image = UIImage(named: "speak_wah.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "weeHee":
-                    let image = UIImage(named: "speak_wee_hee.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "yippe":
-                    let image = UIImage(named: "speak_yippe.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                default:
-                    speakButton.backgroundColor =  UIColor(displayP3Red: 198/255, green: 51/255, blue: 41/255, alpha: 1)
-                }
-                
-                speakButton.addTarget(self, action: #selector(speakModifier(sender:)), for: .touchUpInside)
-                speakButton.layer.borderWidth = 2.0
-                speakButton.layer.borderColor = UIColor.black.cgColor
-                
-                speakButton.accessibilityLabel = "Choose word"
-                speakButton.isAccessibilityElement = true
-                modifierInformation = ("Say \(block.addedBlocks[0].attributes["speakWord"]!)")
-                
-                cell.addSubview(speakButton)
                 save()
                 
             default:

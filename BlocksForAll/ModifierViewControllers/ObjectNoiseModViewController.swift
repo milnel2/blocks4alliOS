@@ -13,14 +13,14 @@ class ObjectNoiseModViewController: UIViewController{
     /* Custom view controller for the Object Noise modifier scene */
     
     var modifierBlockIndexSender: Int?
-    var objectSelected: String = "random"
+    var objectSelected: String = "buzz"
 
     @IBOutlet weak var back: UIButton!
     @IBOutlet var buttons: [UIButton]!
     
     override func viewDidLoad() {
-        // default: Random or preserve last selection
-        let previousObject: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["objectNoise"] ?? "random"
+        // default: Buzz or preserve last selection
+        let previousObject: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["objectNoise"] ?? "buzz"
         
         objectSelected = previousObject
         
