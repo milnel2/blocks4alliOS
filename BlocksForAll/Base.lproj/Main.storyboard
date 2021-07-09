@@ -1075,7 +1075,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emotion Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="999-kk-5uY">
                                 <rect key="frame" x="243" y="79" width="594" height="261"/>
-                                <accessibility key="accessibilityConfiguration" label="Color"/>
+                                <accessibility key="accessibilityConfiguration" label="Emotion Noise"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="594" id="1aI-0i-E7Y"/>
                                 </constraints>
@@ -1132,16 +1132,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <segue destination="uoc-nU-c4a" kind="show" id="U8M-r6-gBL"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speak" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVD-3J-Gmw">
-                                <rect key="frame" x="243" y="28" width="594" height="150"/>
-                                <accessibility key="accessibilityConfiguration" label="Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="594" id="oYt-LV-0W0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="6rM-52-gId">
                                 <rect key="frame" x="85" y="246" width="910" height="510"/>
                                 <subviews>
@@ -1318,14 +1308,24 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speak" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVD-3J-Gmw">
+                                <rect key="frame" x="243" y="55" width="594" height="150"/>
+                                <accessibility key="accessibilityConfiguration" label="Speak"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="594" id="oYt-LV-0W0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GEb-Nz-FhR" firstAttribute="top" secondItem="6rM-52-gId" secondAttribute="bottom" constant="54" id="DBc-QR-Iq0"/>
-                            <constraint firstItem="GEb-Nz-FhR" firstAttribute="top" secondItem="xVD-3J-Gmw" secondAttribute="bottom" constant="632" id="QBV-ql-EOn"/>
+                            <constraint firstItem="xVD-3J-Gmw" firstAttribute="top" secondItem="14U-7O-LHm" secondAttribute="bottom" constant="55" id="P4F-Ul-0J9"/>
                             <constraint firstItem="6rM-52-gId" firstAttribute="centerX" secondItem="UCx-ge-NQu" secondAttribute="centerX" id="im6-pr-7Ej"/>
+                            <constraint firstItem="GEb-Nz-FhR" firstAttribute="top" secondItem="xVD-3J-Gmw" secondAttribute="bottom" constant="605" id="lHb-o8-wKc"/>
                             <constraint firstItem="xVD-3J-Gmw" firstAttribute="centerX" secondItem="UCx-ge-NQu" secondAttribute="centerX" id="zhF-i6-zic"/>
-                            <constraint firstItem="xVD-3J-Gmw" firstAttribute="top" secondItem="14U-7O-LHm" secondAttribute="bottom" constant="28" id="zig-Rk-yD6"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2610,7 +2610,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animal Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RP0-th-39x">
                                 <rect key="frame" x="243" y="79" width="594" height="261"/>
-                                <accessibility key="accessibilityConfiguration" label="Color"/>
+                                <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="594" id="hCq-4G-RYU"/>
                                 </constraints>
@@ -2672,7 +2672,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Object Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvv-rd-Qyi">
                                 <rect key="frame" x="243" y="79" width="594" height="261"/>
-                                <accessibility key="accessibilityConfiguration" label="Color"/>
+                                <accessibility key="accessibilityConfiguration" label="Object Noise"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="594" id="z7b-Ys-BTH"/>
                                 </constraints>
@@ -2817,7 +2817,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehicle Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4n-c1-So3">
                                 <rect key="frame" x="243" y="79" width="594" height="261"/>
-                                <accessibility key="accessibilityConfiguration" label="Color"/>
+                                <accessibility key="accessibilityConfiguration" label="Vehicle Noise"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="594" id="BQf-Sv-0rC"/>
                                 </constraints>
