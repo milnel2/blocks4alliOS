@@ -356,22 +356,8 @@ class ExecutingProgram {
             }else{
                 ifFalse()
                 // run the ifFalse function, this is to skip over blocks that aren't supposed to be executed
-                if blockToExec.name == "Else"{
-                    print("got to else")
-                }
             }
             print(ifCondition)
-            
-        case "Else":
-            print("in else case")
-            if ifCondition{
-                elseFalse()
-            }
-            else{
-                print("True")
-            }
-
-
             
         case "Repeat":
             print("in Repeat")
@@ -432,7 +418,7 @@ class ExecutingProgram {
         case "Turn Right":
             myAction = playTurn(turnBlock: blockToExec, direction:1, cmdToSend: cmdToSend)
             
-            //LIGHTS CATEGORY
+        //LIGHTS CATEGORY
         //MARK: change this code and make is smoother once we have user input
         case "Set Eye Light":
             let light = playLight(lightBlock: blockToExec)
@@ -526,33 +512,6 @@ class ExecutingProgram {
             cmdToSend.add(lookforward, withDuration: duration)
             myAction =  WWCommandToolbelt.moveStop()
             
-            //tosses light error due to light not having an added block for play light to find.
-//        case "Dance":
-//            duration = 0.5
-//            let rotateLeft = WWCommandSet()
-//            rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -30.0, rightWheel: 30.0))
-//            let rotateRight = WWCommandSet()
-//            rotateRight.setBodyWheels(WWCommandBodyWheels.init(leftWheel: 30.0, rightWheel: -30.0))
-//            let setLeft = WWCommandSet()
-//            let light = playLight(lightBlock: blockToExec)
-//            setLeft.setLeftEarLight(light)
-//            let setRight = WWCommandSet()
-//            setRight.setRightEarLight(light)
-//
-//            var danceIndex = 0
-//            while danceIndex < 2 {
-//                cmdToSend.add(rotateLeft, withDuration: duration)
-//                cmdToSend.add(rotateRight, withDuration: duration)
-//                cmdToSend.add(setLeft, withDuration: duration)
-//                cmdToSend.add(setRight, withDuration: duration)
-//                danceIndex += 1
-//            }
-//            let speaker = WWCommandSpeaker.init(defaultSound: WW_SOUNDFILE_WOOHOO)
-//            myAction.setSound(speaker)
-//
-//            myAction = WWCommandToolbelt.moveStop()
-//            danceIndex = 0
-            
         //VARIABLES CATEGORY
         case "Set Variable":
             variablesDict[ blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] = Double(blockToExec.addedBlocks[0].attributes["variableValue"] ?? "0.0") ?? 0.0
@@ -586,10 +545,6 @@ class ExecutingProgram {
             // if postive turn clockwise, else counter clockwise(might have that mixed up)
             print("in Turn, direction", direction)
             myAction = playTurn(turnBlock: blockToExec, direction: Double(direction), cmdToSend: cmdToSend)
-            
-        
-        case "Wheel Speed":
-            print("not yet suppourted")
         
         case "Look Up or Down":
             let lookUpOrDown = WWCommandSet()
@@ -615,11 +570,6 @@ class ExecutingProgram {
             cmdToSend.add(lookLeftOrRight, withDuration: duration)
             myAction =  WWCommandToolbelt.moveStop()
             print("lookUpOrDown, degree", degree)
-            
-        //not in a category or plist? add
-        case "Say Okay":
-            playNoise(myAction: myAction, sound: WW_SOUNDFILE_OKAY)
-         
             
         // not best way but using default for Functions
         default:
@@ -662,11 +612,7 @@ class ExecutingProgram {
         while openIfs > 0{
             positions[positions.count - 1].position += 1
             //moves through the block stack by upping the position, if the position results in something related to ifs drop or add the number of open ifs until you wind up with 0 open ifs then the position should be correct to continue executing
-            if blocksToExec[(positions[positions.count - 1].position)].name == "End If" || blocksToExec[(positions[positions.count - 1].position)].name == "End If Else"{
-                openIfs = 0
-            }
-            else if blocksToExec[(positions[positions.count - 1].position)].name == "Else"{
-                print("in else")
+            if blocksToExec[(positions[positions.count - 1].position)].name == "End If" {
                 openIfs = 0
             }
             else if ((blocksToExec[(positions[positions.count - 1].position)].name == "IfObstacle in front") || (blocksToExec[(positions[positions.count - 1].position)].name == "IfHear Voice")){
@@ -674,23 +620,6 @@ class ExecutingProgram {
             }
         }
     }
-    
-    func elseFalse(){
-        // used to skip over blocks inside an ELSE statement if the ELSE statement returns false
-        print("elseFalse Entered")
-        var openElse = 1
-        while openElse > 0 {
-            positions[positions.count - 1].position += 1
-            if blocksToExec[(positions[positions.count - 1].position)].name == "End If Else"{
-                openElse = 0
-            }
-            else if blocksToExec[(positions[positions.count - 1].position)].name == "Else"{
-                print("in else")
-                openElse += 1
-            }
-        }
-    }
-    
 
     //decomposition of all actions that have to do with sound/noise
     func playNoise (myAction: WWCommandSet, sound: String){

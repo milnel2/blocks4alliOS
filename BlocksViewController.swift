@@ -1367,11 +1367,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "driveModifier", sender: nil)
     }
     
-    @objc func wheelModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "wheelModifier", sender: nil)
-    }
-    
     @objc func animalModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "AnimalModifier", sender: nil)
