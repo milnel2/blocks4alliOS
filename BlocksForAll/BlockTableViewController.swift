@@ -261,20 +261,6 @@ class BlockTableViewController: UITableViewController {
             let type = self.title
         
             switch type {
-            case "Animals":
-                var voiceControlLabel = block.name
-                let wordToRemove = "Make "
-                if let range = voiceControlLabel.range(of: wordToRemove){
-                    voiceControlLabel.removeSubrange(range)}
-                
-                var voiceControlLabel2 = voiceControlLabel
-                let wordToRemove2 = " Noise"
-                if let range = voiceControlLabel2.range(of: wordToRemove2) {
-                    voiceControlLabel2.removeSubrange(range)}
-                
-                cell.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)",  "\(voiceControlLabel2)"]
-                save()
-                
             case "Control":
                 if block.name == "Wait for Time"{
                     cell.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
@@ -326,33 +312,6 @@ class BlockTableViewController: UITableViewController {
                 }
                 
                 cell.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
-                save()
-                
-            case "Sound":
-                var voiceControlLabel = block.name
-                if block.name == "Make Random Noise"{
-                    let wordToRemove2 = "Make "
-                    if let range = voiceControlLabel.range(of: wordToRemove2) {
-                        voiceControlLabel.removeSubrange(range)
-                    }
-                }
-                else if block.name.contains("Say "){
-                    let wordToRemove = "Say "
-                    if let range = voiceControlLabel.range(of: wordToRemove){
-                        voiceControlLabel.removeSubrange(range)
-                    }
-                }
-                cell.accessibilityUserInputLabels = ["\(voiceControlLabel)","\(block.name)"]
-                save()
-                
-            case "Vehicle":
-                var voiceControlLabel = block.name
-                if block.name.contains("Noise"){
-                    let wordToRemove2 = " Noise"
-                    if let range = voiceControlLabel.range(of: wordToRemove2) {
-                        voiceControlLabel.removeSubrange(range)}
-                }
-                cell.accessibilityUserInputLabels = ["\(voiceControlLabel)","\(block.name)"]
                 save()
                 
             default:

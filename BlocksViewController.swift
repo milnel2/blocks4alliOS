@@ -29,6 +29,15 @@ protocol BlockSelectionDelegate{
     func setParentViewController(_ myVC:UIViewController)
 }
 
+//For creating voice control labels (source: https://stackoverflow.com/questions/41292671/separating-camelcase-string-into-space-separated-words-in-swift)
+extension String {
+    func titleCased() -> String {
+        return self.replacingOccurrences(of: "([A-Z])", with: " $1", options: .regularExpression, range: self.range(of: self))
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .capitalized
+    }
+}
+
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
     //Larger views
@@ -627,7 +636,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 animalNoiseButton.accessibilityHint = "Double tap to choose animal noise"
                 animalNoiseButton.isAccessibilityElement = true
-                modifierInformation = ("\(block.addedBlocks[0].attributes["animalNoise"]!) noise")
+                modifierInformation = ("\(block.addedBlocks[0].attributes["animalNoise"]!) Noise".titleCased())
+                
+                var voiceControlLabel = modifierInformation
+                let wordToRemove = " Noise"
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                if #available(iOS 13.0, *) {
+                    animalNoiseButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
+                }
                 
                 cell.addSubview(animalNoiseButton)
                 save()
@@ -687,7 +706,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 vehicleNoiseButton.accessibilityHint = "Double tap to choose vehicle noise"
                 vehicleNoiseButton.isAccessibilityElement = true
-                modifierInformation = ("\(block.addedBlocks[0].attributes["vehicleNoise"]!) noise")
+                modifierInformation = ("\(block.addedBlocks[0].attributes["vehicleNoise"]!) Noise".titleCased())
+                
+                var voiceControlLabel = modifierInformation
+                let wordToRemove = " Noise"
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                if #available(iOS 13.0, *) {
+                    vehicleNoiseButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
+                }
                 
                 cell.addSubview(vehicleNoiseButton)
                 save()
@@ -735,7 +764,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 objectNoiseButton.accessibilityHint = "Double tap to choose object noise"
                 objectNoiseButton.isAccessibilityElement = true
-                modifierInformation = ("\(block.addedBlocks[0].attributes["objectNoise"]!) noise")
+                modifierInformation = ("\(block.addedBlocks[0].attributes["objectNoise"]!) Noise".titleCased())
+                
+                var voiceControlLabel = modifierInformation
+                let wordToRemove = " Noise"
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                if #available(iOS 13.0, *) {
+                    objectNoiseButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
+                }
                 
                 cell.addSubview(objectNoiseButton)
                 save()
@@ -789,7 +828,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 emotionNoiseButton.accessibilityHint = "Double tap to choose emotion noise"
                 emotionNoiseButton.isAccessibilityElement = true
-                modifierInformation = ("\(block.addedBlocks[0].attributes["emotionNoise"]!) noise")
+                modifierInformation = ("\(block.addedBlocks[0].attributes["emotionNoise"]!) Noise".titleCased())
+                
+                var voiceControlLabel = modifierInformation
+                let wordToRemove = " Noise"
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                if #available(iOS 13.0, *) {
+                    emotionNoiseButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
+                }
                 
                 cell.addSubview(emotionNoiseButton)
                 save()
@@ -861,7 +910,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 speakButton.accessibilityHint = "Double tap to choose word"
                 speakButton.isAccessibilityElement = true
-                modifierInformation = ("Say \(block.addedBlocks[0].attributes["speakWord"]!)")
+                modifierInformation = ("Say \(block.addedBlocks[0].attributes["speakWord"]!)".titleCased())
+                
+                var voiceControlLabel = modifierInformation
+                let wordToRemove = "Say "
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                if #available(iOS 13.0, *) {
+                    speakButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
+                }
                 
                 cell.addSubview(speakButton)
                 save()
@@ -1501,24 +1560,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             let color = block.color.uiColor
             
             switch color {
-            //Animals
-            case UIColor.colorFrom(hexString: "#058900"):
-                var voiceControlLabel = block.name
-                let wordToRemove = "Make "
-                if let range = voiceControlLabel.range(of: wordToRemove){
-                    voiceControlLabel.removeSubrange(range)}
-                
-                var voiceControlLabel2 = voiceControlLabel
-                let wordToRemove2 = " Noise"
-                if let range = voiceControlLabel2.range(of: wordToRemove2) {
-                    voiceControlLabel2.removeSubrange(range)}
-                
-                if movingBlocks {
-                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)",  "Before \(voiceControlLabel2)"]
-                }
-                else {
-                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)",  "\(voiceControlLabel2)"]
-                }
             //Control
             case UIColor.colorFrom(hexString: "#B30DCB"):
                 if movingBlocks {
@@ -1529,6 +1570,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 else {
                     blockView.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
                 }
+                
             //Drive
             case UIColor.colorFrom(hexString: "#B15C13"):
                 var voiceControlLabel = block.name
@@ -1551,6 +1593,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 else {
                     blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
                 }
+                
             //Lights
             case UIColor.colorFrom(hexString: "#6700C1"):
                 var voiceControlLabel = block.name
@@ -1573,6 +1616,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 else {
                     blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(voiceControlLabel2)", "\(block.name)"]
                 }
+                
             //Look
             case UIColor.colorFrom(hexString: "#836F53"):
                 var voiceControlLabel = block.name
@@ -1587,51 +1631,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 else {
                     blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
                 }
-            //Sound
-            case UIColor.colorFrom(hexString: "#227C7C"):
-                var voiceControlLabel = block.name
-                if block.name == "Make Random Noise"{
-                    let wordToRemove2 = "Make "
-                    if let range = voiceControlLabel.range(of: wordToRemove2) {
-                        voiceControlLabel.removeSubrange(range)
-                    }
-                }
-                else if block.name.contains("Say "){
-                    let wordToRemove = "Say "
-                    if let range = voiceControlLabel.range(of: wordToRemove){
-                        voiceControlLabel.removeSubrange(range)
-                    }
-                }
-                
-                if movingBlocks {
-                    blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
-                }
-                else {
-                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
-                }
-            //Vehicle
-            case UIColor.colorFrom(hexString: "#002041"):
-                var voiceControlLabel = block.name
-                if block.name.contains("Noise"){
-                    let wordToRemove2 = " Noise"
-                    if let range = voiceControlLabel.range(of: wordToRemove2) {
-                        voiceControlLabel.removeSubrange(range)}
-                }
-                
-                if movingBlocks {
-                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(block.name)"]
-                }
-                else {
-                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
-                }
                 
             default:
-                if movingBlocks {
-                    blockView.accessibilityUserInputLabels = ["Before \(block.name)"]
-                }
-                else {
-                    blockView.accessibilityUserInputLabels = ["\(block.name)"]
-                }
+                blockView.accessibilityUserInputLabels = ["\(block.name)"]
             }
         }
     }
