@@ -14,7 +14,6 @@
 		02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */; };
 		02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */; };
 		02FE3BCA22DCE4FB000C7C66 /* TurnVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */; };
-		02FE3BCB22DCE4FE000C7C66 /* WheelVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0122D53C9B003FCD70 /* WheelVariables.swift */; };
 		02FE3BCC22DCE501000C7C66 /* LookLeftRightVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */; };
 		02FE3BCD22DCE504000C7C66 /* LookUpDownVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */; };
 		62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */; };
@@ -68,7 +67,6 @@
 		02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceSpeedModViewController.swift; sourceTree = "<group>"; };
 		57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveVariables.swift; sourceTree = "<group>"; };
 		57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnVariable.swift; sourceTree = "<group>"; };
-		57C1BD0122D53C9B003FCD70 /* WheelVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelVariables.swift; sourceTree = "<group>"; };
 		57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookLeftRightVariables.swift; sourceTree = "<group>"; };
 		57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpDownVariables.swift; sourceTree = "<group>"; };
 		62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVariableModViewController.swift; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 				57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */,
 				023D633222BD34EE00A8002C /* WaitModViewController.swift */,
 				57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */,
-				57C1BD0122D53C9B003FCD70 /* WheelVariables.swift */,
 				84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */,
 				62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */,
 				023D633022BC0B2E00A8002C /* RepeatModViewController.swift */,
@@ -350,7 +347,6 @@
 			files = (
 				02FE3BCD22DCE504000C7C66 /* LookUpDownVariables.swift in Sources */,
 				02FE3BCC22DCE501000C7C66 /* LookLeftRightVariables.swift in Sources */,
-				02FE3BCB22DCE4FE000C7C66 /* WheelVariables.swift in Sources */,
 				02FE3BCA22DCE4FB000C7C66 /* TurnVariable.swift in Sources */,
 				A9937EA9267BAB3B00A56E8A /* CustomButton.swift in Sources */,
 				02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */,
