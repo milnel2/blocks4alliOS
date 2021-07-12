@@ -257,8 +257,6 @@
 				<key>name</key>
 				<string>Set Right Ear Light</string>
 				<key>color</key>
-				<string>#0000FF</string>
-				<key>New item</key>
 				<string>#6700C1</string>
 				<key>double</key>
 				<false/>
