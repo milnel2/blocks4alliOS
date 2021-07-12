@@ -1224,7 +1224,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 setDriveVariableButton.layer.borderWidth = 2.0
                 setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
-                modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
+                
+                setDriveVariableButton.accessibilityHint = "Double tap to set Drive variable"
+                setDriveVariableButton.isAccessibilityElement = true
+                modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " centimeters"
                 cell.addSubview(setDriveVariableButton)
                 save()
                 
@@ -1261,7 +1264,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                  setLookUpDownVariableButton.layer.borderWidth = 2.0
                  setLookUpDownVariableButton.layer.borderColor = UIColor.black.cgColor
                  
-                 setLookUpDownVariableButton.accessibilityLabel = "Set Look Up or Down Variable"
+                 setLookUpDownVariableButton.accessibilityHint = "Double tap to set Look Up or Down variable"
                  setLookUpDownVariableButton.isAccessibilityElement = true
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                  
@@ -1301,7 +1304,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 setLookLeftRightVariableButton.layer.borderWidth = 2.0
                 setLookLeftRightVariableButton.layer.borderColor = UIColor.black.cgColor
                 
-                setLookLeftRightVariableButton.accessibilityLabel = "Set Look Left or Right Variable"
+                setLookLeftRightVariableButton.accessibilityHint = "Double tap to set Look Left or Right variable"
                 setLookLeftRightVariableButton.isAccessibilityElement = true
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                 cell.addSubview(setLookLeftRightVariableButton)
@@ -1344,7 +1347,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 setTurnButton.layer.borderWidth = 2.0
                 setTurnButton.layer.borderColor = UIColor.black.cgColor
                 
-                setTurnButton.accessibilityLabel = "Choose turn variable"
+                setTurnButton.accessibilityHint = "Double tap to set Turn variable"
                 setTurnButton.isAccessibilityElement = true
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                 
