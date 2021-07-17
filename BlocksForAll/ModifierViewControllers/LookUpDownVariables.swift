@@ -17,130 +17,37 @@ class LookUpDownVariables: UIViewController {
     var modifierBlockIndexSender: Int?
     var variableSelected: String = "orange"
     
-    //look up/down buttons
-    @IBOutlet weak var orangeButton: UIButton!
-    @IBOutlet weak var bananaButton: UIButton!
-    @IBOutlet weak var appleButton: UIButton!
-    @IBOutlet weak var cherryButton: UIButton!
-    @IBOutlet weak var watermelonButton: UIButton!
-    
+    @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var back: UIButton!
     
-    
-    func deselectAllUp(){
-        orangeButton.layer.borderWidth = 0
-        bananaButton.layer.borderWidth = 0
-        cherryButton.layer.borderWidth = 0
-        watermelonButton.layer.borderWidth = 0
-        appleButton.layer.borderWidth = 0
-    }
- 
-    //Reference for knowing which button is selected
-    // https://stackoverflow.com/questions/33906060/select-deselect-buttons-swift-xcode-7
-    @IBAction func orangePressed(_ sender: Any) {
-        //Border when button is selected
-        variableSelected = "orange"
-        if let button = sender as? UIButton {
-            if button.isSelected {
-                button.isSelected = false
-                button.layer.borderWidth = 0
-            } else {
-                deselectAllUp()
-                button.isSelected = true
-                button.layer.borderWidth = 10
-                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-            }
-        }
-    }
-    @IBAction func bananaPressed(_ sender: Any) {
-        //Border when button is selected
-        variableSelected = "banana"
-        if let button = sender as? UIButton {
-            if button.isSelected {
-                button.isSelected = false
-                button.layer.borderWidth = 0
-            } else {
-                deselectAllUp()
-                button.isSelected = true
-                button.layer.borderWidth = 10
-                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-            }
-        }
-    }
-    @IBAction func applePressed(_ sender: Any) {
-        //Border when button is selected
-        variableSelected = "apple"
-        if let button = sender as? UIButton {
-            if button.isSelected {
-                button.isSelected = false
-                button.layer.borderWidth = 0
-            } else {
-                deselectAllUp()
-                button.isSelected = true
-                button.layer.borderWidth = 10
-                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-            }
-        }
-    }
-    
-    @IBAction func cherryPressed(_ sender: Any) {
-        //Border when button is selected
-        variableSelected = "cherry"
-        if let button = sender as? UIButton {
-            if button.isSelected {
-                button.isSelected = false
-                button.layer.borderWidth = 0
-            } else {
-                deselectAllUp()
-                button.isSelected = true
-                button.layer.borderWidth = 10
-                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-            }
-        }
-    }
-    @IBAction func watermelonPressed(_ sender: Any) {
-        //Border when button is selected
-        variableSelected = "melon"
-        if let button = sender as? UIButton {
-            if button.isSelected {
-                button.isSelected = false
-                button.layer.borderWidth = 0
-            } else {
-                deselectAllUp()
-                button.isSelected = true
-                button.layer.borderWidth = 10
-                button.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-            }
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        //Deselects all buttons but currently selected one (only one can be selected at a time)
+        self.buttons.forEach { (button) in
+            button.layer.borderWidth = 0
+                }
+        //Selects pressed button
+        sender.layer.borderWidth = 10
+        sender.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        if let buttonID = sender.accessibilityIdentifier {
+            variableSelected = buttonID
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // default: orange or preserve last selection
         let previousSelectedVariableOne: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
         
         variableSelected = previousSelectedVariableOne
         
-        switch variableSelected{
-        case "orange":
-            orangeButton.layer.borderWidth = 10
-            orangeButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-        case "cherry":
-            cherryButton.layer.borderWidth = 10
-            cherryButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-        case "melon":
-            watermelonButton.layer.borderWidth = 10
-            watermelonButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-        case "apple":
-            appleButton.layer.borderWidth = 10
-            appleButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-        case "banana":
-            bananaButton.layer.borderWidth = 10
-            bananaButton.layer.borderColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
-        default:
-            orangeButton.layer.borderWidth = 0
+        for button in buttons {
+            //Highlights current variable when mod view is entered
+            if variableSelected == button.accessibilityIdentifier {
+                button.layer.borderWidth = 10
+                button.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+            }
         }
-        
         back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
@@ -149,10 +56,8 @@ class LookUpDownVariables: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            
         }
     }
-    
 }
 
 

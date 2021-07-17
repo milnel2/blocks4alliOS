@@ -60,7 +60,7 @@ class SetVariableModViewController: UIViewController {
         variableSelected = previousSetVariable
         
         for button in buttons {
-            //Highlights current animal when mod view is entered
+            //Highlights current variable when mod view is entered
             if variableSelected == button.accessibilityIdentifier {
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
