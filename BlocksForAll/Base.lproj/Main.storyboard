@@ -1503,69 +1503,69 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <segue destination="uoc-nU-c4a" kind="show" id="2YI-wg-iJ2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GrT-2z-xvO">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GrT-2z-xvO">
                                 <rect key="frame" x="66" y="166" width="162" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.27790132169999998" green="0.86850605729999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Orange "/>
+                                <accessibility key="accessibilityConfiguration" identifier="orange" label="Orange "/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="Orange">
+                                <state key="normal" backgroundImage="small_orange">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="OrangeVariable:" destination="B5M-ey-3HD" eventType="touchUpInside" id="dmA-Z0-Y9A"/>
+                                    <action selector="buttonPressed:" destination="B5M-ey-3HD" eventType="touchUpInside" id="iH8-js-0rC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uv9-Kz-RsF">
                                 <rect key="frame" x="252" y="166" width="156" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.98230466635236036" green="1" blue="0.28619974094711975" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Banana"/>
+                                <accessibility key="accessibilityConfiguration" identifier="banana" label="Banana"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Banana">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="BananaVariable:" destination="B5M-ey-3HD" eventType="touchUpInside" id="qWu-v0-qtA"/>
+                                    <action selector="buttonPressed:" destination="B5M-ey-3HD" eventType="touchUpInside" id="nci-In-7AO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rgQ-Jh-7kw">
                                 <rect key="frame" x="436" y="166" width="152" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.24135470070000001" green="1" blue="0.37577227400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Apple"/>
+                                <accessibility key="accessibilityConfiguration" identifier="apple" label="Apple"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Apple">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="AppleVariable:" destination="B5M-ey-3HD" eventType="touchUpInside" id="lgO-Yn-Eff"/>
+                                    <action selector="buttonPressed:" destination="B5M-ey-3HD" eventType="touchUpInside" id="2bL-Pa-8Te"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5m-D2-7ru">
                                 <rect key="frame" x="618" y="166" width="150" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.35949486940488107" blue="0.61762648747142079" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Cherry"/>
+                                <accessibility key="accessibilityConfiguration" identifier="cherry" label="Cherry"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Cherry">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="CherryVariable:" destination="B5M-ey-3HD" eventType="touchUpInside" id="9qh-hX-sPT"/>
+                                    <action selector="buttonPressed:" destination="B5M-ey-3HD" eventType="touchUpInside" id="hQB-XC-MEj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-YP-GZa">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-YP-GZa">
                                 <rect key="frame" x="800" y="166" width="161" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.68681763241246196" blue="0.72240925681153056" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Watermelon"/>
+                                <accessibility key="accessibilityConfiguration" identifier="watermelon" label="Watermelon"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Watermelon">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="MelonVariable:" destination="B5M-ey-3HD" eventType="touchUpInside" id="mXk-TW-8Mr"/>
+                                    <action selector="buttonPressed:" destination="B5M-ey-3HD" eventType="touchUpInside" id="UK1-2f-0yH"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0EE-tA-7aY">
@@ -1601,12 +1601,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     <navigationItem key="navigationItem" id="vBc-yS-huA"/>
                     <connections>
                         <outlet property="VariableValue" destination="0EE-tA-7aY" id="Rbn-tb-XMp"/>
-                        <outlet property="appleButton" destination="rgQ-Jh-7kw" id="3gN-A7-aMs"/>
                         <outlet property="back" destination="lJh-zd-RGp" id="qTr-vv-bAT"/>
-                        <outlet property="bananaButton" destination="Uv9-Kz-RsF" id="d8r-3m-dld"/>
-                        <outlet property="cherryButton" destination="e5m-D2-7ru" id="doI-uW-niP"/>
-                        <outlet property="orangeButton" destination="GrT-2z-xvO" id="QHV-fO-W9P"/>
-                        <outlet property="watermelonButton" destination="Skb-YP-GZa" id="sGD-6j-gt3"/>
+                        <outletCollection property="buttons" destination="GrT-2z-xvO" collectionClass="NSMutableArray" id="xMz-Rm-SYu"/>
+                        <outletCollection property="buttons" destination="Uv9-Kz-RsF" collectionClass="NSMutableArray" id="R71-k6-1Jv"/>
+                        <outletCollection property="buttons" destination="rgQ-Jh-7kw" collectionClass="NSMutableArray" id="WIy-0J-OHU"/>
+                        <outletCollection property="buttons" destination="e5m-D2-7ru" collectionClass="NSMutableArray" id="oPv-Ou-dNv"/>
+                        <outletCollection property="buttons" destination="Skb-YP-GZa" collectionClass="NSMutableArray" id="a7v-fP-8qS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44J-gd-q9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1710,65 +1710,65 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="68" y="221" width="162" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.27790132169999998" green="0.86850605729999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Orange "/>
+                                <accessibility key="accessibilityConfiguration" identifier="orange" label="Orange "/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="Orange">
+                                <state key="normal" backgroundImage="small_orange">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="orangeDistancePressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="nvB-dh-LCb"/>
+                                    <action selector="buttonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="FKa-M3-GR4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypF-Ea-lgn">
                                 <rect key="frame" x="253" y="221" width="156" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.98230466640000003" green="1" blue="0.2861997409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Banana"/>
+                                <accessibility key="accessibilityConfiguration" identifier="banana" label="Banana"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Banana">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="bananaDistancePressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="d1W-Wp-LcS"/>
+                                    <action selector="buttonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="NPI-R4-gk3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeO-ti-YFz">
                                 <rect key="frame" x="436" y="220" width="152" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.24135470070000001" green="1" blue="0.37577227400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Apple"/>
+                                <accessibility key="accessibilityConfiguration" identifier="apple" label="Apple"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Apple">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="appleDistancePressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="4ng-Ns-S6p"/>
+                                    <action selector="buttonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="xY9-fJ-MjQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKW-E7-HOd">
                                 <rect key="frame" x="796" y="221" width="161" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.68681763240000004" blue="0.72240925680000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Watermelon"/>
+                                <accessibility key="accessibilityConfiguration" identifier="melon" label="Watermelon"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Watermelon">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="watermelonDistancePressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="Yve-3u-fan"/>
+                                    <action selector="buttonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="ADn-UY-ymz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoX-XS-X1x">
                                 <rect key="frame" x="613" y="221" width="150" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.35949486939999997" blue="0.61762648750000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Cherry"/>
+                                <accessibility key="accessibilityConfiguration" identifier="cherry" label="Cherry"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Cherry">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="cherryDistancePressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="Jxi-1P-z1J"/>
+                                    <action selector="buttonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="sjd-Yu-rEp"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CO9-t8-AAm">
@@ -1829,15 +1829,16 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <navigationItem key="navigationItem" id="kb7-ZB-cSO"/>
                     <connections>
-                        <outlet property="appleDistanceButton" destination="HeO-ti-YFz" id="98j-DJ-HgL"/>
                         <outlet property="back" destination="Iih-8Y-Qzv" id="ymK-wi-zvT"/>
-                        <outlet property="bananaDistanceButton" destination="ypF-Ea-lgn" id="WMn-oT-A4X"/>
-                        <outlet property="cherryDistanceButton" destination="IoX-XS-X1x" id="V7m-5O-KS3"/>
                         <outlet property="fastButton" destination="jBY-tV-GhI" id="SWA-mD-ceM"/>
-                        <outlet property="orangeDistanceButton" destination="OWd-yU-SCQ" id="8bC-S3-ubJ"/>
                         <outlet property="slowButton" destination="beN-6U-HNX" id="MXg-Xy-2Wy"/>
                         <outlet property="speedLabel" destination="agB-BY-ixs" id="RNC-0a-Apz"/>
-                        <outlet property="watermelonDistanceButton" destination="tKW-E7-HOd" id="fnZ-lQ-oek"/>
+                        <outletCollection property="buttons" destination="OWd-yU-SCQ" collectionClass="NSMutableArray" id="FPZ-Ai-Lgr"/>
+                        <outletCollection property="buttons" destination="OWd-yU-SCQ" collectionClass="NSMutableArray" id="xuV-eY-mXC"/>
+                        <outletCollection property="buttons" destination="ypF-Ea-lgn" collectionClass="NSMutableArray" id="wMo-MI-r7v"/>
+                        <outletCollection property="buttons" destination="HeO-ti-YFz" collectionClass="NSMutableArray" id="TyR-fH-1Du"/>
+                        <outletCollection property="buttons" destination="IoX-XS-X1x" collectionClass="NSMutableArray" id="Ahr-se-ybh"/>
+                        <outletCollection property="buttons" destination="tKW-E7-HOd" collectionClass="NSMutableArray" id="axa-zZ-lyb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IeQ-ZC-B5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1872,65 +1873,65 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="68" y="221" width="162" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.27790132169999998" green="0.86850605729999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Orange "/>
+                                <accessibility key="accessibilityConfiguration" identifier="orange" label="Orange "/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="Orange">
+                                <state key="normal" backgroundImage="small_orange">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="orangeTurnPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="zDT-H4-5bU"/>
+                                    <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="1ez-ku-Foa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAR-ES-jhg">
                                 <rect key="frame" x="253" y="221" width="156" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.98230466640000003" green="1" blue="0.2861997409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Banana"/>
+                                <accessibility key="accessibilityConfiguration" identifier="banana" label="Banana"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Banana">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="bananaTurnPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="Dag-W2-SH7"/>
+                                    <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="1Ie-TN-cJE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AxW-nQ-bJf">
                                 <rect key="frame" x="436" y="220" width="152" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.24135470070000001" green="1" blue="0.37577227400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Apple"/>
+                                <accessibility key="accessibilityConfiguration" identifier="apple" label="Apple"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Apple">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="appleTurnPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="orW-62-1ji"/>
+                                    <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="Wci-V0-u6C"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bkl-7e-Q64">
                                 <rect key="frame" x="796" y="221" width="161" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.68681763240000004" blue="0.72240925680000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Watermelon"/>
+                                <accessibility key="accessibilityConfiguration" identifier="melon" label="Watermelon"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Watermelon">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="watermelonTurnPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="HXF-ob-Cqy"/>
+                                    <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="V9W-np-ihm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9IC-Kx-unA">
                                 <rect key="frame" x="613" y="221" width="150" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.35949486939999997" blue="0.61762648750000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Cherry"/>
+                                <accessibility key="accessibilityConfiguration" identifier="cherry" label="Cherry"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Cherry">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="cherryTurnPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="iUA-W1-cXD"/>
+                                    <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="ZjR-6r-6xg"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Turn Variable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ed-Gl-te1">
@@ -1954,12 +1955,13 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <navigationItem key="navigationItem" id="4Vs-Sg-yuk"/>
                     <connections>
-                        <outlet property="appleTurnButton" destination="AxW-nQ-bJf" id="UKp-j2-VSi"/>
                         <outlet property="back" destination="nlP-Do-HRh" id="MZe-wY-ieB"/>
-                        <outlet property="bananaTurnButton" destination="SAR-ES-jhg" id="pZR-lF-wBD"/>
-                        <outlet property="cherryTurnButton" destination="9IC-Kx-unA" id="gEf-eJ-8a6"/>
-                        <outlet property="orangeTurnButton" destination="por-t8-2aZ" id="3HT-A0-VyS"/>
-                        <outlet property="watermelonTurnButton" destination="Bkl-7e-Q64" id="LvA-P7-wlQ"/>
+                        <outletCollection property="buttons" destination="por-t8-2aZ" collectionClass="NSMutableArray" id="kKy-ut-pP0"/>
+                        <outletCollection property="buttons" destination="por-t8-2aZ" collectionClass="NSMutableArray" id="Hah-Xw-LEu"/>
+                        <outletCollection property="buttons" destination="SAR-ES-jhg" collectionClass="NSMutableArray" id="jtb-5y-lSh"/>
+                        <outletCollection property="buttons" destination="AxW-nQ-bJf" collectionClass="NSMutableArray" id="fjB-bM-xfD"/>
+                        <outletCollection property="buttons" destination="9IC-Kx-unA" collectionClass="NSMutableArray" id="VKU-yq-vaE"/>
+                        <outletCollection property="buttons" destination="Bkl-7e-Q64" collectionClass="NSMutableArray" id="s9p-8h-Vzm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="igI-XY-x3g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1994,65 +1996,65 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="68" y="384" width="162" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.27790132169999998" green="0.86850605729999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Orange "/>
+                                <accessibility key="accessibilityConfiguration" identifier="orange" label="Orange "/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="Orange">
+                                <state key="normal" backgroundImage="small_orange">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="orangePressed:" destination="yNb-Cd-YlI" eventType="touchUpInside" id="aWQ-W3-PNs"/>
+                                    <action selector="buttonPressed:" destination="yNb-Cd-YlI" eventType="touchUpInside" id="uwJ-73-zQ9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4q1-vE-soU">
                                 <rect key="frame" x="253" y="384" width="156" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.98230466640000003" green="1" blue="0.2861997409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Banana"/>
+                                <accessibility key="accessibilityConfiguration" identifier="banana" label="Banana"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Banana">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="bananaPressed:" destination="yNb-Cd-YlI" eventType="touchUpInside" id="esK-lm-rb5"/>
+                                    <action selector="buttonPressed:" destination="yNb-Cd-YlI" eventType="touchUpInside" id="6H9-8U-ME7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dR9-Bd-O6a">
                                 <rect key="frame" x="436" y="383" width="152" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.24135470070000001" green="1" blue="0.37577227400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Apple"/>
+                                <accessibility key="accessibilityConfiguration" identifier="apple" label="Apple"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Apple">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="applePressed:" destination="yNb-Cd-YlI" eventType="touchUpInside" id="l3O-WE-2OM"/>
+                                    <action selector="buttonPressed:" destination="yNb-Cd-YlI" eventType="touchUpInside" id="gU3-13-uYO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbR-jX-yjb">
                                 <rect key="frame" x="796" y="384" width="161" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.68681763240000004" blue="0.72240925680000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Watermelon"/>
+                                <accessibility key="accessibilityConfiguration" identifier="melon" label="Watermelon"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Watermelon">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="watermelonPressed:" destination="yNb-Cd-YlI" eventType="touchUpInside" id="9uD-ZZ-8BE"/>
+                                    <action selector="buttonPressed:" destination="yNb-Cd-YlI" eventType="touchUpInside" id="YlT-k0-cDK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsK-ZT-SLl">
                                 <rect key="frame" x="613" y="384" width="150" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.35949486939999997" blue="0.61762648750000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Cherry"/>
+                                <accessibility key="accessibilityConfiguration" identifier="cherry" label="Cherry"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Cherry">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="cherryPressed:" destination="yNb-Cd-YlI" eventType="touchUpInside" id="l3t-Gy-0uu"/>
+                                    <action selector="buttonPressed:" destination="yNb-Cd-YlI" eventType="touchUpInside" id="TDz-TT-lMm"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Look Up or Down:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAz-n7-F8C">
@@ -2090,12 +2092,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <navigationItem key="navigationItem" id="EUe-Qq-5pr"/>
                     <connections>
-                        <outlet property="appleButton" destination="dR9-Bd-O6a" id="n86-vn-Chm"/>
                         <outlet property="back" destination="8yI-Oz-RY0" id="lty-nE-Mqf"/>
-                        <outlet property="bananaButton" destination="4q1-vE-soU" id="4yP-Xg-pts"/>
-                        <outlet property="cherryButton" destination="bsK-ZT-SLl" id="tB2-Bk-xlf"/>
-                        <outlet property="orangeButton" destination="eQd-mf-6EI" id="aNL-sK-ihT"/>
-                        <outlet property="watermelonButton" destination="fbR-jX-yjb" id="A8j-yA-gYQ"/>
+                        <outletCollection property="buttons" destination="eQd-mf-6EI" collectionClass="NSMutableArray" id="Hy4-VW-bPG"/>
+                        <outletCollection property="buttons" destination="4q1-vE-soU" collectionClass="NSMutableArray" id="dIT-Kj-rek"/>
+                        <outletCollection property="buttons" destination="dR9-Bd-O6a" collectionClass="NSMutableArray" id="MwX-d0-AMH"/>
+                        <outletCollection property="buttons" destination="bsK-ZT-SLl" collectionClass="NSMutableArray" id="SX6-IN-Nn9"/>
+                        <outletCollection property="buttons" destination="fbR-jX-yjb" collectionClass="NSMutableArray" id="QyL-v0-q7O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZL-jx-0dc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2130,65 +2132,65 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="68" y="363" width="162" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.27790132169999998" green="0.86850605729999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Orange "/>
+                                <accessibility key="accessibilityConfiguration" identifier="orange" label="Orange "/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="Orange">
+                                <state key="normal" backgroundImage="small_orange">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="orangePressed:" destination="o6a-kf-Lsq" eventType="touchUpInside" id="7Zk-7d-MOg"/>
+                                    <action selector="buttonPressed:" destination="o6a-kf-Lsq" eventType="touchUpInside" id="XLY-s3-pC4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISD-H4-eTo">
                                 <rect key="frame" x="253" y="363" width="156" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.98230466640000003" green="1" blue="0.2861997409" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Banana"/>
+                                <accessibility key="accessibilityConfiguration" identifier="banana" label="Banana"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Banana">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="bananaPressed:" destination="o6a-kf-Lsq" eventType="touchUpInside" id="O2n-Lh-dpI"/>
+                                    <action selector="buttonPressed:" destination="o6a-kf-Lsq" eventType="touchUpInside" id="ajR-T0-Oys"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Y1-ba-EMm">
                                 <rect key="frame" x="436" y="362" width="152" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.24135470070000001" green="1" blue="0.37577227400000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Apple"/>
+                                <accessibility key="accessibilityConfiguration" identifier="apple" label="Apple"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Apple">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="applePressed:" destination="o6a-kf-Lsq" eventType="touchUpInside" id="Xmu-Hf-SVe"/>
+                                    <action selector="buttonPressed:" destination="o6a-kf-Lsq" eventType="touchUpInside" id="9pA-Nm-7E9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deE-af-ht2">
                                 <rect key="frame" x="796" y="363" width="161" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.68681763240000004" blue="0.72240925680000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Watermelon"/>
+                                <accessibility key="accessibilityConfiguration" identifier="melon" label="Watermelon"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Watermelon">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="watermelonPressed:" destination="o6a-kf-Lsq" eventType="touchUpInside" id="YNA-Q7-OyN"/>
+                                    <action selector="buttonPressed:" destination="o6a-kf-Lsq" eventType="touchUpInside" id="shA-3x-o9v"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lfR-07-Evo">
                                 <rect key="frame" x="613" y="363" width="150" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.35949486939999997" blue="0.61762648750000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <accessibility key="accessibilityConfiguration" label="Cherry"/>
+                                <accessibility key="accessibilityConfiguration" identifier="cherry" label="Cherry"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="Cherry">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="cherryPressed:" destination="o6a-kf-Lsq" eventType="touchUpInside" id="O4M-vk-US8"/>
+                                    <action selector="buttonPressed:" destination="o6a-kf-Lsq" eventType="touchUpInside" id="Un2-ye-HEy"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Look Left or Right:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vi-vc-frT">
@@ -2226,12 +2228,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <navigationItem key="navigationItem" id="9Dh-Cr-XPV"/>
                     <connections>
-                        <outlet property="appleLookButton" destination="7Y1-ba-EMm" id="mxf-g9-YRg"/>
                         <outlet property="back" destination="3GE-OP-u2B" id="0g0-zN-m8l"/>
-                        <outlet property="bananaLookButton" destination="ISD-H4-eTo" id="bYh-f4-3lP"/>
-                        <outlet property="cherryLookButton" destination="lfR-07-Evo" id="w79-aB-9dX"/>
-                        <outlet property="orangeLookButton" destination="Z0d-WD-cmP" id="KZf-9Z-8Lo"/>
-                        <outlet property="watermelonLookButton" destination="deE-af-ht2" id="aRl-Ed-Ga2"/>
+                        <outletCollection property="buttons" destination="Z0d-WD-cmP" collectionClass="NSMutableArray" id="3sj-SL-haW"/>
+                        <outletCollection property="buttons" destination="ISD-H4-eTo" collectionClass="NSMutableArray" id="OMv-he-PuZ"/>
+                        <outletCollection property="buttons" destination="7Y1-ba-EMm" collectionClass="NSMutableArray" id="UW6-s9-OsK"/>
+                        <outletCollection property="buttons" destination="lfR-07-Evo" collectionClass="NSMutableArray" id="zOc-B1-m5L"/>
+                        <outletCollection property="buttons" destination="deE-af-ht2" collectionClass="NSMutableArray" id="aMa-MQ-KmC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBJ-HZ-kCs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2950,7 +2952,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="Banana" width="100" height="100"/>
         <image name="Cherry" width="100" height="100"/>
         <image name="GreenArrow" width="649" height="586"/>
-        <image name="Orange" width="100" height="100"/>
         <image name="Watermelon" width="100" height="100"/>
         <image name="airplane" width="100" height="100"/>
         <image name="beep" width="100" height="100"/>
@@ -2981,6 +2982,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="random_word" width="100" height="100"/>
         <image name="sense_obstacle" width="100" height="100"/>
         <image name="siren" width="100" height="100"/>
+        <image name="small_orange" width="100" height="100"/>
         <image name="snore_sound" width="100" height="100"/>
         <image name="sound_bragging" width="100" height="100"/>
         <image name="sound_confused" width="100" height="100"/>
