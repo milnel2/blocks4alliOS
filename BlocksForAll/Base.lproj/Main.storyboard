@@ -974,7 +974,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="Rze-51-LIg"/>
                                                     <constraint firstAttribute="width" constant="150" id="dwt-9Y-RGK"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="sound_bragging"/>
+                                                <state key="normal" backgroundImage="small_sound_bragging"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="UrQ-H8-aOK"/>
                                                 </connections>
@@ -986,7 +986,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="bvh-zk-gbG"/>
                                                     <constraint firstAttribute="height" constant="150" id="mS6-hA-Gf8"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="sound_confused"/>
+                                                <state key="normal" backgroundImage="small_sound_confused"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="z5h-QF-DEp"/>
                                                 </connections>
@@ -998,7 +998,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="FMz-5O-DuF"/>
                                                     <constraint firstAttribute="width" constant="150" id="VKs-hT-5su"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="sound_giggle"/>
+                                                <state key="normal" backgroundImage="small_sound_giggle"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="muU-8L-VBR"/>
                                                 </connections>
@@ -1010,7 +1010,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="e9f-DA-JOW"/>
                                                     <constraint firstAttribute="height" constant="150" id="k0g-Mf-M39"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="sound_grunt"/>
+                                                <state key="normal" backgroundImage="small_sound_grunt"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="aUD-o0-GD4"/>
                                                 </connections>
@@ -1027,7 +1027,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="2Sa-qE-XFq"/>
                                                     <constraint firstAttribute="height" constant="150" id="Ye4-AV-kuu"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="sound_sigh"/>
+                                                <state key="normal" backgroundImage="small_sound_sigh"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="psd-Wi-jwn"/>
                                                 </connections>
@@ -1039,7 +1039,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="FQs-1z-q7O"/>
                                                     <constraint firstAttribute="height" constant="150" id="e8c-OS-AFX"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="sound_surprised"/>
+                                                <state key="normal" backgroundImage="small_sound_surprised"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="ONG-BJ-zdd"/>
                                                 </connections>
@@ -1051,7 +1051,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="Qbr-am-DCs"/>
                                                     <constraint firstAttribute="height" constant="150" id="axz-o9-2ZH"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="sound_yawn"/>
+                                                <state key="normal" backgroundImage="small_sound_yawn"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="oXI-1w-3PX"/>
                                                 </connections>
@@ -1063,7 +1063,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="QjC-sw-pyK"/>
                                                     <constraint firstAttribute="width" constant="150" id="Wts-bM-aAe"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="random_emotion"/>
+                                                <state key="normal" backgroundImage="small_random_emotion"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="iCK-GN-vfu"/>
                                                 </connections>
@@ -1157,7 +1157,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="8jA-bG-QLB"/>
                                                     <constraint firstAttribute="height" constant="150" id="8lS-sY-cer"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_hi"/>
+                                                <state key="normal" backgroundImage="small_speak_hi"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="CVj-Hf-bAp"/>
                                                 </connections>
@@ -1169,7 +1169,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="0Gq-3a-tgf"/>
                                                     <constraint firstAttribute="height" constant="150" id="gq9-uE-zbX"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_bye"/>
+                                                <state key="normal" backgroundImage="small_speak_bye"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="w9u-wm-iXb"/>
                                                 </connections>
@@ -1181,7 +1181,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="Ibl-12-Gr9"/>
                                                     <constraint firstAttribute="width" constant="150" id="Y0U-Qm-05D"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_cool"/>
+                                                <state key="normal" backgroundImage="small_speak_cool"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="c5L-Ee-IUP"/>
                                                 </connections>
@@ -1193,7 +1193,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="Wr3-lG-6J1"/>
                                                     <constraint firstAttribute="width" constant="150" id="qss-r4-XZU"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_haha"/>
+                                                <state key="normal" backgroundImage="small_speak_haha"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="GXo-gG-cEf"/>
                                                 </connections>
@@ -1205,7 +1205,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="6Ka-gR-9EM"/>
                                                     <constraint firstAttribute="width" constant="150" id="COE-DO-7L1"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_lets_go"/>
+                                                <state key="normal" backgroundImage="small_speak_lets_go"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="2a2-Hr-00v"/>
                                                 </connections>
@@ -1222,7 +1222,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="FSG-Sf-7hP"/>
                                                     <constraint firstAttribute="width" constant="150" id="uG2-89-tdQ"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_oh"/>
+                                                <state key="normal" backgroundImage="small_speak_oh"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="uiA-jo-A0g"/>
                                                 </connections>
@@ -1234,7 +1234,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="GiQ-M0-RFx"/>
                                                     <constraint firstAttribute="width" constant="150" id="its-ML-iAo"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_wow"/>
+                                                <state key="normal" backgroundImage="small_speak_wow"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="4WK-mo-MDM"/>
                                                 </connections>
@@ -1246,7 +1246,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="Uk1-XJ-fky"/>
                                                     <constraint firstAttribute="width" constant="150" id="hTh-nD-jbp"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_tah_dah"/>
+                                                <state key="normal" backgroundImage="small_speak_tah_dah"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="4cd-Gt-laV"/>
                                                 </connections>
@@ -1258,7 +1258,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="Avt-B2-Nqt"/>
                                                     <constraint firstAttribute="width" constant="150" id="ejG-3f-TlQ"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_uh_huh"/>
+                                                <state key="normal" backgroundImage="small_speak_uh_huh"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="gbn-xq-k0Y"/>
                                                 </connections>
@@ -1270,7 +1270,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="dPO-Na-B7g"/>
                                                     <constraint firstAttribute="height" constant="150" id="mZ7-x4-hzg"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_uh_oh"/>
+                                                <state key="normal" backgroundImage="small_speak_uh_oh"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="vvM-Ht-foF"/>
                                                 </connections>
@@ -1287,7 +1287,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="44N-1f-USM"/>
                                                     <constraint firstAttribute="width" constant="150" id="ULI-G5-O0q"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_wah"/>
+                                                <state key="normal" backgroundImage="small_speak_wah"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="6nU-ab-gS7"/>
                                                 </connections>
@@ -1299,7 +1299,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="A21-86-rAN"/>
                                                     <constraint firstAttribute="width" constant="150" id="vzu-ur-ltM"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_wee_hee"/>
+                                                <state key="normal" backgroundImage="small_speak_wee_hee"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="tYV-J7-PKe"/>
                                                 </connections>
@@ -1311,7 +1311,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="reJ-QI-ZXY"/>
                                                     <constraint firstAttribute="width" constant="150" id="yNJ-W9-naS"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speak_yippe"/>
+                                                <state key="normal" backgroundImage="small_speak_yippe"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="Ngo-uj-nKd"/>
                                                 </connections>
@@ -1323,7 +1323,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="LuR-kP-I1b"/>
                                                     <constraint firstAttribute="width" constant="150" id="pMj-Ci-a7o"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="random_word"/>
+                                                <state key="normal" backgroundImage="small_random_word"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="x8y-ON-Vke" eventType="touchUpInside" id="tFr-aV-MBy"/>
                                                 </connections>
@@ -2313,7 +2313,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="kjc-OQ-mVL"/>
                                                     <constraint firstAttribute="width" constant="150" id="leB-RV-OUq"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="cat_sound"/>
+                                                <state key="normal" backgroundImage="small_cat"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="c0v-J9-EDd"/>
                                                 </connections>
@@ -2325,7 +2325,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="5zo-YG-VOH"/>
                                                     <constraint firstAttribute="width" constant="150" id="epq-My-rxI"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="crocodile_sound"/>
+                                                <state key="normal" backgroundImage="small_crocodile"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="8gr-03-ZpY"/>
                                                 </connections>
@@ -2337,7 +2337,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="INj-P9-2Wu"/>
                                                     <constraint firstAttribute="width" constant="150" id="XKn-v2-JhO"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="dinosaur_sound"/>
+                                                <state key="normal" backgroundImage="small_dinosaur"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="3de-lU-aRB"/>
                                                 </connections>
@@ -2349,7 +2349,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="dco-dB-cng"/>
                                                     <constraint firstAttribute="width" constant="150" id="dpt-bD-miE"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="dog_sound"/>
+                                                <state key="normal" backgroundImage="small_dog"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="PcG-hM-FTx"/>
                                                 </connections>
@@ -2361,7 +2361,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="6Bj-2R-2LM"/>
                                                     <constraint firstAttribute="height" constant="150" id="PVm-Rg-5st"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="elephant_sound"/>
+                                                <state key="normal" backgroundImage="small_elephant"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="fPW-Aw-mD7"/>
                                                 </connections>
@@ -2378,7 +2378,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="dvd-Cc-ljl"/>
                                                     <constraint firstAttribute="width" constant="150" id="jLQ-1c-Qab"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="goat_sound"/>
+                                                <state key="normal" backgroundImage="small_goat"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="iC8-HY-hNG"/>
                                                 </connections>
@@ -2390,7 +2390,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="cwh-IE-TYu"/>
                                                     <constraint firstAttribute="height" constant="150" id="frT-We-4gK"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="horse_sound"/>
+                                                <state key="normal" backgroundImage="small_horse"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="G8d-YP-h0E"/>
                                                 </connections>
@@ -2402,7 +2402,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="Olz-Fr-kub"/>
                                                     <constraint firstAttribute="height" constant="150" id="i1K-Cr-aQk"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="lion_sound"/>
+                                                <state key="normal" backgroundImage="small_lion"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="dKI-hw-sg7"/>
                                                 </connections>
@@ -2414,7 +2414,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="Wt6-MY-LWY"/>
                                                     <constraint firstAttribute="width" constant="150" id="sNA-IR-2Ti"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="turkey_sound"/>
+                                                <state key="normal" backgroundImage="small_turkey"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="LRJ-jm-Adi"/>
                                                 </connections>
@@ -2426,7 +2426,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="C5q-Jw-cc9"/>
                                                     <constraint firstAttribute="width" constant="150" id="dtK-ON-AWc"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="random_animal"/>
+                                                <state key="normal" backgroundImage="small_random_animal"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="03J-5U-FJk"/>
                                                 </connections>
@@ -2533,7 +2533,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="79o-FZ-KYs"/>
                                                     <constraint firstAttribute="height" constant="150" id="Y7i-tn-MrF"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="buzz_sound"/>
+                                                <state key="normal" backgroundImage="small_buzz_sound"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="ovP-b9-PM4"/>
                                                 </connections>
@@ -2545,7 +2545,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="2Qq-9n-xUz"/>
                                                     <constraint firstAttribute="height" constant="150" id="wcx-fk-ZNS"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="laser_sound"/>
+                                                <state key="normal" backgroundImage="small_laser_sound"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="TLi-RF-1iG"/>
                                                 </connections>
@@ -2557,7 +2557,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="WQa-1l-YLh"/>
                                                     <constraint firstAttribute="height" constant="150" id="lcl-Yz-cqs"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="snore_sound"/>
+                                                <state key="normal" backgroundImage="small_snore_sound"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="Rbg-ar-lnq"/>
                                                 </connections>
@@ -2574,7 +2574,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="FxE-rY-r40"/>
                                                     <constraint firstAttribute="height" constant="150" id="uXH-5s-KcB"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="trumpet_sound"/>
+                                                <state key="normal" backgroundImage="small_trumpet_sound"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="4Tb-oA-BU2"/>
                                                 </connections>
@@ -2586,7 +2586,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="WWC-hq-JdS"/>
                                                     <constraint firstAttribute="width" constant="150" id="mcL-UL-Uor"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="squeak_sound"/>
+                                                <state key="normal" backgroundImage="small_squeak_sound"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="pID-2X-7Xf"/>
                                                 </connections>
@@ -2598,7 +2598,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="8ad-DR-ffI"/>
                                                     <constraint firstAttribute="height" constant="150" id="Yxt-GH-WPS"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="random_object"/>
+                                                <state key="normal" backgroundImage="small_random_object"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="qhh-eJ-YoR"/>
                                                 </connections>
@@ -2678,7 +2678,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="bj1-0n-KGP"/>
                                                     <constraint firstAttribute="width" constant="150" id="t8G-a5-kkI"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="airplane"/>
+                                                <state key="normal" backgroundImage="small_airplane"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="juD-7C-bam"/>
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="tfw-oA-pLK"/>
@@ -2691,7 +2691,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="Hy4-3I-n1f"/>
                                                     <constraint firstAttribute="width" constant="150" id="OSg-lw-bRO"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="beep"/>
+                                                <state key="normal" backgroundImage="small_beep"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="fVU-CI-KQd"/>
                                                 </connections>
@@ -2703,7 +2703,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="Qf4-pp-EGo"/>
                                                     <constraint firstAttribute="width" constant="150" id="uUB-lS-91r"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="boat"/>
+                                                <state key="normal" backgroundImage="small_boat"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="B2D-gU-4vO"/>
                                                 </connections>
@@ -2715,7 +2715,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="XEN-DV-DJd"/>
                                                     <constraint firstAttribute="width" constant="150" id="kxx-tf-Fc6"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="helicopter"/>
+                                                <state key="normal" backgroundImage="small_helicopter"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="S98-Hm-tjN"/>
                                                 </connections>
@@ -2727,7 +2727,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="iAd-gb-Rym"/>
                                                     <constraint firstAttribute="height" constant="150" id="vWU-nd-aOg"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="siren"/>
+                                                <state key="normal" backgroundImage="small_siren"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="uEv-Xz-Sap"/>
                                                 </connections>
@@ -2744,7 +2744,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="3Zn-gL-afP"/>
                                                     <constraint firstAttribute="width" constant="150" id="OQE-GQ-9BM"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speed_boost"/>
+                                                <state key="normal" backgroundImage="small_speed_boost"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="A1i-U4-X0O"/>
                                                 </connections>
@@ -2756,7 +2756,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="Ae2-dQ-Mxl"/>
                                                     <constraint firstAttribute="height" constant="150" id="SxK-M5-ESb"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="car_sound"/>
+                                                <state key="normal" backgroundImage="small_car_sound"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="Qga-Tu-roo"/>
                                                 </connections>
@@ -2768,7 +2768,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="Os2-3P-IPe"/>
                                                     <constraint firstAttribute="height" constant="150" id="Z6i-p6-fbX"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="tire_squeal"/>
+                                                <state key="normal" backgroundImage="small_tire_squeal"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="eji-6V-eog"/>
                                                 </connections>
@@ -2780,7 +2780,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="qXX-Mi-ieO"/>
                                                     <constraint firstAttribute="height" constant="150" id="til-YO-6T5"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="train"/>
+                                                <state key="normal" backgroundImage="small_train"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="FYj-3h-Lv9"/>
                                                 </connections>
@@ -2792,7 +2792,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="cAx-Av-ceh"/>
                                                     <constraint firstAttribute="height" constant="150" id="k3b-KM-Xjs"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="random_vehicle"/>
+                                                <state key="normal" backgroundImage="small_random_vehicle"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="VoJ-bc-zye"/>
                                                 </connections>
@@ -2929,63 +2929,63 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="Cherry" width="100" height="100"/>
         <image name="GreenArrow" width="649" height="586"/>
         <image name="Watermelon" width="100" height="100"/>
-        <image name="airplane" width="100" height="100"/>
-        <image name="beep" width="100" height="100"/>
-        <image name="boat" width="100" height="100"/>
         <image name="brownMinus" width="100" height="100"/>
         <image name="brownPlus" width="100" height="100"/>
-        <image name="buzz_sound" width="100" height="100"/>
-        <image name="car_sound" width="100" height="100"/>
-        <image name="cat_sound" width="100" height="100"/>
-        <image name="crocodile_sound" width="100" height="100"/>
-        <image name="dinosaur_sound" width="100" height="100"/>
-        <image name="dog_sound" width="100" height="100"/>
-        <image name="elephant_sound" width="100" height="100"/>
-        <image name="goat_sound" width="100" height="100"/>
         <image name="hear_voice" width="100" height="100"/>
-        <image name="helicopter" width="100" height="100"/>
-        <image name="horse_sound" width="100" height="100"/>
-        <image name="laser_sound" width="100" height="100"/>
-        <image name="lion_sound" width="100" height="100"/>
         <image name="minus" width="100" height="100"/>
         <image name="off" width="100" height="100"/>
         <image name="on" width="100" height="100"/>
         <image name="plus" width="100" height="100"/>
-        <image name="random_animal" width="100" height="100"/>
-        <image name="random_emotion" width="100" height="100"/>
-        <image name="random_object" width="100" height="100"/>
-        <image name="random_vehicle" width="100" height="100"/>
-        <image name="random_word" width="100" height="100"/>
         <image name="sense_obstacle" width="100" height="100"/>
-        <image name="siren" width="100" height="100"/>
+        <image name="small_airplane" width="100" height="100"/>
+        <image name="small_beep" width="100" height="100"/>
+        <image name="small_boat" width="100" height="100"/>
+        <image name="small_buzz_sound" width="100" height="100"/>
+        <image name="small_car_sound" width="100" height="100"/>
+        <image name="small_cat" width="100" height="100"/>
+        <image name="small_crocodile" width="100" height="100"/>
+        <image name="small_dinosaur" width="100" height="100"/>
+        <image name="small_dog" width="100" height="100"/>
+        <image name="small_elephant" width="100" height="100"/>
+        <image name="small_goat" width="100" height="100"/>
+        <image name="small_helicopter" width="100" height="100"/>
+        <image name="small_horse" width="100" height="100"/>
+        <image name="small_laser_sound" width="100" height="100"/>
+        <image name="small_lion" width="100" height="100"/>
         <image name="small_orange" width="100" height="100"/>
-        <image name="snore_sound" width="100" height="100"/>
-        <image name="sound_bragging" width="100" height="100"/>
-        <image name="sound_confused" width="100" height="100"/>
-        <image name="sound_giggle" width="100" height="100"/>
-        <image name="sound_grunt" width="100" height="100"/>
-        <image name="sound_sigh" width="100" height="100"/>
-        <image name="sound_surprised" width="100" height="100"/>
-        <image name="sound_yawn" width="100" height="100"/>
-        <image name="speak_bye" width="100" height="100"/>
-        <image name="speak_cool" width="100" height="100"/>
-        <image name="speak_haha" width="100" height="100"/>
-        <image name="speak_hi" width="100" height="100"/>
-        <image name="speak_lets_go" width="100" height="100"/>
-        <image name="speak_oh" width="100" height="100"/>
-        <image name="speak_tah_dah" width="100" height="100"/>
-        <image name="speak_uh_huh" width="100" height="100"/>
-        <image name="speak_uh_oh" width="100" height="100"/>
-        <image name="speak_wah" width="100" height="100"/>
-        <image name="speak_wee_hee" width="100" height="100"/>
-        <image name="speak_wow" width="100" height="100"/>
-        <image name="speak_yippe" width="100" height="100"/>
-        <image name="speed_boost" width="100" height="100"/>
-        <image name="squeak_sound" width="100" height="100"/>
-        <image name="tire_squeal" width="100" height="100"/>
-        <image name="train" width="100" height="100"/>
-        <image name="trumpet_sound" width="100" height="100"/>
-        <image name="turkey_sound" width="100" height="100"/>
+        <image name="small_random_animal" width="100" height="100"/>
+        <image name="small_random_emotion" width="100" height="100"/>
+        <image name="small_random_object" width="100" height="100"/>
+        <image name="small_random_vehicle" width="100" height="100"/>
+        <image name="small_random_word" width="100" height="100"/>
+        <image name="small_siren" width="100" height="100"/>
+        <image name="small_snore_sound" width="100" height="100"/>
+        <image name="small_sound_bragging" width="100" height="100"/>
+        <image name="small_sound_confused" width="100" height="100"/>
+        <image name="small_sound_giggle" width="100" height="100"/>
+        <image name="small_sound_grunt" width="100" height="100"/>
+        <image name="small_sound_sigh" width="100" height="100"/>
+        <image name="small_sound_surprised" width="100" height="100"/>
+        <image name="small_sound_yawn" width="100" height="100"/>
+        <image name="small_speak_bye" width="100" height="100"/>
+        <image name="small_speak_cool" width="100" height="100"/>
+        <image name="small_speak_haha" width="100" height="100"/>
+        <image name="small_speak_hi" width="100" height="100"/>
+        <image name="small_speak_lets_go" width="100" height="100"/>
+        <image name="small_speak_oh" width="100" height="100"/>
+        <image name="small_speak_tah_dah" width="100" height="100"/>
+        <image name="small_speak_uh_huh" width="100" height="100"/>
+        <image name="small_speak_uh_oh" width="100" height="100"/>
+        <image name="small_speak_wah" width="100" height="100"/>
+        <image name="small_speak_wee_hee" width="100" height="100"/>
+        <image name="small_speak_wow" width="100" height="100"/>
+        <image name="small_speak_yippe" width="100" height="100"/>
+        <image name="small_speed_boost" width="100" height="100"/>
+        <image name="small_squeak_sound" width="100" height="100"/>
+        <image name="small_tire_squeal" width="100" height="100"/>
+        <image name="small_train" width="100" height="100"/>
+        <image name="small_trumpet_sound" width="100" height="100"/>
+        <image name="small_turkey" width="100" height="100"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
