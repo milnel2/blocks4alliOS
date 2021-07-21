@@ -19,6 +19,9 @@ class BlockView: UIView, UITextFieldDelegate {
     
     var pickedItem: UITextField?
     
+    // from Paul Hegarty, lectures 13 and 14
+    let defaults = UserDefaults.standard
+    
     //MARK: - init Block View
     init (frame : CGRect, block : [Block], myBlockWidth: Int, myBlockHeight: Int) {
         self.blocks = block
@@ -62,7 +65,7 @@ class BlockView: UIView, UITextFieldDelegate {
         let myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
         let myView = UIView(frame: myFrame)
         myView.backgroundColor = block.color.uiColor
-        if(block.imageName != nil){
+        if(block.imageName != nil && defaults.integer(forKey: "showText") == 0){
             let imageName = block.imageName!
             var image = UIImage(named: imageName)
             image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight))
