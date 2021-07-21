@@ -249,13 +249,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         let alert = UIAlertController(title: "Do you want to clear all?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+            self.clearAllBlocks()
             let announcement = "All blocks cleared."
-            self.clearAllButton.accessibilityLabel = announcement
-            self.clearAllBlocks()}))
+            self.makeAnnouncement(announcement)
+        }))
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true)
-        
     }
     /* Changes the play button back and forth from trash to play */
     func changePlayTrashButton(){
