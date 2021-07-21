@@ -597,31 +597,31 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 switch block.addedBlocks[0].attributes["animalNoise"]{
                 case "cat":
-                    let image = UIImage(named: "cat_sound.pdf")
+                    let image = UIImage(named: "cat.pdf")
                     animalNoiseButton.setBackgroundImage(image, for: .normal)
                 case "crocodile":
-                    let image = UIImage(named: "crocodile_sound.pdf")
+                    let image = UIImage(named: "crocodile.pdf")
                     animalNoiseButton.setBackgroundImage(image, for: .normal)
                 case "dinosaur":
-                    let image = UIImage(named: "dinosaur_sound.pdf")
+                    let image = UIImage(named: "dinosaur.pdf")
                     animalNoiseButton.setBackgroundImage(image, for: .normal)
                 case "dog":
-                    let image = UIImage(named: "dog_sound.pdf")
+                    let image = UIImage(named: "dog.pdf")
                     animalNoiseButton.setBackgroundImage(image, for: .normal)
                 case "elephant":
-                    let image = UIImage(named: "elephant_sound.pdf")
+                    let image = UIImage(named: "elephant.pdf")
                     animalNoiseButton.setBackgroundImage(image, for: .normal)
                 case "goat":
-                    let image = UIImage(named: "goat_sound.pdf")
+                    let image = UIImage(named: "goat.pdf")
                     animalNoiseButton.setBackgroundImage(image, for: .normal)
                 case "horse":
-                    let image = UIImage(named: "horse_sound.pdf")
+                    let image = UIImage(named: "horse.pdf")
                     animalNoiseButton.setBackgroundImage(image, for: .normal)
                 case "lion":
-                    let image = UIImage(named: "lion_sound.pdf")
+                    let image = UIImage(named: "lion.pdf")
                     animalNoiseButton.setBackgroundImage(image, for: .normal)
                 case "turkey":
-                    let image = UIImage(named: "turkey_sound.pdf")
+                    let image = UIImage(named: "turkey.pdf")
                     animalNoiseButton.setBackgroundImage(image, for: .normal)
                 case "randomAnimal":
                     let image = UIImage(named: "random_animal.pdf")
