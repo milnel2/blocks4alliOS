@@ -188,7 +188,6 @@
 				F186EB871EE0D8B100C2FA4B /* BlockView.swift */,
 				F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */,
 				F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */,
-				62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */,
 				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
 				844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */,
 				844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */,
@@ -235,6 +234,7 @@
 				A9E173012697959A00A7E09E /* ObjectNoiseModViewController.swift */,
 				A9BC085F2697A20600A5312D /* EmotionModViewController.swift */,
 				A9FC91A62697B1D30005DAEA /* SpeakModViewController.swift */,
+				62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */,
 			);
 			path = ModifierViewControllers;
 			sourceTree = "<group>";
