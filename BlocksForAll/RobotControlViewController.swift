@@ -325,15 +325,35 @@ class ExecutingProgram {
             // check if the if statement is evaluating for a hear_voice
                 if(!data.isEmpty){
                 // if there is some data from the robot
-                    let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
-                    print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
-                    if(micData.amplitude > 0){
-                        print("hear Voice true")
-                        ifCondition = true
-                        // if it does hear a voice, evaluate the if statement to true
+                    if(data.count>5){
+                        for n in 0...4 {
+                            let micData: WWSensorMicrophone = data[n].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
+                            print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
+                            if(micData.amplitude > 0){
+                                print("hear Voice true")
+                                ifCondition = true
+                                // if it does hear a voice, evaluate the if statement to true
+                            }
                     }
+                    }
+                    else{
+                            let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
+                            print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
+                            if(micData.amplitude > 0){
+                                print("hear Voice true")
+                                ifCondition = true
+                    
+                        }
+                    }
+                    }
+//                    let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
+//                    print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
+//                    if(micData.amplitude > 0){
+//                        print("hear Voice true")
+//                        ifCondition = true
+//                        // if it does hear a voice, evaluate the if statement to true
+//                    }
                     // check if hearing voice, tbh not quite sure how this one works dash is rarely consistent with these if statements but the code is solid
-                }
             } else if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "obstacle_sensed"{
             // check if the if statement is evaluating for a obstacle_sensed
                 if(!data.isEmpty){
