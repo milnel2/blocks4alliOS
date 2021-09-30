@@ -115,7 +115,18 @@ ol li::before {
     padding: 15px;
 }
 
+li input
+{
+    position: absolute;
+    margin-left: -40px;
+    margin-top: 5px;
+}
 
+/*
+li img{
+    display:none
+}
+*/
 
 @media (max-width: 767px) {
   section {
