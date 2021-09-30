@@ -13,6 +13,8 @@ p, ul, ol {
 p.small {
   font-size: 16px; }
 
+
+
 a,
 a.active,
 a.focus,
@@ -80,6 +82,40 @@ section.success a{
     color: #0a0f13;
     
 }
+
+section.success .list-group-item{
+    background: #4ce8c8;
+
+}
+
+ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+}
+
+ol li {
+  counter-increment: my-awesome-counter;
+}
+
+ol ul li::before{
+    content: none;
+}
+
+ol li::before {
+  content: counter(my-awesome-counter) ".  ";
+  color: #2C3E50;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+    font-size: 1.5em;
+    margin-right: 0.5rem;
+    line-height: 1;
+}
+
+.form-check-input {
+    padding: 15px;
+}
+
+
 
 @media (max-width: 767px) {
   section {

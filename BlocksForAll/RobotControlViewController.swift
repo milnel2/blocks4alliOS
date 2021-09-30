@@ -34,7 +34,19 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
             for r in connectedRobots!{
                 if let robot = r as? WWRobot{
                     robot.add(self)
+                    robot.add(WWEventToolbelt.orientationShake())
                 }
+            }
+        }
+    }
+    
+    func robot(_ robot: WWRobot!, eventsTriggered events: [Any]!) {
+        for event in events{
+            if let e = event as? WWEvent{
+                if e.isEqual(WWEventToolbelt.orientationShake()){
+                    print("Robot is shaking!")
+                }
+            
             }
         }
     }
