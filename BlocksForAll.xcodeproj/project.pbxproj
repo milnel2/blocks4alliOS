@@ -105,7 +105,6 @@
 		F18FFFC71E65B0FC0090C4B6 /* BlocksForAllTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksForAllTests.swift; sourceTree = "<group>"; };
 		F18FFFC91E65B0FC0090C4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
-		F1F68E7E207715CC00BFBD8E /* BlocksForAll */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BlocksForAll; sourceTree = "<group>"; };
 		F1F68E7F20771C7900BFBD8E /* Installation Manual.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Installation Manual.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,7 +161,6 @@
 			children = (
 				F1F68E7F20771C7900BFBD8E /* Installation Manual.pdf */,
 				F18FFFB11E65B0FB0090C4B6 /* BlocksForAll */,
-				F1F68E7E207715CC00BFBD8E /* BlocksForAll */,
 				F18FFFC61E65B0FC0090C4B6 /* BlocksForAllTests */,
 				F18FFFB01E65B0FB0090C4B6 /* Products */,
 				F12116971EA7E0DA009976B1 /* Frameworks */,
@@ -547,7 +545,7 @@
 					"$(PROJECT_DIR)/BlocksForAll",
 				);
 				INFOPLIST_FILE = BlocksForAll/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -579,7 +577,7 @@
 					"$(PROJECT_DIR)/BlocksForAll",
 				);
 				INFOPLIST_FILE = BlocksForAll/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
