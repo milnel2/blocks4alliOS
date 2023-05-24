@@ -130,7 +130,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //Orders contents of workspace to be more intuitive with Switch Control
         workspaceContainerView.accessibilityElements = [workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, buttonsStackView!]
 
-        workspaceContainerView.bringSubview(toFront: workspaceNameLabel)
+        workspaceContainerView.bringSubviewToFront(workspaceNameLabel)
     }
 
     override func viewDidLoad() {
@@ -321,7 +321,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if(!connectedRobots()){
             //no robots
             let announcement = "Connect to the dash robot. "
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString(announcement, comment: ""))
+            UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: announcement)
             print("No robots")
             performSegue(withIdentifier: "AddRobotSegue", sender: nil)
             
@@ -399,7 +399,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
   
     func makeAnnouncement(_ announcement: String){
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: NSLocalizedString(announcement, comment: ""))
     }
     
 //    func delay(_ announcement: String, _ seconds: Int){

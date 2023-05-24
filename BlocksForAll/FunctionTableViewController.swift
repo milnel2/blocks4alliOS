@@ -105,10 +105,10 @@ class FunctionTableViewController: UITableViewController {
     
     //Cell auto-resizes based on accessibility font
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     //prevents main workspace from being in the functions menu

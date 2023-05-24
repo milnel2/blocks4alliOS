@@ -46,7 +46,7 @@ class SelectedBlockViewController: UIViewController {
         
         self.view.isAccessibilityElement = true
         self.view.accessibilityLabel = label
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: self.view)
         
         delegate?.beginMovingBlocks(blocks!)
         delegate?.setParentViewController(self.parent!)
@@ -57,8 +57,8 @@ class SelectedBlockViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         if parent == nil {
             // view controller is popping
             delegate?.finishMovingBlocks()
