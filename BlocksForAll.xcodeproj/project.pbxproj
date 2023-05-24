@@ -14,7 +14,6 @@
 		02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */; };
 		02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */; };
 		02FE3BCA22DCE4FB000C7C66 /* TurnVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */; };
-		02FE3BCB22DCE4FE000C7C66 /* WheelVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0122D53C9B003FCD70 /* WheelVariables.swift */; };
 		02FE3BCC22DCE501000C7C66 /* LookLeftRightVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */; };
 		02FE3BCD22DCE504000C7C66 /* LookUpDownVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */; };
 		62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */; };
@@ -24,6 +23,12 @@
 		844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */; };
 		844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */; };
 		84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */; };
+		A92E88F22697598400FB2CFD /* AnimalModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E88F12697598400FB2CFD /* AnimalModViewController.swift */; };
+		A9674DD226976C0B00E064B0 /* VehicleModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9674DD126976C0B00E064B0 /* VehicleModViewController.swift */; };
+		A9937EA9267BAB3B00A56E8A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9937EA8267BAB3B00A56E8A /* CustomButton.swift */; };
+		A9BC08602697A20600A5312D /* EmotionModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC085F2697A20600A5312D /* EmotionModViewController.swift */; };
+		A9E173022697959A00A7E09E /* ObjectNoiseModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E173012697959A00A7E09E /* ObjectNoiseModViewController.swift */; };
+		A9FC91A72697B1D30005DAEA /* SpeakModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FC91A62697B1D30005DAEA /* SpeakModViewController.swift */; };
 		D8DFD3FF234E538C00874892 /* WWRobotAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12116981EA7E0DD009976B1 /* WWRobotAPI.framework */; };
 		F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */; };
 		F10F71691E65BFF50049F3AA /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71681E65BFF50049F3AA /* Block.swift */; };
@@ -35,7 +40,6 @@
 		F16BA3BE1F59103A00A94FBA /* BlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F16BA3BD1F59103A00A94FBA /* BlocksMenu.plist */; };
 		F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */; };
 		F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F186EB871EE0D8B100C2FA4B /* BlockView.swift */; };
-		F186EB8A1EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist in Resources */ = {isa = PBXBuildFile; fileRef = F186EB891EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist */; };
 		F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */; };
 		F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */; };
 		F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */; };
@@ -43,9 +47,6 @@
 		F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18FFFBB1E65B0FC0090C4B6 /* LaunchScreen.storyboard */; };
 		F18FFFC81E65B0FC0090C4B6 /* BlocksForAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFC71E65B0FC0090C4B6 /* BlocksForAllTests.swift */; };
 		F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */; };
-		F1B1F4811EF0A1A8003C2827 /* BlocksMenuSession1.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */; };
-		F1BC90B61FA43D13008EC60C /* AssetsBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */; };
-		F1F7CD322054A36A001ABD18 /* RhymesMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1F7CD312054A36A001ABD18 /* RhymesMenu.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,10 +65,8 @@
 		023D633222BD34EE00A8002C /* WaitModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitModViewController.swift; sourceTree = "<group>"; };
 		025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleModViewController.swift; sourceTree = "<group>"; };
 		02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceSpeedModViewController.swift; sourceTree = "<group>"; };
-		02F5F94122C12637000F43B7 /* ReleaseBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ReleaseBlocksMenu.plist; sourceTree = "<group>"; };
 		57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveVariables.swift; sourceTree = "<group>"; };
 		57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnVariable.swift; sourceTree = "<group>"; };
-		57C1BD0122D53C9B003FCD70 /* WheelVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelVariables.swift; sourceTree = "<group>"; };
 		57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookLeftRightVariables.swift; sourceTree = "<group>"; };
 		57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpDownVariables.swift; sourceTree = "<group>"; };
 		62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVariableModViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +76,12 @@
 		844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewCell.swift; sourceTree = "<group>"; };
 		844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewController.swift; sourceTree = "<group>"; };
 		84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeLightModifierViewController.swift; sourceTree = "<group>"; };
+		A92E88F12697598400FB2CFD /* AnimalModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalModViewController.swift; sourceTree = "<group>"; };
+		A9674DD126976C0B00E064B0 /* VehicleModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModViewController.swift; sourceTree = "<group>"; };
+		A9937EA8267BAB3B00A56E8A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		A9BC085F2697A20600A5312D /* EmotionModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionModViewController.swift; sourceTree = "<group>"; };
+		A9E173012697959A00A7E09E /* ObjectNoiseModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNoiseModViewController.swift; sourceTree = "<group>"; };
+		A9FC91A62697B1D30005DAEA /* SpeakModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakModViewController.swift; sourceTree = "<group>"; };
 		F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewController.swift; sourceTree = "<group>"; };
 		F10F71681E65BFF50049F3AA /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlocksForAll-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -89,7 +94,6 @@
 		F16BA3BD1F59103A00A94FBA /* BlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenu.plist; sourceTree = "<group>"; };
 		F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedBlockViewController.swift; sourceTree = "<group>"; };
 		F186EB871EE0D8B100C2FA4B /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
-		F186EB891EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenuOldRepeat.plist; sourceTree = "<group>"; };
 		F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotControlViewController.swift; sourceTree = "<group>"; };
 		F18FFFAF1E65B0FB0090C4B6 /* BlocksForAll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocksForAll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,11 +105,7 @@
 		F18FFFC71E65B0FC0090C4B6 /* BlocksForAllTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksForAllTests.swift; sourceTree = "<group>"; };
 		F18FFFC91E65B0FC0090C4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
-		F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BlocksMenuSession1.plist; sourceTree = "<group>"; };
-		F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AssetsBlocksMenu.plist; sourceTree = "<group>"; };
-		F1F68E7E207715CC00BFBD8E /* BlocksForAll */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BlocksForAll; sourceTree = "<group>"; };
 		F1F68E7F20771C7900BFBD8E /* Installation Manual.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Installation Manual.pdf"; sourceTree = "<group>"; };
-		F1F7CD312054A36A001ABD18 /* RhymesMenu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RhymesMenu.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +161,6 @@
 			children = (
 				F1F68E7F20771C7900BFBD8E /* Installation Manual.pdf */,
 				F18FFFB11E65B0FB0090C4B6 /* BlocksForAll */,
-				F1F68E7E207715CC00BFBD8E /* BlocksForAll */,
 				F18FFFC61E65B0FC0090C4B6 /* BlocksForAllTests */,
 				F18FFFB01E65B0FB0090C4B6 /* Products */,
 				F12116971EA7E0DA009976B1 /* Frameworks */,
@@ -187,12 +186,12 @@
 				F186EB871EE0D8B100C2FA4B /* BlockView.swift */,
 				F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */,
 				F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */,
-				62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */,
 				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
 				844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */,
 				844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */,
 				844EAEF322E60CBB00BB1A62 /* FunctionView.swift */,
 				F18FEEDB1EB115AF007C15B8 /* Helper */,
+				A9937EA8267BAB3B00A56E8A /* CustomButton.swift */,
 			);
 			path = BlocksForAll;
 			sourceTree = "<group>";
@@ -210,11 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				F16BA3BD1F59103A00A94FBA /* BlocksMenu.plist */,
-				F1F7CD312054A36A001ABD18 /* RhymesMenu.plist */,
-				F1B1F4801EF0A1A8003C2827 /* BlocksMenuSession1.plist */,
-				F186EB891EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist */,
-				F1BC90B51FA43D13008EC60C /* AssetsBlocksMenu.plist */,
-				02F5F94122C12637000F43B7 /* ReleaseBlocksMenu.plist */,
 			);
 			path = BlocksMenus;
 			sourceTree = "<group>";
@@ -228,12 +222,17 @@
 				57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */,
 				023D633222BD34EE00A8002C /* WaitModViewController.swift */,
 				57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */,
-				57C1BD0122D53C9B003FCD70 /* WheelVariables.swift */,
 				84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */,
 				62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */,
 				023D633022BC0B2E00A8002C /* RepeatModViewController.swift */,
 				025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */,
 				023D632E22BBF05700A8002C /* ColorModViewController.swift */,
+				A92E88F12697598400FB2CFD /* AnimalModViewController.swift */,
+				A9674DD126976C0B00E064B0 /* VehicleModViewController.swift */,
+				A9E173012697959A00A7E09E /* ObjectNoiseModViewController.swift */,
+				A9BC085F2697A20600A5312D /* EmotionModViewController.swift */,
+				A9FC91A62697B1D30005DAEA /* SpeakModViewController.swift */,
+				62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */,
 			);
 			path = ModifierViewControllers;
 			sourceTree = "<group>";
@@ -283,17 +282,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1410;
 				ORGANIZATIONNAME = Blocks4All;
 				TargetAttributes = {
 					F18FFFAE1E65B0FB0090C4B6 = {
 						CreatedOnToolsVersion = 8.2.1;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = "";
 					};
 					F18FFFC21E65B0FC0090C4B6 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 5Z9DP5C8DQ;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Manual;
 						TestTargetID = F18FFFAE1E65B0FB0090C4B6;
 					};
@@ -323,14 +322,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1B1F4811EF0A1A8003C2827 /* BlocksMenuSession1.plist in Resources */,
 				F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */,
-				F1BC90B61FA43D13008EC60C /* AssetsBlocksMenu.plist in Resources */,
-				F186EB8A1EE0DC2F00C2FA4B /* BlocksMenuOldRepeat.plist in Resources */,
 				F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */,
 				F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */,
 				F16BA3BE1F59103A00A94FBA /* BlocksMenu.plist in Resources */,
-				F1F7CD322054A36A001ABD18 /* RhymesMenu.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,14 +345,15 @@
 			files = (
 				02FE3BCD22DCE504000C7C66 /* LookUpDownVariables.swift in Sources */,
 				02FE3BCC22DCE501000C7C66 /* LookLeftRightVariables.swift in Sources */,
-				02FE3BCB22DCE4FE000C7C66 /* WheelVariables.swift in Sources */,
 				02FE3BCA22DCE4FB000C7C66 /* TurnVariable.swift in Sources */,
+				A9937EA9267BAB3B00A56E8A /* CustomButton.swift in Sources */,
 				02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */,
 				025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */,
 				844EAEF622E60CBB00BB1A62 /* FunctionView.swift in Sources */,
 				F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */,
 				F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */,
 				62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */,
+				A9E173022697959A00A7E09E /* ObjectNoiseModViewController.swift in Sources */,
 				62EA50BC22CE52E7002BD4ED /* IfModViewController.swift in Sources */,
 				844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */,
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
@@ -365,15 +361,19 @@
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
 				F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */,
 				02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */,
+				A9FC91A72697B1D30005DAEA /* SpeakModViewController.swift in Sources */,
+				A9BC08602697A20600A5312D /* EmotionModViewController.swift in Sources */,
 				F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */,
 				023D632F22BBF05700A8002C /* ColorModViewController.swift in Sources */,
 				023D633322BD34EE00A8002C /* WaitModViewController.swift in Sources */,
 				F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */,
+				A9674DD226976C0B00E064B0 /* VehicleModViewController.swift in Sources */,
 				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
 				84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */,
 				701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */,
 				023D633122BC0B2E00A8002C /* RepeatModViewController.swift in Sources */,
 				844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */,
+				A92E88F22697598400FB2CFD /* AnimalModViewController.swift in Sources */,
 				F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +440,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -500,6 +501,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -537,26 +539,27 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = DTFPBKN8SR;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5Z9DP5C8DQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BlocksForAll",
 				);
 				INFOPLIST_FILE = BlocksForAll/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				INFOPLIST_KEY_CFBundleDisplayName = Blocks4All;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.HarisAhmed.Blocks4All;
+				MARKETING_VERSION = 5.4;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -566,29 +569,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = DTFPBKN8SR;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5Z9DP5C8DQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BlocksForAll",
 				);
 				INFOPLIST_FILE = BlocksForAll/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				INFOPLIST_KEY_CFBundleDisplayName = Blocks4All;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.HarisAhmed.Blocks4All;
+				MARKETING_VERSION = 5.4;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -612,7 +616,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlocksForAll.app/BlocksForAll";
 			};
 			name = Debug;
@@ -635,7 +639,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlocksForAll.app/BlocksForAll";
 			};
 			name = Release;

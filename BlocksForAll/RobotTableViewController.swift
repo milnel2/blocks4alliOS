@@ -65,7 +65,7 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
             cell.contentView.backgroundColor = UIColor.white
         }
         cell.textLabel?.text = robot.name
-        
+                
 
         return cell
     }
@@ -81,7 +81,9 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
     }
     // MARK: - robot manager
     func manager(_: WWRobotManager, didUpdateDiscoveredRobots: WWRobot){
-        self.tableView.reloadData()
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
     }
     
     func manager(_: WWRobotManager, didLose robot: WWRobot){
@@ -92,11 +94,15 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
             }
             i += 1
         }
-        self.tableView.reloadData()
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
     }
     
     func manager(_: WWRobotManager, didConnect robot: WWRobot){
-        self.tableView.reloadData()
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
         //refreshConnectedRobots()
     }
     
@@ -108,12 +114,16 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         if !robots.contains(robot){
             robots.append(robot)
         }
-        self.tableView.reloadData()
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
         print("found a robot")
     }
     
     func manager(_ manager: WWRobotManager!, didDisconnectRobot robot: WWRobot!) {
-        self.tableView.reloadData()
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
     }
 
 }

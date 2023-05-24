@@ -24,6 +24,12 @@ class WaitModViewController: UIViewController{
     @IBOutlet weak var back: UIButton!
     
     override func viewDidLoad() {
+        //Makes buttons easier to select with Voice Control
+        if #available(iOS 13.0, *) {
+            increaseButton.accessibilityUserInputLabels = ["Increase", "Plus", "Add"]
+            decreaseButton.accessibilityUserInputLabels = ["Decrease", "Minus", "Subtract"]
+        }
+        
         // default wait time: 1 second or preserve last selection
         let previousWaitString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["wait"] ?? "1"
         let previousWait = Int(previousWaitString)

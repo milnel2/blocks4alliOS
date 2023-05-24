@@ -33,12 +33,14 @@ class EyeLightModifierViewController: UIViewController{
     @IBAction func onButtonPressed(_ sender: Any) {
         eyeLightStatus = "On"
         lightLabel.text = "On"
+        lightLabel.accessibilityLabel = "On"
     }
     
     //changes status and label on screen
     @IBAction func offButtonPressed(_ sender: Any) {
         eyeLightStatus = "Off"
         lightLabel.text = "Off"
+        lightLabel.accessibilityLabel = "Off"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

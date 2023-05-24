@@ -27,11 +27,19 @@ class DistanceSpeedModViewController: UIViewController{
     @IBOutlet weak var back: UIButton!
     
     override func viewDidLoad() {
+        //Makes buttons easier to select with Voice Control
+        if #available(iOS 13.0, *) {
+            slowButton.accessibilityUserInputLabels = ["Slower", "Decrease", "Minus", "Subtract"]
+            fastButton.accessibilityUserInputLabels = ["Faster", "Increase", "Plus", "Add"]
+        }
+        
         // default speed: Normal or preserve last selection
         let previousDistanceString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
         let previousDistance = Int(previousDistanceString)
         distanceDisplayed.text = "\(previousDistance ?? 30)"
         distanceSlider.setValue(Float(previousDistance!), animated: true)
+        distanceSlider.accessibilityValue = "\(previousDistance ?? 30) centimeters"
+        
         // preserve previously selected value
         distance = Double(previousDistance!)
         
@@ -70,7 +78,7 @@ class DistanceSpeedModViewController: UIViewController{
             speed = "Slow"
             speedLabel.text = speed
         case "Slow":
-            speed = "Very Slow"
+            speed = "Really Slow"
             speedLabel.text = speed
         default:
             print("can't be slowed")
@@ -81,7 +89,7 @@ class DistanceSpeedModViewController: UIViewController{
     //if plus button pressed, speed changes to one more and speed label updated with this value
     @IBAction func fastButtonPressed(_ sender: UIButton) {
         switch speed {
-        case "Very Slow":
+        case "Really Slow":
             speed = "Slow"
             speedLabel.text = speed
         case "Slow":

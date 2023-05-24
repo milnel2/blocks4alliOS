@@ -6,31 +6,31 @@
 //  Copyright © 2019 Mariella Page. All rights reserved.
 //
 
-import UIKit
+//import UIKit
 
 
 //class sets the width and height of the rows in the function table view controller
-class FunctionView: UIView {
+//class FunctionView: UIView {
+//
+//    var functions: [String]
+//    var functionWidth = 500
+//    var functionHeight = 150
+//    let functionSpacing = 1
+//
+//    var pickedItem: UITextField?
+//
+//    init(frame: CGRect, function: [String], myFunctionWidth: Int, myFunctionHeight: Int) {
+//        self.functions = function
+//        super.init(frame: frame)
+//        functionWidth = myFunctionWidth
+//        functionHeight = myFunctionHeight
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
-    var functions: [String]
-    var functionWidth = 500
-    var functionHeight = 150
-    let functionSpacing = 1
-    
-    var pickedItem: UITextField?
-    
-    init(frame: CGRect, function: [String], myFunctionWidth: Int, myFunctionHeight: Int) {
-        self.functions = function
-        super.init(frame: frame)
-        functionWidth = myFunctionWidth
-        functionHeight = myFunctionHeight
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-//    //MARK:- simpleView
+    //    //MARK:- simpleView
 //    func simpleView(FromFunction function: [String]) -> UIView {
 //        let function = function[0]
 //        let myViewWidth = functionWidth
@@ -48,5 +48,5 @@ class FunctionView: UIView {
     }
     */
 
-}
+//}
 

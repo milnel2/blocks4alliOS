@@ -19,11 +19,18 @@ class BlocksTypeTableViewController: UITableViewController {
     //used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
     
-    
     //MARK: - viewDidLoad function
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Toolbox"
+        
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+            self.navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        }
+        
+        self.tableView.bounces = true
+        
         self.accessibilityLabel = "Toolbox Menu"
         self.accessibilityHint = "Double tap from menu to select block category"
         //self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: CGFloat(blockWidth), height: CGFloat(blockWidth))
@@ -66,6 +73,12 @@ class BlocksTypeTableViewController: UITableViewController {
         //cell.bounds.height = 200
         cell.accessibilityLabel = blockType.name + " category"
         cell.accessibilityHint = "Double tap to explore blocks in this category"
+        
+        //Makes label more intuitive for Voice Control
+        if #available(iOS 13.0, *) {
+            cell.accessibilityUserInputLabels = ["\(blockType.name)"]
+        }
+        
         return cell
     }
     
@@ -77,7 +90,7 @@ class BlocksTypeTableViewController: UITableViewController {
     //TODO: this is really convoluted, probably a better way of doing this
     private func createBlocksArray(){
         for item in blockDict{
-            //for item in blockDict which is a NSArray that contains contents of ReleaseBlocksMenu.plist
+            //for item in blockDict which is a NSArray that contains contents of BlocksMenu.plist
             if let blockType = item as? NSDictionary{
                 // for every item blockType is a constant set to the item as a NSDictionary
                 //initializes the block properities
@@ -86,7 +99,7 @@ class BlocksTypeTableViewController: UITableViewController {
                 if let colorString = blockType.object(forKey: "color") as? String{
                     color = Color.init(uiColor: UIColor.colorFrom(hexString: colorString))
                 }
-                guard let block = Block(name: name!, color: color, double: false, tripleCounterpart: false) else {
+                guard let block = Block(name: name!, color: color, double: false) else {
                     fatalError("Unable to instantiate block")
                 }
                 blockTypes += [block]

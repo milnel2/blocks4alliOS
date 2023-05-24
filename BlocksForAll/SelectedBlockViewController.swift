@@ -25,6 +25,11 @@ class SelectedBlockViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem?.accessibilityLabel = "Back"
         
+        //Puts top of selected block view at the top of the screen
+        if #available(iOS 11.0, *) {
+            navigationItem.largeTitleDisplayMode = .never
+        }
+        
         let myFrame = CGRect(x: 0, y: Int(self.view.bounds.height/2), width: 0, height: 0)
         
         
@@ -35,13 +40,16 @@ class SelectedBlockViewController: UIViewController {
         // Do any additional setup after loading the view.
         let label = (blocks?[0].name)! + " selected. Select location in workspace to place it"
         
+        if #available (iOS 13.0, *){
+            self.view.accessibilityUserInputLabels = [""]
+        }
+        
         self.view.isAccessibilityElement = true
         self.view.accessibilityLabel = label
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.view)
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: self.view)
         
         delegate?.beginMovingBlocks(blocks!)
         delegate?.setParentViewController(self.parent!)
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,8 +57,8 @@ class SelectedBlockViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         if parent == nil {
             // view controller is popping
             delegate?.finishMovingBlocks()

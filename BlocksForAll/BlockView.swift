@@ -19,6 +19,9 @@ class BlockView: UIView, UITextFieldDelegate {
     
     var pickedItem: UITextField?
     
+    // from Paul Hegarty, lectures 13 and 14
+    let defaults = UserDefaults.standard
+    
     //MARK: - init Block View
     init (frame : CGRect, block : [Block], myBlockWidth: Int, myBlockHeight: Int) {
         self.blocks = block
@@ -33,13 +36,13 @@ class BlockView: UIView, UITextFieldDelegate {
     override func accessibilityElementDidBecomeFocused() {
         print(blocks[0].name + " is focused")
         //AudioServicesPlaySystemSound(1024)
-        if blocks[0].type ==  "Number" || (!blocks[0].acceptedTypes.isEmpty && blocks[0].acceptedTypes[0] == "Number"){
-            print("1")
-            //AudioServicesPlaySystemSound(1257)
-        }else if blocks[0].type ==  "Boolean" || (!blocks[0].acceptedTypes.isEmpty && blocks[0].acceptedTypes[0] == "Boolean"){
-            print("2")
-            //AudioServicesPlaySystemSound(1255)
-        }
+//        if blocks[0].type ==  "Number" || (!blocks[0].acceptedTypes.isEmpty && blocks[0].acceptedTypes[0] == "Number"){
+//            print("1")
+//            //AudioServicesPlaySystemSound(1257)
+//        }else if blocks[0].type ==  "Boolean" || (!blocks[0].acceptedTypes.isEmpty && blocks[0].acceptedTypes[0] == "Boolean"){
+//            print("2")
+//            //AudioServicesPlaySystemSound(1255)
+//        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,7 +65,7 @@ class BlockView: UIView, UITextFieldDelegate {
         let myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
         let myView = UIView(frame: myFrame)
         myView.backgroundColor = block.color.uiColor
-        if(block.imageName != nil){
+        if(block.imageName != nil && defaults.integer(forKey: "showText") == 0){
             let imageName = block.imageName!
             var image = UIImage(named: imageName)
             image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight))
@@ -73,13 +76,14 @@ class BlockView: UIView, UITextFieldDelegate {
             //                // Fallback on earlier versions
             //            }
             myView.addSubview(imv)
-        }else if !block.double || !block.tripleCounterpart{ //so end repeat blocks don't have names
+        }else {
             let myLabel = UILabel.init(frame: myFrame)
             myLabel.text = block.name
             myLabel.textAlignment = .center
             myLabel.textColor = UIColor.white
-            myLabel.font = UIFont.preferredFont(forTextStyle: .title2)
+            myLabel.font = UIFont.preferredFont(forTextStyle: .title1)
             myLabel.numberOfLines = 0
+            myLabel.adjustsFontForContentSizeCategory = true
             myView.addSubview(myLabel)
         }
         return myView

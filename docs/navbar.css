@@ -1,0 +1,86 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
+
+
+
+.jumbotron{
+	  color:white;
+	  background:url(./photos/logs.JPG);
+	  background-size:cover;
+	  background-repeat:no-repeat;
+}
+
+.jumbotron .circular{
+	width: 150px;
+	height: 150px;
+	border-radius: 75px;
+	-webkit-border-radius: 75px;
+	-moz-border-radius: 75px;
+	background: url(./photos/lauren_backpacking.JPG) no-repeat;
+	background-size:cover;
+	box-shadow: 0 0 2px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 0 2px rgba(0, 0, 0, .8);
+}
+
+
+
+.jumbotron .contact{
+	    background-color: rgba(227,167,104,0.93);
+	    padding: 20px;
+		color:black;
+}
+
+.jumbotron .about_me{
+	    background-color: rgba(19,100,100,0.92);
+	    padding: 20px;
+
+}
+
+.jumbotron h2{
+	color:#E3A869;
+}
+
+.jumbotron p{
+	font-size: medium;
+}
+
+.jumbotron a{
+	color:#E3A869;
+	
+}
+
+.jumbotron a:hover{
+	color:#f18511;
+	text-decoration:none;
+}
+
+.contact-info p{
+	color: black;
+	font-size:large;
+}
+
+.navbar {
+  margin-bottom: 20px;
+  text-decoration:none;
+  padding-right:2px;
+}
+
+.nav navbar-nav navbar-right{
+    text-decoration:none;
+    color:#E3A869;
+    padding-right:2px;
+}
+
+.navbar a:hover{
+	color:#E3A869;
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.projects h2{
+	color:black;
+}

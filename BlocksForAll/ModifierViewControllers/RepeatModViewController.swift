@@ -24,6 +24,12 @@ class RepeatModViewController: UIViewController{
     @IBOutlet weak var back: UIButton!
     
     override func viewDidLoad() {
+        //Makes buttons easier to select with Voice Control
+        if #available(iOS 13.0, *) {
+            increaseButton.accessibilityUserInputLabels = ["Increase", "Plus", "Add"]
+            decreaseButton.accessibilityUserInputLabels = ["Decrease", "Minus", "Subtract"]
+        }
+        
         // default times to repeat: 2 or preserve last selection
         let previousRepsString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["timesToRepeat"] ?? "2"
         let previousReps = Int(previousRepsString)

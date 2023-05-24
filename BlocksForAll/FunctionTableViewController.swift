@@ -29,13 +29,16 @@ class FunctionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        
         removeMainWorkspace()
         
         self.tableView.register(FunctionTableViewCell.self, forCellReuseIdentifier: "FunctionTableViewCell")
-
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        
+        // preserve selection between presentations
+         self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -94,16 +97,20 @@ class FunctionTableViewController: UITableViewController {
         cell.nameButton.setTitle(functions[indexPath.row], for: .normal)
         cell.functionTableViewController = self
         
-        cell.nameButton.superview?.bringSubview(toFront: cell.nameButton)
-        cell.renameButton.superview?.bringSubview(toFront: cell.renameButton)
-        cell.deleteButton.superview?.bringSubview(toFront: cell.deleteButton)
-        
 //        let function = functions[indexPath.row]
 //        cell.function = function
 
         return cell
     }
     
+    //Cell auto-resizes based on accessibility font
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
     //prevents main workspace from being in the functions menu
     func removeMainWorkspace(){
         functions = functions.filter {$0 != "Main Workspace"}
@@ -111,10 +118,45 @@ class FunctionTableViewController: UITableViewController {
     
     //deletes a row from functions menu and gets rid of this function's values
     func deleteCell(cell: UITableViewCell) {
+        
         if let deletionIndexPath = tableView.indexPath(for: cell) {
-            functionsDict.removeValue(forKey: functions[deletionIndexPath.row])
-            functions.remove(at: deletionIndexPath.row)
-            tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
+            oldKey.append(functions[deletionIndexPath.row])
+
+            // Declare Alert message
+            let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+            
+            // Create Yes button with action handler
+            let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+                print("yes button tapped")
+                functionsDict.removeValue(forKey: self.functions[deletionIndexPath.row])
+                self.functions.remove(at: deletionIndexPath.row)
+                self.tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
+                
+                //Removes deleted function blocks from main workspace
+                for function in functionsDict.keys{
+                    for block in functionsDict[function]!{
+                        for oldFunctionName in self.oldKey{
+                            if block.name == oldFunctionName{
+                                functionsDict[function]!.remove(at: functionsDict[function]!.firstIndex{$0 === block}!)
+                            }
+                        }
+                    }
+                }
+            })
+            
+            // Create Cancel button with action handlder
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel button tapped")
+            }
+            //Add OK and Cancel button to dialog message
+            dialogMessage.addAction(yes)
+            dialogMessage.addAction(cancel)
+            
+            // Present dialog message to user
+            self.present(dialogMessage, animated: true, completion: nil)
+        
+        
+            
         }
     }
     

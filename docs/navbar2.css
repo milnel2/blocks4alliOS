@@ -1,0 +1,128 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
+.navbar-name{
+	color:white;
+	font-size: large;
+	padding-top: 15px;
+	text-align: -webkit-center;
+}
+
+.jumbotron{
+	  color:white;
+	  background:url(./photos/logs.JPG);
+	  background-size:cover;
+	  background-repeat:no-repeat;
+}
+
+
+/* background-color: rgba(227,168,105,0.92);*/
+.jumbotron .contact{
+	background-color: rgba(227,168,105,0.92);
+	padding: 20px;
+	color:black;
+	word-wrap: break-word;
+}
+
+
+.jumbotron .contact h2{
+		color:black;
+}
+
+.jumbotron .about_me{
+	   background-color: rgba(59,59,59,0.95);
+	    padding: 20px;
+
+}
+/*color:#E3A869;*/
+.jumbotron h2{
+	color:#E3A869;
+}
+
+.jumbotron h1{
+	color:#E3A869;
+	font-size: xx-large; 
+}
+
+.jumbotron p{
+	font-size: medium;
+}
+
+.jumbotron li{
+	font-size: medium;
+}
+
+.media-heading{
+	color:#E3A869;
+}
+
+a{
+	color:#E3A869;
+}
+
+a:hover{
+	color:#f18511;
+	text-decoration:none;
+}
+
+.contact-info p{
+	color: black;
+	font-size:large;
+}
+
+.navbar {
+  margin-bottom: 20px;
+  text-decoration:none;
+  padding-right:2px;
+}
+
+
+.pub_note{
+	color:#E3A869;
+	display:inline;
+	font-style: italic;
+}
+
+.projects h2{
+	color:#E3A869;
+	font-size: x-large;
+}
+
+
+.projects .thumbnail{
+	color:#E3A869;
+	text-decoration:none;
+	background-color:rgba(59,59,59,0.95);
+	padding: 15px;
+}
+
+.my_projects{
+  width: 970px;
+  max-width: none !important;
+}
+
+.media{
+	 background-color: rgba(59,59,59,0.95);
+	margin: 20px;
+	padding: 20px;
+	color:white;
+	font-size: medium;
+}
+
+.media_heading a:hover{
+	color:#E3A869;
+}
+
+.media h4{
+	color:#E3A869;
+}
+
+
+.projects .thumbnail:hover{
+	color:#f18511;
+	text-decoration:none;
+}
+

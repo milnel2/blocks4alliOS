@@ -29,36 +29,38 @@ protocol BlockSelectionDelegate{
     func setParentViewController(_ myVC:UIViewController)
 }
 
+//For creating voice control labels (source: https://stackoverflow.com/questions/41292671/separating-camelcase-string-into-space-separated-words-in-swift)
+extension String {
+    func titleCased() -> String {
+        return self.replacingOccurrences(of: "([A-Z])", with: " $1", options: .regularExpression, range: self.range(of: self))
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .capitalized
+    }
+}
+
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
-    
-    @IBOutlet weak var clearAllButton: UIButton!
-    
-    @IBOutlet weak var functionsMenuButton: UIButton!
+    //Larger views
+    @IBOutlet var mainView: UIView!
+    @IBOutlet weak var workspaceContainerView: UIView!
+    @IBOutlet weak var toolboxView: UIView!
+
+    //The three main workspace menu buttons
+    @IBOutlet weak var buttonsStackView: UIStackView!
+    @IBOutlet weak var mainMenuButton: CustomButton!
+    @IBOutlet weak var clearAllButton: CustomButton!
     
     @IBOutlet weak var playTrashToggleButton: UIButton!
-    
-    @IBOutlet weak var mainMenuButton: UIButton!
     
     @IBOutlet weak var workspaceNameLabel: UILabel!
     
     /// view on bottom of screen that shows blocks in workspace
     @IBOutlet weak var blocksProgram: UICollectionView!
-    
-    @IBOutlet weak var containerView: UIView!
-    
-    @IBOutlet weak var toolboxView: UIView!
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        containerView.accessibilityElements = [toolboxView!, workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, mainMenuButton!, functionsMenuButton!, clearAllButton!]
-    }
+
     
     var movingBlocks = false
     /// blocks currently being moved (includes nested blocks)
     var blocksBeingMoved = [Block]()
-    
     /// Top-level controller for toolbox view controllers
     var containerViewController: UINavigationController?
     
@@ -70,7 +72,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // TODO: what are these variables?
     var modifierBlockIndex: Int?
     var tappedModifierIndex: Int?
-
     
     // from Paul Hegarty, lectures 13 and 14
     func getDocumentsDirectory() -> URL{
@@ -122,17 +123,33 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //Orders contents of workspace to be more intuitive with Switch Control
+        workspaceContainerView.accessibilityElements = [workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, buttonsStackView!]
+
+        workspaceContainerView.bringSubviewToFront(workspaceNameLabel)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        workspaceNameLabel.text = currentWorkspace
+        if currentWorkspace != "Main Workspace" {
+            workspaceNameLabel.text = "\(currentWorkspace) Function"
+            mainMenuButton.setTitle("Main Workspace", for: .normal)
+        }
         self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
         
+        //Makes buttons rounded
+        mainMenuButton.layer.cornerRadius = 10
+        clearAllButton.layer.cornerRadius = 10
+        
         if workspaceNameLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
-            let startBlock = Block.init(name: "Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
-            let endBlock = Block.init(name: "Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, tripleCounterpart: false)
+            let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true)
+            let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true)
             startBlock!.counterpart = [endBlock!]
             endBlock!.counterpart = [startBlock!]
             functionsDict[currentWorkspace]?.append(startBlock!)
@@ -158,9 +175,25 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 //        }
   
         // Rewrote the way block names are changed when a function is renamed, the changes are in functionTableViewController rename function at the very bottom
+        
+
     
     }
+    
+    @IBAction func goToMainMenuOrWorkspace(_ sender: CustomButton) {
+        
+        //If user is in the main workspace, main menu button takes them to the main menu
+        if currentWorkspace == "Main Workspace" {
+            performSegue(withIdentifier: "toMainMenu", sender: self)
+        }
+        //If user is in a function workspace, main workspace button takes them to the main workspace
+        else {
+            currentWorkspace = "Main Workspace"
+            //Segues from the main workspace to itself to reload the view (switches from functions workspace to main)
+            performSegue(withIdentifier: "mainToMain", sender: self)
 
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -199,11 +232,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             blocksProgram.reloadData()
             save()
         }
-        else{ functionsDict[currentWorkspace]!.removeSubrange(1..<functionsDict[currentWorkspace]!.count-1)
+        else{
+            functionsDict[currentWorkspace]!.removeSubrange(1..<functionsDict[currentWorkspace]!.count-1)
             blocksProgram.reloadData()
             save()
         }
     }
+    
+    
     
     /// Alerts the user that all the blocks will be deleted. If user selects yes, blocks in current function are delected
     /// - Parameter sender: Clear All button
@@ -213,27 +249,36 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         let alert = UIAlertController(title: "Do you want to clear all?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+            self.clearAllBlocks()
             let announcement = "All blocks cleared."
-            self.clearAllButton.accessibilityLabel = announcement
-            self.clearAllBlocks()}))
+            self.makeAnnouncement(announcement)
+        }))
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true)
-        
     }
     /* Changes the play button back and forth from trash to play */
     func changePlayTrashButton(){
         if movingBlocks{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Place in Trash"
+            if #available(iOS 13.0, *) {
+                playTrashToggleButton.accessibilityUserInputLabels = ["Trash"]
+            }
             playTrashToggleButton.accessibilityHint = "Delete selected blocks"
         }else if stopIsOption{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "stop"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Stop"
+            if #available(iOS 13.0, *) {
+                playTrashToggleButton.accessibilityUserInputLabels = ["Stop"]
+            }
             playTrashToggleButton.accessibilityHint = "Stop your robot!"
         }else{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Play"
+            if #available(iOS 13.0, *) {
+                playTrashToggleButton.accessibilityUserInputLabels = ["Play"]
+            }
             playTrashToggleButton.accessibilityHint = "Make your robot go!"
         }
     }
@@ -276,7 +321,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if(!connectedRobots()){
             //no robots
             let announcement = "Connect to the dash robot. "
-            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, NSLocalizedString(announcement, comment: ""))
+            UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: announcement)
             print("No robots")
             performSegue(withIdentifier: "AddRobotSegue", sender: nil)
             
@@ -289,7 +334,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             stopIsOption = true
             changePlayTrashButton()
             play(functionsDictToPlay: functionsDict)
-            //calls RobotControllerViewController play function which
+            //Calls RobotControllerViewController play function
         }
     }
     
@@ -317,11 +362,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 //        delay(announcement, 2)
         
         //add a completion block here
-        if(blocks[0].double) || (blocks[0].tripleCounterpart){
+        if(blocks[0].double){
             if currentWorkspace != "Main Workspace" && index > endIndex {
+                functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: endIndex)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             }else if currentWorkspace != "Main Workspace" && index <= startIndex {
+                functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: startIndex+1)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             }
@@ -333,9 +380,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         else{
             if currentWorkspace != "Main Workspace" && index > endIndex {
+                functionsDict[currentWorkspace]!.insert(blocks[0], at: endIndex)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             }else if currentWorkspace != "Main Workspace" && index <= startIndex {
+                functionsDict[currentWorkspace]!.insert(blocks[0], at: startIndex+1)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             }
@@ -350,7 +399,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
   
     func makeAnnouncement(_ announcement: String){
-        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, NSLocalizedString(announcement, comment: ""))
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: NSLocalizedString(announcement, comment: ""))
     }
     
 //    func delay(_ announcement: String, _ seconds: Int){
@@ -386,6 +435,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        collectionView.remembersLastFocusedIndexPath = true
         return functionsDict[currentWorkspace]!.count + 1
     }
     
@@ -394,6 +444,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: CGFloat(blockWidth), height: collectionView.frame.height)
+        collectionView.remembersLastFocusedIndexPath = true
         //        print(indexPath)
         if indexPath.row == functionsDict[currentWorkspace]!.count {
             // expands the size of the last cell in the collectionView, so it's easier to add a block at the end
@@ -416,8 +467,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     ///   - block:  block being displayed
     ///   - blockModifier:  describes the state of the block modifier (e.g. 2 times for repeat 2 times)
     ///   - blockLocation: location of block in workspace (e.g. 2 of 4)
-    func addAccessibilityLabel(blockView: UIView, block:Block, blockModifier:String, blockLocation: Int){
-
+    
+    func addAccessibilityLabel(blockView: UIView, block:Block, blockModifier:String, blockLocation: Int, blockIndex: Int){
+        
         blockView.isAccessibilityElement = true
         var accessibilityLabel = ""
         let blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(functionsDict[currentWorkspace]!.count)
@@ -426,43 +478,34 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         if(!blocksBeingMoved.isEmpty){
             //Moving blocks, so switch labels to indicated where blocks can be placed
-            accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before "
-            movementInfo = ". Double tap to add " + blocksBeingMoved[0].name + " block here"
-            
-            if(blocksBeingMoved[0].type == "Boolean" || blocksBeingMoved[0].type == "Number"){
-                //if block being moved is a boolean or number, announces information about where it can and cannot go
-                var acceptsNumbers = false
-                var acceptsBooleans = false
-                for type in block.acceptedTypes{
-                    if type == "Boolean"{
-                        acceptsBooleans = true
-                    }
-                    if type == "Number"{
-                        acceptsNumbers = true
-                    }
-                }
-                if acceptsNumbers && blocksBeingMoved[0].type == "Number"{
-                    accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " as number of times "
-                }else if acceptsBooleans && blocksBeingMoved[0].type == "Boolean"{
-                    accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " as condition of "
-                }else{
-                    accessibilityLabel = "Cannot place in "
-                    movementInfo = ""
-                }
+            if (currentWorkspace != "Main Workspace" && blockIndex == 0){
+                accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning of " + currentWorkspace + " function."
+            } else if (currentWorkspace == "Main Workspace" && blockIndex == 0){
+                //in main workspace and setting 1st block accessibility info
+                accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning, before "
+                accessibilityLabel +=  block.name + " " + blockModifier + " " + blockPlacementInfo
+            } else {
+                accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before "
+                accessibilityLabel +=  block.name + " " + blockModifier + " " + blockPlacementInfo
             }
+            movementInfo = ". Double tap to add " + blocksBeingMoved[0].name + " block here"
+        } else {
+            accessibilityLabel =  block.name + " " + blockModifier + " " + blockPlacementInfo
         }
         
-        accessibilityLabel +=  block.name + " " + blockModifier + " " + blockPlacementInfo
         accessibilityHint += movementInfo
         
         blockView.accessibilityLabel = accessibilityLabel
+        createVoiceControlLabels(for: block, in: blockView)
         blockView.accessibilityHint = accessibilityHint
     }
+    
     
     /* CollectionView contains the actual collection of blocks (i.e. the program that is being created with the blocks)
      This method creates and returns the cell at a given index
      */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        collectionView.remembersLastFocusedIndexPath = true
         let collectionReuseIdentifier = "BlockCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath)
         // Configure the cell
@@ -477,11 +520,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 if functionsDict[currentWorkspace]!.count == 0 {
                     cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at Beginning"
-                }else{
-                    cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End"
+                    if #available (iOS 13.0, *){
+                        cell.accessibilityUserInputLabels = ["Workspace"]
+                    }
                 }
-                if(blocksBeingMoved[0].type == "Boolean" || blocksBeingMoved[0].type == "Number"){
-                    cell.accessibilityLabel = "Cannot place at end "
+                else{
+                    if currentWorkspace == "Main Workspace" {
+                        cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End"
+                        if #available (iOS 13.0, *){
+                            cell.accessibilityUserInputLabels = ["End of workspace"]
+                        }
+                    } else {
+                        cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End of " + currentWorkspace + " function"
+                        if #available (iOS 13.0, *){
+                            cell.accessibilityUserInputLabels = ["End of function workspace"]
+                        }
+                    }
                 }
             }
         }else{
@@ -504,33 +558,20 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         }
                     }
                 }
-                else if functionsDict[currentWorkspace]![i].tripleCounterpart{
-                    if (!functionsDict[currentWorkspace]![i].name.contains("If")){
-                        print(("in if true"))
-                        if(i != indexPath.row){
-                            blocksToAdd.append(functionsDict[currentWorkspace]![i])
-                        }
-                    }
-                    if (!functionsDict[currentWorkspace]![i].name.contains("Else")){
-                        if(i != indexPath.row){
-                            blocksToAdd.append(functionsDict[currentWorkspace]![i])
-                        }
-                    }
-                    else{
-                        if !blocksToAdd.isEmpty{
-                            blocksToAdd.removeLast()
-                        }
-                    }
-
-                }
             }
             
             var count = 0
             for b in blocksToAdd{
                 let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
                 
-                myView.accessibilityLabel = "Inside " + b.name
-                myView.text = "Inside " + b.name
+                if b.name.contains("Function Start") {
+                    myView.accessibilityLabel = "Inside \(currentWorkspace) function"
+                    myView.text = "Inside \(currentWorkspace) function"
+                }
+                else {
+                    myView.accessibilityLabel = "Inside " + b.name
+                    myView.text = "Inside " + b.name
+                }
                 
                 cell.addSubview(myView)
                 count += 1
@@ -540,11 +581,355 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             var modifierInformation = ""
 
             switch name{
+            case "Animal Noise":
+                if block.addedBlocks.isEmpty{
+                    let initialNoise = "cat"
+                    
+                    let placeholderBlock = Block(name: "Animal Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "animalNoise", value: "\(initialNoise)")
+
+                }
+                let animalNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                animalNoiseButton.tag = indexPath.row
+                
+                switch block.addedBlocks[0].attributes["animalNoise"]{
+                case "cat":
+                    let image = UIImage(named: "cat.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "crocodile":
+                    let image = UIImage(named: "crocodile.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "dinosaur":
+                    let image = UIImage(named: "dinosaur.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "dog":
+                    let image = UIImage(named: "dog.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "elephant":
+                    let image = UIImage(named: "elephant.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "goat":
+                    let image = UIImage(named: "goat.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "horse":
+                    let image = UIImage(named: "horse.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "lion":
+                    let image = UIImage(named: "lion.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "turkey":
+                    let image = UIImage(named: "turkey.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                case "randomAnimal":
+                    let image = UIImage(named: "random_animal.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
+                default:
+                    animalNoiseButton.backgroundColor =  UIColor(displayP3Red: 5/255, green: 137/255, blue: 0/255, alpha: 1)
+                }
+                
+                animalNoiseButton.addTarget(self, action: #selector(animalModifier(sender:)), for: .touchUpInside)
+                animalNoiseButton.layer.borderWidth = 2.0
+                animalNoiseButton.layer.borderColor = UIColor.black.cgColor
+                
+                animalNoiseButton.accessibilityHint = "Double tap to choose animal noise"
+                animalNoiseButton.isAccessibilityElement = true
+                modifierInformation = ("\(block.addedBlocks[0].attributes["animalNoise"]!) Noise".titleCased())
+                
+                var voiceControlLabel = modifierInformation
+                let wordToRemove = " Noise"
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                if #available(iOS 13.0, *) {
+                    animalNoiseButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
+                }
+                
+                cell.addSubview(animalNoiseButton)
+                save()
+                
+            case "Vehicle Noise":
+                if block.addedBlocks.isEmpty{
+                    let initialNoise = "airplane"
+                    
+                    let placeholderBlock = Block(name: "Vehicle Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "vehicleNoise", value: "\(initialNoise)")
+
+                }
+                let vehicleNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                vehicleNoiseButton.tag = indexPath.row
+                
+                switch block.addedBlocks[0].attributes["vehicleNoise"]{
+                case "airplane":
+                    let image = UIImage(named: "airplane.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "beep":
+                    let image = UIImage(named: "beep.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "boat":
+                    let image = UIImage(named: "boat.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "helicopter":
+                    let image = UIImage(named: "helicopter.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "siren":
+                    let image = UIImage(named: "siren.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "speedBoost":
+                    let image = UIImage(named: "speed_boost.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "startEngine":
+                    let image = UIImage(named: "car_sound.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "tireSqueal":
+                    let image = UIImage(named: "tire_squeal.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "train":
+                    let image = UIImage(named: "train.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                case "randomVehicle":
+                    let image = UIImage(named: "random_vehicle.pdf")
+                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
+                default:
+                    vehicleNoiseButton.backgroundColor =  UIColor(displayP3Red: 0/255, green: 32/255, blue: 65/255, alpha: 1)
+                }
+                
+                vehicleNoiseButton.addTarget(self, action: #selector(vehicleModifier(sender:)), for: .touchUpInside)
+                vehicleNoiseButton.layer.borderWidth = 2.0
+                vehicleNoiseButton.layer.borderColor = UIColor.black.cgColor
+                
+                vehicleNoiseButton.accessibilityHint = "Double tap to choose vehicle noise"
+                vehicleNoiseButton.isAccessibilityElement = true
+                modifierInformation = ("\(block.addedBlocks[0].attributes["vehicleNoise"]!) Noise".titleCased())
+                
+                var voiceControlLabel = modifierInformation
+                let wordToRemove = " Noise"
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                if #available(iOS 13.0, *) {
+                    vehicleNoiseButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
+                }
+                
+                cell.addSubview(vehicleNoiseButton)
+                save()
+                
+            case "Object Noise":
+                if block.addedBlocks.isEmpty{
+                    let initialNoise = "buzz"
+                    
+                    let placeholderBlock = Block(name: "Object Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "objectNoise", value: "\(initialNoise)")
+
+                }
+                let objectNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                objectNoiseButton.tag = indexPath.row
+                
+                switch block.addedBlocks[0].attributes["objectNoise"]{
+                case "buzz":
+                    let image = UIImage(named: "buzz_sound.pdf")
+                    objectNoiseButton.setBackgroundImage(image, for: .normal)
+                case "laser":
+                    let image = UIImage(named: "laser_sound.pdf")
+                    objectNoiseButton.setBackgroundImage(image, for: .normal)
+                case "snore":
+                    let image = UIImage(named: "snore_sound.pdf")
+                    objectNoiseButton.setBackgroundImage(image, for: .normal)
+                case "trumpet":
+                    let image = UIImage(named: "trumpet_sound.pdf")
+                    objectNoiseButton.setBackgroundImage(image, for: .normal)
+                case "squeak":
+                    let image = UIImage(named: "squeak_sound.pdf")
+                    objectNoiseButton.setBackgroundImage(image, for: .normal)
+                case "randomObject":
+                    let image = UIImage(named: "random_object.pdf")
+                    objectNoiseButton.setBackgroundImage(image, for: .normal)
+                default:
+                    objectNoiseButton.backgroundColor =  UIColor(displayP3Red: 34/255, green: 124/255, blue: 124/255, alpha: 1)
+                }
+                
+                objectNoiseButton.addTarget(self, action: #selector(objectNoiseModifier(sender:)), for: .touchUpInside)
+                objectNoiseButton.layer.borderWidth = 2.0
+                objectNoiseButton.layer.borderColor = UIColor.black.cgColor
+                
+                objectNoiseButton.accessibilityHint = "Double tap to choose object noise"
+                objectNoiseButton.isAccessibilityElement = true
+                modifierInformation = ("\(block.addedBlocks[0].attributes["objectNoise"]!) Noise".titleCased())
+                
+                var voiceControlLabel = modifierInformation
+                let wordToRemove = " Noise"
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                if #available(iOS 13.0, *) {
+                    objectNoiseButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
+                }
+                
+                cell.addSubview(objectNoiseButton)
+                save()
+                
+            case "Emotion Noise":
+                if block.addedBlocks.isEmpty{
+                    let initialNoise = "bragging"
+                    
+                    let placeholderBlock = Block(name: "Emotion Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "emotionNoise", value: "\(initialNoise)")
+
+                }
+                let emotionNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                emotionNoiseButton.tag = indexPath.row
+                
+                switch block.addedBlocks[0].attributes["emotionNoise"]{
+                case "bragging":
+                    let image = UIImage(named: "sound_bragging.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "confused":
+                    let image = UIImage(named: "sound_confused.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "giggle":
+                    let image = UIImage(named: "sound_giggle.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "grunt":
+                    let image = UIImage(named: "sound_grunt.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "sigh":
+                    let image = UIImage(named: "sound_sigh.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "surprised":
+                    let image = UIImage(named: "sound_surprised.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "yawn":
+                    let image = UIImage(named: "sound_yawn.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                case "randomEmotion":
+                    let image = UIImage(named: "random_emotion.pdf")
+                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
+                default:
+                    emotionNoiseButton.backgroundColor =  UIColor(displayP3Red: 165/255, green: 12/255, blue: 130/255, alpha: 1)
+                }
+                
+                emotionNoiseButton.addTarget(self, action: #selector(emotionModifier(sender:)), for: .touchUpInside)
+                emotionNoiseButton.layer.borderWidth = 2.0
+                emotionNoiseButton.layer.borderColor = UIColor.black.cgColor
+                
+                emotionNoiseButton.accessibilityHint = "Double tap to choose emotion noise"
+                emotionNoiseButton.isAccessibilityElement = true
+                modifierInformation = ("\(block.addedBlocks[0].attributes["emotionNoise"]!) Noise".titleCased())
+                
+                var voiceControlLabel = modifierInformation
+                let wordToRemove = " Noise"
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                if #available(iOS 13.0, *) {
+                    emotionNoiseButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
+                }
+                
+                cell.addSubview(emotionNoiseButton)
+                save()
+                
+            case "Speak":
+                if block.addedBlocks.isEmpty{
+                    let initialWord = "hi"
+                    
+                    let placeholderBlock = Block(name: "Speak Word", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    
+                    block.addedBlocks.append(placeholderBlock!)
+                    placeholderBlock?.addAttributes(key: "speakWord", value: "\(initialWord)")
+
+                }
+                let speakButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                
+                speakButton.tag = indexPath.row
+                
+                switch block.addedBlocks[0].attributes["speakWord"]{
+                case "hi":
+                    let image = UIImage(named: "speak_hi.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "bye":
+                    let image = UIImage(named: "speak_bye.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "cool":
+                    let image = UIImage(named: "speak_cool.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "haha":
+                    let image = UIImage(named: "speak_haha.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "letsGo":
+                    let image = UIImage(named: "speak_lets_go.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "oh":
+                    let image = UIImage(named: "speak_oh.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "wow":
+                    let image = UIImage(named: "speak_wow.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "tahDah":
+                    let image = UIImage(named: "speak_tah_dah.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "uhHuh":
+                    let image = UIImage(named: "speak_uh_huh.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "uhOh":
+                    let image = UIImage(named: "speak_uh_oh.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "wah":
+                    let image = UIImage(named: "speak_wah.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "weeHee":
+                    let image = UIImage(named: "speak_wee_hee.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "yippe":
+                    let image = UIImage(named: "speak_yippe.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                case "randomWord":
+                    let image = UIImage(named: "random_word.pdf")
+                    speakButton.setBackgroundImage(image, for: .normal)
+                default:
+                    speakButton.backgroundColor =  UIColor(displayP3Red: 198/255, green: 51/255, blue: 41/255, alpha: 1)
+                }
+                
+                speakButton.addTarget(self, action: #selector(speakModifier(sender:)), for: .touchUpInside)
+                speakButton.layer.borderWidth = 2.0
+                speakButton.layer.borderColor = UIColor.black.cgColor
+                
+                speakButton.accessibilityHint = "Double tap to choose word"
+                speakButton.isAccessibilityElement = true
+                modifierInformation = ("Say \(block.addedBlocks[0].attributes["speakWord"]!)".titleCased())
+                
+                var voiceControlLabel = modifierInformation
+                let wordToRemove = "Say "
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                if #available(iOS 13.0, *) {
+                    speakButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
+                }
+                
+                cell.addSubview(speakButton)
+                save()
+                
             case "If":
                 if block.addedBlocks.isEmpty{
                     let initialBoolean = "false"
                     
-                    let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray), double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray), double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "booleanSelected", value: "\(initialBoolean)")
@@ -575,30 +960,28 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 ifButton.isAccessibilityElement = true
                 
                 cell.addSubview(ifButton)
+                save()
                 
             case "Repeat":
                 if block.addedBlocks.isEmpty{
                     // Creates repeat button for modifier.
                     let initialTimesToRepeat = 2
                    
-                    let placeholderBlock = Block(name: "Repeat Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Repeat Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "timesToRepeat", value: "\(initialTimesToRepeat)")
                 }
-                let repeatNumberButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let repeatNumberButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                 
                 repeatNumberButton.tag = indexPath.row
                 repeatNumberButton.backgroundColor = #colorLiteral(red: 0.7019607843, green: 0.05098039216, blue: 0.7960784314, alpha: 1)
                 // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
                 let numberOfTimesToRepeat =  "\(block.addedBlocks[0].attributes["timesToRepeat"] ?? "1")"
                 repeatNumberButton.setTitle(numberOfTimesToRepeat, for: .normal)
-                repeatNumberButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
-                repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                repeatNumberButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 repeatNumberButton.titleLabel?.numberOfLines = 0
-                repeatNumberButton.titleLabel?.textAlignment = NSTextAlignment.left
                 repeatNumberButton.addTarget(self, action: #selector(repeatModifier(sender:)), for: .touchUpInside)
-                repeatNumberButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                 repeatNumberButton.layer.borderWidth = 2.0
                 repeatNumberButton.layer.borderColor = UIColor.black.cgColor
                 repeatNumberButton.accessibilityHint = "Double tap to Set number of times to repeat"
@@ -606,10 +989,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = numberOfTimesToRepeat + " times"
                 
                 cell.addSubview(repeatNumberButton)
+                save()
                 
             case "Repeat Forever":
                 if block.addedBlocks.isEmpty{
-                    _ = Block(name: "forever", color: Color.init(uiColor:UIColor.red ) , double: false, tripleCounterpart: false, type: "Boolean")
+                    _ = Block(name: "forever", color: Color.init(uiColor:UIColor.red ) , double: false, type: "Boolean")
                 }
                 
             case "Drive Forward", "Drive Backward":
@@ -618,14 +1002,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let initialSpeed = "Normal"
                     // Creates distance button for modifier.
                     // TODO: change the Distance and Speed values in the placeholderBlock name according to Dash API
-                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "distance", value: "\(initialDistance)")
                     placeholderBlock?.addAttributes(key: "speed", value: initialSpeed)
 
                 }
-                let distanceSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let distanceSpeedButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                 
                 let distanceSet = "\(block.addedBlocks[0].attributes["distance"]!)"
                 let speedSet = "\(block.addedBlocks[0].attributes["speed"]!)"
@@ -634,12 +1018,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 distanceSpeedButton.tag = indexPath.row
                 distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
                 distanceSpeedButton.setTitle("\(block.addedBlocks[0].attributes["distance"]!) cm, \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
-                distanceSpeedButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 40)
-                distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 distanceSpeedButton.titleLabel?.numberOfLines = 0
-                distanceSpeedButton.titleLabel?.textAlignment = NSTextAlignment.left
                 distanceSpeedButton.addTarget(self, action: #selector(distanceSpeedModifier(sender:)), for: .touchUpInside)
-                distanceSpeedButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
                 distanceSpeedButton.layer.borderWidth = 2.0
                 distanceSpeedButton.layer.borderColor = UIColor.black.cgColor
                 distanceSpeedButton.accessibilityHint = "Double tap to Set distance and speed"
@@ -647,28 +1028,30 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = distanceSet + " centimeters at " + speedSet + "Speed"
                 
                 cell.addSubview(distanceSpeedButton)
+                save()
                 
             case "Turn Left", "Turn Right":
                 if block.addedBlocks.isEmpty{
                     //Creates angle button for modifier
                     let initialAngle = 90
                     
-                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "angle", value: "\(initialAngle)")
                     
                 }
-                let angleButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let angleButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                 
                 angleButton.tag = indexPath.row
                 angleButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
-                angleButton.setTitle("\(block.addedBlocks[0].attributes["angle"]!)", for: .normal)
+                
+                //Title: <angle>°
+                angleButton.setTitle("\(block.addedBlocks[0].attributes["angle"]!)\u{00B0}", for: .normal)
+                
                 angleButton.addTarget(self, action: #selector(angleModifier(sender:)), for: .touchUpInside)
-                angleButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
-                angleButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                angleButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 angleButton.titleLabel?.numberOfLines = 0
-                angleButton.titleLabel?.textAlignment = NSTextAlignment.left
                 angleButton.layer.borderWidth = 2.0
                 angleButton.layer.borderColor = UIColor.black.cgColor
                 angleButton.accessibilityHint = "Double tap to Set turn angle"
@@ -676,14 +1059,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = "\(block.addedBlocks[0].attributes["angle"]!) degrees"
                 
                 cell.addSubview(angleButton)
+                save()
                 
             case "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
                 if block.addedBlocks.isEmpty{
                     // Creates button to allow light color change.
-                    // MARK: Blockly default color is purple
-                    let initialColor = "purple"
+                    // MARK: Blockly default color is yellow
+                    let initialColor = "yellow"
                     
-                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.purple) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.yellow) , double: false, type: "Boolean")
                     
                     placeholderBlock?.addAttributes(key: "lightColor", value: initialColor)
                     // MARK: modifier block color changes to what was selected
@@ -713,17 +1097,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = " " + (block.addedBlocks[0].attributes["modifierBlockColor"] ?? "")
                 
                 cell.addSubview(lightColorButton)
+                save()
                 
             case "Set Eye Light":
                 if block.addedBlocks.isEmpty{
                     let initialEyeLightStatus = "Off"
-                    let placeholderBlock = Block(name: "Eye Light Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Eye Light Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "eyeLight", value: "\(initialEyeLightStatus)")
                 
                 }
-                let eyeLightButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let eyeLightButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                 
                 modifierBlockIndex = indexPath.row
                 
@@ -731,10 +1116,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 eyeLightButton.backgroundColor = UIColor(displayP3Red: 100/255, green: 4/255, blue: 195/255, alpha: 1)
                 eyeLightButton.setTitle("\(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
                 eyeLightButton.addTarget(self, action: #selector(setEyeLightModifier(sender:)), for: .touchUpInside)
-                eyeLightButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 60)
-                eyeLightButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+                eyeLightButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 eyeLightButton.titleLabel?.numberOfLines = 0
-                eyeLightButton.titleLabel?.textAlignment = NSTextAlignment.left
                 eyeLightButton.layer.borderWidth = 2.0
                 eyeLightButton.layer.borderColor = UIColor.black.cgColor
                 eyeLightButton.accessibilityHint = "Double tap to turn eye light on or off"
@@ -742,17 +1125,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = "\(block.addedBlocks[0].attributes["eyeLight"]!)"
                 
                 cell.addSubview(eyeLightButton)
+                save()
             
             case "Wait for Time":
                 if block.addedBlocks.isEmpty{
                     let initialWait = 1
-                    let placeholderBlock = Block(name: "Wait Time", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Wait Time", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "wait", value: "\(initialWait)")
 
                 }
-                let waitTimeButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let waitTimeButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                 
                 waitTimeButton.tag = indexPath.row
                 waitTimeButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 12/255, blue: 203/255, alpha: 1)
@@ -762,10 +1146,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     waitTimeButton.setTitle("\(block.addedBlocks[0].attributes["wait"]!) seconds", for: .normal)
                 }
                 waitTimeButton.addTarget(self, action: #selector(waitModifier(sender:)), for: .touchUpInside)
-                waitTimeButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                waitTimeButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 36)
+                waitTimeButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 waitTimeButton.titleLabel?.numberOfLines = 0
-                waitTimeButton.titleLabel?.textAlignment = NSTextAlignment.center
                 waitTimeButton.layer.borderWidth = 2.0
                 waitTimeButton.layer.borderColor = UIColor.black.cgColor
                 
@@ -774,13 +1156,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = "\(block.addedBlocks[0].attributes["wait"]!) seconds"
                 
                 cell.addSubview(waitTimeButton)
+                save()
             
             case "Set Variable":
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     let initialVariableValue = 0
 
-                    let placeholderBlock = Block(name: "Set Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Set Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -788,16 +1171,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "variableValue", value: "\(initialVariableValue)")
 
                 }
-                let setVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let setVariableButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
                 
                 setVariableButton.tag = indexPath.row
                 setVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                setVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) \n = \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
+                setVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) =  \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
                 setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
-                setVariableButton.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
-                setVariableButton.titleLabel?.font = UIFont (name: "Helvetica Neue", size: 30)
+                setVariableButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+                setVariableButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 setVariableButton.titleLabel?.numberOfLines = 0
-                setVariableButton.titleLabel?.textAlignment = NSTextAlignment.left
+
                 setVariableButton.layer.borderWidth = 2.0
                 setVariableButton.layer.borderColor = UIColor.black.cgColor
                 
@@ -805,12 +1188,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 setVariableButton.isAccessibilityElement = true
                 modifierInformation = "\(block.addedBlocks[0].attributes["variableSelected"]!) set to  \(block.addedBlocks[0].attributes["variableValue"]!)"
                 cell.addSubview(setVariableButton)
+                save()
                 
             case "Drive":
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
-                    let placeholderBlock = Block(name: "Set Drive Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Set Drive Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -840,14 +1224,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 setDriveVariableButton.layer.borderWidth = 2.0
                 setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
-                modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
+                
+                setDriveVariableButton.accessibilityHint = "Double tap to set Drive variable"
+                setDriveVariableButton.isAccessibilityElement = true
+                modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " centimeters"
                 cell.addSubview(setDriveVariableButton)
+                save()
                 
             case "Look Up or Down":
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
-                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -876,17 +1264,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                  setLookUpDownVariableButton.layer.borderWidth = 2.0
                  setLookUpDownVariableButton.layer.borderColor = UIColor.black.cgColor
                  
-                 setLookUpDownVariableButton.accessibilityLabel = "Set Look Up or Down Variable"
+                 setLookUpDownVariableButton.accessibilityHint = "Double tap to set Look Up or Down variable"
                  setLookUpDownVariableButton.isAccessibilityElement = true
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                  
                  cell.addSubview(setLookUpDownVariableButton)
+                save()
                 
             case "Look Left or Right":
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
-                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -915,90 +1304,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 setLookLeftRightVariableButton.layer.borderWidth = 2.0
                 setLookLeftRightVariableButton.layer.borderColor = UIColor.black.cgColor
                 
-                setLookLeftRightVariableButton.accessibilityLabel = "Set Look Left or Right Variable"
+                setLookLeftRightVariableButton.accessibilityHint = "Double tap to set Look Left or Right variable"
                 setLookLeftRightVariableButton.isAccessibilityElement = true
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                 cell.addSubview(setLookLeftRightVariableButton)
-                
-            case "Wheel Speed":
-                
-                if block.addedBlocks.isEmpty{
-                    let initialVariable = "orange"
-                    
-                    let placeholderBlock = Block(name: "Set Wheel Speed Variables", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    
-                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
-                    placeholderBlock?.addAttributes(key: "variableSelectedTwo", value: "\(initialVariable)")
-                    
-                }
-                let setWheelSpeedButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: 2 * blockWidth/3, height: blockHeight/2))
-                                    
-                                    let setWheelSpeedButtonTwo = UIButton(frame: CGRect(x: blockWidth/3, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing) + blockHeight/2, width: 2 * blockWidth/3 , height: blockHeight/2))
-                                    
-                                    let setBackgroundButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                                    
-                                    let setBorderButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
-                                    
-                                    setBackgroundButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                                    setBorderButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 0)
-                                    
-                                    setWheelSpeedButton.tag = indexPath.row
-                                    setWheelSpeedButtonTwo.tag = indexPath.row
-                                    setBorderButton.tag = indexPath.row
-                                    
-                                    switch block.addedBlocks[0].attributes["variableSelected"]{
-                                    case "orange":
-                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-                                    case "cherry":
-                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-                                    case "banana":
-                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                                    case "melon":
-                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-                                    case "apple":
-                                        setWheelSpeedButton.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-                                    default:
-                                        setWheelSpeedButton.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                                    }
-                                    
-                                    switch block.addedBlocks[0].attributes["variableSelectedTwo"]{
-                                    case "orange":
-                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Orange"), for: .normal)
-                                    case "cherry":
-                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Cherry"), for: .normal)
-                                    case "banana":
-                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Banana"), for: .normal)
-                                    case "melon":
-                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Watermelon"), for: .normal)
-                                    case "apple":
-                                        setWheelSpeedButtonTwo.setBackgroundImage(#imageLiteral(resourceName: "Apple"), for: .normal)
-                                    default:
-                                        setWheelSpeedButtonTwo.backgroundColor =  #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                                    }
-                                    
-                //                    setWheelSpeedButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-                //                    setWheelSpeedButtonTwo.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-                                    setBorderButton.addTarget(self, action: #selector(wheelModifier(sender:)), for: .touchUpInside)
-                                    
-                                    setBorderButton.accessibilityLabel = "Set Wheel Variables"
-                                    setBorderButton.isAccessibilityElement = true
-                                    
-                                    
-                                    setBorderButton.layer.borderWidth = 2.0
-                                    setBorderButton.layer.borderColor = UIColor.black.cgColor
-                                    
-                                    cell.addSubview(setBackgroundButton)
-                                    cell.addSubview(setWheelSpeedButton)
-                                    cell.addSubview(setWheelSpeedButtonTwo)
-                                    cell.addSubview(setBorderButton)
+                save()
                 
             case "Turn":
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
-                    let placeholderBlock = Block(name: "Choose Turn Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, tripleCounterpart: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Choose Turn Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -1031,20 +1347,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 setTurnButton.layer.borderWidth = 2.0
                 setTurnButton.layer.borderColor = UIColor.black.cgColor
                 
-                setTurnButton.accessibilityLabel = "Choose turn variable"
+                setTurnButton.accessibilityHint = "Double tap to set Turn variable"
                 setTurnButton.isAccessibilityElement = true
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                 
                 cell.addSubview(setTurnButton)
+                save()
                 
             default:
-                print("This block does not need a modifier.")
+                save()
             }
             
             //add main label
             
             let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
-            addAccessibilityLabel(blockView: myLabel, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1)
+            addAccessibilityLabel(blockView: myLabel, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
             cell.addSubview(myLabel)
         }
         cell.accessibilityElements = cell.accessibilityElements?.reversed()
@@ -1112,14 +1429,35 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "driveModifier", sender: nil)
     }
     
-    @objc func wheelModifier(sender: UIButton!) {
+    @objc func animalModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "wheelModifier", sender: nil)
+        performSegue(withIdentifier: "AnimalModifier", sender: nil)
+    }
+    
+    @objc func vehicleModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "VehicleModifier", sender: nil)
+    }
+    
+    @objc func objectNoiseModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "ObjectNoiseModifier", sender: nil)
+    }
+    
+    @objc func emotionModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "EmotionModifier", sender: nil)
+    }
+    
+    @objc func speakModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "SpeakModifier", sender: nil)
     }
     
     @objc func buttonClicked(sender: UIButton!){
         print ("Button clicked")
     }
+    
     
     func changeModifierBlockColor(color: String) -> UIColor {
         // test with black
@@ -1148,7 +1486,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if color.elementsEqual("white"){
             return UIColor.white
         }
-        return UIColor.purple // default color
+        return UIColor.yellow //default color
     }
     
     func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
@@ -1165,62 +1503,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.remembersLastFocusedIndexPath = true
         /*Called when a block is selected in the collectionView, so either selects block to move or places blocks*/
         if(movingBlocks){
-            if blocksBeingMoved[0].type == "Boolean" || blocksBeingMoved[0].type == "Number"{
-                //TODO: can only be added above conditional
-                var acceptsBooleans = false
-                var acceptsNumbers = false
-                if(indexPath.row < functionsDict[currentWorkspace]!.count){//otherwise empty block at end
-                    let myBlock = functionsDict[currentWorkspace]![indexPath.row]
-                    for type in myBlock.acceptedTypes{
-                        if type == "Boolean"{
-                            acceptsBooleans = true
-                        }
-                        if type == "Number"{
-                            acceptsNumbers = true
-                        }
-                    }
-                    if blocksBeingMoved[0].type == "Boolean" && acceptsBooleans{
-                        //add it here
-                        myBlock.addedBlocks.removeAll()
-                        myBlock.addedBlocks.append(blocksBeingMoved[0])
-                        containerViewController?.popViewController(animated: false)
-                        let condition = myBlock.addedBlocks[0].name
-                        let announcement = condition + "placed in if statement"
-                        makeAnnouncement(announcement)
-//                        delay(announcement, 2)
-                        blocksProgram.reloadData()
-                        finishMovingBlocks()
-                    }else if blocksBeingMoved[0].type == "Number" && acceptsNumbers{
-                        //add it here
-                        myBlock.addedBlocks.removeAll()
-                        myBlock.addedBlocks.append(blocksBeingMoved[0])
-                        containerViewController?.popViewController(animated: false)
-                        let condition = myBlock.addedBlocks[0].name
-                        let announcement = condition + "placed in repeat statement"
-                        makeAnnouncement(announcement)
-//                        delay(announcement, 2)
-                        blocksProgram.reloadData()
-                        finishMovingBlocks()
-                    }else{
-                        //say you can't add it here
-                        print("you can't add it here")
-                        makeAnnouncement("you can't add it here")
-//                        delay("you can't add it here", 2)
-                        
-                    }
-                }else{
-                    //say you can't add it here
-                    print("you can't add it here")
-                    makeAnnouncement("you can't add it here")
-//                    delay("you can't add it here", 2)
-                }
-            }else{
                 addBlocks(blocksBeingMoved, at: indexPath.row)
                 containerViewController?.popViewController(animated: false)
                 finishMovingBlocks()
-            }
         }else{
             if(indexPath.row < functionsDict[currentWorkspace]!.count){ //otherwise empty block at end
                 movingBlocks = true
@@ -1234,55 +1522,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     movingBlocks = false
                     return
                 }
-                //remove block from collection and program
-                if myBlock.tripleCounterpart == true{
-                    var indexOfCounterPartBlocks = [Int]()
-                    var blockCounterParts = [Block]()
-                    if myBlock.name == "If" || myBlock.name ==  "Else" || myBlock.name ==  "End If Else"{
-                        for block in myBlock.counterpart[0].counterpart{
-                            blockCounterParts.append(block)
-                        }
-                    }
-                    for i in 0..<functionsDict[currentWorkspace]!.count{
-                        // goes through all the blocks in the current workspace
-                        for blockInPart in blockCounterParts{
-                            // block class is not equatable can't compare counterpart which is an arryay of blocks to another array, best we can do is block to block
-                            // goes through each block in the counterparts of the conterpart
-                            if functionsDict[currentWorkspace]![i].name == "If" || functionsDict[currentWorkspace]![i].name ==  "Else" || functionsDict[currentWorkspace]![i].name ==  "End If Else"{
-                                //this if statement is so when you get the blocks inbetween an If and an Else or an Else and and End If Else we don't try and search for their counterpart in the following for loop because they don't have it, this also covers our back for a few other things
-                                for block in functionsDict[currentWorkspace]![i].counterpart[0].counterpart{
-                                    // for block that is being iterated over in the whole function block stack get that block's counter parts counterparts list and then for each block in that list do the following
-                                    if blockInPart === block{
-                                    // compares if the block in the initail myblock's counterpart list matches the blocks in the counterpart list of the current block being iterated over by the functions dict i for loop at the very top
-                                        if indexOfCounterPartBlocks.count == 0{
-                                            // for the first case append i to the index of counterpart blocks this allows us to later know where the End If else block is so we know what chuncks of blocks to move
-                                            indexOfCounterPartBlocks.append(i)
-//                                            print("matched: ", block.name, " and ", blockInPart.name, " at index of: ", i)
-//                                            print("blockCounterParts: ", blockCounterParts, "\n counterparts in functionsDict[currentWorkspace]![i].counterpart[0].counterpart: ", functionsDict[currentWorkspace]![i].counterpart[0].counterpart)
-                                        }else if indexOfCounterPartBlocks[indexOfCounterPartBlocks.count - 1] != i{
-                                            //this is so we don't end up with triplicate in the indexOfCounterPartBlocks, since we can't compare the arrays of blocks we end up doing 9 comparisons for each of the three counterparts so this whole chunk requires 27 comparisions, we should change this when we have time to make the Block class equatable, otherwise swift doesn't play nice and you have to do this
-                                            indexOfCounterPartBlocks.append(i)
-//                                            print("matched: ", block.name, " and ", blockInPart.name, " at index of: ", i)
-//                                            print("blockCounterParts: ", blockCounterParts, "\n counterparts in functionsDict[currentWorkspace]![i].counterpart[0].counterpart: ", functionsDict[currentWorkspace]![i].counterpart[0].counterpart)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-//                    print("indexofCounterpart: ", indexOfCounterPartBlocks)
-                    // below mirros the other double/counterpart style blocks
-                    var indexPathArray = [IndexPath]()
-                    var tempBlockStack = [Block]()
-                    for i in min(indexOfCounterPartBlocks[0],blocksStackIndex)...max(indexOfCounterPartBlocks[indexOfCounterPartBlocks.count - 1], blocksStackIndex){
-                        indexPathArray += [IndexPath.init(row: i, section: 0)]
-                        tempBlockStack += [functionsDict[currentWorkspace]![i]]
-                    }
-                    blocksBeingMoved = tempBlockStack
-                    functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterPartBlocks[0],blocksStackIndex)...max(indexOfCounterPartBlocks[indexOfCounterPartBlocks.count - 1], blocksStackIndex))
-                    
-                }
-                else if myBlock.double == true{
+                
+                if myBlock.double == true{
                     var indexOfCounterpart = -1
                     var blockcounterparts = [Block]()
                     for i in 0..<functionsDict[currentWorkspace]!.count {
@@ -1306,11 +1547,96 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     functionsDict[currentWorkspace]!.remove(at: blocksStackIndex)
                 }
                 blocksProgram.reloadData()
-                let mySelectedBlockVC = SelectedBlockViewController()
-                mySelectedBlockVC.blocks = blocksBeingMoved
+                
+                
+                let mySelectedBlockVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectedBlockViewController") as! SelectedBlockViewController
                 
                 containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
+                mySelectedBlockVC.blocks = blocksBeingMoved
                 changePlayTrashButton()
+            }
+        }
+    }
+    
+    func createVoiceControlLabels(for block: Block, in blockView: UIView) {
+        if #available (iOS 13.0, *) {
+            let color = block.color.uiColor
+            
+            switch color {
+            //Control
+            case UIColor.colorFrom(hexString: "#B30DCB"):
+                if movingBlocks {
+                    if block.name == "Wait for Time"{
+                        blockView.accessibilityUserInputLabels = ["Before Wait", "Before \(block.name)"]
+                    }
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
+                }
+                
+            //Drive
+            case UIColor.colorFrom(hexString: "#B15C13"):
+                var voiceControlLabel = block.name
+                if block.name.contains("Drive") {
+                    let wordToRemove = "Drive "
+                    if let range = voiceControlLabel.range(of: wordToRemove){
+                        voiceControlLabel.removeSubrange(range)
+                    }
+                }
+                else if block.name.contains("Turn") {
+                    let wordToRemove = "Turn "
+                    if let range = voiceControlLabel.range(of: wordToRemove){
+                        voiceControlLabel.removeSubrange(range)
+                    }
+                }
+                
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
+                }
+                
+            //Lights
+            case UIColor.colorFrom(hexString: "#6700C1"):
+                var voiceControlLabel = block.name
+                let wordToRemove = "Set "
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                var voiceControlLabel2 = voiceControlLabel
+                if block.name != "Set All Lights"{
+                    let wordToRemove2 = " Light"
+                    if let range = voiceControlLabel2.range(of: wordToRemove2) {
+                        voiceControlLabel2.removeSubrange(range)
+                    }
+                }
+                
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(voiceControlLabel2)", "Before \(block.name)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(voiceControlLabel2)", "\(block.name)"]
+                }
+                
+            //Look
+            case UIColor.colorFrom(hexString: "#836F53"):
+                var voiceControlLabel = block.name
+                let wordToRemove = "Look "
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+                
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
+                }
+                
+            default:
+                blockView.accessibilityUserInputLabels = ["\(block.name)"]
             }
         }
     }
@@ -1380,14 +1706,34 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if let destinationViewController = segue.destination as? DriveVariables{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
-        
-        // Segue to WheelVariables
-        if let destinationViewController = segue.destination as? WheelVariables{
-          destinationViewController.modifierBlockIndexSender = modifierBlockIndex 
-        }
 
         // Segue to EyeLightModifierViewController
         if let destinationViewController = segue.destination as? EyeLightModifierViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to AnimalModViewController
+        if let destinationViewController = segue.destination as? AnimalModViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to VehicleModViewController
+        if let destinationViewController = segue.destination as? VehicleModViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to ObjectNoiseModViewController
+        if let destinationViewController = segue.destination as? ObjectNoiseModViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to EmotionModViewController
+        if let destinationViewController = segue.destination as? EmotionModViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to SpeakModViewController
+        if let destinationViewController = segue.destination as? SpeakModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }
