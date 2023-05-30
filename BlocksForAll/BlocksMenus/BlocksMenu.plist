@@ -29,7 +29,7 @@
 				<key>name</key>
 				<string>Vehicle Noise</string>
 				<key>color</key>
-				<string>#002041</string>
+				<string>#57819A</string>
 				<key>double</key>
 				<false/>
 			</dict>
@@ -41,7 +41,7 @@
 				<key>name</key>
 				<string>Object Noise</string>
 				<key>color</key>
-				<string>#227C7C</string>
+				<string>#72ABCC</string>
 				<key>double</key>
 				<false/>
 			</dict>
@@ -53,7 +53,7 @@
 				<key>name</key>
 				<string>Emotion Noise</string>
 				<key>color</key>
-				<string>#A50C82</string>
+				<string>#90D7FF</string>
 				<key>double</key>
 				<false/>
 			</dict>
@@ -65,7 +65,7 @@
 				<key>name</key>
 				<string>Speak</string>
 				<key>color</key>
-				<string>#C63329</string>
+				<string>#6E79BA</string>
 				<key>double</key>
 				<false/>
 			</dict>
