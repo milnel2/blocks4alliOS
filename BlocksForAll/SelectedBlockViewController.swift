@@ -13,8 +13,7 @@ class SelectedBlockViewController: UIViewController {
      toolbox, which you are moving */
     
     var blocks: [Block]?
-    var blockWidth = 200
-    let blockHeight = 200
+    var blockSize = 200
     let blockSpacing = 1
     var delegate: BlockSelectionDelegate?
     
@@ -33,7 +32,7 @@ class SelectedBlockViewController: UIViewController {
         let myFrame = CGRect(x: 0, y: Int(self.view.bounds.height/2), width: 0, height: 0)
         
         
-        let myBlockView = BlockView.init(frame: myFrame, block: blocks!, myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+        let myBlockView = BlockView.init(frame: myFrame, block: blocks!, myBlockSize: blockSize)
         
         self.view.addSubview(myBlockView)
         

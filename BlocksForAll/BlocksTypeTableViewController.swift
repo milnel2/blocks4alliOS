@@ -14,7 +14,7 @@ class BlocksTypeTableViewController: UITableViewController {
     var blockDict = NSArray()
     var blockTypes = [Block]()
     var indexToAdd = 0
-    var blockWidth = 150
+    var blockSize = 150
     
     //used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
@@ -33,8 +33,7 @@ class BlocksTypeTableViewController: UITableViewController {
         
         self.accessibilityLabel = "Toolbox Menu"
         self.accessibilityHint = "Double tap from menu to select block category"
-        //self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: CGFloat(blockWidth), height: CGFloat(blockWidth))
-        
+       
         blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
         
         createBlocksArray()
@@ -83,7 +82,7 @@ class BlocksTypeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(blockWidth + 10)
+        return CGFloat(blockSize + 10)
         
     }
     

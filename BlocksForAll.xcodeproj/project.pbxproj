@@ -47,6 +47,7 @@
 		F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18FFFBB1E65B0FC0090C4B6 /* LaunchScreen.storyboard */; };
 		F18FFFC81E65B0FC0090C4B6 /* BlocksForAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFC71E65B0FC0090C4B6 /* BlocksForAllTests.swift */; };
 		F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */; };
+		F79EC1F42A266813009B8784 /* BlockToMoveCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79EC1F32A266813009B8784 /* BlockToMoveCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		F18FFFC91E65B0FC0090C4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
 		F1F68E7F20771C7900BFBD8E /* Installation Manual.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Installation Manual.pdf"; sourceTree = "<group>"; };
+		F79EC1F32A266813009B8784 /* BlockToMoveCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockToMoveCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,16 +184,17 @@
 				F7CAF42923EE103400901E99 /* ModifierViewControllers */,
 				701A43861EC26EFD00314599 /* BlocksViewController.swift */,
 				F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */,
+				F79EC1F32A266813009B8784 /* BlockToMoveCollectionViewController.swift */,
 				F10F71681E65BFF50049F3AA /* Block.swift */,
 				F186EB871EE0D8B100C2FA4B /* BlockView.swift */,
 				F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */,
 				F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */,
 				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
+				A9937EA8267BAB3B00A56E8A /* CustomButton.swift */,
 				844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */,
 				844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */,
 				844EAEF322E60CBB00BB1A62 /* FunctionView.swift */,
 				F18FEEDB1EB115AF007C15B8 /* Helper */,
-				A9937EA8267BAB3B00A56E8A /* CustomButton.swift */,
 			);
 			path = BlocksForAll;
 			sourceTree = "<group>";
@@ -216,23 +219,23 @@
 		F7CAF42923EE103400901E99 /* ModifierViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */,
+				025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */,
+				A92E88F12697598400FB2CFD /* AnimalModViewController.swift */,
+				023D632E22BBF05700A8002C /* ColorModViewController.swift */,
 				02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */,
+				57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */,
+				A9BC085F2697A20600A5312D /* EmotionModViewController.swift */,
+				84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */,
+				62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */,
 				57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */,
 				57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */,
-				023D633222BD34EE00A8002C /* WaitModViewController.swift */,
-				57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */,
-				84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */,
-				62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */,
-				023D633022BC0B2E00A8002C /* RepeatModViewController.swift */,
-				025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */,
-				023D632E22BBF05700A8002C /* ColorModViewController.swift */,
-				A92E88F12697598400FB2CFD /* AnimalModViewController.swift */,
-				A9674DD126976C0B00E064B0 /* VehicleModViewController.swift */,
 				A9E173012697959A00A7E09E /* ObjectNoiseModViewController.swift */,
-				A9BC085F2697A20600A5312D /* EmotionModViewController.swift */,
+				023D633022BC0B2E00A8002C /* RepeatModViewController.swift */,
+				62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */,
 				A9FC91A62697B1D30005DAEA /* SpeakModViewController.swift */,
-				62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */,
+				57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */,
+				A9674DD126976C0B00E064B0 /* VehicleModViewController.swift */,
+				023D633222BD34EE00A8002C /* WaitModViewController.swift */,
 			);
 			path = ModifierViewControllers;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				023D633122BC0B2E00A8002C /* RepeatModViewController.swift in Sources */,
 				844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */,
 				A92E88F22697598400FB2CFD /* AnimalModViewController.swift in Sources */,
+				F79EC1F42A266813009B8784 /* BlockToMoveCollectionViewController.swift in Sources */,
 				F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

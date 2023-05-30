@@ -184,7 +184,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select a robot from the list below. If you don't see any robots, try turning your robot off and on again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVq-QZ-GAv">
                                 <rect key="frame" x="193" y="42" width="831" height="245"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -432,12 +432,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                             </mask>
                                         </variation>
                                     </stackView>
-                                    <label opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Workspace" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="252" translatesAutoresizingMaskIntoConstraints="NO" id="BES-Vc-hSx">
-                                        <rect key="frame" x="292.5" y="70" width="242" height="41"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l66-Lb-Pdn">
                                         <rect key="frame" x="0.0" y="125" width="706" height="655"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -495,7 +489,9 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="jq3-Fa-yDY" userLabel="ClearAll" customClass="CustomButton" customModule="BlocksForAll" customModuleProvider="target">
                                         <rect key="frame" x="730" y="53" width="97" height="45"/>
                                         <color key="backgroundColor" red="0.80248137953367871" green="0.28850571533125552" blue="0.2153958467552054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <accessibility key="accessibilityConfiguration" hint="Clear all blocks on the screen" label="Clear All"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Clear all blocks on the screen" label="Clear All">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="5vN-PE-n7E"/>
                                         </constraints>
@@ -508,6 +504,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                             <action selector="clearAll:" destination="uoc-nU-c4a" eventType="touchUpInside" id="rhm-Pp-SQV"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Main Workspace" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="252" translatesAutoresizingMaskIntoConstraints="NO" id="BES-Vc-hSx">
+                                        <rect key="frame" x="278" y="8" width="270" height="41"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -581,7 +583,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W32-Q3-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-438" y="-490"/>
+            <point key="canvasLocation" x="-438.33333333333331" y="-490.37037037037032"/>
         </scene>
         <!--Block Table View Controller-->
         <scene sceneID="OAu-TV-gtl">
@@ -1645,7 +1647,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Boolean Expression:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGh-Sc-60y">
                                 <rect key="frame" x="117" y="168" width="791" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2948,8 +2950,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CWQ-aM-vhy"/>
-        <segue reference="ebu-O5-0hJ"/>
+        <segue reference="uRw-vH-lIn"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
@@ -2967,22 +2968,22 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="brownPlus" width="100" height="100"/>
         <image name="buzz_sound" width="100" height="100"/>
         <image name="car_sound" width="100" height="100"/>
-        <image name="cat" width="100" height="100"/>
-        <image name="crocodile" width="100" height="100"/>
-        <image name="dinosaur" width="100" height="100"/>
-        <image name="dog" width="100" height="100"/>
-        <image name="elephant" width="100" height="100"/>
-        <image name="goat" width="100" height="100"/>
+        <image name="cat" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="crocodile" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="dinosaur" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="dog" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="elephant" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="goat" width="133.44094848632812" height="133.44094848632812"/>
         <image name="hear_voice" width="100" height="100"/>
         <image name="helicopter" width="100" height="100"/>
-        <image name="horse" width="100" height="100"/>
+        <image name="horse" width="133.44094848632812" height="133.44094848632812"/>
         <image name="laser_sound" width="100" height="100"/>
-        <image name="lion" width="100" height="100"/>
+        <image name="lion" width="133.44094848632812" height="133.44094848632812"/>
         <image name="minus" width="100" height="100"/>
         <image name="off" width="100" height="100"/>
         <image name="on" width="100" height="100"/>
         <image name="plus" width="100" height="100"/>
-        <image name="random_animal" width="100" height="100"/>
+        <image name="random_animal" width="133.39108276367188" height="133.90289306640625"/>
         <image name="random_emotion" width="100" height="100"/>
         <image name="random_object" width="100" height="100"/>
         <image name="random_vehicle" width="100" height="100"/>
@@ -3015,7 +3016,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="tire_squeal" width="100" height="100"/>
         <image name="train" width="100" height="100"/>
         <image name="trumpet_sound" width="100" height="100"/>
-        <image name="turkey" width="100" height="100"/>
+        <image name="turkey" width="133.44094848632812" height="133.44094848632812"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -20,7 +20,7 @@ class BlockTableViewController: UITableViewController {
     var delegate: BlockSelectionDelegate?
     
     //update these as collection view changes
-    var blockWidth = 150
+    var blockSize = 150
     let blockSpacing = 0
     
     func getDocumentsDirectory() -> URL{
@@ -82,7 +82,7 @@ class BlockTableViewController: UITableViewController {
         //cell.nameLabel.text = block.name
         //cell.blockView.backgroundColor = block.color
         
-        let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockWidth, height: blockWidth),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockWidth)
+        let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockSize, height: blockSize),  block: [block], myBlockSize: blockSize)
         cell.accessibilityLabel = block.name
         
         createVoiceControlLabels(for: block, in: cell)
@@ -101,7 +101,7 @@ class BlockTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //let height = tableView.bounds.height/CGFloat(blocks.count)
-        return CGFloat(blockWidth + blockSpacing)
+        return CGFloat(blockSize + blockSpacing)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

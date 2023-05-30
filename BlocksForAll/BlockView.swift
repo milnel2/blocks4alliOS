@@ -13,8 +13,7 @@ class BlockView: UIView, UITextFieldDelegate {
     /*Given a block, creates the view that should be shown*/
     
     var blocks: [Block]
-    var blockWidth = 150
-    var blockHeight = 150
+    var blockSize = 150
     let blockSpacing = 1
     
     var pickedItem: UITextField?
@@ -23,11 +22,10 @@ class BlockView: UIView, UITextFieldDelegate {
     let defaults = UserDefaults.standard
     
     //MARK: - init Block View
-    init (frame : CGRect, block : [Block], myBlockWidth: Int, myBlockHeight: Int) {
+    init (frame : CGRect, block : [Block], myBlockSize: Int) {
         self.blocks = block
         super.init(frame : frame)
-        blockWidth = myBlockWidth
-        blockHeight = myBlockHeight
+        blockSize = myBlockSize
         self.addSubview(simpleView(FromBlock: block))
     }
     
@@ -60,8 +58,8 @@ class BlockView: UIView, UITextFieldDelegate {
     //MARK:- simpleView
     func simpleView(FromBlock block: [Block]) -> UIView {
         let block = block[0]
-        let myViewWidth = blockWidth
-        let myViewHeight = blockHeight
+        let myViewWidth = blockSize
+        let myViewHeight = blockSize
         let myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
         let myView = UIView(frame: myFrame)
         myView.backgroundColor = block.color.uiColor

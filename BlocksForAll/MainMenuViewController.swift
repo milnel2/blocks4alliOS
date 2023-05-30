@@ -177,26 +177,7 @@ class MainMenuViewController: UIViewController {
                     print("hello")
                 }
         }
-        
-        
-            
-//            if block.name == "Repeat" || block.name == "Repeat Forever"{
-//                forOpen.append(block)
-//                //adds "For" statements to an array
-//            }else if block.name == "End Repeat" || block.name == "End Repeat Forever"{
-//                forOpen.last?.counterpart.append(block)
-//                block.counterpart.append(forOpen.last ?? block)
-//                // matches the repeat start to the counter part repeat end
-//                forOpen.removeLast()
-//                // removes the open block that was matched to a close block
-//            }else if block.name == "If"{
-//                //mirrors for loop stuff
-//                ifOpen.append(block)
-//            }else if block.name == "End If"{
-//                ifOpen.last?.counterpart.append(block)
-//                block.counterpart.append(ifOpen.last ?? block)
-//                ifOpen.removeLast()
-//            }
+
         }
     }
     
@@ -209,8 +190,6 @@ class MainMenuViewController: UIViewController {
                 print("accessibility enabled")
                 blockSize = 200
             }
-        } else {
-            // Fallback on earlier versions
         }
     }
     
@@ -226,12 +205,12 @@ class MainMenuViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let myDestination = segue.destination as? BlocksViewController{
-            myDestination.blockHeight = blockSize
-            myDestination.blockWidth = blockSize
+            myDestination.blockSize = blockSize
+            myDestination.blockSize = blockSize
             print("block size " , blockSize)
         }
         if let destinationViewController = segue.destination as? UINavigationController{
-            if let myTopViewController = destinationViewController.topViewController as? BlocksViewController{
+            if destinationViewController.topViewController is BlocksViewController{
                 print("block size 2 " , blockSize)
             }
         }

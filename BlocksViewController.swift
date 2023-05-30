@@ -65,8 +65,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var containerViewController: UINavigationController?
     
     // TODO: the blockWidth and blockHeight are not the same as the variable blockSize (= 100)
-    var blockWidth = 150
-    var blockHeight = 150
+    var blockSize = 150
     let blockSpacing = 1
     
     // TODO: what are these variables?
@@ -410,15 +409,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     func createViewRepresentation(FromBlocks blocksRep: [Block]) -> UIView {
         /*Given a list of blocks, creates the views that will be displayed in the blocksProgram*/
-        let myViewWidth = (blockWidth + blockSpacing)*blocksRep.count
-        let myViewHeight = blockHeight
+        let myViewWidth = (blockSize + blockSpacing)*blocksRep.count
+        let myViewHeight = blockSize
         let myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
         let myView = UIView(frame: myFrame)
         var count = 0
         for block in blocksRep{
-            let xCoord = count*(blockWidth + blockSpacing)
+            let xCoord = count*(blockSize + blockSpacing)
             
-            let blockView = BlockView(frame: CGRect(x: xCoord, y: 0, width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+            let blockView = BlockView(frame: CGRect(x: xCoord, y: 0, width: blockSize, height: blockSize),  block: [block], myBlockSize: blockSize)
             count += 1
             
             myView.addSubview(blockView)
@@ -443,7 +442,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = CGSize(width: CGFloat(blockWidth), height: collectionView.frame.height)
+        var size = CGSize(width: CGFloat(blockSize), height: collectionView.frame.height)
         collectionView.remembersLastFocusedIndexPath = true
         //        print(indexPath)
         if indexPath.row == functionsDict[currentWorkspace]!.count {
@@ -455,7 +454,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let myWidth = collectionView.frame.width
                 size = CGSize(width: myWidth, height: collectionView.frame.height)
             }else{
-                size = CGSize(width: CGFloat(blockWidth), height: collectionView.frame.height)
+                size = CGSize(width: CGFloat(blockSize), height: collectionView.frame.height)
             }
         }
         return size
@@ -540,7 +539,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }else{
             
-            let startingHeight = Int(cell.frame.height)-blockHeight
+            let startingHeight = Int(cell.frame.height)-blockSize
             
             let block = functionsDict[currentWorkspace]![indexPath.row]
             var blocksToAdd = [Block]()
@@ -562,7 +561,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             
             var count = 0
             for b in blocksToAdd{
-                let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockHeight/2-count*(blockHeight/2+blockSpacing), width: blockWidth+2*blockSpacing, height: blockHeight/2))
+                let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockSize/2-count*(blockSize/2+blockSpacing), width: blockSize+2*blockSpacing, height: blockSize/2))
                 
                 if b.name.contains("Function Start") {
                     myView.accessibilityLabel = "Inside \(currentWorkspace) function"
@@ -591,7 +590,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "animalNoise", value: "\(initialNoise)")
 
                 }
-                let animalNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let animalNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 animalNoiseButton.tag = indexPath.row
                 
@@ -661,7 +660,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "vehicleNoise", value: "\(initialNoise)")
 
                 }
-                let vehicleNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let vehicleNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 vehicleNoiseButton.tag = indexPath.row
                 
@@ -731,7 +730,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "objectNoise", value: "\(initialNoise)")
 
                 }
-                let objectNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let objectNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 objectNoiseButton.tag = indexPath.row
                 
@@ -789,7 +788,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "emotionNoise", value: "\(initialNoise)")
 
                 }
-                let emotionNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let emotionNoiseButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 emotionNoiseButton.tag = indexPath.row
                 
@@ -853,7 +852,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "speakWord", value: "\(initialWord)")
 
                 }
-                let speakButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let speakButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 speakButton.tag = indexPath.row
                 
@@ -936,7 +935,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     modifierInformation = " false"
                     
                 }
-                let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
 
                 ifButton.tag = indexPath.row
                 switch block.addedBlocks[0].attributes["booleanSelected"]{
@@ -972,7 +971,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "timesToRepeat", value: "\(initialTimesToRepeat)")
                 }
-                let repeatNumberButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let repeatNumberButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 repeatNumberButton.tag = indexPath.row
                 repeatNumberButton.backgroundColor = #colorLiteral(red: 0.7019607843, green: 0.05098039216, blue: 0.7960784314, alpha: 1)
@@ -1009,7 +1008,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "speed", value: initialSpeed)
 
                 }
-                let distanceSpeedButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let distanceSpeedButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 let distanceSet = "\(block.addedBlocks[0].attributes["distance"]!)"
                 let speedSet = "\(block.addedBlocks[0].attributes["speed"]!)"
@@ -1041,7 +1040,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "angle", value: "\(initialAngle)")
                     
                 }
-                let angleButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let angleButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 angleButton.tag = indexPath.row
                 angleButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
@@ -1077,7 +1076,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "lightColor", value: "\(initialColor)")
 
                 }
-                let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let lightColorButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 let modifierBlockColor: UIColor = changeModifierBlockColor(color: block.addedBlocks[0].attributes["modifierBlockColor"]!)
                 
@@ -1108,7 +1107,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "eyeLight", value: "\(initialEyeLightStatus)")
                 
                 }
-                let eyeLightButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let eyeLightButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 modifierBlockIndex = indexPath.row
                 
@@ -1136,7 +1135,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "wait", value: "\(initialWait)")
 
                 }
-                let waitTimeButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let waitTimeButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 waitTimeButton.tag = indexPath.row
                 waitTimeButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 12/255, blue: 203/255, alpha: 1)
@@ -1171,7 +1170,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "variableValue", value: "\(initialVariableValue)")
 
                 }
-                let setVariableButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let setVariableButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 setVariableButton.tag = indexPath.row
                 setVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
@@ -1201,7 +1200,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                     
                 }
-                let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let setDriveVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 switch block.addedBlocks[0].attributes["variableSelected"]{
                 case "orange":
@@ -1242,7 +1241,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                     
                 }
-                let setLookUpDownVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let setLookUpDownVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                  
                  setLookUpDownVariableButton.tag = indexPath.row
                  switch block.addedBlocks[0].attributes["variableSelected"]{
@@ -1282,7 +1281,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
 
                 }
-                let setLookLeftRightVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let setLookLeftRightVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 setLookLeftRightVariableButton.tag = indexPath.row
                 switch block.addedBlocks[0].attributes["variableSelected"]{
@@ -1320,7 +1319,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                 }
-                let setTurnButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight))
+                let setTurnButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 setTurnButton.tag = indexPath.row
                 switch block.addedBlocks[0].attributes["variableSelected"]{
@@ -1360,7 +1359,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             
             //add main label
             
-            let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockHeight/2+blockSpacing), width: blockWidth, height: blockHeight),  block: [block], myBlockWidth: blockWidth, myBlockHeight: blockHeight)
+            let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
             addAccessibilityLabel(blockView: myLabel, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
             cell.addSubview(myLabel)
         }
@@ -1491,7 +1490,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     func createBlock(_ block: Block, withFrame frame:CGRect)->UILabel{
         let myLabel = UILabel.init(frame: frame)
-        //let myLabel = UILabel.init(frame: CGRect(x: 0, y: -count*(blockHeight+blockSpacing), width: blockWidth, height: blockHeight))
         myLabel.text = block.name
         myLabel.textAlignment = .center
         myLabel.textColor = block.color.uiColor
@@ -1648,7 +1646,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if let destinationViewController = segue.destination as? UINavigationController{
             if let myTopViewController = destinationViewController.topViewController as? BlocksTypeTableViewController{
                 myTopViewController.delegate = self
-                myTopViewController.blockWidth = 150
+                myTopViewController.blockSize = 150
             }
         }
         
