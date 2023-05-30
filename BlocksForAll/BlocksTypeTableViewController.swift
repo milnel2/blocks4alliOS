@@ -66,7 +66,7 @@ class BlocksTypeTableViewController: UITableViewController {
         // Configure the cell...
         let blockType = blockTypes[indexPath.row]
         cell.textLabel?.text = blockType.name
-        cell.textLabel?.textColor = UIColor.white
+        cell.textLabel?.textColor = UIColor.black
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
         cell.backgroundColor = blockType.color.uiColor

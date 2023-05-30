@@ -6,7 +6,7 @@
 		<key>type</key>
 		<string>Sounds</string>
 		<key>color</key>
-		<string>#058900</string>
+		<string>#90D7FF</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
@@ -73,85 +73,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#B30DCB</string>
-		<key>type</key>
-		<string>Control</string>
-		<key>Blocks</key>
-		<array>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>acceptedTypes</key>
-				<array>
-					<string>Number</string>
-				</array>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Repeat</string>
-				<key>color</key>
-				<string>#B30DCB</string>
-				<key>double</key>
-				<true/>
-				<key>imageName</key>
-				<string>repeat.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Repeat Forever</string>
-				<key>color</key>
-				<string>#B30DCB</string>
-				<key>double</key>
-				<true/>
-				<key>imageName</key>
-				<string>repeat_forever.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>acceptedTypes</key>
-				<array>
-					<string>Boolean</string>
-				</array>
-				<key>editable</key>
-				<false/>
-				<key>options</key>
-				<array>
-					<true/>
-					<false/>
-				</array>
-				<key>name</key>
-				<string>If</string>
-				<key>color</key>
-				<string>#B30DCB</string>
-				<key>double</key>
-				<true/>
-				<key>imageName</key>
-				<string>new_if.pdf</string>
-			</dict>
-			<dict>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Wait for Time</string>
-				<key>type</key>
-				<string>Statement</string>
-				<key>color</key>
-				<string>#B30DCB</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>wait.pdf</string>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>color</key>
-		<string>#B15C13</string>
+		<string>#31E384</string>
 		<key>type</key>
 		<string>Drive</string>
 		<key>Blocks</key>
@@ -216,7 +138,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#6700C1</string>
+		<string>#E3D93E</string>
 		<key>type</key>
 		<string>Lights</string>
 		<key>Blocks</key>
@@ -295,16 +217,94 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#836F53</string>
+		<string>#FF9C4C</string>
 		<key>type</key>
-		<string>Look</string>
+		<string>Control</string>
+		<key>Blocks</key>
+		<array>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>acceptedTypes</key>
+				<array>
+					<string>Number</string>
+				</array>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Repeat</string>
+				<key>color</key>
+				<string>#B30DCB</string>
+				<key>double</key>
+				<true/>
+				<key>imageName</key>
+				<string>repeat.pdf</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Repeat Forever</string>
+				<key>color</key>
+				<string>#B30DCB</string>
+				<key>double</key>
+				<true/>
+				<key>imageName</key>
+				<string>repeat_forever.pdf</string>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>acceptedTypes</key>
+				<array>
+					<string>Boolean</string>
+				</array>
+				<key>editable</key>
+				<false/>
+				<key>options</key>
+				<array>
+					<true/>
+					<false/>
+				</array>
+				<key>name</key>
+				<string>If</string>
+				<key>color</key>
+				<string>#B30DCB</string>
+				<key>double</key>
+				<true/>
+				<key>imageName</key>
+				<string>new_if.pdf</string>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Wait for Time</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#B30DCB</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>wait.pdf</string>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>color</key>
+		<string>#F06F79</string>
+		<key>type</key>
+		<string>Motion</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
 				<key>editable</key>
 				<false/>
 				<key>name</key>
-				<string>Look Up</string>
+				<string>Look Toward Voice</string>
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
@@ -312,63 +312,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>look_up.pdf</string>
-			</dict>
-			<dict>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Look Down</string>
-				<key>type</key>
-				<string>Statement</string>
-				<key>color</key>
-				<string>#836F53</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>look_down.pdf</string>
-			</dict>
-			<dict>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Look Straight</string>
-				<key>type</key>
-				<string>Statement</string>
-				<key>color</key>
-				<string>#836F53</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>look_straight.pdf</string>
-			</dict>
-			<dict>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Look Left</string>
-				<key>type</key>
-				<string>Statement</string>
-				<key>color</key>
-				<string>#836F53</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>look_left.pdf</string>
-			</dict>
-			<dict>
-				<key>editable</key>
-				<false/>
-				<key>name</key>
-				<string>Look Right</string>
-				<key>type</key>
-				<string>Statement</string>
-				<key>color</key>
-				<string>#836F53</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>look_right.pdf</string>
+				<string>look_toward_voice.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -388,7 +332,7 @@
 				<key>editable</key>
 				<false/>
 				<key>name</key>
-				<string>Look Toward Voice</string>
+				<string>Look Right</string>
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
@@ -396,17 +340,64 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>look_toward_voice.pdf</string>
+				<string>look_right.pdf</string>
 			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>color</key>
-		<string>#0066D0</string>
-		<key>type</key>
-		<string>Motion</string>
-		<key>Blocks</key>
-		<array>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Left</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#836F53</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>look_left.pdf</string>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Straight</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#836F53</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>look_straight.pdf</string>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Down</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#836F53</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>look_down.pdf</string>
+			</dict>
+			<dict>
+				<key>editable</key>
+				<false/>
+				<key>name</key>
+				<string>Look Up</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>#836F53</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>look_up.pdf</string>
+			</dict>
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
@@ -441,7 +432,7 @@
 		<key>type</key>
 		<string>Variables</string>
 		<key>color</key>
-		<string>#774B4B</string>
+		<string>#AC85F4</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
@@ -518,7 +509,7 @@
 		<key>type</key>
 		<string>Functions</string>
 		<key>color</key>
-		<string>#FF9300</string>
+		<string>#F8E2FF</string>
 	</dict>
 </array>
 </plist>
