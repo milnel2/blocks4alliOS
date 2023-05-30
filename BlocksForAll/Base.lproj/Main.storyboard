@@ -420,18 +420,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ot-l9-NbS">
                                 <rect key="frame" x="243" y="30" width="827" height="780"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8kL-CN-3e0">
-                                        <rect key="frame" x="365" y="-10" width="97" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="827" id="QEu-Th-XiH"/>
-                                            <constraint firstAttribute="width" constant="950" id="zln-cc-pby"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="zln-cc-pby"/>
-                                            </mask>
-                                        </variation>
-                                    </stackView>
+                                    <label opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Main Workspace" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="252" translatesAutoresizingMaskIntoConstraints="NO" id="BES-Vc-hSx">
+                                        <rect key="frame" x="278" y="8" width="270" height="41"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l66-Lb-Pdn">
                                         <rect key="frame" x="0.0" y="125" width="706" height="655"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -471,9 +465,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                             <action selector="playButtonClicked:" destination="uoc-nU-c4a" eventType="touchUpInside" id="vL1-rJ-3br"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-F9-VES" customClass="CustomButton" customModule="BlocksForAll" customModuleProvider="target">
-                                        <rect key="frame" x="711" y="0.0" width="116" height="45"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-F9-VES">
+                                        <rect key="frame" x="677" y="0.0" width="150" height="45"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <accessibility key="accessibilityConfiguration" label="Main Menu"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="idX-4O-Mkj"/>
                                         </constraints>
@@ -504,46 +499,28 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                             <action selector="clearAll:" destination="uoc-nU-c4a" eventType="touchUpInside" id="rhm-Pp-SQV"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Main Workspace" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="252" translatesAutoresizingMaskIntoConstraints="NO" id="BES-Vc-hSx">
-                                        <rect key="frame" x="278" y="8" width="270" height="41"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="8kL-CN-3e0" firstAttribute="centerX" secondItem="7Ot-l9-NbS" secondAttribute="centerX" id="1eU-v6-CCx"/>
                                     <constraint firstAttribute="bottom" secondItem="l66-Lb-Pdn" secondAttribute="bottom" id="2LS-gy-mQr"/>
                                     <constraint firstItem="l66-Lb-Pdn" firstAttribute="top" secondItem="BES-Vc-hSx" secondAttribute="bottom" priority="250" constant="18" id="895-Vi-28v"/>
-                                    <constraint firstItem="BES-Vc-hSx" firstAttribute="top" secondItem="8kL-CN-3e0" secondAttribute="bottom" constant="35" id="Csj-hw-rcI"/>
                                     <constraint firstItem="BES-Vc-hSx" firstAttribute="centerX" secondItem="7Ot-l9-NbS" secondAttribute="centerX" id="Ed7-mz-vDX"/>
-                                    <constraint firstItem="BES-Vc-hSx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8kL-CN-3e0" secondAttribute="bottom" id="HAL-mm-pYo"/>
                                     <constraint firstItem="jq3-Fa-yDY" firstAttribute="top" secondItem="Ipa-F9-VES" secondAttribute="bottom" constant="8" id="Jso-VK-twE"/>
                                     <constraint firstAttribute="bottom" secondItem="Ztu-9b-vFh" secondAttribute="bottom" constant="25" id="Puu-By-8zn"/>
-                                    <constraint firstItem="8kL-CN-3e0" firstAttribute="leading" secondItem="7Ot-l9-NbS" secondAttribute="leading" constant="365" id="fSj-I7-Tyw"/>
-                                    <constraint firstAttribute="trailing" secondItem="8kL-CN-3e0" secondAttribute="trailing" constant="97" id="hN3-QE-SQC"/>
                                     <constraint firstAttribute="trailing" secondItem="Ztu-9b-vFh" secondAttribute="trailing" id="hVe-m0-72t"/>
                                     <constraint firstItem="l66-Lb-Pdn" firstAttribute="leading" secondItem="7Ot-l9-NbS" secondAttribute="leading" id="i9a-kZ-Qzf"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8kL-CN-3e0" secondAttribute="trailing" id="lmt-yC-jvm"/>
                                     <constraint firstItem="BES-Vc-hSx" firstAttribute="top" secondItem="7Ot-l9-NbS" secondAttribute="top" constant="70" id="o9v-QF-qWr"/>
                                     <constraint firstItem="Ztu-9b-vFh" firstAttribute="leading" secondItem="l66-Lb-Pdn" secondAttribute="trailing" constant="-29" id="qrb-xK-OhF"/>
                                     <constraint firstItem="Ipa-F9-VES" firstAttribute="trailing" secondItem="jq3-Fa-yDY" secondAttribute="trailing" id="x3M-Bh-Ny8"/>
                                     <constraint firstItem="Ipa-F9-VES" firstAttribute="trailing" secondItem="Ztu-9b-vFh" secondAttribute="trailing" id="xag-ic-Gb8"/>
                                     <constraint firstItem="Ipa-F9-VES" firstAttribute="top" secondItem="7Ot-l9-NbS" secondAttribute="top" id="xdT-uf-u7x"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="hN3-QE-SQC"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7Ot-l9-NbS" firstAttribute="bottom" secondItem="Qkj-vq-g4U" secondAttribute="bottomMargin" id="3bY-Z2-8i0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7Ot-l9-NbS" secondAttribute="trailing" constant="-10" id="9Ks-XD-qTe"/>
-                            <constraint firstItem="8kL-CN-3e0" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="20" id="MAe-dQ-DXw"/>
                             <constraint firstItem="7Ot-l9-NbS" firstAttribute="top" secondItem="w5A-1f-CL8" secondAttribute="bottom" constant="30" id="TWE-CY-8xb"/>
                             <constraint firstItem="7Ot-l9-NbS" firstAttribute="leading" secondItem="Qkj-vq-g4U" secondAttribute="leading" constant="243" id="X5T-Jq-6VQ"/>
                         </constraints>
@@ -551,7 +528,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     <navigationItem key="navigationItem" id="9nz-8G-LJD"/>
                     <connections>
                         <outlet property="blocksProgram" destination="l66-Lb-Pdn" id="aCz-wf-cUf"/>
-                        <outlet property="buttonsStackView" destination="8kL-CN-3e0" id="0oZ-YQ-Sd3"/>
                         <outlet property="clearAllButton" destination="jq3-Fa-yDY" id="ndA-em-LxC"/>
                         <outlet property="mainMenuButton" destination="Ipa-F9-VES" id="n2V-Xt-rlL"/>
                         <outlet property="mainView" destination="Qkj-vq-g4U" id="dHO-24-6hq"/>

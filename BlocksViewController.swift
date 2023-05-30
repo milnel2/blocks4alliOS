@@ -46,7 +46,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var toolboxView: UIView!
 
     //The three main workspace menu buttons
-    @IBOutlet weak var buttonsStackView: UIStackView!
     @IBOutlet weak var mainMenuButton: CustomButton!
     @IBOutlet weak var clearAllButton: CustomButton!
     
@@ -127,7 +126,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         super.viewDidAppear(animated)
         
         //Orders contents of workspace to be more intuitive with Switch Control
-        workspaceContainerView.accessibilityElements = [workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, buttonsStackView!]
+        workspaceContainerView.accessibilityElements = [workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, mainMenuButton!, clearAllButton!]
 
         workspaceContainerView.bringSubviewToFront(workspaceNameLabel)
     }
