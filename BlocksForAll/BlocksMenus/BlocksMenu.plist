@@ -22,14 +22,14 @@
 				<false/>
 			</dict>
 			<dict>
-				<key>type</key>
-				<string>Statement</string>
 				<key>editable</key>
 				<false/>
+				<key>type</key>
+				<string>Statement</string>
 				<key>name</key>
-				<string>Vehicle Noise</string>
+				<string>Emotion Noise</string>
 				<key>color</key>
-				<string>#57819A</string>
+				<string>#90D7FF</string>
 				<key>double</key>
 				<false/>
 			</dict>
@@ -46,14 +46,14 @@
 				<false/>
 			</dict>
 			<dict>
-				<key>editable</key>
-				<false/>
 				<key>type</key>
 				<string>Statement</string>
+				<key>editable</key>
+				<false/>
 				<key>name</key>
-				<string>Emotion Noise</string>
+				<string>Vehicle Noise</string>
 				<key>color</key>
-				<string>#90D7FF</string>
+				<string>#57819A</string>
 				<key>double</key>
 				<false/>
 			</dict>
