@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -747,7 +747,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="722" y="530" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Faster"/>
-                                <state key="normal" title="Button" image="brownPlus"/>
+                                <state key="normal" title="Button" image="green_plus"/>
                                 <connections>
                                     <action selector="fastButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="Pqx-Zv-mgz"/>
                                 </connections>
@@ -763,7 +763,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="203" y="530" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Slower"/>
-                                <state key="normal" title="Button" image="brownMinus"/>
+                                <state key="normal" title="Button" image="green_minus"/>
                                 <connections>
                                     <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="hDu-fY-S5y"/>
                                 </connections>
@@ -926,7 +926,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="215" y="406" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" hint="Wait for a shorter time" label="Decrease"/>
-                                <state key="normal" title="Button" image="minus"/>
+                                <state key="normal" title="Button" image="orange_minus"/>
                                 <connections>
                                     <action selector="minusButtonPressed:" destination="9VT-Qr-ako" eventType="touchUpInside" id="s7O-Qy-l8I"/>
                                 </connections>
@@ -935,7 +935,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="709" y="406" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" hint="Wait for a longer time" label="Increase"/>
-                                <state key="normal" title="Button" image="plus"/>
+                                <state key="normal" title="Button" image="orange_plus"/>
                                 <connections>
                                     <action selector="plusButtonPressed:" destination="9VT-Qr-ako" eventType="touchUpInside" id="W8V-24-lCe"/>
                                 </connections>
@@ -1416,7 +1416,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="590" y="406" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" hint="Repeat more times " label="Increase"/>
-                                <state key="normal" title="Button" image="plus"/>
+                                <state key="normal" title="Button" image="orange_plus"/>
                                 <connections>
                                     <action selector="plusButtonPressed:" destination="Qcc-AD-WwK" eventType="touchUpInside" id="Lnp-DN-qsy"/>
                                 </connections>
@@ -1433,7 +1433,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="333" y="406" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" hint="Repeat fewer times" label="Decrease"/>
-                                <state key="normal" title="Button" image="minus"/>
+                                <state key="normal" title="Button" image="orange_minus"/>
                                 <connections>
                                     <action selector="minusButtonPressed:" destination="Qcc-AD-WwK" eventType="touchUpInside" id="5f2-Xa-w9H"/>
                                 </connections>
@@ -1784,7 +1784,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <accessibility key="accessibilityConfiguration" label="Faster">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
-                                <state key="normal" title="Button" image="brownPlus"/>
+                                <state key="normal" title="Button" image="green_plus"/>
                                 <connections>
                                     <action selector="fastButtonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="dUL-82-SIY"/>
                                     <action selector="fastButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="eZr-Up-ZS8"/>
@@ -1801,7 +1801,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="220" y="538" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Slower"/>
-                                <state key="normal" title="Button" image="brownMinus"/>
+                                <state key="normal" title="Button" image="green_minus"/>
                                 <connections>
                                     <action selector="slowButtonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="bxq-A5-z9F"/>
                                     <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="rle-AG-8Eg"/>
@@ -2926,7 +2926,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uRw-vH-lIn"/>
+        <segue reference="t2J-Rr-un6"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
@@ -2940,8 +2940,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="airplane" width="100" height="100"/>
         <image name="beep" width="100" height="100"/>
         <image name="boat" width="100" height="100"/>
-        <image name="brownMinus" width="100" height="100"/>
-        <image name="brownPlus" width="100" height="100"/>
         <image name="buzz_sound" width="100" height="100"/>
         <image name="car_sound" width="100" height="100"/>
         <image name="cat" width="133.44094848632812" height="133.44094848632812"/>
@@ -2950,15 +2948,17 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="dog" width="133.44094848632812" height="133.44094848632812"/>
         <image name="elephant" width="133.44094848632812" height="133.44094848632812"/>
         <image name="goat" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="green_minus" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="green_plus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="hear_voice" width="100" height="100"/>
         <image name="helicopter" width="100" height="100"/>
         <image name="horse" width="133.44094848632812" height="133.44094848632812"/>
         <image name="laser_sound" width="100" height="100"/>
         <image name="lion" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="minus" width="100" height="100"/>
         <image name="off" width="100" height="100"/>
         <image name="on" width="100" height="100"/>
-        <image name="plus" width="100" height="100"/>
+        <image name="orange_minus" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="orange_plus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="random_animal" width="133.39108276367188" height="133.90289306640625"/>
         <image name="random_emotion" width="100" height="100"/>
         <image name="random_object" width="100" height="100"/>

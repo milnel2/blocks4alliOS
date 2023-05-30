@@ -234,7 +234,7 @@
 				<key>name</key>
 				<string>Repeat</string>
 				<key>color</key>
-				<string>#B30DCB</string>
+				<string>#FF9C4C</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
@@ -248,7 +248,7 @@
 				<key>name</key>
 				<string>Repeat Forever</string>
 				<key>color</key>
-				<string>#B30DCB</string>
+				<string>#FF9C4C</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
@@ -271,11 +271,11 @@
 				<key>name</key>
 				<string>If</string>
 				<key>color</key>
-				<string>#B30DCB</string>
+				<string>#FF9C4C</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
-				<string>new_if.pdf</string>
+				<string>if.pdf</string>
 			</dict>
 			<dict>
 				<key>editable</key>
@@ -285,7 +285,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#B30DCB</string>
+				<string>#FF9C4C</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>

@@ -973,11 +973,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let repeatNumberButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 repeatNumberButton.tag = indexPath.row
-                repeatNumberButton.backgroundColor = #colorLiteral(red: 0.7019607843, green: 0.05098039216, blue: 0.7960784314, alpha: 1)
+                repeatNumberButton.backgroundColor = #colorLiteral(red: 1, green: 0.6117647059, blue: 0.2980392157, alpha: 1)
                 // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
                 let numberOfTimesToRepeat =  "\(block.addedBlocks[0].attributes["timesToRepeat"] ?? "1")"
                 repeatNumberButton.setTitle(numberOfTimesToRepeat, for: .normal)
                 repeatNumberButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+                repeatNumberButton.setTitleColor(.black, for: .normal)
+
                 repeatNumberButton.titleLabel?.numberOfLines = 0
                 repeatNumberButton.addTarget(self, action: #selector(repeatModifier(sender:)), for: .touchUpInside)
                 repeatNumberButton.layer.borderWidth = 2.0
@@ -1017,6 +1019,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
                 distanceSpeedButton.setTitle("\(block.addedBlocks[0].attributes["distance"]!) cm, \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
                 distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+                distanceSpeedButton.setTitleColor(.black, for: .normal)
+
                 distanceSpeedButton.titleLabel?.numberOfLines = 0
                 distanceSpeedButton.addTarget(self, action: #selector(distanceSpeedModifier(sender:)), for: .touchUpInside)
                 distanceSpeedButton.layer.borderWidth = 2.0
@@ -1049,6 +1053,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 angleButton.addTarget(self, action: #selector(angleModifier(sender:)), for: .touchUpInside)
                 angleButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+                angleButton.setTitleColor(.black, for: .normal)
+
+               
                 angleButton.titleLabel?.numberOfLines = 0
                 angleButton.layer.borderWidth = 2.0
                 angleButton.layer.borderColor = UIColor.black.cgColor
@@ -1137,7 +1144,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let waitTimeButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 waitTimeButton.tag = indexPath.row
-                waitTimeButton.backgroundColor = UIColor(displayP3Red: 179/255, green: 12/255, blue: 203/255, alpha: 1)
+                waitTimeButton.backgroundColor =  #colorLiteral(red: 1, green: 0.6117647059, blue: 0.2980392157, alpha: 1)
                 if (block.addedBlocks[0].attributes["wait"] == "1"){
                     waitTimeButton.setTitle("\(block.addedBlocks[0].attributes["wait"]!) second", for: .normal)
                 } else{
@@ -1145,6 +1152,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 waitTimeButton.addTarget(self, action: #selector(waitModifier(sender:)), for: .touchUpInside)
                 waitTimeButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+                waitTimeButton.setTitleColor(.black, for: .normal)
+
                 waitTimeButton.titleLabel?.numberOfLines = 0
                 waitTimeButton.layer.borderWidth = 2.0
                 waitTimeButton.layer.borderColor = UIColor.black.cgColor
