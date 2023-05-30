@@ -86,7 +86,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#B15C13</string>
+				<string>#31E384</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -100,7 +100,7 @@
 				<key>name</key>
 				<string>Drive Backward</string>
 				<key>color</key>
-				<string>#B15C13</string>
+				<string>#31E384</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -114,7 +114,7 @@
 				<key>name</key>
 				<string>Turn Left</string>
 				<key>color</key>
-				<string>#B15C13</string>
+				<string>#31E384</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -128,7 +128,7 @@
 				<key>name</key>
 				<string>Turn Right</string>
 				<key>color</key>
-				<string>#B15C13</string>
+				<string>#31E384</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>

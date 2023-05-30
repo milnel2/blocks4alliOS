@@ -1015,7 +1015,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
 
                 distanceSpeedButton.tag = indexPath.row
-                distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
+                distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
                 distanceSpeedButton.setTitle("\(block.addedBlocks[0].attributes["distance"]!) cm, \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
                 distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 distanceSpeedButton.titleLabel?.numberOfLines = 0
@@ -1043,7 +1043,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let angleButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
                 
                 angleButton.tag = indexPath.row
-                angleButton.backgroundColor = UIColor(displayP3Red: 177/255, green: 92/255, blue: 19/255, alpha: 1)
+                angleButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
                 
                 //Title: <angle>°
                 angleButton.setTitle("\(block.addedBlocks[0].attributes["angle"]!)\u{00B0}", for: .normal)
