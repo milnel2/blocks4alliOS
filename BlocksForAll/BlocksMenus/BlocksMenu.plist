@@ -151,7 +151,7 @@
 				<key>name</key>
 				<string>Set Eye Light</string>
 				<key>color</key>
-				<string>#6700C1</string>
+				<string>#E3D93E</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -165,7 +165,7 @@
 				<key>name</key>
 				<string>Set Left Ear Light</string>
 				<key>color</key>
-				<string>#6700C1</string>
+				<string>#E3D93E</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -179,7 +179,7 @@
 				<key>name</key>
 				<string>Set Right Ear Light</string>
 				<key>color</key>
-				<string>#6700C1</string>
+				<string>#E3D93E</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -193,7 +193,7 @@
 				<key>name</key>
 				<string>Set Chest Light</string>
 				<key>color</key>
-				<string>#6700C1</string>
+				<string>#E3D93E</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -207,7 +207,7 @@
 				<key>name</key>
 				<string>Set All Lights</string>
 				<key>color</key>
-				<string>#6700C1</string>
+				<string>#E3D93E</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>

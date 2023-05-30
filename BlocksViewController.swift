@@ -1118,10 +1118,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierBlockIndex = indexPath.row
                 
                 eyeLightButton.tag = indexPath.row
-                eyeLightButton.backgroundColor = UIColor(displayP3Red: 100/255, green: 4/255, blue: 195/255, alpha: 1)
+                eyeLightButton.backgroundColor = #colorLiteral(red: 0.8901960784, green: 0.8509803922, blue: 0.2431372549, alpha: 1)
                 eyeLightButton.setTitle("\(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
                 eyeLightButton.addTarget(self, action: #selector(setEyeLightModifier(sender:)), for: .touchUpInside)
                 eyeLightButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+                eyeLightButton.setTitleColor(.black, for: .normal)
                 eyeLightButton.titleLabel?.numberOfLines = 0
                 eyeLightButton.layer.borderWidth = 2.0
                 eyeLightButton.layer.borderColor = UIColor.black.cgColor
