@@ -10,8 +10,8 @@
 		<key>Blocks</key>
 		<array>
 			<dict>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
@@ -22,8 +22,8 @@
 				<false/>
 			</dict>
 			<dict>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
@@ -34,8 +34,8 @@
 				<false/>
 			</dict>
 			<dict>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
@@ -48,8 +48,8 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Vehicle Noise</string>
 				<key>color</key>
@@ -58,8 +58,8 @@
 				<false/>
 			</dict>
 			<dict>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
@@ -79,8 +79,8 @@
 		<key>Blocks</key>
 		<array>
 			<dict>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Drive Forward</string>
 				<key>type</key>
@@ -93,8 +93,8 @@
 				<string>drive_forward.pdf</string>
 			</dict>
 			<dict>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
@@ -107,8 +107,8 @@
 				<string>drive_backward.pdf</string>
 			</dict>
 			<dict>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
@@ -121,8 +121,8 @@
 				<string>turn_left.pdf</string>
 			</dict>
 			<dict>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
@@ -146,8 +146,8 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Set Eye Light</string>
 				<key>color</key>
@@ -160,8 +160,8 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Set Left Ear Light</string>
 				<key>color</key>
@@ -174,8 +174,8 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Set Right Ear Light</string>
 				<key>color</key>
@@ -188,8 +188,8 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Set Chest Light</string>
 				<key>color</key>
@@ -202,8 +202,8 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Set All Lights</string>
 				<key>color</key>
@@ -229,8 +229,8 @@
 				<array>
 					<string>Number</string>
 				</array>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Repeat</string>
 				<key>color</key>
@@ -243,7 +243,7 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
+				<key>isModifiable</key>
 				<false/>
 				<key>name</key>
 				<string>Repeat Forever</string>
@@ -261,7 +261,7 @@
 				<array>
 					<string>Boolean</string>
 				</array>
-				<key>editable</key>
+				<key>isModifiable</key>
 				<false/>
 				<key>options</key>
 				<array>
@@ -278,8 +278,8 @@
 				<string>if.pdf</string>
 			</dict>
 			<dict>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Wait for Time</string>
 				<key>type</key>
@@ -301,7 +301,7 @@
 		<key>Blocks</key>
 		<array>
 			<dict>
-				<key>editable</key>
+				<key>isModifiable</key>
 				<false/>
 				<key>name</key>
 				<string>Look Toward Voice</string>
@@ -315,7 +315,7 @@
 				<string>look_toward_voice.pdf</string>
 			</dict>
 			<dict>
-				<key>editable</key>
+				<key>isModifiable</key>
 				<false/>
 				<key>name</key>
 				<string>Look Forward</string>
@@ -329,7 +329,7 @@
 				<string>look_forward.pdf</string>
 			</dict>
 			<dict>
-				<key>editable</key>
+				<key>isModifiable</key>
 				<false/>
 				<key>name</key>
 				<string>Look Right</string>
@@ -343,7 +343,7 @@
 				<string>look_right.pdf</string>
 			</dict>
 			<dict>
-				<key>editable</key>
+				<key>isModifiable</key>
 				<false/>
 				<key>name</key>
 				<string>Look Left</string>
@@ -357,7 +357,7 @@
 				<string>look_left.pdf</string>
 			</dict>
 			<dict>
-				<key>editable</key>
+				<key>isModifiable</key>
 				<false/>
 				<key>name</key>
 				<string>Look Straight</string>
@@ -371,7 +371,7 @@
 				<string>look_straight.pdf</string>
 			</dict>
 			<dict>
-				<key>editable</key>
+				<key>isModifiable</key>
 				<false/>
 				<key>name</key>
 				<string>Look Down</string>
@@ -385,7 +385,7 @@
 				<string>look_down.pdf</string>
 			</dict>
 			<dict>
-				<key>editable</key>
+				<key>isModifiable</key>
 				<false/>
 				<key>name</key>
 				<string>Look Up</string>
@@ -401,7 +401,7 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
+				<key>isModifiable</key>
 				<false/>
 				<key>name</key>
 				<string>Wiggle</string>
@@ -415,7 +415,7 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
+				<key>isModifiable</key>
 				<false/>
 				<key>name</key>
 				<string>Nod</string>
@@ -438,8 +438,8 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Set Variable</string>
 				<key>color</key>
@@ -450,8 +450,8 @@
 			<dict>
 				<key>type</key>
 				<string>Statement </string>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Drive</string>
 				<key>color</key>
@@ -464,8 +464,8 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Turn</string>
 				<key>color</key>
@@ -478,8 +478,8 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Look Up or Down</string>
 				<key>color</key>
@@ -492,8 +492,8 @@
 			<dict>
 				<key>type</key>
 				<string>Statement</string>
-				<key>editable</key>
-				<false/>
+				<key>isModifiable</key>
+				<true/>
 				<key>name</key>
 				<string>Look Left or Right</string>
 				<key>color</key>

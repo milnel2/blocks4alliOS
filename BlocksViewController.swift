@@ -589,10 +589,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "animalNoise", value: "\(initialNoise)")
 
                 }
-                let animalNoiseButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+                let animalNoiseButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 animalNoiseButton.tag = indexPath.row
-                animalNoiseButton.layer.zPosition = 1
+                
                 
                 switch block.addedBlocks[0].attributes["animalNoise"]{
                 case "cat":
@@ -660,10 +660,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "vehicleNoise", value: "\(initialNoise)")
 
                 }
-                let vehicleNoiseButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+                let vehicleNoiseButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 vehicleNoiseButton.tag = indexPath.row
-                vehicleNoiseButton.layer.zPosition = 1
                 
                 switch block.addedBlocks[0].attributes["vehicleNoise"]{
                 case "airplane":
@@ -731,10 +730,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "objectNoise", value: "\(initialNoise)")
 
                 }
-                let objectNoiseButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+                let objectNoiseButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 objectNoiseButton.tag = indexPath.row
-                objectNoiseButton.layer.zPosition = 1
                 
                 switch block.addedBlocks[0].attributes["objectNoise"]{
                 case "buzz":
@@ -790,10 +788,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "emotionNoise", value: "\(initialNoise)")
 
                 }
-                let emotionNoiseButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+                let emotionNoiseButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 emotionNoiseButton.tag = indexPath.row
-                emotionNoiseButton.layer.zPosition = 1
                 
                 switch block.addedBlocks[0].attributes["emotionNoise"]{
                 case "bragging":
@@ -855,10 +852,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "speakWord", value: "\(initialWord)")
 
                 }
-                let speakButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+                let speakButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 speakButton.tag = indexPath.row
-                speakButton.layer.zPosition = 1
                 
                 switch block.addedBlocks[0].attributes["speakWord"]{
                 case "hi":
@@ -927,7 +923,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 cell.addSubview(speakButton)
                 save()
-                
+            // TODO: if
             case "If":
                 if block.addedBlocks.isEmpty{
                     let initialBoolean = "false"
@@ -939,7 +935,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     modifierInformation = " false"
                     
                 }
-                let ifButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
+                let ifButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
 
                 ifButton.tag = indexPath.row
                 switch block.addedBlocks[0].attributes["booleanSelected"]{
@@ -964,7 +960,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 cell.addSubview(ifButton)
                 save()
-                
             case "Repeat":
                 if block.addedBlocks.isEmpty{
                     // Creates repeat button for modifier.
@@ -975,7 +970,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "timesToRepeat", value: "\(initialTimesToRepeat)")
                 }
-                let repeatNumberButton = CustomButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
+                let repeatNumberButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 repeatNumberButton.tag = indexPath.row
                 repeatNumberButton.backgroundColor = #colorLiteral(red: 1, green: 0.6117647059, blue: 0.2980392157, alpha: 1)
@@ -995,7 +990,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 cell.addSubview(repeatNumberButton)
                 save()
-                
+            // TODO: repeat forever
             case "Repeat Forever":
                 if block.addedBlocks.isEmpty{
                     _ = Block(name: "forever", color: Color.init(uiColor:UIColor.red ) , double: false, type: "Boolean")
@@ -1014,14 +1009,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "speed", value: initialSpeed)
 
                 }
-                let distanceSpeedButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+                let distanceSpeedButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 let distanceSet = "\(block.addedBlocks[0].attributes["distance"]!)"
                 let speedSet = "\(block.addedBlocks[0].attributes["speed"]!)"
 
                 distanceSpeedButton.tag = indexPath.row
                 
-                distanceSpeedButton.layer.zPosition = 1
                 distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
                 distanceSpeedButton.setTitle("\(block.addedBlocks[0].attributes["distance"]!) cm, \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
                 distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
@@ -1049,11 +1043,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "angle", value: "\(initialAngle)")
                     
                 }
-                let angleButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+                let angleButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 angleButton.tag = indexPath.row
                 
-                angleButton.layer.zPosition = 1
                 angleButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
                 
                 //Title: <angle>°
@@ -1090,15 +1083,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "lightColor", value: "\(initialColor)")
 
                 }
-                let lightColorButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+                let lightColorButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 
                 let modifierBlockColor: UIColor = changeModifierBlockColor(color: block.addedBlocks[0].attributes["modifierBlockColor"]!)
                 
                 lightColorButton.tag = indexPath.row
                 lightColorButton.backgroundColor = modifierBlockColor
-                lightColorButton.layer.zPosition = 1
-                
+               
                 lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
                 if (modifierBlockColor == UIColor.yellow || modifierBlockColor == UIColor.green || modifierBlockColor == UIColor.white) {
                     lightColorButton.setTitleColor(.black, for: .normal)
@@ -1123,14 +1115,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "eyeLight", value: "\(initialEyeLightStatus)")
                 
                 }
-                let eyeLightButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+                let eyeLightButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 
                 modifierBlockIndex = indexPath.row
                 
                 eyeLightButton.tag = indexPath.row
                 eyeLightButton.backgroundColor = #colorLiteral(red: 0.8901960784, green: 0.8509803922, blue: 0.2431372549, alpha: 1)
-                eyeLightButton.layer.zPosition = 1
                 eyeLightButton.setTitle("\(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
                 eyeLightButton.addTarget(self, action: #selector(setEyeLightModifier(sender:)), for: .touchUpInside)
                 eyeLightButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
@@ -1154,12 +1145,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "wait", value: "\(initialWait)")
 
                 }
-                let waitTimeButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
-                
+                let waitTimeButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 waitTimeButton.tag = indexPath.row
                 waitTimeButton.backgroundColor =  #colorLiteral(red: 1, green: 0.6117647059, blue: 0.2980392157, alpha: 1)
-                waitTimeButton.layer.zPosition = 1
                 if (block.addedBlocks[0].attributes["wait"] == "1"){
                     waitTimeButton.setTitle("\(block.addedBlocks[0].attributes["wait"]!) second", for: .normal)
                 } else{
@@ -1193,12 +1182,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "variableValue", value: "\(initialVariableValue)")
 
                 }
-                let setVariableButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
-                
+                let setVariableButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 setVariableButton.tag = indexPath.row
                 setVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-                setVariableButton.layer.zPosition = 1
                 setVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) =  \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
                 setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
                 setVariableButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
@@ -1225,7 +1212,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                     
                 }
-                let setDriveVariableButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+                let setDriveVariableButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 
                 switch block.addedBlocks[0].attributes["variableSelected"]{
@@ -1249,7 +1236,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 setDriveVariableButton.layer.borderWidth = 2.0
                 setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
-                setDriveVariableButton.layer.zPosition = 1
                 
                 setDriveVariableButton.accessibilityHint = "Double tap to set Drive variable"
                 setDriveVariableButton.isAccessibilityElement = true
@@ -1268,7 +1254,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                     
                 }
-                let setLookUpDownVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
+                let setLookUpDownVariableButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                  
                  setLookUpDownVariableButton.tag = indexPath.row
                  switch block.addedBlocks[0].attributes["variableSelected"]{
@@ -1308,7 +1294,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
 
                 }
-                let setLookLeftRightVariableButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
+                let setLookLeftRightVariableButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 setLookLeftRightVariableButton.tag = indexPath.row
                 switch block.addedBlocks[0].attributes["variableSelected"]{
@@ -1346,7 +1332,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                    placeholderBlock?.addAttributes(key: "variableSelected", value: "\(initialVariable)")
                 }
-                let setTurnButton = UIButton(frame: CGRect(x: 0, y:startingHeight-blockSize-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize))
+                let setTurnButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 setTurnButton.tag = indexPath.row
                 switch block.addedBlocks[0].attributes["variableSelected"]{
@@ -1665,7 +1651,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
     }
-    
+    // calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values
+    func setUpModifierButton(withStartingHeight startingHeight : Int, withCount count : Int) -> CustomButton {
+        let tempButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+        tempButton.layer.zPosition = 1
+        return tempButton
+    }
     
     // MARK: - - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
