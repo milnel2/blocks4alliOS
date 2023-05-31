@@ -59,15 +59,16 @@ class BlockView: UIView, UITextFieldDelegate {
     func simpleView(FromBlock block: [Block]) -> UIView {
         let block = block[0]
         let myViewWidth = blockSize
-        let myViewHeight = blockSize
-        let myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
+        let myViewHeight = blockSize * 2
+        let myFrame = CGRect(x: 0, y: -myViewHeight/2, width: myViewWidth, height: myViewHeight)
         let myView = UIView(frame: myFrame)
         myView.backgroundColor = block.color.uiColor
         if(block.imageName != nil && defaults.integer(forKey: "showText") == 0){
             let imageName = block.imageName!
             var image = UIImage(named: imageName)
-            image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight))
+            image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight / 2))
             let imv = UIImageView.init(image: image)
+            imv.layer.position.y = CGFloat((blockSize * 6) / 4)
             //            if #available(iOS 11.0, *) {
             //                imv.adjustsImageSizeForAccessibilityContentSizeCategory = true
             //            } else {
@@ -79,10 +80,13 @@ class BlockView: UIView, UITextFieldDelegate {
             myLabel.text = block.name
             myLabel.textAlignment = .center
             myLabel.textColor = UIColor.black
+            myLabel.layer.position.y = CGFloat((blockSize * 6) / 4)
+            myLabel.layer.zPosition = 1
             myLabel.font = UIFont.preferredFont(forTextStyle: .title1)
             myLabel.numberOfLines = 0
             myLabel.adjustsFontForContentSizeCategory = true
             myView.addSubview(myLabel)
+            
         }
         return myView
     }
