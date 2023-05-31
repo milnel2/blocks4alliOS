@@ -58,17 +58,37 @@ class BlockView: UIView, UITextFieldDelegate {
     //MARK:- simpleView
     func simpleView(FromBlock block: [Block]) -> UIView {
         let block = block[0]
+        
+        let isModifierBlock = isModifierOrContainerBlock(block: block)
+        
+        let myViewHeight: Int
+        let myFrame: CGRect
         let myViewWidth = blockSize
-        let myViewHeight = blockSize * 2
-        let myFrame = CGRect(x: 0, y: -myViewHeight/2, width: myViewWidth, height: myViewHeight)
+        if isModifierBlock {
+            myViewHeight = blockSize * 2
+            myFrame = CGRect(x: 0, y: -myViewHeight/2, width: myViewWidth, height: myViewHeight)
+        } else {
+            myViewHeight = blockSize
+            myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
+
+           }
+        
+        
+        
         let myView = UIView(frame: myFrame)
         myView.backgroundColor = block.color.uiColor
         if(block.imageName != nil && defaults.integer(forKey: "showText") == 0){
             let imageName = block.imageName!
             var image = UIImage(named: imageName)
-            image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight / 2))
             let imv = UIImageView.init(image: image)
-            imv.layer.position.y = CGFloat((blockSize * 6) / 4)
+            if isModifierBlock {
+                image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight / 2))
+                imv.layer.position.y = CGFloat((blockSize * 6) / 4)
+            } else {
+                image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth * 2, height: myViewHeight * 2))
+                imv.layer.position.y = CGFloat((blockSize / 2))
+            }
+            
             //            if #available(iOS 11.0, *) {
             //                imv.adjustsImageSizeForAccessibilityContentSizeCategory = true
             //            } else {
@@ -80,14 +100,37 @@ class BlockView: UIView, UITextFieldDelegate {
             myLabel.text = block.name
             myLabel.textAlignment = .center
             myLabel.textColor = UIColor.black
-            myLabel.layer.position.y = CGFloat((blockSize * 6) / 4)
             myLabel.layer.zPosition = 1
             myLabel.font = UIFont.preferredFont(forTextStyle: .title1)
             myLabel.numberOfLines = 0
             myLabel.adjustsFontForContentSizeCategory = true
+            
+            if isModifierBlock {
+                myLabel.layer.position.y = CGFloat((blockSize * 6) / 4)
+            } else {
+                myLabel.layer.position.y = CGFloat(blockSize / 2)
+            }
             myView.addSubview(myLabel)
             
         }
         return myView
+    }
+    
+    // TODO: this needs to be refactored so that it isn't hard coded in. It should be changed so that it accesses the isModifiable property in BlocksMenu
+    // returns true for things like if and repeats so that they are tall and still look like they enclose other blocks
+    func isModifierOrContainerBlock(block: Block) -> Bool {
+        return block.name != "Look Toward Voice"
+                && block.name != "Look Forward"
+                && block.name != "Look Right"
+                && block.name != "Look Left"
+                && block.name != "Look Straight"
+                && block.name != "Look Down"
+                && block.name != "Look Up"
+                && block.name != "Wiggle"
+                && block.name != "Nod"
+                //block.name != "Repeat Forever"
+                //&& block.name != "End Repeat Forever"
+                //&& block.name != "If"
+                //&& block.name != "End If"
     }
 }
