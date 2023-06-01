@@ -461,7 +461,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
    
     func setUpModifierButton(withStartingHeight startingHeight : Int, withCount count : Int) -> CustomButton {
-        /* calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values*/
+        /* Use for non-sound modifier buttons. Calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values*/
         
         let tempButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
         
@@ -472,7 +472,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     func setUpSoundModifierButton(block : Block, blockName name : String, attributeName : String, defaultValue : String, withStartingHeight startingHeight : Int, withCount count : Int) -> CustomButton {
-        /* calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values*/
+        /* Sets up and returns a modifier button for sound blocks*/
         if block.addedBlocks.isEmpty{
             let initialNoise = defaultValue
             
@@ -487,8 +487,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         tempButton.layer.zPosition = 1
         
-        let animalNoise = block.addedBlocks[0].attributes[attributeName]
-        let imagePath = "\(animalNoise ?? "cat").pdf"
+        let sound = block.addedBlocks[0].attributes[attributeName]
+        let imagePath = "\(sound ?? "cat").pdf"
+        
         let image: UIImage?
         image = UIImage(named: imagePath)
         if image != nil {
