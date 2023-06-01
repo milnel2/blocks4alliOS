@@ -137,7 +137,7 @@ class BlockTableViewController: UITableViewController {
                 
                 if block.double{
                     let endBlockName = "End " + block.name
-                    let endBlock = Block(name: endBlockName, color: block.color, double: true)
+                    let endBlock = Block(name: endBlockName, color: block.color, double: true, isModifiable: false)
                     endBlock?.counterpart.append(block)
                     block.counterpart.append(endBlock ?? block)
                     myDestination.blocks = [block, endBlock!]
@@ -207,14 +207,14 @@ class BlockTableViewController: UITableViewController {
                 var functionToolBlockArray = [Block]()
                 
                 //Adds Create/Edit Functions button to Functions category
-                let createFunctionBlock = Block(name: "Create/Edit Functions", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#00A6FF")), double: false)!
+                let createFunctionBlock = Block(name: "Create/Edit Functions", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#00A6FF")), double: false, isModifiable: true)!
                 createFunctionBlock.type = "Function"
                 functionToolBlockArray.append(createFunctionBlock)
                 toolBoxBlockArray += [createFunctionBlock]
                 
                 for function in functionBlocks{
                     var blockBeingCreated: Block
-                        blockBeingCreated = Block(name: function, color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: false)!
+                        blockBeingCreated = Block(name: function, color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: false, isModifiable: false)!
                     blockBeingCreated.type = "Function"
                     functionToolBlockArray.append(blockBeingCreated)
                     toolBoxBlockArray += [blockBeingCreated]
@@ -231,10 +231,11 @@ class BlockTableViewController: UITableViewController {
                         // take the block and using it as a dictionary dictItem
                         // below takes the blocks and initalizes their properties
                         let name = dictItem.object(forKey: "name")
+                        let isModifiable = dictItem.object(forKey: "isModifiable") as? Bool ?? false
                         if let colorString = dictItem.object(forKey: "color") as? String{
                             let color2 = Color.init(uiColor:UIColor.colorFrom(hexString: colorString))
                             if let double = dictItem.object(forKey: "double") as? Bool{
-                                guard let block = Block(name: name as! String, color: color2 , double: double) else {
+                                guard let block = Block(name: name as! String, color: color2 , double: double, isModifiable: isModifiable) else {
                                     fatalError("Unable to instantiate block")
                                 }
                                 if let imageName = dictItem.object(forKey: "imageName") as? String{

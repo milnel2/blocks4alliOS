@@ -74,6 +74,7 @@ class Block: Codable {
     var acceptedTypes: [String] = [] //list of types that can be added to current block (e.g. numbers for a repeat block)
     
     var attributes = [String:String]() //dictionary that holds attibute values for block (e.g. distance and speed)
+    var isModifiable: Bool? //true if it has a modifier block
     
     
     //MARK: - json variable
@@ -93,7 +94,7 @@ class Block: Codable {
     
     //MARK: - Initialization
 
-    init?(name: String, color: Color, double: Bool, imageName: String? = nil, addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = []){
+    init?(name: String, color: Color, double: Bool, imageName: String? = nil, addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = [], isModifiable: Bool = false){
         
         //TODO: check that color is initialized as well
         if name.isEmpty {
@@ -107,6 +108,7 @@ class Block: Codable {
         self.addedBlocks = addedBlocks
         self.type = type
         self.acceptedTypes = acceptedTypes
+        self.isModifiable = isModifiable
         
     }
     
@@ -120,7 +122,7 @@ class Block: Codable {
     
     func copy() -> Block{
         /*Used when selecting a block from the toolbox and copying into workspace*/
-        let newBlock = Block.init(name: self.name, color: self.color, double: self.double, imageName: self.imageName, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes)
+        let newBlock = Block.init(name: self.name, color: self.color, double: self.double, imageName: self.imageName, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes, isModifiable: self.isModifiable!)
         return newBlock!
     }
     

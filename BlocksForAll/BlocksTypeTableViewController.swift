@@ -94,11 +94,13 @@ class BlocksTypeTableViewController: UITableViewController {
                 // for every item blockType is a constant set to the item as a NSDictionary
                 //initializes the block properities
                 let name = blockType.object(forKey: "type") as? String
+                let isModifiable = blockType.object(forKey: "isModifiable") as? Bool ?? false
+                let double = blockType.object(forKey: "double") as? Bool ?? false
                 var color = Color.init(uiColor:UIColor.green )
                 if let colorString = blockType.object(forKey: "color") as? String{
                     color = Color.init(uiColor: UIColor.colorFrom(hexString: colorString))
                 }
-                guard let block = Block(name: name!, color: color, double: false) else {
+                guard let block = Block(name: name!, color: color, double: double, isModifiable: isModifiable) else {
                     fatalError("Unable to instantiate block")
                 }
                 blockTypes += [block]

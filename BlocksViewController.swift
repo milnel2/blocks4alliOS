@@ -146,8 +146,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         clearAllButton.layer.cornerRadius = 10
         
         if workspaceNameLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
-            let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true)
-            let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true)
+            let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, isModifiable: false)
+            let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, isModifiable: false)
             startBlock!.counterpart = [endBlock!]
             endBlock!.counterpart = [startBlock!]
             functionsDict[currentWorkspace]?.append(startBlock!)
@@ -583,7 +583,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialNoise = "cat"
                     
-                    let placeholderBlock = Block(name: "Animal Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Animal Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "animalNoise", value: "\(initialNoise)")
@@ -654,7 +654,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialNoise = "airplane"
                     
-                    let placeholderBlock = Block(name: "Vehicle Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Vehicle Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "vehicleNoise", value: "\(initialNoise)")
@@ -724,7 +724,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialNoise = "buzz"
                     
-                    let placeholderBlock = Block(name: "Object Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Object Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "objectNoise", value: "\(initialNoise)")
@@ -782,7 +782,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialNoise = "bragging"
                     
-                    let placeholderBlock = Block(name: "Emotion Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Emotion Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "emotionNoise", value: "\(initialNoise)")
@@ -846,7 +846,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialWord = "hi"
                     
-                    let placeholderBlock = Block(name: "Speak Word", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Speak Word", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "speakWord", value: "\(initialWord)")
@@ -928,7 +928,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialBoolean = "false"
                     
-                    let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray), double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "If Modifier", color: Color.init(uiColor:UIColor.lightGray), double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "booleanSelected", value: "\(initialBoolean)")
@@ -965,7 +965,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     // Creates repeat button for modifier.
                     let initialTimesToRepeat = 2
                    
-                    let placeholderBlock = Block(name: "Repeat Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Repeat Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "timesToRepeat", value: "\(initialTimesToRepeat)")
@@ -993,7 +993,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             // TODO: repeat forever
             case "Repeat Forever":
                 if block.addedBlocks.isEmpty{
-                    _ = Block(name: "forever", color: Color.init(uiColor:UIColor.red ) , double: false, type: "Boolean")
+                    _ = Block(name: "forever", color: Color.init(uiColor:UIColor.red ) , double: false, type: "Boolean", isModifiable: false)
                 }
                 
             case "Drive Forward", "Drive Backward":
@@ -1002,7 +1002,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let initialSpeed = "Normal"
                     // Creates distance button for modifier.
                     // TODO: change the Distance and Speed values in the placeholderBlock name according to Dash API
-                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "distance", value: "\(initialDistance)")
@@ -1037,7 +1037,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     //Creates angle button for modifier
                     let initialAngle = 90
                     
-                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Distance Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "angle", value: "\(initialAngle)")
@@ -1073,7 +1073,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     // MARK: Blockly default color is yellow
                     let initialColor = "yellow"
                     
-                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.yellow) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Light Color Modifier", color: Color.init(uiColor:UIColor.yellow) , double: false, type: "Boolean", isModifiable: true)
                     
                     placeholderBlock?.addAttributes(key: "lightColor", value: initialColor)
                     // MARK: modifier block color changes to what was selected
@@ -1109,8 +1109,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Set Eye Light":
                 if block.addedBlocks.isEmpty{
                     let initialEyeLightStatus = "Off"
-                    let placeholderBlock = Block(name: "Eye Light Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
-                    
+                    let placeholderBlock = Block(name: "Eye Light Modifier", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "eyeLight", value: "\(initialEyeLightStatus)")
                 
@@ -1139,7 +1138,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "Wait for Time":
                 if block.addedBlocks.isEmpty{
                     let initialWait = 1
-                    let placeholderBlock = Block(name: "Wait Time", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Wait Time", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     placeholderBlock?.addAttributes(key: "wait", value: "\(initialWait)")
@@ -1174,7 +1173,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let initialVariable = "orange"
                     let initialVariableValue = 0
 
-                    let placeholderBlock = Block(name: "Set Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Set Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -1205,7 +1204,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
-                    let placeholderBlock = Block(name: "Set Drive Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Set Drive Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -1247,7 +1246,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
-                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -1287,7 +1286,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
-                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Set Look Left or Right Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
@@ -1326,7 +1325,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if block.addedBlocks.isEmpty{
                     let initialVariable = "orange"
                     
-                    let placeholderBlock = Block(name: "Choose Turn Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
+                    let placeholderBlock = Block(name: "Choose Turn Variable", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
                     
                     block.addedBlocks.append(placeholderBlock!)
                     
