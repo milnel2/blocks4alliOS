@@ -82,13 +82,16 @@ class BlockView: UIView, UITextFieldDelegate {
         if(block.imageName != nil && defaults.integer(forKey: "showText") == 0){
             let imageName = block.imageName!
             var image = UIImage(named: imageName)
-            let imv = UIImageView.init(image: image)
+            let imv: UIImageView
             if isModifierBlock {
                 image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight / 2))
+                imv = UIImageView.init(image: image)
                 imv.layer.position.y = CGFloat((blockSize * 6) / 4)
             } else {
-                image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth * 2, height: myViewHeight * 2))
+                image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight))
+                imv = UIImageView.init(image: image)
                 imv.layer.position.y = CGFloat((blockSize / 2))
+                
             }
             
             //            if #available(iOS 11.0, *) {
