@@ -1011,15 +1011,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let setVariableButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 setVariableButton.tag = indexPath.row
-                setVariableButton.backgroundColor = #colorLiteral(red: 0.4666666667, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
+                //setVariableButton.backgroundColor = #colorLiteral(red: 0.6745098039, green: 0.5215686275, blue: 0.9568627451, alpha: 1)
                 setVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) =  \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
                 setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
                 setVariableButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 setVariableButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 setVariableButton.titleLabel?.numberOfLines = 0
 
-                setVariableButton.layer.borderWidth = 2.0
-                setVariableButton.layer.borderColor = UIColor.black.cgColor
+//                setVariableButton.layer.borderWidth = 2.0
+//                setVariableButton.layer.borderColor = UIColor.black.cgColor
                 
                 setVariableButton.accessibilityHint = "Double tap to set variable value"
                 setVariableButton.isAccessibilityElement = true
@@ -1060,8 +1060,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 setDriveVariableButton.addTarget(self, action: #selector(driveModifier(sender:)), for: .touchUpInside)
                 
-                setDriveVariableButton.layer.borderWidth = 2.0
-                setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
+//                setDriveVariableButton.layer.borderWidth = 2.0
+//                setDriveVariableButton.layer.borderColor = UIColor.black.cgColor
                 
                 setDriveVariableButton.accessibilityHint = "Double tap to set Drive variable"
                 setDriveVariableButton.isAccessibilityElement = true
@@ -1099,8 +1099,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                  }
                 
                  setLookUpDownVariableButton.addTarget(self, action: #selector(lookUpDownModifier(sender:)), for: .touchUpInside)
-                 setLookUpDownVariableButton.layer.borderWidth = 2.0
-                 setLookUpDownVariableButton.layer.borderColor = UIColor.black.cgColor
+//                 setLookUpDownVariableButton.layer.borderWidth = 2.0
+//                 setLookUpDownVariableButton.layer.borderColor = UIColor.black.cgColor
                  
                  setLookUpDownVariableButton.accessibilityHint = "Double tap to set Look Up or Down variable"
                  setLookUpDownVariableButton.isAccessibilityElement = true
@@ -1139,8 +1139,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 setLookLeftRightVariableButton.addTarget(self, action: #selector(lookLeftRightModifier(sender:)), for: .touchUpInside)
-                setLookLeftRightVariableButton.layer.borderWidth = 2.0
-                setLookLeftRightVariableButton.layer.borderColor = UIColor.black.cgColor
+//                setLookLeftRightVariableButton.layer.borderWidth = 2.0
+//                setLookLeftRightVariableButton.layer.borderColor = UIColor.black.cgColor
                 
                 setLookLeftRightVariableButton.accessibilityHint = "Double tap to set Look Left or Right variable"
                 setLookLeftRightVariableButton.isAccessibilityElement = true
@@ -1182,9 +1182,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 setTurnButton.addTarget(self, action: #selector(turnModifier(sender:)), for: .touchUpInside)
-                setTurnButton.layer.borderWidth = 2.0
-                setTurnButton.layer.borderColor = UIColor.black.cgColor
-                
+//                setTurnButton.layer.borderWidth = 2.0
+//                setTurnButton.layer.borderColor = UIColor.black.cgColor
+//                
                 setTurnButton.accessibilityHint = "Double tap to set Turn variable"
                 setTurnButton.isAccessibilityElement = true
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"

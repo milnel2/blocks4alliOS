@@ -443,7 +443,7 @@
 				<key>name</key>
 				<string>Set Variable</string>
 				<key>color</key>
-				<string>#774B4B</string>
+				<string>#D4ADF5</string>
 				<key>double</key>
 				<false/>
 			</dict>
@@ -455,7 +455,7 @@
 				<key>name</key>
 				<string>Drive</string>
 				<key>color</key>
-				<string>#774B4B</string>
+				<string>#9E7BB5</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -469,7 +469,7 @@
 				<key>name</key>
 				<string>Turn</string>
 				<key>color</key>
-				<string>#774B4B</string>
+				<string>#DE81F5</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -483,7 +483,7 @@
 				<key>name</key>
 				<string>Look Up or Down</string>
 				<key>color</key>
-				<string>#774B4B</string>
+				<string>#993685</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -497,7 +497,7 @@
 				<key>name</key>
 				<string>Look Left or Right</string>
 				<key>color</key>
-				<string>#774B4B</string>
+				<string>#733C94</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
