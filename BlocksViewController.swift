@@ -502,7 +502,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     
-    
     /// Adds VoiceOver label to blockView, which changes to placement info if blocks are being moved
     /// - Parameters:
     ///   - blockView: view to be given the label
