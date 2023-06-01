@@ -822,8 +822,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 emotionNoiseButton.addTarget(self, action: #selector(emotionModifier(sender:)), for: .touchUpInside)
-                emotionNoiseButton.layer.borderWidth = 2.0
-                emotionNoiseButton.layer.borderColor = UIColor.black.cgColor
+//                emotionNoiseButton.layer.borderWidth = 2.0
+//                emotionNoiseButton.layer.borderColor = UIColor.black.cgColor
                 
                 emotionNoiseButton.accessibilityHint = "Double tap to choose emotion noise"
                 emotionNoiseButton.isAccessibilityElement = true
