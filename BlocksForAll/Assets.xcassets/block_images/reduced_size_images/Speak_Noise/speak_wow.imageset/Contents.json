@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "small_speak_wow.pdf",
+      "filename" : "speak_wow.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

@@ -630,8 +630,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 animalNoiseButton.addTarget(self, action: #selector(animalModifier(sender:)), for: .touchUpInside)
-//                animalNoiseButton.layer.borderWidth = 2.0
-//                animalNoiseButton.layer.borderColor = UIColor.black.cgColor
                 
                 animalNoiseButton.accessibilityHint = "Double tap to choose animal noise"
                 animalNoiseButton.isAccessibilityElement = true
@@ -700,8 +698,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 vehicleNoiseButton.addTarget(self, action: #selector(vehicleModifier(sender:)), for: .touchUpInside)
-                vehicleNoiseButton.layer.borderWidth = 2.0
-                vehicleNoiseButton.layer.borderColor = UIColor.black.cgColor
                 
                 vehicleNoiseButton.accessibilityHint = "Double tap to choose vehicle noise"
                 vehicleNoiseButton.isAccessibilityElement = true
@@ -722,7 +718,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
             case "Object Noise":
                 if block.addedBlocks.isEmpty{
-                    let initialNoise = "buzz"
+                    let initialNoise = "laser"
                     
                     let placeholderBlock = Block(name: "Object Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean")
                     
@@ -758,8 +754,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 objectNoiseButton.addTarget(self, action: #selector(objectNoiseModifier(sender:)), for: .touchUpInside)
-                objectNoiseButton.layer.borderWidth = 2.0
-                objectNoiseButton.layer.borderColor = UIColor.black.cgColor
                 
                 objectNoiseButton.accessibilityHint = "Double tap to choose object noise"
                 objectNoiseButton.isAccessibilityElement = true
@@ -822,8 +816,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 emotionNoiseButton.addTarget(self, action: #selector(emotionModifier(sender:)), for: .touchUpInside)
-//                emotionNoiseButton.layer.borderWidth = 2.0
-//                emotionNoiseButton.layer.borderColor = UIColor.black.cgColor
                 
                 emotionNoiseButton.accessibilityHint = "Double tap to choose emotion noise"
                 emotionNoiseButton.isAccessibilityElement = true
@@ -904,8 +896,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
                 speakButton.addTarget(self, action: #selector(speakModifier(sender:)), for: .touchUpInside)
-                speakButton.layer.borderWidth = 2.0
-                speakButton.layer.borderColor = UIColor.black.cgColor
+
                 
                 speakButton.accessibilityHint = "Double tap to choose word"
                 speakButton.isAccessibilityElement = true

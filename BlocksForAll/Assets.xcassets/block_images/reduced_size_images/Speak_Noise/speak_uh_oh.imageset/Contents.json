@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "small_speak_uh_oh.pdf",
+      "filename" : "speak_uh_oh.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

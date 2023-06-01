@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "helicopter_sound.svg",
+      "filename" : "helicopter.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }
