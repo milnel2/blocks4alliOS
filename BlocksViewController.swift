@@ -595,6 +595,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 
                 switch block.addedBlocks[0].attributes["animalNoise"]{
+                case "buzz":
+                    let image = UIImage(named: "buzz_sound.pdf")
+                    animalNoiseButton.setBackgroundImage(image, for: .normal)
                 case "cat":
                     let image = UIImage(named: "cat.pdf")
                     animalNoiseButton.setBackgroundImage(image, for: .normal)
@@ -731,9 +734,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 objectNoiseButton.tag = indexPath.row
                 
                 switch block.addedBlocks[0].attributes["objectNoise"]{
-                case "buzz":
-                    let image = UIImage(named: "buzz_sound.pdf")
-                    objectNoiseButton.setBackgroundImage(image, for: .normal)
                 case "laser":
                     let image = UIImage(named: "laser_sound.pdf")
                     objectNoiseButton.setBackgroundImage(image, for: .normal)

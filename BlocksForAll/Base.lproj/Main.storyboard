@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -211,15 +211,15 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
-                        <rect key="frame" x="0.0" y="0.0" width="1079.8578199052877" height="205"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1079" height="205"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="robotCell" id="KUQ-1B-5Sg">
-                                <rect key="frame" x="0.0" y="50" width="1079.8578199052877" height="44"/>
+                                <rect key="frame" x="0.0" y="50" width="1079" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KUQ-1B-5Sg" id="ZfT-J5-i3d">
-                                    <rect key="frame" x="0.0" y="0.0" width="1079.8578199052877" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1079" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -566,7 +566,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController id="qsn-gg-TPc" customClass="BlockTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" id="u2M-AO-l53">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="739.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="739"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -635,7 +635,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <viewControllerLayoutGuide type="bottom" id="M8X-LY-ONh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gng-WS-M5w">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="739.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="739"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap workspace to add block " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TgX-Fj-FVm">
@@ -665,7 +665,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController id="2Tn-yf-DgT" customClass="BlocksTypeTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6cp-t1-mWw">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="739.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="739"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -2307,11 +2307,11 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="WSb-H4-3eh">
-                                <rect key="frame" x="85" y="372" width="910" height="365"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="WSb-H4-3eh">
+                                <rect key="frame" x="180" y="210" width="720" height="580"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="0sc-ML-1N9">
-                                        <rect key="frame" x="0.0" y="0.0" width="910" height="150"/>
+                                        <rect key="frame" x="95" y="0.0" width="530" height="150"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ab2-cI-hgX">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -2349,34 +2349,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="3de-lU-aRB"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQy-ch-07V">
-                                                <rect key="frame" x="570" y="0.0" width="150" height="150"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="dog" label="Dog Noise"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="dco-dB-cng"/>
-                                                    <constraint firstAttribute="width" constant="150" id="dpt-bD-miE"/>
-                                                </constraints>
-                                                <state key="normal" backgroundImage="dog"/>
-                                                <connections>
-                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="PcG-hM-FTx"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UpS-IY-ART">
-                                                <rect key="frame" x="760" y="0.0" width="150" height="150"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="elephant" label="Elephant Noise"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="6Bj-2R-2LM"/>
-                                                    <constraint firstAttribute="height" constant="150" id="PVm-Rg-5st"/>
-                                                </constraints>
-                                                <state key="normal" backgroundImage="elephant"/>
-                                                <connections>
-                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="fPW-Aw-mD7"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="3Tb-qW-gsf">
-                                        <rect key="frame" x="0.0" y="215" width="910" height="150"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="3qM-Dk-Ofa">
+                                        <rect key="frame" x="0.0" y="215" width="720" height="150"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11z-tH-agL">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -2390,8 +2366,49 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="iC8-HY-hNG"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOD-D3-CjJ">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCc-Zm-xjT">
                                                 <rect key="frame" x="190" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="buzz" label="Buzz"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="Guc-0r-gAj"/>
+                                                    <constraint firstAttribute="width" constant="150" id="VAY-RX-7xi"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="buzz_sound"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="tgK-6y-6Ie"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UpS-IY-ART">
+                                                <rect key="frame" x="380" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="elephant" label="Elephant Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="6Bj-2R-2LM"/>
+                                                    <constraint firstAttribute="height" constant="150" id="PVm-Rg-5st"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="elephant"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="fPW-Aw-mD7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQy-ch-07V">
+                                                <rect key="frame" x="570" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="dog" label="Dog Noise"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="dco-dB-cng"/>
+                                                    <constraint firstAttribute="width" constant="150" id="dpt-bD-miE"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="dog"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="kT8-cI-XdI" eventType="touchUpInside" id="PcG-hM-FTx"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="3Tb-qW-gsf">
+                                        <rect key="frame" x="0.0" y="430" width="720" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jOD-D3-CjJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="horse" label="Horse Noise"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="cwh-IE-TYu"/>
@@ -2403,7 +2420,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAt-AX-C9N">
-                                                <rect key="frame" x="380" y="0.0" width="150" height="150"/>
+                                                <rect key="frame" x="190" y="0.0" width="150" height="150"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="lion" label="Lion Noise"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="Olz-Fr-kub"/>
@@ -2415,7 +2432,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FJv-o2-0GQ">
-                                                <rect key="frame" x="570" y="0.0" width="150" height="150"/>
+                                                <rect key="frame" x="380" y="0.0" width="150" height="150"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="turkey" label="Turkey Noise"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="Wt6-MY-LWY"/>
@@ -2427,7 +2444,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCa-lf-yO0">
-                                                <rect key="frame" x="760" y="0.0" width="150" height="150"/>
+                                                <rect key="frame" x="570" y="0.0" width="150" height="150"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="randomAnimal" label="Random Animal Noise"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="C5q-Jw-cc9"/>
@@ -2454,8 +2471,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <segue destination="uoc-nU-c4a" kind="show" id="REf-Ph-mB1"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animal Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RP0-th-39x">
-                                <rect key="frame" x="243" y="79" width="594" height="261"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Animal Noise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RP0-th-39x">
+                                <rect key="frame" x="361" y="48" width="358" height="85"/>
                                 <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="594" id="hCq-4G-RYU"/>
@@ -2467,11 +2484,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="hmO-IZ-dxb" firstAttribute="top" secondItem="WSb-H4-3eh" secondAttribute="bottom" constant="20" id="9Fc-5t-kec"/>
                             <constraint firstItem="RP0-th-39x" firstAttribute="top" secondItem="uSQ-mj-f2u" secondAttribute="bottom" constant="79" id="Cf4-I2-D4R"/>
+                            <constraint firstItem="RP0-th-39x" firstAttribute="top" secondItem="uSQ-mj-f2u" secondAttribute="bottom" constant="48" id="DMq-Hd-6RH"/>
                             <constraint firstItem="hmO-IZ-dxb" firstAttribute="top" secondItem="WSb-H4-3eh" secondAttribute="bottom" constant="73" id="IfS-Pt-ZNS"/>
                             <constraint firstItem="WSb-H4-3eh" firstAttribute="centerX" secondItem="LSQ-79-hWm" secondAttribute="centerX" id="L4Y-CQ-9c5"/>
                             <constraint firstItem="RP0-th-39x" firstAttribute="centerX" secondItem="LSQ-79-hWm" secondAttribute="centerX" id="uHa-GL-pip"/>
-                            <constraint firstItem="hmO-IZ-dxb" firstAttribute="top" secondItem="RP0-th-39x" secondAttribute="bottom" constant="470" id="yYr-Mf-eHb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OeK-y1-TTH"/>
@@ -2480,13 +2498,14 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <outletCollection property="buttons" destination="ab2-cI-hgX" collectionClass="NSMutableArray" id="0wC-rM-Oj9"/>
                         <outletCollection property="buttons" destination="NiD-nr-M4c" collectionClass="NSMutableArray" id="lQn-Be-4Jx"/>
                         <outletCollection property="buttons" destination="C2I-Fh-YX7" collectionClass="NSMutableArray" id="bDy-FL-3Wb"/>
-                        <outletCollection property="buttons" destination="AQy-ch-07V" collectionClass="NSMutableArray" id="QMe-E3-JEq"/>
-                        <outletCollection property="buttons" destination="UpS-IY-ART" collectionClass="NSMutableArray" id="4Mc-66-eih"/>
-                        <outletCollection property="buttons" destination="11z-tH-agL" collectionClass="NSMutableArray" id="ERC-6p-kZE"/>
                         <outletCollection property="buttons" destination="jOD-D3-CjJ" collectionClass="NSMutableArray" id="QI5-lK-FTV"/>
                         <outletCollection property="buttons" destination="kAt-AX-C9N" collectionClass="NSMutableArray" id="bFM-T5-gMq"/>
                         <outletCollection property="buttons" destination="FJv-o2-0GQ" collectionClass="NSMutableArray" id="Q30-U6-jo5"/>
                         <outletCollection property="buttons" destination="XCa-lf-yO0" collectionClass="NSMutableArray" id="A6L-cY-pn8"/>
+                        <outletCollection property="buttons" destination="11z-tH-agL" collectionClass="NSMutableArray" id="ERC-6p-kZE"/>
+                        <outletCollection property="buttons" destination="UpS-IY-ART" collectionClass="NSMutableArray" id="4Mc-66-eih"/>
+                        <outletCollection property="buttons" destination="AQy-ch-07V" collectionClass="NSMutableArray" id="QMe-E3-JEq"/>
+                        <outletCollection property="buttons" destination="MCc-Zm-xjT" collectionClass="NSMutableArray" id="YRP-HI-irH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4M-np-pmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2531,22 +2550,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="245" y="372" width="590" height="365"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="8uI-Pt-xBL">
-                                        <rect key="frame" x="0.0" y="0.0" width="590" height="150"/>
+                                        <rect key="frame" x="110" y="0.0" width="370" height="150"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9n-3x-Boc">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="buzz" label="Buzz"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="79o-FZ-KYs"/>
-                                                    <constraint firstAttribute="height" constant="150" id="Y7i-tn-MrF"/>
-                                                </constraints>
-                                                <state key="normal" backgroundImage="buzz_sound"/>
-                                                <connections>
-                                                    <action selector="buttonPressed:" destination="D14-Ci-rni" eventType="touchUpInside" id="ovP-b9-PM4"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VJ9-Mh-HyN">
-                                                <rect key="frame" x="220" y="0.0" width="150" height="150"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="laser" label="Laser Noise"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="2Qq-9n-xUz"/>
@@ -2558,7 +2565,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qS-nG-Q9p">
-                                                <rect key="frame" x="440" y="0.0" width="150" height="150"/>
+                                                <rect key="frame" x="220" y="0.0" width="150" height="150"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="snore" label="Snore"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="WQa-1l-YLh"/>
@@ -2626,7 +2633,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <connections>
                         <outlet property="back" destination="QiG-Hb-gjY" id="UxV-z9-Tjh"/>
-                        <outletCollection property="buttons" destination="J9n-3x-Boc" collectionClass="NSMutableArray" id="yz2-CM-Qj2"/>
                         <outletCollection property="buttons" destination="VJ9-Mh-HyN" collectionClass="NSMutableArray" id="zIb-Au-M7c"/>
                         <outletCollection property="buttons" destination="Q9y-vQ-KQh" collectionClass="NSMutableArray" id="E9G-Kz-X5l"/>
                         <outletCollection property="buttons" destination="sBL-sO-54m" collectionClass="NSMutableArray" id="ug8-J4-hbI"/>
@@ -2841,7 +2847,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="hNp-po-htE" userLabel="Function Table View Controller" customClass="FunctionTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QmC-VP-0hq">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="809.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="809"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -2926,7 +2932,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="t2J-Rr-un6"/>
+        <segue reference="REf-Ph-mB1"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>

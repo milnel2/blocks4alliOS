@@ -196,6 +196,8 @@ class ExecutingProgram {
             let animal = blockToExec.addedBlocks[0].attributes["animalNoise"]
             
             switch animal {
+            case "buzz":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BUZZ)
             case "cat":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_CAT)
             case "crocodile":
@@ -252,8 +254,6 @@ class ExecutingProgram {
             let object = blockToExec.addedBlocks[0].attributes["objectNoise"]
             
             switch object {
-            case "buzz":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BUZZ)
             case "laser":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_LASERS)
             case "snore":
@@ -265,7 +265,7 @@ class ExecutingProgram {
             case "randomObject":
                 playNoise(myAction: myAction, sound: objectSoundFiles[.random(in: objectSoundFiles.indices)])
             default:
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BUZZ)
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_LASERS)
             }
             
         case "Emotion Noise":
