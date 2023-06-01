@@ -59,7 +59,9 @@ class BlockView: UIView, UITextFieldDelegate {
     func simpleView(FromBlock block: [Block]) -> UIView {
         let block = block[0]
         
-        let isModifierBlock = isModifierOrContainerBlock(block: block)
+        //let isModifierBlock = isModifierOrContainerBlock(block: block)
+        let isModifierBlock = block.isModifiable ?? false
+
         
         let myViewHeight: Int
         let myFrame: CGRect
@@ -118,20 +120,20 @@ class BlockView: UIView, UITextFieldDelegate {
     
     // TODO: this needs to be refactored so that it isn't hard coded in. It should be changed so that it accesses the isModifiable property in BlocksMenu
     // returns true for things like if and repeats so that they are tall and still look like they enclose other blocks
-    func isModifierOrContainerBlock(block: Block) -> Bool {
-        return block.name != "Look Toward Voice"
-                && block.name != "Look Forward"
-                && block.name != "Look Right"
-                && block.name != "Look Left"
-                && block.name != "Look Straight"
-                && block.name != "Look Down"
-                && block.name != "Look Up"
-                && block.name != "Wiggle"
-                && block.name != "Nod"
-                //block.name != "Repeat Forever"
-                && block.name != "End Repeat Forever"
-                && block.name != "End Repeat"
-                //&& block.name != "If"
-                && block.name != "End If"
-    }
+//    func isModifierOrContainerBlock(block: Block) -> Bool {
+//        return block.name != "Look Toward Voice"
+//                && block.name != "Look Forward"
+//                && block.name != "Look Right"
+//                && block.name != "Look Left"
+//                && block.name != "Look Straight"
+//                && block.name != "Look Down"
+//                && block.name != "Look Up"
+//                && block.name != "Wiggle"
+//                && block.name != "Nod"
+//                && block.name != "Repeat Forever"
+//                && block.name != "End Repeat Forever"
+//                && block.name != "End Repeat"
+//                //&& block.name != "If"
+//                && block.name != "End If"
+//    }
 }

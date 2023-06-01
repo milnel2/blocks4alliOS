@@ -262,7 +262,7 @@
 					<string>Boolean</string>
 				</array>
 				<key>isModifiable</key>
-				<false/>
+				<true/>
 				<key>options</key>
 				<array>
 					<true/>

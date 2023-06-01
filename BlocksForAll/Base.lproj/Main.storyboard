@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bed-2B-QED">
-                                <rect key="frame" x="330" y="276" width="417" height="173"/>
+                                <rect key="frame" x="329" y="276" width="418" height="173"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Instructions">
@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Kc-2pq">
-                                <rect key="frame" x="330" y="146" width="417" height="165"/>
+                                <rect key="frame" x="329" y="145" width="418" height="166"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Get Started">
@@ -46,7 +46,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RT2-NS-4g9">
-                                <rect key="frame" x="330" y="410" width="417" height="175"/>
+                                <rect key="frame" x="329" y="410" width="418" height="174"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Add Robots">
@@ -59,7 +59,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" id="Zti-zZ-Cz0">
-                                <rect key="frame" x="497" y="560" width="300" height="95"/>
+                                <rect key="frame" x="496" y="559" width="300" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Show Text">
@@ -70,7 +70,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" id="LEW-oe-19b">
-                                <rect key="frame" x="280" y="560" width="300" height="95"/>
+                                <rect key="frame" x="279" y="559" width="301" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Show Icons">
@@ -176,7 +176,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
-                                <rect key="frame" x="0.0" y="302" width="1080" height="206"/>
+                                <rect key="frame" x="0.0" y="302" width="1079" height="205"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="XOJ-Tu-hH8" kind="embed" id="sot-c6-H0b"/>
@@ -211,15 +211,15 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
-                        <rect key="frame" x="0.0" y="0.0" width="1080" height="206"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1079.8578199052877" height="205"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="robotCell" id="KUQ-1B-5Sg">
-                                <rect key="frame" x="0.0" y="50" width="1080" height="44"/>
+                                <rect key="frame" x="0.0" y="50" width="1079.8578199052877" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KUQ-1B-5Sg" id="ZfT-J5-i3d">
-                                    <rect key="frame" x="0.0" y="0.0" width="1080" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1079.8578199052877" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -410,7 +410,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLx-VG-2JW">
-                                <rect key="frame" x="0.0" y="0.0" width="235" height="810"/>
+                                <rect key="frame" x="0.0" y="0.0" width="235" height="809"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <connections>
@@ -566,7 +566,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController id="qsn-gg-TPc" customClass="BlockTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" id="u2M-AO-l53">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="740"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="739.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -635,7 +635,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <viewControllerLayoutGuide type="bottom" id="M8X-LY-ONh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gng-WS-M5w">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="740"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="739.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap workspace to add block " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TgX-Fj-FVm">
@@ -665,7 +665,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController id="2Tn-yf-DgT" customClass="BlocksTypeTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6cp-t1-mWw">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="740"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="739.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -2841,7 +2841,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="hNp-po-htE" userLabel="Function Table View Controller" customClass="FunctionTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QmC-VP-0hq">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="810"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="809.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -2937,62 +2937,62 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="GreenArrow" width="649" height="586"/>
         <image name="Orange" width="100" height="100"/>
         <image name="Watermelon" width="100" height="100"/>
-        <image name="airplane" width="960" height="960"/>
-        <image name="beep" width="960" height="960"/>
-        <image name="boat" width="960" height="960"/>
-        <image name="buzz_sound" width="100" height="100"/>
-        <image name="car_sound" width="960" height="960"/>
-        <image name="cat" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="crocodile" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="dinosaur" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="dog" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="elephant" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="goat" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="airplane" width="133" height="133"/>
+        <image name="beep" width="133" height="133"/>
+        <image name="boat" width="133" height="133"/>
+        <image name="buzz_sound" width="133" height="133"/>
+        <image name="car_sound" width="133" height="133"/>
+        <image name="cat" width="133" height="133"/>
+        <image name="crocodile" width="133" height="133"/>
+        <image name="dinosaur" width="133" height="133"/>
+        <image name="dog" width="133" height="133"/>
+        <image name="elephant" width="133" height="133"/>
+        <image name="goat" width="133" height="133"/>
         <image name="green_minus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="green_plus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="hear_voice" width="100" height="100"/>
-        <image name="helicopter" width="960" height="960"/>
-        <image name="horse" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="laser_sound" width="100" height="100"/>
-        <image name="lion" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="off" width="100" height="100"/>
-        <image name="on" width="100" height="100"/>
+        <image name="helicopter" width="133" height="133"/>
+        <image name="horse" width="133" height="133"/>
+        <image name="laser_sound" width="133" height="133"/>
+        <image name="lion" width="133" height="133"/>
+        <image name="off" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="on" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange_minus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange_plus" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="random_animal" width="133.39108276367188" height="133.90289306640625"/>
-        <image name="random_emotion" width="100" height="100"/>
-        <image name="random_object" width="100" height="100"/>
-        <image name="random_vehicle" width="133.39108276367188" height="133.90289306640625"/>
-        <image name="random_word" width="100" height="100"/>
+        <image name="random_animal" width="133" height="133"/>
+        <image name="random_emotion" width="133.39108276367188" height="133.90289306640625"/>
+        <image name="random_object" width="133" height="133"/>
+        <image name="random_vehicle" width="133" height="133"/>
+        <image name="random_word" width="133" height="133"/>
         <image name="sense_obstacle" width="100" height="100"/>
-        <image name="siren" width="960" height="960"/>
-        <image name="snore_sound" width="100" height="100"/>
-        <image name="sound_bragging" width="100" height="100"/>
-        <image name="sound_confused" width="100" height="100"/>
-        <image name="sound_giggle" width="100" height="100"/>
-        <image name="sound_grunt" width="100" height="100"/>
-        <image name="sound_sigh" width="100" height="100"/>
-        <image name="sound_surprised" width="100" height="100"/>
-        <image name="sound_yawn" width="100" height="100"/>
-        <image name="speak_bye" width="100" height="100"/>
-        <image name="speak_cool" width="100" height="100"/>
-        <image name="speak_haha" width="100" height="100"/>
-        <image name="speak_hi" width="100" height="100"/>
-        <image name="speak_lets_go" width="100" height="100"/>
-        <image name="speak_oh" width="100" height="100"/>
-        <image name="speak_tah_dah" width="100" height="100"/>
-        <image name="speak_uh_huh" width="100" height="100"/>
-        <image name="speak_uh_oh" width="100" height="100"/>
-        <image name="speak_wah" width="100" height="100"/>
-        <image name="speak_wee_hee" width="100" height="100"/>
-        <image name="speak_wow" width="100" height="100"/>
-        <image name="speak_yippe" width="100" height="100"/>
-        <image name="speed_boost" width="960" height="960"/>
-        <image name="squeak_sound" width="100" height="100"/>
-        <image name="tire_squeal" width="960" height="960"/>
-        <image name="train" width="960" height="960"/>
-        <image name="trumpet_sound" width="100" height="100"/>
-        <image name="turkey" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="siren" width="133" height="133"/>
+        <image name="snore_sound" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="sound_bragging" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="sound_confused" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="sound_giggle" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="sound_grunt" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="sound_sigh" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="sound_surprised" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="sound_yawn" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_bye" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_cool" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_haha" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_hi" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_lets_go" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_oh" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_tah_dah" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_uh_huh" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_uh_oh" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_wah" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_wee_hee" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_wow" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speak_yippe" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="speed_boost" width="133" height="133"/>
+        <image name="squeak_sound" width="133" height="133"/>
+        <image name="tire_squeal" width="133" height="133"/>
+        <image name="train" width="133" height="133"/>
+        <image name="trumpet_sound" width="133" height="133"/>
+        <image name="turkey" width="133" height="133"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
