@@ -459,6 +459,49 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return size
     }
     
+   
+    func setUpModifierButton(withStartingHeight startingHeight : Int, withCount count : Int) -> CustomButton {
+        /* calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values*/
+        
+        let tempButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+        
+        tempButton.layer.zPosition = 1
+        
+        
+        return tempButton
+    }
+    
+    func setUpSoundModifierButton(block : Block, blockName name : String, attributeName : String, defaultValue : String, withStartingHeight startingHeight : Int, withCount count : Int) -> CustomButton {
+        /* calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values*/
+        if block.addedBlocks.isEmpty{
+            let initialNoise = defaultValue
+            
+            let placeholderBlock = Block(name: name, color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
+            
+            block.addedBlocks.append(placeholderBlock!)
+            placeholderBlock?.addAttributes(key: attributeName, value: "\(initialNoise)")
+
+        }
+        
+        let tempButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+        
+        tempButton.layer.zPosition = 1
+        
+        let animalNoise = block.addedBlocks[0].attributes[attributeName]
+        let imagePath = "\(animalNoise ?? "cat").pdf"
+        let image: UIImage?
+        image = UIImage(named: imagePath)
+        if image != nil {
+            tempButton.setBackgroundImage(image, for: .normal)
+        } else {
+            tempButton.backgroundColor =  UIColor(displayP3Red: 5/255, green: 137/255, blue: 0/255, alpha: 1)
+        }
+        
+        return tempButton
+    }
+    
+    
+    
     /// Adds VoiceOver label to blockView, which changes to placement info if blocks are being moved
     /// - Parameters:
     ///   - blockView: view to be given the label
@@ -580,57 +623,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
             switch name{
             case "Animal Noise":
-                if block.addedBlocks.isEmpty{
-                    let initialNoise = "cat"
-                    
-                    let placeholderBlock = Block(name: "Animal Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "animalNoise", value: "\(initialNoise)")
-
-                }
-                let animalNoiseButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
-                
+               
+                let animalNoiseButton = setUpSoundModifierButton(block: block, blockName : "Animal Noise", attributeName: "animalNoise", defaultValue: "cat", withStartingHeight: startingHeight, withCount: count)
+                            
                 animalNoiseButton.tag = indexPath.row
                 
-                
-                switch block.addedBlocks[0].attributes["animalNoise"]{
-                case "buzz":
-                    let image = UIImage(named: "buzz_sound.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "cat":
-                    let image = UIImage(named: "cat.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "crocodile":
-                    let image = UIImage(named: "crocodile.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "dinosaur":
-                    let image = UIImage(named: "dinosaur.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "dog":
-                    let image = UIImage(named: "dog.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "elephant":
-                    let image = UIImage(named: "elephant.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "goat":
-                    let image = UIImage(named: "goat.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "horse":
-                    let image = UIImage(named: "horse.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "lion":
-                    let image = UIImage(named: "lion.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "turkey":
-                    let image = UIImage(named: "turkey.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                case "randomAnimal":
-                    let image = UIImage(named: "random_animal.pdf")
-                    animalNoiseButton.setBackgroundImage(image, for: .normal)
-                default:
-                    animalNoiseButton.backgroundColor =  UIColor(displayP3Red: 5/255, green: 137/255, blue: 0/255, alpha: 1)
-                }
+
                 
                 animalNoiseButton.addTarget(self, action: #selector(animalModifier(sender:)), for: .touchUpInside)
                 
@@ -652,53 +650,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 save()
                 
             case "Vehicle Noise":
-                if block.addedBlocks.isEmpty{
-                    let initialNoise = "airplane"
-                    
-                    let placeholderBlock = Block(name: "Vehicle Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "vehicleNoise", value: "\(initialNoise)")
-
-                }
-                let vehicleNoiseButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
+                let vehicleNoiseButton = setUpSoundModifierButton(block: block, blockName : "Vehicle Noise", attributeName: "vehicleNoise", defaultValue: "airplane", withStartingHeight: startingHeight, withCount: count)
                 
                 vehicleNoiseButton.tag = indexPath.row
                 
-                switch block.addedBlocks[0].attributes["vehicleNoise"]{
-                case "airplane":
-                    let image = UIImage(named: "airplane.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "beep":
-                    let image = UIImage(named: "beep.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "boat":
-                    let image = UIImage(named: "boat.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "helicopter":
-                    let image = UIImage(named: "helicopter.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "siren":
-                    let image = UIImage(named: "siren.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "speedBoost":
-                    let image = UIImage(named: "speed_boost.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "startEngine":
-                    let image = UIImage(named: "car_sound.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "tireSqueal":
-                    let image = UIImage(named: "tire_squeal.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "train":
-                    let image = UIImage(named: "train.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                case "randomVehicle":
-                    let image = UIImage(named: "random_vehicle.pdf")
-                    vehicleNoiseButton.setBackgroundImage(image, for: .normal)
-                default:
-                    vehicleNoiseButton.backgroundColor =  UIColor(displayP3Red: 0/255, green: 32/255, blue: 65/255, alpha: 1)
-                }
                 
                 vehicleNoiseButton.addTarget(self, action: #selector(vehicleModifier(sender:)), for: .touchUpInside)
                 
@@ -720,38 +675,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 save()
                 
             case "Object Noise":
-                if block.addedBlocks.isEmpty{
-                    let initialNoise = "laser"
-                    
-                    let placeholderBlock = Block(name: "Object Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "objectNoise", value: "\(initialNoise)")
-
-                }
-                let objectNoiseButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
+               
+                let objectNoiseButton = setUpSoundModifierButton(block: block, blockName : "Object Noise", attributeName: "objectNoise", defaultValue: "laser", withStartingHeight: startingHeight, withCount: count)
                 
                 objectNoiseButton.tag = indexPath.row
                 
-                switch block.addedBlocks[0].attributes["objectNoise"]{
-                case "laser":
-                    let image = UIImage(named: "laser_sound.pdf")
-                    objectNoiseButton.setBackgroundImage(image, for: .normal)
-                case "snore":
-                    let image = UIImage(named: "snore_sound.pdf")
-                    objectNoiseButton.setBackgroundImage(image, for: .normal)
-                case "trumpet":
-                    let image = UIImage(named: "trumpet_sound.pdf")
-                    objectNoiseButton.setBackgroundImage(image, for: .normal)
-                case "squeak":
-                    let image = UIImage(named: "squeak_sound.pdf")
-                    objectNoiseButton.setBackgroundImage(image, for: .normal)
-                case "randomObject":
-                    let image = UIImage(named: "random_object.pdf")
-                    objectNoiseButton.setBackgroundImage(image, for: .normal)
-                default:
-                    objectNoiseButton.backgroundColor =  UIColor(displayP3Red: 34/255, green: 124/255, blue: 124/255, alpha: 1)
-                }
                 
                 objectNoiseButton.addTarget(self, action: #selector(objectNoiseModifier(sender:)), for: .touchUpInside)
                 
@@ -773,47 +701,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 save()
                 
             case "Emotion Noise":
-                if block.addedBlocks.isEmpty{
-                    let initialNoise = "bragging"
-                    
-                    let placeholderBlock = Block(name: "Emotion Noise", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "emotionNoise", value: "\(initialNoise)")
-
-                }
-                let emotionNoiseButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
+                
+                let emotionNoiseButton = setUpSoundModifierButton(block: block, blockName : "Emotion Noise", attributeName: "emotionNoise", defaultValue: "bragging", withStartingHeight: startingHeight, withCount: count)
                 
                 emotionNoiseButton.tag = indexPath.row
-                
-                switch block.addedBlocks[0].attributes["emotionNoise"]{
-                case "bragging":
-                    let image = UIImage(named: "sound_bragging.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "confused":
-                    let image = UIImage(named: "sound_confused.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "giggle":
-                    let image = UIImage(named: "sound_giggle.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "grunt":
-                    let image = UIImage(named: "sound_grunt.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "sigh":
-                    let image = UIImage(named: "sound_sigh.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "surprised":
-                    let image = UIImage(named: "sound_surprised.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "yawn":
-                    let image = UIImage(named: "sound_yawn.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                case "randomEmotion":
-                    let image = UIImage(named: "random_emotion.pdf")
-                    emotionNoiseButton.setBackgroundImage(image, for: .normal)
-                default:
-                    emotionNoiseButton.backgroundColor =  UIColor(displayP3Red: 165/255, green: 12/255, blue: 130/255, alpha: 1)
-                }
                 
                 emotionNoiseButton.addTarget(self, action: #selector(emotionModifier(sender:)), for: .touchUpInside)
                 
@@ -835,65 +726,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 save()
                 
             case "Speak":
-                if block.addedBlocks.isEmpty{
-                    let initialWord = "hi"
-                    
-                    let placeholderBlock = Block(name: "Speak Word", color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
-                    
-                    block.addedBlocks.append(placeholderBlock!)
-                    placeholderBlock?.addAttributes(key: "speakWord", value: "\(initialWord)")
-
-                }
-                let speakButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
+                
+                let speakButton = setUpSoundModifierButton(block: block, blockName : "Speak Word", attributeName: "speakWord", defaultValue: "hi", withStartingHeight: startingHeight, withCount: count)
                 
                 speakButton.tag = indexPath.row
-                
-                switch block.addedBlocks[0].attributes["speakWord"]{
-                case "hi":
-                    let image = UIImage(named: "speak_hi.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "bye":
-                    let image = UIImage(named: "speak_bye.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "cool":
-                    let image = UIImage(named: "speak_cool.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "haha":
-                    let image = UIImage(named: "speak_haha.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "letsGo":
-                    let image = UIImage(named: "speak_lets_go.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "oh":
-                    let image = UIImage(named: "speak_oh.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "wow":
-                    let image = UIImage(named: "speak_wow.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "tahDah":
-                    let image = UIImage(named: "speak_tah_dah.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "uhHuh":
-                    let image = UIImage(named: "speak_uh_huh.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "uhOh":
-                    let image = UIImage(named: "speak_uh_oh.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "wah":
-                    let image = UIImage(named: "speak_wah.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "weeHee":
-                    let image = UIImage(named: "speak_wee_hee.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "yippe":
-                    let image = UIImage(named: "speak_yippe.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                case "randomWord":
-                    let image = UIImage(named: "random_word.pdf")
-                    speakButton.setBackgroundImage(image, for: .normal)
-                default:
-                    speakButton.backgroundColor =  UIColor(displayP3Red: 198/255, green: 51/255, blue: 41/255, alpha: 1)
-                }
                 
                 speakButton.addTarget(self, action: #selector(speakModifier(sender:)), for: .touchUpInside)
 
@@ -1641,13 +1477,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
     }
-    // calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values
-    func setUpModifierButton(withStartingHeight startingHeight : Int, withCount count : Int) -> CustomButton {
-        let tempButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
-        tempButton.layer.zPosition = 1
-        return tempButton
-    }
-    
+   
     // MARK: - - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
