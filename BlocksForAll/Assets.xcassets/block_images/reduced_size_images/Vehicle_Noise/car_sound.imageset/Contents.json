@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "car_power_sound.svg",
+      "filename" : "car_sound.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

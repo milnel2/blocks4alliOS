@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "small_speak_yippe.pdf",
+      "filename" : "speak_yippe.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

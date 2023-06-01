@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "random_vehicle_sound.svg",
+      "filename" : "random_vehicle.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

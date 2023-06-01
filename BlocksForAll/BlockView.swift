@@ -129,8 +129,9 @@ class BlockView: UIView, UITextFieldDelegate {
                 && block.name != "Wiggle"
                 && block.name != "Nod"
                 //block.name != "Repeat Forever"
-                //&& block.name != "End Repeat Forever"
+                && block.name != "End Repeat Forever"
+                && block.name != "End Repeat"
                 //&& block.name != "If"
-                //&& block.name != "End If"
+                && block.name != "End If"
     }
 }

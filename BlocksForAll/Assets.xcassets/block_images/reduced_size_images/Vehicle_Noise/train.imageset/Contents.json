@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "train_sound.svg",
+      "filename" : "train.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }
