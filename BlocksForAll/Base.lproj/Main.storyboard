@@ -2744,7 +2744,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="height" constant="150" id="3Zn-gL-afP"/>
                                                     <constraint firstAttribute="width" constant="150" id="OQE-GQ-9BM"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="speed_boost"/>
+                                                <state key="normal" backgroundImage="speedBoost"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="A1i-U4-X0O"/>
                                                 </connections>
@@ -2756,7 +2756,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="Ae2-dQ-Mxl"/>
                                                     <constraint firstAttribute="height" constant="150" id="SxK-M5-ESb"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="car_sound"/>
+                                                <state key="normal" backgroundImage="startEngine"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="Qga-Tu-roo"/>
                                                 </connections>
@@ -2768,7 +2768,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="Os2-3P-IPe"/>
                                                     <constraint firstAttribute="height" constant="150" id="Z6i-p6-fbX"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="tire_squeal"/>
+                                                <state key="normal" backgroundImage="tireSqueal"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="eji-6V-eog"/>
                                                 </connections>
@@ -2792,7 +2792,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <constraint firstAttribute="width" constant="150" id="cAx-Av-ceh"/>
                                                     <constraint firstAttribute="height" constant="150" id="k3b-KM-Xjs"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="random_vehicle"/>
+                                                <state key="normal" backgroundImage="randomVehicle"/>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="Rpy-3h-A9i" eventType="touchUpInside" id="VoJ-bc-zye"/>
                                                 </connections>
@@ -2924,19 +2924,18 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Apple" width="100" height="100"/>
-        <image name="Banana" width="100" height="100"/>
-        <image name="Cherry" width="100" height="100"/>
+        <image name="Apple" width="133" height="133"/>
+        <image name="Banana" width="133" height="133"/>
+        <image name="Cherry" width="133" height="133"/>
         <image name="GreenArrow" width="649" height="586"/>
-        <image name="Orange" width="100" height="100"/>
-        <image name="Watermelon" width="100" height="100"/>
+        <image name="Orange" width="133" height="133"/>
+        <image name="Watermelon" width="133" height="133"/>
         <image name="airplane" width="133" height="133"/>
         <image name="beep" width="133" height="133"/>
         <image name="boat" width="133" height="133"/>
         <image name="bragging" width="133.44094848632812" height="133.44094848632812"/>
         <image name="buzz" width="133" height="133"/>
         <image name="bye" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="car_sound" width="133" height="133"/>
         <image name="cat" width="133" height="133"/>
         <image name="confused" width="133.44094848632812" height="133.44094848632812"/>
         <image name="cool" width="133.44094848632812" height="133.44094848632812"/>
@@ -2965,16 +2964,17 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="randomAnimal" width="133" height="133"/>
         <image name="randomEmotion" width="133.39108276367188" height="133.90289306640625"/>
         <image name="randomObject" width="133" height="133"/>
+        <image name="randomVehicle" width="133" height="133"/>
         <image name="randomWord" width="133" height="133"/>
-        <image name="random_vehicle" width="133" height="133"/>
         <image name="sense_obstacle" width="100" height="100"/>
         <image name="sigh" width="133.44094848632812" height="133.44094848632812"/>
         <image name="siren" width="133" height="133"/>
-        <image name="speed_boost" width="133" height="133"/>
+        <image name="speedBoost" width="133" height="133"/>
         <image name="squeak" width="133" height="133"/>
+        <image name="startEngine" width="133" height="133"/>
         <image name="surprised" width="133.44094848632812" height="133.44094848632812"/>
         <image name="tahDah" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="tire_squeal" width="133" height="133"/>
+        <image name="tireSqueal" width="133" height="133"/>
         <image name="train" width="133" height="133"/>
         <image name="trumpet" width="133" height="133"/>
         <image name="turkey" width="133" height="133"/>
