@@ -470,26 +470,42 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         return tempButton
     }
-    
-    func setUpSoundModifierButton(block : Block, blockName name : String, attributeName : String, defaultValue : String, withStartingHeight startingHeight : Int, withCount count : Int) -> CustomButton {
-        /* Sets up and returns a modifier button for sound blocks*/
-        if block.addedBlocks.isEmpty{
-            let initialNoise = defaultValue
-            
-            let placeholderBlock = Block(name: name, color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
-            
-            block.addedBlocks.append(placeholderBlock!)
-            placeholderBlock?.addAttributes(key: attributeName, value: "\(initialNoise)")
 
+    
+    private func setUpSoundModifierButton(block : Block, blockName name : String,  defaultValue : String, withStartingHeight startingHeight : Int, withCount count : Int, indexPath : IndexPath) -> CustomButton {
+        /* Sets up and returns a modifier button for sound blocks*/
+        
+        // generate the regular english name for accessibility tool purposes
+        let regularEnglishName = name.lowercased()
+        let arrayOfNameWords = name.split(separator: " ")
+        
+        // generate attribute name based on block name
+        var attributeName = ""
+        
+        for index in arrayOfNameWords.indices {
+            if index != 0 {
+                attributeName.append(arrayOfNameWords[index].capitalized)
+            } else {
+                attributeName.append(arrayOfNameWords[index].lowercased())
+            }
         }
         
+        if block.addedBlocks.isEmpty{
+            let initialNoise = defaultValue
+
+            let placeholderBlock = Block(name: name, color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
+
+            block.addedBlocks.append(placeholderBlock!)
+            placeholderBlock?.addAttributes(key: attributeName, value: "\(initialNoise)")
+        }
+
         let tempButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
-        
+
         tempButton.layer.zPosition = 1
-        
+
         let sound = block.addedBlocks[0].attributes[attributeName]
         let imagePath = "\(sound ?? "cat").pdf"
-        
+
         let image: UIImage?
         image = UIImage(named: imagePath)
         if image != nil {
@@ -498,9 +514,39 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             tempButton.backgroundColor =  UIColor(displayP3Red: 5/255, green: 137/255, blue: 0/255, alpha: 1)
         }
         
+        tempButton.tag = indexPath.row
+    
+        tempButton.accessibilityHint = "Double tap to choose \(regularEnglishName)"
+        tempButton.isAccessibilityElement = true
+        let modifierInformation: String
+        
+        // handle speak blocks versus noise blocks
+        if regularEnglishName.contains("noise") {
+            modifierInformation = ("\(block.addedBlocks[0].attributes[attributeName]!) Noise".titleCased())
+        } else {
+            // contains say
+            modifierInformation = ("Say \(block.addedBlocks[0].attributes["speakWord"]!)".titleCased())
+        }
+        
+        var voiceControlLabel = modifierInformation
+        let wordToRemove: String
+        
+        if regularEnglishName.contains("noise"){
+            wordToRemove = " Noise"
+        } else {
+            // contains say
+            wordToRemove = "Say "
+        }
+        if let range = voiceControlLabel.range(of: wordToRemove){
+            voiceControlLabel.removeSubrange(range)
+        }
+        if #available(iOS 13.0, *) {
+            tempButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
+        }
         return tempButton
     }
     
+
     
     /// Adds VoiceOver label to blockView, which changes to placement info if blocks are being moved
     /// - Parameters:
@@ -621,132 +667,48 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             let name = block.name
             var modifierInformation = ""
 
+            
             switch name{
             case "Animal Noise":
-               
-                let animalNoiseButton = setUpSoundModifierButton(block: block, blockName : "Animal Noise", attributeName: "animalNoise", defaultValue: "cat", withStartingHeight: startingHeight, withCount: count)
-                            
-                animalNoiseButton.tag = indexPath.row
-                
-
+             
+                let animalNoiseButton = setUpSoundModifierButton(block: block, blockName : "Animal Noise", defaultValue: "cat", withStartingHeight: startingHeight, withCount: count, indexPath: indexPath)
                 
                 animalNoiseButton.addTarget(self, action: #selector(animalModifier(sender:)), for: .touchUpInside)
-                
-                animalNoiseButton.accessibilityHint = "Double tap to choose animal noise"
-                animalNoiseButton.isAccessibilityElement = true
-                modifierInformation = ("\(block.addedBlocks[0].attributes["animalNoise"]!) Noise".titleCased())
-                
-                var voiceControlLabel = modifierInformation
-                let wordToRemove = " Noise"
-                if let range = voiceControlLabel.range(of: wordToRemove){
-                    voiceControlLabel.removeSubrange(range)
-                }
-                
-                if #available(iOS 13.0, *) {
-                    animalNoiseButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
-                }
-                
+                        
                 cell.addSubview(animalNoiseButton)
                 save()
                 
             case "Vehicle Noise":
-                let vehicleNoiseButton = setUpSoundModifierButton(block: block, blockName : "Vehicle Noise", attributeName: "vehicleNoise", defaultValue: "airplane", withStartingHeight: startingHeight, withCount: count)
-                
-                vehicleNoiseButton.tag = indexPath.row
-                
+                let vehicleNoiseButton = setUpSoundModifierButton(block: block, blockName : "Vehicle Noise", defaultValue: "airplane", withStartingHeight: startingHeight, withCount: count, indexPath: indexPath)
                 
                 vehicleNoiseButton.addTarget(self, action: #selector(vehicleModifier(sender:)), for: .touchUpInside)
-                
-                vehicleNoiseButton.accessibilityHint = "Double tap to choose vehicle noise"
-                vehicleNoiseButton.isAccessibilityElement = true
-                modifierInformation = ("\(block.addedBlocks[0].attributes["vehicleNoise"]!) Noise".titleCased())
-                
-                var voiceControlLabel = modifierInformation
-                let wordToRemove = " Noise"
-                if let range = voiceControlLabel.range(of: wordToRemove){
-                    voiceControlLabel.removeSubrange(range)
-                }
-                
-                if #available(iOS 13.0, *) {
-                    vehicleNoiseButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
-                }
                 
                 cell.addSubview(vehicleNoiseButton)
                 save()
                 
             case "Object Noise":
                
-                let objectNoiseButton = setUpSoundModifierButton(block: block, blockName : "Object Noise", attributeName: "objectNoise", defaultValue: "laser", withStartingHeight: startingHeight, withCount: count)
-                
-                objectNoiseButton.tag = indexPath.row
-                
+                let objectNoiseButton = setUpSoundModifierButton(block: block, blockName : "Object Noise", defaultValue: "laser", withStartingHeight: startingHeight, withCount: count, indexPath: indexPath)
                 
                 objectNoiseButton.addTarget(self, action: #selector(objectNoiseModifier(sender:)), for: .touchUpInside)
-                
-                objectNoiseButton.accessibilityHint = "Double tap to choose object noise"
-                objectNoiseButton.isAccessibilityElement = true
-                modifierInformation = ("\(block.addedBlocks[0].attributes["objectNoise"]!) Noise".titleCased())
-                
-                var voiceControlLabel = modifierInformation
-                let wordToRemove = " Noise"
-                if let range = voiceControlLabel.range(of: wordToRemove){
-                    voiceControlLabel.removeSubrange(range)
-                }
-                
-                if #available(iOS 13.0, *) {
-                    objectNoiseButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
-                }
                 
                 cell.addSubview(objectNoiseButton)
                 save()
                 
             case "Emotion Noise":
                 
-                let emotionNoiseButton = setUpSoundModifierButton(block: block, blockName : "Emotion Noise", attributeName: "emotionNoise", defaultValue: "bragging", withStartingHeight: startingHeight, withCount: count)
-                
-                emotionNoiseButton.tag = indexPath.row
+                let emotionNoiseButton = setUpSoundModifierButton(block: block, blockName : "Emotion Noise", defaultValue: "bragging", withStartingHeight: startingHeight, withCount: count, indexPath: indexPath)
                 
                 emotionNoiseButton.addTarget(self, action: #selector(emotionModifier(sender:)), for: .touchUpInside)
-                
-                emotionNoiseButton.accessibilityHint = "Double tap to choose emotion noise"
-                emotionNoiseButton.isAccessibilityElement = true
-                modifierInformation = ("\(block.addedBlocks[0].attributes["emotionNoise"]!) Noise".titleCased())
-                
-                var voiceControlLabel = modifierInformation
-                let wordToRemove = " Noise"
-                if let range = voiceControlLabel.range(of: wordToRemove){
-                    voiceControlLabel.removeSubrange(range)
-                }
-                
-                if #available(iOS 13.0, *) {
-                    emotionNoiseButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
-                }
                 
                 cell.addSubview(emotionNoiseButton)
                 save()
                 
             case "Speak":
                 
-                let speakButton = setUpSoundModifierButton(block: block, blockName : "Speak Word", attributeName: "speakWord", defaultValue: "hi", withStartingHeight: startingHeight, withCount: count)
-                
-                speakButton.tag = indexPath.row
-                
+                let speakButton = setUpSoundModifierButton(block: block, blockName : "Speak Word", defaultValue: "hi", withStartingHeight: startingHeight, withCount: count, indexPath: indexPath)
+            
                 speakButton.addTarget(self, action: #selector(speakModifier(sender:)), for: .touchUpInside)
-
-                
-                speakButton.accessibilityHint = "Double tap to choose word"
-                speakButton.isAccessibilityElement = true
-                modifierInformation = ("Say \(block.addedBlocks[0].attributes["speakWord"]!)".titleCased())
-                
-                var voiceControlLabel = modifierInformation
-                let wordToRemove = "Say "
-                if let range = voiceControlLabel.range(of: wordToRemove){
-                    voiceControlLabel.removeSubrange(range)
-                }
-                
-                if #available(iOS 13.0, *) {
-                    speakButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
-                }
                 
                 cell.addSubview(speakButton)
                 save()
