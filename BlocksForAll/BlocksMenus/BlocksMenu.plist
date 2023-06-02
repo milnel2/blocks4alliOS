@@ -20,6 +20,8 @@
 				<string>#DBF2FF</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>animalNoise.pdf</string>
 			</dict>
 			<dict>
 				<key>isModifiable</key>
@@ -32,6 +34,8 @@
 				<string>#90D7FF</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>emotionNoise.pdf</string>
 			</dict>
 			<dict>
 				<key>isModifiable</key>
@@ -44,6 +48,8 @@
 				<string>#72ABCC</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>objectNoise.pdf</string>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -56,6 +62,8 @@
 				<string>#57819A</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>vehicleNoise.pdf</string>
 			</dict>
 			<dict>
 				<key>isModifiable</key>
@@ -68,6 +76,8 @@
 				<string>#6E79BA</string>
 				<key>double</key>
 				<false/>
+				<key>imageName</key>
+				<string>speakNoise.pdf</string>
 			</dict>
 		</array>
 	</dict>
