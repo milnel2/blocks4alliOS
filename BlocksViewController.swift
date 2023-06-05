@@ -762,7 +762,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let repeatNumberButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 repeatNumberButton.tag = indexPath.row
-                repeatNumberButton.backgroundColor = #colorLiteral(red: 1, green: 0.6117647059, blue: 0.2980392157, alpha: 1)
+                
+                let imagePath = "controlModifierBackground.pdf"
+                let image: UIImage?
+                image = UIImage(named: imagePath)
+                if image != nil {
+                    repeatNumberButton.setBackgroundImage(image, for: .normal)
+                } else {
+                    repeatNumberButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
+                }
+                
                 // TODO: replace block.addedBlocks[0] with placeholderBlock variable? Same for other modifiers.
                 let numberOfTimesToRepeat =  "\(block.addedBlocks[0].attributes["timesToRepeat"] ?? "1")"
                 repeatNumberButton.setTitle(numberOfTimesToRepeat, for: .normal)
@@ -771,8 +780,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
                 repeatNumberButton.titleLabel?.numberOfLines = 0
                 repeatNumberButton.addTarget(self, action: #selector(repeatModifier(sender:)), for: .touchUpInside)
-                repeatNumberButton.layer.borderWidth = 2.0
-                repeatNumberButton.layer.borderColor = UIColor.black.cgColor
+               
                 repeatNumberButton.accessibilityHint = "Double tap to Set number of times to repeat"
                 repeatNumberButton.isAccessibilityElement = true
                 modifierInformation = numberOfTimesToRepeat + " times"
@@ -955,7 +963,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let waitTimeButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 waitTimeButton.tag = indexPath.row
-                waitTimeButton.backgroundColor =  #colorLiteral(red: 1, green: 0.6117647059, blue: 0.2980392157, alpha: 1)
+                
+                let imagePath = "controlModifierBackground.pdf"
+                let image: UIImage?
+                image = UIImage(named: imagePath)
+                if image != nil {
+                    waitTimeButton.setBackgroundImage(image, for: .normal)
+                } else {
+                    waitTimeButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
+                }
+                
                 if (block.addedBlocks[0].attributes["wait"] == "1"){
                     waitTimeButton.setTitle("\(block.addedBlocks[0].attributes["wait"]!) second", for: .normal)
                 } else{
@@ -966,8 +983,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 waitTimeButton.setTitleColor(.black, for: .normal)
 
                 waitTimeButton.titleLabel?.numberOfLines = 0
-                waitTimeButton.layer.borderWidth = 2.0
-                waitTimeButton.layer.borderColor = UIColor.black.cgColor
+               
                 
                 waitTimeButton.accessibilityHint = "Double tap to set wait time"
                 waitTimeButton.isAccessibilityElement = true
