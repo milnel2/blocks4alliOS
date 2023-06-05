@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "smallOrange.pdf",
+      "filename" : "eye light modifier background.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

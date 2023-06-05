@@ -786,6 +786,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 
             case "Drive Forward", "Drive Backward":
+                
                 if block.addedBlocks.isEmpty{
                     let initialDistance = 30
                     let initialSpeed = "Normal"
@@ -805,15 +806,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
                 distanceSpeedButton.tag = indexPath.row
                 
-                distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
+                let imagePath = "driveModifierBackground.pdf"
+                let image: UIImage?
+                image = UIImage(named: imagePath)
+                if image != nil {
+                    distanceSpeedButton.setBackgroundImage(image, for: .normal)
+                } else {
+                    distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
+                }
+
                 distanceSpeedButton.setTitle("\(block.addedBlocks[0].attributes["distance"]!) cm, \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
                 distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 distanceSpeedButton.setTitleColor(.black, for: .normal)
 
                 distanceSpeedButton.titleLabel?.numberOfLines = 0
                 distanceSpeedButton.addTarget(self, action: #selector(distanceSpeedModifier(sender:)), for: .touchUpInside)
-                distanceSpeedButton.layer.borderWidth = 2.0
-                distanceSpeedButton.layer.borderColor = UIColor.black.cgColor
                 distanceSpeedButton.accessibilityHint = "Double tap to Set distance and speed"
                 distanceSpeedButton.isAccessibilityElement = true
                 modifierInformation = distanceSet + " centimeters at " + speedSet + "Speed"
@@ -836,7 +843,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 angleButton.tag = indexPath.row
                 
-                angleButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
+                let imagePath = "driveModifierBackground.pdf"
+                let image: UIImage?
+                image = UIImage(named: imagePath)
+                if image != nil {
+                    angleButton.setBackgroundImage(image, for: .normal)
+                } else {
+                    angleButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
+                }
                 
                 //Title: <angle>°
                 angleButton.setTitle("\(block.addedBlocks[0].attributes["angle"]!)\u{00B0}", for: .normal)
@@ -847,8 +861,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
                
                 angleButton.titleLabel?.numberOfLines = 0
-                angleButton.layer.borderWidth = 2.0
-                angleButton.layer.borderColor = UIColor.black.cgColor
                 angleButton.accessibilityHint = "Double tap to Set turn angle"
                 angleButton.isAccessibilityElement = true
                 modifierInformation = "\(block.addedBlocks[0].attributes["angle"]!) degrees"
@@ -909,14 +921,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierBlockIndex = indexPath.row
                 
                 eyeLightButton.tag = indexPath.row
-                eyeLightButton.backgroundColor = #colorLiteral(red: 0.8901960784, green: 0.8509803922, blue: 0.2431372549, alpha: 1)
+                
+                let imagePath = "eyeLightModifierBackground.pdf"
+                let image: UIImage?
+                image = UIImage(named: imagePath)
+                if image != nil {
+                    eyeLightButton.setBackgroundImage(image, for: .normal)
+                } else {
+                    eyeLightButton.backgroundColor = #colorLiteral(red: 0.8901960784, green: 0.8509803922, blue: 0.2431372549, alpha: 1)
+                }
+                
                 eyeLightButton.setTitle("\(block.addedBlocks[0].attributes["eyeLight"]!)", for: .normal)
                 eyeLightButton.addTarget(self, action: #selector(setEyeLightModifier(sender:)), for: .touchUpInside)
                 eyeLightButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 eyeLightButton.setTitleColor(.black, for: .normal)
                 eyeLightButton.titleLabel?.numberOfLines = 0
-                eyeLightButton.layer.borderWidth = 2.0
-                eyeLightButton.layer.borderColor = UIColor.black.cgColor
                 eyeLightButton.accessibilityHint = "Double tap to turn eye light on or off"
                 eyeLightButton.isAccessibilityElement = true
                 modifierInformation = "\(block.addedBlocks[0].attributes["eyeLight"]!)"
