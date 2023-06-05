@@ -256,8 +256,6 @@ class ExecutingProgram {
             switch object {
             case "laser":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_LASERS)
-            case "snore":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SNORING)
             case "trumpet":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRUMPET)
             case "squeak":
@@ -288,6 +286,8 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_YAWN)
             case "randomEmotion":
                 playNoise(myAction: myAction, sound: emotionSoundFiles[.random(in: emotionSoundFiles.indices)])
+            case "snore":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SNORING)
             default:
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_BRAGGING)
             }

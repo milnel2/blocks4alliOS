@@ -3,7 +3,7 @@
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -968,10 +968,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="ZXQ-QZ-GhH">
-                                <rect key="frame" x="165" y="372" width="750" height="365"/>
+                                <rect key="frame" x="65" y="372" width="950" height="365"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Fd8-ji-DVY">
-                                        <rect key="frame" x="0.0" y="0.0" width="750" height="150"/>
+                                        <rect key="frame" x="100" y="0.0" width="750" height="150"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nci-IV-rCV">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -1024,7 +1024,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="KOP-hK-sOD">
-                                        <rect key="frame" x="0.0" y="215" width="750" height="150"/>
+                                        <rect key="frame" x="0.0" y="215" width="950" height="150"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fV3-Xl-ca5">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -1062,8 +1062,20 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                     <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="oXI-1w-3PX"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBj-fy-4HX">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwB-Qh-d9w">
                                                 <rect key="frame" x="600" y="0.0" width="150" height="150"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="snore" label="Snore"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="BSb-RK-k9U"/>
+                                                    <constraint firstAttribute="height" constant="150" id="llD-95-OAx"/>
+                                                </constraints>
+                                                <state key="normal" backgroundImage="snore"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="Ft7-SX-K6V" eventType="touchUpInside" id="Cht-2U-SWf"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBj-fy-4HX">
+                                                <rect key="frame" x="800" y="0.0" width="150" height="150"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="randomEmotion" label="Random Emotion Noise"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="QjC-sw-pyK"/>
@@ -1120,6 +1132,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <outletCollection property="buttons" destination="2DW-BS-mf8" collectionClass="NSMutableArray" id="H3m-wD-yzh"/>
                         <outletCollection property="buttons" destination="BC9-wP-kOF" collectionClass="NSMutableArray" id="Nfl-2p-53S"/>
                         <outletCollection property="buttons" destination="yBj-fy-4HX" collectionClass="NSMutableArray" id="bnx-hR-fXX"/>
+                        <outletCollection property="buttons" destination="bwB-Qh-d9w" collectionClass="NSMutableArray" id="qOp-cn-zZl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g0W-0K-ijc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2869,7 +2882,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="2YI-wg-iJ2"/>
+        <segue reference="U8M-r6-gBL"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
@@ -2899,7 +2912,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="green_plus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="grunt" width="133.44094848632812" height="133.44094848632812"/>
         <image name="haha" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="hear_voice" width="100" height="100"/>
+        <image name="hear_voice" width="133.44094848632812" height="133.44094848632812"/>
         <image name="helicopter" width="133" height="133"/>
         <image name="hi" width="133.44094848632812" height="133.44094848632812"/>
         <image name="horse" width="133" height="133"/>
@@ -2916,9 +2929,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="randomObject" width="133" height="133"/>
         <image name="randomVehicle" width="133" height="133"/>
         <image name="randomWord" width="133" height="133"/>
-        <image name="sense_obstacle" width="100" height="100"/>
+        <image name="sense_obstacle" width="133.44094848632812" height="133.44094848632812"/>
         <image name="sigh" width="133.44094848632812" height="133.44094848632812"/>
         <image name="siren" width="133" height="133"/>
+        <image name="snore" width="133.44094848632812" height="133.44094848632812"/>
         <image name="speedBoost" width="133" height="133"/>
         <image name="squeak" width="133" height="133"/>
         <image name="startEngine" width="133" height="133"/>
