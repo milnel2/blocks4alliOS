@@ -12,6 +12,8 @@ import UIKit
 //this class switches eyelight off and on at this screen
 class EyeLightModifierViewController: UIViewController{
     
+    
+    
     @IBOutlet weak var lightLabel: UILabel!
     var modifierBlockIndexSender: Int?
     var eyeLightStatus: String = "On"
@@ -30,10 +32,12 @@ class EyeLightModifierViewController: UIViewController{
     }
     
     //changes status and label on screen
-    @IBAction func onButtonPressed(_ sender: Any) {
+    @IBAction func onButtonPressed(_ sender: UIButton) {
         eyeLightStatus = "On"
         lightLabel.text = "On"
         lightLabel.accessibilityLabel = "On"
+        sender.layer.borderWidth = 10
+        
     }
     
     //changes status and label on screen
