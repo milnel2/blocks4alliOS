@@ -1006,7 +1006,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     waitTimeButton.setTitle("\(block.addedBlocks[0].attributes["wait"]!) seconds", for: .normal)
                 }
                 waitTimeButton.addTarget(self, action: #selector(waitModifier(sender:)), for: .touchUpInside)
-                waitTimeButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+                // smaller font size so text can fit
+                waitTimeButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title2)
                 waitTimeButton.setTitleColor(.black, for: .normal)
 
                 waitTimeButton.titleLabel?.numberOfLines = 0
@@ -1038,13 +1039,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 //setVariableButton.backgroundColor = #colorLiteral(red: 0.6745098039, green: 0.5215686275, blue: 0.9568627451, alpha: 1)
                 setVariableButton.setTitle(" \(block.addedBlocks[0].attributes["variableSelected"]!) =  \(block.addedBlocks[0].attributes["variableValue"]!)", for: .normal)
                 setVariableButton.addTarget(self, action: #selector(variableModifier(sender:)), for: .touchUpInside)
-                setVariableButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
-                setVariableButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+                setVariableButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title2)
                 setVariableButton.titleLabel?.numberOfLines = 0
-//               setVariableButton.titleLabel?.textColor = UIColor.black
-
-//                setVariableButton.layer.borderWidth = 2.0
-//                setVariableButton.layer.borderColor = UIColor.black.cgColor
+                setVariableButton.setTitleColor(.black, for: .normal)
                 
                 setVariableButton.accessibilityHint = "Double tap to set variable value"
                 setVariableButton.isAccessibilityElement = true
