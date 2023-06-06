@@ -13,6 +13,8 @@ import UIKit
 class EyeLightModifierViewController: UIViewController{
     
     
+    @IBOutlet var buttons: [UIButton]!
+    
     
     @IBOutlet weak var lightLabel: UILabel!
     var modifierBlockIndexSender: Int?
@@ -28,6 +30,14 @@ class EyeLightModifierViewController: UIViewController{
         
         eyeLightStatus = previousSelection
         
+        for button in buttons {
+            //Highlights current option when mod view is entered
+            if eyeLightStatus == button.accessibilityIdentifier {
+                button.layer.borderWidth = 10
+                button.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+            }
+        }
+        
         back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
@@ -36,15 +46,25 @@ class EyeLightModifierViewController: UIViewController{
         eyeLightStatus = "On"
         lightLabel.text = "On"
         lightLabel.accessibilityLabel = "On"
-        sender.layer.borderWidth = 10
         
+        self.buttons.forEach { (button) in
+            button.layer.borderWidth = 0
+                }
+        sender.layer.borderWidth = 10
+        sender.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
     }
     
     //changes status and label on screen
-    @IBAction func offButtonPressed(_ sender: Any) {
+    @IBAction func offButtonPressed(_ sender: UIButton) {
         eyeLightStatus = "Off"
         lightLabel.text = "Off"
         lightLabel.accessibilityLabel = "Off"
+        
+        self.buttons.forEach { (button) in
+            button.layer.borderWidth = 0
+                }
+        sender.layer.borderWidth = 10
+        sender.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
