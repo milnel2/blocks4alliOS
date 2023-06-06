@@ -16,6 +16,9 @@ var functionsDict = [String : [Block]]()
 /// workspace you are currently editing on screen (i.e. the main workspace or a user-defined function)
 var currentWorkspace = String()
 
+// from Paul Hegarty, lectures 13 and 14
+let defaults = UserDefaults.standard
+
 let startIndex = 0
 var endIndex: Int{
     return functionsDict[currentWorkspace]!.count - 1
@@ -811,20 +814,39 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 let distanceSet = "\(block.addedBlocks[0].attributes["distance"]!)"
                 let speedSet = "\(block.addedBlocks[0].attributes["speed"]!)"
-
+                
+                
                 distanceSpeedButton.tag = indexPath.row
                 
-                let imagePath = "driveModifierBackground.pdf"
-                let image: UIImage?
-                image = UIImage(named: imagePath)
-                if image != nil {
-                    distanceSpeedButton.setBackgroundImage(image, for: .normal)
+                if defaults.integer(forKey: "showText") == 0 {
+                    let imagePath = "\(speedSet).pdf"
+                    let image: UIImage?
+                    image = UIImage(named: imagePath)
+                    if image != nil {
+                        distanceSpeedButton.setBackgroundImage(image, for: .normal)
+                    } else {
+                        distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
+                    }
+                    distanceSpeedButton.setTitle("\(block.addedBlocks[0].attributes["distance"]!) cm \n", for: .normal)
+                    
+                    distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+                   
                 } else {
-                    distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
+                    let imagePath = "driveModifierBackground.pdf"
+                    let image: UIImage?
+                    image = UIImage(named: imagePath)
+                    if image != nil {
+                        distanceSpeedButton.setBackgroundImage(image, for: .normal)
+                    } else {
+                        distanceSpeedButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
+                    }
+                    distanceSpeedButton.setTitle("\(block.addedBlocks[0].attributes["distance"]!) cm, \(speedSet)", for: .normal)
+                    
+                    // smaller font
+                    distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title2)
                 }
-
-                distanceSpeedButton.setTitle("\(block.addedBlocks[0].attributes["distance"]!) cm, \(block.addedBlocks[0].attributes["speed"]!)", for: .normal)
-                distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+                
+              
                 distanceSpeedButton.setTitleColor(.black, for: .normal)
 
                 distanceSpeedButton.titleLabel?.numberOfLines = 0
