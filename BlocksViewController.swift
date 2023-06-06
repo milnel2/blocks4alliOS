@@ -1041,6 +1041,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 setVariableButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 setVariableButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                 setVariableButton.titleLabel?.numberOfLines = 0
+//               setVariableButton.titleLabel?.textColor = UIColor.black
 
 //                setVariableButton.layer.borderWidth = 2.0
 //                setVariableButton.layer.borderColor = UIColor.black.cgColor
