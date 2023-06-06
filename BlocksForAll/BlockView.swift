@@ -33,14 +33,6 @@ class BlockView: UIView, UITextFieldDelegate {
     //MARK: - Element Focus
     override func accessibilityElementDidBecomeFocused() {
         print(blocks[0].name + " is focused")
-        //AudioServicesPlaySystemSound(1024)
-//        if blocks[0].type ==  "Number" || (!blocks[0].acceptedTypes.isEmpty && blocks[0].acceptedTypes[0] == "Number"){
-//            print("1")
-//            //AudioServicesPlaySystemSound(1257)
-//        }else if blocks[0].type ==  "Boolean" || (!blocks[0].acceptedTypes.isEmpty && blocks[0].acceptedTypes[0] == "Boolean"){
-//            print("2")
-//            //AudioServicesPlaySystemSound(1255)
-//        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -121,22 +113,4 @@ class BlockView: UIView, UITextFieldDelegate {
         return myView
     }
     
-    // TODO: this needs to be refactored so that it isn't hard coded in. It should be changed so that it accesses the isModifiable property in BlocksMenu
-    // returns true for things like if and repeats so that they are tall and still look like they enclose other blocks
-//    func isModifierOrContainerBlock(block: Block) -> Bool {
-//        return block.name != "Look Toward Voice"
-//                && block.name != "Look Forward"
-//                && block.name != "Look Right"
-//                && block.name != "Look Left"
-//                && block.name != "Look Straight"
-//                && block.name != "Look Down"
-//                && block.name != "Look Up"
-//                && block.name != "Wiggle"
-//                && block.name != "Nod"
-//                && block.name != "Repeat Forever"
-//                && block.name != "End Repeat Forever"
-//                && block.name != "End Repeat"
-//                //&& block.name != "If"
-//                && block.name != "End If"
-//    }
 }

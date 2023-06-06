@@ -30,16 +30,5 @@ class BlockTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    override func accessibilityElementDidBecomeFocused() {
-        //plays sound to indicate type of block when screenreader focuses on it
-        if block!.type ==  "Number" || (!block!.acceptedTypes.isEmpty && block!.acceptedTypes[0] == "Number"){
-            print("1")
-            //AudioServicesPlaySystemSound(1257)
-        }else if block!.type ==  "Boolean" || (!block!.acceptedTypes.isEmpty && block!.acceptedTypes[0] == "Boolean"){
-            print("2")
-            //AudioServicesPlaySystemSound(1255)
-        }
-    }
 
 }

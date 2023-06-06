@@ -74,56 +74,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var modifierBlockIndex: Int?
     var tappedModifierIndex: Int?
     
-    // from Paul Hegarty, lectures 13 and 14
-    func getDocumentsDirectory() -> URL{
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    /// Saves each block as a json object cast as a String to a file. Uses fileManager to add and remove blocks from previous saves to stay up to date.
-    func save(){
-        let fileManager = FileManager.default
-
-        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
-        do{
-            //Deletes previous save in order to rewrite for each save action
-            try fileManager.removeItem(at: filename)
-        }catch{
-            print("couldn't delete previous Blocks4AllSave")
-        }
-        
-        // string that json text is appended too
-        var writeText = String()
-        /** block represents each block belonging to the global array of blocks in the workspace. blocksStack holds all blocks on the screen. **/
-        let funcNames = functionsDict.keys
-        //gets all the function names in functionsDict as an array of strings
-        
-        for name in funcNames{
-        // for all functions
-            writeText.append("New Function \n")
-            writeText.append(name)
-            //adds name of function immediately after the new function and prior to the next object so that it can be parsed same way as blocks
-            writeText.append("\n Next Object \n")
-            // allows name to be handled in load at the same time as blocks
-            for block in functionsDict[name]!{
-                // for block in the current fuctionsDict function's array of blocks
-                if let jsonText = block.jsonVar{
-                    // sets jsonText to block.jsonVar which removes counterparts so it doesn't wind up with an infite amount of counterparts
-                    writeText.append(String(data: jsonText, encoding: .utf8)!)
-                    //adds the jsonText as .utf8 as a string to the writeText string
-                    writeText.append("\n Next Object \n")
-                    //marks next object
-                }
-                do{
-                    try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-                    // writes the accumlated string of json objects to a single file
-                }catch{
-                    print("couldn't create json for", block)
-                }
-            }
-        }
-        
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -207,7 +157,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         movingBlocks = false
         blocksBeingMoved.removeAll()
         changePlayTrashButton() //Toggling the play/trash button
-        save()
     }
     
     /// Called when blocks have been selected to be moved, saves them to blocksBeingMoved
@@ -218,7 +167,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksBeingMoved = blocks
         blocksProgram.reloadData()
         changePlayTrashButton()
-        save()
     }
     
     //TODO: LAUREN, figure out what this code is for
@@ -231,12 +179,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if currentWorkspace == "Main Workspace"{
             functionsDict[currentWorkspace] = []
             blocksProgram.reloadData()
-            save()
         }
         else{
             functionsDict[currentWorkspace]!.removeSubrange(1..<functionsDict[currentWorkspace]!.count-1)
             blocksProgram.reloadData()
-            save()
         }
     }
     
@@ -679,7 +625,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 animalNoiseButton.addTarget(self, action: #selector(animalModifier(sender:)), for: .touchUpInside)
                         
                 cell.addSubview(animalNoiseButton)
-                save()
                 
             case "Vehicle Noise":
                 let vehicleNoiseButton = setUpSoundModifierButton(block: block, blockName : "Vehicle Noise", defaultValue: "airplane", withStartingHeight: startingHeight, withCount: count, indexPath: indexPath)
@@ -687,7 +632,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 vehicleNoiseButton.addTarget(self, action: #selector(vehicleModifier(sender:)), for: .touchUpInside)
                 
                 cell.addSubview(vehicleNoiseButton)
-                save()
                 
             case "Object Noise":
                
@@ -696,7 +640,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 objectNoiseButton.addTarget(self, action: #selector(objectNoiseModifier(sender:)), for: .touchUpInside)
                 
                 cell.addSubview(objectNoiseButton)
-                save()
                 
             case "Emotion Noise":
                 
@@ -705,7 +648,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 emotionNoiseButton.addTarget(self, action: #selector(emotionModifier(sender:)), for: .touchUpInside)
                 
                 cell.addSubview(emotionNoiseButton)
-                save()
                 
             case "Speak":
                 
@@ -714,7 +656,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 speakButton.addTarget(self, action: #selector(speakModifier(sender:)), for: .touchUpInside)
                 
                 cell.addSubview(speakButton)
-                save()
             // TODO: if
             case "If":
                 if block.addedBlocks.isEmpty{
@@ -751,7 +692,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 ifButton.isAccessibilityElement = true
                 
                 cell.addSubview(ifButton)
-                save()
             case "Repeat":
                 if block.addedBlocks.isEmpty{
                     // Creates repeat button for modifier.
@@ -789,7 +729,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = numberOfTimesToRepeat + " times"
                 
                 cell.addSubview(repeatNumberButton)
-                save()
             // TODO: repeat forever
             case "Repeat Forever":
                 if block.addedBlocks.isEmpty{
@@ -856,7 +795,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = distanceSet + " centimeters at " + speedSet + "Speed"
                 
                 cell.addSubview(distanceSpeedButton)
-                save()
                 
             case "Turn Left", "Turn Right":
                 if block.addedBlocks.isEmpty{
@@ -896,7 +834,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = "\(block.addedBlocks[0].attributes["angle"]!) degrees"
                 
                 cell.addSubview(angleButton)
-                save()
                 
             case "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
                 if block.addedBlocks.isEmpty{
@@ -940,7 +877,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = " " + (block.addedBlocks[0].attributes["modifierBlockColor"] ?? "")
                 
                 cell.addSubview(lightColorButton)
-                save()
                 
             case "Set Eye Light":
                 if block.addedBlocks.isEmpty{
@@ -976,7 +912,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = "\(block.addedBlocks[0].attributes["eyeLight"]!)"
                 
                 cell.addSubview(eyeLightButton)
-                save()
             
             case "Wait for Time":
                 if block.addedBlocks.isEmpty{
@@ -1018,7 +953,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = "\(block.addedBlocks[0].attributes["wait"]!) seconds"
                 
                 cell.addSubview(waitTimeButton)
-                save()
             
             case "Set Variable":
                 if block.addedBlocks.isEmpty{
@@ -1047,7 +981,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 setVariableButton.isAccessibilityElement = true
                 modifierInformation = "\(block.addedBlocks[0].attributes["variableSelected"]!) set to  \(block.addedBlocks[0].attributes["variableValue"]!)"
                 cell.addSubview(setVariableButton)
-                save()
                 
             case "Drive":
                 if block.addedBlocks.isEmpty{
@@ -1089,7 +1022,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 setDriveVariableButton.isAccessibilityElement = true
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " centimeters"
                 cell.addSubview(setDriveVariableButton)
-                save()
                 
             case "Look Up or Down":
                 if block.addedBlocks.isEmpty{
@@ -1129,7 +1061,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                  
                  cell.addSubview(setLookUpDownVariableButton)
-                save()
                 
             case "Look Left or Right":
                 if block.addedBlocks.isEmpty{
@@ -1168,7 +1099,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 setLookLeftRightVariableButton.isAccessibilityElement = true
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                 cell.addSubview(setLookLeftRightVariableButton)
-                save()
                 
             case "Turn":
                 if block.addedBlocks.isEmpty{
@@ -1212,10 +1142,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = (block.addedBlocks[0].attributes["variableSelected"] ?? " blank") + " degrees"
                 
                 cell.addSubview(setTurnButton)
-                save()
                 
             default:
-                save()
+                print("Non matching case")
             }
             
             //add main label
