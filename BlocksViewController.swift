@@ -895,17 +895,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let lightColorButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
                 
                 
-                let modifierBlockColor: UIColor = changeModifierBlockColor(color: block.addedBlocks[0].attributes["modifierBlockColor"]!)
-                
+                let color = block.addedBlocks[0].attributes["modifierBlockColor"]!
+               
                 lightColorButton.tag = indexPath.row
-                lightColorButton.backgroundColor = modifierBlockColor
+                
+                let imagePath = "\(color).pdf"
+                let image: UIImage?
+                image = UIImage(named: imagePath)
+                if image != nil {
+                    lightColorButton.setBackgroundImage(image, for: .normal)
+                } else {
+                    lightColorButton.backgroundColor = UIColor(displayP3Red: 49/255, green: 227/255, blue: 132/255, alpha: 1)
+                }
+                
                
                 lightColorButton.addTarget(self, action: #selector(lightColorModifier(sender:)), for: .touchUpInside)
-                if (modifierBlockColor == UIColor.yellow || modifierBlockColor == UIColor.green || modifierBlockColor == UIColor.white) {
-                    lightColorButton.setTitleColor(.black, for: .normal)
-                }
-                lightColorButton.layer.borderWidth = 2.0
-                lightColorButton.layer.borderColor = UIColor.black.cgColor
+    
                 lightColorButton.accessibilityLabel = block.addedBlocks[0].attributes["modifierBlockColor"] ?? ""
                 lightColorButton.accessibilityHint = "Double tap to Set light color"
                 lightColorButton.isAccessibilityElement = true

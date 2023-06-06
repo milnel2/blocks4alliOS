@@ -44,9 +44,16 @@ class ColorModViewController: UIViewController{
         //Selects pressed button
         sender.layer.borderWidth = 10
         sender.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
-        if let buttonTitle = sender.title(for: .normal) {
-            colorSelected = buttonTitle.lowercased()
+        if let buttonID = sender.accessibilityIdentifier {
+            colorSelected = buttonID
+            print("Color selected: \(colorSelected)")
+
         }
+        
+//        if let buttonTitle = sender.title(for: .normal) {
+//            colorSelected = buttonTitle.lowercased()
+//            print("Color selected: \(colorSelected)")
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
