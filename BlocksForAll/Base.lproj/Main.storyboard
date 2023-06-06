@@ -1754,7 +1754,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <accessibility key="accessibilityConfiguration" label="Faster">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
-                                <state key="normal" title="Button" image="green_plus"/>
+                                <state key="normal" title="Button" image="purple_plus"/>
                                 <connections>
                                     <action selector="fastButtonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="dUL-82-SIY"/>
                                     <action selector="fastButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="eZr-Up-ZS8"/>
@@ -1771,7 +1771,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="220" y="538" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Slower"/>
-                                <state key="normal" title="Button" image="green_minus"/>
+                                <state key="normal" title="Button" image="purple_minus"/>
                                 <connections>
                                     <action selector="slowButtonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="bxq-A5-z9F"/>
                                     <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="rle-AG-8Eg"/>
@@ -2859,7 +2859,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="QqG-dM-L1w"/>
+        <segue reference="kbj-oh-DCS"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
@@ -2906,6 +2906,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="orange_minus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange_plus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="purple" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="purple_minus" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="purple_plus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="randomAnimal" width="133" height="133"/>
         <image name="randomEmotion" width="133" height="133"/>
         <image name="randomObject" width="133" height="133"/>
