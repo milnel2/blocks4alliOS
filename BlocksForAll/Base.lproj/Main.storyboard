@@ -24,10 +24,10 @@
                                 <rect key="frame" x="0.0" y="4" width="1080" height="810"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="56s-3x-njj">
-                                <rect key="frame" x="89.5" y="105" width="901" height="600"/>
+                                <rect key="frame" x="89.5" y="180" width="901" height="450"/>
                                 <subviews>
                                     <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B4A_Robot_outline" translatesAutoresizingMaskIntoConstraints="NO" id="bML-d3-3Tw">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="450"/>
                                         <accessibility key="accessibilityConfiguration" label="Robot Image">
                                             <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                         </accessibility>
@@ -36,8 +36,8 @@
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="Lz3-bu-0Ch"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NLd-Mr-RRq">
-                                        <rect key="frame" x="600" y="0.0" width="301" height="600"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="NLd-Mr-RRq">
+                                        <rect key="frame" x="600" y="0.0" width="301" height="450"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Kc-2pq">
                                                 <rect key="frame" x="0.0" y="0.0" width="301" height="300"/>
@@ -57,11 +57,11 @@
                                                     <segue destination="uoc-nU-c4a" kind="show" id="Tjn-hR-3fo"/>
                                                 </connections>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="f1R-XD-VvS">
-                                                <rect key="frame" x="0.0" y="300" width="301" height="300"/>
+                                            <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="f1R-XD-VvS">
+                                                <rect key="frame" x="9" y="350" width="283" height="100"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RT2-NS-4g9">
-                                                        <rect key="frame" x="0.0" y="100" width="111" height="100"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="111.5" height="100"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="78o-7m-5EV"/>
                                                             <constraint firstAttribute="height" constant="100" id="YfG-6f-yNE"/>
@@ -76,7 +76,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vpe-31-2KD">
-                                                        <rect key="frame" x="190" y="100" width="111" height="100"/>
+                                                        <rect key="frame" x="171.5" y="0.0" width="111.5" height="100"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="100" id="FdW-0P-oCY"/>
                                                             <constraint firstAttribute="width" constant="100" id="mXH-wS-50P"/>
@@ -96,11 +96,11 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="450" id="5Ga-ST-CQX"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="600" id="MY9-1H-gbJ"/>
-                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" id="LEW-oe-19b">
                                 <rect key="frame" x="282" y="641" width="301" height="96"/>
