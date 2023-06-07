@@ -48,6 +48,14 @@
 		F18FFFC81E65B0FC0090C4B6 /* BlocksForAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFC71E65B0FC0090C4B6 /* BlocksForAllTests.swift */; };
 		F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */; };
 		F79EC1F42A266813009B8784 /* BlockToMoveCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79EC1F32A266813009B8784 /* BlockToMoveCollectionViewController.swift */; };
+		FD6388312A310311005F49F7 /* Aphont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388302A310311005F49F7 /* Aphont.ttf */; };
+		FD6388322A310311005F49F7 /* Aphont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388302A310311005F49F7 /* Aphont.ttf */; };
+		FD6388342A310363005F49F7 /* AphontBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388332A310363005F49F7 /* AphontBold.ttf */; };
+		FD6388352A310363005F49F7 /* AphontBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388332A310363005F49F7 /* AphontBold.ttf */; };
+		FD6388372A31036B005F49F7 /* AphontBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388362A31036B005F49F7 /* AphontBoldItalic.ttf */; };
+		FD6388382A31036B005F49F7 /* AphontBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388362A31036B005F49F7 /* AphontBoldItalic.ttf */; };
+		FD63883A2A310374005F49F7 /* AphontItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388392A310374005F49F7 /* AphontItalic.ttf */; };
+		FD63883B2A310374005F49F7 /* AphontItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388392A310374005F49F7 /* AphontItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +116,10 @@
 		F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
 		F1F68E7F20771C7900BFBD8E /* Installation Manual.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Installation Manual.pdf"; sourceTree = "<group>"; };
 		F79EC1F32A266813009B8784 /* BlockToMoveCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockToMoveCollectionViewController.swift; sourceTree = "<group>"; };
+		FD6388302A310311005F49F7 /* Aphont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Aphont.ttf; sourceTree = "<group>"; };
+		FD6388332A310363005F49F7 /* AphontBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AphontBold.ttf; sourceTree = "<group>"; };
+		FD6388362A31036B005F49F7 /* AphontBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AphontBoldItalic.ttf; sourceTree = "<group>"; };
+		FD6388392A310374005F49F7 /* AphontItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AphontItalic.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +156,7 @@
 		F18FEEDB1EB115AF007C15B8 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				FD63882F2A3100D3005F49F7 /* Fonts */,
 				F1D395BA2006DBB300C6D993 /* BlocksMenus */,
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
 				8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */,
@@ -240,6 +253,17 @@
 			path = ModifierViewControllers;
 			sourceTree = "<group>";
 		};
+		FD63882F2A3100D3005F49F7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FD6388332A310363005F49F7 /* AphontBold.ttf */,
+				FD6388362A31036B005F49F7 /* AphontBoldItalic.ttf */,
+				FD6388392A310374005F49F7 /* AphontItalic.ttf */,
+				FD6388302A310311005F49F7 /* Aphont.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -325,7 +349,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */,
+				FD6388372A31036B005F49F7 /* AphontBoldItalic.ttf in Resources */,
+				FD6388312A310311005F49F7 /* Aphont.ttf in Resources */,
 				F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */,
+				FD63883A2A310374005F49F7 /* AphontItalic.ttf in Resources */,
+				FD6388342A310363005F49F7 /* AphontBold.ttf in Resources */,
 				F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */,
 				F16BA3BE1F59103A00A94FBA /* BlocksMenu.plist in Resources */,
 			);
@@ -335,6 +363,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD63883B2A310374005F49F7 /* AphontItalic.ttf in Resources */,
+				FD6388382A31036B005F49F7 /* AphontBoldItalic.ttf in Resources */,
+				FD6388322A310311005F49F7 /* Aphont.ttf in Resources */,
+				FD6388352A310363005F49F7 /* AphontBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
