@@ -19,7 +19,6 @@
 		62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */; };
 		62EA50BC22CE52E7002BD4ED /* IfModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */; };
 		701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701A43861EC26EFD00314599 /* BlocksViewController.swift */; };
-		844EAEF622E60CBB00BB1A62 /* FunctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF322E60CBB00BB1A62 /* FunctionView.swift */; };
 		844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */; };
 		844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */; };
 		84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */; };
@@ -73,7 +72,6 @@
 		62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVariableModViewController.swift; sourceTree = "<group>"; };
 		62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfModViewController.swift; sourceTree = "<group>"; };
 		701A43861EC26EFD00314599 /* BlocksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksViewController.swift; path = ../BlocksViewController.swift; sourceTree = "<group>"; };
-		844EAEF322E60CBB00BB1A62 /* FunctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionView.swift; sourceTree = "<group>"; };
 		844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewCell.swift; sourceTree = "<group>"; };
 		844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewController.swift; sourceTree = "<group>"; };
 		84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeLightModifierViewController.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 				A9937EA8267BAB3B00A56E8A /* CustomButton.swift */,
 				844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */,
 				844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */,
-				844EAEF322E60CBB00BB1A62 /* FunctionView.swift */,
 				F18FEEDB1EB115AF007C15B8 /* Helper */,
 			);
 			path = BlocksForAll;
@@ -351,7 +348,6 @@
 				A9937EA9267BAB3B00A56E8A /* CustomButton.swift in Sources */,
 				02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */,
 				025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */,
-				844EAEF622E60CBB00BB1A62 /* FunctionView.swift in Sources */,
 				F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */,
 				F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */,
 				62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */,
@@ -543,7 +539,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 29ZSRKKL73;
+				DEVELOPMENT_TEAM = 5Z9DP5C8DQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -557,7 +553,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 5.4;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.LucyRubin.Blocks4All;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
@@ -576,7 +572,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 29ZSRKKL73;
+				DEVELOPMENT_TEAM = 5Z9DP5C8DQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -590,7 +586,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 5.4;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.LucyRubin.Blocks4All;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
