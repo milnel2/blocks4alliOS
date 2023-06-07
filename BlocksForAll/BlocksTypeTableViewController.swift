@@ -61,14 +61,12 @@ class BlocksTypeTableViewController: UITableViewController {
         let cellIdentifier = "BlockTypeTableViewCell"
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        
         // Configure the cell...
         let blockType = blockTypes[indexPath.row]
         cell.textLabel?.text = blockType.name
         cell.textLabel?.textColor = UIColor.black
         cell.textLabel?.textAlignment = .left
         cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
-        
         cell.backgroundColor = blockType.color.uiColor
         //cell.bounds.height = 200
         cell.accessibilityLabel = blockType.name + " category"
@@ -76,14 +74,22 @@ class BlocksTypeTableViewController: UITableViewController {
         
         // add icon to the toolbox options
         // the icon should be roughly 80 x 80 pixels
-        let imagePath = "\(blockType.name)Icon.pdf"
-        let image = UIImage(named: imagePath)
-        let imv: UIImageView
+        
+        if cell.textLabel != nil {
+            // only add the icon if dynamic text sizing is not being used
+            //TODO: check that this works on the larger IPad
+            if cell.textLabel!.font.pointSize <= 34 {
+                let imagePath = "\(blockType.name)Icon.pdf"
+                let image = UIImage(named: imagePath)
+                let imv: UIImageView
 
-        imv = UIImageView.init(image: image)
-        imv.layer.position.y = CGFloat(blockSize / 2)
-        imv.layer.position.x = CGFloat((blockSize * 6) / 5)
-        cell.addSubview(imv)
+                imv = UIImageView.init(image: image)
+                imv.layer.position.y = CGFloat(blockSize / 2)
+                imv.layer.position.x = CGFloat((blockSize * 6) / 5)
+                cell.addSubview(imv)
+            }
+        }
+       
       
         //Makes label more intuitive for Voice Control
         if #available(iOS 13.0, *) {
