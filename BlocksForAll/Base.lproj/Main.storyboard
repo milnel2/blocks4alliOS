@@ -23,85 +23,6 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="f1b-Pf-X0J">
                                 <rect key="frame" x="0.0" y="4" width="1080" height="810"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="56s-3x-njj">
-                                <rect key="frame" x="89.5" y="180" width="901" height="450"/>
-                                <subviews>
-                                    <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B4A_Robot_outline" translatesAutoresizingMaskIntoConstraints="NO" id="bML-d3-3Tw">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="450"/>
-                                        <accessibility key="accessibilityConfiguration" label="Robot Image">
-                                            <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                        </accessibility>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="0xj-ZI-egj"/>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="Lz3-bu-0Ch"/>
-                                        </constraints>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="NLd-Mr-RRq">
-                                        <rect key="frame" x="600" y="0.0" width="301" height="450"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Kc-2pq">
-                                                <rect key="frame" x="0.0" y="0.0" width="301" height="300"/>
-                                                <accessibility key="accessibilityConfiguration" label="Get Started"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="300" id="53k-vZ-Ndl"/>
-                                                    <constraint firstAttribute="width" secondItem="CMD-Kc-2pq" secondAttribute="height" multiplier="405:403" id="Fc2-SW-dMU"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="LwB-Fi-gvq"/>
-                                                    <constraint firstAttribute="width" constant="300" id="Npv-A1-80g"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ju4-7Z-9xc"/>
-                                                </constraints>
-                                                <state key="normal" image="Play_Button">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="uoc-nU-c4a" kind="show" id="Tjn-hR-3fo"/>
-                                                </connections>
-                                            </button>
-                                            <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="f1R-XD-VvS">
-                                                <rect key="frame" x="9" y="350" width="283" height="100"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RT2-NS-4g9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="111.5" height="100"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="100" id="78o-7m-5EV"/>
-                                                            <constraint firstAttribute="height" constant="100" id="YfG-6f-yNE"/>
-                                                            <constraint firstAttribute="width" secondItem="RT2-NS-4g9" secondAttribute="height" multiplier="385:346" id="bhZ-fG-VOP"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Add Robots" image="Settings">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <segue destination="cJF-Nc-M7L" kind="show" id="Var-Sg-Rcn"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vpe-31-2KD">
-                                                        <rect key="frame" x="171.5" y="0.0" width="111.5" height="100"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="100" id="FdW-0P-oCY"/>
-                                                            <constraint firstAttribute="width" constant="100" id="mXH-wS-50P"/>
-                                                            <constraint firstAttribute="width" secondItem="vpe-31-2KD" secondAttribute="height" multiplier="385:346" id="w5N-6D-QM0"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Add Robots" image="Question_Mark">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <segue destination="1qS-gh-lht" kind="show" id="hDQ-UO-btS"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="vpe-31-2KD" firstAttribute="width" secondItem="vpe-31-2KD" secondAttribute="height" multiplier="385:346" id="ZDx-bp-RGW"/>
-                                                </constraints>
-                                            </stackView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="450" id="5Ga-ST-CQX"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" id="LEW-oe-19b">
                                 <rect key="frame" x="282" y="641" width="301" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -124,16 +45,107 @@
                                     <action selector="showTextSelected:" destination="YEE-PZ-SjD" eventType="touchUpInside" id="hS0-en-61a"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="c8t-XM-4lH">
+                                <rect key="frame" x="89.5" y="163.5" width="901" height="483.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Blocks4All!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAl-50-vrC">
+                                        <rect key="frame" x="0.0" y="0.0" width="901" height="33.5"/>
+                                        <accessibility key="accessibilityConfiguration" label="Welcome to Blocks4All!"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="56s-3x-njj">
+                                        <rect key="frame" x="0.0" y="33.5" width="901" height="450"/>
+                                        <subviews>
+                                            <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B4A_Robot_outline" translatesAutoresizingMaskIntoConstraints="NO" id="bML-d3-3Tw">
+                                                <rect key="frame" x="0.0" y="0.0" width="400" height="450"/>
+                                                <accessibility key="accessibilityConfiguration" label="Robot Image">
+                                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                                </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="0xj-ZI-egj"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="Lz3-bu-0Ch"/>
+                                                </constraints>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="NLd-Mr-RRq">
+                                                <rect key="frame" x="600" y="0.0" width="301" height="450"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Kc-2pq">
+                                                        <rect key="frame" x="0.0" y="0.0" width="301" height="300"/>
+                                                        <accessibility key="accessibilityConfiguration" label="Get Started"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="300" id="53k-vZ-Ndl"/>
+                                                            <constraint firstAttribute="width" secondItem="CMD-Kc-2pq" secondAttribute="height" multiplier="405:403" id="Fc2-SW-dMU"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="LwB-Fi-gvq"/>
+                                                            <constraint firstAttribute="width" constant="300" id="Npv-A1-80g"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ju4-7Z-9xc"/>
+                                                        </constraints>
+                                                        <state key="normal" image="Play_Button">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <segue destination="uoc-nU-c4a" kind="show" id="Tjn-hR-3fo"/>
+                                                        </connections>
+                                                    </button>
+                                                    <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="f1R-XD-VvS">
+                                                        <rect key="frame" x="9" y="350" width="283" height="100"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="RT2-NS-4g9">
+                                                                <rect key="frame" x="0.0" y="0.0" width="111.5" height="100"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="100" id="78o-7m-5EV"/>
+                                                                    <constraint firstAttribute="height" constant="100" id="YfG-6f-yNE"/>
+                                                                    <constraint firstAttribute="width" secondItem="RT2-NS-4g9" secondAttribute="height" multiplier="385:346" id="bhZ-fG-VOP"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Add Robots" image="Settings">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <segue destination="cJF-Nc-M7L" kind="show" id="Var-Sg-Rcn"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vpe-31-2KD">
+                                                                <rect key="frame" x="171.5" y="0.0" width="111.5" height="100"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="100" id="FdW-0P-oCY"/>
+                                                                    <constraint firstAttribute="width" constant="100" id="mXH-wS-50P"/>
+                                                                    <constraint firstAttribute="width" secondItem="vpe-31-2KD" secondAttribute="height" multiplier="385:346" id="w5N-6D-QM0"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Add Robots" image="Question_Mark">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <segue destination="1qS-gh-lht" kind="show" id="hDQ-UO-btS"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="vpe-31-2KD" firstAttribute="width" secondItem="vpe-31-2KD" secondAttribute="height" multiplier="385:346" id="ZDx-bp-RGW"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="450" id="5Ga-ST-CQX"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.93333339689999995" green="0.47450977560000002" blue="0.18823529780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="f1b-Pf-X0J" firstAttribute="centerX" secondItem="gAB-RG-Zzd" secondAttribute="centerX" id="0dC-So-nFu"/>
                             <constraint firstItem="uNC-fx-WtB" firstAttribute="top" secondItem="f1b-Pf-X0J" secondAttribute="bottom" id="2p4-Cx-cNV"/>
-                            <constraint firstItem="56s-3x-njj" firstAttribute="centerY" secondItem="gAB-RG-Zzd" secondAttribute="centerY" id="4Zh-aV-X3u"/>
-                            <constraint firstItem="56s-3x-njj" firstAttribute="centerX" secondItem="gAB-RG-Zzd" secondAttribute="centerX" id="MIQ-hA-vLQ"/>
                             <constraint firstAttribute="trailing" secondItem="f1b-Pf-X0J" secondAttribute="trailing" id="X1n-TC-rL4"/>
+                            <constraint firstItem="c8t-XM-4lH" firstAttribute="centerX" secondItem="gAB-RG-Zzd" secondAttribute="centerX" id="cCh-kK-RVF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="f1b-Pf-X0J" secondAttribute="trailing" id="eNh-ty-Nal"/>
+                            <constraint firstItem="c8t-XM-4lH" firstAttribute="centerY" secondItem="gAB-RG-Zzd" secondAttribute="centerY" id="l7F-co-EJT"/>
                             <constraint firstItem="f1b-Pf-X0J" firstAttribute="leading" secondItem="gAB-RG-Zzd" secondAttribute="leadingMargin" id="nb0-fj-l9P"/>
                             <constraint firstItem="f1b-Pf-X0J" firstAttribute="top" secondItem="FH7-oO-4nu" secondAttribute="bottom" id="u7N-lb-3VR"/>
                             <constraint firstItem="f1b-Pf-X0J" firstAttribute="centerY" secondItem="gAB-RG-Zzd" secondAttribute="centerY" id="u8X-pR-Y1r"/>
@@ -147,6 +159,7 @@
                         <outlet property="instructions" destination="vpe-31-2KD" id="xun-jX-VUn"/>
                         <outlet property="showIcons" destination="LEW-oe-19b" id="2bX-jh-XPH"/>
                         <outlet property="showText" destination="Zti-zZ-Cz0" id="DJ5-rh-xo3"/>
+                        <outlet property="welcomeLabel" destination="IAl-50-vrC" id="U63-2e-lop"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVo-bF-iCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2925,7 +2938,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Tjn-hR-3fo"/>
-        <segue reference="PIe-sL-Fqa"/>
+        <segue reference="Var-Sg-Rcn"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>

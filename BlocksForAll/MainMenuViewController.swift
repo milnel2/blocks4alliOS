@@ -9,7 +9,9 @@
 import UIKit
 
 class MainMenuViewController: UIViewController {
-
+    
+    @IBOutlet weak var welcomeLabel: UILabel!
+    
     @IBOutlet weak var getStarted: UIButton!
     
     @IBOutlet weak var instructions: UIButton!
@@ -24,6 +26,7 @@ class MainMenuViewController: UIViewController {
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
+        welcomeLabel.adjustsFontForContentSizeCategory = true
         getStarted.titleLabel?.adjustsFontForContentSizeCategory = true
         instructions.titleLabel?.adjustsFontForContentSizeCategory = true
         addRobots.titleLabel?.adjustsFontForContentSizeCategory = true
@@ -45,6 +48,8 @@ class MainMenuViewController: UIViewController {
             showIcons.accessibilityValue = "unselected"
             showIcons.accessibilityHint = "double tap to select"
         }
+        
+        
 
         
     }
