@@ -90,6 +90,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         super.viewDidLoad()
         
         // set block size based on block size from settings
+        if defaults.value(forKey: "blockSize") == nil {
+            defaults.setValue(150, forKey: "blockSize")
+        }
+        
         blockSize = defaults.value(forKey: "blockSize") as! Int
         
         if currentWorkspace != "Main Workspace" {

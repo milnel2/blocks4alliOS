@@ -29,6 +29,10 @@ class SettingsViewController: UIViewController {
             showIconsOrText.selectedSegmentIndex = defaults.value(forKey: "showText") as! Int
         }
 
+        if defaults.value(forKey: "blockSize") == nil {
+            defaults.setValue(150, forKey: "blockSize")
+        }
+        
         let blockSize = defaults.value(forKey: "blockSize") as! Float
         
         blockSizeSlider.setValue(blockSize, animated: false)
