@@ -50,7 +50,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     //The three main workspace menu buttons
     @IBOutlet weak var mainMenuButton: CustomButton!
-    @IBOutlet weak var clearAllButton: CustomButton!
+    //@IBOutlet weak var clearAllButton: CustomButton!
     
     @IBOutlet weak var playTrashToggleButton: UIButton!
     
@@ -79,7 +79,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         super.viewDidAppear(animated)
         
         //Orders contents of workspace to be more intuitive with Switch Control
-        workspaceContainerView.accessibilityElements = [workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, mainMenuButton!, clearAllButton!]
+        workspaceContainerView.accessibilityElements = [workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, mainMenuButton!]
 
         workspaceContainerView.bringSubviewToFront(workspaceNameLabel)
     }
@@ -96,7 +96,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         //Makes buttons rounded
         mainMenuButton.layer.cornerRadius = 10
-        clearAllButton.layer.cornerRadius = 10
+        // clearAllButton.layer.cornerRadius = 10
         
         if workspaceNameLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
             let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, isModifiable: false)
@@ -190,20 +190,20 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Alerts the user that all the blocks will be deleted. If user selects yes, blocks in current function are delected
     /// - Parameter sender: Clear All button
-    @IBAction func clearAll(_ sender: Any) {
-        clearAllButton.accessibilityLabel = "Clear all"
-        clearAllButton.accessibilityHint = "Clear all blocks on the screen"
-        
-        let alert = UIAlertController(title: "Do you want to clear all?", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
-            self.clearAllBlocks()
-            let announcement = "All blocks cleared."
-            self.makeAnnouncement(announcement)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
-    }
+//    @IBAction func clearAll(_ sender: Any) {
+//        clearAllButton.accessibilityLabel = "Clear all"
+//        clearAllButton.accessibilityHint = "Clear all blocks on the screen"
+//
+//        let alert = UIAlertController(title: "Do you want to clear all?", message: "", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+//            self.clearAllBlocks()
+//            let announcement = "All blocks cleared."
+//            self.makeAnnouncement(announcement)
+//        }))
+//
+//        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+//        self.present(alert, animated: true)
+//    }
     /* Changes the play button back and forth from trash to play */
     func changePlayTrashButton(){
         if movingBlocks{
