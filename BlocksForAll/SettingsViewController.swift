@@ -12,13 +12,17 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var showIconsOrText: UISegmentedControl!
     
+    @IBOutlet weak var blockSizeSlider: UISlider!
+    
     // from Paul Hegarty, lectures 13 and 14
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         // select the current setitng
         // value is 0 to show icons and 1 to show text
-        showIconsOrText.selectedSegmentIndex = defaults.value(forKey: "showText") as! Int
+        if defaults.value(forKey: "showText") != nil {
+            showIconsOrText.selectedSegmentIndex = defaults.value(forKey: "showText") as! Int
+        }
     }
     @IBAction func showIconsOrTextSelected(_ sender: UISegmentedControl, forEvent event: UIEvent) {
         
@@ -31,8 +35,11 @@ class SettingsViewController: UIViewController {
         } else {
             sender.accessibilityValue = "Show text"
         }
-        
-        
+    }
+    
+    
+    @IBAction func blockSizeSliderChanged(_ sender: UISlider) {
+        defaults.setValue(sender.value, forKey: "blockSize")
     }
     
     /*
