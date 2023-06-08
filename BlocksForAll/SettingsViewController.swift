@@ -12,8 +12,11 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var showIconsOrText: UISegmentedControl!
     
+    @IBOutlet weak var blockSizeLabel: UILabel!
+    
     @IBOutlet weak var blockSizeSlider: UISlider!
     
+    @IBOutlet weak var showIconsLabel: UILabel!
     // from Paul Hegarty, lectures 13 and 14
     let defaults = UserDefaults.standard
     
@@ -23,6 +26,10 @@ class SettingsViewController: UIViewController {
         if defaults.value(forKey: "showText") != nil {
             showIconsOrText.selectedSegmentIndex = defaults.value(forKey: "showText") as! Int
         }
+        
+        blockSizeLabel.adjustsFontForContentSizeCategory = true
+        
+        showIconsLabel.adjustsFontForContentSizeCategory = true
     }
     @IBAction func showIconsOrTextSelected(_ sender: UISegmentedControl, forEvent event: UIEvent) {
         
@@ -39,7 +46,13 @@ class SettingsViewController: UIViewController {
     
     
     @IBAction func blockSizeSliderChanged(_ sender: UISlider) {
-        defaults.setValue(sender.value, forKey: "blockSize")
+//        defaults.setValue(sender.value, forKey: "blockSize")
+        
+        // make slider increment by 25
+        // rounding from https://developer.apple.com/forums/thread/23010
+        sender.setValue(Float(roundf(sender.value * 0.04) / 0.04), animated: false)
+        
+        blockSizeLabel.text = "Block Size = \(Int(sender.value))"
     }
     
     /*

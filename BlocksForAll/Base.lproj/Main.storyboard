@@ -172,29 +172,33 @@
                                     <segue destination="YEE-PZ-SjD" kind="show" id="Oq5-da-dqe"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Cwg-wl-dN5">
-                                <rect key="frame" x="20" y="200" width="1040" height="510"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="Cwg-wl-dN5">
+                                <rect key="frame" x="170" y="200" width="760" height="510"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ane-f3-gcc">
-                                        <rect key="frame" x="354" y="0.0" width="332" height="260"/>
+                                        <rect key="frame" x="0.0" y="105" width="330" height="300"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Block Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1C-po-fkn">
-                                                <rect key="frame" x="0.0" y="0.0" width="332" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Block Size = 150" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1C-po-fkn">
+                                                <rect key="frame" x="0.0" y="0.0" width="330" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Thc-cS-otG"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qif-bs-Oy3">
-                                                <rect key="frame" x="0.0" y="20.5" width="332" height="200"/>
+                                                <rect key="frame" x="0.0" y="50" width="330" height="200"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="lV6-0Z-Aaw"/>
                                                 </constraints>
                                             </view>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="150" minValue="150" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="MtH-Ah-Bj0">
-                                                <rect key="frame" x="-2" y="220.5" width="336" height="40.5"/>
+                                                <rect key="frame" x="-2" y="250" width="334" height="51"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ibw-ev-62a"/>
+                                                    <constraint firstAttribute="height" constant="50" id="n0l-VY-ZWH"/>
                                                 </constraints>
                                                 <connections>
                                                     <action selector="blockSizeSliderChanged:" destination="e1z-cA-zHu" eventType="valueChanged" id="teJ-1i-BbU"/>
@@ -203,16 +207,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="SAC-my-RII">
-                                        <rect key="frame" x="350" y="260" width="340" height="250"/>
+                                        <rect key="frame" x="430" y="142" width="330" height="226"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Icons or Show Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAG-tB-Z7y">
-                                                <rect key="frame" x="0.0" y="0.0" width="340" height="110"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="330" height="90"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="CR6-PX-9Cg">
-                                                <rect key="frame" x="0.0" y="110" width="340" height="141"/>
+                                                <rect key="frame" x="0.0" y="90" width="330" height="137"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="CR6-PX-9Cg" secondAttribute="height" multiplier="34:14" id="nQs-Ix-4G5"/>
                                                 </constraints>
@@ -230,9 +234,6 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="SAC-my-RII" firstAttribute="leading" secondItem="Cwg-wl-dN5" secondAttribute="leading" constant="350" id="C4x-6s-Eqx"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.47450977560000002" blue="0.18823529780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -241,19 +242,20 @@
                             <constraint firstAttribute="trailing" secondItem="xnj-s6-6gX" secondAttribute="trailing" constant="20" symbolic="YES" id="8lX-dP-OFG"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" constant="20" symbolic="YES" id="G80-Bk-XGK"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="top" secondItem="0DE-vi-VZO" secondAttribute="top" id="JmA-La-d5C"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Cwg-wl-dN5" secondAttribute="trailing" id="Juq-t9-dWP"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="bottom" secondItem="1NO-hi-rac" secondAttribute="top" id="RdE-pI-DPm"/>
                             <constraint firstAttribute="trailing" secondItem="Rvu-FP-rqn" secondAttribute="trailing" constant="969" id="Uxi-Cy-X5S"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="30" id="XAG-tx-sXR"/>
-                            <constraint firstAttribute="trailing" secondItem="Cwg-wl-dN5" secondAttribute="trailing" constant="20" symbolic="YES" id="bDI-BD-TtJ"/>
+                            <constraint firstAttribute="trailing" secondItem="Cwg-wl-dN5" secondAttribute="trailing" constant="150" id="bDI-BD-TtJ"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" id="gYi-bU-ZsI"/>
-                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" id="vuR-QM-3Ne"/>
+                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="150" id="vuR-QM-3Ne"/>
                             <constraint firstItem="1NO-hi-rac" firstAttribute="top" secondItem="Cwg-wl-dN5" secondAttribute="bottom" constant="100" id="wkA-2W-nIa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pUy-ez-HU8"/>
                     <connections>
-                        <outlet property="blockSizeSlider" destination="MtH-Ah-Bj0" id="baz-Em-hkl"/>
+                        <outlet property="blockSizeLabel" destination="C1C-po-fkn" id="Uod-bc-U8z"/>
+                        <outlet property="blockSizeSlider" destination="MtH-Ah-Bj0" id="Wrt-IO-lq4"/>
+                        <outlet property="showIconsLabel" destination="dAG-tB-Z7y" id="TU4-oG-4Uz"/>
                         <outlet property="showIconsOrText" destination="CR6-PX-9Cg" id="lvf-nX-LDL"/>
                     </connections>
                 </viewController>
