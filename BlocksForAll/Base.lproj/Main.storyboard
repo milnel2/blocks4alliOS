@@ -254,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjy-LH-ytD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1299" y="-490"/>
+            <point key="canvasLocation" x="-1299.4444444444443" y="-490.37037037037032"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="EBT-KX-h8k">
@@ -3006,7 +3006,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tjn-hR-3fo"/>
+        <segue reference="44b-hj-rp4"/>
+        <segue reference="tEr-9n-TQZ"/>
         <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
