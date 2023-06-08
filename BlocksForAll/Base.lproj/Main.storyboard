@@ -176,7 +176,7 @@
                                 <rect key="frame" x="170" y="200" width="760" height="510"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ane-f3-gcc">
-                                        <rect key="frame" x="0.0" y="105" width="330" height="300"/>
+                                        <rect key="frame" x="0.0" y="205" width="330" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Block Size = 150" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1C-po-fkn">
                                                 <rect key="frame" x="0.0" y="0.0" width="330" height="50"/>
@@ -187,15 +187,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qif-bs-Oy3">
-                                                <rect key="frame" x="0.0" y="50" width="330" height="200"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="lV6-0Z-Aaw"/>
-                                                </constraints>
-                                            </view>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="150" minValue="150" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="MtH-Ah-Bj0">
-                                                <rect key="frame" x="-2" y="250" width="334" height="51"/>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="150" minValue="100" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="MtH-Ah-Bj0">
+                                                <rect key="frame" x="-2" y="50" width="334" height="51"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ibw-ev-62a"/>
                                                     <constraint firstAttribute="height" constant="50" id="n0l-VY-ZWH"/>
@@ -255,7 +248,6 @@
                     <connections>
                         <outlet property="blockSizeLabel" destination="C1C-po-fkn" id="Uod-bc-U8z"/>
                         <outlet property="blockSizeSlider" destination="MtH-Ah-Bj0" id="Wrt-IO-lq4"/>
-                        <outlet property="blockSizeView" destination="qif-bs-Oy3" id="XKA-eV-Dgf"/>
                         <outlet property="showIconsLabel" destination="dAG-tB-Z7y" id="TU4-oG-4Uz"/>
                         <outlet property="showIconsOrText" destination="CR6-PX-9Cg" id="lvf-nX-LDL"/>
                     </connections>
@@ -3015,7 +3007,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Tjn-hR-3fo"/>
-        <segue reference="XsQ-5G-ZnB"/>
+        <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Apple" width="133" height="133"/>

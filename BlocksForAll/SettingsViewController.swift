@@ -10,7 +10,6 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-    @IBOutlet weak var blockSizeView: UIView!
     
     @IBOutlet weak var showIconsOrText: UISegmentedControl!
     
@@ -27,6 +26,8 @@ class SettingsViewController: UIViewController {
         // value is 0 to show icons and 1 to show text
         if defaults.value(forKey: "showText") != nil {
             showIconsOrText.selectedSegmentIndex = defaults.value(forKey: "showText") as! Int
+        } else {
+            
         }
 
         if defaults.value(forKey: "blockSize") == nil {
@@ -35,13 +36,19 @@ class SettingsViewController: UIViewController {
         
         let blockSize = defaults.value(forKey: "blockSize") as! Float
         
+        let displaySize = blockSize - 100
         blockSizeSlider.setValue(blockSize, animated: false)
         
-        updateBlockSizeLabel(value: blockSize)
+        updateBlockSizeLabel(value: displaySize)
+        // TODO: fix this so that you can change the value by swiping up and down
+        blockSizeSlider.accessibilityAttributedHint = NSAttributedString(string: "Double tap and hold to change value")
+        
+        blockSizeSlider.accessibilityValue = "\(Int(blockSize))"
         
         blockSizeLabel.adjustsFontForContentSizeCategory = true
         
         showIconsLabel.adjustsFontForContentSizeCategory = true
+        
     }
     @IBAction func showIconsOrTextSelected(_ sender: UISegmentedControl, forEvent event: UIEvent) {
         
@@ -60,6 +67,7 @@ class SettingsViewController: UIViewController {
     @IBAction func blockSizeSliderChanged(_ sender: UISlider) {
         
         
+        
         // make slider increment by 25
         // rounding from https://developer.apple.com/forums/thread/23010
         sender.setValue(Float(roundf(sender.value * 0.04) / 0.04), animated: false)
@@ -67,8 +75,13 @@ class SettingsViewController: UIViewController {
         // save value
         defaults.setValue(sender.value, forKey: "blockSize")
         
+        let displayValue = sender.value - 100
+        
+        sender.accessibilityValue = "\(Int(displayValue))"
         // update label
-        updateBlockSizeLabel(value: sender.value)
+        updateBlockSizeLabel(value: displayValue)
+        
+       
     }
     
     // given a float, sets text for block size label
