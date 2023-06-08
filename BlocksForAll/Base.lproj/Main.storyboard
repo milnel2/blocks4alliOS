@@ -255,6 +255,7 @@
                     <connections>
                         <outlet property="blockSizeLabel" destination="C1C-po-fkn" id="Uod-bc-U8z"/>
                         <outlet property="blockSizeSlider" destination="MtH-Ah-Bj0" id="Wrt-IO-lq4"/>
+                        <outlet property="blockSizeView" destination="qif-bs-Oy3" id="XKA-eV-Dgf"/>
                         <outlet property="showIconsLabel" destination="dAG-tB-Z7y" id="TU4-oG-4Uz"/>
                         <outlet property="showIconsOrText" destination="CR6-PX-9Cg" id="lvf-nX-LDL"/>
                     </connections>

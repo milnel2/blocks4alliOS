@@ -10,6 +10,8 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var blockSizeView: UIView!
+    
     @IBOutlet weak var showIconsOrText: UISegmentedControl!
     
     @IBOutlet weak var blockSizeLabel: UILabel!
@@ -26,6 +28,12 @@ class SettingsViewController: UIViewController {
         if defaults.value(forKey: "showText") != nil {
             showIconsOrText.selectedSegmentIndex = defaults.value(forKey: "showText") as! Int
         }
+
+        let blockSize = defaults.value(forKey: "blockSize") as! Float
+        
+        blockSizeSlider.setValue(blockSize, animated: false)
+        
+        updateBlockSizeLabel(value: blockSize)
         
         blockSizeLabel.adjustsFontForContentSizeCategory = true
         
@@ -46,14 +54,29 @@ class SettingsViewController: UIViewController {
     
     
     @IBAction func blockSizeSliderChanged(_ sender: UISlider) {
-//        defaults.setValue(sender.value, forKey: "blockSize")
+        
         
         // make slider increment by 25
         // rounding from https://developer.apple.com/forums/thread/23010
         sender.setValue(Float(roundf(sender.value * 0.04) / 0.04), animated: false)
         
-        blockSizeLabel.text = "Block Size = \(Int(sender.value))"
+        // save value
+        defaults.setValue(sender.value, forKey: "blockSize")
+        
+        // update label
+        updateBlockSizeLabel(value: sender.value)
     }
+    
+    // given a float, sets text for block size label
+    private func updateBlockSizeLabel (value : Float) {
+        blockSizeLabel.text = "Block Size = \(Int(value))"
+    }
+    
+    // given a int, sets text for block size label
+    private func updateBlockSizeLabel (value : Int) {
+        blockSizeLabel.text = "Block Size = \(value)"
+    }
+
     
     /*
     // MARK: - Navigation
