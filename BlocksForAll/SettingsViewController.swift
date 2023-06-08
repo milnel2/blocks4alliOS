@@ -25,6 +25,14 @@ class SettingsViewController: UIViewController {
         // set value to 0 to show icons and 1 to show text
         defaults.setValue(sender.selectedSegmentIndex, forKey: "showText")
         defaults.synchronize()
+        
+        if sender.selectedSegmentIndex == 0 {
+            sender.accessibilityLabel = "Show icons"
+        } else {
+            sender.accessibilityValue = "Show text"
+        }
+        
+        
     }
     
     /*

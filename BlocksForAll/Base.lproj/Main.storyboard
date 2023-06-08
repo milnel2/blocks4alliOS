@@ -184,8 +184,8 @@
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="CR6-PX-9Cg">
                                         <rect key="frame" x="0.0" y="243" width="880" height="368"/>
                                         <segments>
-                                            <segment title="" image="B4A_Robot_outline"/>
-                                            <segment title="Show Text"/>
+                                            <segment title="" image="Show_Icons"/>
+                                            <segment title="" image="Show_Text"/>
                                         </segments>
                                         <connections>
                                             <action selector="showIconsOrTextSelected:forEvent:" destination="e1z-cA-zHu" eventType="valueChanged" id="jnX-DH-WZT"/>
@@ -2985,6 +2985,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="Play_Button" width="2835" height="2822"/>
         <image name="Question_Mark" width="651" height="882"/>
         <image name="Settings" width="1061" height="1038"/>
+        <image name="Show_Icons" width="2048" height="2048"/>
+        <image name="Show_Text" width="1200" height="1200"/>
         <image name="Watermelon" width="133" height="133"/>
         <image name="airplane" width="133" height="133"/>
         <image name="beep" width="133" height="133"/>
