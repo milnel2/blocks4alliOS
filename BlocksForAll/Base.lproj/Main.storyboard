@@ -46,7 +46,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="400" height="450"/>
                                                 <accessibility key="accessibilityConfiguration" label="Dash Robot Image">
                                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                                    <bool key="isElement" value="NO"/>
+                                                    <bool key="isElement" value="YES"/>
                                                 </accessibility>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="0xj-ZI-egj"/>
@@ -358,7 +358,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select a robot from the list below. If you don't see any robots, try turning your robot off and on again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVq-QZ-GAv">
                                 <rect key="frame" x="193" y="42" width="831" height="245"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>

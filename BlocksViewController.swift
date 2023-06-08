@@ -785,14 +785,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title2)
                 }
                 
-              
+                modifierInformation = distanceSet + " centimeters at " + speedSet + "Speed"
+                
                 distanceSpeedButton.setTitleColor(.black, for: .normal)
 
                 distanceSpeedButton.titleLabel?.numberOfLines = 0
                 distanceSpeedButton.addTarget(self, action: #selector(distanceSpeedModifier(sender:)), for: .touchUpInside)
-                distanceSpeedButton.accessibilityHint = "Double tap to Set distance and speed"
+                distanceSpeedButton.accessibilityHint = "\(modifierInformation). Double tap to Set distance and speed"
                 distanceSpeedButton.isAccessibilityElement = true
-                modifierInformation = distanceSet + " centimeters at " + speedSet + "Speed"
+                
                 
                 cell.addSubview(distanceSpeedButton)
                 
@@ -829,10 +830,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
                
                 angleButton.titleLabel?.numberOfLines = 0
-                angleButton.accessibilityHint = "Double tap to Set turn angle"
+                angleButton.accessibilityHint = "\(modifierInformation). Double tap to Set turn angle"
                 angleButton.isAccessibilityElement = true
-                modifierInformation = "\(block.addedBlocks[0].attributes["angle"]!) degrees"
-                
+               
                 cell.addSubview(angleButton)
                 
             case "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
