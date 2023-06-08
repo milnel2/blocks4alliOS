@@ -82,10 +82,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         workspaceContainerView.accessibilityElements = [workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, mainMenuButton!]
 
         workspaceContainerView.bringSubviewToFront(workspaceNameLabel)
+        
+        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set block size based on block size from settings
+        blockSize = defaults.value(forKey: "blockSize") as! Int
+        
         if currentWorkspace != "Main Workspace" {
             workspaceNameLabel.text = "\(currentWorkspace) Function"
             mainMenuButton.setTitle("Main Workspace", for: .normal)
