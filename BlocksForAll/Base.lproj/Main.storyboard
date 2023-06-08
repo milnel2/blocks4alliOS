@@ -172,89 +172,49 @@
                                     <segue destination="YEE-PZ-SjD" kind="show" id="Oq5-da-dqe"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="mfD-tO-97o">
-                                <rect key="frame" x="383.5" y="271.5" width="313.5" height="267"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="SAC-my-RII">
+                                <rect key="frame" x="100" y="100" width="880" height="610"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1p3-8L-b4o">
-                                        <rect key="frame" x="0.0" y="0.0" width="313.5" height="45"/>
-                                        <accessibility key="accessibilityConfiguration" label="Settings"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Icons or Show Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAG-tB-Z7y">
+                                        <rect key="frame" x="0.0" y="0.0" width="880" height="243"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Icons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="XLZ-fl-wA2">
-                                        <rect key="frame" x="0.0" y="145" width="313.5" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <accessibility key="accessibilityConfiguration" label="Settings"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="HK9-po-ahI">
-                                        <rect key="frame" x="0.0" y="236" width="313.5" height="31"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" id="Ex2-zR-Ztv">
-                                                <rect key="frame" x="0.0" y="0.0" width="124" height="46"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                <state key="normal" title="Show Text">
-                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="showTextSelected:" destination="e1z-cA-zHu" eventType="touchUpInside" id="6jh-Mu-bL2"/>
-                                                    <action selector="showTextSelected:" destination="YEE-PZ-SjD" eventType="touchUpInside" id="s2f-NX-b6i"/>
-                                                </connections>
-                                            </button>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" title="Show Icons Switch" translatesAutoresizingMaskIntoConstraints="NO" id="w6d-Bw-RAC">
-                                                <rect key="frame" x="124" y="0.0" width="51" height="31"/>
-                                            </switch>
-                                            <button opaque="NO" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" id="2lr-FL-kz0">
-                                                <rect key="frame" x="173.5" y="0.0" width="140" height="46"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                <state key="normal" title="Show Icons">
-                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="showIconsSelected:" destination="e1z-cA-zHu" eventType="touchUpInside" id="EsD-2S-hTZ"/>
-                                                    <action selector="showIconsSelected:" destination="YEE-PZ-SjD" eventType="touchUpInside" id="Tih-bL-wdh"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="7vy-0O-rMH"/>
-                                            <constraint firstAttribute="height" constant="300" id="Zy0-t8-IJe"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="124" id="oHj-XX-h6x"/>
-                                        </constraints>
-                                    </stackView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="CR6-PX-9Cg">
+                                        <rect key="frame" x="0.0" y="243" width="880" height="368"/>
+                                        <segments>
+                                            <segment title="" image="B4A_Robot_outline"/>
+                                            <segment title="Show Text"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="showIconsOrTextSelected:forEvent:" destination="e1z-cA-zHu" eventType="valueChanged" id="jnX-DH-WZT"/>
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="HK9-po-ahI" firstAttribute="top" secondItem="XLZ-fl-wA2" secondAttribute="bottom" constant="50" id="Eia-Hw-LsT"/>
-                                    <constraint firstItem="XLZ-fl-wA2" firstAttribute="top" secondItem="1p3-8L-b4o" secondAttribute="bottom" constant="100" id="eqc-J2-pq0"/>
-                                    <constraint firstItem="HK9-po-ahI" firstAttribute="top" secondItem="XLZ-fl-wA2" secondAttribute="bottom" constant="50" id="nod-kA-McF"/>
+                                    <constraint firstItem="dAG-tB-Z7y" firstAttribute="top" secondItem="SAC-my-RII" secondAttribute="top" constant="100" id="JIL-lI-KEU"/>
+                                    <constraint firstItem="CR6-PX-9Cg" firstAttribute="top" secondItem="dAG-tB-Z7y" secondAttribute="bottom" constant="100" id="ooR-Mx-jMa"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.47450977560000002" blue="0.18823529780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="SAC-my-RII" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" constant="100" id="5Vx-9X-aFa"/>
+                            <constraint firstAttribute="trailing" secondItem="SAC-my-RII" secondAttribute="trailing" constant="100" id="80h-Df-uiK"/>
                             <constraint firstAttribute="trailing" secondItem="xnj-s6-6gX" secondAttribute="trailing" id="8lX-dP-OFG"/>
-                            <constraint firstItem="mfD-tO-97o" firstAttribute="centerY" secondItem="0DE-vi-VZO" secondAttribute="centerY" id="FdA-cS-HeS"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" id="G80-Bk-XGK"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="30" id="XAG-tx-sXR"/>
-                            <constraint firstItem="mfD-tO-97o" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" id="gUl-bk-qaR"/>
+                            <constraint firstItem="SAC-my-RII" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="100" id="Y6P-ao-xzr"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="30" id="gYi-bU-ZsI"/>
                             <constraint firstAttribute="bottom" secondItem="xnj-s6-6gX" secondAttribute="bottom" id="qad-0u-ThJ"/>
+                            <constraint firstItem="1NO-hi-rac" firstAttribute="top" secondItem="SAC-my-RII" secondAttribute="bottom" constant="100" id="rRf-VD-etL"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="top" secondItem="0DE-vi-VZO" secondAttribute="top" id="wln-Eg-Pvw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pUy-ez-HU8"/>
                     <connections>
-                        <outlet property="showIcons" destination="2lr-FL-kz0" id="D4J-kG-Ldl"/>
-                        <outlet property="showText" destination="Ex2-zR-Ztv" id="mam-na-cLl"/>
+                        <outlet property="showIconsOrText" destination="CR6-PX-9Cg" id="lvf-nX-LDL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjy-LH-ytD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
