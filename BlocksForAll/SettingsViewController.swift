@@ -36,14 +36,17 @@ class SettingsViewController: UIViewController {
         
         let blockSize = defaults.value(forKey: "blockSize") as! Float
         
-        let displaySize = blockSize - 100
+        
         blockSizeSlider.setValue(blockSize, animated: false)
         
-        updateBlockSizeLabel(value: displaySize)
+        let displayValue = ((Int(blockSize) - 100) / 25) + 1
+        
+        updateBlockSizeLabel(value: displayValue)
+        
         // TODO: fix this so that you can change the value by swiping up and down
         blockSizeSlider.accessibilityAttributedHint = NSAttributedString(string: "Double tap and hold to change value")
         
-        blockSizeSlider.accessibilityValue = "\(Int(blockSize))"
+        blockSizeSlider.accessibilityValue = "\(Int(displayValue))"
         
         blockSizeLabel.adjustsFontForContentSizeCategory = true
         
@@ -51,7 +54,6 @@ class SettingsViewController: UIViewController {
         
     }
     @IBAction func showIconsOrTextSelected(_ sender: UISegmentedControl, forEvent event: UIEvent) {
-        
         // set value to 0 to show icons and 1 to show text
         defaults.setValue(sender.selectedSegmentIndex, forKey: "showText")
         defaults.synchronize()
@@ -65,17 +67,23 @@ class SettingsViewController: UIViewController {
     
     
     @IBAction func blockSizeSliderChanged(_ sender: UISlider) {
-        
-        
-        
         // make slider increment by 25
         // rounding from https://developer.apple.com/forums/thread/23010
-        sender.setValue(Float(roundf(sender.value * 0.04) / 0.04), animated: false)
+        // this code is commented out because it doesn't work when using voiceOver.
+        //sender.setValue(Float(roundf(sender.value * 0.04) / 0.04), animated: false)
         
+        // a smaller increment size works with voiceOver. This increments by 10
+        sender.setValue(Float(roundf(sender.value * 0.1) / 0.1), animated: false)
+
         // save value
         defaults.setValue(sender.value, forKey: "blockSize")
         
-        let displayValue = sender.value - 100
+        // change the slider value that goes from 100-200 to go from 1-5
+        //let displayValue = ((Int(sender.value) - 100) / 25) + 1
+        
+        // can also use this line instead so that the slider can increment by 10s using voice over
+        // it goes from 1-11
+        let displayValue = ((Int(sender.value) - 100) / 10) + 1
         
         sender.accessibilityValue = "\(Int(displayValue))"
         // update label
