@@ -33,6 +33,10 @@ class SettingsViewController: UIViewController {
         // value is 0 to show icons and 1 to show text
         if defaults.value(forKey: "showText") != nil {
             showIconsOrText.selectedSegmentIndex = defaults.value(forKey: "showText") as! Int
+        
+        }
+        else
+        { defaults.setValue(0, forKey:"showText")
         }
         
 //        //Orders contents of workspace to be more intuitive with Switch Control
