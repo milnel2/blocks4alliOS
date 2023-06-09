@@ -18,6 +18,13 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var blockSizeSlider: UISlider!
     
     @IBOutlet weak var showIconsLabel: UILabel!
+    
+    @IBOutlet var settingsView: UIView!
+    
+    @IBOutlet weak var backButton: UIButton!
+    
+    @IBOutlet weak var settingsLabel: UILabel!
+    
     // from Paul Hegarty, lectures 13 and 14
     let defaults = UserDefaults.standard
     
@@ -26,9 +33,11 @@ class SettingsViewController: UIViewController {
         // value is 0 to show icons and 1 to show text
         if defaults.value(forKey: "showText") != nil {
             showIconsOrText.selectedSegmentIndex = defaults.value(forKey: "showText") as! Int
-        } else {
-            
         }
+        
+//        //Orders contents of workspace to be more intuitive with Switch Control
+        settingsView.accessibilityElements = [settingsLabel!, blockSizeLabel!, blockSizeSlider!, showIconsLabel!, showIconsOrText!, backButton!]
+        
 
         if defaults.value(forKey: "blockSize") == nil {
             defaults.setValue(150, forKey: "blockSize")
@@ -43,10 +52,16 @@ class SettingsViewController: UIViewController {
         
         updateBlockSizeLabel(value: displayValue)
         
-        // TODO: fix this so that you can change the value by swiping up and down
-        blockSizeSlider.accessibilityAttributedHint = NSAttributedString(string: "Double tap and hold to change value")
-        
         blockSizeSlider.accessibilityValue = "\(Int(displayValue))"
+        
+        blockSizeLabel.accessibilityValue = "= \(Int(displayValue))"
+        
+        if defaults.value(forKey: "showText") as! Int == 0 {
+            showIconsLabel.accessibilityValue = "Show icons selected"
+        } else {
+            showIconsLabel.accessibilityValue = "Show text selected"
+        }
+        
         
         blockSizeLabel.adjustsFontForContentSizeCategory = true
         

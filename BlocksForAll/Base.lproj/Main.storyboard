@@ -159,60 +159,72 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="xnj-s6-6gX">
-                                <rect key="frame" x="20" y="0.0" width="1040" height="810"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvu-FP-rqn">
-                                <rect key="frame" x="50" y="30" width="61" height="46"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <state key="normal" title="Back">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvu-FP-rqn">
+                                <rect key="frame" x="50" y="30" width="275" height="281"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" label="Back"/>
+                                <state key="normal" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="YEE-PZ-SjD" kind="show" id="Oq5-da-dqe"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKy-Qn-0Ek">
+                                <rect key="frame" x="479.5" y="150" width="121" height="41"/>
+                                <accessibility key="accessibilityConfiguration" label="Settings"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="Cwg-wl-dN5">
-                                <rect key="frame" x="170" y="200" width="760" height="510"/>
+                                <rect key="frame" x="170" y="300" width="760" height="410"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ane-f3-gcc">
-                                        <rect key="frame" x="0.0" y="205" width="330" height="100"/>
+                                        <rect key="frame" x="0.0" y="55" width="330" height="300"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Block Size = 150" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1C-po-fkn">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Block Size = 3" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1C-po-fkn">
                                                 <rect key="frame" x="0.0" y="0.0" width="330" height="50"/>
+                                                <accessibility key="accessibilityConfiguration" label="Block Size"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Thc-cS-otG"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="150" minValue="100" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="MtH-Ah-Bj0">
-                                                <rect key="frame" x="-2" y="50" width="334" height="51"/>
+                                                <rect key="frame" x="-2" y="50" width="334" height="251"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ibw-ev-62a"/>
-                                                    <constraint firstAttribute="height" constant="50" id="n0l-VY-ZWH"/>
                                                 </constraints>
                                                 <connections>
                                                     <action selector="blockSizeSliderChanged:" destination="e1z-cA-zHu" eventType="valueChanged" id="teJ-1i-BbU"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="XUE-7t-M2V"/>
+                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="SAC-my-RII">
-                                        <rect key="frame" x="430" y="142" width="330" height="226"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="SAC-my-RII">
+                                        <rect key="frame" x="430" y="55" width="330" height="300"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Icons or Show Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAG-tB-Z7y">
-                                                <rect key="frame" x="0.0" y="0.0" width="330" height="90"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Icons or Text" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAG-tB-Z7y">
+                                                <rect key="frame" x="0.0" y="0.0" width="330" height="50"/>
+                                                <accessibility key="accessibilityConfiguration" label="Show Icons or Text"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="qfZ-4T-f9C"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="CR6-PX-9Cg">
-                                                <rect key="frame" x="0.0" y="90" width="330" height="137"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="CR6-PX-9Cg" secondAttribute="height" multiplier="34:14" id="nQs-Ix-4G5"/>
-                                                </constraints>
+                                                <rect key="frame" x="0.0" y="120" width="330" height="181"/>
                                                 <segments>
                                                     <segment title="" image="Show_Icons"/>
                                                     <segment title="" image="Show_Text"/>
@@ -222,39 +234,46 @@
                                                 </connections>
                                             </segmentedControl>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="250" id="OcO-En-PrJ"/>
+                                            <constraint firstAttribute="height" constant="300" id="bJm-qS-514"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.47450977560000002" blue="0.18823529780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="200" id="6xD-tj-6gF"/>
-                            <constraint firstAttribute="trailing" secondItem="xnj-s6-6gX" secondAttribute="trailing" constant="20" symbolic="YES" id="8lX-dP-OFG"/>
-                            <constraint firstItem="xnj-s6-6gX" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" constant="20" symbolic="YES" id="G80-Bk-XGK"/>
+                            <constraint firstItem="pKy-Qn-0Ek" firstAttribute="centerY" secondItem="Rvu-FP-rqn" secondAttribute="centerY" id="57B-Ga-OIx"/>
+                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="300" id="6xD-tj-6gF"/>
+                            <constraint firstAttribute="trailing" secondItem="xnj-s6-6gX" secondAttribute="trailing" id="8lX-dP-OFG"/>
+                            <constraint firstItem="xnj-s6-6gX" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" id="G80-Bk-XGK"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="top" secondItem="0DE-vi-VZO" secondAttribute="top" id="JmA-La-d5C"/>
+                            <constraint firstItem="pKy-Qn-0Ek" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="150" id="RDt-cb-aSk"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="bottom" secondItem="1NO-hi-rac" secondAttribute="top" id="RdE-pI-DPm"/>
-                            <constraint firstAttribute="trailing" secondItem="Rvu-FP-rqn" secondAttribute="trailing" constant="969" id="Uxi-Cy-X5S"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="30" id="XAG-tx-sXR"/>
                             <constraint firstAttribute="trailing" secondItem="Cwg-wl-dN5" secondAttribute="trailing" constant="150" id="bDI-BD-TtJ"/>
-                            <constraint firstItem="Rvu-FP-rqn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" id="gYi-bU-ZsI"/>
+                            <constraint firstItem="Rvu-FP-rqn" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="30" id="gYi-bU-ZsI"/>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="150" id="vuR-QM-3Ne"/>
                             <constraint firstItem="1NO-hi-rac" firstAttribute="top" secondItem="Cwg-wl-dN5" secondAttribute="bottom" constant="100" id="wkA-2W-nIa"/>
+                            <constraint firstItem="pKy-Qn-0Ek" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" id="zqL-cy-8hm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pUy-ez-HU8"/>
                     <connections>
+                        <outlet property="backButton" destination="Rvu-FP-rqn" id="4Eb-qn-5g7"/>
                         <outlet property="blockSizeLabel" destination="C1C-po-fkn" id="Uod-bc-U8z"/>
                         <outlet property="blockSizeSlider" destination="MtH-Ah-Bj0" id="Wrt-IO-lq4"/>
+                        <outlet property="settingsLabel" destination="pKy-Qn-0Ek" id="En7-oB-fER"/>
+                        <outlet property="settingsView" destination="0DE-vi-VZO" id="qPs-Kt-vfg"/>
                         <outlet property="showIconsLabel" destination="dAG-tB-Z7y" id="TU4-oG-4Uz"/>
                         <outlet property="showIconsOrText" destination="CR6-PX-9Cg" id="lvf-nX-LDL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjy-LH-ytD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1299" y="-490"/>
+            <point key="canvasLocation" x="-1299.4444444444443" y="-490.37037037037032"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="EBT-KX-h8k">
@@ -268,22 +287,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jem-v4-ejR">
-                                <rect key="frame" x="394" y="28" width="224" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <state key="normal" title="Back">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="HH4-5y-MBx">
+                                <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jem-v4-ejR">
+                                <rect key="frame" x="30" y="30" width="275" height="249"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" label="Back"/>
+                                <state key="normal" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="YEE-PZ-SjD" kind="show" id="KBE-C8-Ew2"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="justified" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZe-3b-W7O">
-                                <rect key="frame" x="44" y="129" width="924" height="617"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bf9-8r-YWE">
+                                <rect key="frame" x="506" y="134" width="68.5" height="41"/>
+                                <accessibility key="accessibilityConfiguration" label="Settings"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZe-3b-W7O">
+                                <rect key="frame" x="50" y="299" width="980" height="441"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control.
 
 In order to use Blocks4All, you must have a Dash or Dot (limited commands) robot from Wonder Workshop.
@@ -300,6 +328,20 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bf9-8r-YWE" firstAttribute="centerX" secondItem="acT-FA-pXp" secondAttribute="centerX" id="2iH-fk-om8"/>
+                            <constraint firstItem="nZe-3b-W7O" firstAttribute="leading" secondItem="acT-FA-pXp" secondAttribute="leadingMargin" constant="30" id="3dX-HP-rsN"/>
+                            <constraint firstAttribute="trailing" secondItem="HH4-5y-MBx" secondAttribute="trailing" id="6I3-oY-Pel"/>
+                            <constraint firstItem="nZe-3b-W7O" firstAttribute="top" secondItem="jem-v4-ejR" secondAttribute="bottom" constant="20" id="7bd-Y0-P55"/>
+                            <constraint firstItem="jem-v4-ejR" firstAttribute="top" secondItem="acT-FA-pXp" secondAttribute="top" constant="30" id="9Da-gQ-zoa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nZe-3b-W7O" secondAttribute="trailing" constant="30" id="Dgh-rW-jFV"/>
+                            <constraint firstItem="HH4-5y-MBx" firstAttribute="leading" secondItem="acT-FA-pXp" secondAttribute="leading" id="PfX-52-u48"/>
+                            <constraint firstItem="HH4-5y-MBx" firstAttribute="top" secondItem="bQ0-TH-tyC" secondAttribute="bottom" id="T7E-y0-uKx"/>
+                            <constraint firstItem="jem-v4-ejR" firstAttribute="leading" secondItem="acT-FA-pXp" secondAttribute="leading" constant="30" id="VGU-gB-0bt"/>
+                            <constraint firstItem="bf9-8r-YWE" firstAttribute="centerY" secondItem="jem-v4-ejR" secondAttribute="centerY" id="Yel-ds-0CP"/>
+                            <constraint firstAttribute="bottom" secondItem="nZe-3b-W7O" secondAttribute="bottom" constant="70" id="nCG-mt-HKn"/>
+                            <constraint firstItem="dhE-H1-Vfr" firstAttribute="top" secondItem="HH4-5y-MBx" secondAttribute="bottom" id="ycQ-UM-7vx"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0dZ-0O-kqT"/>
                 </viewController>
@@ -548,11 +590,11 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ot-l9-NbS">
                                 <rect key="frame" x="243" y="30" width="827" height="780"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l66-Lb-Pdn">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l66-Lb-Pdn">
                                         <rect key="frame" x="0.0" y="125" width="706" height="655"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="655" id="zIB-FZ-qiz"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="655" id="zIB-FZ-qiz"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="tWc-fW-BLq">
                                             <size key="itemSize" width="98" height="879"/>
@@ -587,16 +629,16 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                             <action selector="playButtonClicked:" destination="uoc-nU-c4a" eventType="touchUpInside" id="vL1-rJ-3br"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-F9-VES">
-                                        <rect key="frame" x="662" y="0.0" width="165" height="142"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-F9-VES">
+                                        <rect key="frame" x="677" y="0.0" width="150" height="45"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <accessibility key="accessibilityConfiguration" label="Main Menu"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="142" id="MO0-Wh-Fui"/>
-                                            <constraint firstAttribute="width" constant="165" id="VBU-X0-j66"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="idX-4O-Mkj"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
-                                        <state key="normal" title="Main Menu" image="Main_menuButton">
+                                        <state key="normal" title="Main Menu">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -607,12 +649,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="l66-Lb-Pdn" secondAttribute="bottom" id="2LS-gy-mQr"/>
-                                    <constraint firstItem="Ipa-F9-VES" firstAttribute="top" secondItem="7Ot-l9-NbS" secondAttribute="top" id="Nxp-Vd-ah4"/>
                                     <constraint firstAttribute="bottom" secondItem="Ztu-9b-vFh" secondAttribute="bottom" constant="25" id="Puu-By-8zn"/>
-                                    <constraint firstItem="Ipa-F9-VES" firstAttribute="trailing" secondItem="Ztu-9b-vFh" secondAttribute="trailing" id="R3M-lD-0CG"/>
                                     <constraint firstAttribute="trailing" secondItem="Ztu-9b-vFh" secondAttribute="trailing" id="hVe-m0-72t"/>
                                     <constraint firstItem="l66-Lb-Pdn" firstAttribute="leading" secondItem="7Ot-l9-NbS" secondAttribute="leading" id="i9a-kZ-Qzf"/>
                                     <constraint firstItem="Ztu-9b-vFh" firstAttribute="leading" secondItem="l66-Lb-Pdn" secondAttribute="trailing" constant="-29" id="qrb-xK-OhF"/>
+                                    <constraint firstItem="Ipa-F9-VES" firstAttribute="trailing" secondItem="Ztu-9b-vFh" secondAttribute="trailing" id="xag-ic-Gb8"/>
+                                    <constraint firstItem="Ipa-F9-VES" firstAttribute="top" secondItem="7Ot-l9-NbS" secondAttribute="top" id="xdT-uf-u7x"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLx-VG-2JW">
@@ -3006,17 +3048,17 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tjn-hR-3fo"/>
-        <segue reference="XsQ-5G-ZnB"/>
+        <segue reference="tEr-9n-TQZ"/>
+        <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Apple" width="133" height="133"/>
         <image name="B4A_Robot_outline" width="2048" height="2048"/>
+        <image name="Back" width="275" height="249"/>
         <image name="Background" width="1308" height="949"/>
         <image name="Banana" width="133" height="133"/>
         <image name="Cherry" width="133" height="133"/>
         <image name="GreenArrow" width="649" height="586"/>
-        <image name="Main_menuButton" width="1314" height="1373"/>
         <image name="Orange" width="133" height="133"/>
         <image name="Play_Button" width="2835" height="2822"/>
         <image name="Question_Mark" width="651" height="882"/>
