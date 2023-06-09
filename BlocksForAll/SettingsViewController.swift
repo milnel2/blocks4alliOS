@@ -48,7 +48,7 @@ class SettingsViewController: UIViewController {
         
         blockSizeSlider.setValue(blockSize, animated: false)
         
-        let displayValue = ((Int(blockSize) - 100) / 25) + 1
+        let displayValue = ((Int(blockSize) - 100) / 10) + 1
         
         updateBlockSizeLabel(value: displayValue)
         
