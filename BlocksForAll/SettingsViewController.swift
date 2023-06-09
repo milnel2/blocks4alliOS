@@ -69,7 +69,9 @@ class SettingsViewController: UIViewController {
     @IBAction func blockSizeSliderChanged(_ sender: UISlider) {
         // make slider increment by 25
         // rounding from https://developer.apple.com/forums/thread/23010
-        sender.setValue(Float(roundf(sender.value * 0.04) / 0.04), animated: false)
+        // this code is commented out because it doesn't work when using voiceOver. it may
+        // be useful to try to use again, as the slider is still a little off when using voiceOver
+        //sender.setValue(Float(roundf(sender.value * 0.04) / 0.04), animated: false)
         
         // save value
         defaults.setValue(sender.value, forKey: "blockSize")
