@@ -69,16 +69,21 @@ class SettingsViewController: UIViewController {
     @IBAction func blockSizeSliderChanged(_ sender: UISlider) {
         // make slider increment by 25
         // rounding from https://developer.apple.com/forums/thread/23010
-        // this code is commented out because it doesn't work when using voiceOver. it may
-        // be useful to try to use again, as the slider is still a little off when using voiceOver
+        // this code is commented out because it doesn't work when using voiceOver.
         //sender.setValue(Float(roundf(sender.value * 0.04) / 0.04), animated: false)
         
+        // a smaller increment size works with voiceOver. This increments by 10
+        sender.setValue(Float(roundf(sender.value * 0.1) / 0.1), animated: false)
+
         // save value
         defaults.setValue(sender.value, forKey: "blockSize")
         
         // change the slider value that goes from 100-200 to go from 1-5
-        let displayValue = ((Int(sender.value) - 100) / 25) + 1
-        print(displayValue)
+        //let displayValue = ((Int(sender.value) - 100) / 25) + 1
+        
+        // can also use this line instead so that the slider can increment by 10s using voice over
+        // it goes from 1-11
+        let displayValue = ((Int(sender.value) - 100) / 10) + 1
         
         sender.accessibilityValue = "\(Int(displayValue))"
         // update label
