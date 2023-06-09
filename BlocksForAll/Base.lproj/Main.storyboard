@@ -3048,8 +3048,9 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="44b-hj-rp4"/>
         <segue reference="tEr-9n-TQZ"/>
-        <segue reference="Oq5-da-dqe"/>
+        <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Apple" width="133" height="133"/>
