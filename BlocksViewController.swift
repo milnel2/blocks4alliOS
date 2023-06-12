@@ -20,9 +20,16 @@ var currentWorkspace = String()
 let defaults = UserDefaults.standard
 
 let startIndex = 0
+
+
 var endIndex: Int{
     return functionsDict[currentWorkspace]!.count - 1
 }
+
+// modifier block global variables
+// these are global so that the modifier setup methods can access them
+var startingHeight = 0
+var count = 0
 
 //MARK: - Block Selection Delegate Protocol
 /// Sends information about which blocks are selected to SelectedBlockViewController when moving blocks in workspace.
@@ -434,7 +441,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
 
     
-    private func setUpSoundModifierButton(block : Block, blockName name : String,  defaultValue : String, withStartingHeight startingHeight : Int, withCount count : Int, indexPath : IndexPath) -> CustomButton {
+    private func setUpSoundModifierButton(block : Block, blockName name : String, indexPath : IndexPath, selector : Selector, cell : UICollectionViewCell) -> CustomButton {
         /* Sets up and returns a modifier button for sound blocks*/
         
         // generate the regular english name for accessibility tool purposes
@@ -452,6 +459,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
         
+        let defaultSoundDictionary = ["Animal Noise" : "cat", "Vehicle Noise" : "airplane", "Object Noise" : "laser", "Emotion Noise" : "bragging", "Speak Word" : "hi"]
+        
+        let defaultValue = defaultSoundDictionary[name] ?? "cat"
+        
         if block.addedBlocks.isEmpty{
             let initialNoise = defaultValue
 
@@ -466,7 +477,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         tempButton.layer.zPosition = 1
 
         let sound = block.addedBlocks[0].attributes[attributeName]
-        let imagePath = "\(sound ?? "cat").pdf"
+        let imagePath = "\(sound ?? defaultValue).pdf"
 
         let image: UIImage?
         image = UIImage(named: imagePath)
@@ -505,6 +516,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if #available(iOS 13.0, *) {
             tempButton.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
         }
+        
+        tempButton.addTarget(self, action: selector, for: .touchUpInside)
+        
+        cell.addSubview(tempButton)
+        
         return tempButton
     }
     
@@ -589,7 +605,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }else{
             
-            let startingHeight = Int(cell.frame.height)-blockSize
+            startingHeight = Int(cell.frame.height)-blockSize
             
             let block = functionsDict[currentWorkspace]![indexPath.row]
             var blocksToAdd = [Block]()
@@ -609,7 +625,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             }
             
-            var count = 0
+            count = 0
             for b in blocksToAdd{
                 let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockSize/2-count*(blockSize/2+blockSpacing), width: blockSize+2*blockSpacing, height: blockSize/2))
                 
@@ -628,48 +644,23 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             
             let name = block.name
             var modifierInformation = ""
-
             
-            switch name{
+            switch name {
             case "Animal Noise":
-             
-                let animalNoiseButton = setUpSoundModifierButton(block: block, blockName : "Animal Noise", defaultValue: "cat", withStartingHeight: startingHeight, withCount: count, indexPath: indexPath)
-                
-                animalNoiseButton.addTarget(self, action: #selector(animalModifier(sender:)), for: .touchUpInside)
-                        
-                cell.addSubview(animalNoiseButton)
+                let animalNoiseButton = setUpSoundModifierButton(block: block, blockName : "Animal Noise", indexPath: indexPath, selector:  #selector(animalModifier(sender:)), cell: cell)
                 
             case "Vehicle Noise":
-                let vehicleNoiseButton = setUpSoundModifierButton(block: block, blockName : "Vehicle Noise", defaultValue: "airplane", withStartingHeight: startingHeight, withCount: count, indexPath: indexPath)
-                
-                vehicleNoiseButton.addTarget(self, action: #selector(vehicleModifier(sender:)), for: .touchUpInside)
-                
-                cell.addSubview(vehicleNoiseButton)
+                let vehicleNoiseButton = setUpSoundModifierButton(block: block, blockName : "Vehicle Noise", indexPath: indexPath, selector: #selector(vehicleModifier(sender:)), cell: cell)
                 
             case "Object Noise":
-               
-                let objectNoiseButton = setUpSoundModifierButton(block: block, blockName : "Object Noise", defaultValue: "laser", withStartingHeight: startingHeight, withCount: count, indexPath: indexPath)
-                
-                objectNoiseButton.addTarget(self, action: #selector(objectNoiseModifier(sender:)), for: .touchUpInside)
-                
-                cell.addSubview(objectNoiseButton)
+                let objectNoiseButton = setUpSoundModifierButton(block: block, blockName : "Object Noise", indexPath: indexPath, selector : #selector(objectNoiseModifier(sender:)), cell: cell)
                 
             case "Emotion Noise":
-                
-                let emotionNoiseButton = setUpSoundModifierButton(block: block, blockName : "Emotion Noise", defaultValue: "bragging", withStartingHeight: startingHeight, withCount: count, indexPath: indexPath)
-                
-                emotionNoiseButton.addTarget(self, action: #selector(emotionModifier(sender:)), for: .touchUpInside)
-                
-                cell.addSubview(emotionNoiseButton)
-                
-            case "Speak":
-                
-                let speakButton = setUpSoundModifierButton(block: block, blockName : "Speak Word", defaultValue: "hi", withStartingHeight: startingHeight, withCount: count, indexPath: indexPath)
+                let emotionNoiseButton = setUpSoundModifierButton(block: block, blockName : "Emotion Noise", indexPath: indexPath, selector : #selector(emotionModifier(sender:)), cell: cell)
             
-                speakButton.addTarget(self, action: #selector(speakModifier(sender:)), for: .touchUpInside)
-                
-                cell.addSubview(speakButton)
-            // TODO: if
+            case "Speak":
+                let speakButton = setUpSoundModifierButton(block: block, blockName : "Speak Word", indexPath: indexPath, selector:  #selector(speakModifier(sender:)), cell: cell)
+            
             case "If":
                 if block.addedBlocks.isEmpty{
                     let initialBoolean = "false"
@@ -684,20 +675,23 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 let ifButton = setUpModifierButton(withStartingHeight: startingHeight, withCount: count)
 
                 ifButton.tag = indexPath.row
+                
+                // choose image path
+                let image = UIImage(named: "\(block.addedBlocks[0].attributes["booleanSelected"] ?? "false").pdf")
+                ifButton.setBackgroundImage(image, for: .normal)
+                
+                // set voiceOver information
                 switch block.addedBlocks[0].attributes["booleanSelected"]{
                 case "hear_voice":
-                    let image = UIImage(named: "hear_voice.pdf")
-                    ifButton.setBackgroundImage(image, for: .normal)
                     modifierInformation = " robot hears voice"
+                
                 case "obstacle_sensed":
-                    let image = UIImage(named: "sense_obstacle")
-                    ifButton.setBackgroundImage(image, for: .normal)
                     modifierInformation = " robot senses obstacle"
+                
                 default:
-                    let image = UIImage(named: "false.pdf")
-                    ifButton.setBackgroundImage(image, for: .normal)
                     modifierInformation = " false"
                 }
+                
                 ifButton.backgroundColor = .lightGray
                 ifButton.addTarget(self, action: #selector(ifModifier(sender:)), for: .touchUpInside)
                 
@@ -770,6 +764,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 distanceSpeedButton.tag = indexPath.row
                 
+                // show icon
                 if defaults.integer(forKey: "showText") == 0 {
                     let imagePath = "\(speedSet).pdf"
                     let image: UIImage?
@@ -784,6 +779,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     distanceSpeedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
                    
                 } else {
+                    // show text
                     let imagePath = "driveModifierBackground.pdf"
                     let image: UIImage?
                     image = UIImage(named: imagePath)

@@ -1766,7 +1766,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <color key="backgroundColor" red="0.27790132169999998" green="0.86850605729999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <accessibility key="accessibilityConfiguration" identifier="obstacle_sensed" label="Sense Obstacle"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="sense_obstacle">
+                                <state key="normal" backgroundImage="obstacle_sensed">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -3031,7 +3031,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uRw-vH-lIn"/>
+        <segue reference="tEr-9n-TQZ"/>
         <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -3079,6 +3079,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="laser" width="133" height="133"/>
         <image name="letsGo" width="133.44094848632812" height="133.44094848632812"/>
         <image name="lion" width="133" height="133"/>
+        <image name="obstacle_sensed" width="133.44094848632812" height="133.44094848632812"/>
         <image name="oh" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange_minus" width="133.44094848632812" height="133.44094848632812"/>
@@ -3092,7 +3093,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="randomVehicle" width="133" height="133"/>
         <image name="randomWord" width="133" height="133"/>
         <image name="red" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="sense_obstacle" width="133.44094848632812" height="133.44094848632812"/>
         <image name="sigh" width="133.44094848632812" height="133.44094848632812"/>
         <image name="siren" width="133" height="133"/>
         <image name="snore" width="133.44094848632812" height="133.44094848632812"/>
