@@ -560,7 +560,9 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <navigationItem key="navigationItem" id="4aN-d1-jU6"/>
                     <connections>
+                        <outlet property="ColorTitle" destination="LYn-Uw-o5x" id="J2w-UD-Eaw"/>
                         <outlet property="back" destination="nKa-YP-2xv" id="aFl-0j-5rs"/>
+                        <outlet property="colorView" destination="pT3-hS-b8f" id="9E6-8H-g3J"/>
                         <outletCollection property="buttons" destination="iyU-jO-bvk" collectionClass="NSMutableArray" id="pMW-oG-w8n"/>
                         <outletCollection property="buttons" destination="uBS-jv-FLd" collectionClass="NSMutableArray" id="Flg-v3-8wP"/>
                         <outletCollection property="buttons" destination="3Ng-u7-4WV" collectionClass="NSMutableArray" id="sNB-ET-x3t"/>
@@ -986,28 +988,21 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="360" translatesAutoresizingMaskIntoConstraints="NO" id="HuR-8Y-sXT" userLabel="Angle Slider">
+                            <slider contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="360" translatesAutoresizingMaskIntoConstraints="NO" id="HuR-8Y-sXT" userLabel="Angle Slider">
                                 <rect key="frame" x="201" y="400" width="623" height="31"/>
-                                <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" hint="0 to 360 degrees" label="Angle Slider"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="619" id="G9F-Ab-URr"/>
+                                </constraints>
                                 <connections>
                                     <action selector="angleSliderChanged:" destination="JzC-8L-d8W" eventType="valueChanged" id="zMc-qL-LDW"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Angle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPI-lo-vAq">
-                                <rect key="frame" x="215" y="164" width="594" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Angle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPI-lo-vAq">
+                                <rect key="frame" x="498" y="231" width="84.5" height="41"/>
                                 <accessibility key="accessibilityConfiguration" hint="How much should the robot turn" label="Angle"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="90" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52s-Ei-stU">
-                                <rect key="frame" x="841" y="335" width="145" height="145"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" label="Angle"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1022,14 +1017,32 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <segue destination="uoc-nU-c4a" kind="show" id="IVp-4f-s1y"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52s-Ei-stU">
+                                <rect key="frame" x="867" y="396" width="35.5" height="33.5"/>
+                                <accessibility key="accessibilityConfiguration" label="Angle"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hik-92-oYa" firstAttribute="top" secondItem="HuR-8Y-sXT" secondAttribute="bottom" constant="380" id="5Vh-LX-Yqy"/>
+                            <constraint firstItem="vPI-lo-vAq" firstAttribute="centerX" secondItem="0me-MT-hwN" secondAttribute="centerX" id="5uy-Zp-5Ql"/>
+                            <constraint firstAttribute="trailing" secondItem="52s-Ei-stU" secondAttribute="trailing" constant="177.5" id="9jR-hc-RSU"/>
+                            <constraint firstItem="vPI-lo-vAq" firstAttribute="centerY" secondItem="0me-MT-hwN" secondAttribute="centerY" constant="-153.5" id="FoM-wQ-w70"/>
+                            <constraint firstItem="hik-92-oYa" firstAttribute="top" secondItem="52s-Ei-stU" secondAttribute="bottom" constant="380.5" id="Mkz-LU-3k2"/>
+                            <constraint firstItem="52s-Ei-stU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HuR-8Y-sXT" secondAttribute="trailing" constant="8" symbolic="YES" id="iwp-bc-4KY"/>
+                            <constraint firstItem="HuR-8Y-sXT" firstAttribute="leading" secondItem="0me-MT-hwN" secondAttribute="leading" constant="203" id="kKl-o3-4ds"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0Y8-Xp-wUV"/>
                     <connections>
                         <outlet property="angleDisplayed" destination="52s-Ei-stU" id="ztt-0Z-rzi"/>
                         <outlet property="angleSlider" destination="HuR-8Y-sXT" id="ctg-yU-TaL"/>
+                        <outlet property="angleTitle" destination="vPI-lo-vAq" id="wEF-0a-tSf"/>
                         <outlet property="back" destination="4jM-yw-zZG" id="DcI-pZ-HCm"/>
+                        <outlet property="turnView" destination="0me-MT-hwN" id="Dfb-xX-NzF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLF-rh-Lei" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3031,7 +3044,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tEr-9n-TQZ"/>
+        <segue reference="IVp-4f-s1y"/>
         <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
