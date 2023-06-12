@@ -15,15 +15,23 @@ class EyeLightModifierViewController: UIViewController{
     
     @IBOutlet var buttons: [UIButton]!
     
+    @IBOutlet var eyeLightView: UIView!
+
+    @IBOutlet var eyeLightTitle: UILabel!
     
     @IBOutlet weak var lightLabel: UILabel!
+    
     var modifierBlockIndexSender: Int?
     var eyeLightStatus: String = "On"
     
     @IBOutlet weak var back: UIButton!
     
     override func viewDidLoad() {
+        //VO route to be more intuitive
+        eyeLightView.accessibilityElements = [eyeLightTitle!, buttons!, lightLabel!, back!]
+        
         // default status: On or preserve last selection
+        
         let previousSelection: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] ?? "Off"
         
         lightLabel.text = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["eyeLight"] ?? "Off"
