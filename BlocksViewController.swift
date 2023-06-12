@@ -71,6 +71,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// blocks currently being moved (includes nested blocks)
     var blocksBeingMoved = [Block]()
     /// Top-level controller for toolbox view controllers
+    var allModifierBlocks = [CustomButton]()
+    /// A list of all the modifier blocks in the workspace
     var containerViewController: UINavigationController?
     
     // TODO: the blockWidth and blockHeight are not the same as the variable blockSize (= 100)
@@ -421,7 +423,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         tempButton.layer.zPosition = 1
         
-        
+        allModifierBlocks.append(tempButton)
         return tempButton
     }
 
@@ -506,6 +508,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         cell.addSubview(tempButton)
         
+        allModifierBlocks.append(tempButton)
         return tempButton
     }
     
@@ -562,6 +565,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         for myView in cell.subviews{
             myView.removeFromSuperview()
         }
+        
         cell.isAccessibilityElement = false
         if indexPath.row == functionsDict[currentWorkspace]!.count {
             // The last cell in the collectionView is an empty cell so you can place blocks at the end
@@ -1148,6 +1152,20 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             cell.addSubview(myLabel)
         }
         cell.accessibilityElements = cell.accessibilityElements?.reversed()
+        
+        // Deactivates all modifier blocks in the workspace while a block is being moved.
+        // Switch control and VO will also skip over the modifier block.
+        if (movingBlocks) {
+            for modifierBlock in allModifierBlocks {
+                modifierBlock.isEnabled = false
+                modifierBlock.isAccessibilityElement = false
+            }
+        } else {
+            for modifierBlock in allModifierBlocks {
+                modifierBlock.isEnabled = true
+                modifierBlock.isAccessibilityElement = true
+            }
+        }
 
         return cell
     }
