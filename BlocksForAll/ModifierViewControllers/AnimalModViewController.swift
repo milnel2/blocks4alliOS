@@ -18,7 +18,16 @@ class AnimalModViewController: UIViewController{
     @IBOutlet weak var back: UIButton!
     @IBOutlet var buttons: [UIButton]!
     
+    @IBOutlet var animalModView: UIView!
+    
+    @IBOutlet var animalTitle: UILabel!
+    
+    
     override func viewDidLoad() {
+        
+        //reroute VO Order to be more intuitive
+        animalModView.accessibilityElements = [animalTitle!,buttons!, back!]
+        
         // default: Cat or preserve last selection
         let previousAnimal: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["animalNoise"] ?? "cat"
         
