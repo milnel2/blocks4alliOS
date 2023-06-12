@@ -17,9 +17,12 @@ class ColorModViewController: UIViewController{
     
     @IBOutlet weak var back: UIButton!
     @IBOutlet var buttons: [UIButton]!
-    
+    @IBOutlet weak var ColorTitle: UILabel!
+    @IBOutlet var colorView: UIView!
     
     override func viewDidLoad() {
+        // VO order to make it more intuitive
+        colorView.accessibilityElements = [ColorTitle!, buttons!, back!]
         // default color: Yellow or preserve last selection
         let previousLightColor: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["lightColor"] ?? "yellow"
         
