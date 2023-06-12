@@ -59,10 +59,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var mainMenuButton: CustomButton!
     //@IBOutlet weak var clearAllButton: CustomButton!
     
+    @IBOutlet weak var mainWorkspaceButton: UIButton!
+    
     @IBOutlet weak var playTrashToggleButton: UIButton!
-    
-    @IBOutlet weak var workspaceNameLabel: UILabel!
-    
+        
     /// view on bottom of screen that shows blocks in workspace
     @IBOutlet weak var blocksProgram: UICollectionView!
 
@@ -89,9 +89,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //Orders contents of workspace to be more intuitive with Switch Control
         mainView.accessibilityElements = [toolboxView!, workspaceContainerView!]
         
-        workspaceContainerView.accessibilityElements = [workspaceNameLabel!, blocksProgram!, playTrashToggleButton!, mainMenuButton!]
+        workspaceContainerView.accessibilityElements = [blocksProgram!, playTrashToggleButton!, mainMenuButton!, mainWorkspaceButton!]
 
-        workspaceContainerView.bringSubviewToFront(workspaceNameLabel)
+        //workspaceContainerView.bringSubviewToFront(workspaceNameLabel)
         
         
     }
@@ -107,64 +107,49 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blockSize = defaults.value(forKey: "blockSize") as! Int
         
         if currentWorkspace != "Main Workspace" {
-            workspaceNameLabel.text = "\(currentWorkspace) Function"
-            mainMenuButton.setTitle("Main Workspace", for: .normal)
+            //workspaceNameLabel.text = "\(currentWorkspace) Function"
+            //mainMenuButton.setTitle("Main Workspace", for: .normal)
+            mainWorkspaceButton.isHidden = false
+            if functionsDict[currentWorkspace]!.isEmpty{
+                let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, isModifiable: false)
+                let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, isModifiable: false)
+                startBlock!.counterpart = [endBlock!]
+                endBlock!.counterpart = [startBlock!]
+                functionsDict[currentWorkspace]?.append(startBlock!)
+                functionsDict[currentWorkspace]?.append(endBlock!)
+            }
+        }else{
+            mainWorkspaceButton.isHidden = true
         }
         self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
-        
-        //Makes buttons rounded
-        mainMenuButton.layer.cornerRadius = 10
-        // clearAllButton.layer.cornerRadius = 10
-        
-        if workspaceNameLabel.text != "Main Workspace" && functionsDict[currentWorkspace]!.isEmpty{
-            let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, isModifiable: false)
-            let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, isModifiable: false)
-            startBlock!.counterpart = [endBlock!]
-            endBlock!.counterpart = [startBlock!]
-            functionsDict[currentWorkspace]?.append(startBlock!)
-            functionsDict[currentWorkspace]?.append(endBlock!)
-        }
-        // Below causes issues with memory and cause app to die if not used frequently enough leave the app alone for too long and it dies and has to be reinstalled, even if you comment this out the issue still happens
-        
-        // I think this is used for when you have function that has been renamed and you go back to the main workspace that the rename action is shown up on all of the blocks properly????
-        
-//        var keyExists = false
-//        if workspaceLabel.text == "Main Workspace"{
-//            for i in 0..<functionsDict[currentWorkspace]!.count{
-//                if functionsDict[currentWorkspace]![i].type == "Function"{
-//                    var block = functionsDict[currentWorkspace]![i]
-//                    for j in 0..<oldKey.count{
-//                        if block.name == oldKey[j]{
-//                            keyExists = true
-//                            block.name = newKey[j]
-//                        }
-//                    }
-//                }
-//            }
-//        }
-  
-        // Rewrote the way block names are changed when a function is renamed, the changes are in functionTableViewController rename function at the very bottom
-        
-
-    
     }
-    
-    @IBAction func goToMainMenuOrWorkspace(_ sender: CustomButton) {
+    // TODO: modifify with new buttons
+    @IBAction func goToMainMenu(_ sender: CustomButton) {
         
         //If user is in the main workspace, main menu button takes them to the main menu
-        if currentWorkspace == "Main Workspace" {
+//        if currentWorkspace == "Main Workspace" {
             performSegue(withIdentifier: "toMainMenu", sender: self)
-        }
+//        }
         //If user is in a function workspace, main workspace button takes them to the main workspace
-        else {
-            currentWorkspace = "Main Workspace"
-            //Segues from the main workspace to itself to reload the view (switches from functions workspace to main)
-            performSegue(withIdentifier: "mainToMain", sender: self)
-
-        }
+//        else {
+//            currentWorkspace = "Main Workspace"
+//            //Segues from the main workspace to itself to reload the view (switches from functions workspace to main)
+//            performSegue(withIdentifier: "mainToMain", sender: self)
+//
+//        }
     }
+    
+    
+    @IBAction func goToMainWorkspace(_ sender: Any) {
+        currentWorkspace = "Main Workspace"
+        //Segues from the main workspace to itself to reload the view (switches from functions workspace to main)
+        performSegue(withIdentifier: "mainToMain", sender: self)
+    }
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
