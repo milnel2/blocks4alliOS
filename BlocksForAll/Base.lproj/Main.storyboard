@@ -1795,7 +1795,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <constraint firstAttribute="width" constant="254" id="4q8-c4-Wrz"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="sense_obstacle">
+                                <state key="normal" backgroundImage="obstacle_sensed">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -1858,6 +1858,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     <navigationItem key="navigationItem" id="6ib-2M-E3J"/>
                     <connections>
                         <outlet property="back" destination="Isk-8p-Zb9" id="BwH-AS-m69"/>
+                        <outlet property="button1" destination="Pne-Bh-W0v" id="cYx-61-2Qx"/>
+                        <outlet property="button2" destination="9k4-s6-Hn4" id="bSQ-ym-Fb3"/>
+                        <outlet property="ifSceneView" destination="cBw-OZ-GyG" id="AZY-z3-md7"/>
+                        <outlet property="ifTitle" destination="eGh-Sc-60y" id="KgV-KR-Bzq"/>
                         <outletCollection property="buttons" destination="Pne-Bh-W0v" collectionClass="NSMutableArray" id="F7W-Lf-yG7"/>
                         <outletCollection property="buttons" destination="9k4-s6-Hn4" collectionClass="NSMutableArray" id="62O-ID-PHp"/>
                     </connections>
@@ -3092,7 +3096,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="w7l-uY-c2T"/>
+        <segue reference="tEr-9n-TQZ"/>
         <segue reference="KBE-C8-Ew2"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -3141,6 +3145,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="laser" width="133" height="133"/>
         <image name="letsGo" width="133.44094848632812" height="133.44094848632812"/>
         <image name="lion" width="133" height="133"/>
+        <image name="obstacle_sensed" width="133.44094848632812" height="133.44094848632812"/>
         <image name="oh" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange_minus" width="133.44094848632812" height="133.44094848632812"/>
@@ -3154,7 +3159,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="randomVehicle" width="133" height="133"/>
         <image name="randomWord" width="133" height="133"/>
         <image name="red" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="sense_obstacle" width="133.44094848632812" height="133.44094848632812"/>
         <image name="sigh" width="133.44094848632812" height="133.44094848632812"/>
         <image name="siren" width="133" height="133"/>
         <image name="snore" width="133.44094848632812" height="133.44094848632812"/>
