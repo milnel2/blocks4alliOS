@@ -967,9 +967,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <outlet property="back" destination="Rqa-ry-KPK" id="tar-dH-76z"/>
                         <outlet property="distanceDisplayed" destination="MuZ-k8-W3G" id="d3b-Fl-LO5"/>
                         <outlet property="distanceSlider" destination="33V-6u-7DC" id="0JE-We-bFu"/>
+                        <outlet property="distanceSpeedView" destination="nbW-AW-Yn9" id="p0A-9G-wTb"/>
+                        <outlet property="distanceTitle" destination="M3X-6I-Kgi" id="Gi0-ES-Lcs"/>
                         <outlet property="fastButton" destination="X6X-ia-LTz" id="OHL-ID-D61"/>
                         <outlet property="slowButton" destination="WtH-IO-eXP" id="di7-Dk-6Oi"/>
                         <outlet property="speedLabel" destination="XeR-95-VOA" id="5zh-Za-eW3"/>
+                        <outlet property="speedTitle" destination="aXq-Lg-wuF" id="f95-1f-29d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2c-JQ-QCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1299,6 +1302,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <connections>
                         <outlet property="back" destination="kFQ-xx-rgF" id="XwR-mD-6g1"/>
+                        <outlet property="emotionTitle" destination="999-kk-5uY" id="w7t-8d-YtN"/>
+                        <outlet property="emotionView" destination="jO2-Ue-Pph" id="A3B-Lo-blm"/>
                         <outletCollection property="buttons" destination="nci-IV-rCV" collectionClass="NSMutableArray" id="kl3-UB-RH3"/>
                         <outletCollection property="buttons" destination="WVj-Fa-7NP" collectionClass="NSMutableArray" id="vCM-Ae-Ea2"/>
                         <outletCollection property="buttons" destination="09y-XU-QgC" collectionClass="NSMutableArray" id="WAY-F2-Sit"/>
@@ -1790,7 +1795,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <constraint firstAttribute="width" constant="254" id="4q8-c4-Wrz"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="sense_obstacle">
+                                <state key="normal" backgroundImage="obstacle_sensed">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -1853,6 +1858,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     <navigationItem key="navigationItem" id="6ib-2M-E3J"/>
                     <connections>
                         <outlet property="back" destination="Isk-8p-Zb9" id="BwH-AS-m69"/>
+                        <outlet property="button1" destination="Pne-Bh-W0v" id="cYx-61-2Qx"/>
+                        <outlet property="button2" destination="9k4-s6-Hn4" id="bSQ-ym-Fb3"/>
+                        <outlet property="ifSceneView" destination="cBw-OZ-GyG" id="AZY-z3-md7"/>
+                        <outlet property="ifTitle" destination="eGh-Sc-60y" id="KgV-KR-Bzq"/>
                         <outletCollection property="buttons" destination="Pne-Bh-W0v" collectionClass="NSMutableArray" id="F7W-Lf-yG7"/>
                         <outletCollection property="buttons" destination="9k4-s6-Hn4" collectionClass="NSMutableArray" id="62O-ID-PHp"/>
                     </connections>
@@ -2447,7 +2456,11 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     <navigationItem key="navigationItem" id="yTo-V0-ZvZ"/>
                     <connections>
                         <outlet property="back" destination="v0b-pj-PQ9" id="uwC-sN-tUf"/>
+                        <outlet property="eyeLightTitle" destination="yI8-HC-zZc" id="YfF-Fg-OAR"/>
+                        <outlet property="eyeLightView" destination="2xj-6b-jPm" id="QW3-GJ-Ebe"/>
                         <outlet property="lightLabel" destination="FIq-QR-T6e" id="G1y-0c-hou"/>
+                        <outlet property="lightOffButton" destination="m6l-QQ-eDK" id="LhQ-Mc-p74"/>
+                        <outlet property="lightOnButton" destination="CwL-cg-MQl" id="xZL-WO-Aqi"/>
                         <outletCollection property="buttons" destination="m6l-QQ-eDK" collectionClass="NSMutableArray" id="rp8-8i-psl"/>
                         <outletCollection property="buttons" destination="CwL-cg-MQl" collectionClass="NSMutableArray" id="tKw-rn-eeX"/>
                     </connections>
@@ -3083,7 +3096,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="REf-Ph-mB1"/>
+        <segue reference="tEr-9n-TQZ"/>
         <segue reference="KBE-C8-Ew2"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -3132,6 +3145,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="laser" width="133" height="133"/>
         <image name="letsGo" width="133.44094848632812" height="133.44094848632812"/>
         <image name="lion" width="133" height="133"/>
+        <image name="obstacle_sensed" width="133.44094848632812" height="133.44094848632812"/>
         <image name="oh" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange_minus" width="133.44094848632812" height="133.44094848632812"/>
@@ -3145,7 +3159,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="randomVehicle" width="133" height="133"/>
         <image name="randomWord" width="133" height="133"/>
         <image name="red" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="sense_obstacle" width="133.44094848632812" height="133.44094848632812"/>
         <image name="sigh" width="133.44094848632812" height="133.44094848632812"/>
         <image name="siren" width="133" height="133"/>
         <image name="snore" width="133.44094848632812" height="133.44094848632812"/>
