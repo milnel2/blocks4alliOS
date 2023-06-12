@@ -1302,6 +1302,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <connections>
                         <outlet property="back" destination="kFQ-xx-rgF" id="XwR-mD-6g1"/>
+                        <outlet property="emotionTitle" destination="999-kk-5uY" id="w7t-8d-YtN"/>
+                        <outlet property="emotionView" destination="jO2-Ue-Pph" id="A3B-Lo-blm"/>
                         <outletCollection property="buttons" destination="nci-IV-rCV" collectionClass="NSMutableArray" id="kl3-UB-RH3"/>
                         <outletCollection property="buttons" destination="WVj-Fa-7NP" collectionClass="NSMutableArray" id="vCM-Ae-Ea2"/>
                         <outletCollection property="buttons" destination="09y-XU-QgC" collectionClass="NSMutableArray" id="WAY-F2-Sit"/>
