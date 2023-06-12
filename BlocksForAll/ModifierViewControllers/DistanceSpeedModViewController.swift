@@ -25,8 +25,14 @@ class DistanceSpeedModViewController: UIViewController{
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var distanceDisplayed: UILabel!
     @IBOutlet weak var back: UIButton!
+    @IBOutlet var distanceSpeedView: UIView!
+    @IBOutlet var distanceTitle: UILabel!
+    @IBOutlet var speedTitle: UILabel!
     
     override func viewDidLoad() {
+        // VO order to be more intuitive
+        distanceSpeedView.accessibilityElements = [distanceTitle!, distanceDisplayed!, distanceSlider!, speedTitle!, slowButton!, speedLabel!, fastButton!]
+        
         //Makes buttons easier to select with Voice Control
         if #available(iOS 13.0, *) {
             slowButton.accessibilityUserInputLabels = ["Slower", "Decrease", "Minus", "Subtract"]

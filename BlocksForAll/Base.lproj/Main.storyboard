@@ -967,9 +967,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <outlet property="back" destination="Rqa-ry-KPK" id="tar-dH-76z"/>
                         <outlet property="distanceDisplayed" destination="MuZ-k8-W3G" id="d3b-Fl-LO5"/>
                         <outlet property="distanceSlider" destination="33V-6u-7DC" id="0JE-We-bFu"/>
+                        <outlet property="distanceSpeedView" destination="nbW-AW-Yn9" id="p0A-9G-wTb"/>
+                        <outlet property="distanceTitle" destination="M3X-6I-Kgi" id="Gi0-ES-Lcs"/>
                         <outlet property="fastButton" destination="X6X-ia-LTz" id="OHL-ID-D61"/>
                         <outlet property="slowButton" destination="WtH-IO-eXP" id="di7-Dk-6Oi"/>
                         <outlet property="speedLabel" destination="XeR-95-VOA" id="5zh-Za-eW3"/>
+                        <outlet property="speedTitle" destination="aXq-Lg-wuF" id="f95-1f-29d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2c-JQ-QCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
