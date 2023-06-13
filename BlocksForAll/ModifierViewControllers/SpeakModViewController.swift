@@ -11,14 +11,20 @@ import UIKit
 
 class SpeakModViewController: UIViewController{
     /* Custom view controller for the Speak modifier scene */
-    
     var modifierBlockIndexSender: Int?
     var wordSelected: String = "hi"
+    
+    @IBOutlet var speakModView: UIView!
+
+    @IBOutlet var speakModTitle: UILabel!
     
     @IBOutlet weak var back: UIButton!
     @IBOutlet var buttons: [UIButton]!
     
     override func viewDidLoad() {
+        // VO Route to be intuitive
+        speakModView.accessibilityElements = [speakModTitle!, buttons!, back!]
+        
         // default: Hi or preserve last selection
         let previousWord: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speakWord"] ?? "hi"
         

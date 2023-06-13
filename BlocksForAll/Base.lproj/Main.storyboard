@@ -1552,6 +1552,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <connections>
                         <outlet property="back" destination="6Uh-uO-kta" id="xxp-tv-UEk"/>
+                        <outlet property="speakModTitle" destination="xVD-3J-Gmw" id="k0b-Bg-f3n"/>
+                        <outlet property="speakModView" destination="UCx-ge-NQu" id="zt9-Kd-toX"/>
                         <outletCollection property="buttons" destination="31y-JH-o8S" collectionClass="NSMutableArray" id="kmm-DU-GOs"/>
                         <outletCollection property="buttons" destination="OxV-aP-mjM" collectionClass="NSMutableArray" id="SNZ-EV-RCL"/>
                         <outletCollection property="buttons" destination="g4J-3T-oKv" collectionClass="NSMutableArray" id="eaD-ue-k5H"/>
@@ -3108,7 +3110,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Z98-8n-X04"/>
+        <segue reference="U8M-r6-gBL"/>
         <segue reference="KBE-C8-Ew2"/>
     </inferredMetricsTieBreakers>
     <resources>
