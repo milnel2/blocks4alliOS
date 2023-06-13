@@ -23,6 +23,15 @@ class SetVariableModViewController: UIViewController {
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var back: UIButton!
     
+    
+    @IBOutlet var setVarView: UIView!
+    
+    
+    @IBOutlet var setVarTitle: UILabel!
+    
+    @IBOutlet var NegativeLabel: UILabel!
+    
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         //Deselects all buttons but currently selected one (only one can be selected at a time)
         self.buttons.forEach { (button) in
@@ -48,6 +57,9 @@ class SetVariableModViewController: UIViewController {
     
     @objc override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //VO route to be intuitive
+        setVarView.accessibilityElements = [setVarTitle!, buttons!, VariableValue!, NegativeLabel!, back!]
         
         //Makes text field easier to select with Voice Control
         if #available(iOS 13.0, *) {

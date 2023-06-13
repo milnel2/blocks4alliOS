@@ -1764,8 +1764,11 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <navigationItem key="navigationItem" id="vBc-yS-huA"/>
                     <connections>
+                        <outlet property="NegativeLabel" destination="I8l-wa-KJu" id="jP5-bC-DPa"/>
                         <outlet property="VariableValue" destination="0EE-tA-7aY" id="Rbn-tb-XMp"/>
                         <outlet property="back" destination="lJh-zd-RGp" id="qTr-vv-bAT"/>
+                        <outlet property="setVarTitle" destination="5Gb-Uk-oE9" id="FDX-HA-4CU"/>
+                        <outlet property="setVarView" destination="jNy-ch-2PD" id="aPy-HI-Qzl"/>
                         <outletCollection property="buttons" destination="GrT-2z-xvO" collectionClass="NSMutableArray" id="xMz-Rm-SYu"/>
                         <outletCollection property="buttons" destination="Uv9-Kz-RsF" collectionClass="NSMutableArray" id="R71-k6-1Jv"/>
                         <outletCollection property="buttons" destination="rgQ-Jh-7kw" collectionClass="NSMutableArray" id="WIy-0J-OHU"/>
