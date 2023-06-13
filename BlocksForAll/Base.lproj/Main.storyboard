@@ -39,7 +39,7 @@
                                         <subviews>
                                             <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B4A_Robot_outline" translatesAutoresizingMaskIntoConstraints="NO" id="bML-d3-3Tw">
                                                 <rect key="frame" x="0.0" y="0.0" width="400" height="450"/>
-                                                <accessibility key="accessibilityConfiguration" hint="Requires a Dash or Dot robot from Wonder Workshop">
+                                                <accessibility key="accessibilityConfiguration" hint="Requires a Dash or Dot robot from Wonder Workshop" label="Dash Image">
                                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
