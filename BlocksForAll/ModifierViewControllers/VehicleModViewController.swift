@@ -15,10 +15,20 @@ class VehicleModViewController: UIViewController{
     var modifierBlockIndexSender: Int?
     var vehicleSelected: String = "airplane"
 
+    
+    
+    @IBOutlet var vehicleView: UIView!
+    
+    
+    @IBOutlet var vehicleTitle: UILabel!
+    
     @IBOutlet weak var back: UIButton!
     @IBOutlet var buttons: [UIButton]!
     
     override func viewDidLoad() {
+        // VO route to be intuitive
+        vehicleView.accessibilityElements = [vehicleTitle!, buttons!, back!]
+        
         // default: Airplane or preserve last selection
         let previousVehicle: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["vehicleNoise"] ?? "airplane"
         
