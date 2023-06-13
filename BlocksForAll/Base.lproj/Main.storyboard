@@ -2472,8 +2472,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <outlet property="eyeLightTitle" destination="yI8-HC-zZc" id="YfF-Fg-OAR"/>
                         <outlet property="eyeLightView" destination="2xj-6b-jPm" id="QW3-GJ-Ebe"/>
                         <outlet property="lightLabel" destination="FIq-QR-T6e" id="G1y-0c-hou"/>
-                        <outlet property="lightOffButton" destination="m6l-QQ-eDK" id="LhQ-Mc-p74"/>
-                        <outlet property="lightOnButton" destination="CwL-cg-MQl" id="xZL-WO-Aqi"/>
                         <outletCollection property="buttons" destination="m6l-QQ-eDK" collectionClass="NSMutableArray" id="rp8-8i-psl"/>
                         <outletCollection property="buttons" destination="CwL-cg-MQl" collectionClass="NSMutableArray" id="tKw-rn-eeX"/>
                     </connections>
@@ -3113,7 +3111,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="t2J-Rr-un6"/>
+        <segue reference="w7l-uY-c2T"/>
         <segue reference="KBE-C8-Ew2"/>
     </inferredMetricsTieBreakers>
     <resources>
