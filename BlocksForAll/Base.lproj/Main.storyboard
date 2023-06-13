@@ -1637,6 +1637,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <outlet property="back" destination="eNK-wk-KcV" id="glj-Fh-YRh"/>
                         <outlet property="decreaseButton" destination="XBE-Zo-wct" id="C7Q-vx-enm"/>
                         <outlet property="increaseButton" destination="Y5S-qN-qEp" id="IPH-VD-yZI"/>
+                        <outlet property="repeatTitle" destination="j7Q-3Z-fsx" id="gri-2p-qo5"/>
+                        <outlet property="repeatView" destination="Hee-2C-IaQ" id="btt-Jm-S9L"/>
                         <outlet property="timesToRepeatLabel" destination="off-d0-Hga" id="h2H-Ry-d88"/>
                     </connections>
                 </viewController>
