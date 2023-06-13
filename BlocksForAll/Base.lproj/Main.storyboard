@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <accessibilityOverrides dynamicTypePreference="11"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,7 +39,7 @@
                                         <subviews>
                                             <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B4A_Robot_outline" translatesAutoresizingMaskIntoConstraints="NO" id="bML-d3-3Tw">
                                                 <rect key="frame" x="0.0" y="0.0" width="400" height="450"/>
-                                                <accessibility key="accessibilityConfiguration" label="Dash Robot Image">
+                                                <accessibility key="accessibilityConfiguration" hint="Requires a Dash or Dot robot from Wonder Workshop" label="Dash Image">
                                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
@@ -305,7 +305,7 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bf9-8r-YWE">
                                 <rect key="frame" x="506" y="171" width="68.5" height="41"/>
-                                <accessibility key="accessibilityConfiguration" label="Settings"/>
+                                <accessibility key="accessibilityConfiguration" label="Help"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -378,7 +378,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
-                                <rect key="frame" x="-1" y="302" width="1079" height="204"/>
+                                <rect key="frame" x="-2" y="301" width="1079" height="205"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="XOJ-Tu-hH8" kind="embed" id="sot-c6-H0b"/>
@@ -413,7 +413,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
-                        <rect key="frame" x="0.0" y="0.0" width="1079" height="204"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1079" height="205"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -686,7 +686,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLx-VG-2JW">
-                                <rect key="frame" x="0.0" y="0.0" width="235" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="235" height="807"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <connections>
@@ -742,7 +742,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController id="qsn-gg-TPc" customClass="BlockTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" id="u2M-AO-l53">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="738"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="737"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -811,7 +811,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <viewControllerLayoutGuide type="bottom" id="M8X-LY-ONh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gng-WS-M5w">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="738"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="737"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap workspace to add block " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TgX-Fj-FVm">
@@ -841,7 +841,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController id="2Tn-yf-DgT" customClass="BlocksTypeTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6cp-t1-mWw">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="738"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="737"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1073,13 +1073,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xg-ms-ubf">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xg-ms-ubf">
                                 <rect key="frame" x="40" y="40" width="211" height="195"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="211" id="OSR-rQ-Ohy"/>
-                                    <constraint firstAttribute="height" constant="195" id="UPF-eV-AWN"/>
-                                </constraints>
                                 <state key="normal" title="Back" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -1087,62 +1084,42 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <segue destination="uoc-nU-c4a" kind="show" id="t2J-Rr-un6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1 second" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbS-E8-DcQ">
-                                <rect key="frame" x="351" y="406" width="378" height="100"/>
-                                <accessibility key="accessibilityConfiguration" hint="The number of seconds to wait"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="378" id="Nxh-G7-sYr"/>
-                                    <constraint firstAttribute="height" constant="100" id="XyL-Xw-vTF"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wait" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8w-ze-hFv">
+                                <rect key="frame" x="215" y="141" width="594" height="231"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="How long the robot should wait " label="Wait"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="je8-kt-IQ9">
-                                <rect key="frame" x="243" y="406" width="100" height="100"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1 second" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbS-E8-DcQ">
+                                <rect key="frame" x="323" y="406" width="378" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="The number of seconds to wait"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="je8-kt-IQ9">
+                                <rect key="frame" x="215" y="406" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" hint="Wait for a shorter time" label="Decrease"/>
                                 <state key="normal" title="Button" image="orange_minus"/>
                                 <connections>
                                     <action selector="minusButtonPressed:" destination="9VT-Qr-ako" eventType="touchUpInside" id="s7O-Qy-l8I"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVI-Mg-Hbg">
-                                <rect key="frame" x="737" y="406" width="100" height="100"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVI-Mg-Hbg">
+                                <rect key="frame" x="709" y="406" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" hint="Wait for a longer time" label="Increase"/>
                                 <state key="normal" title="Button" image="orange_plus"/>
                                 <connections>
                                     <action selector="plusButtonPressed:" destination="9VT-Qr-ako" eventType="touchUpInside" id="W8V-24-lCe"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Wait" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8w-ze-hFv">
-                                <rect key="frame" x="243" y="214" width="594" height="62"/>
-                                <accessibility key="accessibilityConfiguration" hint="How long the robot should wait " label="Wait"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="594" id="TNF-dL-fyK"/>
-                                    <constraint firstAttribute="height" constant="62" id="hOU-YL-Ncp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="SbS-E8-DcQ" firstAttribute="leading" secondItem="je8-kt-IQ9" secondAttribute="trailing" constant="8" symbolic="YES" id="3tf-je-f3L"/>
-                            <constraint firstItem="1xg-ms-ubf" firstAttribute="top" secondItem="0se-Sx-jtE" secondAttribute="bottom" constant="40" id="7eV-e8-BmQ"/>
-                            <constraint firstItem="Ukf-4m-gPz" firstAttribute="top" secondItem="SbS-E8-DcQ" secondAttribute="bottom" constant="304" id="8Rp-2G-Au0"/>
-                            <constraint firstItem="SbS-E8-DcQ" firstAttribute="top" secondItem="je8-kt-IQ9" secondAttribute="top" id="AWt-XH-X7p"/>
-                            <constraint firstItem="SbS-E8-DcQ" firstAttribute="top" secondItem="CVI-Mg-Hbg" secondAttribute="top" id="BpE-TR-ULi"/>
-                            <constraint firstItem="CVI-Mg-Hbg" firstAttribute="leading" secondItem="SbS-E8-DcQ" secondAttribute="trailing" constant="8" symbolic="YES" id="T2f-3z-JnP"/>
-                            <constraint firstItem="1xg-ms-ubf" firstAttribute="leading" secondItem="YWV-T8-K4j" secondAttribute="leadingMargin" constant="20" id="W9L-7L-XYI"/>
-                            <constraint firstItem="f8w-ze-hFv" firstAttribute="leading" secondItem="YWV-T8-K4j" secondAttribute="leading" constant="215" id="ipn-0F-XHz"/>
-                            <constraint firstItem="f8w-ze-hFv" firstAttribute="top" secondItem="0se-Sx-jtE" secondAttribute="bottom" constant="201" id="lP3-bT-6ox"/>
-                            <constraint firstItem="SbS-E8-DcQ" firstAttribute="bottom" secondItem="CVI-Mg-Hbg" secondAttribute="bottom" id="nB5-4t-qpk"/>
-                            <constraint firstItem="f8w-ze-hFv" firstAttribute="trailing" secondItem="CVI-Mg-Hbg" secondAttribute="trailing" id="rey-9E-dhy"/>
-                            <constraint firstItem="SbS-E8-DcQ" firstAttribute="bottom" secondItem="je8-kt-IQ9" secondAttribute="bottom" id="w1A-aj-Nic"/>
-                            <constraint firstItem="f8w-ze-hFv" firstAttribute="leading" secondItem="je8-kt-IQ9" secondAttribute="leading" id="zPG-Jw-J4Z"/>
-                            <constraint firstItem="f8w-ze-hFv" firstAttribute="centerX" secondItem="SbS-E8-DcQ" secondAttribute="centerX" id="zxu-eq-aUK"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ang-mD-ix8"/>
                     <connections>
@@ -1156,7 +1133,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gWd-G8-6Lp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1807.7777777777778" y="614.81481481481478"/>
+            <point key="canvasLocation" x="1808" y="615"/>
         </scene>
         <!--Emotion Mod View Controller-->
         <scene sceneID="JN8-3k-Mtf">
@@ -3049,7 +3026,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="hNp-po-htE" userLabel="Function Table View Controller" customClass="FunctionTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QmC-VP-0hq">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="807"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -3134,7 +3111,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ebu-O5-0hJ"/>
+        <segue reference="Tjn-hR-3fo"/>
         <segue reference="KBE-C8-Ew2"/>
     </inferredMetricsTieBreakers>
     <resources>
