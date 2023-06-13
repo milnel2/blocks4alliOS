@@ -60,6 +60,9 @@ class LookLeftRightVariables: UIViewController {
             if variableSelected == button.accessibilityIdentifier {
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+                button.isSelected = true
+            }else{
+                button.isSelected = false
             }
         }
         

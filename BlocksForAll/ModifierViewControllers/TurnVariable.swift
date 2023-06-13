@@ -24,10 +24,12 @@ class TurnVariable: UIViewController {
         //Deselects all buttons but currently selected one (only one can be selected at a time)
         self.buttons.forEach { (button) in
             button.layer.borderWidth = 0
+            button.isSelected = false
                 }
         //Selects pressed button
         sender.layer.borderWidth = 10
         sender.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        sender.isSelected = true
         if let buttonID = sender.accessibilityIdentifier {
             variableSelected = buttonID
         }
@@ -46,6 +48,9 @@ class TurnVariable: UIViewController {
             if variableSelected == button.accessibilityIdentifier {
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+                button.isSelected = true
+            }else{
+                button.isSelected = false
             }
         }
         back.titleLabel?.adjustsFontForContentSizeCategory = true
