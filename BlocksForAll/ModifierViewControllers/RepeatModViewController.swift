@@ -28,8 +28,7 @@ class RepeatModViewController: UIViewController{
     @IBOutlet var repeatTitle: UILabel!
     
     override func viewDidLoad() {
-        // VO route to be intuitive
-        repeatView.accessibilityElements = [repeatTitle!, decreaseButton!, timesToRepeatLabel!, increaseButton!, back!]
+        
         //Makes buttons easier to select with Voice Control
         if #available(iOS 13.0, *) {
             increaseButton.accessibilityUserInputLabels = ["Increase", "Plus", "Add"]

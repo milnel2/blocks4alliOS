@@ -46,10 +46,7 @@ class LookLeftRightVariables: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // VO route to be more intuitive
-        lookLRView.accessibilityElements = [lookLRTitle!, lookLRLabel!, buttons!, maxminTitle!, LRvalue!, back!]
-        
+      
         // default: orange or preserve last selection
         let previousSelectedVariableOne: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
         

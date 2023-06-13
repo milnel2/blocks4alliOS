@@ -19,7 +19,7 @@ class DriveVariables: UIViewController {
     var variableSelectedTwo: String = "orange"
     var speed: String = "Normal"
     
-
+    
     @IBOutlet var buttons: [UIButton]!
     
     //speed buttons and labels

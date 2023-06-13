@@ -26,8 +26,7 @@ class VehicleModViewController: UIViewController{
     @IBOutlet var buttons: [UIButton]!
     
     override func viewDidLoad() {
-        // VO route to be intuitive
-        vehicleView.accessibilityElements = [vehicleTitle!, buttons!, back!]
+        
         
         // default: Airplane or preserve last selection
         let previousVehicle: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["vehicleNoise"] ?? "airplane"
