@@ -2804,6 +2804,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <connections>
                         <outlet property="back" destination="QiG-Hb-gjY" id="UxV-z9-Tjh"/>
+                        <outlet property="objectTitle" destination="fvv-rd-Qyi" id="FCd-dI-qas"/>
+                        <outlet property="objectView" destination="8Rx-ye-jcA" id="wze-t5-GgV"/>
                         <outletCollection property="buttons" destination="VJ9-Mh-HyN" collectionClass="NSMutableArray" id="zIb-Au-M7c"/>
                         <outletCollection property="buttons" destination="sBL-sO-54m" collectionClass="NSMutableArray" id="ug8-J4-hbI"/>
                         <outletCollection property="buttons" destination="oOD-hn-gVe" collectionClass="NSMutableArray" id="wvM-YQ-xQB"/>
