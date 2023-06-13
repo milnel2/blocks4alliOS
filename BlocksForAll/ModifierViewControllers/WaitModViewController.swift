@@ -15,6 +15,10 @@ class WaitModViewController: UIViewController{
     var modifierBlockIndexSender: Int?
     var wait: Int = 1
     
+    @IBOutlet var waitTitle: UILabel!
+    
+    @IBOutlet var waitView: UIView!
+    
     @IBOutlet weak var waitLabel: UILabel!
     
     @IBOutlet weak var increaseButton: UIButton!
@@ -24,6 +28,9 @@ class WaitModViewController: UIViewController{
     @IBOutlet weak var back: UIButton!
     
     override func viewDidLoad() {
+        // VO route to be intuitive
+        waitView.accessibilityElements = [waitTitle!, decreaseButton!, waitLabel!, increaseButton!, back!]
+        
         //Makes buttons easier to select with Voice Control
         if #available(iOS 13.0, *) {
             increaseButton.accessibilityUserInputLabels = ["Increase", "Plus", "Add"]
