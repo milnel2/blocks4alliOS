@@ -53,7 +53,7 @@ class EyeLightModifierViewController: UIViewController{
     @IBAction func onButtonPressed(_ sender: UIButton) {
         eyeLightStatus = "On"
         lightLabel.text = "On"
-        lightLabel.accessibilityLabel = "On"
+        lightLabel.accessibilityLabel = "Eye Light is On"
         
         self.buttons.forEach { (button) in
             button.layer.borderWidth = 0
@@ -66,7 +66,7 @@ class EyeLightModifierViewController: UIViewController{
     @IBAction func offButtonPressed(_ sender: UIButton) {
         eyeLightStatus = "Off"
         lightLabel.text = "Off"
-        lightLabel.accessibilityLabel = "Off"
+        lightLabel.accessibilityLabel = "Eye Light is Off"
         
         self.buttons.forEach { (button) in
             button.layer.borderWidth = 0
