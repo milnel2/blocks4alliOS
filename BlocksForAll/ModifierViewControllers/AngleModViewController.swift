@@ -28,7 +28,7 @@ class AngleModViewController: UIViewController {
     override func viewDidLoad() {
         
         // default angle: 90 or preserve last selection
-        turnView.accessibilityElements = [angleTitle!, angleDisplayed!, angleSlider!, back!]
+        //turnView.accessibilityElements = [angleTitle!, angleDisplayed!, angleSlider!, back!]
         let previousAngleString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] ?? "90"
         let previousAngle = Int(previousAngleString)
         angleDisplayed.text = "\(previousAngle ?? 90)"
