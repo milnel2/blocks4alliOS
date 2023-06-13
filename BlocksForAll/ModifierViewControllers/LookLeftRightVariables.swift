@@ -18,7 +18,18 @@ class LookLeftRightVariables: UIViewController {
     var variableSelected: String = "orange"
     
     @IBOutlet var buttons: [UIButton]!
+    
     @IBOutlet weak var back: UIButton!
+    
+    @IBOutlet var lookLRView: UIView!
+    
+    @IBOutlet var LRvalue: UILabel!
+    
+    @IBOutlet var maxminTitle: UILabel!
+    
+    @IBOutlet var lookLRLabel: UILabel!
+    
+    @IBOutlet var lookLRTitle: UILabel!
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         //Deselects all buttons but currently selected one (only one can be selected at a time)
@@ -35,6 +46,9 @@ class LookLeftRightVariables: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // VO route to be more intuitive
+        lookLRView.accessibilityElements = [lookLRTitle!, lookLRLabel!, buttons!, maxminTitle!, LRvalue!, back!]
         
         // default: orange or preserve last selection
         let previousSelectedVariableOne: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
