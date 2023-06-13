@@ -59,9 +59,7 @@ class SetVariableModViewController: UIViewController {
     
     @objc override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //VO route to be intuitive
-        setVarView.accessibilityElements = [setVarTitle!, buttons!, VariableValue!, NegativeLabel!, back!]
+ 
         
         //Makes text field easier to select with Voice Control
         if #available(iOS 13.0, *) {

@@ -46,10 +46,7 @@ class IfModViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         
-        //VO Route to be more intuitive
-        ifSceneView.accessibilityElements = [ifTitle!, button1!, button2!, back!]
-        
+       
         // default: false or preserve last selection
         let previousBooleanSelected: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["booleanSelected"] ?? "false"
         booleanSelected = previousBooleanSelected

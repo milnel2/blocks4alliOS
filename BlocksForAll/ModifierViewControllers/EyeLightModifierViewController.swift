@@ -27,8 +27,7 @@ class EyeLightModifierViewController: UIViewController{
     @IBOutlet weak var back: UIButton!
     
     override func viewDidLoad() {
-        //VO route to be more intuitive
-        eyeLightView.accessibilityElements = [eyeLightTitle!, buttons!, lightLabel!, back!]
+    
         
         // default status: On or preserve last selection
         

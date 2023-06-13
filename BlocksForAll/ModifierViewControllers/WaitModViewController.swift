@@ -28,8 +28,7 @@ class WaitModViewController: UIViewController{
     @IBOutlet weak var back: UIButton!
     
     override func viewDidLoad() {
-        // VO route to be intuitive
-        waitView.accessibilityElements = [waitTitle!, decreaseButton!, waitLabel!, increaseButton!, back!]
+        
         
         //Makes buttons easier to select with Voice Control
         if #available(iOS 13.0, *) {

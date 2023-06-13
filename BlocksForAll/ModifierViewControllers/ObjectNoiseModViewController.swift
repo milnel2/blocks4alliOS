@@ -22,8 +22,7 @@ class ObjectNoiseModViewController: UIViewController{
     
     @IBOutlet var objectTitle: UILabel!
     override func viewDidLoad() {
-        // VO route to be intuitive
-        objectView.accessibilityElements = [objectTitle!, buttons!, back!]
+       
         // default: Buzz or preserve last selection
         let previousObject: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["objectNoise"] ?? "buzz"
         

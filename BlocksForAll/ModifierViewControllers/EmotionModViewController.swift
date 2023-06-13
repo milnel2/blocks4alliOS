@@ -22,8 +22,7 @@ class EmotionModViewController: UIViewController{
     
     @IBOutlet var emotionTitle: UILabel!
     override func viewDidLoad() {
-        // VO route to be more intuitive
-        emotionView.accessibilityElements = [emotionTitle!, buttons!, back!]
+    
         
         // default: Bragging or preserve last selection
         let previousEmotion: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["emotionNoise"] ?? "bragging"

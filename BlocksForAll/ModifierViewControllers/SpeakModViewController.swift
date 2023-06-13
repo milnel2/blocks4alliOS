@@ -22,8 +22,7 @@ class SpeakModViewController: UIViewController{
     @IBOutlet var buttons: [UIButton]!
     
     override func viewDidLoad() {
-        // VO Route to be intuitive
-        speakModView.accessibilityElements = [speakModTitle!, buttons!, back!]
+        
         
         // default: Hi or preserve last selection
         let previousWord: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speakWord"] ?? "hi"
