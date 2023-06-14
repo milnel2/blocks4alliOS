@@ -64,7 +64,11 @@ class FunctionTableViewCell: UITableViewCell {
         button.setTitle("Sample Function", for: .normal)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
         
-        button.backgroundColor = UIColor(hexString: "#f8e3ff")    //Same color as function blocks
+        // this line is causing the build to fail
+//        button.backgroundColor = UIColor(hexString: "#f8e3ff")
+        
+        //Same color as function blocks
+
         button.setTitleColor(.black, for: .normal)
         button.layer.borderWidth = 3
         

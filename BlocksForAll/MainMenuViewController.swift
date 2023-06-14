@@ -23,7 +23,9 @@ class MainMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         welcomeLabel.adjustsFontForContentSizeCategory = true
-        welcomeLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 40.0)
+        
+        // this line is causing the build to fail
+//        welcomeLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 40.0)
         
         getStarted.titleLabel?.adjustsFontForContentSizeCategory = true
         instructions.titleLabel?.adjustsFontForContentSizeCategory = true
