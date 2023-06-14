@@ -463,8 +463,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         } else {
             // blocks that don't have an imagePath in the dictionary have an image based on their attribute
             image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
-            
             if secondAttributeName != nil && secondDefault != nil{
+               
                 image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)")
             }
             
@@ -557,7 +557,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         let selector = getModifierSelector(name: name) ?? nil
         
         let subDictionary = dict.value(forKey: name) as! NSDictionary
-        print("\(name) subdictionary: \(subDictionary)")
+        
         let defaultValue = subDictionary.value(forKey: "default")
         if defaultValue == nil {
             print("default value for \(name) could not be found")
@@ -632,7 +632,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     private func getModifierDictionary () -> NSDictionary?{
-        
         // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
         let dict: NSDictionary?
          if let path = Bundle.main.path(forResource: "ModifierProperties", ofType: "plist") {
@@ -642,70 +641,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
              return nil
          }
         return dict!
-
-//            "Drive Forward" :
-//                ["attributeName" : "distance",
-//                 "default" : "30",
-//                 "secondAttributeName" : "speed",
-//                 "secondDefault" : "Normal",
-//                 "accessibilityHint" : "Double tap to set distance and speed ",
-//                 "displaysText" : "true",
-//                 "showTextImage" : "driveModifierBackground"
-//                ],
-//            "Drive Backward" :
-//                ["attributeName" : "distance",
-//                 "default" : "30",
-//                 "secondAttributeName" : "speed",
-//                 "secondDefault" : "Normal",
-//                 "accessibilityHint" : "Double tap to set distance and speed",
-//                 "displaysText" : "true",
-//                 "showTextImage" : "driveModifierBackground"
-//                ],
-//            "Set Left Ear Light" :
-//                ["attributeName" : "modifierBlockColor",
-//                 "default" : "yellow",
-//                 "secondAttributeName" : "lightColor",
-//                 "secondDefault" : "yellow",
-//                 "accessibilityHint" : "Double tap to set light color",
-//                ],
-//            "Set Right Ear Light" :
-//                ["attributeName" : "modifierBlockColor",
-//                 "default" : "yellow",
-//                 "secondAttributeName" : "lightColor",
-//                 "secondDefault" : "yellow",
-//                 "accessibilityHint" : "Double tap to set light color",
-//                ],
-//            "Set Chest Light" :
-//                ["attributeName" : "modifierBlockColor",
-//                 "default" : "yellow",
-//                 "secondAttributeName" : "lightColor",
-//                 "secondDefault" : "yellow",
-//                 "accessibilityHint" : "Double tap to set light color",
-//                ],
-//            "Set All Lights" :
-//                ["attributeName" : "modifierBlockColor",
-//                 "default" : "yellow",
-//                 "secondAttributeName" : "lightColor",
-//                 "secondDefault" : "yellow",
-//                 "accessibilityHint" : "Double tap to set light color",
-//                ],
-//            "Wait for Time" :
-//                ["attributeName" : "wait",
-//                 "default" : "1",
-//                 "accessibilityHint" : "Double tap to set wait time",
-//                 "imagePath" : "controlModifierBackground",
-//                 "displaysText" : "true",
-//                ],
-//            "Set Variable" :
-//                ["attributeName" : "variableSelected",
-//                 "default" : "orange",
-//                 "secondAttributeName" : "variableValue",
-//                 "secondDefault" : "0",
-//                 "accessibilityHint" : "Double tap to set variable value",
-//                 "imagePath" : "variableModifierBackground",
-//                 "displaysText" : "true"
-//                ]]
     }
+    
     /// Adds VoiceOver label to blockView, which changes to placement info if blocks are being moved
     /// - Parameters:
     ///   - blockView: view to be given the label
