@@ -83,24 +83,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var modifierBlockIndex: Int?
     var tappedModifierIndex: Int?
     
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-       
         //Orders contents of workspace to be more intuitive with Switch Control
         mainView.accessibilityElements = [toolboxView!, workspaceContainerView!]
-        
         workspaceContainerView.accessibilityElements = [blocksProgram!, playTrashToggleButton!, mainMenuButton!, mainWorkspaceButton!]
-
         //workspaceContainerView.bringSubviewToFront(workspaceNameLabel)
-        
-        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // set block size based on block size from settings
         if defaults.value(forKey: "blockSize") == nil {
             defaults.setValue(150, forKey: "blockSize")
@@ -120,7 +112,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 functionsDict[currentWorkspace]?.append(startBlock!)
                 functionsDict[currentWorkspace]?.append(endBlock!)
             }
-        }else{
+        } else {
             mainWorkspaceButton.isHidden = true
         }
         self.navigationController?.isNavigationBarHidden = true
@@ -129,7 +121,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     // TODO: modifify with new buttons
     @IBAction func goToMainMenu(_ sender: CustomButton) {
-        
         //If user is in the main workspace, main menu button takes them to the main menu
 //        if currentWorkspace == "Main Workspace" {
             performSegue(withIdentifier: "toMainMenu", sender: self)
@@ -143,15 +134,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 //        }
     }
     
-    
     @IBAction func goToMainWorkspace(_ sender: Any) {
         currentWorkspace = "Main Workspace"
         //Segues from the main workspace to itself to reload the view (switches from functions workspace to main)
         performSegue(withIdentifier: "mainToMain", sender: self)
     }
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -223,7 +210,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     // run the actual program when the play button is clicked
     @IBAction func playButtonClicked(_ sender: Any) {
-        //play
         print("in playButtonClicked")
         if(movingBlocks){
             trashClicked()
@@ -295,7 +281,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             announcement = blocks[0].name + " placed at beginning"
         }
         makeAnnouncement(announcement)
-//        delay(announcement, 2)
+        //delay(announcement, 2)
         
         //add a completion block here
         if(blocks[0].double){
@@ -313,22 +299,19 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
             }
-        }
-        else{
+        } else {
             if currentWorkspace != "Main Workspace" && index > endIndex {
                 functionsDict[currentWorkspace]!.insert(blocks[0], at: endIndex)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
-            }else if currentWorkspace != "Main Workspace" && index <= startIndex {
+            } else if currentWorkspace != "Main Workspace" && index <= startIndex {
                 functionsDict[currentWorkspace]!.insert(blocks[0], at: startIndex+1)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
-            }
-            else{
+            } else {
                 functionsDict[currentWorkspace]!.insert(blocks[0], at: index)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
-
             }
         }
     }
@@ -350,21 +333,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         let myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
         let myView = UIView(frame: myFrame)
         var count = 0
-        for block in blocksRep{
+        for block in blocksRep {
             let xCoord = count*(blockSize + blockSpacing)
-            
             let blockView = BlockView(frame: CGRect(x: xCoord, y: 0, width: blockSize, height: blockSize),  block: [block], myBlockSize: blockSize)
             count += 1
             
             myView.addSubview(blockView)
-            
         }
         myView.alpha = 0.75
         return myView
     }
     
     // MARK: - UICollectionViewDataSource
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -379,7 +359,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: CGFloat(blockSize), height: collectionView.frame.height)
         collectionView.remembersLastFocusedIndexPath = true
-        //        print(indexPath)
+        //print(indexPath)
         if indexPath.row == functionsDict[currentWorkspace]!.count {
             // expands the size of the last cell in the collectionView, so it's easier to add a block at the end
             // with VoiceOver on
@@ -388,28 +368,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 // blocksStack.count < 8 means that the orignal editor only fit up to 8 blocks of a fixed size horizontally, but we may want to change that too
                 let myWidth = collectionView.frame.width
                 size = CGSize(width: myWidth, height: collectionView.frame.height)
-            }else{
+            } else {
                 size = CGSize(width: CGFloat(blockSize), height: collectionView.frame.height)
             }
         }
         return size
     }
     
-    func setUpModifierButton() -> CustomButton {
-        /* Use for non-sound modifier buttons. Calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values*/
-        
+    func createModifierCustomButton() -> CustomButton {
+        /* Use for modifier buttons. Calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values*/
         let tempButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
-        
         tempButton.layer.zPosition = 1
-        
         allModifierBlocks.append(tempButton)
         return tempButton
     }
 
-    private func newSetUpSoundModifierButton(block : Block, blockName name : String, indexPath : IndexPath, cell : UICollectionViewCell) {
-        /* Sets up a modifier button for sound blocks and if blocks*/
-        //TODO: transfer dict to a plist
-        // TODO: fix modifierInformation property
+    private func setUpModifierButton(block : Block, blockName name : String, indexPath : IndexPath, cell : UICollectionViewCell) {
+        /* Sets up a modifier button based on the name inputted*/
+        // TODO: fix modifierInformation property/voice over
         let dict = getModifierDictionary()
         
         let (selector, defaultValue, attributeName, accessibilityHint, imagePath, displaysText, secondAttributeName, secondDefault, showTextImage) = getModifierData(name: name, dict: dict!)
@@ -430,7 +406,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         var modifierInformation = placeHolderBlock.attributes[attributeName]!
         
         // set up button sizing and layering
-        let button = setUpModifierButton()
+        let button = createModifierCustomButton()
         
         // modifiers for if blocks are a bit different than other blocks
         // TODO: test accesibility tools
@@ -464,10 +440,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             // blocks that don't have an imagePath in the dictionary have an image based on their attribute
             image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
             if secondAttributeName != nil && secondDefault != nil{
-               
                 image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)")
             }
-            
             // handle show icon or show text for modifiers that change depending on the settings
             if defaults.integer(forKey: "showText") == 1 && showTextImage != nil{
                 // show text image
@@ -483,7 +457,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         if displaysText == "true" {
             var text = "\(placeHolderBlock.attributes[attributeName] ?? "N/A")"
-            
             if attributeName == "angle" {
                 //Title: <angle>°
                 //add degrees sign to end of text
@@ -498,7 +471,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     // show text
                     text = "\(placeHolderBlock.attributes["distance"]!) cm, \(placeHolderBlock.attributes["speed"]!)"
                     modifierInformation = text
-                    
                 }
             } else if attributeName == "wait" { // wait blocks
                 if placeHolderBlock.attributes["wait"] == "1" {
@@ -512,8 +484,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = text
             }
             button.setTitle(text, for: .normal)
-            // TODO: allow for font to be either .title1 or .title2 depending on what fits best
             
+            // TODO: allow for font to be either .title1 or .title2 depending on what fits best
             button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
             button.setTitleColor(.black, for: .normal)
             button.titleLabel?.numberOfLines = 0
@@ -533,7 +505,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
 
         button.addTarget(self, action: selector, for: .touchUpInside)
-
         cell.addSubview(button)
 
         //add main label
@@ -547,14 +518,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     private func getModifierData (name : String, dict : NSDictionary) -> (Selector, String, String, String, String?, String, String?, String?, String?) {
-        
         /* gets values for modifier blocks from a dictionary. Prints errors if properties cannot be found */
         
         if dict[name] == nil {
             print("\(name) could not be found in modifier block dictionary")
         }
-        // getModifierSelector() has an error statement built in already
-        let selector = getModifierSelector(name: name) ?? nil
+    
+        let selector = getModifierSelector(name: name) ?? nil // getModifierSelector() has an error statement built in already
         
         let subDictionary = dict.value(forKey: name) as! NSDictionary
         
@@ -566,12 +536,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if attributeName == nil {
             print("attributeName for \(name) could not be found")
         }
-        
         let accessibilityHint = subDictionary.value(forKey: "accessibilityHint")
         if accessibilityHint == nil {
             print("accessibilityHint for \(name) could not be found")
         }
-        
         // these properties are all optional
         let imagePath = subDictionary.value(forKey: "imagePath") ?? nil
         let displaysText = subDictionary.value(forKey: "displaysText") ?? "false"
@@ -619,7 +587,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             return #selector(waitModifier(sender:))
         case "Set Variable":
             return #selector(variableModifier(sender:))
-    
         default:
             print("Modifier Selector for \(name) could not be found. Check switch statement in getModifierSelector() method.")
             return nil
@@ -652,7 +619,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     // TODO: rewrite this function
     func addAccessibilityLabel(blockView: UIView, block:Block, blockModifier:String, blockLocation: Int, blockIndex: Int){
-        
         blockView.isAccessibilityElement = true
         var accessibilityLabel = ""
         let blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(functionsDict[currentWorkspace]!.count)
@@ -700,14 +666,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             // The last cell in the collectionView is an empty cell so you can place blocks at the end
             if !blocksBeingMoved.isEmpty{
                 cell.isAccessibilityElement = true
-                
                 if functionsDict[currentWorkspace]!.count == 0 {
                     cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at Beginning"
                     if #available (iOS 13.0, *){
                         cell.accessibilityUserInputLabels = ["Workspace"]
                     }
-                }
-                else{
+                } else {
                     if currentWorkspace == "Main Workspace" {
                         cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End"
                         if #available (iOS 13.0, *){
@@ -721,10 +685,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                 }
             }
-        }else{
-            
+        } else {
             startingHeight = Int(cell.frame.height)-blockSize
-            
             let block = functionsDict[currentWorkspace]![indexPath.row]
             var blocksToAdd = [Block]()
             
@@ -735,14 +697,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         if(i != indexPath.row){
                             blocksToAdd.append(functionsDict[currentWorkspace]![i])
                         }
-                    }else{
+                    } else {
                         if !blocksToAdd.isEmpty{
                             blocksToAdd.removeLast()
                         }
                     }
                 }
             }
-            
             count = 0
             for b in blocksToAdd{
                 let myView = createBlock(b, withFrame: CGRect(x: -blockSpacing, y: startingHeight + blockSize/2-count*(blockSize/2+blockSpacing), width: blockSize+2*blockSpacing, height: blockSize/2))
@@ -750,19 +711,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if b.name.contains("Function Start") {
                     myView.accessibilityLabel = "Inside \(currentWorkspace) function"
                     myView.text = "Inside \(currentWorkspace) function"
-                }
-                else {
+                } else {
                     myView.accessibilityLabel = "Inside " + b.name
                     myView.text = "Inside " + b.name
                 }
                 cell.addSubview(myView)
                 count += 1
             }
-            
             let name = block.name
-            var modifierInformation = ""
+            let modifierInformation = ""
             if isModifierBlock(name: name) {
-                newSetUpSoundModifierButton(block: block, blockName : name, indexPath: indexPath, cell: cell)
+                setUpModifierButton(block: block, blockName : name, indexPath: indexPath, cell: cell)
             } else {
                 switch name {
                     // block exists but is a non-modifier block
