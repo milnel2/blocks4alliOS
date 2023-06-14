@@ -113,8 +113,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             //mainMenuButton.setTitle("Main Workspace", for: .normal)
             mainWorkspaceButton.isHidden = false
             if functionsDict[currentWorkspace]!.isEmpty{
-                let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, isModifiable: false)
-                let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#FF9300")), double: true, isModifiable: false)
+                let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#F8E3FF")), double: true, isModifiable: false)
+                let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#F8E3FF")), double: true, isModifiable: false)
                 startBlock!.counterpart = [endBlock!]
                 endBlock!.counterpart = [startBlock!]
                 functionsDict[currentWorkspace]?.append(startBlock!)

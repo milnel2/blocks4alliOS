@@ -47,7 +47,7 @@ class BlockView: UIView, UITextFieldDelegate {
         return newImage
     }
     
-    //MARK:- simpleView
+    //MARK: - simpleView
     func simpleView(FromBlock block: [Block]) -> UIView {
         let block = block[0]
         

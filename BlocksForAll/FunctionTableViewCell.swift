@@ -66,7 +66,7 @@ class FunctionTableViewCell: UITableViewCell {
         
         button.backgroundColor = UIColor(hexString: "#f8e3ff")    //Same color as function blocks
         button.setTitleColor(.black, for: .normal)
-        button.layer.borderWidth = 3
+        button.layer.borderWidth = 2
         
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
