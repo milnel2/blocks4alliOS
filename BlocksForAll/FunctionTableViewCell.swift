@@ -64,8 +64,9 @@ class FunctionTableViewCell: UITableViewCell {
         button.setTitle("Sample Function", for: .normal)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
         
-        button.backgroundColor = UIColor(red: 1.0, green: CGFloat(147.0/255.0), blue: 0.0, alpha: 1.0)    //Same color as function blocks
-        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(hexString: "#f8e3ff")    //Same color as function blocks
+        button.setTitleColor(.black, for: .normal)
+        button.layer.borderWidth = 3
         
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false

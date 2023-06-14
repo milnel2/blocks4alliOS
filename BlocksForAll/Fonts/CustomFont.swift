@@ -20,6 +20,7 @@ extension UIFont {
       guard let customFont = UIFont(name: "APHont", size: fontSize)
       else {
         let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
+        print("Font not accessed")
         return UIFont(descriptor: descriptor, size: descriptor.pointSize)
       }
       return customFont.dynamicallyTyped(withStyle: style)
@@ -31,6 +32,7 @@ extension UIFont {
       guard let customFont = UIFont(name: "APHont-Bold", size: fontSize)
       else {
         let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
+        print("Font not accessed")
         return UIFont(descriptor: descriptor, size: descriptor.pointSize)
       }
       return customFont.dynamicallyTyped(withStyle: style)
@@ -42,6 +44,7 @@ extension UIFont {
       guard let customFont = UIFont(name: "APHont-BoldItalic", size: fontSize)
       else {
         let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
+        print("Font not accessed")
         return UIFont(descriptor: descriptor, size: descriptor.pointSize)
       }
       return customFont.dynamicallyTyped(withStyle: style)
@@ -53,6 +56,7 @@ extension UIFont {
       guard let customFont = UIFont(name: "APHont-Italic", size: fontSize)
       else {
         let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
+        print("Font not accessed")
         return UIFont(descriptor: descriptor, size: descriptor.pointSize)
       }
       return customFont.dynamicallyTyped(withStyle: style)
