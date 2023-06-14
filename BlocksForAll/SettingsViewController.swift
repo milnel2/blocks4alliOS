@@ -29,6 +29,11 @@ class SettingsViewController: UIViewController {
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
+        // Change fonts to custom font
+        settingsLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
+        blockSizeLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
+        showIconsLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
+        
         // select the current setitng
         // value is 0 to show icons and 1 to show text
         if defaults.value(forKey: "showText") != nil {
