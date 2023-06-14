@@ -119,7 +119,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
     }
-    // TODO: modifify with new buttons
+    // TODO: modify with new buttons
     @IBAction func goToMainMenu(_ sender: CustomButton) {
         //If user is in the main workspace, main menu button takes them to the main menu
 //        if currentWorkspace == "Main Workspace" {
@@ -386,9 +386,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     private func setUpModifierButton(block : Block, blockName name : String, indexPath : IndexPath, cell : UICollectionViewCell) {
         /* Sets up a modifier button based on the name inputted*/
         // TODO: fix modifierInformation property/voice over
-        let dict = getModifierDictionary()
+        let dict = getModifierDictionary() // holds properties of all modifier blocks
         
-        let (selector, defaultValue, attributeName, accessibilityHint, imagePath, displaysText, secondAttributeName, secondDefault, showTextImage) = getModifierData(name: name, dict: dict!)
+        let (selector, defaultValue, attributeName, accessibilityHint, imagePath, displaysText, secondAttributeName, secondDefault, showTextImage) = getModifierData(name: name, dict: dict!) // constants taken from dict based on name
         
         if block.addedBlocks.isEmpty{
             let placeholderBlock = Block(name: name, color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
@@ -408,8 +408,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // set up button sizing and layering
         let button = createModifierCustomButton()
         
-        // modifiers for if blocks are a bit different than other blocks
-        // TODO: test accesibility tools
+        // modifiers for if and repeat blocks are a bit different than other blocks
         if name == "If" {
             switch placeHolderBlock.attributes["booleanSelected"]{
             case "hear_voice":
@@ -426,18 +425,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // choose image path
         var image: UIImage?
-        if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute
+        if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
             image = UIImage(named: imagePath!)!
             
             if image != nil { // make sure that the image actually exists
                 button.setBackgroundImage(image, for: .normal)
-            } else {
+            } else { // print error
                 print("Image file not found: \(imagePath!)")
                 button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
             }
             
         } else {
-            // blocks that don't have an imagePath in the dictionary have an image based on their attribute
+            // blocks that don't have an imagePath in the dictionary have an image based on their attribute (ex. cat and bragging sounds)
             image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
             if secondAttributeName != nil && secondDefault != nil{
                 image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)")
@@ -447,7 +446,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 // show text image
                 image = UIImage(named: showTextImage!)
             }
-            if image != nil { // make suer that the image actually exists
+            if image != nil { // make sure that the image actually exists
                 button.setBackgroundImage(image, for: .normal)
             } else {
                 print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
@@ -455,34 +454,38 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
         
-        if displaysText == "true" {
+        if displaysText == "true" { // modifier blocks that display text on them (ex. turn left)
             var text = "\(placeHolderBlock.attributes[attributeName] ?? "N/A")"
+            // handle text formatting based on type of block
             if attributeName == "angle" {
-                //Title: <angle>°
-                //add degrees sign to end of text
+                //<angle>°
                 text = "\(text)\u{00B0}"
                 modifierInformation = text
-            } else if attributeName == "distance" { //drive forward and backwards blocks
+            } else if attributeName == "distance" {
+                //drive forward and backwards blocks
                 if defaults.integer(forKey: "showText") == 0 {
-                    // show icon
+                    // show icon mode
                     text = "\(placeHolderBlock.attributes["distance"]!) cm \n"
                     modifierInformation = text + ", \(placeHolderBlock.attributes["speed"]!)"
                 } else {
-                    // show text
+                    // show text mode
                     text = "\(placeHolderBlock.attributes["distance"]!) cm, \(placeHolderBlock.attributes["speed"]!)"
                     modifierInformation = text
                 }
-            } else if attributeName == "wait" { // wait blocks
+            } else if attributeName == "wait" {
+                // wait blocks
                 if placeHolderBlock.attributes["wait"] == "1" {
                     text = "\(text) second"
                 } else {
                     text = "\(text) seconds"
                 }
                 modifierInformation = text
-            } else if attributeName == "variableSelected" { // variable blocks
+            } else if attributeName == "variableSelected" {
+                // variable blocks
                 text = "\(text) = \(placeHolderBlock.attributes["variableValue"]!)"
                 modifierInformation = text
             }
+            
             button.setTitle(text, for: .normal)
             
             // TODO: allow for font to be either .title1 or .title2 depending on what fits best
@@ -497,28 +500,32 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         button.accessibilityHint = accessibilityHint
         button.isAccessibilityElement = true
         
+        //TODO: this line doesn't really do anything, it is just the same as modifierInformation
         let voiceControlLabel = modifierInformation
         
         //TODO: test on different operating systems
         if #available(iOS 13.0, *) {
             button.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
         }
-
+        
+        // connect what happens when the button is pressed
         button.addTarget(self, action: selector, for: .touchUpInside)
+        
+        // add button to cell
         cell.addSubview(button)
 
-        //add main label
-        let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
-        addAccessibilityLabel(blockView: myLabel, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
+        //create blockView
+        let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
+        addAccessibilityLabel(blockView: blockView, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
         
-        cell.addSubview(myLabel)
+        cell.addSubview(blockView)
         
         // update addedBlocks
         block.addedBlocks[0] = placeHolderBlock
     }
     
     private func getModifierData (name : String, dict : NSDictionary) -> (Selector, String, String, String, String?, String, String?, String?, String?) {
-        /* gets values for modifier blocks from a dictionary. Prints errors if properties cannot be found */
+        /* gets values for modifier blocks from a dictionary and returns them as a tuple. Prints errors if properties cannot be found */
         
         if dict[name] == nil {
             print("\(name) could not be found in modifier block dictionary")
@@ -526,7 +533,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
         let selector = getModifierSelector(name: name) ?? nil // getModifierSelector() has an error statement built in already
         
-        let subDictionary = dict.value(forKey: name) as! NSDictionary
+        let subDictionary = dict.value(forKey: name) as! NSDictionary // renamed for simplicity
         
         let defaultValue = subDictionary.value(forKey: "default")
         if defaultValue == nil {
@@ -540,7 +547,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if accessibilityHint == nil {
             print("accessibilityHint for \(name) could not be found")
         }
-        // these properties are all optional
+        // these properties are all optional, so they don't need an error message
         let imagePath = subDictionary.value(forKey: "imagePath") ?? nil
         let displaysText = subDictionary.value(forKey: "displaysText") ?? "false"
         let secondAttributeName = subDictionary.value(forKey: "secondAttributeName") ?? nil
@@ -551,7 +558,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     private func getModifierSelector(name : String) -> Selector? {
-        /* Given the name for a modifier block, returns a #selector for the button*/
+        /* Given the name for a modifier block, returns a Selector for the button*/
         switch name {
         case "Animal Noise":
             return #selector(animalModifier(sender:))
@@ -594,11 +601,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     private func isModifierBlock(name : String) -> Bool {
+        /* returns true if the given name correlates to a modifiable block*/
         let dict = getModifierDictionary()
         return dict?[name] != nil
     }
     
     private func getModifierDictionary () -> NSDictionary?{
+        /* converts ModifierProperties plost to a NSDictionary*/
         // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
         let dict: NSDictionary?
          if let path = Bundle.main.path(forResource: "ModifierProperties", ofType: "plist") {
@@ -645,7 +654,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         accessibilityHint += movementInfo
         
         blockView.accessibilityLabel = accessibilityLabel
-        //createVoiceControlLabels(for: block, in: blockView)
+        //createVoiceControlLabels(for: block, in: blockView) // TODO: uncomment this? is this method really needed?
         blockView.accessibilityHint = accessibilityHint
     }
     
@@ -732,17 +741,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 //                    if block.addedBlocks.isEmpty{
 //                        _ = Block(name: "forever", color: Color.init(uiColor:UIColor.red ) , double: false, type: "Boolean", isModifiable: false)
 //                    }
-                    //add main label
-                    let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
-                    addAccessibilityLabel(blockView: myLabel, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
-                    cell.addSubview(myLabel)
+                    let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
+                    addAccessibilityLabel(blockView: blockView, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
+                    cell.addSubview(blockView)
                 default:
                     print("Non matching case. \(name) could not be found. Check collectionView() method in BlocksViewController.")
                    // TODO: handle if the non-matching case is actually a function, then these next lines can be removed after that is fixed
-                    //add main label
-                    let myLabel = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
-                    addAccessibilityLabel(blockView: myLabel, block: block, blockModifier: "function", blockLocation: indexPath.row+1, blockIndex: indexPath.row)
-                    cell.addSubview(myLabel)
+                    let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
+                    addAccessibilityLabel(blockView: blockView, block: block, blockModifier: "function", blockLocation: indexPath.row+1, blockIndex: indexPath.row)
+                    cell.addSubview(blockView)
                 }
             }
         }
@@ -931,7 +938,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
         
-        //TODO: can this be refactored?
         // Segue to DistanceSpeedModViewController
         if let destinationViewController = segue.destination as? DistanceSpeedModViewController {
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
@@ -1018,7 +1024,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
 }
-
 
 //// TODO: rewrite this method
 //// TODO: find out what this method does and if it can be removed
