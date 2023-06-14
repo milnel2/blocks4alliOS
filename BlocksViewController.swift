@@ -412,7 +412,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // TODO: fix modifierInformation property
         let dict = getModifierDictionary()
         
-        let (selector, defaultValue, attributeName, accessibilityHint, imagePath, displaysText, secondAttributeName, secondDefault, showTextImage) = getModifierData(name: name, dict: dict)
+        let (selector, defaultValue, attributeName, accessibilityHint, imagePath, displaysText, secondAttributeName, secondDefault, showTextImage) = getModifierData(name: name, dict: dict!)
         
         if block.addedBlocks.isEmpty{
             let placeholderBlock = Block(name: name, color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
@@ -546,7 +546,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         block.addedBlocks[0] = placeHolderBlock
     }
     
-    private func getModifierData (name : String, dict : [String : [String : String]]) -> (Selector, String, String, String, String?, String, String?, String?, String?) {
+    private func getModifierData (name : String, dict : NSDictionary) -> (Selector, String, String, String, String?, String, String?, String?, String?) {
         
         /* gets values for modifier blocks from a dictionary. Prints errors if properties cannot be found */
         
@@ -556,28 +556,30 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // getModifierSelector() has an error statement built in already
         let selector = getModifierSelector(name: name) ?? nil
         
-        let defaultValue = dict[name]?["default"]
+        let subDictionary = dict.value(forKey: name) as! NSDictionary
+        print("\(name) subdictionary: \(subDictionary)")
+        let defaultValue = subDictionary.value(forKey: "default")
         if defaultValue == nil {
             print("default value for \(name) could not be found")
         }
-        let attributeName = dict[name]?["attributeName"]
+        let attributeName = subDictionary.value(forKey: "attributeName")
         if attributeName == nil {
             print("attributeName for \(name) could not be found")
         }
         
-        let accessibilityHint = dict[name]?["accessibilityHint"]
+        let accessibilityHint = subDictionary.value(forKey: "accessibilityHint")
         if accessibilityHint == nil {
             print("accessibilityHint for \(name) could not be found")
         }
         
         // these properties are all optional
-        let imagePath = dict[name]?["imagePath"] ?? nil
-        let displaysText = dict[name]?["displaysText"] ?? "false"
-        let secondAttributeName = dict[name]?["secondAttributeName"] ?? nil
-        let secondDefault = dict[name]?["secondDefault"] ?? nil
-        let showTextImage = dict[name]?["showTextImage"] ?? nil
+        let imagePath = subDictionary.value(forKey: "imagePath") ?? nil
+        let displaysText = subDictionary.value(forKey: "displaysText") ?? "false"
+        let secondAttributeName = subDictionary.value(forKey: "secondAttributeName") ?? nil
+        let secondDefault = subDictionary.value(forKey: "secondDefault") ?? nil
+        let showTextImage = subDictionary.value(forKey: "showTextImage") ?? nil
         
-        return (selector!, defaultValue!, attributeName!, accessibilityHint!,  imagePath, displaysText, secondAttributeName, secondDefault, showTextImage)
+        return (selector!, defaultValue! as! String, attributeName! as! String, accessibilityHint! as! String,  imagePath as? String, displaysText as! String, secondAttributeName as? String, secondDefault as? String, showTextImage as? String)
     }
     
     private func getModifierSelector(name : String) -> Selector? {
@@ -626,146 +628,83 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     private func isModifierBlock(name : String) -> Bool {
         let dict = getModifierDictionary()
-        return dict[name] != nil
+        return dict?[name] != nil
     }
     
-    private func getModifierDictionary () -> [String : [String : String]]{
-        return [
-            "Animal Noise" :
-                ["attributeName" : "animalNoise",
-                 "default" : "cat",
-                 "accessibilityHint" : "Double tap to choose animal noise"],
-            "Vehicle Noise" :
-                ["attributeName" : "vehicleNoise",
-                 "default" : "airplane",
-                 "accessibilityHint" : "Double tap to choose vehicle noise"],
-            "Object Noise" :
-                ["attributeName" : "objectNoise",
-                 "default" : "laser",
-                 "accessibilityHint" : "Double tap to choose object noise"],
-            "Emotion Noise" :
-                ["attributeName" : "emotionNoise",
-                 "default" : "bragging",
-                 "accessibilityHint" : "Double tap to choose emotion noise"],
-            "Speak Word" :
-                ["attributeName" : "speakWord",
-                 "default" : "hi",
-                 "accessibilityHint" : "Double tap to choose word"],
-            "If" :
-                ["attributeName" : "booleanSelected",
-                 "default" : "false",
-                 "accessibilityHint" : "Double tap to set Boolean Condition for If"
-                ],
-            "Repeat" :
-                ["attributeName" : "timesToRepeat",
-                 "default" : "2",
-                 "accessibilityHint" : "Double tap to set number of times to repeat",
-                 "imagePath" : "controlModifierBackground",
-                 "displaysText" : "true"
-                ],
-            "Turn Left" :
-                ["attributeName" : "angle",
-                 "default" : "90",
-                 "accessibilityHint" : "Double tap to set left turn angle",
-                 "imagePath" : "driveModifierBackground",
-                 "displaysText" : "true"
-                ],
-            "Turn Right" :
-                ["attributeName" : "angle",
-                 "default" : "90",
-                 "accessibilityHint" : "Double tap to set right turn angle",
-                 "imagePath" : "driveModifierBackground",
-                 "displaysText" : "true"
-                ],
-            "Set Eye Light" :
-                ["attributeName" : "eyeLight",
-                 "default" : "On",
-                 "accessibilityHint" : "Double tap to turn eye light on or off",
-                 "imagePath" : "eyeLightModifierBackground",
-                 "displaysText" : "true"
-                ],
-            "Drive" :
-                ["attributeName" : "variableSelected",
-                 "default" : "Orange",
-                 "accessibilityHint" : "Double tap to set drive variable",
-                ],
-            "Look Up or Down" :
-                ["attributeName" : "variableSelected",
-                 "default" : "Orange",
-                 "accessibilityHint" : "Double tap to set Look Up or Down variable",
-                ],
-            "Look Left or Right" :
-                ["attributeName" : "variableSelected",
-                 "default" : "Orange",
-                 "accessibilityHint" : "Double tap to set Look Left or Right variable",
-                ],
-            "Turn" :
-                ["attributeName" : "variableSelected",
-                 "default" : "Orange",
-                 "accessibilityHint" : "Double tap to set Turn variable",
-                ],
-            "Drive Forward" :
-                ["attributeName" : "distance",
-                 "default" : "30",
-                 "secondAttributeName" : "speed",
-                 "secondDefault" : "Normal",
-                 "accessibilityHint" : "Double tap to set distance and speed ",
-                 "displaysText" : "true",
-                 "showTextImage" : "driveModifierBackground"
-                ],
-            "Drive Backward" :
-                ["attributeName" : "distance",
-                 "default" : "30",
-                 "secondAttributeName" : "speed",
-                 "secondDefault" : "Normal",
-                 "accessibilityHint" : "Double tap to set distance and speed",
-                 "displaysText" : "true",
-                 "showTextImage" : "driveModifierBackground"
-                ],
-            "Set Left Ear Light" :
-                ["attributeName" : "modifierBlockColor",
-                 "default" : "yellow",
-                 "secondAttributeName" : "lightColor",
-                 "secondDefault" : "yellow",
-                 "accessibilityHint" : "Double tap to set light color",
-                ],
-            "Set Right Ear Light" :
-                ["attributeName" : "modifierBlockColor",
-                 "default" : "yellow",
-                 "secondAttributeName" : "lightColor",
-                 "secondDefault" : "yellow",
-                 "accessibilityHint" : "Double tap to set light color",
-                ],
-            "Set Chest Light" :
-                ["attributeName" : "modifierBlockColor",
-                 "default" : "yellow",
-                 "secondAttributeName" : "lightColor",
-                 "secondDefault" : "yellow",
-                 "accessibilityHint" : "Double tap to set light color",
-                ],
-            "Set All Lights" :
-                ["attributeName" : "modifierBlockColor",
-                 "default" : "yellow",
-                 "secondAttributeName" : "lightColor",
-                 "secondDefault" : "yellow",
-                 "accessibilityHint" : "Double tap to set light color",
-                ],
-            "Wait for Time" :
-                ["attributeName" : "wait",
-                 "default" : "1",
-                 "accessibilityHint" : "Double tap to set wait time",
-                 "imagePath" : "controlModifierBackground",
-                 "displaysText" : "true",
-                ],
-            "Set Variable" :
-                ["attributeName" : "variableSelected",
-                 "default" : "orange",
-                 "secondAttributeName" : "variableValue",
-                 "secondDefault" : "0",
-                 "accessibilityHint" : "Double tap to set variable value",
-                 "imagePath" : "variableModifierBackground",
-                 "displaysText" : "true"
-                ]]
+    private func getModifierDictionary () -> NSDictionary?{
+        
+        // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
+        let dict: NSDictionary?
+         if let path = Bundle.main.path(forResource: "ModifierProperties", ofType: "plist") {
+            dict = NSDictionary(contentsOfFile: path)
+         } else {
+             print("could not access ModifierProperties plist")
+             return nil
+         }
+        return dict!
+
+//            "Drive Forward" :
+//                ["attributeName" : "distance",
+//                 "default" : "30",
+//                 "secondAttributeName" : "speed",
+//                 "secondDefault" : "Normal",
+//                 "accessibilityHint" : "Double tap to set distance and speed ",
+//                 "displaysText" : "true",
+//                 "showTextImage" : "driveModifierBackground"
+//                ],
+//            "Drive Backward" :
+//                ["attributeName" : "distance",
+//                 "default" : "30",
+//                 "secondAttributeName" : "speed",
+//                 "secondDefault" : "Normal",
+//                 "accessibilityHint" : "Double tap to set distance and speed",
+//                 "displaysText" : "true",
+//                 "showTextImage" : "driveModifierBackground"
+//                ],
+//            "Set Left Ear Light" :
+//                ["attributeName" : "modifierBlockColor",
+//                 "default" : "yellow",
+//                 "secondAttributeName" : "lightColor",
+//                 "secondDefault" : "yellow",
+//                 "accessibilityHint" : "Double tap to set light color",
+//                ],
+//            "Set Right Ear Light" :
+//                ["attributeName" : "modifierBlockColor",
+//                 "default" : "yellow",
+//                 "secondAttributeName" : "lightColor",
+//                 "secondDefault" : "yellow",
+//                 "accessibilityHint" : "Double tap to set light color",
+//                ],
+//            "Set Chest Light" :
+//                ["attributeName" : "modifierBlockColor",
+//                 "default" : "yellow",
+//                 "secondAttributeName" : "lightColor",
+//                 "secondDefault" : "yellow",
+//                 "accessibilityHint" : "Double tap to set light color",
+//                ],
+//            "Set All Lights" :
+//                ["attributeName" : "modifierBlockColor",
+//                 "default" : "yellow",
+//                 "secondAttributeName" : "lightColor",
+//                 "secondDefault" : "yellow",
+//                 "accessibilityHint" : "Double tap to set light color",
+//                ],
+//            "Wait for Time" :
+//                ["attributeName" : "wait",
+//                 "default" : "1",
+//                 "accessibilityHint" : "Double tap to set wait time",
+//                 "imagePath" : "controlModifierBackground",
+//                 "displaysText" : "true",
+//                ],
+//            "Set Variable" :
+//                ["attributeName" : "variableSelected",
+//                 "default" : "orange",
+//                 "secondAttributeName" : "variableValue",
+//                 "secondDefault" : "0",
+//                 "accessibilityHint" : "Double tap to set variable value",
+//                 "imagePath" : "variableModifierBackground",
+//                 "displaysText" : "true"
+//                ]]
     }
     /// Adds VoiceOver label to blockView, which changes to placement info if blocks are being moved
     /// - Parameters:
