@@ -159,7 +159,7 @@
 		<key>displaysText</key>
 		<string>true</string>
 		<key>imagePath</key>
-		<string>driveModif</string>
+		<string>driveModifierBackground</string>
 	</dict>
 </dict>
 </plist>
