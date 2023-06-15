@@ -272,10 +272,10 @@
             </objects>
             <point key="canvasLocation" x="-1299.4444444444443" y="-490.37037037037032"/>
         </scene>
-        <!--View Controller-->
+        <!--Instructions View Controller-->
         <scene sceneID="EBT-KX-h8k">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="1qS-gh-lht" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="1qS-gh-lht" customClass="InstructionsViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bQ0-TH-tyC"/>
                         <viewControllerLayoutGuide type="bottom" id="dhE-H1-Vfr"/>
@@ -345,6 +345,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0dZ-0O-kqT"/>
+                    <connections>
+                        <outlet property="helpLabel" destination="bf9-8r-YWE" id="G6o-Pv-wjj"/>
+                        <outlet property="instructionsText" destination="nZe-3b-W7O" id="Skt-Du-aqT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGJ-bi-9VP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3179,7 +3183,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Z98-8n-X04"/>
-        <segue reference="Oq5-da-dqe"/>
+        <segue reference="KBE-C8-Ew2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Apple" width="133" height="133"/>
