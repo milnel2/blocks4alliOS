@@ -168,9 +168,10 @@
 				FD63882F2A3100D3005F49F7 /* Fonts */,
 				F1D395BA2006DBB300C6D993 /* BlocksMenus */,
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
-				8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */,
-				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
 				F16BA3BB1F57919600A94FBA /* MainMenuViewController.swift */,
+				8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */,
+				FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */,
+				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
 				F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */,
 				F18FFFB91E65B0FC0090C4B6 /* Assets.xcassets */,
 				F18FFFBB1E65B0FC0090C4B6 /* LaunchScreen.storyboard */,
@@ -178,7 +179,6 @@
 				F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */,
 				F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */,
 				FD3A594F2A3A270900122BEF /* CustomHexColor.swift */,
-				FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
