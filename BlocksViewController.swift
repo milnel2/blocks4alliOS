@@ -426,7 +426,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // choose image path
         var image: UIImage?
         if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
-            image = UIImage(named: imagePath!)
+            image = UIImage(named: imagePath!)!
             
             if image != nil { // make sure that the image actually exists
                 button.setBackgroundImage(image, for: .normal)
