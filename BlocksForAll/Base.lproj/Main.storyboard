@@ -1841,8 +1841,11 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <outlet property="NegativeLabel" destination="I8l-wa-KJu" id="jP5-bC-DPa"/>
                         <outlet property="VariableValue" destination="0EE-tA-7aY" id="Rbn-tb-XMp"/>
                         <outlet property="back" destination="lJh-zd-RGp" id="qTr-vv-bAT"/>
+                        <outlet property="descriptionLabel" destination="I8l-wa-KJu" id="GMz-uE-NLz"/>
                         <outlet property="setVarTitle" destination="5Gb-Uk-oE9" id="FDX-HA-4CU"/>
                         <outlet property="setVarView" destination="jNy-ch-2PD" id="aPy-HI-Qzl"/>
+                        <outlet property="setVariableTitle" destination="5Gb-Uk-oE9" id="B2A-YG-O48"/>
+                        <outlet property="valueLabel" destination="aCi-eq-XZm" id="V0R-rr-zLG"/>
                         <outletCollection property="buttons" destination="GrT-2z-xvO" collectionClass="NSMutableArray" id="xMz-Rm-SYu"/>
                         <outletCollection property="buttons" destination="Uv9-Kz-RsF" collectionClass="NSMutableArray" id="R71-k6-1Jv"/>
                         <outletCollection property="buttons" destination="rgQ-Jh-7kw" collectionClass="NSMutableArray" id="WIy-0J-OHU"/>
@@ -2086,9 +2089,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     <navigationItem key="navigationItem" id="kb7-ZB-cSO"/>
                     <connections>
                         <outlet property="back" destination="Iih-8Y-Qzv" id="ymK-wi-zvT"/>
+                        <outlet property="distanceLabel" destination="CO9-t8-AAm" id="Gl3-WH-pKE"/>
+                        <outlet property="driveTitleLabel" destination="b0B-P4-bMi" id="QG0-gP-cK6"/>
                         <outlet property="fastButton" destination="jBY-tV-GhI" id="SWA-mD-ceM"/>
                         <outlet property="slowButton" destination="beN-6U-HNX" id="MXg-Xy-2Wy"/>
                         <outlet property="speedLabel" destination="agB-BY-ixs" id="RNC-0a-Apz"/>
+                        <outlet property="speedTitle" destination="71Y-9j-yaK" id="QxS-dy-jMk"/>
                         <outletCollection property="buttons" destination="OWd-yU-SCQ" collectionClass="NSMutableArray" id="FPZ-Ai-Lgr"/>
                         <outletCollection property="buttons" destination="OWd-yU-SCQ" collectionClass="NSMutableArray" id="xuV-eY-mXC"/>
                         <outletCollection property="buttons" destination="ypF-Ea-lgn" collectionClass="NSMutableArray" id="wMo-MI-r7v"/>
@@ -2200,7 +2206,9 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <navigationItem key="navigationItem" id="4Vs-Sg-yuk"/>
                     <connections>
+                        <outlet property="angleLabel" destination="ls1-GE-FP2" id="mCy-e5-8pp"/>
                         <outlet property="back" destination="nlP-Do-HRh" id="MZe-wY-ieB"/>
+                        <outlet property="turnTitle" destination="2Ed-Gl-te1" id="HuR-2Y-HD2"/>
                         <outletCollection property="buttons" destination="por-t8-2aZ" collectionClass="NSMutableArray" id="kKy-ut-pP0"/>
                         <outletCollection property="buttons" destination="por-t8-2aZ" collectionClass="NSMutableArray" id="Hah-Xw-LEu"/>
                         <outletCollection property="buttons" destination="SAR-ES-jhg" collectionClass="NSMutableArray" id="jtb-5y-lSh"/>
@@ -3182,8 +3190,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Z98-8n-X04"/>
-        <segue reference="KBE-C8-Ew2"/>
+        <segue reference="kbj-oh-DCS"/>
+        <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Apple" width="133" height="133"/>

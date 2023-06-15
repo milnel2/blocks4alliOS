@@ -29,6 +29,11 @@ class DriveVariables: UIViewController {
     
     @IBOutlet weak var back: UIButton!
     
+    @IBOutlet weak var driveTitleLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var speedTitle: UILabel!
+    
+    
     //possible speed options for when the steppers are clicked
     @IBAction func slowButtonPressed(_ sender: UIButton) {
         switch speed {
@@ -85,6 +90,16 @@ class DriveVariables: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Changing to custom font
+        speedLabel.adjustsFontForContentSizeCategory = true
+        speedLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
+        driveTitleLabel.adjustsFontForContentSizeCategory = true
+        driveTitleLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
+        distanceLabel.adjustsFontForContentSizeCategory = true
+        distanceLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
+        speedTitle.adjustsFontForContentSizeCategory = true
+        speedTitle.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
         
         //Makes buttons easier to select with Voice Control
         if #available(iOS 13.0, *) {
