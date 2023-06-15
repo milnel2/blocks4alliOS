@@ -385,7 +385,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     private func setUpModifierButton(block : Block, blockName name : String, indexPath : IndexPath, cell : UICollectionViewCell) {
         /* Sets up a modifier button based on the name inputted*/
-        // TODO: fix modifierInformation property/voice over
         let dict = getModifierDictionary() // holds properties of all modifier blocks
         
         let (selector, defaultValue, attributeName, accessibilityHint, imagePath, displaysText, secondAttributeName, secondDefault, showTextImage) = getModifierData(name: name, dict: dict!) // constants taken from dict based on name
@@ -426,7 +425,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // choose image path
         var image: UIImage?
         if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
-            image = UIImage(named: imagePath!)!
+            image = UIImage(named: imagePath!)
             
             if image != nil { // make sure that the image actually exists
                 button.setBackgroundImage(image, for: .normal)
@@ -626,7 +625,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     ///   - blockModifier:  describes the state of the block modifier (e.g. 2 times for repeat 2 times)
     ///   - blockLocation: location of block in workspace (e.g. 2 of 4)
     
-    // TODO: rewrite this function
     func addAccessibilityLabel(blockView: UIView, block:Block, blockModifier:String, blockLocation: Int, blockIndex: Int){
         blockView.isAccessibilityElement = true
         var accessibilityLabel = ""
@@ -654,10 +652,124 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         accessibilityHint += movementInfo
         
         blockView.accessibilityLabel = accessibilityLabel
-        //createVoiceControlLabels(for: block, in: blockView) // TODO: uncomment this? is this method really needed?
+        createVoiceControlLabels(for: block, in: blockView)
         blockView.accessibilityHint = accessibilityHint
     }
     
+    // TODO: rewrite this method
+    func createVoiceControlLabels(for block: Block, in blockView: UIView) {
+        if #available (iOS 13.0, *) {
+            let color = block.color.uiColor
+
+            switch color {
+            //Control
+            case UIColor.colorFrom(hexString: "#B30DCB"):
+                if movingBlocks {
+                    if block.name == "Wait for Time"{
+                        blockView.accessibilityUserInputLabels = ["Before Wait", "Before \(block.name)"]
+                    }
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
+                }
+
+            //Drive
+            case UIColor.colorFrom(hexString: "#B15C13"):
+                var voiceControlLabel = block.name
+                if block.name.contains("Drive") {
+                    let wordToRemove = "Drive "
+                    if let range = voiceControlLabel.range(of: wordToRemove){
+                        voiceControlLabel.removeSubrange(range)
+                    }
+                }
+                else if block.name.contains("Turn") {
+                    let wordToRemove = "Turn "
+                    if let range = voiceControlLabel.range(of: wordToRemove){
+                        voiceControlLabel.removeSubrange(range)
+                    }
+                }
+
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
+                }
+
+            //Lights
+            case UIColor.colorFrom(hexString: "#6700C1"):
+                var voiceControlLabel = block.name
+                let wordToRemove = "Set "
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+
+                var voiceControlLabel2 = voiceControlLabel
+                if block.name != "Set All Lights"{
+                    let wordToRemove2 = " Light"
+                    if let range = voiceControlLabel2.range(of: wordToRemove2) {
+                        voiceControlLabel2.removeSubrange(range)
+                    }
+                }
+
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(voiceControlLabel2)", "Before \(block.name)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(voiceControlLabel2)", "\(block.name)"]
+                }
+
+            //Look
+            case UIColor.colorFrom(hexString: "#836F53"):
+                var voiceControlLabel = block.name
+                let wordToRemove = "Look "
+                if let range = voiceControlLabel.range(of: wordToRemove){
+                    voiceControlLabel.removeSubrange(range)
+                }
+
+                if movingBlocks {
+                    blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
+                }
+                else {
+                    blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
+                }
+
+            default:
+                blockView.accessibilityUserInputLabels = ["\(block.name)"]
+            }
+        }
+    }
+
+
+        func changeModifierBlockColor(color: String) -> UIColor {
+            // test with black
+            if color.elementsEqual("black"){
+                return UIColor.black
+            }
+            if color.elementsEqual("red"){
+                return UIColor.red
+            }
+            if color.elementsEqual("orange"){
+                return UIColor.orange
+            }
+            if color.elementsEqual("yellow"){
+                return UIColor.yellow
+            }
+            if color.elementsEqual("green"){
+                return UIColor.green
+            }
+            if color.elementsEqual("blue"){
+                // RGB values from Storyboard source code
+                return UIColor(displayP3Red: 0, green: 0.5898, blue: 1, alpha: 1)
+            }
+            if color.elementsEqual("purple"){
+                return UIColor(displayP3Red: 0.58188, green: 0.2157, blue: 1, alpha: 1)
+            }
+            if color.elementsEqual("white"){
+                return UIColor.white
+            }
+            return UIColor.yellow //default color
+        }
     /* CollectionView contains the actual collection of blocks (i.e. the program that is being created with the blocks)
      This method creates and returns the cell at a given index
      */
@@ -1025,121 +1137,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
 }
 
-//// TODO: rewrite this method
-//// TODO: find out what this method does and if it can be removed
-//func createVoiceControlLabels(for block: Block, in blockView: UIView) {
-//    if #available (iOS 13.0, *) {
-//        let color = block.color.uiColor
-//
-//        switch color {
-//        //Control
-//        case UIColor.colorFrom(hexString: "#B30DCB"):
-//            if movingBlocks {
-//                if block.name == "Wait for Time"{
-//                    blockView.accessibilityUserInputLabels = ["Before Wait", "Before \(block.name)"]
-//                }
-//            }
-//            else {
-//                blockView.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
-//            }
-//
-//        //Drive
-//        case UIColor.colorFrom(hexString: "#B15C13"):
-//            var voiceControlLabel = block.name
-//            if block.name.contains("Drive") {
-//                let wordToRemove = "Drive "
-//                if let range = voiceControlLabel.range(of: wordToRemove){
-//                    voiceControlLabel.removeSubrange(range)
-//                }
-//            }
-//            else if block.name.contains("Turn") {
-//                let wordToRemove = "Turn "
-//                if let range = voiceControlLabel.range(of: wordToRemove){
-//                    voiceControlLabel.removeSubrange(range)
-//                }
-//            }
-//
-//            if movingBlocks {
-//                blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
-//            }
-//            else {
-//                blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
-//            }
-//
-//        //Lights
-//        case UIColor.colorFrom(hexString: "#6700C1"):
-//            var voiceControlLabel = block.name
-//            let wordToRemove = "Set "
-//            if let range = voiceControlLabel.range(of: wordToRemove){
-//                voiceControlLabel.removeSubrange(range)
-//            }
-//
-//            var voiceControlLabel2 = voiceControlLabel
-//            if block.name != "Set All Lights"{
-//                let wordToRemove2 = " Light"
-//                if let range = voiceControlLabel2.range(of: wordToRemove2) {
-//                    voiceControlLabel2.removeSubrange(range)
-//                }
-//            }
-//
-//            if movingBlocks {
-//                blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(voiceControlLabel2)", "Before \(block.name)"]
-//            }
-//            else {
-//                blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(voiceControlLabel2)", "\(block.name)"]
-//            }
-//
-//        //Look
-//        case UIColor.colorFrom(hexString: "#836F53"):
-//            var voiceControlLabel = block.name
-//            let wordToRemove = "Look "
-//            if let range = voiceControlLabel.range(of: wordToRemove){
-//                voiceControlLabel.removeSubrange(range)
-//            }
-//
-//            if movingBlocks {
-//                blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
-//            }
-//            else {
-//                blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
-//            }
-//
-//        default:
-//            blockView.accessibilityUserInputLabels = ["\(block.name)"]
-//        }
-//    }
-//}
 
-
-//    func changeModifierBlockColor(color: String) -> UIColor {
-//        // test with black
-//        if color.elementsEqual("black"){
-//            return UIColor.black
-//        }
-//        if color.elementsEqual("red"){
-//            return UIColor.red
-//        }
-//        if color.elementsEqual("orange"){
-//            return UIColor.orange
-//        }
-//        if color.elementsEqual("yellow"){
-//            return UIColor.yellow
-//        }
-//        if color.elementsEqual("green"){
-//            return UIColor.green
-//        }
-//        if color.elementsEqual("blue"){
-//            // RGB values from Storyboard source code
-//            return UIColor(displayP3Red: 0, green: 0.5898, blue: 1, alpha: 1)
-//        }
-//        if color.elementsEqual("purple"){
-//            return UIColor(displayP3Red: 0.58188, green: 0.2157, blue: 1, alpha: 1)
-//        }
-//        if color.elementsEqual("white"){
-//            return UIColor.white
-//        }
-//        return UIColor.yellow //default color
-//    }
 
 
 /// Alerts the user that all the blocks will be deleted. If user selects yes, blocks in current function are delected
