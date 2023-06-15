@@ -26,6 +26,7 @@ var endIndex: Int{
     return functionsDict[currentWorkspace]!.count - 1
 }
 
+
 // modifier block global variables
 // these are global so that the modifier setup methods can access them
 var startingHeight = 0
@@ -66,13 +67,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// view on bottom of screen that shows blocks in workspace
     @IBOutlet weak var blocksProgram: UICollectionView!
 
-    
+    var robotRunning = false
+
     var movingBlocks = false
     /// blocks currently being moved (includes nested blocks)
     var blocksBeingMoved = [Block]()
     /// Top-level controller for toolbox view controllers
     var allModifierBlocks = [CustomButton]()
     /// A list of all the modifier blocks in the workspace
+    var allBlockViews = [BlockView]()
     var containerViewController: UINavigationController?
     
     // TODO: the blockWidth and blockHeight are not the same as the variable blockSize (= 100)
@@ -225,6 +228,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         movingBlocks = false
         stopIsOption = false
         changePlayTrashButton()
+        robotRunning = false
+        
+        // reenable modifier blocks
+        for modifierBlock in allModifierBlocks {
+            modifierBlock.isEnabled = true
+            modifierBlock.isAccessibilityElement = true
+        }
+        
     }
 
     // run the actual program when the trash button is clicked
@@ -255,8 +266,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }else{
             stopIsOption = true
             changePlayTrashButton()
-            play(functionsDictToPlay: functionsDict)
             //Calls RobotControllerViewController play function
+            play(functionsDictToPlay: functionsDict)
+            robotRunning = true
+
+            // disable modifier blocks while the robot is running
+            for modifierBlock in allModifierBlocks {
+                modifierBlock.isEnabled = false
+                modifierBlock.isAccessibilityElement = false
+            }
+            
         }
     }
     
@@ -517,6 +536,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
         addAccessibilityLabel(blockView: blockView, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
         
+        allBlockViews.append(blockView)
         cell.addSubview(blockView)
         
         // the main part of the block is focused first, then the modifier button
@@ -859,12 +879,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
                     addAccessibilityLabel(blockView: blockView, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
                     cell.addSubview(blockView)
+                    allBlockViews.append(blockView)
+
                 default:
                     print("Non matching case. \(name) could not be found. Check collectionView() method in BlocksViewController.")
                    // TODO: handle if the non-matching case is actually a function, then these next lines can be removed after that is fixed
                     let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
                     addAccessibilityLabel(blockView: blockView, block: block, blockModifier: "function", blockLocation: indexPath.row+1, blockIndex: indexPath.row)
                     cell.addSubview(blockView)
+                    allBlockViews.append(blockView)
+
                 }
             }
         }
@@ -988,57 +1012,60 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.remembersLastFocusedIndexPath = true
         /*Called when a block is selected in the collectionView, so either selects block to move or places blocks*/
-        if(movingBlocks){
-                addBlocks(blocksBeingMoved, at: indexPath.row)
-                containerViewController?.popViewController(animated: false)
-                finishMovingBlocks()
-        }else{
-            if(indexPath.row < functionsDict[currentWorkspace]!.count){ //otherwise empty block at end
-                movingBlocks = true
-                let blocksStackIndex = indexPath.row
-                let myBlock = functionsDict[currentWorkspace]![blocksStackIndex]
-                guard !myBlock.name.contains("Function Start") else{
-                    movingBlocks = false
-                    return
-                }
-                guard !myBlock.name.contains("Function End") else{
-                    movingBlocks = false
-                    return
-                }
-                
-                if myBlock.double == true{
-                    var indexOfCounterpart = -1
-                    var blockcounterparts = [Block]()
-                    for i in 0..<functionsDict[currentWorkspace]!.count {
-                        for block in myBlock.counterpart{
-                            if block === functionsDict[currentWorkspace]![i]{
-                                indexOfCounterpart = i
-                                blockcounterparts.append(block)
+        if (!robotRunning) { // disable editing while robot is running
+            if(movingBlocks){
+                    addBlocks(blocksBeingMoved, at: indexPath.row)
+                    containerViewController?.popViewController(animated: false)
+                    finishMovingBlocks()
+            }else{
+                if(indexPath.row < functionsDict[currentWorkspace]!.count){ //otherwise empty block at end
+                    movingBlocks = true
+                    let blocksStackIndex = indexPath.row
+                    let myBlock = functionsDict[currentWorkspace]![blocksStackIndex]
+                    guard !myBlock.name.contains("Function Start") else{
+                        movingBlocks = false
+                        return
+                    }
+                    guard !myBlock.name.contains("Function End") else{
+                        movingBlocks = false
+                        return
+                    }
+                    
+                    if myBlock.double == true{
+                        var indexOfCounterpart = -1
+                        var blockcounterparts = [Block]()
+                        for i in 0..<functionsDict[currentWorkspace]!.count {
+                            for block in myBlock.counterpart{
+                                if block === functionsDict[currentWorkspace]![i]{
+                                    indexOfCounterpart = i
+                                    blockcounterparts.append(block)
+                                }
                             }
                         }
+                        var indexPathArray = [IndexPath]()
+                        var tempBlockStack = [Block]()
+                        for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
+                            indexPathArray += [IndexPath.init(row: i, section: 0)]
+                            tempBlockStack += [functionsDict[currentWorkspace]![i]]
+                        }
+                        blocksBeingMoved = tempBlockStack
+                        functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
+                    }else{ //only a single block to be removed
+                        blocksBeingMoved = [functionsDict[currentWorkspace]![blocksStackIndex]]
+                        functionsDict[currentWorkspace]!.remove(at: blocksStackIndex)
                     }
-                    var indexPathArray = [IndexPath]()
-                    var tempBlockStack = [Block]()
-                    for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
-                        indexPathArray += [IndexPath.init(row: i, section: 0)]
-                        tempBlockStack += [functionsDict[currentWorkspace]![i]]
-                    }
-                    blocksBeingMoved = tempBlockStack
-                    functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
-                }else{ //only a single block to be removed
-                    blocksBeingMoved = [functionsDict[currentWorkspace]![blocksStackIndex]]
-                    functionsDict[currentWorkspace]!.remove(at: blocksStackIndex)
+                    blocksProgram.reloadData()
+                    
+                    
+                    let mySelectedBlockVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectedBlockViewController") as! SelectedBlockViewController
+                    
+                    containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
+                    mySelectedBlockVC.blocks = blocksBeingMoved
+                    changePlayTrashButton()
                 }
-                blocksProgram.reloadData()
-                
-                
-                let mySelectedBlockVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectedBlockViewController") as! SelectedBlockViewController
-                
-                containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
-                mySelectedBlockVC.blocks = blocksBeingMoved
-                changePlayTrashButton()
             }
         }
+       
     }
   
     // MARK: - - Navigation
