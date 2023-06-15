@@ -2240,6 +2240,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <rect key="frame" x="40" y="30" width="211" height="195"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="211" id="asc-gx-hY5"/>
                                     <constraint firstAttribute="height" constant="195" id="yWI-uO-iUX"/>
                                 </constraints>
                                 <state key="normal" image="Back">
@@ -2250,7 +2251,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Angle:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ls1-GE-FP2">
-                                <rect key="frame" x="96" y="293" width="76.5" height="65"/>
+                                <rect key="frame" x="96" y="295" width="76.5" height="65"/>
                                 <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="cQV-jd-IKg"/>
@@ -2260,17 +2261,17 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Turn Variable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ed-Gl-te1">
-                                <rect key="frame" x="421" y="200" width="238" height="49"/>
+                                <rect key="frame" x="421" y="200" width="238" height="50"/>
                                 <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="vhe-lQ-Sbn"/>
+                                    <constraint firstAttribute="height" constant="50" id="vhe-lQ-Sbn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="boF-Q8-KCv">
-                                <rect key="frame" x="154" y="400" width="772" height="133"/>
+                                <rect key="frame" x="154" y="402" width="772" height="133"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="por-t8-2aZ">
                                         <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
@@ -2348,11 +2349,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <constraint firstItem="boF-Q8-KCv" firstAttribute="top" secondItem="ls1-GE-FP2" secondAttribute="bottom" constant="42" id="LNC-B3-IgS"/>
                             <constraint firstItem="2Ed-Gl-te1" firstAttribute="centerX" secondItem="wCQ-bF-wXc" secondAttribute="centerX" id="Tfy-2N-Py5"/>
                             <constraint firstItem="boF-Q8-KCv" firstAttribute="centerX" secondItem="2Ed-Gl-te1" secondAttribute="centerX" id="YaT-sZ-N9l"/>
-                            <constraint firstItem="ls1-GE-FP2" firstAttribute="top" secondItem="nlP-Do-HRh" secondAttribute="bottom" constant="68" id="a5b-Yc-V1K"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ls1-GE-FP2" secondAttribute="trailing" constant="20" symbolic="YES" id="gbw-M2-zIU"/>
+                            <constraint firstItem="ls1-GE-FP2" firstAttribute="top" secondItem="nlP-Do-HRh" secondAttribute="bottom" constant="70" id="xQ0-wb-dn6"/>
                             <constraint firstItem="2Ed-Gl-te1" firstAttribute="top" secondItem="KA3-qF-icq" secondAttribute="bottom" constant="200" id="yAp-VY-Aqs"/>
                             <constraint firstItem="ls1-GE-FP2" firstAttribute="leading" secondItem="wCQ-bF-wXc" secondAttribute="leadingMargin" constant="76" id="yKx-be-nzO"/>
-                            <constraint firstItem="2Ed-Gl-te1" firstAttribute="leading" secondItem="nlP-Do-HRh" secondAttribute="trailing" constant="170" id="zWc-Kn-mDw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4Vs-Sg-yuk"/>
