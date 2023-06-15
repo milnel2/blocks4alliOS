@@ -761,6 +761,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <outlet property="playTrashToggleButton" destination="Ztu-9b-vFh" id="LFC-BT-ZaG"/>
                         <outlet property="toolboxView" destination="rLx-VG-2JW" id="US0-wx-Yiw"/>
                         <outlet property="workspaceContainerView" destination="7Ot-l9-NbS" id="37h-70-ofr"/>
+                        <outlet property="workspaceTitle" destination="DAu-wd-2Fx" id="nGM-3K-Ve4"/>
                         <segue destination="cJF-Nc-M7L" kind="show" identifier="AddRobotSegue" id="PIe-sL-Fqa"/>
                         <segue destination="PBc-35-QW0" kind="show" identifier="DistanceSpeedModifier" id="CWQ-aM-vhy"/>
                         <segue destination="JzC-8L-d8W" kind="show" identifier="TurnRightModifier" id="cqe-hd-fim"/>
@@ -3247,8 +3248,9 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="PIe-sL-Fqa"/>
         <segue reference="uRw-vH-lIn"/>
-        <segue reference="Oq5-da-dqe"/>
+        <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Apple" width="133" height="133"/>

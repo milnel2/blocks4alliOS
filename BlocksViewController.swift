@@ -64,6 +64,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     @IBOutlet weak var playTrashToggleButton: UIButton!
         
+    @IBOutlet weak var workspaceTitle: UILabel!
+    
     /// view on bottom of screen that shows blocks in workspace
     @IBOutlet weak var blocksProgram: UICollectionView!
 
@@ -96,6 +98,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Change to custom font
+        workspaceTitle.adjustsFontForContentSizeCategory = true
+        workspaceTitle.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
+        
         // set block size based on block size from settings
         if defaults.value(forKey: "blockSize") == nil {
             defaults.setValue(150, forKey: "blockSize")
