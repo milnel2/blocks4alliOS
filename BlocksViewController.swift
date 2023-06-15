@@ -519,6 +519,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         cell.addSubview(blockView)
         
+        // the main part of the block is focused first, then the modifier button
+        cell.accessibilityElements = [blockView, button]
+        
         // update addedBlocks
         block.addedBlocks[0] = placeHolderBlock
     }
@@ -660,7 +663,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func createVoiceControlLabels(for block: Block, in blockView: UIView) {
         if #available (iOS 13.0, *) {
             let color = block.color.uiColor
-
+            let name = block.name
+            print(name)
             switch color {
             //Control
             case UIColor.colorFrom(hexString: "#B30DCB"):
@@ -668,8 +672,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     if block.name == "Wait for Time"{
                         blockView.accessibilityUserInputLabels = ["Before Wait", "Before \(block.name)"]
                     }
-                }
-                else {
+                } else {
                     blockView.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
                 }
 
@@ -866,7 +869,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
         
-        cell.accessibilityElements = cell.accessibilityElements?.reversed()
         
         // Deactivates all modifier blocks in the workspace while a block is being moved.
         // Switch control and VO will also skip over the modifier block.
