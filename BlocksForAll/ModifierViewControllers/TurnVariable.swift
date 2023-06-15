@@ -20,6 +20,9 @@ class TurnVariable: UIViewController {
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var back: UIButton!
     
+    @IBOutlet weak var turnTitle: UILabel!
+    @IBOutlet weak var angleLabel: UILabel!
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         //Deselects all buttons but currently selected one (only one can be selected at a time)
         self.buttons.forEach { (button) in
@@ -37,6 +40,11 @@ class TurnVariable: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Change to custom font
+        turnTitle.adjustsFontForContentSizeCategory = true
+        angleLabel.adjustsFontForContentSizeCategory = true
+        turnTitle.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
+        angleLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
         
         // default: orange or preserve last selection
         let previousSelectedVariable: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"

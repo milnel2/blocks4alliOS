@@ -23,6 +23,9 @@ class SetVariableModViewController: UIViewController {
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var back: UIButton!
     
+    @IBOutlet weak var setVariableTitle: UILabel!
+    @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet var setVarView: UIView!
     
@@ -59,6 +62,13 @@ class SetVariableModViewController: UIViewController {
     
     @objc override func viewDidLoad() {
         super.viewDidLoad()
+        //Change to custom font
+        setVariableTitle.adjustsFontForContentSizeCategory = true
+        setVariableTitle.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
+        valueLabel.adjustsFontSizeToFitWidth = true
+        valueLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
+        descriptionLabel.adjustsFontSizeToFitWidth = true
+        descriptionLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
  
         
         //Makes text field easier to select with Voice Control

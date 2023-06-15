@@ -578,7 +578,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         case "Set Eye Light":
             return #selector(setEyeLightModifier(sender:))
         case "Drive":
-            return #selector(variableModifier(sender:))
+            return #selector(driveModifier(sender:))
         case "Look Up or Down":
             return #selector(lookUpDownModifier(sender:))
         case "Look Left or Right":
