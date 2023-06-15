@@ -116,7 +116,7 @@
 		<key>accessibilityHint</key>
 		<string>Double tap to turn eye light on or off</string>
 		<key>imagePath</key>
-		<string>EyeLightModifierBackground</string>
+		<string>eyeLightModifierBackground</string>
 		<key>displaysText</key>
 		<string>true</string>
 	</dict>
