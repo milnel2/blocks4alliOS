@@ -272,10 +272,10 @@
             </objects>
             <point key="canvasLocation" x="-1299.4444444444443" y="-490.37037037037032"/>
         </scene>
-        <!--View Controller-->
+        <!--Instructions View Controller-->
         <scene sceneID="EBT-KX-h8k">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="1qS-gh-lht" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="1qS-gh-lht" customClass="InstructionsViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bQ0-TH-tyC"/>
                         <viewControllerLayoutGuide type="bottom" id="dhE-H1-Vfr"/>
@@ -345,6 +345,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0dZ-0O-kqT"/>
+                    <connections>
+                        <outlet property="helpLabel" destination="bf9-8r-YWE" id="G6o-Pv-wjj"/>
+                        <outlet property="instructionsText" destination="nZe-3b-W7O" id="Skt-Du-aqT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGJ-bi-9VP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1144,7 +1148,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="je8-kt-IQ9">
-                                <rect key="frame" x="251" y="383" width="135" height="133"/>
+                                <rect key="frame" x="251" y="383" width="114" height="133"/>
                                 <accessibility key="accessibilityConfiguration" hint="Wait for a shorter time" label="Decrease"/>
                                 <state key="normal" title="Button" image="orange_minus"/>
                                 <connections>
@@ -1739,7 +1743,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GrT-2z-xvO">
                                 <rect key="frame" x="70" y="299" width="162" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="orange" label="Orange "/>
+                                <accessibility key="accessibilityConfiguration" identifier="Orange" label="Orange "/>
                                 <state key="normal" backgroundImage="Orange">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1750,7 +1754,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uv9-Kz-RsF">
                                 <rect key="frame" x="256" y="299" width="156" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="banana" label="Banana"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Banana" label="Banana"/>
                                 <state key="normal" backgroundImage="Banana">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1761,7 +1765,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rgQ-Jh-7kw">
                                 <rect key="frame" x="440" y="299" width="152" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="apple" label="Apple"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Apple" label="Apple"/>
                                 <state key="normal" backgroundImage="Apple">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1772,7 +1776,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5m-D2-7ru">
                                 <rect key="frame" x="622" y="299" width="150" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="cherry" label="Cherry"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Cherry" label="Cherry"/>
                                 <state key="normal" backgroundImage="Cherry">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1783,7 +1787,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-YP-GZa">
                                 <rect key="frame" x="804" y="299" width="161" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="melon" label="Watermelon"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Watermelon" label="Watermelon"/>
                                 <state key="normal" backgroundImage="Watermelon">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1971,7 +1975,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWd-yU-SCQ">
                                 <rect key="frame" x="96" y="307" width="162" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="orange" label="Orange "/>
+                                <accessibility key="accessibilityConfiguration" identifier="Orange" label="Orange "/>
                                 <state key="normal" backgroundImage="Orange">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1982,7 +1986,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypF-Ea-lgn">
                                 <rect key="frame" x="281" y="307" width="156" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="banana" label="Banana"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Banana" label="Banana"/>
                                 <state key="normal" backgroundImage="Banana">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1993,7 +1997,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeO-ti-YFz">
                                 <rect key="frame" x="464" y="306" width="152" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="apple" label="Apple"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Apple" label="Apple"/>
                                 <state key="normal" backgroundImage="Apple">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2004,7 +2008,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKW-E7-HOd">
                                 <rect key="frame" x="824" y="307" width="161" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="melon" label="Watermelon"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Watermelon" label="Watermelon"/>
                                 <state key="normal" backgroundImage="Watermelon">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2015,7 +2019,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoX-XS-X1x">
                                 <rect key="frame" x="641" y="307" width="150" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="cherry" label="Cherry"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Cherry" label="Cherry"/>
                                 <state key="normal" backgroundImage="Cherry">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2123,7 +2127,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="por-t8-2aZ">
                                 <rect key="frame" x="96" y="387" width="162" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="orange" label="Orange "/>
+                                <accessibility key="accessibilityConfiguration" identifier="Orange" label="Orange "/>
                                 <state key="normal" backgroundImage="Orange">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2134,7 +2138,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAR-ES-jhg">
                                 <rect key="frame" x="281" y="387" width="156" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="banana" label="Banana"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Banana" label="Banana"/>
                                 <state key="normal" backgroundImage="Banana">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2145,7 +2149,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AxW-nQ-bJf">
                                 <rect key="frame" x="464" y="386" width="152" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="apple" label="Apple"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Apple" label="Apple"/>
                                 <state key="normal" backgroundImage="Apple">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2156,7 +2160,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bkl-7e-Q64">
                                 <rect key="frame" x="824" y="387" width="161" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="melon" label="Watermelon"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Watermelon" label="Watermelon"/>
                                 <state key="normal" backgroundImage="Watermelon">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2167,7 +2171,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9IC-Kx-unA">
                                 <rect key="frame" x="641" y="387" width="150" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="cherry" label="Cherry"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Cherry" label="Cherry"/>
                                 <state key="normal" backgroundImage="Cherry">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2235,7 +2239,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQd-mf-6EI">
                                 <rect key="frame" x="91" y="326" width="162" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="orange" label="Orange "/>
+                                <accessibility key="accessibilityConfiguration" identifier="Orange" label="Orange "/>
                                 <state key="normal" backgroundImage="Orange">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2246,7 +2250,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4q1-vE-soU">
                                 <rect key="frame" x="276" y="326" width="156" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="banana" label="Banana"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Banana" label="Banana"/>
                                 <state key="normal" backgroundImage="Banana">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2257,7 +2261,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dR9-Bd-O6a">
                                 <rect key="frame" x="459" y="325" width="152" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="apple" label="Apple"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Apple" label="Apple"/>
                                 <state key="normal" backgroundImage="Apple">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2268,7 +2272,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbR-jX-yjb">
                                 <rect key="frame" x="819" y="326" width="161" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="melon" label="Watermelon"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Watermelon" label="Watermelon"/>
                                 <state key="normal" backgroundImage="Watermelon">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2279,7 +2283,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsK-ZT-SLl">
                                 <rect key="frame" x="636" y="326" width="150" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="cherry" label="Cherry"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Cherry" label="Cherry"/>
                                 <state key="normal" backgroundImage="Cherry">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2368,7 +2372,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0d-WD-cmP">
                                 <rect key="frame" x="96" y="346" width="162" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="orange" label="Orange "/>
+                                <accessibility key="accessibilityConfiguration" identifier="Orange" label="Orange "/>
                                 <state key="normal" backgroundImage="Orange">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2379,7 +2383,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISD-H4-eTo">
                                 <rect key="frame" x="281" y="346" width="156" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="banana" label="Banana"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Banana" label="Banana"/>
                                 <state key="normal" backgroundImage="Banana">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2390,7 +2394,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Y1-ba-EMm">
                                 <rect key="frame" x="464" y="345" width="152" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="apple" label="Apple"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Apple" label="Apple"/>
                                 <state key="normal" backgroundImage="Apple">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2401,7 +2405,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deE-af-ht2">
                                 <rect key="frame" x="824" y="346" width="161" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="melon" label="Watermelon"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Watermelon" label="Watermelon"/>
                                 <state key="normal" backgroundImage="Watermelon">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -2412,7 +2416,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lfR-07-Evo">
                                 <rect key="frame" x="641" y="346" width="150" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="cherry" label="Cherry"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Cherry" label="Cherry"/>
                                 <state key="normal" backgroundImage="Cherry">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -3178,8 +3182,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="t2J-Rr-un6"/>
-        <segue reference="XsQ-5G-ZnB"/>
+        <segue reference="Z98-8n-X04"/>
+        <segue reference="KBE-C8-Ew2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Apple" width="133" height="133"/>
