@@ -128,19 +128,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
     }
-    // TODO: modify with new buttons
+
     @IBAction func goToMainMenu(_ sender: CustomButton) {
-        //If user is in the main workspace, main menu button takes them to the main menu
-//        if currentWorkspace == "Main Workspace" {
             performSegue(withIdentifier: "toMainMenu", sender: self)
-//        }
-        //If user is in a function workspace, main workspace button takes them to the main workspace
-//        else {
-//            currentWorkspace = "Main Workspace"
-//            //Segues from the main workspace to itself to reload the view (switches from functions workspace to main)
-//            performSegue(withIdentifier: "mainToMain", sender: self)
-//
-//        }
     }
     
     @IBAction func goToMainWorkspace(_ sender: Any) {
