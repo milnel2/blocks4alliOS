@@ -272,10 +272,10 @@
             </objects>
             <point key="canvasLocation" x="-1299.4444444444443" y="-490.37037037037032"/>
         </scene>
-        <!--View Controller-->
+        <!--Instructions View Controller-->
         <scene sceneID="EBT-KX-h8k">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="1qS-gh-lht" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="1qS-gh-lht" customClass="InstructionsViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bQ0-TH-tyC"/>
                         <viewControllerLayoutGuide type="bottom" id="dhE-H1-Vfr"/>
@@ -345,6 +345,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0dZ-0O-kqT"/>
+                    <connections>
+                        <outlet property="helpLabel" destination="bf9-8r-YWE" id="G6o-Pv-wjj"/>
+                        <outlet property="instructionsText" destination="nZe-3b-W7O" id="Skt-Du-aqT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eGJ-bi-9VP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -363,7 +367,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6i5-m2-CBz" customClass="CustomButton" customModule="BlocksForAll" customModuleProvider="target">
-                                <rect key="frame" x="40" y="20" width="150" height="57"/>
+                                <rect key="frame" x="20" y="20" width="150" height="57"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="57" id="p6q-Ah-1JR"/>
@@ -377,14 +381,15 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <segue destination="uoc-nU-c4a" kind="show" id="uRw-vH-lIn"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
-                                <rect key="frame" x="-2" y="232" width="1084" height="274"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
+                                <rect key="frame" x="-2" y="301" width="1079" height="205"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="XOJ-Tu-hH8" kind="embed" id="sot-c6-H0b"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a robot from the list below. If you don't see any robots, try turning your robot off and on again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVq-QZ-GAv">
-                                <rect key="frame" x="69" y="137" width="942" height="26.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select a robot from the list below. If you don't see any robots, try turning your robot off and on again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVq-QZ-GAv">
+                                <rect key="frame" x="193" y="42" width="831" height="245"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -392,39 +397,35 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gVq-QZ-GAv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Hh-dq-UJ7" secondAttribute="leadingMargin" constant="49" id="Cm4-ci-RFu"/>
-                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leadingMargin" constant="-22" id="Giq-Be-YKb"/>
-                            <constraint firstItem="6i5-m2-CBz" firstAttribute="top" secondItem="Yhr-81-ujC" secondAttribute="bottom" constant="20" id="Klp-pb-ncI"/>
-                            <constraint firstItem="gVq-QZ-GAv" firstAttribute="top" secondItem="6i5-m2-CBz" secondAttribute="bottom" constant="60" id="S51-jw-eCQ"/>
-                            <constraint firstItem="gVq-QZ-GAv" firstAttribute="centerX" secondItem="6Hh-dq-UJ7" secondAttribute="centerX" id="TMG-5M-QbP"/>
-                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="centerX" secondItem="6Hh-dq-UJ7" secondAttribute="centerX" id="VGL-Ik-E42"/>
-                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="top" secondItem="gVq-QZ-GAv" secondAttribute="bottom" constant="68.5" id="Wxf-4a-MZu"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="gVq-QZ-GAv" secondAttribute="trailing" constant="49" id="fnz-NR-8N7"/>
-                            <constraint firstItem="Zck-g6-6V2" firstAttribute="top" secondItem="QLJ-MJ-LN5" secondAttribute="bottom" constant="304" id="hJm-Ox-Q9y"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6i5-m2-CBz" secondAttribute="trailing" constant="20" symbolic="YES" id="qv9-xv-0ju"/>
-                            <constraint firstItem="6i5-m2-CBz" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leadingMargin" constant="20" id="vE6-pR-pMI"/>
+                            <constraint firstItem="gVq-QZ-GAv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Yhr-81-ujC" secondAttribute="bottom" id="8HA-vi-06F"/>
+                            <constraint firstItem="6i5-m2-CBz" firstAttribute="top" secondItem="6Hh-dq-UJ7" secondAttribute="top" constant="20" symbolic="YES" id="A4X-nR-sSe"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gVq-QZ-GAv" secondAttribute="trailing" constant="10" id="I6A-BP-uBs"/>
+                            <constraint firstItem="gVq-QZ-GAv" firstAttribute="centerX" secondItem="6Hh-dq-UJ7" secondAttribute="centerX" priority="250" constant="68.5" id="XlI-8q-sxd"/>
+                            <constraint firstItem="gVq-QZ-GAv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6i5-m2-CBz" secondAttribute="trailing" id="dRF-af-R14"/>
+                            <constraint firstItem="6i5-m2-CBz" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leadingMargin" id="tfs-4B-Pbk"/>
+                            <constraint firstItem="Zck-g6-6V2" firstAttribute="top" secondItem="gVq-QZ-GAv" secondAttribute="bottom" constant="523" id="vaz-zW-cgf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dQa-0W-FaM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXL-nz-dw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-437.77777777777777" y="560.74074074074065"/>
+            <point key="canvasLocation" x="-437.48169838945824" y="561.328125"/>
         </scene>
         <!--Robot Table View Controller-->
         <scene sceneID="c6j-qc-ZGN">
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
-                        <rect key="frame" x="0.0" y="0.0" width="1084" height="274"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1079" height="205"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="robotCell" id="KUQ-1B-5Sg">
-                                <rect key="frame" x="0.0" y="50" width="1084" height="44"/>
+                                <rect key="frame" x="0.0" y="50" width="1079" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KUQ-1B-5Sg" id="ZfT-J5-i3d">
-                                    <rect key="frame" x="0.0" y="0.0" width="1084" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1079" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -451,13 +452,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBS-jv-FLd">
-                                <rect key="frame" x="307" y="322" width="133" height="133"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBS-jv-FLd">
+                                <rect key="frame" x="349" y="321" width="133" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" identifier="red" label="Red"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="133" id="LKN-zH-mhu"/>
-                                    <constraint firstAttribute="width" constant="133" id="Qi1-g4-o1u"/>
-                                </constraints>
                                 <state key="normal" image="red">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -465,13 +463,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="oGK-cA-BoN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ng-u7-4WV">
-                                <rect key="frame" x="537" y="322" width="133" height="133"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ng-u7-4WV">
+                                <rect key="frame" x="595" y="323" width="133" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" identifier="orange" label="Orange"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="133" id="iHI-ZJ-ys6"/>
-                                    <constraint firstAttribute="width" constant="133" id="z0k-8r-pwX"/>
-                                </constraints>
                                 <state key="normal" image="orange">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -479,8 +474,9 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="0ih-2A-3j1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUo-Od-miF">
-                                <rect key="frame" x="767" y="322" width="133" height="133"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUo-Od-miF">
+                                <rect key="frame" x="839" y="322" width="133" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" identifier="yellow" label="Yellow"/>
                                 <state key="normal" image="yellow">
                                     <color key="titleColor" systemColor="darkTextColor"/>
@@ -489,75 +485,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="bgy-OU-cyn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bye-mA-9jc">
-                                <rect key="frame" x="307" y="522" width="133" height="133"/>
-                                <accessibility key="accessibilityConfiguration" identifier="blue" label="Blue "/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="133" id="fCf-g8-XgS"/>
-                                    <constraint firstAttribute="width" constant="133" id="qmA-cG-r5T"/>
-                                </constraints>
-                                <state key="normal" image="blue">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="okb-uF-kSZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyU-jO-bvk">
-                                <rect key="frame" x="77" y="322" width="133" height="133"/>
-                                <accessibility key="accessibilityConfiguration" identifier="black" label="Black"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="133" id="Avu-uj-SYi"/>
-                                    <constraint firstAttribute="width" constant="133" id="atN-kX-cdd"/>
-                                </constraints>
-                                <state key="normal" image="black">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="PJB-Ng-TJU"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPl-tl-LSn">
-                                <rect key="frame" x="537" y="522" width="133" height="133"/>
-                                <accessibility key="accessibilityConfiguration" identifier="purple" label="Purple "/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="133" id="6nw-dE-EsT"/>
-                                    <constraint firstAttribute="height" constant="133" id="l1l-vJ-SMw"/>
-                                </constraints>
-                                <state key="normal" image="purple">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="Qsl-Pb-Ri2"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYn-Uw-o5x">
-                                <rect key="frame" x="500.5" y="185" width="79" height="64"/>
-                                <accessibility key="accessibilityConfiguration" label="Color"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nKa-YP-2xv">
-                                <rect key="frame" x="40" y="30" width="223" height="195"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="195" id="3xQ-pX-AwY"/>
-                                </constraints>
-                                <state key="normal" image="Back">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="uoc-nU-c4a" kind="show" id="QqG-dM-L1w"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NR1-3C-bm3">
-                                <rect key="frame" x="77" y="522" width="133" height="133"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NR1-3C-bm3">
+                                <rect key="frame" x="109" y="526" width="133" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" identifier="green" label="Green"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="133" id="U7i-Fu-Uxd"/>
-                                    <constraint firstAttribute="width" constant="133" id="hKC-Fh-Jav"/>
-                                </constraints>
                                 <state key="normal" image="green">
                                     <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
@@ -565,13 +496,43 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="Lhb-Pz-aaW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwE-wm-MaT">
-                                <rect key="frame" x="767" y="522" width="133" height="133"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bye-mA-9jc">
+                                <rect key="frame" x="349" y="526" width="133" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" identifier="blue" label="Blue "/>
+                                <state key="normal" image="blue">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="okb-uF-kSZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyU-jO-bvk">
+                                <rect key="frame" x="109" y="322" width="133" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" identifier="black" label="Black"/>
+                                <state key="normal" image="black">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="PJB-Ng-TJU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPl-tl-LSn">
+                                <rect key="frame" x="594" y="526" width="133" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" identifier="purple" label="Purple "/>
+                                <state key="normal" image="purple">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="Qsl-Pb-Ri2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwE-wm-MaT">
+                                <rect key="frame" x="839" y="525" width="133" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" identifier="white" label="White "/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="133" id="3EH-6J-gTn"/>
-                                    <constraint firstAttribute="width" constant="133" id="PpY-is-AA5"/>
-                                </constraints>
                                 <state key="normal" image="white">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -579,35 +540,27 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="fFF-Ok-MJm"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYn-Uw-o5x">
+                                <rect key="frame" x="243" y="85" width="594" height="261"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Color"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nKa-YP-2xv">
+                                <rect key="frame" x="30" y="30" width="211" height="195"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uoc-nU-c4a" kind="show" id="QqG-dM-L1w"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="bye-mA-9jc" firstAttribute="top" secondItem="uBS-jv-FLd" secondAttribute="bottom" constant="67" id="8Jq-Eu-OXk"/>
-                            <constraint firstItem="kwE-wm-MaT" firstAttribute="top" secondItem="gUo-Od-miF" secondAttribute="bottom" constant="67" id="8US-6G-6Wd"/>
-                            <constraint firstItem="LYn-Uw-o5x" firstAttribute="centerX" secondItem="pT3-hS-b8f" secondAttribute="centerX" id="9bJ-Y5-VlO"/>
-                            <constraint firstItem="bye-mA-9jc" firstAttribute="top" secondItem="FPl-tl-LSn" secondAttribute="top" id="BUE-OZ-skb"/>
-                            <constraint firstItem="uBS-jv-FLd" firstAttribute="leading" secondItem="iyU-jO-bvk" secondAttribute="trailing" constant="97" id="BWc-WF-tAL"/>
-                            <constraint firstItem="NR1-3C-bm3" firstAttribute="top" secondItem="iyU-jO-bvk" secondAttribute="bottom" constant="67" id="Gxz-2d-ts4"/>
-                            <constraint firstItem="gUo-Od-miF" firstAttribute="leading" secondItem="3Ng-u7-4WV" secondAttribute="trailing" constant="97" id="Jsr-HK-DM9"/>
-                            <constraint firstItem="nKa-YP-2xv" firstAttribute="top" secondItem="qYo-Av-aNp" secondAttribute="bottom" constant="30" id="Lxk-gw-g3N"/>
-                            <constraint firstItem="iyU-jO-bvk" firstAttribute="top" secondItem="pT3-hS-b8f" secondAttribute="topMargin" constant="322" id="TRw-de-N0J"/>
-                            <constraint firstItem="NR1-3C-bm3" firstAttribute="leading" secondItem="iyU-jO-bvk" secondAttribute="leading" id="VT4-ng-NcD"/>
-                            <constraint firstItem="3Ng-u7-4WV" firstAttribute="top" secondItem="qYo-Av-aNp" secondAttribute="bottom" constant="322" id="bFt-m5-AmC"/>
-                            <constraint firstItem="FPl-tl-LSn" firstAttribute="top" secondItem="3Ng-u7-4WV" secondAttribute="bottom" constant="67" id="dr0-wV-Xpp"/>
-                            <constraint firstItem="3Ng-u7-4WV" firstAttribute="leading" secondItem="uBS-jv-FLd" secondAttribute="trailing" constant="97" id="eEs-HD-hC4"/>
-                            <constraint firstItem="FPl-tl-LSn" firstAttribute="leading" secondItem="bye-mA-9jc" secondAttribute="trailing" constant="97" id="ekV-Y2-mTM"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="iyU-jO-bvk" secondAttribute="trailing" constant="850" id="nmn-3r-aLc"/>
-                            <constraint firstItem="bye-mA-9jc" firstAttribute="top" secondItem="kwE-wm-MaT" secondAttribute="top" id="q6w-JT-4R5"/>
-                            <constraint firstItem="LYn-Uw-o5x" firstAttribute="leading" secondItem="nKa-YP-2xv" secondAttribute="trailing" constant="237.5" id="riU-fq-ctA"/>
-                            <constraint firstItem="kwE-wm-MaT" firstAttribute="leading" secondItem="gUo-Od-miF" secondAttribute="leading" id="se4-Sb-unZ"/>
-                            <constraint firstItem="LYn-Uw-o5x" firstAttribute="top" secondItem="qYo-Av-aNp" secondAttribute="bottom" constant="185" id="uXW-P0-pVI"/>
-                            <constraint firstItem="uBS-jv-FLd" firstAttribute="top" secondItem="qYo-Av-aNp" secondAttribute="bottom" constant="322" id="uz4-Hb-KL2"/>
-                            <constraint firstItem="nKa-YP-2xv" firstAttribute="leading" secondItem="pT3-hS-b8f" secondAttribute="leadingMargin" constant="20" id="xlv-eS-yT6"/>
-                            <constraint firstItem="kwE-wm-MaT" firstAttribute="leading" secondItem="FPl-tl-LSn" secondAttribute="trailing" constant="97" id="xt7-EC-P4d"/>
-                            <constraint firstItem="Y2X-sY-PwO" firstAttribute="top" secondItem="LYn-Uw-o5x" secondAttribute="bottom" constant="561" id="yNO-n5-ddT"/>
-                            <constraint firstItem="gUo-Od-miF" firstAttribute="top" secondItem="qYo-Av-aNp" secondAttribute="bottom" constant="322" id="ydS-Va-pU0"/>
-                            <constraint firstItem="bye-mA-9jc" firstAttribute="leading" secondItem="NR1-3C-bm3" secondAttribute="trailing" constant="97" id="zJv-8i-ZtS"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4aN-d1-jU6"/>
                     <connections>
@@ -1727,7 +1680,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBE-Zo-wct" userLabel="Decrease Button">
-                                <rect key="frame" x="314" y="383" width="187" height="133"/>
+                                <rect key="frame" x="314" y="383" width="136" height="133"/>
                                 <accessibility key="accessibilityConfiguration" hint="Repeat fewer times" label="Decrease"/>
                                 <state key="normal" title="Button" image="orange_minus"/>
                                 <connections>
@@ -1745,7 +1698,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <constraint firstItem="off-d0-Hga" firstAttribute="centerX" secondItem="Hee-2C-IaQ" secondAttribute="centerX" id="U3T-hh-pLa"/>
                             <constraint firstItem="eNK-wk-KcV" firstAttribute="leading" secondItem="Hee-2C-IaQ" secondAttribute="leadingMargin" constant="20" id="azQ-eJ-arF"/>
                             <constraint firstItem="XBE-Zo-wct" firstAttribute="leading" secondItem="Hee-2C-IaQ" secondAttribute="leadingMargin" constant="294" id="bBj-tJ-z16"/>
-                            <constraint firstItem="off-d0-Hga" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XBE-Zo-wct" secondAttribute="trailing" constant="8" symbolic="YES" id="bwU-Ov-HWw"/>
+                            <constraint firstItem="off-d0-Hga" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XBE-Zo-wct" secondAttribute="trailing" constant="80" id="bwU-Ov-HWw"/>
                             <constraint firstItem="eNK-wk-KcV" firstAttribute="top" secondItem="TZF-8U-7r0" secondAttribute="bottom" constant="30" id="f6A-P6-DfY"/>
                             <constraint firstItem="j7Q-3Z-fsx" firstAttribute="top" secondItem="TZF-8U-7r0" secondAttribute="bottom" constant="203" id="hki-o0-I2j"/>
                             <constraint firstItem="j7Q-3Z-fsx" firstAttribute="centerX" secondItem="Hee-2C-IaQ" secondAttribute="centerX" id="iSX-Pv-Q4t"/>
@@ -1888,8 +1841,11 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <outlet property="NegativeLabel" destination="I8l-wa-KJu" id="jP5-bC-DPa"/>
                         <outlet property="VariableValue" destination="0EE-tA-7aY" id="Rbn-tb-XMp"/>
                         <outlet property="back" destination="lJh-zd-RGp" id="qTr-vv-bAT"/>
+                        <outlet property="descriptionLabel" destination="I8l-wa-KJu" id="GMz-uE-NLz"/>
                         <outlet property="setVarTitle" destination="5Gb-Uk-oE9" id="FDX-HA-4CU"/>
                         <outlet property="setVarView" destination="jNy-ch-2PD" id="aPy-HI-Qzl"/>
+                        <outlet property="setVariableTitle" destination="5Gb-Uk-oE9" id="B2A-YG-O48"/>
+                        <outlet property="valueLabel" destination="aCi-eq-XZm" id="V0R-rr-zLG"/>
                         <outletCollection property="buttons" destination="GrT-2z-xvO" collectionClass="NSMutableArray" id="xMz-Rm-SYu"/>
                         <outletCollection property="buttons" destination="Uv9-Kz-RsF" collectionClass="NSMutableArray" id="R71-k6-1Jv"/>
                         <outletCollection property="buttons" destination="rgQ-Jh-7kw" collectionClass="NSMutableArray" id="WIy-0J-OHU"/>
@@ -2133,9 +2089,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     <navigationItem key="navigationItem" id="kb7-ZB-cSO"/>
                     <connections>
                         <outlet property="back" destination="Iih-8Y-Qzv" id="ymK-wi-zvT"/>
+                        <outlet property="distanceLabel" destination="CO9-t8-AAm" id="Gl3-WH-pKE"/>
+                        <outlet property="driveTitleLabel" destination="b0B-P4-bMi" id="QG0-gP-cK6"/>
                         <outlet property="fastButton" destination="jBY-tV-GhI" id="SWA-mD-ceM"/>
                         <outlet property="slowButton" destination="beN-6U-HNX" id="MXg-Xy-2Wy"/>
                         <outlet property="speedLabel" destination="agB-BY-ixs" id="RNC-0a-Apz"/>
+                        <outlet property="speedTitle" destination="71Y-9j-yaK" id="QxS-dy-jMk"/>
                         <outletCollection property="buttons" destination="OWd-yU-SCQ" collectionClass="NSMutableArray" id="FPZ-Ai-Lgr"/>
                         <outletCollection property="buttons" destination="OWd-yU-SCQ" collectionClass="NSMutableArray" id="xuV-eY-mXC"/>
                         <outletCollection property="buttons" destination="ypF-Ea-lgn" collectionClass="NSMutableArray" id="wMo-MI-r7v"/>
@@ -2247,7 +2206,9 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <navigationItem key="navigationItem" id="4Vs-Sg-yuk"/>
                     <connections>
+                        <outlet property="angleLabel" destination="ls1-GE-FP2" id="mCy-e5-8pp"/>
                         <outlet property="back" destination="nlP-Do-HRh" id="MZe-wY-ieB"/>
+                        <outlet property="turnTitle" destination="2Ed-Gl-te1" id="HuR-2Y-HD2"/>
                         <outletCollection property="buttons" destination="por-t8-2aZ" collectionClass="NSMutableArray" id="kKy-ut-pP0"/>
                         <outletCollection property="buttons" destination="por-t8-2aZ" collectionClass="NSMutableArray" id="Hah-Xw-LEu"/>
                         <outletCollection property="buttons" destination="SAR-ES-jhg" collectionClass="NSMutableArray" id="jtb-5y-lSh"/>
@@ -2527,12 +2488,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0b-pj-PQ9">
-                                <rect key="frame" x="40" y="30" width="195" height="195"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0b-pj-PQ9">
+                                <rect key="frame" x="30" y="30" width="211" height="195"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="195" id="Ah1-8x-bJl"/>
-                                </constraints>
                                 <state key="normal" title="Back" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -2540,47 +2499,19 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <segue destination="uoc-nU-c4a" kind="show" id="w7l-uY-c2T"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eye Light" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yI8-HC-zZc">
-                                <rect key="frame" x="472.5" y="203" width="135" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Eye Light" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yI8-HC-zZc">
+                                <rect key="frame" x="215" y="173" width="594" height="231"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" label="Eye Light"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CwL-cg-MQl">
-                                <rect key="frame" x="304" y="339" width="133" height="133"/>
-                                <color key="backgroundColor" red="0.74509803921568629" green="0.71372549019607845" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
-                                <accessibility key="accessibilityConfiguration" hint="Turn the eye light on" identifier="On" label="On"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="133" id="06K-gS-RjC"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="133" id="ftL-ud-15Z"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <state key="normal" title="On">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="minusButtonPressed:" destination="Qcc-AD-WwK" eventType="touchUpInside" id="23f-jq-BNS"/>
-                                    <action selector="onButtonPressed:" destination="WHd-IA-T2v" eventType="touchUpInside" id="8Jn-Sy-1gE"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Off" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIq-QR-T6e">
-                                <rect key="frame" x="516.5" y="354" width="47" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="xdk-Mk-i7p"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6l-QQ-eDK">
-                                <rect key="frame" x="665" y="339" width="133" height="133"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6l-QQ-eDK">
+                                <rect key="frame" x="637" y="354" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.74509803919999995" green="0.71372549019999998" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration" hint="Turn the eye light off" identifier="Off" label="Off"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="133" id="5PO-5x-Ay1"/>
-                                    <constraint firstAttribute="height" constant="133" id="wiE-Y6-tQD"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Off">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2590,23 +2521,29 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <action selector="offButtonPressed:" destination="WHd-IA-T2v" eventType="touchUpInside" id="841-LH-jeI"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Off" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIq-QR-T6e">
+                                <rect key="frame" x="462" y="354" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CwL-cg-MQl">
+                                <rect key="frame" x="270" y="354" width="99" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.74509803921568629" green="0.71372549019607845" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" hint="Turn the eye light on" identifier="On" label="On"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="On">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="minusButtonPressed:" destination="Qcc-AD-WwK" eventType="touchUpInside" id="23f-jq-BNS"/>
+                                    <action selector="onButtonPressed:" destination="WHd-IA-T2v" eventType="touchUpInside" id="8Jn-Sy-1gE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="yI8-HC-zZc" firstAttribute="leading" secondItem="v0b-pj-PQ9" secondAttribute="trailing" constant="237.5" id="7kE-Af-SHB"/>
-                            <constraint firstItem="yI8-HC-zZc" firstAttribute="top" secondItem="2xj-6b-jPm" secondAttribute="topMargin" constant="203" id="9lr-0E-jiz"/>
-                            <constraint firstItem="v0b-pj-PQ9" firstAttribute="top" secondItem="JCf-CV-V2w" secondAttribute="bottom" constant="30" id="EVO-M2-NAF"/>
-                            <constraint firstItem="SgU-2o-CfO" firstAttribute="top" secondItem="CwL-cg-MQl" secondAttribute="bottom" constant="338" id="FLg-ya-sx3"/>
-                            <constraint firstItem="CwL-cg-MQl" firstAttribute="leading" secondItem="2xj-6b-jPm" secondAttribute="leading" constant="304" id="NG9-mO-ZML"/>
-                            <constraint firstItem="yI8-HC-zZc" firstAttribute="centerX" secondItem="2xj-6b-jPm" secondAttribute="centerX" id="Nzd-y3-64O"/>
-                            <constraint firstItem="SgU-2o-CfO" firstAttribute="top" secondItem="m6l-QQ-eDK" secondAttribute="bottom" constant="338" id="Prg-hM-u9P"/>
-                            <constraint firstItem="v0b-pj-PQ9" firstAttribute="leading" secondItem="2xj-6b-jPm" secondAttribute="leadingMargin" constant="20" id="SRj-vA-gAz"/>
-                            <constraint firstItem="FIq-QR-T6e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CwL-cg-MQl" secondAttribute="trailing" constant="8" symbolic="YES" id="W56-Uh-upG"/>
-                            <constraint firstAttribute="trailing" secondItem="m6l-QQ-eDK" secondAttribute="trailing" constant="282" id="epH-k2-fi9"/>
-                            <constraint firstItem="m6l-QQ-eDK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FIq-QR-T6e" secondAttribute="trailing" constant="8" symbolic="YES" id="j3M-iT-5AH"/>
-                            <constraint firstItem="SgU-2o-CfO" firstAttribute="top" secondItem="FIq-QR-T6e" secondAttribute="bottom" constant="356" id="rW9-ji-ydf"/>
-                            <constraint firstItem="FIq-QR-T6e" firstAttribute="centerX" secondItem="2xj-6b-jPm" secondAttribute="centerX" id="zmk-RV-otU"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yTo-V0-ZvZ"/>
                     <connections>
@@ -2620,7 +2557,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wf4-Ji-xxk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="727.22222222222217" y="2001.4814814814813"/>
+            <point key="canvasLocation" x="727.734375" y="2001.5625"/>
         </scene>
         <!--Animal Mod View Controller-->
         <scene sceneID="7tK-u8-qgz">
@@ -3253,7 +3190,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="QqG-dM-L1w"/>
+        <segue reference="kbj-oh-DCS"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>

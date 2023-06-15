@@ -46,6 +46,10 @@ class IfModViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Changing fonts
+        ifTitle.adjustsFontForContentSizeCategory = true
+        ifTitle.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
        
         // default: false or preserve last selection
         let previousBooleanSelected: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["booleanSelected"] ?? "false"

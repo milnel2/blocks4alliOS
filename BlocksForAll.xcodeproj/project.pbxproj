@@ -51,6 +51,7 @@
 		F79EC1F42A266813009B8784 /* BlockToMoveCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79EC1F32A266813009B8784 /* BlockToMoveCollectionViewController.swift */; };
 		FD3A594E2A3A196B00122BEF /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A594D2A3A196B00122BEF /* CustomFont.swift */; };
 		FD3A59502A3A270900122BEF /* CustomHexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A594F2A3A270900122BEF /* CustomHexColor.swift */; };
+		FD3A59562A3B639E00122BEF /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */; };
 		FD6388312A310311005F49F7 /* Aphont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388302A310311005F49F7 /* Aphont.ttf */; };
 		FD6388322A310311005F49F7 /* Aphont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388302A310311005F49F7 /* Aphont.ttf */; };
 		FD6388342A310363005F49F7 /* AphontBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388332A310363005F49F7 /* AphontBold.ttf */; };
@@ -122,6 +123,7 @@
 		F79EC1F32A266813009B8784 /* BlockToMoveCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockToMoveCollectionViewController.swift; sourceTree = "<group>"; };
 		FD3A594D2A3A196B00122BEF /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		FD3A594F2A3A270900122BEF /* CustomHexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHexColor.swift; sourceTree = "<group>"; };
+		FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		FD6388302A310311005F49F7 /* Aphont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Aphont.ttf; sourceTree = "<group>"; };
 		FD6388332A310363005F49F7 /* AphontBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AphontBold.ttf; sourceTree = "<group>"; };
 		FD6388362A31036B005F49F7 /* AphontBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AphontBoldItalic.ttf; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */,
 				F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */,
 				FD3A594F2A3A270900122BEF /* CustomHexColor.swift */,
+				FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
 				84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */,
 				701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */,
+				FD3A59562A3B639E00122BEF /* InstructionsViewController.swift in Sources */,
 				023D633122BC0B2E00A8002C /* RepeatModViewController.swift in Sources */,
 				844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */,
 				A92E88F22697598400FB2CFD /* AnimalModViewController.swift in Sources */,
@@ -587,7 +591,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z76AXFFNX9;
+				DEVELOPMENT_TEAM = 5Z9DP5C8DQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -600,8 +604,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.4;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.NaNguyen.Blocks4All;
+				MARKETING_VERSION = 5.5;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
@@ -620,7 +624,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z76AXFFNX9;
+				DEVELOPMENT_TEAM = 5Z9DP5C8DQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -633,8 +637,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.4;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.NaNguyen.Blocks4All;
+				MARKETING_VERSION = 5.5;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
