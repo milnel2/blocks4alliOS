@@ -28,6 +28,11 @@ class RepeatModViewController: UIViewController{
     @IBOutlet var repeatTitle: UILabel!
     
     override func viewDidLoad() {
+        // Adding custom font
+        timesToRepeatLabel.adjustsFontForContentSizeCategory = true
+        timesToRepeatLabel.font = UIFont.accessibleBoldFont(withStyle: .title2, size: 50.0)
+        repeatTitle.adjustsFontForContentSizeCategory = true
+        repeatTitle.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
         
         //Makes buttons easier to select with Voice Control
         if #available(iOS 13.0, *) {

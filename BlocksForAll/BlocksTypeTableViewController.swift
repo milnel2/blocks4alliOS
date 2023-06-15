@@ -66,7 +66,7 @@ class BlocksTypeTableViewController: UITableViewController {
         cell.textLabel?.text = blockType.name
         cell.textLabel?.textColor = UIColor.black
         cell.textLabel?.textAlignment = .left
-        cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+        cell.textLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 29.0)
         cell.backgroundColor = blockType.color.uiColor
         //cell.bounds.height = 200
         cell.accessibilityLabel = blockType.name + " category"
