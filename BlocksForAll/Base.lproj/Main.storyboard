@@ -496,7 +496,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="bgy-OU-cyn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NR1-3C-bm3">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NR1-3C-bm3">
                                 <rect key="frame" x="77" y="522" width="133" height="133"/>
                                 <accessibility key="accessibilityConfiguration" identifier="green" label="Green"/>
                                 <state key="normal" image="green">
@@ -516,7 +516,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="okb-uF-kSZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyU-jO-bvk">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyU-jO-bvk">
                                 <rect key="frame" x="77" y="322" width="133" height="133"/>
                                 <accessibility key="accessibilityConfiguration" identifier="black" label="Black"/>
                                 <constraints>
@@ -3250,6 +3250,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="iKl-5d-2xu"/>
         <segue reference="QqG-dM-L1w"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
