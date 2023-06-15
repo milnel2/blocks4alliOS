@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Animal Noise</key>
+	<dict>
+		<key>attributeName</key>
+		<string>animalNoise</string>
+		<key>default</key>
+		<string>cat</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to choose animal noise</string>
+	</dict>
+	<key>Emotion Noise</key>
+	<dict>
+		<key>attributeName</key>
+		<string>emotionNoise</string>
+		<key>default</key>
+		<string>bragging</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to choose emotion noise</string>
+	</dict>
+	<key>Object Noise</key>
+	<dict>
+		<key>attributeName</key>
+		<string>objectNoise</string>
+		<key>default</key>
+		<string>laser</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to choose object noise</string>
+	</dict>
+	<key>Vehicle Noise</key>
+	<dict>
+		<key>attributeName</key>
+		<string>vehicleNoise</string>
+		<key>default</key>
+		<string>airplane</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to choose vehicle noise</string>
+	</dict>
+	<key>Speak</key>
+	<dict>
+		<key>attributeName</key>
+		<string>speakWord</string>
+		<key>default</key>
+		<string>hi</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to choose word</string>
+	</dict>
+	<key>Drive Forward</key>
+	<dict>
+		<key>attributeName</key>
+		<string>distance</string>
+		<key>default</key>
+		<string>30</string>
+		<key>secondAttributeName</key>
+		<string>speed</string>
+		<key>secondDefault</key>
+		<string>Normal</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set distance and speed</string>
+		<key>displaysText</key>
+		<string>true</string>
+		<key>showTextImage</key>
+		<string>driveModifierBackground</string>
+	</dict>
+	<key>Drive Backward</key>
+	<dict>
+		<key>attributeName</key>
+		<string>distance</string>
+		<key>default</key>
+		<string>30</string>
+		<key>secondAttributeName</key>
+		<string>speed</string>
+		<key>secondDefault</key>
+		<string>Normal</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set distance and speed</string>
+		<key>displaysText</key>
+		<string>true</string>
+		<key>showTextImage</key>
+		<string>driveModifierBackground</string>
+	</dict>
+	<key>Turn Left</key>
+	<dict>
+		<key>attributeName</key>
+		<string>angle</string>
+		<key>default</key>
+		<string>90</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set left turn angle</string>
+		<key>imagePath</key>
+		<string>driveModifierBackground</string>
+		<key>displaysText</key>
+		<string>true</string>
+	</dict>
+	<key>Turn Right</key>
+	<dict>
+		<key>attributeName</key>
+		<string>angle</string>
+		<key>default</key>
+		<string>90</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set right turn angle</string>
+		<key>imagePath</key>
+		<string>driveModifierBackground</string>
+		<key>displaysText</key>
+		<string>true</string>
+	</dict>
+	<key>Set Eye Light</key>
+	<dict>
+		<key>attributeName</key>
+		<string>eyeLight</string>
+		<key>default</key>
+		<string>On</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to turn eye light on or off</string>
+		<key>imagePath</key>
+		<string>eyeLightModifierBackground</string>
+		<key>displaysText</key>
+		<string>true</string>
+	</dict>
+	<key>Set Right Ear Light</key>
+	<dict>
+		<key>attributeName</key>
+		<string>modifierBlockColor</string>
+		<key>default</key>
+		<string>yellow</string>
+		<key>secondAttributeName</key>
+		<string>lightColor</string>
+		<key>secondDefault</key>
+		<string>yellow</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set light color</string>
+	</dict>
+	<key>Set Left Ear Light</key>
+	<dict>
+		<key>attributeName</key>
+		<string>modifierBlockColor</string>
+		<key>default</key>
+		<string>yellow</string>
+		<key>secondAttributeName</key>
+		<string>lightColor</string>
+		<key>secondDefault</key>
+		<string>yellow</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set light color</string>
+	</dict>
+	<key>Set Chest Light</key>
+	<dict>
+		<key>attributeName</key>
+		<string>modifierBlockColor</string>
+		<key>default</key>
+		<string>yellow</string>
+		<key>secondAttributeName</key>
+		<string>lightColor</string>
+		<key>secondDefault</key>
+		<string>yellow</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set light color</string>
+	</dict>
+	<key>Set All Lights</key>
+	<dict>
+		<key>attributeName</key>
+		<string>modifierBlockColor</string>
+		<key>default</key>
+		<string>yellow</string>
+		<key>secondAttributeName</key>
+		<string>lightColor</string>
+		<key>secondDefault</key>
+		<string>yellow</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set light color</string>
+	</dict>
+	<key>Repeat</key>
+	<dict>
+		<key>attributeName</key>
+		<string>timesToRepeat</string>
+		<key>default</key>
+		<string>2</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set number of times to repeat</string>
+		<key>imagePath</key>
+		<string>controlModifierBackground</string>
+		<key>displaysText</key>
+		<string>true</string>
+	</dict>
+	<key>If</key>
+	<dict>
+		<key>attributeName</key>
+		<string>booleanSelected</string>
+		<key>default</key>
+		<string>false</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set boolean condition for If</string>
+	</dict>
+	<key>Wait for Time</key>
+	<dict>
+		<key>attributeName</key>
+		<string>wait</string>
+		<key>default</key>
+		<string>1</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set wait time</string>
+		<key>displaysText</key>
+		<string>true</string>
+		<key>imagePath</key>
+		<string>controlModifierBackground</string>
+	</dict>
+	<key>Set Variable</key>
+	<dict>
+		<key>attributeName</key>
+		<string>variableSelected</string>
+		<key>default</key>
+		<string>Orange</string>
+		<key>secondAttributeName</key>
+		<string>variableValue</string>
+		<key>secondDefault</key>
+		<string>0</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set variable value</string>
+		<key>displaysText</key>
+		<string>true</string>
+		<key>imagePath</key>
+		<string>variableModifierBackground</string>
+	</dict>
+	<key>Drive</key>
+	<dict>
+		<key>attributeName</key>
+		<string>variableSelected</string>
+		<key>default</key>
+		<string>Orange</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set Drive variable</string>
+	</dict>
+	<key>Turn</key>
+	<dict>
+		<key>attributeName</key>
+		<string>variableSelected</string>
+		<key>default</key>
+		<string>Orange</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set Turn variable</string>
+	</dict>
+	<key>Look Up or Down</key>
+	<dict>
+		<key>attributeName</key>
+		<string>variableSelected</string>
+		<key>default</key>
+		<string>Orange</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set Look Up or Down variable</string>
+	</dict>
+	<key>Look Left or Right</key>
+	<dict>
+		<key>attributeName</key>
+		<string>variableSelected</string>
+		<key>default</key>
+		<string>Orange</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set Look Left or Right variable</string>
+	</dict>
+</dict>
+</plist>

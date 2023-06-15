@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var functionsDictFromSave: [String : [Block] ] = [:]
         // used to store the loaded stuff and later normal functionsDict is set to the from save version
         do{
-            let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json"))
+            let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave2.json"))
             //print(jsonString)
             // creates a string type of the entire json file
             let functionStrings = jsonString.components(separatedBy: "New Function \n")
@@ -133,7 +133,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 functionsDictFromSave["Main Workspace"] = []
             }
             functionsDict = functionsDictFromSave
-            currentWorkspace = "Main Workspace"
             // sets global functionsDict to the functionsDictFrom Save
 
 
@@ -141,7 +140,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }catch{
             print("load failed")
             functionsDict["Main Workspace"] = []
-            currentWorkspace = "Main Workspace"
         }
         // sets current workspace to main workspace so you don't load and wind up on a random function screen
         currentWorkspace = "Main Workspace"
@@ -195,12 +193,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func save(){
         let fileManager = FileManager.default
 
-        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
+        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave2.json")
         do{
             //Deletes previous save in order to rewrite for each save action
             try fileManager.removeItem(at: filename)
         }catch{
-            print("couldn't delete previous Blocks4AllSave")
+            print("couldn't delete previous Blocks4AllSave2")
         }
 
         // string that json text is appended too

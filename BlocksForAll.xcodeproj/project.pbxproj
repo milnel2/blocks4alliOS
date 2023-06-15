@@ -22,6 +22,7 @@
 		844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */; };
 		844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */; };
 		84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */; };
+		8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8D66032A3A43330086E14A /* ModifierProperties.plist */; };
 		8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */; };
 		A92E88F22697598400FB2CFD /* AnimalModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E88F12697598400FB2CFD /* AnimalModViewController.swift */; };
 		A9674DD226976C0B00E064B0 /* VehicleModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9674DD126976C0B00E064B0 /* VehicleModViewController.swift */; };
@@ -48,6 +49,8 @@
 		F18FFFC81E65B0FC0090C4B6 /* BlocksForAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFC71E65B0FC0090C4B6 /* BlocksForAllTests.swift */; };
 		F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */; };
 		F79EC1F42A266813009B8784 /* BlockToMoveCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79EC1F32A266813009B8784 /* BlockToMoveCollectionViewController.swift */; };
+		FD3A594E2A3A196B00122BEF /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A594D2A3A196B00122BEF /* CustomFont.swift */; };
+		FD3A59502A3A270900122BEF /* CustomHexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A594F2A3A270900122BEF /* CustomHexColor.swift */; };
 		FD6388312A310311005F49F7 /* Aphont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388302A310311005F49F7 /* Aphont.ttf */; };
 		FD6388322A310311005F49F7 /* Aphont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388302A310311005F49F7 /* Aphont.ttf */; };
 		FD6388342A310363005F49F7 /* AphontBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388332A310363005F49F7 /* AphontBold.ttf */; };
@@ -84,6 +87,7 @@
 		844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewCell.swift; sourceTree = "<group>"; };
 		844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewController.swift; sourceTree = "<group>"; };
 		84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeLightModifierViewController.swift; sourceTree = "<group>"; };
+		8D8D66032A3A43330086E14A /* ModifierProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
 		8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A92E88F12697598400FB2CFD /* AnimalModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalModViewController.swift; sourceTree = "<group>"; };
 		A9674DD126976C0B00E064B0 /* VehicleModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 		F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
 		F1F68E7F20771C7900BFBD8E /* Installation Manual.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Installation Manual.pdf"; sourceTree = "<group>"; };
 		F79EC1F32A266813009B8784 /* BlockToMoveCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockToMoveCollectionViewController.swift; sourceTree = "<group>"; };
+		FD3A594D2A3A196B00122BEF /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
+		FD3A594F2A3A270900122BEF /* CustomHexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHexColor.swift; sourceTree = "<group>"; };
 		FD6388302A310311005F49F7 /* Aphont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Aphont.ttf; sourceTree = "<group>"; };
 		FD6388332A310363005F49F7 /* AphontBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AphontBold.ttf; sourceTree = "<group>"; };
 		FD6388362A31036B005F49F7 /* AphontBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AphontBoldItalic.ttf; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 		F18FEEDB1EB115AF007C15B8 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				8D8D66032A3A43330086E14A /* ModifierProperties.plist */,
 				FD63882F2A3100D3005F49F7 /* Fonts */,
 				F1D395BA2006DBB300C6D993 /* BlocksMenus */,
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
@@ -168,6 +175,7 @@
 				F18FFFBE1E65B0FC0090C4B6 /* Info.plist */,
 				F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */,
 				F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */,
+				FD3A594F2A3A270900122BEF /* CustomHexColor.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -260,6 +268,7 @@
 				FD6388362A31036B005F49F7 /* AphontBoldItalic.ttf */,
 				FD6388392A310374005F49F7 /* AphontItalic.ttf */,
 				FD6388302A310311005F49F7 /* Aphont.ttf */,
+				FD3A594D2A3A196B00122BEF /* CustomFont.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -348,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */,
 				F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */,
 				FD6388372A31036B005F49F7 /* AphontBoldItalic.ttf in Resources */,
 				FD6388312A310311005F49F7 /* Aphont.ttf in Resources */,
@@ -386,6 +396,7 @@
 				025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */,
 				F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */,
 				F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */,
+				FD3A59502A3A270900122BEF /* CustomHexColor.swift in Sources */,
 				62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */,
 				A9E173022697959A00A7E09E /* ObjectNoiseModViewController.swift in Sources */,
 				62EA50BC22CE52E7002BD4ED /* IfModViewController.swift in Sources */,
@@ -396,6 +407,7 @@
 				F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */,
 				02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */,
 				A9FC91A72697B1D30005DAEA /* SpeakModViewController.swift in Sources */,
+				FD3A594E2A3A196B00122BEF /* CustomFont.swift in Sources */,
 				A9BC08602697A20600A5312D /* EmotionModViewController.swift in Sources */,
 				F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */,
 				023D632F22BBF05700A8002C /* ColorModViewController.swift in Sources */,
