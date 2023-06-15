@@ -2236,10 +2236,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlP-Do-HRh">
-                                <rect key="frame" x="20" y="20" width="211" height="195"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlP-Do-HRh">
+                                <rect key="frame" x="40" y="30" width="211" height="195"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="195" id="yWI-uO-iUX"/>
+                                </constraints>
                                 <state key="normal" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -2247,87 +2249,119 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <segue destination="uoc-nU-c4a" kind="show" id="kqL-V9-S0M"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="por-t8-2aZ">
-                                <rect key="frame" x="96" y="387" width="162" height="163"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Orange" label="Orange "/>
-                                <state key="normal" backgroundImage="Orange">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="1ez-ku-Foa"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAR-ES-jhg">
-                                <rect key="frame" x="281" y="387" width="156" height="162"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Banana" label="Banana"/>
-                                <state key="normal" backgroundImage="Banana">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="1Ie-TN-cJE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AxW-nQ-bJf">
-                                <rect key="frame" x="464" y="386" width="152" height="163"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Apple" label="Apple"/>
-                                <state key="normal" backgroundImage="Apple">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="Wci-V0-u6C"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bkl-7e-Q64">
-                                <rect key="frame" x="824" y="387" width="161" height="162"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Watermelon" label="Watermelon"/>
-                                <state key="normal" backgroundImage="Watermelon">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="V9W-np-ihm"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9IC-Kx-unA">
-                                <rect key="frame" x="641" y="387" width="150" height="162"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Cherry" label="Cherry"/>
-                                <state key="normal" backgroundImage="Cherry">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="ZjR-6r-6xg"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Angle:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ls1-GE-FP2">
-                                <rect key="frame" x="96" y="293" width="233" height="65"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Angle:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ls1-GE-FP2">
+                                <rect key="frame" x="96" y="293" width="76.5" height="65"/>
                                 <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="cQV-jd-IKg"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Turn Variable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ed-Gl-te1">
-                                <rect key="frame" x="422" y="193" width="272" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Turn Variable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ed-Gl-te1">
+                                <rect key="frame" x="421" y="200" width="238" height="49"/>
                                 <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="vhe-lQ-Sbn"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="boF-Q8-KCv">
+                                <rect key="frame" x="154" y="400" width="772" height="133"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="por-t8-2aZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Orange" label="Orange "/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="por-t8-2aZ" secondAttribute="height" multiplier="1:1" id="0KJ-CW-qu7"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="Orange">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="1ez-ku-Foa"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAR-ES-jhg">
+                                        <rect key="frame" x="160" y="0.0" width="132.5" height="133"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Banana" label="Banana"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="SAR-ES-jhg" secondAttribute="height" multiplier="1:1" id="vfQ-R3-G6G"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="Banana">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="1Ie-TN-cJE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AxW-nQ-bJf">
+                                        <rect key="frame" x="319.5" y="0.0" width="133" height="133"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Apple" label="Apple"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="AxW-nQ-bJf" secondAttribute="height" multiplier="1:1" id="vYR-NE-86K"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="Apple">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="Wci-V0-u6C"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9IC-Kx-unA">
+                                        <rect key="frame" x="479.5" y="0.0" width="132.5" height="133"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Cherry" label="Cherry"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="9IC-Kx-unA" secondAttribute="height" multiplier="1:1" id="hAQ-Ml-L7g"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="Cherry">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="ZjR-6r-6xg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bkl-7e-Q64">
+                                        <rect key="frame" x="639" y="0.0" width="133" height="133"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Watermelon" label="Watermelon"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Bkl-7e-Q64" secondAttribute="height" multiplier="1:1" id="l34-xN-qbO"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="Watermelon">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="MKK-Db-JqX" eventType="touchUpInside" id="V9W-np-ihm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nlP-Do-HRh" firstAttribute="leading" secondItem="wCQ-bF-wXc" secondAttribute="leadingMargin" constant="20" id="BYP-pc-lgw"/>
+                            <constraint firstItem="boF-Q8-KCv" firstAttribute="leading" secondItem="wCQ-bF-wXc" secondAttribute="leading" constant="154" id="CJw-bp-6Lm"/>
+                            <constraint firstItem="nlP-Do-HRh" firstAttribute="top" secondItem="KA3-qF-icq" secondAttribute="bottom" constant="30" id="GbH-Uo-t7X"/>
+                            <constraint firstItem="boF-Q8-KCv" firstAttribute="top" secondItem="ls1-GE-FP2" secondAttribute="bottom" constant="42" id="LNC-B3-IgS"/>
+                            <constraint firstItem="2Ed-Gl-te1" firstAttribute="centerX" secondItem="wCQ-bF-wXc" secondAttribute="centerX" id="Tfy-2N-Py5"/>
+                            <constraint firstItem="boF-Q8-KCv" firstAttribute="centerX" secondItem="2Ed-Gl-te1" secondAttribute="centerX" id="YaT-sZ-N9l"/>
+                            <constraint firstItem="ls1-GE-FP2" firstAttribute="top" secondItem="nlP-Do-HRh" secondAttribute="bottom" constant="68" id="a5b-Yc-V1K"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ls1-GE-FP2" secondAttribute="trailing" constant="20" symbolic="YES" id="gbw-M2-zIU"/>
+                            <constraint firstItem="2Ed-Gl-te1" firstAttribute="top" secondItem="KA3-qF-icq" secondAttribute="bottom" constant="200" id="yAp-VY-Aqs"/>
+                            <constraint firstItem="ls1-GE-FP2" firstAttribute="leading" secondItem="wCQ-bF-wXc" secondAttribute="leadingMargin" constant="76" id="yKx-be-nzO"/>
+                            <constraint firstItem="2Ed-Gl-te1" firstAttribute="leading" secondItem="nlP-Do-HRh" secondAttribute="trailing" constant="170" id="zWc-Kn-mDw"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4Vs-Sg-yuk"/>
                     <connections>
                         <outlet property="angleLabel" destination="ls1-GE-FP2" id="mCy-e5-8pp"/>
                         <outlet property="back" destination="nlP-Do-HRh" id="MZe-wY-ieB"/>
                         <outlet property="turnTitle" destination="2Ed-Gl-te1" id="HuR-2Y-HD2"/>
-                        <outletCollection property="buttons" destination="por-t8-2aZ" collectionClass="NSMutableArray" id="kKy-ut-pP0"/>
                         <outletCollection property="buttons" destination="por-t8-2aZ" collectionClass="NSMutableArray" id="Hah-Xw-LEu"/>
+                        <outletCollection property="buttons" destination="por-t8-2aZ" collectionClass="NSMutableArray" id="kKy-ut-pP0"/>
                         <outletCollection property="buttons" destination="SAR-ES-jhg" collectionClass="NSMutableArray" id="jtb-5y-lSh"/>
                         <outletCollection property="buttons" destination="AxW-nQ-bJf" collectionClass="NSMutableArray" id="fjB-bM-xfD"/>
                         <outletCollection property="buttons" destination="9IC-Kx-unA" collectionClass="NSMutableArray" id="VKU-yq-vaE"/>
@@ -3336,8 +3370,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZVu-V8-d1q"/>
-        <segue reference="kbj-oh-DCS"/>
+        <segue reference="kqL-V9-S0M"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
