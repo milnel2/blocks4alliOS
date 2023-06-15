@@ -2369,7 +2369,11 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                     </view>
                     <navigationItem key="navigationItem" id="EUe-Qq-5pr"/>
                     <connections>
+                        <outlet property="UDvalue" destination="od9-5s-cie" id="ZFj-XQ-7M8"/>
                         <outlet property="back" destination="8yI-Oz-RY0" id="lty-nE-Mqf"/>
+                        <outlet property="lookUDLabel" destination="qAz-n7-F8C" id="JpY-sG-gXr"/>
+                        <outlet property="lookUDTitle" destination="3Ia-ro-Jfg" id="RB5-UM-zkG"/>
+                        <outlet property="maxminTitle" destination="tvm-XZ-aV7" id="EMc-su-WJy"/>
                         <outletCollection property="buttons" destination="eQd-mf-6EI" collectionClass="NSMutableArray" id="Hy4-VW-bPG"/>
                         <outletCollection property="buttons" destination="4q1-vE-soU" collectionClass="NSMutableArray" id="dIT-Kj-rek"/>
                         <outletCollection property="buttons" destination="dR9-Bd-O6a" collectionClass="NSMutableArray" id="MwX-d0-AMH"/>
@@ -3248,8 +3252,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PIe-sL-Fqa"/>
-        <segue reference="uRw-vH-lIn"/>
+        <segue reference="Z98-8n-X04"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -20,6 +20,12 @@ class LookUpDownVariables: UIViewController {
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var back: UIButton!
     
+    @IBOutlet weak var lookUDTitle: UILabel!
+    @IBOutlet weak var lookUDLabel: UILabel!
+    @IBOutlet weak var maxminTitle: UILabel!
+    @IBOutlet weak var UDvalue: UILabel!
+    
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         //Deselects all buttons but currently selected one (only one can be selected at a time)
         self.buttons.forEach { (button) in
@@ -37,6 +43,15 @@ class LookUpDownVariables: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Change to custom font
+        UDvalue.adjustsFontForContentSizeCategory = true
+        UDvalue.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
+        maxminTitle.adjustsFontForContentSizeCategory = true
+        maxminTitle.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 26.0)
+        lookUDLabel.adjustsFontForContentSizeCategory = true
+        lookUDLabel.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
+        lookUDTitle.adjustsFontForContentSizeCategory = true
+        lookUDTitle.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 34.0)
         
         // default: orange or preserve last selection
         let previousSelectedVariableOne: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"

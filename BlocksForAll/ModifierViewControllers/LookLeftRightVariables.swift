@@ -46,6 +46,15 @@ class LookLeftRightVariables: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Change to custom font
+        LRvalue.adjustsFontForContentSizeCategory = true
+        LRvalue.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
+        maxminTitle.adjustsFontForContentSizeCategory = true
+        maxminTitle.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 26.0)
+        lookLRLabel.adjustsFontForContentSizeCategory = true
+        lookLRLabel.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
+        lookLRTitle.adjustsFontForContentSizeCategory = true
+        lookLRTitle.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 34.0)
       
         // default: orange or preserve last selection
         let previousSelectedVariableOne: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
