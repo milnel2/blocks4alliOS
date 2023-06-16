@@ -3359,21 +3359,33 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <rect key="frame" x="0.0" y="0.0" width="235" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dI6-Ao-OWl" customClass="FunctionView" customModule="BlocksForAll" customModuleProvider="target">
-                                            <rect key="frame" x="392" y="-43" width="240" height="128"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dI6-Ao-OWl" customClass="FunctionView" customModule="BlocksForAll" customModuleProvider="target">
+                                            <rect key="frame" x="392" y="-43" width="0.0" height="128"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXb-9z-Abu" userLabel="Name Label">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXb-9z-Abu" userLabel="Name Label">
                                                     <rect key="frame" x="-392" y="42" width="1024" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1024" id="K25-8c-5rX"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="XXb-9z-Abu" firstAttribute="centerX" secondItem="dI6-Ao-OWl" secondAttribute="centerX" constant="120" id="MN8-0u-Dqp"/>
+                                                <constraint firstItem="XXb-9z-Abu" firstAttribute="top" secondItem="dI6-Ao-OWl" secondAttribute="top" constant="42" id="TkC-90-b8P"/>
+                                                <constraint firstItem="XXb-9z-Abu" firstAttribute="centerY" secondItem="dI6-Ao-OWl" secondAttribute="centerY" id="dOd-DB-0xj"/>
+                                            </constraints>
                                         </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dI6-Ao-OWl" firstAttribute="top" secondItem="PV9-Gx-WXQ" secondAttribute="topMargin" constant="-54" id="5P4-vy-3fS"/>
+                                        <constraint firstItem="dI6-Ao-OWl" firstAttribute="centerX" secondItem="PV9-Gx-WXQ" secondAttribute="centerX" id="AgM-44-dtN"/>
+                                        <constraint firstItem="dI6-Ao-OWl" firstAttribute="leading" secondItem="PV9-Gx-WXQ" secondAttribute="leading" constant="392" id="KF8-Od-SEf"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dI6-Ao-OWl" secondAttribute="bottom" constant="-52" id="y2F-jk-m2M"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="uoc-nU-c4a" kind="show" identifier="functionsToBlocks" id="hQ1-ks-vYz"/>
@@ -3433,7 +3445,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KFf-UI-r6k"/>
+        <segue reference="hQ1-ks-vYz"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
