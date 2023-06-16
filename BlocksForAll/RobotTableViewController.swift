@@ -42,7 +42,7 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
     }
 
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -57,16 +57,18 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
 
         // From WW sample code
         let robot = robots[indexPath.row]
+    
+        
         if(robot.isConnected()){
             cell.contentView.backgroundColor = UIColor.green
             cell.accessibilityLabel = "Connected"
             
-        }else{
-            cell.contentView.backgroundColor = UIColor.white
         }
-        cell.textLabel?.text = robot.name
-                
 
+        cell.textLabel?.text = robot.name
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.textAlignment = .center
+            
         return cell
     }
     
