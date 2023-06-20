@@ -57,24 +57,31 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "robotCell", for: indexPath)
 
         // From WW sample code
         let robot = robots[indexPath.row]
-    
         
         if(robot.isConnected()){
-            cell.contentView.backgroundColor = UIColor.green
+            cell.layer.borderWidth = 10
+            cell.layer.borderColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
             cell.accessibilityLabel = "Connected"
+            
+            
+        } else{
+            cell.layer.borderWidth = 10
+            cell.layer.borderColor = #colorLiteral(red: 0.05098039216, green: 0.07450980392, blue: 0.3294117647, alpha: 1)
+            cell.accessibilityLabel = "Disconnected"
             
         }
             
-            // Default Cell Layout
-            cell.textLabel?.text = robot.name
-            cell.textLabel?.textColor = .white
-            cell.textLabel?.textAlignment = .center
-            cell.layer.cornerRadius = 20
-            cell.layer.masksToBounds = true
+        // Default Cell Layout
+        cell.textLabel?.text = robot.name
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.textAlignment = .center
+        cell.layer.cornerRadius = 20
+        cell.layer.masksToBounds = true
             
         return cell
     }
