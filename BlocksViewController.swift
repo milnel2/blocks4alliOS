@@ -512,7 +512,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             
             // TODO: allow for font to be either .title1 or .title2 depending on what fits best
             button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
-            button.setTitleColor(.black, for: .normal)
+            if #available(iOS 13.0, *) {
+                button.setTitleColor(.label, for: .normal)
+            } else {
+                button.setTitleColor(.black, for: .normal)
+            }
             button.titleLabel?.numberOfLines = 0
         }
         
