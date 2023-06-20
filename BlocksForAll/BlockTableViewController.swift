@@ -233,7 +233,9 @@ class BlockTableViewController: UITableViewController {
                         let name = dictItem.object(forKey: "name")
                         let isModifiable = dictItem.object(forKey: "isModifiable") as? Bool ?? false
                         if let colorString = dictItem.object(forKey: "color") as? String{
-                            let color2 = Color.init(uiColor:UIColor.colorFrom(hexString: colorString))
+                            let color2 = Color.init(uiColor: UIColor(named: "\(colorString)") ?? UIColor.gray)
+                            print (colorString)
+                            print (color2)
                             if let double = dictItem.object(forKey: "double") as? Bool{
                                 guard let block = Block(name: name as! String, color: color2 , double: double, isModifiable: isModifiable) else {
                                     fatalError("Unable to instantiate block")

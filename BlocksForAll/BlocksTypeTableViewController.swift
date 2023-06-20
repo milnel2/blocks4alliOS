@@ -116,7 +116,7 @@ class BlocksTypeTableViewController: UITableViewController {
                 let double = blockType.object(forKey: "double") as? Bool ?? false
                 var color = Color.init(uiColor:UIColor.green )
                 if let colorString = blockType.object(forKey: "color") as? String{
-                    color = Color.init(uiColor: UIColor.colorFrom(hexString: colorString))
+                    color = Color.init(uiColor: UIColor(named: "\(colorString)") ?? UIColor.gray)
                 }
                 guard let block = Block(name: name!, color: color, double: double, isModifiable: isModifiable) else {
                     fatalError("Unable to instantiate block")
