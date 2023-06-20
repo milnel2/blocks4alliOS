@@ -40,6 +40,7 @@ class SelectedBlockViewController: UIViewController {
         
         if blocks![0].isModifiable ?? false {
             let modifierButton = createModifierButton()
+            modifierButton.addTarget(self, action: #selector(modifierPressed(sender:)), for: .touchUpInside)
             self.view.addSubview(modifierButton)
         }
        
@@ -56,6 +57,9 @@ class SelectedBlockViewController: UIViewController {
         
         delegate?.beginMovingBlocks(blocks!)
         delegate?.setParentViewController(self.parent!)
+    }
+    @objc func modifierPressed(sender: UIButton!) {
+        print("Modifier button in toolbox pressed")
     }
     
     func createModifierButton() -> CustomButton {
