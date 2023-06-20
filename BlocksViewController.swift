@@ -424,7 +424,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         let placeHolderBlock = block.addedBlocks[0]
         
         // the current state of the block modifier - used for voiceOver
-        var modifierInformation = placeHolderBlock.attributes[attributeName]!
+        var modifierInformation = placeHolderBlock.attributes[attributeName] ?? ""
         
         // set up button sizing and layering
         let button = createModifierCustomButton()
