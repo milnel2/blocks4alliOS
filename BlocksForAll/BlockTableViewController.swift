@@ -225,7 +225,6 @@ class BlockTableViewController: UITableViewController {
             if let blockArray = blockType.object(forKey: "Blocks") as? NSArray{
                 // creates array from the first object in blocksMenu.plist aka Sounds, Controls, Drive, Sounds, etc.
                 for item in blockArray{
-                    print(item)
                     // for block in category Sounds, Control, etc.
                     if let dictItem = item as? NSDictionary{
                         // take the block and using it as a dictionary dictItem
@@ -234,8 +233,6 @@ class BlockTableViewController: UITableViewController {
                         let isModifiable = dictItem.object(forKey: "isModifiable") as? Bool ?? false
                         if let colorString = dictItem.object(forKey: "color") as? String{
                             let color2 = Color.init(uiColor: UIColor(named: "\(colorString)") ?? UIColor.gray)
-                            print (colorString)
-                            print (color2)
                             if let double = dictItem.object(forKey: "double") as? Bool{
                                 guard let block = Block(name: name as! String, color: color2 , double: double, isModifiable: isModifiable) else {
                                     fatalError("Unable to instantiate block")
