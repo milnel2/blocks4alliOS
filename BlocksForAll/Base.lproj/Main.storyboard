@@ -393,33 +393,33 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <segue destination="uoc-nU-c4a" kind="show" id="uRw-vH-lIn"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a robot from the list below. If you don't see any robots, try turning your robot off and on again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVq-QZ-GAv">
-                                <rect key="frame" x="70" y="253" width="940" height="54.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
-                                <rect key="frame" x="123" y="368" width="838" height="231"/>
+                                <rect key="frame" x="123" y="253" width="838" height="431"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                 <connections>
                                     <segue destination="XOJ-Tu-hH8" kind="embed" id="sot-c6-H0b"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a robot from the list below. If you don't see any robots, try turning your robot off and on again." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVq-QZ-GAv">
+                                <rect key="frame" x="279" y="120" width="526" height="55"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gVq-QZ-GAv" firstAttribute="top" secondItem="6i5-m2-CBz" secondAttribute="bottom" constant="8" symbolic="YES" id="3Gi-20-mXb"/>
-                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="top" secondItem="gVq-QZ-GAv" secondAttribute="bottom" constant="60.5" id="9dP-ly-9qK"/>
+                            <constraint firstItem="gVq-QZ-GAv" firstAttribute="top" secondItem="6i5-m2-CBz" secondAttribute="bottom" constant="-125" id="3Gi-20-mXb"/>
+                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="top" secondItem="gVq-QZ-GAv" secondAttribute="bottom" constant="78" id="9dP-ly-9qK"/>
                             <constraint firstItem="Kj3-mC-EmF" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leading" id="9rE-ws-0EE"/>
-                            <constraint firstItem="gVq-QZ-GAv" firstAttribute="centerX" secondItem="6Hh-dq-UJ7" secondAttribute="centerX" id="Lv1-Rf-Xpo"/>
+                            <constraint firstItem="gVq-QZ-GAv" firstAttribute="centerX" secondItem="6Hh-dq-UJ7" secondAttribute="centerX" constant="2" id="Lv1-Rf-Xpo"/>
                             <constraint firstItem="QLJ-MJ-LN5" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leading" constant="123" id="OUu-2f-8vs"/>
                             <constraint firstItem="6i5-m2-CBz" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leadingMargin" constant="30" id="YTX-SA-EWr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gVq-QZ-GAv" secondAttribute="trailing" constant="50" id="biY-oh-R04"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gVq-QZ-GAv" secondAttribute="trailing" constant="255" id="biY-oh-R04"/>
                             <constraint firstItem="6i5-m2-CBz" firstAttribute="top" secondItem="Yhr-81-ujC" secondAttribute="bottom" constant="50" id="dwZ-FD-v1t"/>
                             <constraint firstAttribute="bottom" secondItem="Kj3-mC-EmF" secondAttribute="bottom" id="iyv-Td-srH"/>
-                            <constraint firstItem="Zck-g6-6V2" firstAttribute="top" secondItem="QLJ-MJ-LN5" secondAttribute="bottom" constant="211" id="j5L-BI-hYW"/>
+                            <constraint firstItem="Zck-g6-6V2" firstAttribute="top" secondItem="QLJ-MJ-LN5" secondAttribute="bottom" constant="126" id="j5L-BI-hYW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QLJ-MJ-LN5" secondAttribute="trailing" constant="99" id="jX1-fW-6ph"/>
                             <constraint firstAttribute="trailing" secondItem="Kj3-mC-EmF" secondAttribute="trailing" id="mAS-Zm-8ED"/>
                             <constraint firstItem="Kj3-mC-EmF" firstAttribute="top" secondItem="Yhr-81-ujC" secondAttribute="bottom" id="omc-wJ-ZjT"/>
@@ -436,7 +436,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
-                        <rect key="frame" x="0.0" y="0.0" width="838" height="231"/>
+                        <rect key="frame" x="0.0" y="0.0" width="838" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
