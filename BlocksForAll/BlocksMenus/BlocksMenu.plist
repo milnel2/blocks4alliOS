@@ -17,7 +17,7 @@
 				<key>name</key>
 				<string>Animal Noise</string>
 				<key>color</key>
-				<string>blue_block</string>
+				<string>animal_color</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -45,7 +45,7 @@
 				<key>name</key>
 				<string>Object Noise</string>
 				<key>color</key>
-				<string>blue_block</string>
+				<string>object_noise_color</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -59,7 +59,7 @@
 				<key>name</key>
 				<string>Vehicle Noise</string>
 				<key>color</key>
-				<string>blue_block</string>
+				<string>vehicle_color</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -73,7 +73,7 @@
 				<key>name</key>
 				<string>Speak</string>
 				<key>color</key>
-				<string>blue_block</string>
+				<string>speak_color</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
