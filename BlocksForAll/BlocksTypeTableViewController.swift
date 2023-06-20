@@ -64,7 +64,11 @@ class BlocksTypeTableViewController: UITableViewController {
         // Configure the cell...
         let blockType = blockTypes[indexPath.row]
         cell.textLabel?.text = blockType.name
-        cell.textLabel?.textColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            cell.textLabel?.textColor = UIColor.label
+        } else {
+            cell.textLabel?.textColor = UIColor.black
+        }
         cell.textLabel?.textAlignment = .left
         cell.textLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 29.0)
         cell.backgroundColor = blockType.color.uiColor
