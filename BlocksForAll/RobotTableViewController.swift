@@ -70,7 +70,7 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
     
 
         // From WW sample code
-        let robot = robotManager[indexPath.row]
+        let robot = robots[indexPath.row]
         
         if(robot.isConnected()){
             cell.layer.borderWidth = 10
