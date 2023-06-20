@@ -50,6 +50,7 @@ extension String {
 }
 
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
+
     
     //Larger views
     @IBOutlet var mainView: UIView!
@@ -80,6 +81,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var allBlockViews = [BlockView]()
     var containerViewController: UINavigationController?
     
+    
     // TODO: the blockWidth and blockHeight are not the same as the variable blockSize (= 100)
     var blockSize = 150
     let blockSpacing = 1
@@ -98,6 +100,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Change to custom font
         workspaceTitle.adjustsFontForContentSizeCategory = true
         workspaceTitle.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
@@ -165,7 +168,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     //TODO: LAUREN, figure out what this code is for
     func setParentViewController(_ myVC: UIViewController) {
         containerViewController = myVC as? UINavigationController
+
     }
+    
+
+    
     
     /// Removes blocks from current function and updates the saved data file.
     func clearAllBlocks(){
