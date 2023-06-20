@@ -22,6 +22,7 @@
 		844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */; };
 		844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */; };
 		84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */; };
+		8D27A4522A425A8C00A79EB2 /* SoundModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27A4512A425A8C00A79EB2 /* SoundModifierViewController.swift */; };
 		8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8D66032A3A43330086E14A /* ModifierProperties.plist */; };
 		8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */; };
 		A92E88F22697598400FB2CFD /* AnimalModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E88F12697598400FB2CFD /* AnimalModViewController.swift */; };
@@ -88,6 +89,7 @@
 		844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewCell.swift; sourceTree = "<group>"; };
 		844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewController.swift; sourceTree = "<group>"; };
 		84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeLightModifierViewController.swift; sourceTree = "<group>"; };
+		8D27A4512A425A8C00A79EB2 /* SoundModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModifierViewController.swift; sourceTree = "<group>"; };
 		8D8D66032A3A43330086E14A /* ModifierProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
 		8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A92E88F12697598400FB2CFD /* AnimalModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalModViewController.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */,
 				A9674DD126976C0B00E064B0 /* VehicleModViewController.swift */,
 				023D633222BD34EE00A8002C /* WaitModViewController.swift */,
+				8D27A4512A425A8C00A79EB2 /* SoundModifierViewController.swift */,
 			);
 			path = ModifierViewControllers;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
 				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
+				8D27A4522A425A8C00A79EB2 /* SoundModifierViewController.swift in Sources */,
 				F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */,
 				02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */,
 				A9FC91A72697B1D30005DAEA /* SpeakModViewController.swift in Sources */,
