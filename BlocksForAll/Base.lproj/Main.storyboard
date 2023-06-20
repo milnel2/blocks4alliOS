@@ -154,6 +154,13 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="xnj-s6-6gX">
                                 <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKy-Qn-0Ek">
+                                <rect key="frame" x="479.5" y="150" width="121" height="40"/>
+                                <accessibility key="accessibilityConfiguration" label="Settings"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="Cwg-wl-dN5">
                                 <rect key="frame" x="170" y="300" width="760" height="410"/>
                                 <subviews>
@@ -231,28 +238,23 @@
                                     <segue destination="YEE-PZ-SjD" kind="show" id="Oq5-da-dqe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-Px-NWC">
-                                <rect key="frame" x="268" y="235" width="113" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-Px-NWC">
+                                <rect key="frame" x="265" y="257" width="136" height="35"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Add Robots"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add Robots">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <segue destination="cJF-Nc-M7L" kind="show" id="SES-Og-HDs"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKy-Qn-0Ek">
-                                <rect key="frame" x="479.5" y="150" width="121" height="40"/>
-                                <accessibility key="accessibilityConfiguration" label="Settings"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.47450977560000002" blue="0.18823529780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="300" id="6xD-tj-6gF"/>
                             <constraint firstAttribute="trailing" secondItem="xnj-s6-6gX" secondAttribute="trailing" id="8lX-dP-OFG"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Skb-Px-NWC" secondAttribute="trailing" constant="20" symbolic="YES" id="Bbi-Q2-zkU"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="centerY" secondItem="pKy-Qn-0Ek" secondAttribute="centerY" id="CRW-f7-hf6"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" id="G80-Bk-XGK"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="49" id="HEb-6Y-kgc"/>
@@ -260,8 +262,11 @@
                             <constraint firstItem="pKy-Qn-0Ek" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="150" id="RDt-cb-aSk"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="bottom" secondItem="0DE-vi-VZO" secondAttribute="bottom" id="RdE-pI-DPm"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="70" id="T7N-Bq-431"/>
+                            <constraint firstItem="Skb-Px-NWC" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" constant="265" id="VBm-a5-sH5"/>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Rvu-FP-rqn" secondAttribute="bottom" constant="30" id="Ved-p7-fkH"/>
+                            <constraint firstItem="Skb-Px-NWC" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="257" id="WA1-5R-ZD2"/>
                             <constraint firstAttribute="trailing" secondItem="Cwg-wl-dN5" secondAttribute="trailing" constant="150" id="bDI-BD-TtJ"/>
+                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Skb-Px-NWC" secondAttribute="bottom" constant="8" symbolic="YES" id="bzH-LQ-GF4"/>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="150" id="vuR-QM-3Ne"/>
                             <constraint firstItem="1NO-hi-rac" firstAttribute="top" secondItem="Cwg-wl-dN5" secondAttribute="bottom" constant="100" id="wkA-2W-nIa"/>
                             <constraint firstItem="pKy-Qn-0Ek" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" id="zqL-cy-8hm"/>
@@ -3471,8 +3476,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="uRw-vH-lIn"/>
-        <segue reference="PIe-sL-Fqa"/>
-        <segue reference="XsQ-5G-ZnB"/>
+        <segue reference="SES-Og-HDs"/>
+        <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Apple" width="133" height="133"/>
