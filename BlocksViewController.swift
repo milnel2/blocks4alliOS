@@ -114,8 +114,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             //mainMenuButton.setTitle("Main Workspace", for: .normal)
             mainWorkspaceButton.isHidden = false
             if functionsDict[currentWorkspace]!.isEmpty{
-                let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#F8E3FF")), double: true, isModifiable: false)
-                let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#F8E3FF")), double: true, isModifiable: false)
+                let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor: UIColor(named: "orange_block")!), double: true, isModifiable: false)
+                let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor(named: "orange_block")!), double: true, isModifiable: false)
                 startBlock!.counterpart = [endBlock!]
                 endBlock!.counterpart = [startBlock!]
                 functionsDict[currentWorkspace]?.append(startBlock!)
@@ -504,7 +504,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             button.setTitle(text, for: .normal)
             
             // TODO: allow for font to be either .title1 or .title2 depending on what fits best
-            button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
+            button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
             button.setTitleColor(.black, for: .normal)
             button.titleLabel?.numberOfLines = 0
         }
