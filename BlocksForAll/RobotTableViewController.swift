@@ -68,13 +68,13 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
             cell.accessibilityLabel = "Connected"
             
         }
-        
-// Default Cell Layout
-        cell.textLabel?.text = robot.name
-        cell.textLabel?.textColor = .white
-        cell.textLabel?.textAlignment = .center
-        cell.layer.cornerRadius = 20
-        cell.layer.masksToBounds = true
+            
+            // Default Cell Layout
+            cell.textLabel?.text = robot.name
+            cell.textLabel?.textColor = .white
+            cell.textLabel?.textAlignment = .center
+            cell.layer.cornerRadius = 20
+            cell.layer.masksToBounds = true
             
         return cell
     }
