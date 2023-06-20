@@ -24,6 +24,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var settingsLabel: UILabel!
+
+    @IBOutlet var addRobotsButton: UIButton!
     
     // from Paul Hegarty, lectures 13 and 14
     let defaults = UserDefaults.standard
@@ -43,10 +45,7 @@ class SettingsViewController: UIViewController {
         else
         { defaults.setValue(0, forKey:"showText")
         }
-        
-//        //Orders contents of workspace to be more intuitive with Switch Control
-        settingsView.accessibilityElements = [settingsLabel!, blockSizeLabel!, blockSizeSlider!, showIconsLabel!, showIconsOrText!, backButton!]
-        
+                
 
         if defaults.value(forKey: "blockSize") == nil {
             defaults.setValue(150, forKey: "blockSize")
