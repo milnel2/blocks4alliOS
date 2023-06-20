@@ -20,6 +20,10 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
 	//MARK: - viewDidLoad function
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        Make table background transparent
+        tableView.backgroundColor = UIColor.clear
+        
         if(robotManager == nil){
             robotManager = WWRobotManager()
             robotManager?.add(self)
@@ -64,10 +68,13 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
             cell.accessibilityLabel = "Connected"
             
         }
-
+        
+// Default Cell Layout
         cell.textLabel?.text = robot.name
         cell.textLabel?.textColor = .white
         cell.textLabel?.textAlignment = .center
+        cell.layer.cornerRadius = 20
+        cell.layer.masksToBounds = true
             
         return cell
     }
