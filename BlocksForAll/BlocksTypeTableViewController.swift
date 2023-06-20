@@ -64,7 +64,11 @@ class BlocksTypeTableViewController: UITableViewController {
         // Configure the cell...
         let blockType = blockTypes[indexPath.row]
         cell.textLabel?.text = blockType.name
-        cell.textLabel?.textColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            cell.textLabel?.textColor = UIColor.label
+        } else {
+            cell.textLabel?.textColor = UIColor.black
+        }
         cell.textLabel?.textAlignment = .left
         cell.textLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 29.0)
         cell.backgroundColor = blockType.color.uiColor
@@ -116,7 +120,7 @@ class BlocksTypeTableViewController: UITableViewController {
                 let double = blockType.object(forKey: "double") as? Bool ?? false
                 var color = Color.init(uiColor:UIColor.green )
                 if let colorString = blockType.object(forKey: "color") as? String{
-                    color = Color.init(uiColor: UIColor.colorFrom(hexString: colorString))
+                    color = Color.init(uiColor: UIColor(named: "\(colorString)") ?? UIColor.gray)
                 }
                 guard let block = Block(name: name!, color: color, double: double, isModifiable: isModifiable) else {
                     fatalError("Unable to instantiate block")

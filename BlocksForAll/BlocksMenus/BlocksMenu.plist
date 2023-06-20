@@ -6,7 +6,7 @@
 		<key>type</key>
 		<string>Sounds</string>
 		<key>color</key>
-		<string>#90D7FF</string>
+		<string>blue_block</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
@@ -17,7 +17,7 @@
 				<key>name</key>
 				<string>Animal Noise</string>
 				<key>color</key>
-				<string>#DBF2FF</string>
+				<string>animal_color</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -31,7 +31,7 @@
 				<key>name</key>
 				<string>Emotion Noise</string>
 				<key>color</key>
-				<string>#90D7FF</string>
+				<string>blue_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -45,7 +45,7 @@
 				<key>name</key>
 				<string>Object Noise</string>
 				<key>color</key>
-				<string>#72ABCC</string>
+				<string>object_noise_color</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -59,7 +59,7 @@
 				<key>name</key>
 				<string>Vehicle Noise</string>
 				<key>color</key>
-				<string>#57819A</string>
+				<string>vehicle_color</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -73,7 +73,7 @@
 				<key>name</key>
 				<string>Speak</string>
 				<key>color</key>
-				<string>#6E79BA</string>
+				<string>speak_color</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -83,7 +83,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#31E384</string>
+		<string>green_block</string>
 		<key>type</key>
 		<string>Drive</string>
 		<key>Blocks</key>
@@ -96,7 +96,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#31E384</string>
+				<string>green_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -110,7 +110,7 @@
 				<key>name</key>
 				<string>Drive Backward</string>
 				<key>color</key>
-				<string>#31E384</string>
+				<string>green_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -124,7 +124,7 @@
 				<key>name</key>
 				<string>Turn Left</string>
 				<key>color</key>
-				<string>#31E384</string>
+				<string>green_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -138,7 +138,7 @@
 				<key>name</key>
 				<string>Turn Right</string>
 				<key>color</key>
-				<string>#31E384</string>
+				<string>green_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -148,7 +148,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#E3D93E</string>
+		<string>gold_block</string>
 		<key>type</key>
 		<string>Lights</string>
 		<key>Blocks</key>
@@ -161,7 +161,7 @@
 				<key>name</key>
 				<string>Set Eye Light</string>
 				<key>color</key>
-				<string>#E3D93E</string>
+				<string>gold_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -175,7 +175,7 @@
 				<key>name</key>
 				<string>Set Left Ear Light</string>
 				<key>color</key>
-				<string>#E3D93E</string>
+				<string>gold_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -189,7 +189,7 @@
 				<key>name</key>
 				<string>Set Right Ear Light</string>
 				<key>color</key>
-				<string>#E3D93E</string>
+				<string>gold_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -203,7 +203,7 @@
 				<key>name</key>
 				<string>Set Chest Light</string>
 				<key>color</key>
-				<string>#E3D93E</string>
+				<string>gold_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -217,7 +217,7 @@
 				<key>name</key>
 				<string>Set All Lights</string>
 				<key>color</key>
-				<string>#E3D93E</string>
+				<string>gold_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -227,7 +227,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#FF9C4C</string>
+		<string>orange_block</string>
 		<key>type</key>
 		<string>Control</string>
 		<key>Blocks</key>
@@ -244,7 +244,7 @@
 				<key>name</key>
 				<string>Repeat</string>
 				<key>color</key>
-				<string>#FF9C4C</string>
+				<string>orange_block</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
@@ -258,7 +258,7 @@
 				<key>name</key>
 				<string>Repeat Forever</string>
 				<key>color</key>
-				<string>#FF9C4C</string>
+				<string>orange_block</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
@@ -281,7 +281,7 @@
 				<key>name</key>
 				<string>If</string>
 				<key>color</key>
-				<string>#FF9C4C</string>
+				<string>orange_block</string>
 				<key>double</key>
 				<true/>
 				<key>imageName</key>
@@ -295,7 +295,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#FF9C4C</string>
+				<string>orange_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -305,7 +305,7 @@
 	</dict>
 	<dict>
 		<key>color</key>
-		<string>#F06F79</string>
+		<string>red_block</string>
 		<key>type</key>
 		<string>Motion</string>
 		<key>Blocks</key>
@@ -318,7 +318,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#F06F79</string>
+				<string>red_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -332,7 +332,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#F06F79</string>
+				<string>red_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -346,7 +346,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#F06F79</string>
+				<string>red_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -360,7 +360,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#F06F79</string>
+				<string>red_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -374,7 +374,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#F06F79</string>
+				<string>red_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -388,7 +388,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#F06F79</string>
+				<string>red_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -402,7 +402,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
-				<string>#F06F79</string>
+				<string>red_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -416,7 +416,7 @@
 				<key>name</key>
 				<string>Wiggle</string>
 				<key>color</key>
-				<string>#F06F79</string>
+				<string>red_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -430,7 +430,7 @@
 				<key>name</key>
 				<string>Nod</string>
 				<key>color</key>
-				<string>#F06F79</string>
+				<string>red_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -442,7 +442,7 @@
 		<key>type</key>
 		<string>Variables</string>
 		<key>color</key>
-		<string>#AC85F4</string>
+		<string>dark_purple_block</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
@@ -453,7 +453,7 @@
 				<key>name</key>
 				<string>Set Variable</string>
 				<key>color</key>
-				<string>#AC85F4</string>
+				<string>dark_purple_block</string>
 				<key>double</key>
 				<false/>
 			</dict>
@@ -465,7 +465,7 @@
 				<key>name</key>
 				<string>Drive</string>
 				<key>color</key>
-				<string>#AC85F4</string>
+				<string>dark_purple_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -479,7 +479,7 @@
 				<key>name</key>
 				<string>Turn</string>
 				<key>color</key>
-				<string>#AC85F4</string>
+				<string>dark_purple_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -493,7 +493,7 @@
 				<key>name</key>
 				<string>Look Up or Down</string>
 				<key>color</key>
-				<string>#AC85F4</string>
+				<string>dark_purple_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -507,7 +507,7 @@
 				<key>name</key>
 				<string>Look Left or Right</string>
 				<key>color</key>
-				<string>#AC85F4</string>
+				<string>dark_purple_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
@@ -519,7 +519,7 @@
 		<key>type</key>
 		<string>Functions</string>
 		<key>color</key>
-		<string>#F8E2FF</string>
+		<string>light_purple_block</string>
 	</dict>
 </array>
 </plist>

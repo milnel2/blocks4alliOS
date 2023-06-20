@@ -5,6 +5,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -663,7 +664,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l66-Lb-Pdn">
                                         <rect key="frame" x="0.0" y="125" width="706" height="655"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="655" id="zIB-FZ-qiz"/>
                                         </constraints>
@@ -743,7 +744,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                             <bool key="isElement" value="NO"/>
                                         </accessibility>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                        <color key="textColor" red="0.070588235289999995" green="0.23529411759999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" name="navy_text"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -775,7 +776,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="7Ot-l9-NbS" firstAttribute="bottom" secondItem="Qkj-vq-g4U" secondAttribute="bottomMargin" id="3bY-Z2-8i0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7Ot-l9-NbS" secondAttribute="trailing" constant="-10" id="9Ks-XD-qTe"/>
@@ -3476,10 +3477,11 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="CWQ-aM-vhy"/>
         <segue reference="ebu-O5-0hJ"/>
-        <segue reference="SES-Og-HDs"/>
+        <segue reference="PIe-sL-Fqa"/>
         <segue reference="Tu2-KF-poC"/>
-        <segue reference="Oq5-da-dqe"/>
+        <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Apple" width="133" height="133"/>
@@ -3563,6 +3565,9 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="yawn" width="133.44094848632812" height="133.44094848632812"/>
         <image name="yellow" width="133.44094848632812" height="133.44094848632812"/>
         <image name="yippe" width="133.44094848632812" height="133.44094848632812"/>
+        <namedColor name="navy_text">
+            <color red="0.070588235294117646" green="0.23529411764705882" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
