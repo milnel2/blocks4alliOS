@@ -3,6 +3,16 @@
     {
       "filename" : "look_up.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-look_up.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

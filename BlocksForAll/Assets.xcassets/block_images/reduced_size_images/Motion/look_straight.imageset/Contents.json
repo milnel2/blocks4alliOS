@@ -3,6 +3,16 @@
     {
       "filename" : "look_straight.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-look_straight.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

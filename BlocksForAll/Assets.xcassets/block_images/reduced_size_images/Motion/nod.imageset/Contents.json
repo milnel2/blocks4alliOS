@@ -3,6 +3,16 @@
     {
       "filename" : "nod.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-nod.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

@@ -3,6 +3,16 @@
     {
       "filename" : "wiggle.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-wiggle.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

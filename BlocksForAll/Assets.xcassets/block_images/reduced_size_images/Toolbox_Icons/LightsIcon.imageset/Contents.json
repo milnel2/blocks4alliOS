@@ -1,17 +1,18 @@
 {
   "images" : [
     {
-      "filename" : "icons-08.svg",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "filename" : "icons-sun.svg",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "sun-dark-2.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

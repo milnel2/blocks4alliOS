@@ -3,6 +3,16 @@
     {
       "filename" : "look_toward_voice-2.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-look_toward_voice.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
