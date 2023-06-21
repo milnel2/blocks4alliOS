@@ -3,6 +3,16 @@
     {
       "filename" : "look_forward.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-look_forward-2.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

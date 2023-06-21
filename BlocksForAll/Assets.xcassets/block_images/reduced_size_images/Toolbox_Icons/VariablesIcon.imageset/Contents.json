@@ -2,16 +2,17 @@
   "images" : [
     {
       "filename" : "resizedicons-12.svg",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "fruits_icon-dark-8.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
