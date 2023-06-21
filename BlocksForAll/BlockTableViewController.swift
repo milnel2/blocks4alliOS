@@ -214,7 +214,7 @@ class BlockTableViewController: UITableViewController {
                 
                 for function in functionBlocks{
                     var blockBeingCreated: Block
-                        blockBeingCreated = Block(name: function, color: Color.init(uiColor:UIColor(named: "orange_block")!), double: false, isModifiable: false)!
+                        blockBeingCreated = Block(name: function, color: Color.init(uiColor:UIColor(named: "light_purple_block")!), double: false, isModifiable: false)!
                     blockBeingCreated.type = "Function"
                     functionToolBlockArray.append(blockBeingCreated)
                     toolBoxBlockArray += [blockBeingCreated]
