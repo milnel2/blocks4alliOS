@@ -117,8 +117,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             //mainMenuButton.setTitle("Main Workspace", for: .normal)
             mainWorkspaceButton.isHidden = false
             if functionsDict[currentWorkspace]!.isEmpty{
-                let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor: UIColor(named: "orange_block")!), double: true, isModifiable: false)
-                let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor(named: "orange_block")!), double: true, isModifiable: false)
+                let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor: UIColor(named: "light_purple_block")!), double: true, isModifiable: false)
+                let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor(named: "light_purple_block")!), double: true, isModifiable: false)
                 startBlock!.counterpart = [endBlock!]
                 endBlock!.counterpart = [startBlock!]
                 functionsDict[currentWorkspace]?.append(startBlock!)
@@ -512,6 +512,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             
             // TODO: allow for font to be either .title1 or .title2 depending on what fits best
             button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
+            button.titleLabel?.adjustsFontForContentSizeCategory = true
             if #available(iOS 13.0, *) {
                 button.setTitleColor(.label, for: .normal)
             } else {
@@ -695,7 +696,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             print(name)
             switch color {
             //Control
-            case UIColor.colorFrom(hexString: "#B30DCB"):
+            case UIColor(named: "orange_block"):
                 if movingBlocks {
                     if block.name == "Wait for Time"{
                         blockView.accessibilityUserInputLabels = ["Before Wait", "Before \(block.name)"]
@@ -705,7 +706,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
 
             //Drive
-            case UIColor.colorFrom(hexString: "#B15C13"):
+            case UIColor(named: "green_block"):
                 var voiceControlLabel = block.name
                 if block.name.contains("Drive") {
                     let wordToRemove = "Drive "
@@ -728,7 +729,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
 
             //Lights
-            case UIColor.colorFrom(hexString: "#6700C1"):
+            case UIColor(named: "gold_block"):
                 var voiceControlLabel = block.name
                 let wordToRemove = "Set "
                 if let range = voiceControlLabel.range(of: wordToRemove){
@@ -751,7 +752,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
 
             //Look
-            case UIColor.colorFrom(hexString: "#836F53"):
+            case UIColor(named: "red_block"):
                 var voiceControlLabel = block.name
                 let wordToRemove = "Look "
                 if let range = voiceControlLabel.range(of: wordToRemove){
