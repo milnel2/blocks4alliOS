@@ -381,7 +381,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: CGFloat(blockSize), height: collectionView.frame.height)
         collectionView.remembersLastFocusedIndexPath = true
-        //print(indexPath)
         if indexPath.row == functionsDict[currentWorkspace]!.count {
             // expands the size of the last cell in the collectionView, so it's easier to add a block at the end
             // with VoiceOver on
@@ -448,8 +447,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         var image: UIImage?
         if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
             image = UIImage(named: imagePath!)
-            print(imagePath!)
-
             if image != nil { // make sure that the image actually exists
                 button.setBackgroundImage(image, for: .normal)
             } else { // print error
@@ -591,15 +588,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     private func getModifierSelector(name : String) -> Selector? {
         /* Given the name for a modifier block, returns a Selector for the button*/
         switch name {
-        case "Animal Noise":
-            return #selector(soundModifier(sender:))
-        case "Vehicle Noise":
-            return #selector(soundModifier(sender:))
-        case "Object Noise":
-            return #selector(soundModifier(sender:))
-        case "Emotion Noise":
-            return #selector(soundModifier(sender:))
-        case "Speak":
+        case "Animal Noise", "Vehicle Noise", "Object Noise", "Emotion Noise", "Speak":
             return #selector(soundModifier(sender:))
         case "If":
             return #selector(ifModifier(sender:))
@@ -693,7 +682,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if #available (iOS 13.0, *) {
             let color = block.color.uiColor
             let name = block.name
-            print(name)
             switch color {
             //Control
             case UIColor(named: "orange_block"):
@@ -879,7 +867,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 switch name {
                     // block exists but is a non-modifier block
                 case "End If", "End Repeat", "End Repeat Forever", "Repeat Forever", "Look Forward", "Look Toward Voice", "Look Right", "Look Left", "Look Straight", "Look Down", "Look Up", "Wiggle", "Nod":
-                    //print("adding non-modifier block: \(name)")
                     // TODO: unsure if this code needs to be run as well. It was there when I started refactoring but it doesn't seem to be needed
 //                    //            case "Repeat Forever":
 //                    if block.addedBlocks.isEmpty{
@@ -977,31 +964,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @objc func driveModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "driveModifier", sender: nil)
-    }
-    
-    @objc func animalModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "AnimalModifier", sender: nil)
-    }
-    
-    @objc func vehicleModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "VehicleModifier", sender: nil)
-    }
-    
-    @objc func objectNoiseModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "ObjectNoiseModifier", sender: nil)
-    }
-    
-    @objc func emotionModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "EmotionModifier", sender: nil)
-    }
-    
-    @objc func speakModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "SpeakModifier", sender: nil)
     }
     
     @objc func soundModifier(sender: UIButton!) {
@@ -1150,31 +1112,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
         // Segue to EyeLightModifierViewController
         if let destinationViewController = segue.destination as? EyeLightModifierViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to AnimalModViewController
-        if let destinationViewController = segue.destination as? AnimalModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to VehicleModViewController
-        if let destinationViewController = segue.destination as? VehicleModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to ObjectNoiseModViewController
-        if let destinationViewController = segue.destination as? ObjectNoiseModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to EmotionModViewController
-        if let destinationViewController = segue.destination as? EmotionModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to SpeakModViewController
-        if let destinationViewController = segue.destination as? SpeakModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
         

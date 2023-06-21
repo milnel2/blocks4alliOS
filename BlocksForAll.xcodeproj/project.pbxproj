@@ -25,12 +25,7 @@
 		8D27A4522A425A8C00A79EB2 /* SoundModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27A4512A425A8C00A79EB2 /* SoundModifierViewController.swift */; };
 		8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8D66032A3A43330086E14A /* ModifierProperties.plist */; };
 		8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */; };
-		A92E88F22697598400FB2CFD /* AnimalModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E88F12697598400FB2CFD /* AnimalModViewController.swift */; };
-		A9674DD226976C0B00E064B0 /* VehicleModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9674DD126976C0B00E064B0 /* VehicleModViewController.swift */; };
 		A9937EA9267BAB3B00A56E8A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9937EA8267BAB3B00A56E8A /* CustomButton.swift */; };
-		A9BC08602697A20600A5312D /* EmotionModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC085F2697A20600A5312D /* EmotionModViewController.swift */; };
-		A9E173022697959A00A7E09E /* ObjectNoiseModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E173012697959A00A7E09E /* ObjectNoiseModViewController.swift */; };
-		A9FC91A72697B1D30005DAEA /* SpeakModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FC91A62697B1D30005DAEA /* SpeakModViewController.swift */; };
 		D8DFD3FF234E538C00874892 /* WWRobotAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12116981EA7E0DD009976B1 /* WWRobotAPI.framework */; };
 		F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */; };
 		F10F71691E65BFF50049F3AA /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71681E65BFF50049F3AA /* Block.swift */; };
@@ -92,12 +87,7 @@
 		8D27A4512A425A8C00A79EB2 /* SoundModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModifierViewController.swift; sourceTree = "<group>"; };
 		8D8D66032A3A43330086E14A /* ModifierProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
 		8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		A92E88F12697598400FB2CFD /* AnimalModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalModViewController.swift; sourceTree = "<group>"; };
-		A9674DD126976C0B00E064B0 /* VehicleModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModViewController.swift; sourceTree = "<group>"; };
 		A9937EA8267BAB3B00A56E8A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		A9BC085F2697A20600A5312D /* EmotionModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionModViewController.swift; sourceTree = "<group>"; };
-		A9E173012697959A00A7E09E /* ObjectNoiseModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNoiseModViewController.swift; sourceTree = "<group>"; };
-		A9FC91A62697B1D30005DAEA /* SpeakModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakModViewController.swift; sourceTree = "<group>"; };
 		F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewController.swift; sourceTree = "<group>"; };
 		F10F71681E65BFF50049F3AA /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlocksForAll-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -246,21 +236,16 @@
 			isa = PBXGroup;
 			children = (
 				025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */,
-				A92E88F12697598400FB2CFD /* AnimalModViewController.swift */,
 				023D632E22BBF05700A8002C /* ColorModViewController.swift */,
 				02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */,
 				57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */,
-				A9BC085F2697A20600A5312D /* EmotionModViewController.swift */,
 				84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */,
 				62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */,
 				57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */,
 				57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */,
-				A9E173012697959A00A7E09E /* ObjectNoiseModViewController.swift */,
 				023D633022BC0B2E00A8002C /* RepeatModViewController.swift */,
 				62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */,
-				A9FC91A62697B1D30005DAEA /* SpeakModViewController.swift */,
 				57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */,
-				A9674DD126976C0B00E064B0 /* VehicleModViewController.swift */,
 				023D633222BD34EE00A8002C /* WaitModViewController.swift */,
 				8D27A4512A425A8C00A79EB2 /* SoundModifierViewController.swift */,
 			);
@@ -404,7 +389,6 @@
 				F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */,
 				FD3A59502A3A270900122BEF /* CustomHexColor.swift in Sources */,
 				62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */,
-				A9E173022697959A00A7E09E /* ObjectNoiseModViewController.swift in Sources */,
 				62EA50BC22CE52E7002BD4ED /* IfModViewController.swift in Sources */,
 				844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */,
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
@@ -413,21 +397,17 @@
 				8D27A4522A425A8C00A79EB2 /* SoundModifierViewController.swift in Sources */,
 				F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */,
 				02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */,
-				A9FC91A72697B1D30005DAEA /* SpeakModViewController.swift in Sources */,
 				FD3A594E2A3A196B00122BEF /* CustomFont.swift in Sources */,
-				A9BC08602697A20600A5312D /* EmotionModViewController.swift in Sources */,
 				F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */,
 				023D632F22BBF05700A8002C /* ColorModViewController.swift in Sources */,
 				023D633322BD34EE00A8002C /* WaitModViewController.swift in Sources */,
 				F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */,
-				A9674DD226976C0B00E064B0 /* VehicleModViewController.swift in Sources */,
 				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
 				84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */,
 				701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */,
 				FD3A59562A3B639E00122BEF /* InstructionsViewController.swift in Sources */,
 				023D633122BC0B2E00A8002C /* RepeatModViewController.swift in Sources */,
 				844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */,
-				A92E88F22697598400FB2CFD /* AnimalModViewController.swift in Sources */,
 				F79EC1F42A266813009B8784 /* BlockToMoveCollectionViewController.swift in Sources */,
 				F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */,
 			);

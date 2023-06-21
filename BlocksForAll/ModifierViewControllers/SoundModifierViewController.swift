@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class SoundModifierViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     /* Custom view controller for the sound modifier scenes (ex. Animal Noise, Emotion Noise, etc.)*/
     
@@ -19,7 +18,7 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
     
     private var soundSelected = 0 // index of the sound choice in the soundDictionary array
     
-    private var soundType = "Animal Noise" // Name of sounds that gets used for accessing data and displaying information
+    private var soundType = "" // Name of sounds that gets used for accessing data and displaying information
     
     // from Paul Hegarty, lectures 13 and 14
     private let defaults = UserDefaults.standard // used to know if in show text mode or show icon mode
@@ -53,27 +52,143 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
     let screenSize: CGRect = UIScreen.main.bounds // size of the screen that the app is being run on. Used to build button layout
     
     override func viewDidLoad() {
-        let soundType = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name // get the soundType from the button that caused this screen to open
-
+        
+        soundType = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name // get the soundType from the button that caused this screen to open
+        
         items = soundDictionary[soundType] ?? [] // get the array of sounds for the soundType
 
-        // Derive attrtibuteName from soundType
-        attributeName = ""
-        let soundTypeWordArray = soundType.split(separator: " ")
+        attributeName = getAttributeName()
+        
+        let collectionView = configureCollectionView()
+
+        soundModTitle.text = soundType // Set title of the screen
+        
+        // Default sound or preserve last selection
+        let previousSound = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? items[0]
+
+        soundSelected = items.firstIndex(of: previousSound) ?? 0 // get the index of the previousSound
+        
+        //TODO: switch control and VO not accessing the sound buttons
+        //reroute VO Order to be more intuitive
+        soundModView.accessibilityElements = [back!, soundModTitle!, collectionView]
+    }
+    
+    ///  Number of items in the section of the collectionView
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.items.count
+    }
+    
+    /// Called when the collectionView is being populated with cells
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! SoundButtonCell
+        let index = indexPath.item // numerical index of cell
+        
+        // Create an image for the cell
+        let image = UIImage(named: items[index])
+        if image != nil && defaults.value(forKey: "showText") as! Int == 0 {
+            // Show Icons is on and the image was found
+            let resizedImage = reiszeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize)) // resize the image to fit the button
+            let imv = UIImageView(image: resizedImage)
+            cell.addSubview(imv)
+        } else {
+            // No image was found and/or show Text is on
+            let textView = UILabel(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
+            textView.text = items[index].capitalized
+            
+            // Text Style
+            textView.textColor = .black
+            textView.backgroundColor = .clear
+            textView.textAlignment = .center
+            textView.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
+            textView.adjustsFontForContentSizeCategory = true
+            textView.adjustsFontSizeToFitWidth = true
+            textView.numberOfLines = 2
+            
+            // Naming convention for color assets is (attributeName)Color
+            // ex. animalNoiseColor, emotionNoiseColor
+            let colorPath = "\(attributeName)Color"
+            let myUIColor = UIColor(named: colorPath)
+            cell.backgroundColor = myUIColor ?? #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+            
+            cell.addSubview(textView)
+        }
+        
+        // Accessibility
+        cell.isAccessibilityElement = true
+        cell.accessibilityLabel = "cell \(index) of \(items.count) cells"
+        cell.accessibilityIdentifier = String(index)
+        
+        // Put a border around the cell if it is currently selected
+        if String(soundSelected) == cell.accessibilityIdentifier {
+            cell.layer.borderWidth = 10
+            cell.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+            cell.isSelected = true
+        } else {
+            cell.isSelected = false
+        }
+        
+        //TODO: fix this
+        //collectionView.accessibilityElements?.append(cell)
+       
+        return cell
+    }
+    
+    /// Called when a sound button is pressed
+    /// Deselect all buttons except for the currently selected one (only one can be selected at a time)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        for cell in collectionView.visibleCells{ // deselect all buttons
+            cell.isSelected = false
+            cell.layer.borderWidth = 0
+        }
+        
+        let selectedCell = collectionView.cellForItem(at: indexPath) // highlight the one selected button
+        selectedCell?.layer.borderWidth = 10
+        selectedCell?.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        selectedCell?.isSelected = true
+        soundSelected = indexPath.item
+    }
+    
+    //TODO: test and finish the method
+    func createVoiceControlLabels(button: UIButton) {
+        var voiceControlLabel = button.accessibilityLabel!
+        let wordToRemove = " Noise"
+        if let range = voiceControlLabel.range(of: wordToRemove){
+            voiceControlLabel.removeSubrange(range)
+        }
+        
+        if #available(iOS 13.0, *) {
+            button.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(button.accessibilityLabel!)"]
+        }
+    }
+    
+    /// Derive attrtibuteName from soundType
+    /// Turns a phrase into camelcase (ex. Animal Noise -> animalNoise)
+    private func getAttributeName () -> String {
+        var tempAttributeName = ""
+        let soundTypeWordArray = soundType.split(separator: " ") // remove spaces
 
         var i = 0
         for str in soundTypeWordArray {
             let wordToAppend: String
             if i == 0 {
-                wordToAppend = str.lowercased()
+                wordToAppend = str.lowercased() // first word is lowercased
             } else {
-                wordToAppend = str.capitalized
+                wordToAppend = str.capitalized // all other words are capitalized
             }
-            attributeName.append(wordToAppend)
+            tempAttributeName.append(wordToAppend)
             i += 1
         }
-        
+        // TODO: fix code setup so that this if-statement can be removed
+        if tempAttributeName == "speak" {
+            tempAttributeName = "speakWord"
+        }
+        return tempAttributeName
+    }
+    
+    /// Builds and returns a UICollectionView to hold the modifier buttons
+    func configureCollectionView() -> UICollectionView{
         //Calculate where the collectionView should be put on the screen
+        //TODO: center cells in collectionView?
         let screenWidth = Int(screenSize.width)
         let screenHeight = Int(screenSize.height)
 
@@ -94,28 +209,20 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
         layout.itemSize = CGSize(width: buttonSize, height: buttonSize) // size of each cell
         
         // Create and set up the collectionView
-        let vc = UICollectionView(frame: CGRect(x: startingX, y: startingY, width: collectionViewWidth, height: collectionViewHeight), collectionViewLayout: layout)
-        vc.register(SoundButtonCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
-        vc.delegate = self
-        vc.dataSource = self
-        vc.isAccessibilityElement = true
+        let myCollectionView = UICollectionView(frame: CGRect(x: startingX, y: startingY, width: collectionViewWidth, height: collectionViewHeight), collectionViewLayout: layout)
+        myCollectionView.register(SoundButtonCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
+        myCollectionView.delegate = self
+        myCollectionView.dataSource = self
+        myCollectionView.isAccessibilityElement = true
+        myCollectionView.backgroundColor = .clear
         
-        soundModView.addSubview(vc)
-
-        soundModTitle.text = soundType // Set title of the screen
+        soundModView.addSubview(myCollectionView)
         
-        // Default sound or preserve last selection
-        let previousSound = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? items[0]
-
-        soundSelected = items.firstIndex(of: previousSound) ?? 0 // get the index of the previousSound
-        
-        //TODO: switch control and VO not accessing the sound buttons
-        //reroute VO Order to be more intuitive
-        soundModView.accessibilityElements = [back!, soundModTitle!, vc]
+        return myCollectionView
     }
     
     /// Takes an image and returns a resized version of it
-    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+    func reiszeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
         image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
@@ -123,92 +230,8 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
         return newImage
     }
     
-    ///  Number of items in the section of the collectionView
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items.count
-    }
     
-    /// Called when the collectionView is being populated with cells
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! SoundButtonCell
-        let index = indexPath.item // numerical index of cell
-        
-        // Create an image for the cell
-        let image = UIImage(named: items[index])
-        if image != nil && defaults.value(forKey: "showText") as! Int == 0 {
-            // Show Icons is on and the image was found
-            let resizedImage = imageWithImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize)) // resize the image to fit the button
-            let imv = UIImageView(image: resizedImage)
-            cell.addSubview(imv)
-        } else {
-            // No image was found and/or show Text is on
-            let textView = UILabel(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
-            textView.text = items[index].capitalized
-            
-            // Text Style
-            textView.textColor = .black
-            textView.backgroundColor = .clear
-            textView.textAlignment = .center
-            textView.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
-            textView.adjustsFontForContentSizeCategory = true
-            textView.adjustsFontSizeToFitWidth = true
-            textView.numberOfLines = 2
-            
-            //TODO: have the background color match the type of block
-            cell.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
-            
-            cell.addSubview(textView)
-        }
-        
-        // Put a border around the cell if it is currently selected
-        if String(soundSelected) == cell.accessibilityIdentifier {
-            cell.layer.borderWidth = 10
-            cell.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
-            cell.isSelected = true
-        } else {
-            cell.isSelected = false
-        }
-        
-        // Accessibility
-        cell.isAccessibilityElement = true
-        cell.accessibilityLabel = "cell \(index) of \(items.count) cells"
-        cell.accessibilityIdentifier = String(index)
-        
-        //TODO: fix this
-        //collectionView.accessibilityElements?.append(cell)
-       
-        return cell
-    }
-    
-    /// Called when a sound button is pressed
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //Deselect all buttons except for the currently selected one (only one can be selected at a time)
-        for cell in collectionView.visibleCells{
-            cell.isSelected = false
-            cell.layer.borderWidth = 0
-        }
-        
-        let selectedCell = collectionView.cellForItem(at: indexPath)
-        selectedCell?.layer.borderWidth = 10
-        selectedCell?.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
-        selectedCell?.isSelected = true
-        soundSelected = indexPath.item
-    }
-    
-    //TODO: test and finish the method
-    func createVoiceControlLabels(button: UIButton) {
-        var voiceControlLabel = button.accessibilityLabel!
-        let wordToRemove = " Noise"
-        if let range = voiceControlLabel.range(of: wordToRemove){
-            voiceControlLabel.removeSubrange(range)
-        }
-        
-        if #available(iOS 13.0, *) {
-            button.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(button.accessibilityLabel!)"]
-        }
-    }
-    
-    /// Called when
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
             // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
@@ -216,7 +239,6 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
         }
     }
 }
-
 
 class SoundButtonCell  : UICollectionViewCell {
     /* Custom cell class for the sound buttons*/
