@@ -3566,7 +3566,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="yellow" width="133.44094848632812" height="133.44094848632812"/>
         <image name="yippe" width="133.44094848632812" height="133.44094848632812"/>
         <namedColor name="navy_text">
-            <color red="0.070588235294117646" green="0.23529411764705882" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.071000002324581146" green="0.23499999940395355" blue="0.37999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -96,9 +96,13 @@ class BlockView: UIView, UITextFieldDelegate {
             let myLabel = UILabel.init(frame: myFrame)
             myLabel.text = block.name
             myLabel.textAlignment = .center
-            myLabel.textColor = UIColor.black
+            if #available(iOS 13.0, *) {
+                myLabel.textColor = UIColor.label
+            } else {
+                myLabel.textColor = UIColor.black
+            }
             myLabel.layer.zPosition = 1
-            myLabel.font = UIFont.preferredFont(forTextStyle: .title1)
+            myLabel.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
             myLabel.numberOfLines = 0
             myLabel.adjustsFontForContentSizeCategory = true
             
