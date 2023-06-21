@@ -41,7 +41,7 @@
 	<key>Speak</key>
 	<dict>
 		<key>attributeName</key>
-		<string>speakWord</string>
+		<string>speak</string>
 		<key>default</key>
 		<string>hi</string>
 		<key>accessibilityHint</key>

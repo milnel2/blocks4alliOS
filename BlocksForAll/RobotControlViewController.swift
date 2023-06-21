@@ -192,11 +192,12 @@ class ExecutingProgram {
         
         switch blockToExec.name{
         //SOUNDS CATEGORY
+            //TODO: test all sounds
         case "Animal Noise":
             let animal = blockToExec.addedBlocks[0].attributes["animalNoise"]
             
             switch animal {
-            case "buzz":
+            case "bee":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_BUZZ)
             case "cat":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_CAT)
@@ -216,7 +217,7 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_LION)
             case "turkey":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOBBLE)
-            case "randomAnimal":
+            case "random animal":
                 playNoise(myAction: myAction, sound: animalSoundFiles[.random(in: animalSoundFiles.indices)])
             default:
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_CAT)
@@ -224,7 +225,7 @@ class ExecutingProgram {
             
         case "Vehicle Noise":
             let vehicle = blockToExec.addedBlocks[0].attributes["vehicleNoise"]
-            
+
             switch vehicle {
             case "airplane":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_AIRPLANE)
@@ -236,15 +237,15 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_HELICOPTER)
             case "siren":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_SIREN)
-            case "speedBoost":
+            case "speed boost":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_SPEED_BOOST)
-            case "startEngine":
+            case "start engine":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_ENGINE_REV)
-            case "tireSqueal":
+            case "tire squeal":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_TIRE_SQUEAL)
             case "train":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRAIN)
-            case "randomVehicle":
+            case "random vehicle":
                 playNoise(myAction: myAction, sound: vehicleSoundFiles[.random(in: vehicleSoundFiles.indices)])
             default:
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_AIRPLANE)
@@ -260,7 +261,7 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRUMPET)
             case "squeak":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_SQUEAK)
-            case "randomObject":
+            case "random object":
                 playNoise(myAction: myAction, sound: objectSoundFiles[.random(in: objectSoundFiles.indices)])
             default:
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_LASERS)
@@ -284,7 +285,7 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_SURPRISED)
             case "yawn":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_YAWN)
-            case "randomEmotion":
+            case "random emotion":
                 playNoise(myAction: myAction, sound: emotionSoundFiles[.random(in: emotionSoundFiles.indices)])
             case "snore":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_SNORING)
@@ -293,7 +294,7 @@ class ExecutingProgram {
             }
             
         case "Speak":
-            let word = blockToExec.addedBlocks[0].attributes["speakWord"]
+            let word = blockToExec.addedBlocks[0].attributes["speak"]
 
             switch word {
             case "hi":
@@ -304,25 +305,25 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_COOL)
             case "haha":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_HAHA)
-            case "letsGo":
+            case "let's go":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_LETS_GO)
             case "oh":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_OOH)
             case "wow":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_WOW)
-            case "tahDah":
+            case "tah dah":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_TAH_DAH)
-            case "uhHuh":
+            case "uh huh":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_HUH)
-            case "uhOh":
+            case "uh oh":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_OH)
             case "wah":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_WAH)
-            case "weeHee":
+            case "wee hee":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEEHEE)
             case "yippe":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_YIPPE)
-            case "randomWord":
+            case "random word":
                 playNoise(myAction: myAction, sound: speakSoundFiles[.random(in: speakSoundFiles.indices)])
             default:
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_HI)
@@ -877,7 +878,8 @@ class ExecutingProgram {
          WW_SOUNDFILE_GOAT,
          WW_SOUNDFILE_HORSE,
          WW_SOUNDFILE_LION,
-         WW_SOUNDFILE_GOBBLE]
+         WW_SOUNDFILE_GOBBLE,
+         WW_SOUNDFILE_BUZZ]
     
     let vehicleSoundFiles =
         [WW_SOUNDFILE_AIRPLANE,
@@ -891,9 +893,7 @@ class ExecutingProgram {
          WW_SOUNDFILE_TRAIN]
     
     let objectSoundFiles =
-        [WW_SOUNDFILE_BUZZ,
-         WW_SOUNDFILE_LASERS,
-         WW_SOUNDFILE_SNORING,
+        [WW_SOUNDFILE_LASERS,
          WW_SOUNDFILE_TRUMPET,
          WW_SOUNDFILE_SQUEAK]
     
@@ -904,7 +904,8 @@ class ExecutingProgram {
          WW_SOUNDFILE_GRUNT,
          WW_SOUNDFILE_SIGH,
          WW_SOUNDFILE_SURPRISED,
-         WW_SOUNDFILE_YAWN]
+         WW_SOUNDFILE_YAWN,
+         WW_SOUNDFILE_SNORING]
     
     let speakSoundFiles =
         [WW_SOUNDFILE_HI,

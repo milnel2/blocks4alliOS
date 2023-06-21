@@ -35,7 +35,7 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
     // the values are arrays of strings which are the same as the image names for those sounds. In text mode, a capitalized version of these strings are shown instead of the images.
     // the first string in each array is the default value
     let soundDictionary: [String:[String]] =
-        ["Animal Noise" :  ["cat", "crocodile", "dinosaur", "goat", "buzz", "elephant", "dog", "horse", "lion", "turkey", "random animal"],
+        ["Animal Noise" :  ["cat", "crocodile", "dinosaur", "goat", "bee", "elephant", "dog", "horse", "lion", "turkey", "random animal"],
          "Emotion Noise" : ["bragging", "confused", "giggle", "grunt", "sigh", "snore", "surprised", "yawn" ,"random emotion"],
          "Object Noise": ["laser", "squeak", "trumpet", "random object"],
          "Vehicle Noise": ["airplane", "beep", "boat", "helicopter", "siren", "speed boost", "start engine", "tire squeal", "train" ,"random vehicle"],
@@ -60,6 +60,11 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
         attributeName = getAttributeName()
         
         let collectionView = configureCollectionView()
+        
+        collectionView.isAccessibilityElement = false
+        
+        collectionView.shouldGroupAccessibilityChildren = true // this and more good voiceOver tips are from https://medium.com/bpxl-craft/how-to-make-voiceover-more-friendly-in-your-ios-app-8fac34ab8c51
+        
 
         soundModTitle.text = soundType // Set title of the screen
         
@@ -68,7 +73,6 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
 
         soundSelected = items.firstIndex(of: previousSound) ?? 0 // get the index of the previousSound
         
-        //TODO: switch control and VO not accessing the sound buttons
         //reroute VO Order to be more intuitive
         soundModView.accessibilityElements = [back!, soundModTitle!, collectionView]
     }
@@ -91,7 +95,7 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
             let imv = UIImageView(image: resizedImage)
             cell.addSubview(imv)
         } else {
-            // No image was found and/or show Text is on
+            // No image was found and/or Show Text is on
             let textView = UILabel(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
             textView.text = items[index].capitalized
             
@@ -115,7 +119,8 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
         
         // Accessibility
         cell.isAccessibilityElement = true
-        cell.accessibilityLabel = "cell \(index) of \(items.count) cells"
+        cell.accessibilityLabel = "\(items[index]) sound. Button \(index + 1) of \(items.count)"
+        cell.accessibilityHint = "Double tap to select"
         cell.accessibilityIdentifier = String(index)
         
         // Put a border around the cell if it is currently selected
@@ -123,12 +128,10 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
             cell.layer.borderWidth = 10
             cell.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
             cell.isSelected = true
+            cell.accessibilityHint = "Selected"
         } else {
             cell.isSelected = false
         }
-        
-        //TODO: fix this
-        //collectionView.accessibilityElements?.append(cell)
        
         return cell
     }
@@ -148,7 +151,7 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
         soundSelected = indexPath.item
     }
     
-    //TODO: test and finish the method
+    //TODO: test and finish this method
     func createVoiceControlLabels(button: UIButton) {
         var voiceControlLabel = button.accessibilityLabel!
         let wordToRemove = " Noise"
@@ -179,9 +182,7 @@ class SoundModifierViewController: UIViewController, UICollectionViewDataSource,
             i += 1
         }
         // TODO: fix code setup so that this if-statement can be removed
-        if tempAttributeName == "speak" {
-            tempAttributeName = "speakWord"
-        }
+        
         return tempAttributeName
     }
     
