@@ -814,6 +814,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <segue destination="D14-Ci-rni" kind="presentation" identifier="ObjectNoiseModifier" modalPresentationStyle="fullScreen" id="zfR-jz-Ddn"/>
                         <segue destination="Ft7-SX-K6V" kind="presentation" identifier="EmotionModifier" modalPresentationStyle="fullScreen" id="lbw-4I-Lh8"/>
                         <segue destination="x8y-ON-Vke" kind="presentation" identifier="SpeakModifier" modalPresentationStyle="fullScreen" id="Kg2-Z9-dwx"/>
+                        <segue destination="I6l-mr-M6V" kind="show" identifier="SoundModifier" id="u8d-ef-tNg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W32-Q3-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2824,6 +2825,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <!--Animal Mod View Controller-->
         <scene sceneID="7tK-u8-qgz">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M4M-np-pmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="kT8-cI-XdI" customClass="AnimalModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uSQ-mj-f2u"/>
@@ -3041,7 +3043,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <outletCollection property="buttons" destination="MCc-Zm-xjT" collectionClass="NSMutableArray" id="YRP-HI-irH"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="M4M-np-pmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1565.5555555555554" y="2261.4814814814813"/>
         </scene>
@@ -3475,10 +3476,62 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             </objects>
             <point key="canvasLocation" x="-488" y="-891"/>
         </scene>
+        <!--Sound Mod View Controller-->
+        <scene sceneID="eHC-1H-4ty">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xFv-2q-OPs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController title="Sound Mod View Controller" modalPresentationStyle="fullScreen" id="I6l-mr-M6V" customClass="SoundModifierViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hp7-Sf-VUW"/>
+                        <viewControllerLayoutGuide type="bottom" id="v0F-p4-lwH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pcs-vo-2Zv">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yj-Ik-X8W">
+                                <rect key="frame" x="40" y="30" width="327" height="302"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7yj-Ik-X8W" secondAttribute="height" multiplier="211:195" id="x2E-p5-ayu"/>
+                                </constraints>
+                                <state key="normal" title="Back" image="Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uoc-nU-c4a" kind="show" id="D3Q-1e-yCW"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxI-El-jaR">
+                                <rect key="frame" x="497" y="85" width="86" height="41"/>
+                                <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="AxI-El-jaR" firstAttribute="top" secondItem="hp7-Sf-VUW" secondAttribute="bottom" constant="85" id="QD2-qp-I2p"/>
+                            <constraint firstItem="AxI-El-jaR" firstAttribute="leading" secondItem="7yj-Ik-X8W" secondAttribute="trailing" constant="130" id="cbP-5g-hRl"/>
+                            <constraint firstItem="AxI-El-jaR" firstAttribute="centerX" secondItem="pcs-vo-2Zv" secondAttribute="centerX" id="jFz-TI-JLs"/>
+                            <constraint firstItem="7yj-Ik-X8W" firstAttribute="top" secondItem="pcs-vo-2Zv" secondAttribute="top" constant="30" id="reh-CS-3F1"/>
+                            <constraint firstItem="7yj-Ik-X8W" firstAttribute="leading" secondItem="pcs-vo-2Zv" secondAttribute="leadingMargin" constant="20" id="yr5-bp-os1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Rlr-zo-HDV"/>
+                    <connections>
+                        <outlet property="back" destination="7yj-Ik-X8W" id="dnf-zn-kuC"/>
+                        <outlet property="soundModTitle" destination="AxI-El-jaR" id="xcI-Cp-kcG"/>
+                        <outlet property="soundModView" destination="pcs-vo-2Zv" id="cmj-F3-D6q"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2513" y="831"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CWQ-aM-vhy"/>
-        <segue reference="ebu-O5-0hJ"/>
+        <segue reference="D3Q-1e-yCW"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="Tu2-KF-poC"/>
         <segue reference="XsQ-5G-ZnB"/>
@@ -3566,7 +3619,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="yellow" width="133.44094848632812" height="133.44094848632812"/>
         <image name="yippe" width="133.44094848632812" height="133.44094848632812"/>
         <namedColor name="navy_text">
-            <color red="0.070588235294117646" green="0.23529411764705882" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.071000002324581146" green="0.23499999940395355" blue="0.37999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

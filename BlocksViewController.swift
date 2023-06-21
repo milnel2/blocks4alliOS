@@ -591,15 +591,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         /* Given the name for a modifier block, returns a Selector for the button*/
         switch name {
         case "Animal Noise":
-            return #selector(animalModifier(sender:))
+            return #selector(soundModifier(sender:))
         case "Vehicle Noise":
-            return #selector(vehicleModifier(sender:))
+            return #selector(soundModifier(sender:))
         case "Object Noise":
-            return #selector(objectNoiseModifier(sender:))
+            return #selector(soundModifier(sender:))
         case "Emotion Noise":
-            return #selector(emotionModifier(sender:))
+            return #selector(soundModifier(sender:))
         case "Speak":
-            return #selector(speakModifier(sender:))
+            return #selector(soundModifier(sender:))
         case "If":
             return #selector(ifModifier(sender:))
         case "Repeat":
@@ -1003,6 +1003,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "SpeakModifier", sender: nil)
     }
     
+    @objc func soundModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "SoundModifier", sender: nil)
+    }
+    
     @objc func buttonClicked(sender: UIButton!){
         print ("Button clicked")
     }
@@ -1169,6 +1174,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // Segue to SpeakModViewController
         if let destinationViewController = segue.destination as? SpeakModViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to SoundModifierViewController
+        if let destinationViewController = segue.destination as? SoundModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }
