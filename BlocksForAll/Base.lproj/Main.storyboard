@@ -2825,7 +2825,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <!--Animal Mod View Controller-->
         <scene sceneID="7tK-u8-qgz">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="M4M-np-pmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="kT8-cI-XdI" customClass="AnimalModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uSQ-mj-f2u"/>
@@ -3043,6 +3042,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <outletCollection property="buttons" destination="MCc-Zm-xjT" collectionClass="NSMutableArray" id="YRP-HI-irH"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M4M-np-pmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1565.5555555555554" y="2261.4814814814813"/>
         </scene>
@@ -3479,7 +3479,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <!--Sound Mod View Controller-->
         <scene sceneID="eHC-1H-4ty">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xFv-2q-OPs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController title="Sound Mod View Controller" modalPresentationStyle="fullScreen" id="I6l-mr-M6V" customClass="SoundModifierViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hp7-Sf-VUW"/>
@@ -3526,12 +3525,13 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <outlet property="soundModView" destination="pcs-vo-2Zv" id="cmj-F3-D6q"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xFv-2q-OPs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2513" y="831"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="D3Q-1e-yCW"/>
+        <segue reference="6gY-Qk-Ui8"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="Tu2-KF-poC"/>
         <segue reference="XsQ-5G-ZnB"/>
