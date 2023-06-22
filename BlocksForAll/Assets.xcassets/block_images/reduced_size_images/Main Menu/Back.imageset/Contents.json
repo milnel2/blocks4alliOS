@@ -3,6 +3,16 @@
     {
       "filename" : "BackButton_Final.png",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Back_button-dark.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {
