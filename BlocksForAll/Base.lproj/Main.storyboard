@@ -340,6 +340,7 @@ To have the robot play the commands, press the play button in the lower right si
 
 Some blocks, like "look," do not have extra parts. Some blocks though such as the “repeat” and “if” blocks have three parts, a beginning block with a modifier and an endblock. The modifier block can have conditions or numbers, repeat modifier block can be changed to repeat 2 times or more than that if you want. If blocks can have conditions such as if Dash bumps into something or if dash hears a voice. These repeat times and if conditions then affect what blocks you place between the If block and the end if block. Other blocks such as drive blocks also have modifiers such as distance. You can edit a modifier block by tapping on the block.
 </string>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -1451,7 +1452,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0EE-tA-7aY">
                                 <rect key="frame" x="315" y="462" width="450" height="75"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" label="Set your variable value"/>
                                 <constraints>
@@ -2526,7 +2527,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="QqG-dM-L1w"/>
+        <segue reference="CWQ-aM-vhy"/>
+        <segue reference="ebu-O5-0hJ"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="Tu2-KF-poC"/>
         <segue reference="XsQ-5G-ZnB"/>
@@ -2576,6 +2578,9 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
