@@ -48,6 +48,18 @@ class BlockTableViewController: UITableViewController {
         //self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"
     }
     
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        super.traitCollectionDidChange(previousTraitCollection)
+//
+//        if #available(iOS 13.0, *) {  // Color change tests only work in iOS 13.0 and above
+//            if previousTraitCollection!.hasDifferentColorAppearance(comparedTo: traitCollection) {  // Tests if the screen was switched between dark/light mode
+//                for block in toolBoxBlockArray {
+//                    checkBlockColor(for: block)
+//                }
+//            }
+//        }
+//    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -320,5 +332,9 @@ class BlockTableViewController: UITableViewController {
             }
         }
     }
+    
+//    private func checkBlockColor(for block: Block){
+//        
+//    }
 }
 

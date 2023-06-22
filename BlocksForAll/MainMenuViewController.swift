@@ -22,9 +22,9 @@ class MainMenuViewController: UIViewController {
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
-//        welcomeLabel.adjustsFontForContentSizeCategory = true
-//
-//        welcomeLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 40.0)
+        welcomeLabel.adjustsFontForContentSizeCategory = true
+        
+        welcomeLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 40.0)
         
         getStarted.titleLabel?.adjustsFontForContentSizeCategory = true
         instructions.titleLabel?.adjustsFontForContentSizeCategory = true
