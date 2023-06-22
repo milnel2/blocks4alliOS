@@ -3,6 +3,16 @@
     {
       "filename" : "drive_forward.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark_drive_forward.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

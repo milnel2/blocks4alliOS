@@ -3,6 +3,16 @@
     {
       "filename" : "drive_backward.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark_drive_backward.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

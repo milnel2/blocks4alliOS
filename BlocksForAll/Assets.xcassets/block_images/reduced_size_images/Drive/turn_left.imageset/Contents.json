@@ -3,6 +3,16 @@
     {
       "filename" : "turn_left.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark_turn_left.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

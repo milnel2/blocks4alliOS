@@ -3,6 +3,16 @@
     {
       "filename" : "Play_Button.png",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Dark-Play_Button.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

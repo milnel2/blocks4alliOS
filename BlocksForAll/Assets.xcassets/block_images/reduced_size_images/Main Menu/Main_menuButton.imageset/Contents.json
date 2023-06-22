@@ -3,6 +3,16 @@
     {
       "filename" : "Main_menuButton.png",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Main_menuButton 2.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {
