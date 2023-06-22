@@ -32,7 +32,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         // Change fonts to custom font
-//        settingsLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
+        settingsLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
         blockSizeLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
         showIconsLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
         
