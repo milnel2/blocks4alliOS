@@ -252,29 +252,25 @@
                                     <segue destination="cJF-Nc-M7L" kind="show" id="SES-Og-HDs"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="SettingsTitle" translatesAutoresizingMaskIntoConstraints="NO" id="1vF-1G-OwN">
-                                <rect key="frame" x="249" y="115" width="582" height="115"/>
-                                <accessibility key="accessibilityConfiguration" label="Settings">
-                                    <accessibilityTraits key="traits" staticText="YES"/>
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SettingsTitle" translatesAutoresizingMaskIntoConstraints="NO" id="glw-m4-ShG">
+                                <rect key="frame" x="346" y="117" width="388" height="110"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="582" id="HRO-w7-qbw"/>
-                                    <constraint firstAttribute="height" constant="115" id="qCK-7S-RWF"/>
+                                    <constraint firstAttribute="width" constant="388" id="Hoc-cX-q3x"/>
+                                    <constraint firstAttribute="height" constant="110" id="xpc-WZ-UFx"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.47450977560000002" blue="0.18823529780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="1vF-1G-OwN" secondAttribute="bottom" constant="580" id="52e-jN-t6t"/>
                             <constraint firstAttribute="trailing" secondItem="xnj-s6-6gX" secondAttribute="trailing" id="8lX-dP-OFG"/>
-                            <constraint firstItem="1vF-1G-OwN" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="115" id="8rf-od-0b8"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Skb-Px-NWC" secondAttribute="trailing" constant="20" symbolic="YES" id="Bbi-Q2-zkU"/>
+                            <constraint firstItem="glw-m4-ShG" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" id="Bek-Qg-Xev"/>
+                            <constraint firstItem="Skb-Px-NWC" firstAttribute="top" secondItem="glw-m4-ShG" secondAttribute="bottom" constant="36" id="DlY-gS-HaX"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="70" id="EWf-Bj-ppa"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" id="G80-Bk-XGK"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="49" id="HEb-6Y-kgc"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="top" secondItem="0DE-vi-VZO" secondAttribute="top" id="JmA-La-d5C"/>
-                            <constraint firstItem="1vF-1G-OwN" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" id="L6U-KS-gaK"/>
+                            <constraint firstItem="glw-m4-ShG" firstAttribute="leading" secondItem="Rvu-FP-rqn" secondAttribute="trailing" constant="49" id="PHk-kv-bcP"/>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Skb-Px-NWC" secondAttribute="bottom" constant="56.5" id="QQd-ou-YO9"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="bottom" secondItem="0DE-vi-VZO" secondAttribute="bottom" id="RdE-pI-DPm"/>
                             <constraint firstItem="Skb-Px-NWC" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" constant="262" id="VBm-a5-sH5"/>
@@ -2537,21 +2533,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-        <segue reference="CWQ-aM-vhy"/>
->>>>>>> parent of 1d84168 (Revert "Add darkmode background and main menu titles")
-        <segue reference="ebu-O5-0hJ"/>
-        <segue reference="PIe-sL-Fqa"/>
-        <segue reference="Tu2-KF-poC"/>
-        <segue reference="XsQ-5G-ZnB"/>
-=======
         <segue reference="Tjn-hR-3fo"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="gnX-kj-isW"/>
         <segue reference="Oq5-da-dqe"/>
->>>>>>> Stashed changes
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Apple" width="133" height="133"/>
@@ -2568,7 +2553,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="Question_Mark" width="677" height="917"/>
         <image name="Robot_avatar" width="125" height="146"/>
         <image name="Settings" width="1148" height="1088"/>
-        <image name="SettingsTitle" width="582" height="151"/>
+        <image name="SettingsTitle" width="582" height="166"/>
         <image name="Show_Icons" width="2048" height="2048"/>
         <image name="Show_Text" width="1200" height="1200"/>
         <image name="Watermelon" width="133" height="133"/>
