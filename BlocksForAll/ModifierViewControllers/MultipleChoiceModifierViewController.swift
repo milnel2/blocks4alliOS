@@ -72,6 +72,10 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
 
           optionModTitle.text = optionType // Set title of the screen
           
+          // Adding custom font
+          optionModTitle.adjustsFontForContentSizeCategory = true
+          optionModTitle.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
+          
           // Default option or preserve last selection
           let previousOption = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? items[0]
 

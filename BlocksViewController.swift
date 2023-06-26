@@ -592,8 +592,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             return #selector(soundModifier(sender:))
         case "If":
             return #selector(ifModifier(sender:))
-        case "Repeat":
-            return #selector(repeatModifier(sender:))
         case "Turn Left", "Turn Right":
             return #selector(angleModifier(sender:))
         case "Set Eye Light":
@@ -608,7 +606,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             return #selector(turnModifier(sender:))
         case "Drive Forward", "Drive Backward":
             return #selector(distanceSpeedModifier(sender:))
-        case "Wait for Time":
+        case "Wait for Time", "Repeat":
             return #selector(waitModifier(sender:))
         case "Set Variable":
             return #selector(variableModifier(sender:))
@@ -929,11 +927,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "EyeLightModifier", sender: nil)
     }
     
-    @objc func repeatModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "RepeatModifier", sender: nil)
-    }
-    
     @objc func variableModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "VariableModifier", sender: nil)
@@ -1063,16 +1056,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
         
-        // Segue to RepeatModViewController
-        if let destinationViewController = segue.destination as? RepeatModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to WaitModViewController
-        if let destinationViewController = segue.destination as? WaitModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
         // Segue to SetVariableModViewController
         if let destinationViewController = segue.destination as? SetVariableModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
@@ -1110,6 +1093,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // Segue to MultipleChoiceModifierViewController
         if let destinationViewController = segue.destination as? MultipleChoiceModifierViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to StepperModifierViewController
+        if let destinationViewController = segue.destination as? StepperModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }
