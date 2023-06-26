@@ -2136,11 +2136,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yj-Ik-X8W">
-                                <rect key="frame" x="30" y="30" width="275" height="195"/>
+                                <rect key="frame" x="30" y="30" width="275" height="243.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="m10-yd-Idu"/>
-                                    <constraint firstAttribute="height" constant="195" id="xwR-22-hGv"/>
+                                    <constraint firstAttribute="width" secondItem="7yj-Ik-X8W" secondAttribute="height" multiplier="220:195" id="Fvn-NR-dqj"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="IKn-MX-ovX"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="195" id="hFw-8n-MSs"/>
                                 </constraints>
                                 <state key="normal" title="Back" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -2150,7 +2151,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MULTIPLE CHOICE MODIFIER TYPE TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxI-El-jaR">
-                                <rect key="frame" x="315" y="86.5" width="450.5" height="82"/>
+                                <rect key="frame" x="315" y="111" width="450.5" height="82"/>
                                 <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
@@ -2190,11 +2191,12 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMl-mM-MfN">
-                                <rect key="frame" x="30" y="30" width="260.5" height="195"/>
+                                <rect key="frame" x="30" y="30" width="260.5" height="230.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="AFg-Zj-cBK"/>
-                                    <constraint firstAttribute="height" constant="195" id="JnJ-Sb-MHx"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="AFg-Zj-cBK"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="195" id="KXI-bb-krE"/>
+                                    <constraint firstAttribute="width" secondItem="nMl-mM-MfN" secondAttribute="height" multiplier="220:195" id="x10-pa-LSx"/>
                                 </constraints>
                                 <state key="normal" title="Back" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -2204,14 +2206,14 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STEPPER MODIFIER TYPE TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOM-Mf-5kA">
-                                <rect key="frame" x="300.5" y="107" width="479.5" height="41"/>
+                                <rect key="frame" x="300.5" y="125" width="479.5" height="41"/>
                                 <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="82l-2T-bE9">
-                                <rect key="frame" x="287" y="338.5" width="506.5" height="133"/>
+                                <rect key="frame" x="228" y="338.5" width="624" height="133"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5b-9i-EKT">
                                         <rect key="frame" x="0.0" y="0.0" width="138" height="133"/>
@@ -2221,14 +2223,14 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                             <action selector="decreaseButtonPressed:" destination="a8r-3H-fGk" eventType="touchUpInside" id="YrK-qc-5Cx"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="1 second" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ka0-sb-1mH">
-                                        <rect key="frame" x="188" y="0.0" width="130.5" height="133"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="STEPPER VALUE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ka0-sb-1mH">
+                                        <rect key="frame" x="188" y="0.0" width="248" height="133"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Yw-ge-P4L">
-                                        <rect key="frame" x="368.5" y="0.0" width="138" height="133"/>
+                                        <rect key="frame" x="486" y="0.0" width="138" height="133"/>
                                         <accessibility key="accessibilityConfiguration" label="Increase"/>
                                         <state key="normal" title=" " image="orange_plus"/>
                                         <connections>
@@ -2265,9 +2267,9 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="z9o-ps-gUP"/>
+        <segue reference="2YI-wg-iJ2"/>
         <segue reference="PIe-sL-Fqa"/>
-        <segue reference="gnX-kj-isW"/>
+        <segue reference="Tu2-KF-poC"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
