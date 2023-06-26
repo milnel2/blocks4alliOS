@@ -3,6 +3,16 @@
     {
       "filename" : "hear_voice-5.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-hear_voice.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

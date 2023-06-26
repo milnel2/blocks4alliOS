@@ -3,6 +3,16 @@
     {
       "filename" : "false_plchldr.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-false.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

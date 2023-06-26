@@ -3,6 +3,16 @@
     {
       "filename" : "if.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-if.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
