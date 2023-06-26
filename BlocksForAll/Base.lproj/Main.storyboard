@@ -165,7 +165,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="Cwg-wl-dN5">
-                                <rect key="frame" x="170" y="360" width="760" height="300"/>
+                                <rect key="frame" x="170" y="388" width="760" height="300"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ane-f3-gcc">
                                         <rect key="frame" x="0.0" y="0.0" width="330" height="300"/>
@@ -226,9 +226,12 @@
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="AAp-gl-yqv"/>
+                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvu-FP-rqn">
-                                <rect key="frame" x="69" y="70" width="228" height="205.5"/>
+                                <rect key="frame" x="69" y="70" width="228" height="233.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" label="Back"/>
                                 <constraints>
@@ -241,19 +244,22 @@
                                     <segue destination="YEE-PZ-SjD" kind="show" id="Oq5-da-dqe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-Px-NWC">
-                                <rect key="frame" x="262" y="263" width="135.5" height="40.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-Px-NWC">
+                                <rect key="frame" x="363.5" y="248" width="353" height="90"/>
+                                <accessibility key="accessibilityConfiguration" label="Add Robots "/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="fBB-LT-UJY"/>
+                                    <constraint firstAttribute="width" constant="353" id="gqo-Hj-EDI"/>
+                                </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Add Robots">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
-                                </buttonConfiguration>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="AddRobotButton"/>
                                 <connections>
                                     <segue destination="cJF-Nc-M7L" kind="show" id="SES-Og-HDs"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SettingsTitle" translatesAutoresizingMaskIntoConstraints="NO" id="glw-m4-ShG">
-                                <rect key="frame" x="346" y="127" width="388" height="100"/>
+                                <rect key="frame" x="356" y="122" width="388" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="388" id="Hoc-cX-q3x"/>
                                     <constraint firstAttribute="height" constant="100" id="wR7-EF-sdu"/>
@@ -262,22 +268,21 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.47450977560000002" blue="0.18823529780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="Skb-Px-NWC" firstAttribute="top" secondItem="glw-m4-ShG" secondAttribute="bottom" constant="26" id="67w-Th-QOO"/>
                             <constraint firstAttribute="trailing" secondItem="xnj-s6-6gX" secondAttribute="trailing" id="8lX-dP-OFG"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Skb-Px-NWC" secondAttribute="trailing" constant="20" symbolic="YES" id="Bbi-Q2-zkU"/>
-                            <constraint firstItem="glw-m4-ShG" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" id="Bek-Qg-Xev"/>
-                            <constraint firstItem="Skb-Px-NWC" firstAttribute="top" secondItem="glw-m4-ShG" secondAttribute="bottom" constant="36" id="DlY-gS-HaX"/>
+                            <constraint firstItem="glw-m4-ShG" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" constant="10" id="Bek-Qg-Xev"/>
+                            <constraint firstItem="glw-m4-ShG" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="122" id="EHi-jX-upe"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="70" id="EWf-Bj-ppa"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" id="G80-Bk-XGK"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="49" id="HEb-6Y-kgc"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="top" secondItem="0DE-vi-VZO" secondAttribute="top" id="JmA-La-d5C"/>
-                            <constraint firstItem="glw-m4-ShG" firstAttribute="leading" secondItem="Rvu-FP-rqn" secondAttribute="trailing" constant="49" id="PHk-kv-bcP"/>
-                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Skb-Px-NWC" secondAttribute="bottom" constant="56.5" id="QQd-ou-YO9"/>
+                            <constraint firstItem="glw-m4-ShG" firstAttribute="leading" secondItem="Rvu-FP-rqn" secondAttribute="trailing" constant="59" id="PHk-kv-bcP"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="bottom" secondItem="0DE-vi-VZO" secondAttribute="bottom" id="RdE-pI-DPm"/>
-                            <constraint firstItem="Skb-Px-NWC" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" constant="262" id="VBm-a5-sH5"/>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Rvu-FP-rqn" secondAttribute="bottom" constant="84.5" id="Ypa-Qm-t7O"/>
                             <constraint firstAttribute="trailing" secondItem="Cwg-wl-dN5" secondAttribute="trailing" constant="150" id="bDI-BD-TtJ"/>
+                            <constraint firstItem="Skb-Px-NWC" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" id="n7X-O2-6Hd"/>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="150" id="vuR-QM-3Ne"/>
-                            <constraint firstItem="1NO-hi-rac" firstAttribute="top" secondItem="Cwg-wl-dN5" secondAttribute="bottom" constant="150" id="wkA-2W-nIa"/>
+                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Skb-Px-NWC" secondAttribute="bottom" constant="50" id="wbr-Av-TD7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pUy-ez-HU8"/>
@@ -450,7 +455,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
-                        <rect key="frame" x="0.0" y="0.0" width="838" height="431.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="838" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -2361,10 +2366,11 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
     <inferredMetricsTieBreakers>
         <segue reference="D3Q-1e-yCW"/>
         <segue reference="SES-Og-HDs"/>
-        <segue reference="Tu2-KF-poC"/>
+        <segue reference="gnX-kj-isW"/>
         <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="AddRobotButton" width="911" height="224"/>
         <image name="Apple" width="133" height="133"/>
         <image name="B4A_Robot_outline" width="2048" height="2048"/>
         <image name="Back" width="2048" height="2048"/>
