@@ -3,6 +3,16 @@
     {
       "filename" : "purple_plus.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-purple_plus.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
