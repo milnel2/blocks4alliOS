@@ -3,6 +3,16 @@
     {
       "filename" : "Untitled_Artwork.png",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "SettingButtonFinal 2.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

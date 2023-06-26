@@ -3,6 +3,16 @@
     {
       "filename" : "Untitled_Artwork 1.png",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Help_button-dark-scaled-2.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

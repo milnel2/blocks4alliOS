@@ -3,6 +3,16 @@
     {
       "filename" : "speak_tah_dah.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-speak_tah_dah.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
