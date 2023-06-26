@@ -3,6 +3,16 @@
     {
       "filename" : "speak_uh_oh.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-speak_uh_oh.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
