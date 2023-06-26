@@ -120,7 +120,7 @@
 		<key>displaysText</key>
 		<string>true</string>
 	</dict>
-	<key>Set Right Ear Light</key>
+	<key>Set Right Ear Light Color</key>
 	<dict>
 		<key>attributeName</key>
 		<string>modifierBlockColor</string>
@@ -133,7 +133,7 @@
 		<key>accessibilityHint</key>
 		<string>Double tap to set light color</string>
 	</dict>
-	<key>Set Left Ear Light</key>
+	<key>Set Left Ear Light Color</key>
 	<dict>
 		<key>attributeName</key>
 		<string>modifierBlockColor</string>
@@ -146,7 +146,7 @@
 		<key>accessibilityHint</key>
 		<string>Double tap to set light color</string>
 	</dict>
-	<key>Set Chest Light</key>
+	<key>Set Chest Light Color</key>
 	<dict>
 		<key>attributeName</key>
 		<string>modifierBlockColor</string>
@@ -159,7 +159,7 @@
 		<key>accessibilityHint</key>
 		<string>Double tap to set light color</string>
 	</dict>
-	<key>Set All Lights</key>
+	<key>Set All Lights Color</key>
 	<dict>
 		<key>attributeName</key>
 		<string>modifierBlockColor</string>

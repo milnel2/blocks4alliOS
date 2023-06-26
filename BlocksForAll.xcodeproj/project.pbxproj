@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		023D632F22BBF05700A8002C /* ColorModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D632E22BBF05700A8002C /* ColorModViewController.swift */; };
 		023D633122BC0B2E00A8002C /* RepeatModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D633022BC0B2E00A8002C /* RepeatModViewController.swift */; };
 		023D633322BD34EE00A8002C /* WaitModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D633222BD34EE00A8002C /* WaitModViewController.swift */; };
 		025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */; };
@@ -22,7 +21,7 @@
 		844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */; };
 		844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */; };
 		84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */; };
-		8D27A4522A425A8C00A79EB2 /* SoundModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27A4512A425A8C00A79EB2 /* SoundModifierViewController.swift */; };
+		8D27A4522A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */; };
 		8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8D66032A3A43330086E14A /* ModifierProperties.plist */; };
 		8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */; };
 		A9937EA9267BAB3B00A56E8A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9937EA8267BAB3B00A56E8A /* CustomButton.swift */; };
@@ -69,7 +68,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		023D632E22BBF05700A8002C /* ColorModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModViewController.swift; sourceTree = "<group>"; };
 		023D633022BC0B2E00A8002C /* RepeatModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatModViewController.swift; sourceTree = "<group>"; };
 		023D633222BD34EE00A8002C /* WaitModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitModViewController.swift; sourceTree = "<group>"; };
 		025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleModViewController.swift; sourceTree = "<group>"; };
@@ -84,7 +82,7 @@
 		844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewCell.swift; sourceTree = "<group>"; };
 		844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewController.swift; sourceTree = "<group>"; };
 		84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeLightModifierViewController.swift; sourceTree = "<group>"; };
-		8D27A4512A425A8C00A79EB2 /* SoundModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModifierViewController.swift; sourceTree = "<group>"; };
+		8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceModifierViewController.swift; sourceTree = "<group>"; };
 		8D8D66032A3A43330086E14A /* ModifierProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
 		8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A9937EA8267BAB3B00A56E8A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 			isa = PBXGroup;
 			children = (
 				025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */,
-				023D632E22BBF05700A8002C /* ColorModViewController.swift */,
 				02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */,
 				57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */,
 				84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */,
@@ -247,7 +244,7 @@
 				62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */,
 				57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */,
 				023D633222BD34EE00A8002C /* WaitModViewController.swift */,
-				8D27A4512A425A8C00A79EB2 /* SoundModifierViewController.swift */,
+				8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */,
 			);
 			path = ModifierViewControllers;
 			sourceTree = "<group>";
@@ -394,12 +391,11 @@
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
 				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
-				8D27A4522A425A8C00A79EB2 /* SoundModifierViewController.swift in Sources */,
+				8D27A4522A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift in Sources */,
 				F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */,
 				02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */,
 				FD3A594E2A3A196B00122BEF /* CustomFont.swift in Sources */,
 				F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */,
-				023D632F22BBF05700A8002C /* ColorModViewController.swift in Sources */,
 				023D633322BD34EE00A8002C /* WaitModViewController.swift in Sources */,
 				F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */,
 				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
