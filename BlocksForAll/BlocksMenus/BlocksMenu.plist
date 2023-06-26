@@ -173,7 +173,7 @@
 				<key>isModifiable</key>
 				<true/>
 				<key>name</key>
-				<string>Set Left Ear Light</string>
+				<string>Set Left Ear Light Color</string>
 				<key>color</key>
 				<string>gold_block</string>
 				<key>double</key>
@@ -187,7 +187,7 @@
 				<key>isModifiable</key>
 				<true/>
 				<key>name</key>
-				<string>Set Right Ear Light</string>
+				<string>Set Right Ear Light Color</string>
 				<key>color</key>
 				<string>gold_block</string>
 				<key>double</key>
@@ -201,7 +201,7 @@
 				<key>isModifiable</key>
 				<true/>
 				<key>name</key>
-				<string>Set Chest Light</string>
+				<string>Set Chest Light Color</string>
 				<key>color</key>
 				<string>gold_block</string>
 				<key>double</key>
@@ -215,7 +215,7 @@
 				<key>isModifiable</key>
 				<true/>
 				<key>name</key>
-				<string>Set All Lights</string>
+				<string>Set All Lights Color</string>
 				<key>color</key>
 				<string>gold_block</string>
 				<key>double</key>

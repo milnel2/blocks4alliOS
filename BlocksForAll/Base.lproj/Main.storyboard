@@ -165,7 +165,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="Cwg-wl-dN5">
-                                <rect key="frame" x="170" y="360" width="760" height="300"/>
+                                <rect key="frame" x="170" y="388" width="760" height="300"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ane-f3-gcc">
                                         <rect key="frame" x="0.0" y="0.0" width="330" height="300"/>
@@ -226,9 +226,12 @@
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="AAp-gl-yqv"/>
+                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvu-FP-rqn">
-                                <rect key="frame" x="69" y="70" width="228" height="205.5"/>
+                                <rect key="frame" x="69" y="70" width="228" height="233.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" label="Back"/>
                                 <constraints>
@@ -241,19 +244,22 @@
                                     <segue destination="YEE-PZ-SjD" kind="show" id="Oq5-da-dqe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-Px-NWC">
-                                <rect key="frame" x="262" y="263" width="135.5" height="40.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-Px-NWC">
+                                <rect key="frame" x="363.5" y="248" width="353" height="90"/>
+                                <accessibility key="accessibilityConfiguration" label="Add Robots "/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="fBB-LT-UJY"/>
+                                    <constraint firstAttribute="width" constant="353" id="gqo-Hj-EDI"/>
+                                </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Add Robots">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
-                                </buttonConfiguration>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="AddRobotButton"/>
                                 <connections>
                                     <segue destination="cJF-Nc-M7L" kind="show" id="SES-Og-HDs"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SettingsTitle" translatesAutoresizingMaskIntoConstraints="NO" id="glw-m4-ShG">
-                                <rect key="frame" x="346" y="127" width="388" height="100"/>
+                                <rect key="frame" x="356" y="122" width="388" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="388" id="Hoc-cX-q3x"/>
                                     <constraint firstAttribute="height" constant="100" id="wR7-EF-sdu"/>
@@ -262,22 +268,21 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.47450977560000002" blue="0.18823529780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="Skb-Px-NWC" firstAttribute="top" secondItem="glw-m4-ShG" secondAttribute="bottom" constant="26" id="67w-Th-QOO"/>
                             <constraint firstAttribute="trailing" secondItem="xnj-s6-6gX" secondAttribute="trailing" id="8lX-dP-OFG"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Skb-Px-NWC" secondAttribute="trailing" constant="20" symbolic="YES" id="Bbi-Q2-zkU"/>
-                            <constraint firstItem="glw-m4-ShG" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" id="Bek-Qg-Xev"/>
-                            <constraint firstItem="Skb-Px-NWC" firstAttribute="top" secondItem="glw-m4-ShG" secondAttribute="bottom" constant="36" id="DlY-gS-HaX"/>
+                            <constraint firstItem="glw-m4-ShG" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" constant="10" id="Bek-Qg-Xev"/>
+                            <constraint firstItem="glw-m4-ShG" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="122" id="EHi-jX-upe"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="70" id="EWf-Bj-ppa"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" id="G80-Bk-XGK"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="49" id="HEb-6Y-kgc"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="top" secondItem="0DE-vi-VZO" secondAttribute="top" id="JmA-La-d5C"/>
-                            <constraint firstItem="glw-m4-ShG" firstAttribute="leading" secondItem="Rvu-FP-rqn" secondAttribute="trailing" constant="49" id="PHk-kv-bcP"/>
-                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Skb-Px-NWC" secondAttribute="bottom" constant="56.5" id="QQd-ou-YO9"/>
+                            <constraint firstItem="glw-m4-ShG" firstAttribute="leading" secondItem="Rvu-FP-rqn" secondAttribute="trailing" constant="59" id="PHk-kv-bcP"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="bottom" secondItem="0DE-vi-VZO" secondAttribute="bottom" id="RdE-pI-DPm"/>
-                            <constraint firstItem="Skb-Px-NWC" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" constant="262" id="VBm-a5-sH5"/>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Rvu-FP-rqn" secondAttribute="bottom" constant="84.5" id="Ypa-Qm-t7O"/>
                             <constraint firstAttribute="trailing" secondItem="Cwg-wl-dN5" secondAttribute="trailing" constant="150" id="bDI-BD-TtJ"/>
+                            <constraint firstItem="Skb-Px-NWC" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" id="n7X-O2-6Hd"/>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="150" id="vuR-QM-3Ne"/>
-                            <constraint firstItem="1NO-hi-rac" firstAttribute="top" secondItem="Cwg-wl-dN5" secondAttribute="bottom" constant="150" id="wkA-2W-nIa"/>
+                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Skb-Px-NWC" secondAttribute="bottom" constant="50" id="wbr-Av-TD7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pUy-ez-HU8"/>
@@ -450,7 +455,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
-                        <rect key="frame" x="0.0" y="0.0" width="838" height="431.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="838" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -480,179 +485,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QXa-OY-u2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1175" y="1394.4444444444443"/>
-        </scene>
-        <!--Color-->
-        <scene sceneID="Qka-YS-wZj">
-            <objects>
-                <viewController title="Color" modalPresentationStyle="fullScreen" id="WWh-wG-F8c" customClass="ColorModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qYo-Av-aNp"/>
-                        <viewControllerLayoutGuide type="bottom" id="Y2X-sY-PwO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pT3-hS-b8f">
-                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="97" translatesAutoresizingMaskIntoConstraints="NO" id="cNg-LX-pJu">
-                                <rect key="frame" x="128.5" y="522" width="823" height="133"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NR1-3C-bm3">
-                                        <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="green" label="Green"/>
-                                        <state key="normal" image="green">
-                                            <color key="titleColor" systemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="Lhb-Pz-aaW"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bye-mA-9jc">
-                                        <rect key="frame" x="230" y="0.0" width="133" height="133"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="blue" label="Blue "/>
-                                        <state key="normal" image="blue">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="okb-uF-kSZ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPl-tl-LSn">
-                                        <rect key="frame" x="460" y="0.0" width="133" height="133"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="purple" label="Purple "/>
-                                        <state key="normal" image="purple">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="Qsl-Pb-Ri2"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwE-wm-MaT">
-                                        <rect key="frame" x="690" y="0.0" width="133" height="133"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="white" label="White "/>
-                                        <state key="normal" image="white">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="fFF-Ok-MJm"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="97" translatesAutoresizingMaskIntoConstraints="NO" id="was-3h-lMs">
-                                <rect key="frame" x="128.5" y="322" width="823" height="133"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iyU-jO-bvk">
-                                        <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="black" label="Black"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="133" id="MkV-BR-uCR"/>
-                                            <constraint firstAttribute="height" constant="133" id="Ua2-8I-sGf"/>
-                                            <constraint firstAttribute="width" secondItem="iyU-jO-bvk" secondAttribute="height" multiplier="1:1" id="hAI-ei-DR7"/>
-                                        </constraints>
-                                        <state key="normal" image="black">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="PJB-Ng-TJU"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBS-jv-FLd">
-                                        <rect key="frame" x="230" y="0.0" width="133" height="133"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="red" label="Red"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="133" id="3xD-kW-bz9"/>
-                                            <constraint firstAttribute="width" constant="133" id="yw4-Dz-8zP"/>
-                                        </constraints>
-                                        <state key="normal" image="red">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="oGK-cA-BoN"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ng-u7-4WV">
-                                        <rect key="frame" x="460" y="0.0" width="133" height="133"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="orange" label="Orange"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="133" id="Jnt-LF-6R8"/>
-                                            <constraint firstAttribute="width" secondItem="3Ng-u7-4WV" secondAttribute="height" multiplier="1:1" id="knp-D1-JUe"/>
-                                            <constraint firstAttribute="height" constant="133" id="zxd-NN-Bop"/>
-                                        </constraints>
-                                        <state key="normal" image="orange">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="0ih-2A-3j1"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUo-Od-miF">
-                                        <rect key="frame" x="690" y="0.0" width="133" height="133"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="yellow" label="Yellow"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="133" id="ZmV-D9-B3A"/>
-                                            <constraint firstAttribute="height" constant="133" id="rw3-v4-G6T"/>
-                                        </constraints>
-                                        <state key="normal" image="yellow">
-                                            <color key="titleColor" systemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buttonPressed:" destination="WWh-wG-F8c" eventType="touchUpInside" id="bgy-OU-cyn"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYn-Uw-o5x">
-                                <rect key="frame" x="500.5" y="203" width="79" height="41"/>
-                                <accessibility key="accessibilityConfiguration" label="Color"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nKa-YP-2xv">
-                                <rect key="frame" x="40" y="30" width="223" height="195"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="195" id="KdY-VC-KqO"/>
-                                </constraints>
-                                <state key="normal" image="Back">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="uoc-nU-c4a" kind="show" id="QqG-dM-L1w"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="was-3h-lMs" firstAttribute="centerX" secondItem="pT3-hS-b8f" secondAttribute="centerX" id="1A0-Sk-JsS"/>
-                            <constraint firstItem="nKa-YP-2xv" firstAttribute="top" secondItem="qYo-Av-aNp" secondAttribute="bottom" constant="30" id="29t-ow-Az2"/>
-                            <constraint firstItem="LYn-Uw-o5x" firstAttribute="leading" secondItem="nKa-YP-2xv" secondAttribute="trailing" constant="237.5" id="5kz-UK-K8E"/>
-                            <constraint firstItem="LYn-Uw-o5x" firstAttribute="top" secondItem="qYo-Av-aNp" secondAttribute="bottom" constant="203" id="7f4-hn-9tB"/>
-                            <constraint firstItem="cNg-LX-pJu" firstAttribute="top" secondItem="was-3h-lMs" secondAttribute="bottom" constant="67" id="Klx-7J-bj9"/>
-                            <constraint firstItem="cNg-LX-pJu" firstAttribute="centerX" secondItem="pT3-hS-b8f" secondAttribute="centerX" id="QO9-lL-LIB"/>
-                            <constraint firstItem="nKa-YP-2xv" firstAttribute="leading" secondItem="pT3-hS-b8f" secondAttribute="leadingMargin" constant="20" id="cOy-hR-1w7"/>
-                            <constraint firstItem="was-3h-lMs" firstAttribute="top" secondItem="LYn-Uw-o5x" secondAttribute="bottom" constant="78" id="gOs-dS-Ygv"/>
-                            <constraint firstItem="LYn-Uw-o5x" firstAttribute="centerX" secondItem="pT3-hS-b8f" secondAttribute="centerX" id="sIo-mO-THz"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="4aN-d1-jU6"/>
-                    <connections>
-                        <outlet property="ColorTitle" destination="LYn-Uw-o5x" id="P16-SX-h1Z"/>
-                        <outlet property="back" destination="nKa-YP-2xv" id="aFl-0j-5rs"/>
-                        <outlet property="colorView" destination="pT3-hS-b8f" id="CMr-EZ-1as"/>
-                        <outletCollection property="buttons" destination="iyU-jO-bvk" collectionClass="NSMutableArray" id="pMW-oG-w8n"/>
-                        <outletCollection property="buttons" destination="uBS-jv-FLd" collectionClass="NSMutableArray" id="Flg-v3-8wP"/>
-                        <outletCollection property="buttons" destination="3Ng-u7-4WV" collectionClass="NSMutableArray" id="sNB-ET-x3t"/>
-                        <outletCollection property="buttons" destination="gUo-Od-miF" collectionClass="NSMutableArray" id="s3E-tv-goJ"/>
-                        <outletCollection property="buttons" destination="NR1-3C-bm3" collectionClass="NSMutableArray" id="gQy-tO-ZM2"/>
-                        <outletCollection property="buttons" destination="bye-mA-9jc" collectionClass="NSMutableArray" id="ee6-OA-253"/>
-                        <outletCollection property="buttons" destination="FPl-tl-LSn" collectionClass="NSMutableArray" id="fvy-ns-sVb"/>
-                        <outletCollection property="buttons" destination="kwE-wm-MaT" collectionClass="NSMutableArray" id="IbH-Dz-sps"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EXh-xT-7Co" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="246.11111111111111" y="1254.8148148148148"/>
         </scene>
         <!--Blocks View Controller-->
         <scene sceneID="xPO-0B-V5c">
@@ -804,7 +636,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <segue destination="cJF-Nc-M7L" kind="show" identifier="AddRobotSegue" id="PIe-sL-Fqa"/>
                         <segue destination="PBc-35-QW0" kind="show" identifier="DistanceSpeedModifier" id="CWQ-aM-vhy"/>
                         <segue destination="JzC-8L-d8W" kind="show" identifier="TurnRightModifier" id="cqe-hd-fim"/>
-                        <segue destination="WWh-wG-F8c" kind="show" identifier="ColorModifier" id="iKl-5d-2xu"/>
                         <segue destination="Qcc-AD-WwK" kind="show" identifier="RepeatModifier" id="5OM-6I-IU4"/>
                         <segue destination="9VT-Qr-ako" kind="show" identifier="WaitModifier" id="1BY-eQ-UdM"/>
                         <segue destination="WHd-IA-T2v" kind="show" identifier="EyeLightModifier" id="dLb-PI-jTc"/>
@@ -2478,10 +2309,10 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
             </objects>
             <point key="canvasLocation" x="-488" y="-891"/>
         </scene>
-        <!--Sound Mod View Controller-->
+        <!--Multiple Choice Mod View Controller-->
         <scene sceneID="eHC-1H-4ty">
             <objects>
-                <viewController title="Sound Mod View Controller" modalPresentationStyle="fullScreen" id="I6l-mr-M6V" customClass="SoundModifierViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Multiple Choice Mod View Controller" modalPresentationStyle="fullScreen" id="I6l-mr-M6V" customClass="MultipleChoiceModifierViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hp7-Sf-VUW"/>
                         <viewControllerLayoutGuide type="bottom" id="v0F-p4-lwH"/>
@@ -2491,10 +2322,11 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yj-Ik-X8W">
-                                <rect key="frame" x="40" y="30" width="327" height="302"/>
+                                <rect key="frame" x="30" y="30" width="240" height="195"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="7yj-Ik-X8W" secondAttribute="height" multiplier="211:195" id="x2E-p5-ayu"/>
+                                    <constraint firstAttribute="width" constant="240" id="m10-yd-Idu"/>
+                                    <constraint firstAttribute="height" constant="195" id="xwR-22-hGv"/>
                                 </constraints>
                                 <state key="normal" title="Back" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -2503,8 +2335,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                     <segue destination="uoc-nU-c4a" kind="show" id="D3Q-1e-yCW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxI-El-jaR">
-                                <rect key="frame" x="497" y="85" width="86" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MULTIPLE CHOICE MODIFIER TYPE TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxI-El-jaR">
+                                <rect key="frame" x="315" y="86.5" width="450.5" height="82"/>
                                 <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
@@ -2513,18 +2345,18 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="AxI-El-jaR" firstAttribute="top" secondItem="hp7-Sf-VUW" secondAttribute="bottom" constant="85" id="QD2-qp-I2p"/>
-                            <constraint firstItem="AxI-El-jaR" firstAttribute="leading" secondItem="7yj-Ik-X8W" secondAttribute="trailing" constant="130" id="cbP-5g-hRl"/>
+                            <constraint firstItem="AxI-El-jaR" firstAttribute="centerY" secondItem="7yj-Ik-X8W" secondAttribute="centerY" id="Tci-Sf-Plm"/>
                             <constraint firstItem="AxI-El-jaR" firstAttribute="centerX" secondItem="pcs-vo-2Zv" secondAttribute="centerX" id="jFz-TI-JLs"/>
+                            <constraint firstItem="AxI-El-jaR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7yj-Ik-X8W" secondAttribute="trailing" constant="10" id="qmN-tc-qE0"/>
                             <constraint firstItem="7yj-Ik-X8W" firstAttribute="top" secondItem="pcs-vo-2Zv" secondAttribute="top" constant="30" id="reh-CS-3F1"/>
-                            <constraint firstItem="7yj-Ik-X8W" firstAttribute="leading" secondItem="pcs-vo-2Zv" secondAttribute="leadingMargin" constant="20" id="yr5-bp-os1"/>
+                            <constraint firstItem="7yj-Ik-X8W" firstAttribute="leading" secondItem="pcs-vo-2Zv" secondAttribute="leadingMargin" constant="10" id="yr5-bp-os1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Rlr-zo-HDV"/>
                     <connections>
-                        <outlet property="back" destination="7yj-Ik-X8W" id="dnf-zn-kuC"/>
-                        <outlet property="soundModTitle" destination="AxI-El-jaR" id="xcI-Cp-kcG"/>
-                        <outlet property="soundModView" destination="pcs-vo-2Zv" id="cmj-F3-D6q"/>
+                        <outlet property="back" destination="7yj-Ik-X8W" id="YLO-VR-mzo"/>
+                        <outlet property="optionModTitle" destination="AxI-El-jaR" id="IaY-Hd-hs4"/>
+                        <outlet property="optionModView" destination="pcs-vo-2Zv" id="0kg-Wc-dNt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFv-2q-OPs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2533,12 +2365,13 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tjn-hR-3fo"/>
+        <segue reference="D3Q-1e-yCW"/>
         <segue reference="SES-Og-HDs"/>
-        <segue reference="Tu2-KF-poC"/>
+        <segue reference="gnX-kj-isW"/>
         <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="AddRobotButton" width="911" height="224"/>
         <image name="Apple" width="133" height="133"/>
         <image name="B4A_Robot_outline" width="2048" height="2048"/>
         <image name="Back" width="2048" height="2048"/>
@@ -2558,22 +2391,14 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="Show_Text" width="1200" height="1200"/>
         <image name="Watermelon" width="133" height="133"/>
         <image name="WelcomeTitle" width="1627" height="139"/>
-        <image name="black" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="blue" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="green" width="133.44094848632812" height="133.44094848632812"/>
         <image name="green_minus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="green_plus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="hear_voice" width="133.44094848632812" height="133.44094848632812"/>
         <image name="obstacle_sensed" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="orange" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange_minus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange_plus" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="purple" width="133.44094848632812" height="133.44094848632812"/>
         <image name="purple_minus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="purple_plus" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="red" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="white" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="yellow" width="133.44094848632812" height="133.44094848632812"/>
         <namedColor name="navy_text">
             <color red="0.071000002324581146" green="0.23499999940395355" blue="0.37999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
