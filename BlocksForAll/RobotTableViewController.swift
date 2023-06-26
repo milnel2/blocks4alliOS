@@ -58,7 +58,6 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "robotCell", for: indexPath)
         
         let verticalPadding: CGFloat = 6
@@ -93,6 +92,11 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         cell.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
             
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
+        
+        
         return cell
     }
     
@@ -100,8 +104,13 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         let robot = robots[indexPath.row]
         if(robot.isConnected()){
             robotManager?.disconnect(from: robot)
+            self.tableView.reloadData()
         }else{
             robotManager?.connect(to: robot)
+        }
+        
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
         }
         
     }
@@ -142,6 +151,7 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         }
         DispatchQueue.main.async{
             self.tableView.reloadData()
+            
         }
         print("found a robot")
     }

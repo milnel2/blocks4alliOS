@@ -253,10 +253,10 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SettingsTitle" translatesAutoresizingMaskIntoConstraints="NO" id="glw-m4-ShG">
-                                <rect key="frame" x="346" y="117" width="388" height="110"/>
+                                <rect key="frame" x="346" y="127" width="388" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="388" id="Hoc-cX-q3x"/>
-                                    <constraint firstAttribute="height" constant="110" id="xpc-WZ-UFx"/>
+                                    <constraint firstAttribute="height" constant="100" id="wR7-EF-sdu"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -425,6 +425,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gVq-QZ-GAv" firstAttribute="top" secondItem="6i5-m2-CBz" secondAttribute="bottom" constant="-125" id="3Gi-20-mXb"/>
+                            <constraint firstItem="Kj3-mC-EmF" firstAttribute="top" secondItem="6Hh-dq-UJ7" secondAttribute="top" id="84v-uf-aUD"/>
                             <constraint firstItem="QLJ-MJ-LN5" firstAttribute="top" secondItem="gVq-QZ-GAv" secondAttribute="bottom" constant="78" id="9dP-ly-9qK"/>
                             <constraint firstItem="Kj3-mC-EmF" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leading" id="9rE-ws-0EE"/>
                             <constraint firstItem="gVq-QZ-GAv" firstAttribute="centerX" secondItem="6Hh-dq-UJ7" secondAttribute="centerX" constant="2" id="Lv1-Rf-Xpo"/>
@@ -436,7 +437,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                             <constraint firstItem="Zck-g6-6V2" firstAttribute="top" secondItem="QLJ-MJ-LN5" secondAttribute="bottom" constant="126" id="j5L-BI-hYW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QLJ-MJ-LN5" secondAttribute="trailing" constant="99" id="jX1-fW-6ph"/>
                             <constraint firstAttribute="trailing" secondItem="Kj3-mC-EmF" secondAttribute="trailing" id="mAS-Zm-8ED"/>
-                            <constraint firstItem="Kj3-mC-EmF" firstAttribute="top" secondItem="Yhr-81-ujC" secondAttribute="bottom" id="omc-wJ-ZjT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dQa-0W-FaM"/>
@@ -2535,7 +2535,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
     <inferredMetricsTieBreakers>
         <segue reference="Tjn-hR-3fo"/>
         <segue reference="SES-Og-HDs"/>
-        <segue reference="gnX-kj-isW"/>
+        <segue reference="Tu2-KF-poC"/>
         <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
