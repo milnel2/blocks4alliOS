@@ -63,11 +63,14 @@ class SettingsViewController: UIViewController {
         blockSizeSlider.accessibilityValue = "\(Int(displayValue))"
         
         blockSizeLabel.accessibilityValue = "= \(Int(displayValue))"
-        
+//
         if defaults.value(forKey: "showText") as! Int == 0 {
             showIconsLabel.accessibilityValue = "Show icons selected"
+            showIconsLabel.text = "Show Icons"
+            
         } else {
             showIconsLabel.accessibilityValue = "Show text selected"
+            showIconsLabel.text = "Show Text"
         }
         
         
@@ -83,8 +86,12 @@ class SettingsViewController: UIViewController {
         
         if sender.selectedSegmentIndex == 0 {
             sender.accessibilityLabel = "Show icons"
+            showIconsLabel.text = "Show Icons"
+            showIconsLabel.accessibilityValue = "Show icons selected"
         } else {
             sender.accessibilityValue = "Show text"
+            showIconsLabel.accessibilityValue = "Show text selected"
+            showIconsLabel.text = "Show Text"
         }
     }
     
