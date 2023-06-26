@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "RobotAvatar_Dot.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
