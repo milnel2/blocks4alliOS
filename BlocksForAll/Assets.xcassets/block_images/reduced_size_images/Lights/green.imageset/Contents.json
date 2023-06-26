@@ -3,6 +3,16 @@
     {
       "filename" : "green light.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "green light 1.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

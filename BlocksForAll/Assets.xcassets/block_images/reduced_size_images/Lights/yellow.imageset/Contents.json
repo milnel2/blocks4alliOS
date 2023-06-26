@@ -3,6 +3,16 @@
     {
       "filename" : "yellow light.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "yellow light 1.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

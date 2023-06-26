@@ -3,6 +3,16 @@
     {
       "filename" : "orange light.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "orange light 1.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
