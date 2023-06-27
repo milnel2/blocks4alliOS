@@ -3,6 +3,16 @@
     {
       "filename" : "sound_grunt.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-sound_grunt.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

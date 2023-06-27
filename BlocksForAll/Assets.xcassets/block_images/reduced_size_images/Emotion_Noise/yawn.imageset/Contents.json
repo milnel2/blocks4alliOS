@@ -3,6 +3,16 @@
     {
       "filename" : "sound_yawn.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-sound_yawn.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
