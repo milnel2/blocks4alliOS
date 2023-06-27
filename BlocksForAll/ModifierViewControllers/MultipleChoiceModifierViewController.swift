@@ -101,7 +101,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
           let image = UIImage(named: items[index])
           if image != nil && defaults.value(forKey: "showText") as! Int == 0 {
               // Show Icons is on and the image was found
-              let resizedImage = reiszeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize)) // resize the image to fit the button
+              let resizedImage = resizeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize)) // resize the image to fit the button
               let imv = UIImageView(image: resizedImage)
               cell.addSubview(imv)
           } else {
@@ -244,7 +244,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       }
       
       /// Takes an image and returns a resized version of it
-      func reiszeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+      func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
           UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
           image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
           let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
