@@ -3,6 +3,16 @@
     {
       "filename" : "speak_wow.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-speak_wow.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

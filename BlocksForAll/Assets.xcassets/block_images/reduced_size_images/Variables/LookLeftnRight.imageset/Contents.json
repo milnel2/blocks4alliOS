@@ -3,6 +3,16 @@
     {
       "filename" : "LookLeftnRight.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-LookLeftnRight.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

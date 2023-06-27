@@ -458,19 +458,19 @@ class ExecutingProgram {
             myAction.setEyeLight(light)
             //                    myAction.setChestLight(light)
             
-        case "Set Left Ear Light":
+        case "Set Left Ear Light Color":
             let light = playLight(lightBlock: blockToExec)
             myAction.setLeftEarLight(light)
             
-        case "Set Right Ear Light":
+        case "Set Right Ear Light Color":
             let light = playLight(lightBlock: blockToExec)
             myAction.setRightEarLight(light)
             
-        case "Set Chest Light":
+        case "Set Chest Light Color":
             let light = playLight(lightBlock: blockToExec)
             myAction.setChestLight(light)
             
-        case "Set All Lights":
+        case "Set All Lights Color":
             let light = playLight(lightBlock: blockToExec)
             myAction.setEyeLight(light)
             myAction.setRightEarLight(light)

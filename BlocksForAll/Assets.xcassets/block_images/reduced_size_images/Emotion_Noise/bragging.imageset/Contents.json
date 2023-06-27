@@ -3,6 +3,16 @@
     {
       "filename" : "sound_bragging.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-sound_bragging.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

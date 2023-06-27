@@ -3,6 +3,16 @@
     {
       "filename" : "wait.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-wait.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

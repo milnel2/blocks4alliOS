@@ -3,6 +3,16 @@
     {
       "filename" : "set_all_lights.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-set_all_lights.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

@@ -3,6 +3,16 @@
     {
       "filename" : "repeat_forever.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-repeat_forever.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

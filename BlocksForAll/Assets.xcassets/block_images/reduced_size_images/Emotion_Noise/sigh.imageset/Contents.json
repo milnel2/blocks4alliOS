@@ -3,6 +3,16 @@
     {
       "filename" : "sound_sigh.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-sound_sigh.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

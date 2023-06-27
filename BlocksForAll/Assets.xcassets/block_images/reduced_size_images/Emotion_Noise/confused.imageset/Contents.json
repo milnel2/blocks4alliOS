@@ -3,6 +3,16 @@
     {
       "filename" : "sound_confused.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-sound_confused.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

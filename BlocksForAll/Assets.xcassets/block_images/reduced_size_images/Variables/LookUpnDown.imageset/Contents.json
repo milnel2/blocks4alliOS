@@ -3,6 +3,16 @@
     {
       "filename" : "LookUpnDown.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-LookUpnDown.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

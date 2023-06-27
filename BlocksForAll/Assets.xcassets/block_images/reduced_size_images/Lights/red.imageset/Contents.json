@@ -3,6 +3,16 @@
     {
       "filename" : "red light (1).svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "red light.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

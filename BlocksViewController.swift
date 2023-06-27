@@ -431,9 +431,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // modifiers for if and repeat blocks are a bit different than other blocks
         if name == "If" {
             switch placeHolderBlock.attributes["booleanSelected"]{
-            case "hear_voice":
+            case "Hear voice":
                 modifierInformation = "robot hears voice"
-            case "obstacle_sensed":
+            case "Obstacle sensed":
                 modifierInformation = "robot senses obstacle"
             default:
                 modifierInformation = "false"
@@ -588,29 +588,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     private func getModifierSelector(name : String) -> Selector? {
         /* Given the name for a modifier block, returns a Selector for the button*/
         switch name {
-        case "Animal Noise", "Vehicle Noise", "Object Noise", "Emotion Noise", "Speak":
+        case "Animal Noise", "Vehicle Noise", "Object Noise", "Emotion Noise", "Speak", "Set Right Ear Light Color", "Set Left Ear Light Color", "Set Chest Light Color", "Set All Lights Color", "Look Left or Right", "Look Up or Down", "Turn":
             return #selector(soundModifier(sender:))
-        case "If":
-            return #selector(ifModifier(sender:))
-        case "Repeat":
-            return #selector(repeatModifier(sender:))
         case "Turn Left", "Turn Right":
             return #selector(angleModifier(sender:))
-        case "Set Eye Light":
+        case "Set Eye Light", "If":
             return #selector(setEyeLightModifier(sender:))
         case "Drive":
             return #selector(driveModifier(sender:))
-        case "Look Up or Down":
-            return #selector(lookUpDownModifier(sender:))
-        case "Look Left or Right":
-            return #selector(lookLeftRightModifier(sender:))
-        case "Turn":
-            return #selector(turnModifier(sender:))
         case "Drive Forward", "Drive Backward":
             return #selector(distanceSpeedModifier(sender:))
-        case  "Set Left Ear Light", "Set Right Ear Light", "Set Chest Light", "Set All Lights":
-            return #selector(lightColorModifier(sender:))
-        case "Wait for Time":
+        case "Wait for Time", "Repeat":
             return #selector(waitModifier(sender:))
         case "Set Variable":
             return #selector(variableModifier(sender:))
@@ -931,11 +919,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "EyeLightModifier", sender: nil)
     }
     
-    @objc func repeatModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "RepeatModifier", sender: nil)
-    }
-    
     @objc func variableModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "VariableModifier", sender: nil)
@@ -1065,43 +1048,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
         
-        // Segue to ColorModViewController
-        if let destinationViewController = segue.destination as? ColorModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to RepeatModViewController
-        if let destinationViewController = segue.destination as? RepeatModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to WaitModViewController
-        if let destinationViewController = segue.destination as? WaitModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
         // Segue to SetVariableModViewController
         if let destinationViewController = segue.destination as? SetVariableModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to IfModViewController
-        if let destinationViewController = segue.destination as? IfModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to TurnVariable
-        if let destinationViewController = segue.destination as? TurnVariable{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to LookLeftRightVariables
-        if let destinationViewController = segue.destination as? LookLeftRightVariables{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to LookUpDownVariables
-        if let destinationViewController = segue.destination as? LookUpDownVariables{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
         
@@ -1111,12 +1059,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
 
         // Segue to EyeLightModifierViewController
-        if let destinationViewController = segue.destination as? EyeLightModifierViewController{
+        if let destinationViewController = segue.destination as? TwoOptionModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
         
-        // Segue to SoundModifierViewController
-        if let destinationViewController = segue.destination as? SoundModifierViewController{
+        // Segue to MultipleChoiceModifierViewController
+        if let destinationViewController = segue.destination as? MultipleChoiceModifierViewController{
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to StepperModifierViewController
+        if let destinationViewController = segue.destination as? StepperModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }

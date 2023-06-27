@@ -3,6 +3,16 @@
     {
       "filename" : "set_left_ear_light.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-set_left_ear_light.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
