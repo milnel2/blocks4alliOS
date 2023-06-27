@@ -39,6 +39,29 @@ class BlocksTypeTableViewController: UITableViewController {
         createBlocksArray()
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if #available(iOS 13.0, *) {  // Color change tests only work in iOS 13.0 and above
+            if previousTraitCollection!.hasDifferentColorAppearance(comparedTo: traitCollection) {  // Tests if the screen was switched between dark/light mode
+                for block in blockTypes {
+                    switch block.name {
+                    case "Sounds":
+                        block.color = Color.init(uiColor: UIColor(named: "blue_block")!)
+                    case "Drive":
+                        block.color = Color.init(uiColor: UIColor(named: "green_block")!)
+                    case "Lights":
+                        block.color = Color.init(uiColor: UIColor(named: "gold_block")!)
+                    case "Control":
+                        block.color = Color.init(uiColor: UIColor.gray)
+                    default:
+                        print("Block not found")
+                    }
+                }
+                    }
+                }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
