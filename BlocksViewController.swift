@@ -588,7 +588,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     private func getModifierSelector(name : String) -> Selector? {
         /* Given the name for a modifier block, returns a Selector for the button*/
         switch name {
-        case "Animal Noise", "Vehicle Noise", "Object Noise", "Emotion Noise", "Speak", "Set Right Ear Light Color", "Set Left Ear Light Color", "Set Chest Light Color", "Set All Lights Color":
+        case "Animal Noise", "Vehicle Noise", "Object Noise", "Emotion Noise", "Speak", "Set Right Ear Light Color", "Set Left Ear Light Color", "Set Chest Light Color", "Set All Lights Color", "Look Left or Right", "Look Up or Down", "Turn":
             return #selector(soundModifier(sender:))
         case "Turn Left", "Turn Right":
             return #selector(angleModifier(sender:))
@@ -596,12 +596,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             return #selector(setEyeLightModifier(sender:))
         case "Drive":
             return #selector(driveModifier(sender:))
-        case "Look Up or Down":
-            return #selector(lookUpDownModifier(sender:))
-        case "Look Left or Right":
-            return #selector(lookLeftRightModifier(sender:))
-        case "Turn":
-            return #selector(turnModifier(sender:))
         case "Drive Forward", "Drive Backward":
             return #selector(distanceSpeedModifier(sender:))
         case "Wait for Time", "Repeat":
@@ -1056,21 +1050,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // Segue to SetVariableModViewController
         if let destinationViewController = segue.destination as? SetVariableModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to TurnVariable
-        if let destinationViewController = segue.destination as? TurnVariable{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to LookLeftRightVariables
-        if let destinationViewController = segue.destination as? LookLeftRightVariables{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
-        // Segue to LookUpDownVariables
-        if let destinationViewController = segue.destination as? LookUpDownVariables{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
         

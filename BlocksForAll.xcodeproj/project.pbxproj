@@ -10,9 +10,6 @@
 		025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */; };
 		02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */; };
 		02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */; };
-		02FE3BCA22DCE4FB000C7C66 /* TurnVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */; };
-		02FE3BCC22DCE501000C7C66 /* LookLeftRightVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */; };
-		02FE3BCD22DCE504000C7C66 /* LookUpDownVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */; };
 		62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */; };
 		701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701A43861EC26EFD00314599 /* BlocksViewController.swift */; };
 		844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */; };
@@ -69,9 +66,6 @@
 		025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleModViewController.swift; sourceTree = "<group>"; };
 		02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceSpeedModViewController.swift; sourceTree = "<group>"; };
 		57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveVariables.swift; sourceTree = "<group>"; };
-		57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnVariable.swift; sourceTree = "<group>"; };
-		57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookLeftRightVariables.swift; sourceTree = "<group>"; };
-		57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpDownVariables.swift; sourceTree = "<group>"; };
 		62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVariableModViewController.swift; sourceTree = "<group>"; };
 		701A43861EC26EFD00314599 /* BlocksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksViewController.swift; path = ../BlocksViewController.swift; sourceTree = "<group>"; };
 		844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewCell.swift; sourceTree = "<group>"; };
@@ -232,10 +226,7 @@
 				025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */,
 				02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */,
 				57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */,
-				57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */,
-				57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */,
 				62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */,
-				57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */,
 				8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */,
 				8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */,
 				8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */,
@@ -369,10 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02FE3BCD22DCE504000C7C66 /* LookUpDownVariables.swift in Sources */,
-				02FE3BCC22DCE501000C7C66 /* LookLeftRightVariables.swift in Sources */,
 				8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */,
-				02FE3BCA22DCE4FB000C7C66 /* TurnVariable.swift in Sources */,
 				A9937EA9267BAB3B00A56E8A /* CustomButton.swift in Sources */,
 				02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */,
 				025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */,

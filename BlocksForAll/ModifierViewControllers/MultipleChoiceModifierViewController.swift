@@ -28,7 +28,10 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       @IBOutlet var optionModView: UIView! // view within the view controller
       
       @IBOutlet var optionModTitle: UILabel! // label at top of screen
-      
+    
+    
+    @IBOutlet weak var optionalExtraLabel: UILabel! // label underneath optionModTitle. Used for some of the variable modifiiers
+    
       //TODO: get this dictionary from asset folders?
       // holds the different options for each multiple choice modifier type
       // the keys are the same as what gets put in the optionModTitle and are accessed by using optionType
@@ -44,7 +47,12 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
            "Set Left Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "black"],
            "Set Chest Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "black"],
            "Set All Lights Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "black"]]
-      
+    
+    let variableOptionDictionary: [String: [String:String]] =
+    ["Look Left or Right" : ["attributeName" : "variableSelected", "Extra label text" : "Select Look Left or Right Variable\nMaximum and minimum:\nLeft = -120, Right = 120"],
+     "Look Up or Down" : ["attributeName" : "variableSelected", "Extra label text" : "Select Look Up or Down Variable\nMaximum and minimum:\nUp = -20, Down = 7.5"],
+     "Turn" : ["attributeName" : "variableSelected", "Extra label text" : "Select turn variable"]]
+    let variableArray =  ["Orange", "Banana", "Apple", "Cherry", "Watermelon"]
       var items: [String] = [] // holds the specific array of modifier type strings accessed from the optionDictionary
       
       private var attributeName = "" // a reformatted version of optionType. Used for accessing and saving data (ex. if soundType = "Animal Noise", attributeName is "animalNoise"
@@ -56,12 +64,24 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       let screenSize: CGRect = UIScreen.main.bounds // size of the screen that the app is being run on. Used to build button layout
       
       override func viewDidLoad() {
-          
+          //TODO: make fonts consistent
           optionType = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name // get the optionType from the button that caused this screen to open
           
           items = optionDictionary[optionType] ?? [] // get the array of options for the optionType
-
-          attributeName = getAttributeName()
+          if items == [] {
+              // this is a variable selection screen
+              items = variableArray
+              attributeName = variableOptionDictionary[optionType]?["attributeName"] ?? ""
+              optionalExtraLabel.text = variableOptionDictionary[optionType]?["Extra label text"] ?? ""
+              // Adding custom font
+              optionalExtraLabel.adjustsFontForContentSizeCategory = true
+              optionalExtraLabel.font = UIFont.accessibleFont(withStyle: .title3, size: 18.0)
+          } else {
+              // not a variable selection screen
+              attributeName = getAttributeName()
+              optionalExtraLabel.text = "" // set the extra label to empty by default
+          }
+         
           
           let collectionView = configureCollectionView()
           
@@ -71,6 +91,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
           
 
           optionModTitle.text = optionType // Set title of the screen
+          
           
           // Adding custom font
           optionModTitle.adjustsFontForContentSizeCategory = true
