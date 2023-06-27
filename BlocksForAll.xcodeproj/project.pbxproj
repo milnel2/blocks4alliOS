@@ -14,13 +14,12 @@
 		02FE3BCC22DCE501000C7C66 /* LookLeftRightVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */; };
 		02FE3BCD22DCE504000C7C66 /* LookUpDownVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */; };
 		62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */; };
-		62EA50BC22CE52E7002BD4ED /* IfModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */; };
 		701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701A43861EC26EFD00314599 /* BlocksViewController.swift */; };
 		844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */; };
 		844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */; };
-		84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */; };
 		8D27A4522A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */; };
 		8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8D66032A3A43330086E14A /* ModifierProperties.plist */; };
+		8D954F592A4B2E9800F10A26 /* TwoOptionModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */; };
 		8DCBEA552A49F8A500A26043 /* StepperModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */; };
 		8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */; };
 		A9937EA9267BAB3B00A56E8A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9937EA8267BAB3B00A56E8A /* CustomButton.swift */; };
@@ -74,13 +73,12 @@
 		57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookLeftRightVariables.swift; sourceTree = "<group>"; };
 		57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookUpDownVariables.swift; sourceTree = "<group>"; };
 		62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVariableModViewController.swift; sourceTree = "<group>"; };
-		62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfModViewController.swift; sourceTree = "<group>"; };
 		701A43861EC26EFD00314599 /* BlocksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksViewController.swift; path = ../BlocksViewController.swift; sourceTree = "<group>"; };
 		844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewCell.swift; sourceTree = "<group>"; };
 		844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewController.swift; sourceTree = "<group>"; };
-		84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeLightModifierViewController.swift; sourceTree = "<group>"; };
 		8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceModifierViewController.swift; sourceTree = "<group>"; };
 		8D8D66032A3A43330086E14A /* ModifierProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
+		8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoOptionModifierViewController.swift; sourceTree = "<group>"; };
 		8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperModifierViewController.swift; sourceTree = "<group>"; };
 		8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A9937EA8267BAB3B00A56E8A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -234,14 +232,13 @@
 				025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */,
 				02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */,
 				57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */,
-				84CFB36522D3AED6002812EA /* EyeLightModifierViewController.swift */,
-				62EA50BB22CE52E7002BD4ED /* IfModViewController.swift */,
 				57C1BD0322D53CB7003FCD70 /* LookLeftRightVariables.swift */,
 				57C1BD0522D53CD1003FCD70 /* LookUpDownVariables.swift */,
 				62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */,
 				57C1BCFF22D53C51003FCD70 /* TurnVariable.swift */,
 				8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */,
 				8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */,
+				8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */,
 			);
 			path = ModifierViewControllers;
 			sourceTree = "<group>";
@@ -384,7 +381,6 @@
 				F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */,
 				FD3A59502A3A270900122BEF /* CustomHexColor.swift in Sources */,
 				62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */,
-				62EA50BC22CE52E7002BD4ED /* IfModViewController.swift in Sources */,
 				844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */,
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
 				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,
@@ -396,7 +392,7 @@
 				F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */,
 				F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */,
 				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
-				84CFB36622D3AED6002812EA /* EyeLightModifierViewController.swift in Sources */,
+				8D954F592A4B2E9800F10A26 /* TwoOptionModifierViewController.swift in Sources */,
 				701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */,
 				FD3A59562A3B639E00122BEF /* InstructionsViewController.swift in Sources */,
 				844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */,

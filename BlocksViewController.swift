@@ -431,9 +431,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // modifiers for if and repeat blocks are a bit different than other blocks
         if name == "If" {
             switch placeHolderBlock.attributes["booleanSelected"]{
-            case "hear_voice":
+            case "Hear voice":
                 modifierInformation = "robot hears voice"
-            case "obstacle_sensed":
+            case "Obstacle sensed":
                 modifierInformation = "robot senses obstacle"
             default:
                 modifierInformation = "false"
@@ -590,11 +590,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         switch name {
         case "Animal Noise", "Vehicle Noise", "Object Noise", "Emotion Noise", "Speak", "Set Right Ear Light Color", "Set Left Ear Light Color", "Set Chest Light Color", "Set All Lights Color":
             return #selector(soundModifier(sender:))
-        case "If":
-            return #selector(ifModifier(sender:))
         case "Turn Left", "Turn Right":
             return #selector(angleModifier(sender:))
-        case "Set Eye Light":
+        case "Set Eye Light", "If":
             return #selector(setEyeLightModifier(sender:))
         case "Drive":
             return #selector(driveModifier(sender:))
@@ -1061,11 +1059,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
         
-        // Segue to IfModViewController
-        if let destinationViewController = segue.destination as? IfModViewController{
-            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
-        }
-        
         // Segue to TurnVariable
         if let destinationViewController = segue.destination as? TurnVariable{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
@@ -1087,7 +1080,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
 
         // Segue to EyeLightModifierViewController
-        if let destinationViewController = segue.destination as? EyeLightModifierViewController{
+        if let destinationViewController = segue.destination as? TwoOptionModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
         
