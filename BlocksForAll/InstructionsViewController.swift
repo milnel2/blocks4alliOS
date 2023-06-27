@@ -18,11 +18,14 @@ class InstructionsViewController: UIViewController {
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
+        super.viewDidLoad()
        // Set custom text font
         helpLabel.adjustsFontForContentSizeCategory = true
         helpLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
         
         instructionsText.adjustsFontForContentSizeCategory = true
         instructionsText.font = UIFont.accessibleFont(withStyle: .body, size: 26.0)
+        
+        instructionsText.isAccessibilityElement = true
     }
 }
