@@ -2101,23 +2101,27 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="nZi-qD-DBG">
-                                <rect key="frame" x="302" y="368" width="476" height="274"/>
+                                <rect key="frame" x="307" y="368" width="466" height="274"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="vAj-Po-emI">
-                                        <rect key="frame" x="0.0" y="0.0" width="476" height="133"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="466" height="133"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywf-kX-izT">
-                                                <rect key="frame" x="0.0" y="0.0" width="138" height="133"/>
-                                                <accessibility key="accessibilityConfiguration" label="Decrease"/>
-                                                <state key="normal" title=" " image="off"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <state key="normal" backgroundImage="Off">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="optionOnePressed:" destination="sKo-Tc-eyH" eventType="touchUpInside" id="MUG-B9-Uza"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7e-AE-Lha">
-                                                <rect key="frame" x="338" y="0.0" width="138" height="133"/>
-                                                <accessibility key="accessibilityConfiguration" label="Increase"/>
-                                                <state key="normal" title=" " image="on"/>
+                                                <rect key="frame" x="333" y="0.0" width="133" height="133"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <state key="normal" title=" " backgroundImage="On">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="optionTwoPressed:" destination="sKo-Tc-eyH" eventType="touchUpInside" id="U0E-oJ-ydM"/>
                                                 </connections>
@@ -2125,7 +2129,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="TWO OPTION VALUE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwb-pX-XHB">
-                                        <rect key="frame" x="0.0" y="233" width="476" height="41"/>
+                                        <rect key="frame" x="0.0" y="233" width="466" height="41"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -2178,6 +2182,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="GreenArrow" width="649" height="586"/>
         <image name="Main Workspace Button" width="792" height="151"/>
         <image name="Main_menuButton" width="1314" height="1373"/>
+        <image name="Off" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="On" width="133.44094848632812" height="133.44094848632812"/>
         <image name="Orange" width="133" height="133"/>
         <image name="Play_Button" width="2835" height="2822"/>
         <image name="Question_Mark" width="677" height="917"/>
@@ -2189,8 +2195,6 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         <image name="WelcomeTitle" width="1627" height="139"/>
         <image name="green_minus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="green_plus" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="off" width="133.44094848632812" height="133.44094848632812"/>
-        <image name="on" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange_minus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange_plus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="purple_minus" width="133.44094848632812" height="133.44094848632812"/>
