@@ -37,6 +37,11 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       // the keys are the same as what gets put in the optionModTitle and are accessed by using optionType
       // the values are arrays of strings which are the same as the image names for those options. In text mode, a capitalized version of these strings are shown instead of the images.
       // the first string in each array is the default value
+    
+        //NOTE: this class is also used for variable modifiers, which work a bit differently
+        // variable modifiers use the optionalExtraLabel that is below the optionModTitle. For modifiers that use this label, there is a seperate array (variableArray) for the option names, and there are only two elements in the array in optionDictionary
+        // the first element of the array is the attributeName and the second element is the text to put in the optionalExtraLabel
+        // these are the only types of modifiers that will have only two items in the array, because any modifiers that have two options should be put in the TwoOptionModifierViewController class
       let optionDictionary: [String:[String]] =
           ["Animal Noise" :  ["cat", "crocodile", "dinosaur", "goat", "bee", "elephant", "dog", "horse", "lion", "turkey", "random animal"],
            "Emotion Noise" : ["bragging", "confused", "giggle", "grunt", "sigh", "snore", "surprised", "yawn" ,"random emotion"],
@@ -46,14 +51,15 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
            "Set Right Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "black"],
            "Set Left Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "black"],
            "Set Chest Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "black"],
-           "Set All Lights Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "black"]]
+           "Set All Lights Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "black"],
+           "Look Left or Right" : ["variableSelected", "Select Look Left or Right Variable\nMaximum and minimum:\nLeft = -120, Right = 120"],
+           "Look Up or Down" : ["variableSelected", "Select Look Up or Down Variable\nMaximum and minimum:\nUp = -20, Down = 7.5"],
+           "Turn" : ["variableSelected",  "Select turn variable"]]
     
-    let variableOptionDictionary: [String: [String:String]] =
-    ["Look Left or Right" : ["attributeName" : "variableSelected", "Extra label text" : "Select Look Left or Right Variable\nMaximum and minimum:\nLeft = -120, Right = 120"],
-     "Look Up or Down" : ["attributeName" : "variableSelected", "Extra label text" : "Select Look Up or Down Variable\nMaximum and minimum:\nUp = -20, Down = 7.5"],
-     "Turn" : ["attributeName" : "variableSelected", "Extra label text" : "Select turn variable"]]
+    
     let variableArray =  ["Orange", "Banana", "Apple", "Cherry", "Watermelon"]
-      var items: [String] = [] // holds the specific array of modifier type strings accessed from the optionDictionary
+      
+    var items: [String] = [] // holds the specific array of modifier type strings accessed from the optionDictionary
       
       private var attributeName = "" // a reformatted version of optionType. Used for accessing and saving data (ex. if soundType = "Animal Noise", attributeName is "animalNoise"
       
@@ -68,11 +74,12 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
           optionType = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name // get the optionType from the button that caused this screen to open
           
           items = optionDictionary[optionType] ?? [] // get the array of options for the optionType
-          if items == [] {
+          if items.count == 2 {
               // this is a variable selection screen
+              // the first element in items is the attribute name, and the second element is the extra label text
               items = variableArray
-              attributeName = variableOptionDictionary[optionType]?["attributeName"] ?? ""
-              optionalExtraLabel.text = variableOptionDictionary[optionType]?["Extra label text"] ?? ""
+              attributeName = optionDictionary[optionType]?[0] ?? ""
+              optionalExtraLabel.text = optionDictionary[optionType]?[1] ?? ""
               // Adding custom font
               optionalExtraLabel.adjustsFontForContentSizeCategory = true
               optionalExtraLabel.font = UIFont.accessibleFont(withStyle: .title3, size: 18.0)

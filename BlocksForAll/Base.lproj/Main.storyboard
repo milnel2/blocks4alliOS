@@ -638,9 +638,9 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                         <segue destination="jdf-AY-L53" kind="show" identifier="driveModifier" id="ZVu-V8-d1q"/>
                         <segue destination="YEE-PZ-SjD" kind="show" identifier="toMainMenu" id="XsQ-5G-ZnB"/>
                         <segue destination="Cxp-3J-pfY" kind="show" identifier="mainToMain" id="vzO-l2-EmX"/>
-                        <segue destination="I6l-mr-M6V" kind="show" identifier="SoundModifier" id="u8d-ef-tNg"/>
-                        <segue destination="a8r-3H-fGk" kind="show" identifier="WaitModifier" id="bga-bw-aqG"/>
-                        <segue destination="sKo-Tc-eyH" kind="show" identifier="EyeLightModifier" id="WZK-Na-4fL"/>
+                        <segue destination="I6l-mr-M6V" kind="show" identifier="MultipleChoiceModifier" id="u8d-ef-tNg"/>
+                        <segue destination="a8r-3H-fGk" kind="show" identifier="StepperModifier" id="bga-bw-aqG"/>
+                        <segue destination="sKo-Tc-eyH" kind="show" identifier="TwoOptionModifier" id="WZK-Na-4fL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W32-Q3-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1713,7 +1713,8 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="z9o-ps-gUP"/>
+        <segue reference="u8d-ef-tNg"/>
+        <segue reference="D3Q-1e-yCW"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="Tu2-KF-poC"/>
         <segue reference="XsQ-5G-ZnB"/>
