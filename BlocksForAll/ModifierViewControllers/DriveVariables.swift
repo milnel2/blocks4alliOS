@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /**
-screen for selecting what variable should be used for driving forward or backward.
+Screen for selecting what variable should be used for driving forward or backward.
 **/
 class DriveVariables: UIViewController {
     
@@ -18,7 +18,6 @@ class DriveVariables: UIViewController {
     var variableSelected: String = "orange"
     var variableSelectedTwo: String = "orange"
     var speed: String = "Normal"
-    
     
     @IBOutlet var buttons: [UIButton]!
     
@@ -32,7 +31,6 @@ class DriveVariables: UIViewController {
     @IBOutlet weak var driveTitleLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var speedTitle: UILabel!
-    
     
     //possible speed options for when the steppers are clicked
     @IBAction func slowButtonPressed(_ sender: UIButton) {

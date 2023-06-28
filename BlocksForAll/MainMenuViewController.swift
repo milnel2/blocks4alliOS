@@ -8,6 +8,9 @@
 
 import UIKit
 
+ 
+let defaults = UserDefaults.standard  // Used to know block size and if in showIcons or in showText mode. Global so that all files can access it. From Paul Hegarty, lectures 13 and 14
+
 class MainMenuViewController: UIViewController {
     
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -17,9 +20,6 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var instructions: UIButton!
     
     @IBOutlet weak var addRobots: UIButton!
-    
-    // from Paul Hegarty, lectures 13 and 14
-    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
 //        welcomeLabel.adjustsFontForContentSizeCategory = true
@@ -31,7 +31,11 @@ class MainMenuViewController: UIViewController {
         addRobots.titleLabel?.adjustsFontForContentSizeCategory = true
         
         if  defaults.value(forKey: "showText") == nil {
-            defaults.setValue(0, forKey: "showText") // set showText to showIcons by default
+            defaults.setValue(0, forKey: "showText")  // set showText to showIcons by default
+        }
+        
+        if defaults.value(forKey: "blockSize") == nil {
+            defaults.setValue(150, forKey: "blockSize")  // set blockSize to be 150 by default
         }
     }
     

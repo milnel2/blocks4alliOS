@@ -48,8 +48,8 @@ class DistanceSpeedModViewController: UIViewController{
         
         // preserve previously selected value
         distance = Double(previousDistance!)
-        
         speedLabel.text = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+        
         // preserves previously selected value
         speed = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
         
@@ -58,7 +58,7 @@ class DistanceSpeedModViewController: UIViewController{
         back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
-    //updates distance value when slider moved
+    /// Updates distance value when slider moved
     @IBAction func distanceSliderChanged(_ sender: UISlider) {
         let roundingNumber: Float = (interval/2.0)
         distance = Double(sender.value)
@@ -66,12 +66,11 @@ class DistanceSpeedModViewController: UIViewController{
         sender.accessibilityValue = "\(Int(roundedDistance)) centimeters"
         sender.setValue(roundedDistance, animated:false)
         distanceDisplayed.text = "\(Int(roundedDistance))"
-        
         distanceDisplayed.accessibilityValue = "Current distance is \(Int(roundedDistance)) centimeters"
     }
     
     
-    //if minus button pressed, speed changes to one less and speed label updated with this value
+    /// If minus button pressed, speed changes to one less and speed label updated with this value
     @IBAction func slowButtonPressed(_ sender: UIButton) {
         switch speed {
         case "Really Fast":
@@ -92,7 +91,7 @@ class DistanceSpeedModViewController: UIViewController{
         updateAccessibilityLabel()
     }
     
-    //if plus button pressed, speed changes to one more and speed label updated with this value
+    /// If plus button pressed, speed changes to one more and speed label updated with this value
     @IBAction func fastButtonPressed(_ sender: UIButton) {
         switch speed {
         case "Really Slow":
@@ -113,6 +112,10 @@ class DistanceSpeedModViewController: UIViewController{
         updateAccessibilityLabel()
     }
     
+    func updateAccessibilityLabel() {
+        slowButton.accessibilityLabel = "Slower. Current speed: \(speed)"
+        fastButton.accessibilityLabel = "Faster. Current speed: \(speed)"
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
@@ -120,10 +123,4 @@ class DistanceSpeedModViewController: UIViewController{
             functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
         }
     }
-    
-    func updateAccessibilityLabel() {
-        slowButton.accessibilityLabel = "Slower. Current speed: \(speed)"
-        fastButton.accessibilityLabel = "Faster. Current speed: \(speed)"
-    }
-    
 }

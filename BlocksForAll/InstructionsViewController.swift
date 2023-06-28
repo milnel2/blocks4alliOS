@@ -14,9 +14,6 @@ class InstructionsViewController: UIViewController {
     
     @IBOutlet weak var instructionsText: UITextView!
     
-    // from Paul Hegarty, lectures 13 and 14
-    let defaults = UserDefaults.standard
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

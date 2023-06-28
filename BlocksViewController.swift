@@ -10,24 +10,13 @@
 import UIKit
 import AVFoundation
 
-/// dictionary containing the different functions (composed as a list of Blocks) in the program
-var functionsDict = [String : [Block]]()
+var functionsDict = [String : [Block]]()  // dictionary containing the different functions (composed as a list of Blocks) in the program
 
-/// workspace you are currently editing on screen (i.e. the main workspace or a user-defined function)
-var currentWorkspace = String()
-
-// from Paul Hegarty, lectures 13 and 14
-let defaults = UserDefaults.standard
+var currentWorkspace = String()  // workspace you are currently editing on screen (i.e. the main workspace or a user-defined function)
 
 let startIndex = 0
 
-var endIndex: Int{
-    return functionsDict[currentWorkspace]!.count - 1
-}
-
-// modifier block variables
-private var startingHeight = 0
-private var count = 0
+var endIndex: Int { return functionsDict[currentWorkspace]!.count - 1 }
 
 //MARK: - Block Selection Delegate Protocol
 /// Sends information about which blocks are selected to SelectedBlockViewController when moving blocks in workspace.
@@ -40,47 +29,56 @@ protocol BlockSelectionDelegate{
 //For creating voice control labels (source: https://stackoverflow.com/questions/41292671/separating-camelcase-string-into-space-separated-words-in-swift)
 extension String {
     func titleCased() -> String {
-        return self.replacingOccurrences(of: "([A-Z])", with: " $1", options: .regularExpression, range: self.range(of: self))
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-            .capitalized
+        return self.replacingOccurrences(
+            of: "([A-Z])",
+            with: " $1",
+            options: .regularExpression,
+            range: self.range(of: self))
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+                .capitalized
     }
 }
 
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
 
-    //Larger views
+    // Larger views
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var workspaceContainerView: UIView!
     @IBOutlet weak var toolboxView: UIView!
 
-    //The three main workspace menu buttons
-    @IBOutlet weak var mainMenuButton: CustomButton!
-    //@IBOutlet weak var clearAllButton: CustomButton!
+    // The three main workspace menu buttons
+    @IBOutlet weak var mainMenuButton: CustomButton! // home button. Brings you to main menu.
+    //@IBOutlet weak var clearAllButton: CustomButton! // the clear all button has been removed
     
-    @IBOutlet weak var mainWorkspaceButton: UIButton!
+    @IBOutlet weak var mainWorkspaceButton: UIButton!  // button that shows when you are working on a function. Brings you back to the main workspace
     
     @IBOutlet weak var playTrashToggleButton: UIButton!
         
-    @IBOutlet weak var workspaceTitle: UILabel!
+    @IBOutlet weak var workspaceTitle: UILabel!  // Label at top of screen
     
-    /// view on bottom of screen that shows blocks in workspace
-    @IBOutlet weak var blocksProgram: UICollectionView!
+   
+    @IBOutlet weak var blocksProgram: UICollectionView!   // View on bottom of screen that shows blocks in workspace
 
-    var robotRunning = false
-
-    var movingBlocks = false
-    /// blocks currently being moved (includes nested blocks)
-    var blocksBeingMoved = [Block]()
-    /// Top-level controller for toolbox view controllers
-    var allModifierBlocks = [CustomButton]()
-    /// A list of all the modifier blocks in the workspace
-    var allBlockViews = [BlockView]()
+    // Views
+    var allBlockViews = [BlockView]()  // Top-level controller for toolbox view controllers
     var containerViewController: UINavigationController?
     
+    // Robot variables
+    var robotRunning = false
+
+    // Variables for display
+    var stopIsOption = false // true if the stop button can be shown
     
-    // TODO: the blockWidth and blockHeight are not the same as the variable blockSize (= 100)
+    // Block variables
+    var movingBlocks = false  // true if the user is currently moving a block
+    var blocksBeingMoved = [Block]()  // blocks currently being moved (includes nested blocks)
     var blockSize = 150
     let blockSpacing = 1
+    
+    // Modifier block variables
+    private var startingHeight = 0
+    private var count = 0
+    var allModifierBlocks = [CustomButton]()  // A list of all the modifier blocks in the workspace
     
     // TODO: what are these variables?
     var modifierBlockIndex: Int?
@@ -88,6 +86,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         //Orders contents of workspace to be more intuitive with Switch Control
         mainView.accessibilityElements = [toolboxView!, workspaceContainerView!]
         workspaceContainerView.accessibilityElements = [blocksProgram!, playTrashToggleButton!, mainMenuButton!, mainWorkspaceButton!]
@@ -105,7 +104,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if defaults.value(forKey: "blockSize") == nil {
             defaults.setValue(150, forKey: "blockSize")
         }
-        
         blockSize = defaults.value(forKey: "blockSize") as! Int
         
         if currentWorkspace != "Main Workspace" {
@@ -113,8 +111,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             //mainMenuButton.setTitle("Main Workspace", for: .normal)
             mainWorkspaceButton.isHidden = false
             if functionsDict[currentWorkspace]!.isEmpty{
-                let startBlock = Block.init(name: "\(currentWorkspace) Function Start", color: Color.init(uiColor: UIColor(named: "light_purple_block")!), double: true, isModifiable: false)
-                let endBlock = Block.init(name: "\(currentWorkspace) Function End", color: Color.init(uiColor:UIColor(named: "light_purple_block")!), double: true, isModifiable: false)
+                let startBlock = Block.init(
+                    name: "\(currentWorkspace) Function Start",
+                    color: Color.init(uiColor: UIColor(named: "light_purple_block")!),
+                    double: true,
+                    isModifiable: false)
+                let endBlock = Block.init(
+                    name: "\(currentWorkspace) Function End",
+                    color: Color.init(uiColor:UIColor(named: "light_purple_block")!),
+                    double: true,
+                    isModifiable: false)
                 startBlock!.counterpart = [endBlock!]
                 endBlock!.counterpart = [startBlock!]
                 functionsDict[currentWorkspace]?.append(startBlock!)
@@ -148,13 +154,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func finishMovingBlocks() {
         movingBlocks = false
         blocksBeingMoved.removeAll()
-        changePlayTrashButton() //Toggling the play/trash button
+        changePlayTrashButton()  // Toggling the play/trash button
     }
     
     /// Called when blocks have been selected to be moved, saves them to blocksBeingMoved
     /// - Parameter blocks: blocks selected to be moved
     func beginMovingBlocks(_ blocks: [Block]) {
-        /*Called when moving blocks*/
         movingBlocks = true
         blocksBeingMoved = blocks
         blocksProgram.reloadData()
@@ -172,8 +177,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if currentWorkspace == "Main Workspace"{
             functionsDict[currentWorkspace] = []
             blocksProgram.reloadData()
-        }
-        else{
+        } else {
             functionsDict[currentWorkspace]!.removeSubrange(1..<functionsDict[currentWorkspace]!.count-1)
             blocksProgram.reloadData()
         }
@@ -181,40 +185,35 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
   
     /* Changes the play button back and forth from trash to play */
     func changePlayTrashButton(){
-        if movingBlocks{
+        if movingBlocks {
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Place in Trash"
-            if #available(iOS 13.0, *) {
-                playTrashToggleButton.accessibilityUserInputLabels = ["Trash"]
-            }
+            if #available(iOS 13.0, *)
+                { playTrashToggleButton.accessibilityUserInputLabels = ["Trash"] }
             playTrashToggleButton.accessibilityHint = "Delete selected blocks"
-        }else if stopIsOption{
+        } else if stopIsOption {
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "stop"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Stop"
-            if #available(iOS 13.0, *) {
-                playTrashToggleButton.accessibilityUserInputLabels = ["Stop"]
-            }
+            if #available(iOS 13.0, *)
+                { playTrashToggleButton.accessibilityUserInputLabels = ["Stop"] }
             playTrashToggleButton.accessibilityHint = "Stop your robot!"
         }else{
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Play"
-            if #available(iOS 13.0, *) {
-                playTrashToggleButton.accessibilityUserInputLabels = ["Play"]
-            }
+            if #available(iOS 13.0, *)
+                { playTrashToggleButton.accessibilityUserInputLabels = ["Play"] }
             playTrashToggleButton.accessibilityHint = "Make your robot go!"
         }
     }
     
-    var stopIsOption = false
-    
-    // run the actual program when the play button is clicked
+    /// Run the actual program when the play button is clicked
     @IBAction func playButtonClicked(_ sender: Any) {
         print("in playButtonClicked")
-        if(movingBlocks){
-            trashClicked()
-        }else if stopIsOption{
-            stopClicked()
-        }else{
+        if (movingBlocks)
+            { trashClicked() }
+        else if stopIsOption
+            { stopClicked() }
+        else {
             print("in play clicked")
             playClicked()
         }
@@ -233,9 +232,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
 
-    // run the actual program when the trash button is clicked
+    /// Run the actual program when the trash button is clicked
     func trashClicked() {
-        //trash
         let announcement = blocksBeingMoved[0].name + " placed in trash."
         playTrashToggleButton.accessibilityLabel = announcement
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
@@ -280,17 +278,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     // MARK: - Blocks Methods
-    
+    /// Called after selecting a place to add a block to the workspace, makes accessibility announcements and place blocks in the blockProgram stack, etc...
     func addBlocks(_ blocks:[Block], at index:Int){
-        /*Called after selecting a place to add a block to the workspace, makes accessibility announcements
-         and place blocks in the blockProgram stack, etc...*/
-        
         //change for beginning
         var announcement = ""
-        if(index != 0){
+        if (index != 0) {
             let myBlock = functionsDict[currentWorkspace]![index-1]
             announcement = blocks[0].name + " placed after " + myBlock.name
-        }else{
+        } else {
             announcement = blocks[0].name + " placed at beginning"
         }
         makeAnnouncement(announcement)
@@ -302,12 +297,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: endIndex)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
-            }else if currentWorkspace != "Main Workspace" && index <= startIndex {
+            } else if currentWorkspace != "Main Workspace" && index <= startIndex {
                 functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: startIndex+1)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
-            }
-            else{
+            } else {
             functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
             blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
@@ -333,8 +327,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: NSLocalizedString(announcement, comment: ""))
     }
     
+    ///Given a list of blocks, creates the views that will be displayed in the blocksProgram
     func createViewRepresentation(FromBlocks blocksRep: [Block]) -> UIView {
-        /*Given a list of blocks, creates the views that will be displayed in the blocksProgram*/
         let myViewWidth = (blockSize + blockSpacing)*blocksRep.count
         let myViewHeight = blockSize
         let myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
@@ -344,7 +338,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             let xCoord = count*(blockSize + blockSpacing)
             let blockView = BlockView(frame: CGRect(x: xCoord, y: 0, width: blockSize, height: blockSize),  block: [block], myBlockSize: blockSize)
             count += 1
-            
             myView.addSubview(blockView)
         }
         myView.alpha = 0.75
@@ -381,28 +374,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return size
     }
     
+    /// Use for modifier buttons. Calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values
     func createModifierCustomButton() -> CustomButton {
-        /* Use for modifier buttons. Calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values*/
         let tempButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:startingHeight-((blockSize / 5) * 4)-count*(blockSize/2+blockSpacing), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
         tempButton.layer.zPosition = 1
         allModifierBlocks.append(tempButton)
         return tempButton
     }
 
+    /// Sets up a modifier button based on the name inputted
     private func setUpModifierButton(block : Block, blockName name : String, indexPath : IndexPath, cell : UICollectionViewCell) {
-        /* Sets up a modifier button based on the name inputted*/
-        let dict = getModifierDictionary() // holds properties of all modifier blocks
+        let dict = getModifierDictionary()  // holds properties of all modifier blocks
         
-        let (selector, defaultValue, attributeName, accessibilityHint, imagePath, displaysText, secondAttributeName, secondDefault, showTextImage) = getModifierData(name: name, dict: dict!) // constants taken from dict based on name
+        let (selector, defaultValue, attributeName, accessibilityHint, imagePath, displaysText, secondAttributeName, secondDefault, showTextImage) = getModifierData(name: name, dict: dict!)  // constants taken from dict based on name
         
         if block.addedBlocks.isEmpty{
             let placeholderBlock = Block(name: name, color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
 
             block.addedBlocks.append(placeholderBlock!)
             placeholderBlock?.addAttributes(key: attributeName, value: "\(defaultValue)")
-            if secondAttributeName != nil && secondDefault != nil {
-                placeholderBlock?.addAttributes(key: secondAttributeName!, value: "\(secondDefault!)")
-            }
+            if secondAttributeName != nil && secondDefault != nil
+                { placeholderBlock?.addAttributes(key: secondAttributeName!, value: "\(secondDefault!)") }
         }
         // renamed block.addedBlocks[0] for simplicity
         let placeHolderBlock = block.addedBlocks[0]
@@ -415,7 +407,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // modifiers for if and repeat blocks are a bit different than other blocks
         if name == "If" {
-            switch placeHolderBlock.attributes["booleanSelected"]{
+            switch placeHolderBlock.attributes["booleanSelected"] {
             case "Hear voice":
                 modifierInformation = "robot hears voice"
             case "Obstacle sensed":
@@ -427,7 +419,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         } else if name == "Repeat" {
             modifierInformation = "\(placeHolderBlock.attributes[attributeName]!) times"
         }
-        
         // choose image path
         var image: UIImage?
         if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
@@ -438,19 +429,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 print("Image file not found: \(imagePath!)")
                 button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
             }
-            
         } else {
             // blocks that don't have an imagePath in the dictionary have an image based on their attribute (ex. cat and bragging sounds)
             image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
-            if secondAttributeName != nil && secondDefault != nil{
-                image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)")
-            }
+            if secondAttributeName != nil && secondDefault != nil
+                { image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)") }
+            
             // handle show icon or show text for modifiers that change depending on the settings
             if defaults.integer(forKey: "showText") == 1 && showTextImage != nil{
                 // show text image
                 image = UIImage(named: showTextImage!)
             }
-            if image != nil { // make sure that the image actually exists
+            if image != nil {  // make sure that the image actually exists
                 button.setBackgroundImage(image, for: .normal)
             } else {
                 print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
@@ -458,34 +448,29 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         }
         
-        if displaysText == "true" { // modifier blocks that display text on them (ex. turn left)
+        if displaysText == "true" {  // modifier blocks that display text on them (ex. turn left)
             var text = "\(placeHolderBlock.attributes[attributeName] ?? "N/A")"
             // handle text formatting based on type of block
             if attributeName == "angle" {
-                //<angle>°
+                // <angle>°
                 text = "\(text)\u{00B0}"
                 modifierInformation = text
-            } else if attributeName == "distance" {
-                //drive forward and backwards blocks
-                if defaults.integer(forKey: "showText") == 0 {
-                    // show icon mode
+            } else if attributeName == "distance" {  // drive forward and backwards blocks
+                if defaults.integer(forKey: "showText") == 0 {  // show icon mode
                     text = "\(placeHolderBlock.attributes["distance"]!) cm \n"
                     modifierInformation = text + ", \(placeHolderBlock.attributes["speed"]!)"
-                } else {
-                    // show text mode
+                } else {  // show text mode
                     text = "\(placeHolderBlock.attributes["distance"]!) cm, \(placeHolderBlock.attributes["speed"]!)"
                     modifierInformation = text
                 }
-            } else if attributeName == "wait" {
-                // wait blocks
+            } else if attributeName == "wait" {  // wait blocks
                 if placeHolderBlock.attributes["wait"] == "1" {
                     text = "\(text) second"
                 } else {
                     text = "\(text) seconds"
                 }
                 modifierInformation = text
-            } else if attributeName == "variableSelected" {
-                // variable blocks
+            } else if attributeName == "variableSelected" {  // variable blocks
                 text = "\(text) = \(placeHolderBlock.attributes["variableValue"]!)"
                 modifierInformation = text
             }
@@ -517,14 +502,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             button.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
         }
         
-        // connect what happens when the button is pressed
-        button.addTarget(self, action: selector, for: .touchUpInside)
+        button.addTarget(self, action: selector, for: .touchUpInside)  // connect what happens when the button is pressed
         
-        // add button to cell
-        cell.addSubview(button)
+        cell.addSubview(button)  // add button to cell
 
         //create blockView
         let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
+        
         addAccessibilityLabel(blockView: blockView, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
         
         allBlockViews.append(blockView)
@@ -536,9 +520,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // update addedBlocks
         block.addedBlocks[0] = placeHolderBlock
     }
-    
+    /// Gets values for modifier blocks from a dictionary and returns them as a tuple. Prints errors if properties cannot be found
     private func getModifierData (name : String, dict : NSDictionary) -> (Selector, String, String, String, String?, String, String?, String?, String?) {
-        /* gets values for modifier blocks from a dictionary and returns them as a tuple. Prints errors if properties cannot be found */
+        
         
         if dict[name] == nil {
             print("\(name) could not be found in modifier block dictionary")
@@ -570,21 +554,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return (selector!, defaultValue! as! String, attributeName! as! String, accessibilityHint! as! String,  imagePath as? String, displaysText as! String, secondAttributeName as? String, secondDefault as? String, showTextImage as? String)
     }
     
+    /// Given the name for a modifier block, returns a Selector for the button
     private func getModifierSelector(name : String) -> Selector? {
-        /* Given the name for a modifier block, returns a Selector for the button*/
         switch name {
         case "Animal Noise", "Vehicle Noise", "Object Noise", "Emotion Noise", "Speak", "Set Right Ear Light Color", "Set Left Ear Light Color", "Set Chest Light Color", "Set All Lights Color", "Look Left or Right", "Look Up or Down", "Turn":
             return #selector(multipleChoiceModifier(sender:))
-        case "Turn Left", "Turn Right":
-            return #selector(angleModifier(sender:))
+        case "Wait for Time", "Repeat":
+            return #selector(stepperModifier(sender:))
         case "Set Eye Light", "If":
             return #selector(twoOptionModifier(sender:))
+        case "Turn Left", "Turn Right":
+            return #selector(angleModifier(sender:))
         case "Drive":
             return #selector(driveModifier(sender:))
         case "Drive Forward", "Drive Backward":
             return #selector(distanceSpeedModifier(sender:))
-        case "Wait for Time", "Repeat":
-            return #selector(stepperModifier(sender:))
         case "Set Variable":
             return #selector(variableModifier(sender:))
         default:
@@ -593,14 +577,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
     
+    /// Returns true if the given name correlates to a modifiable block
     private func isModifierBlock(name : String) -> Bool {
-        /* returns true if the given name correlates to a modifiable block*/
         let dict = getModifierDictionary()
         return dict?[name] != nil
     }
     
+    /// Converts ModifierProperties plost to a NSDictionary
     private func getModifierDictionary () -> NSDictionary?{
-        /* converts ModifierProperties plost to a NSDictionary*/
         // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
         let dict: NSDictionary?
          if let path = Bundle.main.path(forResource: "ModifierProperties", ofType: "plist") {
@@ -618,7 +602,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     ///   - block:  block being displayed
     ///   - blockModifier:  describes the state of the block modifier (e.g. 2 times for repeat 2 times)
     ///   - blockLocation: location of block in workspace (e.g. 2 of 4)
-    
     func addAccessibilityLabel(blockView: UIView, block:Block, blockModifier:String, blockLocation: Int, blockIndex: Int){
         blockView.isAccessibilityElement = true
         var accessibilityLabel = ""
@@ -627,11 +610,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         var movementInfo = ". Double tap to move block."
         
         if(!blocksBeingMoved.isEmpty){
-            //Moving blocks, so switch labels to indicated where blocks can be placed
+            // Moving blocks, so switch labels to indicated where blocks can be placed
             if (currentWorkspace != "Main Workspace" && blockIndex == 0){
                 accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning of " + currentWorkspace + " function."
             } else if (currentWorkspace == "Main Workspace" && blockIndex == 0){
-                //in main workspace and setting 1st block accessibility info
+                // in main workspace and setting 1st block accessibility info
                 accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning, before "
                 accessibilityLabel +=  block.name + " " + blockModifier + " " + blockPlacementInfo
             } else {
@@ -654,20 +637,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func createVoiceControlLabels(for block: Block, in blockView: UIView) {
         if #available (iOS 13.0, *) {
             let color = block.color.uiColor
-            let name = block.name
             switch color {
-            //Control
-            case UIColor(named: "orange_block"):
+            case UIColor(named: "orange_block"):  // Control
                 if movingBlocks {
-                    if block.name == "Wait for Time"{
+                    if block.name == "Wait for Time" {
                         blockView.accessibilityUserInputLabels = ["Before Wait", "Before \(block.name)"]
                     }
                 } else {
                     blockView.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
                 }
 
-            //Drive
-            case UIColor(named: "green_block"):
+            case UIColor(named: "green_block"):  // Drive
                 var voiceControlLabel = block.name
                 if block.name.contains("Drive") {
                     let wordToRemove = "Drive "
@@ -687,8 +667,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
                 }
 
-            //Lights
-            case UIColor(named: "gold_block"):
+            case UIColor(named: "gold_block"):  // Lights
                 var voiceControlLabel = block.name
                 let wordToRemove = "Set "
                 if let range = voiceControlLabel.range(of: wordToRemove){
@@ -708,9 +687,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 } else {
                     blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(voiceControlLabel2)", "\(block.name)"]
                 }
-
-            //Look
-            case UIColor(named: "red_block"):
+            
+            case UIColor(named: "red_block"):  // Look
                 var voiceControlLabel = block.name
                 let wordToRemove = "Look "
                 if let range = voiceControlLabel.range(of: wordToRemove){
@@ -729,9 +707,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
 
-    /* CollectionView contains the actual collection of blocks (i.e. the program that is being created with the blocks)
-     This method creates and returns the cell at a given index
-     */
+    /// CollectionView contains the actual collection of blocks (i.e. the program that is being created with the blocks) This method creates and returns the cell at a given index
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         collectionView.remembersLastFocusedIndexPath = true
         let collectionReuseIdentifier = "BlockCell"
@@ -742,8 +718,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         
         cell.isAccessibilityElement = false
-        if indexPath.row == functionsDict[currentWorkspace]!.count {
-            // The last cell in the collectionView is an empty cell so you can place blocks at the end
+        if indexPath.row == functionsDict[currentWorkspace]!.count {  // The last cell in the collectionView is an empty cell so you can place blocks at the end
             if !blocksBeingMoved.isEmpty{
                 cell.isAccessibilityElement = true
                 if functionsDict[currentWorkspace]!.count == 0 {
@@ -843,24 +818,30 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return cell
     }
     
-    @objc func distanceSpeedModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
-    }
-    
+    //TODO: refactor these methods? they are all the same except for the identifier
     @objc  func stepperModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "StepperModifier", sender: nil)
     }
     
-    @objc func angleModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "TurnRightModifier", sender: nil)
-    }
-    
     @objc func twoOptionModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "TwoOptionModifier", sender: nil)
+    }
+    
+    @objc func multipleChoiceModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "MultipleChoiceModifier", sender: nil)
+    }
+    
+    @objc func distanceSpeedModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
+    }
+    
+    @objc func angleModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "TurnRightModifier", sender: nil)
     }
     
     @objc func variableModifier(sender: UIButton!) {
@@ -873,12 +854,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "driveModifier", sender: nil)
     }
     
-    @objc func multipleChoiceModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "MultipleChoiceModifier", sender: nil)
-    }
-    
-    @objc func buttonClicked(sender: UIButton!){
+    @objc func buttonClicked(sender: UIButton!) {
         print ("Button clicked")
     }
  
@@ -892,16 +868,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return myLabel
     }
     
+    /// Called when a block is selected in the collectionView, so either selects block to move or places blocks
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.remembersLastFocusedIndexPath = true
-        /*Called when a block is selected in the collectionView, so either selects block to move or places blocks*/
-        if (!robotRunning) { // disable editing while robot is running
+        if (!robotRunning) {  // disable editing while robot is running
             if(movingBlocks){
                     addBlocks(blocksBeingMoved, at: indexPath.row)
                     containerViewController?.popViewController(animated: false)
                     finishMovingBlocks()
             }else{
-                if(indexPath.row < functionsDict[currentWorkspace]!.count){ //otherwise empty block at end
+                if(indexPath.row < functionsDict[currentWorkspace]!.count){  // otherwise empty block at end
                     movingBlocks = true
                     let blocksStackIndex = indexPath.row
                     let myBlock = functionsDict[currentWorkspace]![blocksStackIndex]

@@ -26,14 +26,9 @@ class SetVariableModViewController: UIViewController {
     @IBOutlet weak var setVariableTitle: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    
     @IBOutlet var setVarView: UIView!
-    
-    
     @IBOutlet var setVarTitle: UILabel!
-    
     @IBOutlet var NegativeLabel: UILabel!
-    
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         //Deselects all buttons but currently selected one (only one can be selected at a time)
@@ -70,7 +65,6 @@ class SetVariableModViewController: UIViewController {
         descriptionLabel.adjustsFontSizeToFitWidth = true
         descriptionLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
  
-        
         //Makes text field easier to select with Voice Control
         if #available(iOS 13.0, *) {
             VariableValue.accessibilityUserInputLabels = ["Value"]
@@ -124,17 +118,13 @@ class SetVariableModViewController: UIViewController {
         activeField = nil
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.destination is BlocksViewController{
 //            variableDict.updateValue(variableValue, forKey: variableSelected)
-//            print(variableDict)
             functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Double(variableValue))"
         }
     }
-    
-    
 }
 
 //keyboard code below from https://github.com/dzungnguyen1993/KeyboardHandling

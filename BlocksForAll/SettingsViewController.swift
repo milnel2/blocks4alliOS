@@ -27,9 +27,6 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet var addRobotsButton: UIButton!
     
-    // from Paul Hegarty, lectures 13 and 14
-    let defaults = UserDefaults.standard
-    
     override func viewDidLoad() {
         // Change fonts to custom font
 //        settingsLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)

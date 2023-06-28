@@ -20,9 +20,6 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       
       private var optionType = "" // Name of options that gets used for accessing data and displaying information
       
-      // from Paul Hegarty, lectures 13 and 14
-      private let defaults = UserDefaults.standard // used to know if in show text mode or show icon mode
-      
       @IBOutlet weak var back: UIButton! // back arrow button
       
       @IBOutlet var optionModView: UIView! // view within the view controller
@@ -55,8 +52,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
            "Look Up or Down" : ["variableSelected", "Select Look Up or Down Variable\nMaximum and minimum:\nUp = -20, Down = 7.5"],
            "Turn" : ["variableSelected",  "Select turn variable"]]
     
-    
-    let variableArray =  ["Orange", "Banana", "Apple", "Cherry", "Watermelon"]
+    let variableArray =  ["Orange", "Banana", "Apple", "Cherry", "Watermelon"] // the different variable choices for variable modifier screens
       
     var items: [String] = [] // holds the specific array of modifier type strings accessed from the optionDictionary
       
@@ -70,11 +66,11 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       
       override func viewDidLoad() {
           //TODO: make fonts consistent
-          optionType = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name // get the optionType from the button that caused this screen to open
+          optionType = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name  // get the optionType from the button that caused this screen to open
           
           items = optionDictionary[optionType] ?? [] // get the array of options for the optionType
-          if items.count == 2 {
-              // this is a variable selection screen
+          
+          if items.count == 2 {  // if this is a variable selection screen
               // the first element in items is the attribute name, and the second element is the extra label text
               items = variableArray
               attributeName = optionDictionary[optionType]?[0] ?? ""
@@ -85,19 +81,15 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
           } else {
               // not a variable selection screen
               attributeName = getAttributeName()
-              optionalExtraLabel.text = "" // set the extra label to empty by default
+              optionalExtraLabel.text = ""  // set the extra label to empty by default
           }
          
-          
           let collectionView = configureCollectionView()
           
           collectionView.isAccessibilityElement = false
+          collectionView.shouldGroupAccessibilityChildren = true  // this and more good voiceOver tips are from https://medium.com/bpxl-craft/how-to-make-voiceover-more-friendly-in-your-ios-app-8fac34ab8c51
           
-          collectionView.shouldGroupAccessibilityChildren = true // this and more good voiceOver tips are from https://medium.com/bpxl-craft/how-to-make-voiceover-more-friendly-in-your-ios-app-8fac34ab8c51
-          
-
-          optionModTitle.text = optionType // Set title of the screen
-          
+          optionModTitle.text = optionType  // Set title of the screen
           
           // Adding custom font
           optionModTitle.adjustsFontForContentSizeCategory = true
@@ -106,7 +98,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
           // Default option or preserve last selection
           let previousOption = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? items[0]
 
-          optionSelectedIndex = items.firstIndex(of: previousOption) ?? 0 // get the index of the previousOption
+          optionSelectedIndex = items.firstIndex(of: previousOption) ?? 0  // get the index of the previousOption
           
           //reroute VO Order to be more intuitive
           optionModView.accessibilityElements = [back!, optionModTitle!, collectionView]
@@ -122,13 +114,13 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       /// Called when the collectionView is being populated with cells
       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! MultipleChoiceButtonCell
-          let index = indexPath.item // numerical index of cell
+          let index = indexPath.item  // numerical index of cell
           
           // Create an image for the cell
           let image = UIImage(named: items[index])
           if image != nil && defaults.value(forKey: "showText") as! Int == 0 {
               // Show Icons is on and the image was found
-              let resizedImage = resizeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize)) // resize the image to fit the button
+              let resizedImage = resizeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize))  // resize the image to fit the button
               let imv = UIImageView(image: resizedImage)
               cell.addSubview(imv)
           } else {
@@ -210,24 +202,23 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       /// Derive attrtibuteName from optionType
       /// Turns a phrase into camelcase (ex. Animal Noise -> animalNoise)
       private func getAttributeName () -> String {
-         
           var tempAttributeName = ""
-          let soundTypeWordArray = optionType.split(separator: " ") // remove spaces
+          let soundTypeWordArray = optionType.split(separator: " ")  // remove spaces
 
           var i = 0
           for str in soundTypeWordArray {
               let wordToAppend: String
               if i == 0 {
-                  wordToAppend = str.lowercased() // first word is lowercased
+                  wordToAppend = str.lowercased()  // first word is lowercased
               } else {
-                  wordToAppend = str.capitalized // all other words are capitalized
+                  wordToAppend = str.capitalized  // all other words are capitalized
               }
               tempAttributeName.append(wordToAppend)
               i += 1
           }
           
-          //TODO: fix this code so that this if statement isnt needed
-          if optionType.contains("Light Color") || optionType.contains("Lights Color"){ // sets the attribute name for light color blocks
+          //TODO: fix the code so that this if statement isnt needed
+          if optionType.contains("Light Color") || optionType.contains("Lights Color"){  // sets the attribute name for light color blocks
               tempAttributeName = "lightColor"
           }
          
@@ -236,16 +227,16 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       
       /// Builds and returns a UICollectionView to hold the modifier buttons
       func configureCollectionView() -> UICollectionView{
-          //Calculate where the collectionView should be put on the screen
-          //TODO: center cells in collectionView?
+          // Calculate where the collectionView should be put on the screen
+          // TODO: center cells in collectionView?
           let screenWidth = Int(screenSize.width)
           let screenHeight = Int(screenSize.height)
 
           let soundModTitleY = Int(optionModTitle.layer.position.y)
           let collectionViewPadding = screenWidth / 5
           
-          let collectionViewHeight = screenHeight - collectionViewPadding - soundModTitleY // take into account padding and the optionModTitle for how tall the collection view should be
-          let collectionViewWidth = screenWidth - collectionViewPadding // take into account padding for how wide the collection view should be
+          let collectionViewHeight = screenHeight - collectionViewPadding - soundModTitleY  // take into account padding and the optionModTitle for how tall the collection view should be
+          let collectionViewWidth = screenWidth - collectionViewPadding  // take into account padding for how wide the collection view should be
           
           let middleOfScreenY = Int(screenHeight / 2) - Int(collectionViewHeight / 2)
           let middleOfScreenX = Int(screenWidth / 2) - Int(collectionViewWidth / 2)
@@ -284,7 +275,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
               // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
               functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = items[optionSelectedIndex] // Tell BlocksViewController which sound was selected
               
-              //TODO: make this come from the modifierProperties dictionary
+              // TODO: make this come from the modifierProperties dictionary
               if attributeName == "lightColor" {
                   functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] = items[optionSelectedIndex]
               }

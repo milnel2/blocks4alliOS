@@ -1,4 +1,3 @@
-
 //
 //  AngleModViewController.swift
 //  BlocksForAll
@@ -6,6 +5,7 @@
 //  Created by admin on 6/19/19.
 //  Copyright © 2019 Jacqueline Ong. All rights reserved.
 //
+
 import Foundation
 import UIKit
 
@@ -36,15 +36,13 @@ class AngleModViewController: UIViewController {
         angleSlider.accessibilityValue = "\(previousAngle ?? 90) degrees"
         
         // preserves previously selected value
-        
         roundedAngle = Float(Double(previousAngle!))
         angleDisplayed.accessibilityValue = "Current angle is \(Int(angle))degrees"
         
         back.titleLabel?.adjustsFontForContentSizeCategory = true
     }
     
-    
-    //when angle slider moved, get rounded value and convert to degrees 
+    /// When angle slider moved, get rounded value and convert to degrees 
     @IBAction func angleSliderChanged(_ sender: UISlider) {
         let roundingNumber: Float = (interval/2.0)
         angle = Double(sender.value)

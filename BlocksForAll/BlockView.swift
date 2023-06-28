@@ -18,9 +18,6 @@ class BlockView: UIView, UITextFieldDelegate {
     
     var pickedItem: UITextField?
     
-    // from Paul Hegarty, lectures 13 and 14
-    let defaults = UserDefaults.standard
-    
     //MARK: - init Block View
     init (frame : CGRect, block : [Block], myBlockSize: Int) {
         self.blocks = block
