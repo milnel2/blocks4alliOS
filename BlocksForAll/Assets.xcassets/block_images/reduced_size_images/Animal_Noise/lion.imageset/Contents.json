@@ -3,6 +3,16 @@
     {
       "filename" : "lion.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-lion.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

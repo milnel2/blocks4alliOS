@@ -3,6 +3,16 @@
     {
       "filename" : "horse.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-horse.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
