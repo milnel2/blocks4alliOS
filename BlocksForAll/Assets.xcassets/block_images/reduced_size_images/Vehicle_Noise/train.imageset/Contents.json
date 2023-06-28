@@ -3,6 +3,16 @@
     {
       "filename" : "train.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-train.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

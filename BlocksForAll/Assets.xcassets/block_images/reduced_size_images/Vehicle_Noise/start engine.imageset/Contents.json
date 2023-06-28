@@ -3,6 +3,16 @@
     {
       "filename" : "car_sound.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-car_sound.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

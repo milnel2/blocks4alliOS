@@ -3,6 +3,16 @@
     {
       "filename" : "speed_boost.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-speed_boost.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

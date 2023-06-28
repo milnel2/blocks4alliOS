@@ -3,6 +3,16 @@
     {
       "filename" : "helicopter.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-helicopter.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

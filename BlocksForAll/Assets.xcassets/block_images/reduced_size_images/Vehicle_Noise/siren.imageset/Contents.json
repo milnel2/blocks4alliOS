@@ -3,6 +3,16 @@
     {
       "filename" : "siren.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-siren.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

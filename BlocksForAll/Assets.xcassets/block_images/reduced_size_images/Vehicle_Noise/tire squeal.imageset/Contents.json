@@ -3,6 +3,16 @@
     {
       "filename" : "tire_squeal.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-tire_squeal.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
