@@ -24,8 +24,6 @@ class FunctionTableViewController: UITableViewController {
     var functionHeight = 150
     let functionSpacing = 0
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,14 +77,11 @@ class FunctionTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
-    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return functions.count
     }
-
 
     //row has function name displayed
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -118,7 +113,6 @@ class FunctionTableViewController: UITableViewController {
     
     //deletes a row from functions menu and gets rid of this function's values
     func deleteCell(cell: UITableViewCell) {
-        
         if let deletionIndexPath = tableView.indexPath(for: cell) {
             oldKey.append(functions[deletionIndexPath.row])
 
@@ -154,9 +148,6 @@ class FunctionTableViewController: UITableViewController {
             
             // Present dialog message to user
             self.present(dialogMessage, animated: true, completion: nil)
-        
-        
-            
         }
     }
     
@@ -214,14 +205,10 @@ class FunctionTableViewController: UITableViewController {
         performSegue(withIdentifier: "functionsToBlocks", sender: nil)
     }
     
-   
-   
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        }
-
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//    }
 }
 
 

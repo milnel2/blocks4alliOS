@@ -63,7 +63,6 @@ class BlockTableViewController: UITableViewController {
         return toolBoxBlockArray.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Table view cells are reused and should be dequeued using a cell identifier
@@ -131,7 +130,6 @@ class BlockTableViewController: UITableViewController {
                 for myView in (b2?.subviews)!{
                     if let myBlockView = myView as? BlockView{
                         block = myBlockView.blocks[0].copy()
-                        
                     }
                 }
                 
@@ -221,7 +219,6 @@ class BlockTableViewController: UITableViewController {
                 }
             }
 
-            
             if let blockArray = blockType.object(forKey: "Blocks") as? NSArray{
                 // creates array from the first object in blocksMenu.plist aka Sounds, Controls, Drive, Sounds, etc.
                 for item in blockArray{

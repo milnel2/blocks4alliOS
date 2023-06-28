@@ -83,7 +83,6 @@ class BlocksTypeTableViewController: UITableViewController {
         return blockTypes.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier
         
@@ -123,7 +122,6 @@ class BlocksTypeTableViewController: UITableViewController {
             }
         }
        
-      
         //Makes label more intuitive for Voice Control
         if #available(iOS 13.0, *) {
             cell.accessibilityUserInputLabels = ["\(blockType.name)"]
@@ -160,8 +158,6 @@ class BlocksTypeTableViewController: UITableViewController {
         }
     }
     
-    
-    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -177,7 +173,6 @@ class BlocksTypeTableViewController: UITableViewController {
         }
     }
 }
-
 
 extension UIColor{
     static func colorFrom(hexString:String, alpha:CGFloat = 1.0)->UIColor{

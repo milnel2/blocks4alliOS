@@ -59,7 +59,6 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         return robots.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "robotCell", for: indexPath)
         
@@ -71,11 +70,8 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         maskLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 0, dy: verticalPadding/2)
         cell.layer.mask = maskLayer
         
-        
-        
         // From WW sample code
         let robot = robots[indexPath.row]
-        
         
         // Change avatar of robot depending on type of robot
         if robot.name == "Dot" {
@@ -85,7 +81,6 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         } else {
             cell.imageView?.image = UIImage(named: "Robot_avatar")
         }
-        
         
         // Default Cell Layout
         cell.textLabel?.text = robot.name
@@ -109,24 +104,21 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         DispatchQueue.main.async{
             self.tableView.reloadData()
         }
-        
        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let robot = robots[indexPath.row]
-        if(robot.isConnected()){
+        if (robot.isConnected()) {
             robotManager?.disconnect(from: robot)
             self.tableView.reloadData()
-        }else{
+        } else {
             robotManager?.connect(to: robot)
         }
-        
         DispatchQueue.main.async{
             self.tableView.reloadData()
         }
-        
     }
     // MARK: - robot manager
     func manager(_: WWRobotManager, didUpdateDiscoveredRobots: WWRobot){
@@ -175,5 +167,4 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
             self.tableView.reloadData()
         }
     }
-    
 }

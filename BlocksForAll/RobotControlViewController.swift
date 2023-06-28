@@ -46,7 +46,6 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
                 if e.isEqual(WWEventToolbelt.orientationShake()){
                     print("Robot is shaking!")
                 }
-            
             }
         }
     }
@@ -59,9 +58,9 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     }
     
     func connectedRobots() -> Bool{
-        if let connectedRobots = robotManager?.allConnectedRobots{
+        if let connectedRobots = robotManager?.allConnectedRobots {
             return !connectedRobots.isEmpty
-        }else{
+        } else {
             return false
         }
     }
@@ -71,14 +70,13 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         print("in play")
         let connectedRobots = robotManager?.allConnectedRobots
         if connectedRobots != nil{
-        
             // var repeatCommands = [WWCommandSet]()
             executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay)
             //creates executing program
             executeNextCommandRobotControllVC()
             //makes initial executeNextCommandRobotControllVC call
             
-            } else{
+            } else {
             print("no connected robots")
         }
     }
@@ -128,7 +126,6 @@ class ExecutingProgram {
     }
     //array blocks (blocksStack) to be executed by the executing program
     
-    
     var repeatCountAndIndexArray: [(timesToR: Int, index: Int)] = []
     //an array of tuples, each tuple keeps track of the number of times left to repeat that repeat loop as well as the index of the start of the repeat loop
     var variablesDict: [String : Double] = [:]
@@ -154,7 +151,7 @@ class ExecutingProgram {
     var funcIsComplete: Bool {
         if positions.count != 0{
             return positions[positions.count - 1].position >= blocksToExec.count
-        }else{
+        } else {
             return true
         }
         //checks if position in blocksToExec is at end marks as complete used for preventing crashing out of index
@@ -163,8 +160,6 @@ class ExecutingProgram {
     var programIsComplete: Bool {
         return positions[0].position >= functionsDictToExec["Main Workspace"]!.count
     }
-
-
     
     func executeNextCommandExecProgram() {
         print("in execute nextcommand")
@@ -175,7 +170,6 @@ class ExecutingProgram {
         
         var myAction = WWCommandSet()
         // set of commands to be executed
-        
 
         let blockToExec = functionsDictToExec[positions[positions.count - 1].funcName]![(positions[positions.count - 1].position)]
         //the current block being check for executing it's from the [] of blocks that are being executed at the position value that we increment with this function (and repeat and if functions)
@@ -186,9 +180,6 @@ class ExecutingProgram {
         
         let cmdToSend = WWCommandSetSequence()
         //an array of command sets to be sent, made of myAction type things
-        
-        
-        
         
         switch blockToExec.name{
         //SOUNDS CATEGORY
@@ -555,24 +546,23 @@ class ExecutingProgram {
         case "Drive":
             var driveConstant = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
             // gets distance by getting the block, getting its added block, getting the block attribute for variable selected then taking that variable and running it through variablesDict to get it's current value and set that to the distance, defualt orange and 0.0
-            if driveConstant > 0.0{
+            if driveConstant > 0.0 {
                 driveConstant = 1.0
-            } else if driveConstant < 0.0{
+            } else if driveConstant < 0.0 {
                 driveConstant = -1.0
-            } else{
+            } else {
                 driveConstant = 0
             }
             // if the variable value is positive then set the drive constant to go forward, if negative set it to go backwards, the distance value for the drive will be gathered the same way as the driveconstant was initialized and that's handled in the playDrive function
             print("in Drive, driveConstant", driveConstant)
             myAction = playDrive(driveBlock: blockToExec, driveConstant: driveConstant, cmdToSend: cmdToSend)
             
-        
         case "Turn":
             var direction = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
             // gets direction by getting the block, getting its added block, getting the block attribute for variable selected then taking that variable and running it through variablesDict to get it's current value and set that to the direction, defualt orange and 0.0
-            if direction > 0{
+            if direction > 0 {
                 direction = 1
-            } else{
+            } else {
                 direction = 0
             }
             // if postive turn clockwise, else counter clockwise(might have that mixed up)
@@ -606,13 +596,13 @@ class ExecutingProgram {
             
         // not best way but using default for Functions
         default:
-            if blockToExec.type == "Function"{
+            if blockToExec.type == "Function" {
                 currentFunction = blockToExec.name
                 // changes current function to the function being called
                 positions.append((funcName: currentFunction, position: -1))
                 // adds this call of the function to the positions array of tuples so that executing current function knows where to start, -1 value is because beneth here the position value is increased this lets the next block start at an index of 0
                 print("in function")
-            }else{
+            } else {
                 print("There is no command")
             }
         }
@@ -642,13 +632,13 @@ class ExecutingProgram {
         print("ifFalse Entered")
         var openIfs = 1
         // number of open ifs to skip if the prior if is false
-        while openIfs > 0{
+        while openIfs > 0 {
             positions[positions.count - 1].position += 1
             //moves through the block stack by upping the position, if the position results in something related to ifs drop or add the number of open ifs until you wind up with 0 open ifs then the position should be correct to continue executing
             if blocksToExec[(positions[positions.count - 1].position)].name == "End If" {
                 openIfs = 0
             }
-            else if ((blocksToExec[(positions[positions.count - 1].position)].name == "IfObstacle in front") || (blocksToExec[(positions[positions.count - 1].position)].name == "IfHear Voice")){
+            else if ((blocksToExec[(positions[positions.count - 1].position)].name == "IfObstacle in front") || (blocksToExec[(positions[positions.count - 1].position)].name == "IfHear Voice")) {
                 openIfs += 1
             }
         }
@@ -671,7 +661,7 @@ class ExecutingProgram {
 
     
     //decomposition of drive functions
-    func playDrive (driveBlock: Block, driveConstant: Double,  cmdToSend: WWCommandSetSequence) -> WWCommandSet{
+    func playDrive (driveBlock: Block, driveConstant: Double,  cmdToSend: WWCommandSetSequence) -> WWCommandSet {
         var distance = 0.0
         var robotSpeed = 0.0
         var speed: String
@@ -744,7 +734,7 @@ class ExecutingProgram {
     }
     
     // MARK: decomposition of turn functions
-    func playTurn (turnBlock: Block, direction: Double, cmdToSend: WWCommandSetSequence)-> WWCommandSet{
+    func playTurn (turnBlock: Block, direction: Double, cmdToSend: WWCommandSetSequence)-> WWCommandSet {
         var angleToTurn: Double = 90
         //matches defualt displayed angle
         if turnBlock.name == "Turn"{
@@ -768,7 +758,7 @@ class ExecutingProgram {
                 cmdToSend.add(turn, withDuration: ((angleToTurn/90) * -1))
                 //duration is cut to time basesd of of angular momentum right now 90 because the velocity is 1/4 turn(90degrees) a second angle to turn is a negative value(which this else statement is for) change the angle to turn to a postive value to calculate duration better
             }
-        } else if turnBlock.name.contains("Turn Left"){
+        } else if turnBlock.name.contains("Turn Left") {
             angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90
             // go through added block to find the attribute angle
             let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: 1.570795)
@@ -777,7 +767,7 @@ class ExecutingProgram {
             turn.setBodyLinearAngular(setAngular)
             cmdToSend.add(turn, withDuration: (angleToTurn/90))
             //duration is cut to time basesd of of angular momentum right now 90 because the velocity is 1/4 turn(90degrees) a second
-        } else if turnBlock.name.contains("Turn Right"){
+        } else if turnBlock.name.contains("Turn Right") {
             angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90
             let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: -1.570795)
             // 0 linear velocity in cm/s then angular is pi for 1/2, tau for 1 a revolution in one second, that's too fast to be accuturate so doing 1/4 tau for quater turn per second, -value for a clockwise direction
@@ -822,7 +812,7 @@ class ExecutingProgram {
 
     
     //decomposition of light functions
-    func playLight (lightBlock: Block) -> WWCommandLightRGB{
+    func playLight (lightBlock: Block) -> WWCommandLightRGB {
         let color = lightBlock.addedBlocks[0].attributes["lightColor"] ?? "white"
         var selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
         switch color{
@@ -860,7 +850,7 @@ class ExecutingProgram {
         return sensorSet
     }
 
-    func sendCommandSequenceToRobots(cmdSeq: WWCommandSetSequence){
+    func sendCommandSequenceToRobots(cmdSeq: WWCommandSetSequence) {
         let connectedRobots = robotManager?.allConnectedRobots
         for r in connectedRobots!{
             if let robot = r as? WWRobot{

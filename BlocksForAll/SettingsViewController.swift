@@ -50,7 +50,6 @@ class SettingsViewController: UIViewController {
         
         let blockSize = defaults.value(forKey: "blockSize") as! Float
         
-        
         blockSizeSlider.setValue(blockSize, animated: false)
         
         let displayValue = ((Int(blockSize) - 100) / 10) + 1
@@ -69,7 +68,6 @@ class SettingsViewController: UIViewController {
             showIconsLabel.accessibilityValue = "Show text selected"
             showIconsLabel.text = "Show Text"
         }
-        
         
         blockSizeLabel.adjustsFontForContentSizeCategory = true
         
@@ -91,7 +89,6 @@ class SettingsViewController: UIViewController {
             showIconsLabel.text = "Show Text"
         }
     }
-    
     
     @IBAction func blockSizeSliderChanged(_ sender: UISlider) {
         // make slider increment by 25
@@ -129,7 +126,6 @@ class SettingsViewController: UIViewController {
         blockSizeLabel.text = "Block Size = \(value)"
     }
 
-    
     /*
     // MARK: - Navigation
 

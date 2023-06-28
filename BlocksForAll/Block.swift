@@ -23,7 +23,6 @@ struct Color : Codable {
     }
 }
 
-
 //Below is the actual encoding and decoding of the uiColor
 struct Task: Codable {
     
@@ -54,7 +53,6 @@ struct Task: Codable {
     }
 }
 //above code is from https://stackoverflow.com/questions/50928153/make-uicolor-codable
-
 
 class Block: Codable {
     /*Block model that has all the properties describing the block*/
@@ -121,7 +119,7 @@ class Block: Codable {
     }
     
     func copy() -> Block{
-        /*Used when selecting a block from the toolbox and copying into workspace*/
+        /* Used when selecting a block from the toolbox and copying into workspace*/
         let newBlock = Block.init(name: self.name, color: self.color, double: self.double, imageName: self.imageName, addedBlocks: self.addedBlocks, type: self.type, acceptedTypes: self.acceptedTypes, isModifiable: self.isModifiable!)
         return newBlock!
     }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
  
 let defaults = UserDefaults.standard  // Used to know block size and if in showIcons or in showText mode. Global so that all files can access it. From Paul Hegarty, lectures 13 and 14
 

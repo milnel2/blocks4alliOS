@@ -26,7 +26,6 @@ class BlockView: UIView, UITextFieldDelegate {
         self.addSubview(simpleView(FromBlock: block))
     }
     
-    
     //MARK: - Element Focus
     override func accessibilityElementDidBecomeFocused() {
         print(blocks[0].name + " is focused")
@@ -50,7 +49,6 @@ class BlockView: UIView, UITextFieldDelegate {
         
         //let isModifierBlock = isModifierOrContainerBlock(block: block)
         let isModifierBlock = block.isModifiable ?? false
-
         
         let myViewHeight: Int
         let myFrame: CGRect
@@ -62,9 +60,7 @@ class BlockView: UIView, UITextFieldDelegate {
             myViewHeight = blockSize
             myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
 
-           }
-        
-        
+        }
         
         let myView = UIView(frame: myFrame)
         myView.backgroundColor = block.color.uiColor
@@ -109,7 +105,6 @@ class BlockView: UIView, UITextFieldDelegate {
                 myLabel.layer.position.y = CGFloat(blockSize / 2)
             }
             myView.addSubview(myLabel)
-            
         }
         return myView
     }

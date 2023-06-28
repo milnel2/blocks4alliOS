@@ -31,13 +31,10 @@ class SelectedBlockViewController: UIViewController {
         
         let myFrame = CGRect(x: 0, y: Int(self.view.bounds.height/2), width: 0, height: 0)
         
-        
         let myBlockView = BlockView.init(frame: myFrame, block: blocks!, myBlockSize: blockSize)
         
         self.view.addSubview(myBlockView)
-        
-        //let name = blocks![0].name
-        
+                
         if blocks![0].isModifiable ?? false {
             let modifierButton = createModifierButton()
             modifierButton.addTarget(self, action: #selector(modifierPressed(sender:)), for: .touchUpInside)
@@ -81,7 +78,6 @@ class SelectedBlockViewController: UIViewController {
         var image: UIImage?
         if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
             image = UIImage(named: imagePath!)
-            //print(imagePath!)
 
             if image != nil { // make sure that the image actually exists
                 modifierButton.setBackgroundImage(image, for: .normal)
@@ -89,7 +85,6 @@ class SelectedBlockViewController: UIViewController {
                 print("Image file not found: \(imagePath!)")
                 modifierButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
             }
-            
         } else {
             // blocks that don't have an imagePath in the dictionary have an image based on their attribute (ex. cat and bragging sounds)
             image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
@@ -178,15 +173,11 @@ class SelectedBlockViewController: UIViewController {
         return dict!
     }
     
+    /// gets values for modifier blocks from a dictionary and returns them as a tuple. Prints errors if properties cannot be found
     private func getModifierData (name : String, dict : NSDictionary) -> (String, String, String?, String, String?, String?, String?) {
-        /* gets values for modifier blocks from a dictionary and returns them as a tuple. Prints errors if properties cannot be found */
-        
         if dict[name] == nil {
             print("\(name) could not be found in modifier block dictionary")
         }
-    
-        
-        
         let subDictionary = dict.value(forKey: name) as! NSDictionary // renamed for simplicity
         
         let defaultValue = subDictionary.value(forKey: "default")
@@ -211,16 +202,5 @@ class SelectedBlockViewController: UIViewController {
         return (defaultValue! as! String, attributeName! as! String, imagePath as? String, displaysText as! String, secondAttributeName as? String, secondDefault as? String, showTextImage as? String)
     }
     
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    // TODO: is a prepare() function needed?
 }
