@@ -816,7 +816,7 @@ class ExecutingProgram {
         let color = lightBlock.addedBlocks[0].attributes["lightColor"] ?? "white"
         var selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
         switch color{
-        case "black":
+        case "light off": // this used to be black, but black lights do not exist, it is just turning the light off
             selectedColor = WWCommandLightRGB.init(red: 0, green: 0, blue: 0)
         case "white":
             selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
