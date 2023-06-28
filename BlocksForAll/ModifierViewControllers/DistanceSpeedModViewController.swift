@@ -29,9 +29,10 @@ class DistanceSpeedModViewController: UIViewController{
     @IBOutlet var distanceTitle: UILabel!
     @IBOutlet var speedTitle: UILabel!
     
+    @IBOutlet weak var speedImage: UIImageView!
     override func viewDidLoad() {
         // Debug VO route
-        distanceSpeedView.accessibilityElements = [distanceTitle!, distanceDisplayed!, distanceSlider!, speedTitle!, slowButton!, speedLabel!, fastButton!, back!]
+        distanceSpeedView.accessibilityElements = [distanceTitle!, distanceDisplayed!, distanceSlider!, speedTitle!, slowButton!, speedLabel!, speedImage!, fastButton!, back!]
         
         //Makes buttons easier to select with Voice Control
         if #available(iOS 13.0, *) {
@@ -56,6 +57,18 @@ class DistanceSpeedModViewController: UIViewController{
         distanceDisplayed.accessibilityValue = "Current distance is \(Int(distance)) centimeters"
         
         back.titleLabel?.adjustsFontForContentSizeCategory = true
+        
+        
+        if defaults.value(forKey: "showText") as! Int == 0 {
+            let imagePath = "\(speed) Icon"
+            let image = UIImage(named: imagePath)
+            if image != nil {
+                speedImage.image = image
+                speedImage.isHidden = false
+            }
+        } else {
+            speedImage.isHidden = true
+        }
     }
     
     /// Updates distance value when slider moved
@@ -88,6 +101,17 @@ class DistanceSpeedModViewController: UIViewController{
         default:
             print("can't be slowed")
         }
+        if defaults.value(forKey: "showText") as! Int == 0 {
+            let imagePath = "\(speed) Icon"
+            let image = UIImage(named: imagePath)
+            if image != nil {
+                speedImage.image = image
+                speedImage.isHidden = false
+            }
+        } else {
+            speedImage.isHidden = true
+        }
+       
         updateAccessibilityLabel()
     }
     
@@ -108,6 +132,17 @@ class DistanceSpeedModViewController: UIViewController{
             speedLabel.text = speed
         default:
             print("can't make faster")
+        }
+        
+        if defaults.value(forKey: "showText") as! Int == 0 {
+            let imagePath = "\(speed) Icon"
+            let image = UIImage(named: imagePath)
+            if image != nil {
+                speedImage.image = image
+                speedImage.isHidden = false
+            }
+        } else {
+            speedImage.isHidden = true
         }
         updateAccessibilityLabel()
     }

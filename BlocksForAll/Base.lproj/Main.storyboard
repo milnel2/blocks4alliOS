@@ -823,22 +823,6 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6X-ia-LTz">
-                                <rect key="frame" x="698" y="521" width="138" height="133"/>
-                                <accessibility key="accessibilityConfiguration" label="Faster"/>
-                                <state key="normal" title=" " image="green_plus"/>
-                                <connections>
-                                    <action selector="fastButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="Pqx-Zv-mgz"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WtH-IO-eXP">
-                                <rect key="frame" x="292" y="521" width="138" height="133"/>
-                                <accessibility key="accessibilityConfiguration" label="Slower"/>
-                                <state key="normal" title=" " image="green_minus"/>
-                                <connections>
-                                    <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="hDu-fY-S5y"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MuZ-k8-W3G">
                                 <rect key="frame" x="869" y="234" width="82" height="72"/>
                                 <accessibility key="accessibilityConfiguration" label="Selected Distance"/>
@@ -862,17 +846,8 @@ For further information on Blocks4All, please visit our website. For further det
                                     <segue destination="uoc-nU-c4a" kind="show" id="ebu-O5-0hJ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Normal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeR-95-VOA">
-                                <rect key="frame" x="487" y="537.5" width="106" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="lqB-AR-g5s"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXq-Lg-wuF">
-                                <rect key="frame" x="490" y="384" width="100" height="113"/>
+                                <rect key="frame" x="490" y="351" width="100" height="113"/>
                                 <accessibility key="accessibilityConfiguration" hint="How fast should the robot travel " label="Speed"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="0tN-2M-Etx"/>
@@ -882,30 +857,62 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="3dn-sh-pry">
+                                <rect key="frame" x="277" y="546" width="526" height="133"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WtH-IO-eXP">
+                                        <rect key="frame" x="0.0" y="0.0" width="138" height="133"/>
+                                        <accessibility key="accessibilityConfiguration" label="Slower"/>
+                                        <state key="normal" title=" " image="green_minus"/>
+                                        <connections>
+                                            <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="hDu-fY-S5y"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="ypF-E4-Cn8">
+                                        <rect key="frame" x="188" y="11" width="150" height="111"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Normal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeR-95-VOA">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="41"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="cuC-Az-E1c"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="lqB-AR-g5s"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Normal Icon" translatesAutoresizingMaskIntoConstraints="NO" id="5K2-Vk-uvN">
+                                                <rect key="frame" x="0.0" y="41" width="150" height="70"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6X-ia-LTz">
+                                        <rect key="frame" x="388" y="0.0" width="138" height="133"/>
+                                        <accessibility key="accessibilityConfiguration" label="Faster"/>
+                                        <state key="normal" title=" " image="green_plus"/>
+                                        <connections>
+                                            <action selector="fastButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="Pqx-Zv-mgz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="X6X-ia-LTz" firstAttribute="centerY" secondItem="XeR-95-VOA" secondAttribute="centerY" id="3Xl-yU-Hbq"/>
-                            <constraint firstItem="WtH-IO-eXP" firstAttribute="leading" secondItem="nbW-AW-Yn9" secondAttribute="leading" constant="292" id="4Bp-SJ-D4x"/>
+                            <constraint firstItem="ukk-FT-0dn" firstAttribute="top" secondItem="3dn-sh-pry" secondAttribute="bottom" constant="131" id="1dm-IJ-w6O"/>
                             <constraint firstItem="aXq-Lg-wuF" firstAttribute="centerX" secondItem="33V-6u-7DC" secondAttribute="centerX" id="6rW-Z1-Upy"/>
-                            <constraint firstItem="XeR-95-VOA" firstAttribute="top" secondItem="aXq-Lg-wuF" secondAttribute="bottom" constant="40.5" id="6x9-UP-3T6"/>
                             <constraint firstItem="M3X-6I-Kgi" firstAttribute="leading" secondItem="Rqa-ry-KPK" secondAttribute="trailing" constant="213" id="73X-5M-hQ3"/>
                             <constraint firstItem="33V-6u-7DC" firstAttribute="top" secondItem="Rqa-ry-KPK" secondAttribute="bottom" constant="30" id="F7f-Mb-G6X"/>
                             <constraint firstAttribute="trailing" secondItem="MuZ-k8-W3G" secondAttribute="trailing" constant="129" id="PFX-hv-V1r"/>
+                            <constraint firstItem="3dn-sh-pry" firstAttribute="top" secondItem="aXq-Lg-wuF" secondAttribute="bottom" constant="82" id="VOm-Qi-dDg"/>
                             <constraint firstItem="MuZ-k8-W3G" firstAttribute="top" secondItem="zJX-ce-Uh5" secondAttribute="bottom" constant="234" id="Wpg-BW-il8"/>
-                            <constraint firstItem="ukk-FT-0dn" firstAttribute="top" secondItem="WtH-IO-eXP" secondAttribute="bottom" constant="156" id="Zz3-To-usV"/>
                             <constraint firstItem="MuZ-k8-W3G" firstAttribute="centerY" secondItem="33V-6u-7DC" secondAttribute="centerY" id="aSQ-j6-Vb0"/>
                             <constraint firstItem="M3X-6I-Kgi" firstAttribute="top" secondItem="zJX-ce-Uh5" secondAttribute="bottom" constant="150" id="baU-Vf-JF4"/>
-                            <constraint firstItem="XeR-95-VOA" firstAttribute="centerX" secondItem="nbW-AW-Yn9" secondAttribute="centerX" id="goW-Bh-Zbh"/>
                             <constraint firstItem="M3X-6I-Kgi" firstAttribute="centerX" secondItem="nbW-AW-Yn9" secondAttribute="centerX" id="hAM-ag-vgt"/>
                             <constraint firstItem="Rqa-ry-KPK" firstAttribute="top" secondItem="zJX-ce-Uh5" secondAttribute="bottom" constant="30" id="j9d-lw-F8x"/>
-                            <constraint firstAttribute="trailing" secondItem="X6X-ia-LTz" secondAttribute="trailing" constant="244" id="ksb-XF-ydd"/>
                             <constraint firstItem="Rqa-ry-KPK" firstAttribute="leading" secondItem="nbW-AW-Yn9" secondAttribute="leadingMargin" constant="20" id="o0I-zm-O1S"/>
-                            <constraint firstItem="X6X-ia-LTz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XeR-95-VOA" secondAttribute="trailing" constant="8" symbolic="YES" id="qwb-ue-VFp"/>
                             <constraint firstItem="MuZ-k8-W3G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="33V-6u-7DC" secondAttribute="trailing" constant="8" symbolic="YES" id="rCk-kw-buo"/>
-                            <constraint firstItem="XeR-95-VOA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WtH-IO-eXP" secondAttribute="trailing" constant="8" symbolic="YES" id="u8r-Xm-YFg"/>
-                            <constraint firstItem="X6X-ia-LTz" firstAttribute="baseline" secondItem="WtH-IO-eXP" secondAttribute="baseline" id="uY6-kA-vP1"/>
-                            <constraint firstItem="ukk-FT-0dn" firstAttribute="top" secondItem="X6X-ia-LTz" secondAttribute="bottom" constant="156" id="vSW-Pj-KLl"/>
+                            <constraint firstItem="3dn-sh-pry" firstAttribute="centerX" secondItem="nbW-AW-Yn9" secondAttribute="centerX" id="vU4-WW-Bk1"/>
                             <constraint firstItem="33V-6u-7DC" firstAttribute="centerX" secondItem="nbW-AW-Yn9" secondAttribute="centerX" id="vwf-eO-ZbB"/>
                         </constraints>
                     </view>
@@ -918,6 +925,7 @@ For further information on Blocks4All, please visit our website. For further det
                         <outlet property="distanceTitle" destination="M3X-6I-Kgi" id="Gi0-ES-Lcs"/>
                         <outlet property="fastButton" destination="X6X-ia-LTz" id="OHL-ID-D61"/>
                         <outlet property="slowButton" destination="WtH-IO-eXP" id="di7-Dk-6Oi"/>
+                        <outlet property="speedImage" destination="5K2-Vk-uvN" id="NzW-TD-gnE"/>
                         <outlet property="speedLabel" destination="XeR-95-VOA" id="5zh-Za-eW3"/>
                         <outlet property="speedTitle" destination="aXq-Lg-wuF" id="f95-1f-29d"/>
                     </connections>
@@ -1718,8 +1726,8 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tjn-hR-3fo"/>
-        <segue reference="SES-Og-HDs"/>
+        <segue reference="ebu-O5-0hJ"/>
+        <segue reference="PIe-sL-Fqa"/>
         <segue reference="gnX-kj-isW"/>
         <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
@@ -1734,6 +1742,7 @@ For further information on Blocks4All, please visit our website. For further det
         <image name="GreenArrow" width="649" height="586"/>
         <image name="Main Workspace Button" width="792" height="151"/>
         <image name="Main_menuButton" width="1314" height="1373"/>
+        <image name="Normal Icon" width="133" height="70"/>
         <image name="Off" width="133.44094848632812" height="133.44094848632812"/>
         <image name="On" width="133.44094848632812" height="133.44094848632812"/>
         <image name="Orange" width="133" height="133"/>
