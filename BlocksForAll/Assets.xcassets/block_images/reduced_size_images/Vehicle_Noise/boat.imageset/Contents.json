@@ -3,6 +3,16 @@
     {
       "filename" : "boat.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-boat.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

@@ -3,6 +3,16 @@
     {
       "filename" : "beep.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-beep.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
