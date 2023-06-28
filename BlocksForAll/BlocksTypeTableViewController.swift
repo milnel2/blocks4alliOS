@@ -53,13 +53,19 @@ class BlocksTypeTableViewController: UITableViewController {
                     case "Lights":
                         block.color = Color.init(uiColor: UIColor(named: "gold_block")!)
                     case "Control":
-                        block.color = Color.init(uiColor: UIColor.gray)
+                        block.color = Color.init(uiColor: UIColor(named: "orange_block")!)
+                    case "Motion":
+                        block.color = Color.init(uiColor: UIColor(named: "red_block")!)
+                    case "Variables":
+                        block.color = Color.init(uiColor: UIColor(named: "dark_purple_block")!)
+                    case "Functions":
+                        block.color = Color.init(uiColor: UIColor(named: "light_purple_block")!)
                     default:
                         print("Block not found")
                     }
                 }
-                    }
-                }
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
