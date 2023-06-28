@@ -3,6 +3,16 @@
     {
       "filename" : "drive.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-drive.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

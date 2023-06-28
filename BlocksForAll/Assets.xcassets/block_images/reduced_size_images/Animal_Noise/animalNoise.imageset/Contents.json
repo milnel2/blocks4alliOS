@@ -3,6 +3,16 @@
     {
       "filename" : "sounds-01.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "animal_icon-dark.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

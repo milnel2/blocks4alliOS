@@ -3,6 +3,16 @@
     {
       "filename" : "sounds [Recovered].pdf",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "speak_icon-dark.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

@@ -3,6 +3,16 @@
     {
       "filename" : "turn.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-turn.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

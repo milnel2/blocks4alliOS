@@ -3,6 +3,16 @@
     {
       "filename" : "speed-05.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-speed-05.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

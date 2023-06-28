@@ -3,6 +3,16 @@
     {
       "filename" : "laser_sound.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-laser_sound.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
