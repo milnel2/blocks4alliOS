@@ -3,6 +3,16 @@
     {
       "filename" : "squeak_sound.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-squeak.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

@@ -3,6 +3,16 @@
     {
       "filename" : "randomemotion.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-random_emotion.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
