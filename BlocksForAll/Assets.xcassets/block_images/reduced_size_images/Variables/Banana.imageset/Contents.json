@@ -3,6 +3,16 @@
     {
       "filename" : "banana.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-banana.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

@@ -3,6 +3,16 @@
     {
       "filename" : "apple.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-apple.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
