@@ -58,8 +58,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       
       private var attributeName = "" // a reformatted version of optionType. Used for accessing and saving data (ex. if soundType = "Animal Noise", attributeName is "animalNoise"
       
-      // TODO: should buttonSize be the same value as blockSize?
-      private let buttonSize = 150 // the size of each button that is showed in the collection view
+    private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each button that is showed in the collection view
       
       // from https://stackoverflow.com/questions/24110762/swift-determine-ios-screen-size
       let screenSize: CGRect = UIScreen.main.bounds // size of the screen that the app is being run on. Used to build button layout

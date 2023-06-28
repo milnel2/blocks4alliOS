@@ -48,7 +48,7 @@ class TwoOptionModifierViewController: UIViewController {
     private var optionTwo = "N/A"  // String value of option two
     
     // TODO: should buttonSize be the same value as blockSize?
-    private let buttonSize = 150  // the size of each option button
+    private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each option button 
       
     override func viewDidLoad() {
         optionType = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name  // get the optionType from the button that caused this screen to open, this will be displayed at the top of the screen
