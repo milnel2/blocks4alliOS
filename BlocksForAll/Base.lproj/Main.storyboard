@@ -4,7 +4,7 @@
     <accessibilityOverrides dynamicTypePreference="11"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -341,16 +341,17 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZe-3b-W7O">
                                 <rect key="frame" x="68" y="220" width="944" height="448"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Welcome to Blocks4All! This application is a blocks-based programming environment used as an introduction to programming concepts. It is accessible with both VoiceOver and Switch Control.
-
-In order to use Blocks4All, you must have a Dash or Dot (limited commands) robot from Wonder Workshop.
-
-To get started, select "Get Started" from the Main Menu. This takes you to the building screen. To give commands to the robot first select a category in the “toolbox” on the left hand side of the tablet by the home button. Next select a block (command) from the "toolbox" on the left side of the screen. Finally select where you would like the block to go in the "workspace" on the bottom of the screen.
-
-To have the robot play the commands, press the play button in the lower right side of the screen. If no robot is selected, you will be taken to a menu of detected robots. Select the robot you want then press back then press play again.
-
-Some blocks, like "look," do not have extra parts. Some blocks though such as the “repeat” and “if” blocks have three parts, a beginning block with a modifier and an endblock. The modifier block can have conditions or numbers, repeat modifier block can be changed to repeat 2 times or more than that if you want. If blocks can have conditions such as if Dash bumps into something or if dash hears a voice. These repeat times and if conditions then affect what blocks you place between the If block and the end if block. Other blocks such as drive blocks also have modifiers such as distance. You can edit a modifier block by tapping on the block.
-</string>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES"/>
+                                </accessibility>
+                                <mutableString key="text">Welcome to Blocks4All! This iOS iPad application is an accessible blocks-based programming environment designed to introduce children with motor and visual impairments to computer science concepts. It is compatible with iOS Switch Control and VoiceOver. 
+To run Blocks4All, you must have a Dash or Dot (limited commands) robot from Wonder Workshop. 
+To get started, select the Play button on the Main Menu. This directs you to the main workspace. To give commands to the robot, first, select a category in the Toolbox on the left side of the screen. Next, select a block (command) from the Toolbox among the available commands for the chosen category. Finally, add the block to the program by tapping on its desired location in the main workspace section in the middle of the screen. Note that you tap to place the block—it’s not drag and drop. 
+To have the robot run the commands, press the Play button in the lower right corner of the screen. To connect Blocks4All with the Wonder Workshop robot, make sure that you have Bluetooth on your device and the robot turned on. If no robot appears, try turning it on and off. Select the robot you want, then press Back, then press Play again. 
+Some blocks, such as the Motion blocks, do not include extra parts. Other blocks, like the Sounds and Drive blocks, have modifiers to alter the characteristics (e.g. speed) of each block. You can edit a block command by tapping on the modifier block on the upper half of the block command in the workspace.  
+Meanwhile, blocks like “Repeat” and “If” have three components: a beginning modifier block, an end block, and a group of command block between the beginning and end blocks. The modifier block allows users to alter the conditions of these blocks: for example, the “Repeat” modifier block can be changed to repeat more than 2 times. Meanwhile, the “If” blocks may contain conditions such as “if Dash bumps into something” or “if Dash hears a voice”. These conditions affect the action of the command blocks between the beginning and end blocks.  
+To create a function, select the Create/Edit Functions block within the Functions category. You can add a function by tapping on the Add Function button on the upper right corner, entering the function name, and clicking Done. Afterwards, you can add commands to the functions or change existing commands by selecting the newly created function from the Functions Menu screen. There is also the option to rename or delete a function.  
+For further information on Blocks4All, please visit our website. For further details on your data privacy, please visit our Privacy Policy. </mutableString>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1648,13 +1649,13 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="nZi-qD-DBG">
-                                <rect key="frame" x="307" y="368" width="466" height="274"/>
+                                <rect key="frame" x="306.5" y="368" width="467" height="274.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="vAj-Po-emI">
-                                        <rect key="frame" x="0.0" y="0.0" width="466" height="133"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="467" height="133.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywf-kX-izT">
-                                                <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133.5" height="133.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <state key="normal" backgroundImage="Off">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1664,7 +1665,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7e-AE-Lha">
-                                                <rect key="frame" x="333" y="0.0" width="133" height="133"/>
+                                                <rect key="frame" x="333.5" y="0.0" width="133.5" height="133.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <state key="normal" title=" " backgroundImage="On">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1676,7 +1677,7 @@ Some blocks, like "look," do not have extra parts. Some blocks though such as th
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="TWO OPTION VALUE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwb-pX-XHB">
-                                        <rect key="frame" x="0.0" y="233" width="466" height="41"/>
+                                        <rect key="frame" x="0.0" y="233.5" width="467" height="41"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
