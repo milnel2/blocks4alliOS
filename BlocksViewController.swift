@@ -21,15 +21,13 @@ let defaults = UserDefaults.standard
 
 let startIndex = 0
 
-
 var endIndex: Int{
     return functionsDict[currentWorkspace]!.count - 1
 }
 
-// modifier block global variables
-// these are global so that the modifier setup methods can access them
-var startingHeight = 0
-var count = 0
+// modifier block variables
+private var startingHeight = 0
+private var count = 0
 
 //MARK: - Block Selection Delegate Protocol
 /// Sends information about which blocks are selected to SelectedBlockViewController when moving blocks in workspace.

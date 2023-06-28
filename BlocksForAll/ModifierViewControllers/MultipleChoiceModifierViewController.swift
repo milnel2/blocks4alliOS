@@ -29,7 +29,6 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       
       @IBOutlet var optionModTitle: UILabel! // label at top of screen
     
-    
     @IBOutlet weak var optionalExtraLabel: UILabel! // label underneath optionModTitle. Used for some of the variable modifiiers
     
       //TODO: get this dictionary from asset folders?

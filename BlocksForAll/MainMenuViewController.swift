@@ -29,6 +29,9 @@ class MainMenuViewController: UIViewController {
         getStarted.titleLabel?.adjustsFontForContentSizeCategory = true
         instructions.titleLabel?.adjustsFontForContentSizeCategory = true
         addRobots.titleLabel?.adjustsFontForContentSizeCategory = true
+        
+        defaults.setValue(0, forKey: "showText")
+        
     }
     
     var blockSize = 150 /* this controls the size of the blocks you put down in the Building Screen */
