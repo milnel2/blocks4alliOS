@@ -4,7 +4,7 @@
     <accessibilityOverrides dynamicTypePreference="11"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,8 +33,8 @@
                                         <subviews>
                                             <imageView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B4A_Robot_outline" translatesAutoresizingMaskIntoConstraints="NO" id="bML-d3-3Tw">
                                                 <rect key="frame" x="0.0" y="0.0" width="500" height="450"/>
-                                                <accessibility key="accessibilityConfiguration" hint="Requires a Dash or Dot robot from Wonder Workshop" label="Dash Image">
-                                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Digital drawing of a blue Dash robot with a happy expression. Blocks4All requires a Dash or Dot robot from Wonder Workshop." label="Dash Robot">
+                                                    <accessibilityTraits key="traits" image="YES"/>
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
                                                 <constraints>
@@ -260,6 +260,10 @@
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SettingsTitle" translatesAutoresizingMaskIntoConstraints="NO" id="glw-m4-ShG">
                                 <rect key="frame" x="356" y="122" width="388" height="100"/>
+                                <accessibility key="accessibilityConfiguration" label="Settings">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="388" id="Hoc-cX-q3x"/>
                                     <constraint firstAttribute="height" constant="100" id="wR7-EF-sdu"/>
@@ -344,14 +348,14 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" button="YES"/>
                                 </accessibility>
-                                <mutableString key="text">Welcome to Blocks4All! This iOS iPad application is an accessible blocks-based programming environment designed to introduce children with motor and visual impairments to computer science concepts. It is compatible with iOS Switch Control and VoiceOver. 
+                                <string key="text">Welcome to Blocks4All! This iOS iPad application is an accessible blocks-based programming environment designed to introduce children with motor and visual impairments to computer science concepts. It is compatible with iOS Switch Control and VoiceOver. 
 To run Blocks4All, you must have a Dash or Dot (limited commands) robot from Wonder Workshop. 
 To get started, select the Play button on the Main Menu. This directs you to the main workspace. To give commands to the robot, first, select a category in the Toolbox on the left side of the screen. Next, select a block (command) from the Toolbox among the available commands for the chosen category. Finally, add the block to the program by tapping on its desired location in the main workspace section in the middle of the screen. Note that you tap to place the block—it’s not drag and drop. 
 To have the robot run the commands, press the Play button in the lower right corner of the screen. To connect Blocks4All with the Wonder Workshop robot, make sure that you have Bluetooth on your device and the robot turned on. If no robot appears, try turning it on and off. Select the robot you want, then press Back, then press Play again. 
 Some blocks, such as the Motion blocks, do not include extra parts. Other blocks, like the Sounds and Drive blocks, have modifiers to alter the characteristics (e.g. speed) of each block. You can edit a block command by tapping on the modifier block on the upper half of the block command in the workspace.  
 Meanwhile, blocks like “Repeat” and “If” have three components: a beginning modifier block, an end block, and a group of command block between the beginning and end blocks. The modifier block allows users to alter the conditions of these blocks: for example, the “Repeat” modifier block can be changed to repeat more than 2 times. Meanwhile, the “If” blocks may contain conditions such as “if Dash bumps into something” or “if Dash hears a voice”. These conditions affect the action of the command blocks between the beginning and end blocks.  
 To create a function, select the Create/Edit Functions block within the Functions category. You can add a function by tapping on the Add Function button on the upper right corner, entering the function name, and clicking Done. Afterwards, you can add commands to the functions or change existing commands by selecting the newly created function from the Functions Menu screen. There is also the option to rename or delete a function.  
-For further information on Blocks4All, please visit our website. For further details on your data privacy, please visit our Privacy Policy. </mutableString>
+For further information on Blocks4All, please visit our website. For further details on your data privacy, please visit our Privacy Policy. </string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1495,7 +1499,7 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OPTIONAL EXTRA LABEL" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0M-a3-X3n">
-                                <rect key="frame" x="427.5" y="169" width="225" height="24"/>
+                                <rect key="frame" x="427.5" y="221" width="225" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="QTt-ak-ovI"/>
                                 </constraints>
@@ -1508,7 +1512,7 @@ For further information on Blocks4All, please visit our website. For further det
                         <constraints>
                             <constraint firstItem="M0M-a3-X3n" firstAttribute="centerX" secondItem="pcs-vo-2Zv" secondAttribute="centerX" id="KE8-Sf-h9H"/>
                             <constraint firstItem="AxI-El-jaR" firstAttribute="centerY" secondItem="7yj-Ik-X8W" secondAttribute="centerY" id="Tci-Sf-Plm"/>
-                            <constraint firstItem="M0M-a3-X3n" firstAttribute="firstBaseline" secondItem="AxI-El-jaR" secondAttribute="baseline" constant="28" symbolType="layoutAnchor" id="cJH-Eq-EUg"/>
+                            <constraint firstItem="M0M-a3-X3n" firstAttribute="firstBaseline" secondItem="AxI-El-jaR" secondAttribute="baseline" constant="80" id="ZZ2-HN-VSy"/>
                             <constraint firstItem="AxI-El-jaR" firstAttribute="centerX" secondItem="pcs-vo-2Zv" secondAttribute="centerX" id="jFz-TI-JLs"/>
                             <constraint firstItem="AxI-El-jaR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7yj-Ik-X8W" secondAttribute="trailing" constant="10" id="qmN-tc-qE0"/>
                             <constraint firstItem="7yj-Ik-X8W" firstAttribute="top" secondItem="pcs-vo-2Zv" secondAttribute="top" constant="30" id="reh-CS-3F1"/>
@@ -1649,13 +1653,13 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="nZi-qD-DBG">
-                                <rect key="frame" x="306.5" y="368" width="467" height="274.5"/>
+                                <rect key="frame" x="307" y="368" width="466" height="274"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="vAj-Po-emI">
-                                        <rect key="frame" x="0.0" y="0.0" width="467" height="133.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="466" height="133"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywf-kX-izT">
-                                                <rect key="frame" x="0.0" y="0.0" width="133.5" height="133.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <state key="normal" backgroundImage="Off">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1665,7 +1669,7 @@ For further information on Blocks4All, please visit our website. For further det
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7e-AE-Lha">
-                                                <rect key="frame" x="333.5" y="0.0" width="133.5" height="133.5"/>
+                                                <rect key="frame" x="333" y="0.0" width="133" height="133"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <state key="normal" title=" " backgroundImage="On">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1677,7 +1681,7 @@ For further information on Blocks4All, please visit our website. For further det
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="TWO OPTION VALUE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwb-pX-XHB">
-                                        <rect key="frame" x="0.0" y="233.5" width="467" height="41"/>
+                                        <rect key="frame" x="0.0" y="233" width="466" height="41"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1715,9 +1719,9 @@ For further information on Blocks4All, please visit our website. For further det
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Tjn-hR-3fo"/>
-        <segue reference="PIe-sL-Fqa"/>
+        <segue reference="SES-Og-HDs"/>
         <segue reference="gnX-kj-isW"/>
-        <segue reference="KBE-C8-Ew2"/>
+        <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AddRobotButton" width="911" height="224"/>
