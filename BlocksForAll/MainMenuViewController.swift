@@ -30,8 +30,9 @@ class MainMenuViewController: UIViewController {
         instructions.titleLabel?.adjustsFontForContentSizeCategory = true
         addRobots.titleLabel?.adjustsFontForContentSizeCategory = true
         
-        defaults.setValue(0, forKey: "showText")
-        
+        if  defaults.value(forKey: "showText") == nil {
+            defaults.setValue(0, forKey: "showText") // set showText to showIcons by default
+        }
     }
     
     var blockSize = 150 /* this controls the size of the blocks you put down in the Building Screen */
