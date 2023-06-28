@@ -138,7 +138,14 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
               
               // Naming convention for color assets is (attributeName)Color
               // ex. animalNoiseColor, emotionNoiseColor
-              let colorPath = "\(attributeName)Color"
+              let colorPath: String
+              if optionType.contains("Light Color") || optionType.contains("Lights Color") {
+                  // light modifiers have a different color for each button, so there is a different naming convention
+                  colorPath = "\(items[index])Color"
+              } else {
+                  colorPath = "\(attributeName)Color"
+              }
+              
               let myUIColor = UIColor(named: colorPath)
               cell.backgroundColor = myUIColor ?? #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
               
