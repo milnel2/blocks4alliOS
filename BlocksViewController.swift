@@ -21,16 +21,13 @@ let defaults = UserDefaults.standard
 
 let startIndex = 0
 
-
 var endIndex: Int{
     return functionsDict[currentWorkspace]!.count - 1
 }
 
-
-// modifier block global variables
-// these are global so that the modifier setup methods can access them
-var startingHeight = 0
-var count = 0
+// modifier block variables
+private var startingHeight = 0
+private var count = 0
 
 //MARK: - Block Selection Delegate Protocol
 /// Sends information about which blocks are selected to SelectedBlockViewController when moving blocks in workspace.
@@ -51,7 +48,6 @@ extension String {
 
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
 
-    
     //Larger views
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var workspaceContainerView: UIView!
@@ -171,9 +167,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     }
     
-
-    
-    
     /// Removes blocks from current function and updates the saved data file.
     func clearAllBlocks(){
         if currentWorkspace == "Main Workspace"{
@@ -238,7 +231,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             modifierBlock.isEnabled = true
             modifierBlock.isAccessibilityElement = true
         }
-        
     }
 
     // run the actual program when the trash button is clicked
@@ -278,7 +270,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierBlock.isEnabled = false
                 modifierBlock.isAccessibilityElement = false
             }
-            
         }
     }
     
@@ -341,12 +332,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func makeAnnouncement(_ announcement: String){
         UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: NSLocalizedString(announcement, comment: ""))
     }
-    
-//    func delay(_ announcement: String, _ seconds: Int){
-//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: {
-//            self.makeAnnouncement(announcement)
-//        })
-//    }
     
     func createViewRepresentation(FromBlocks blocksRep: [Block]) -> UIView {
         /*Given a list of blocks, creates the views that will be displayed in the blocksProgram*/
@@ -589,17 +574,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         /* Given the name for a modifier block, returns a Selector for the button*/
         switch name {
         case "Animal Noise", "Vehicle Noise", "Object Noise", "Emotion Noise", "Speak", "Set Right Ear Light Color", "Set Left Ear Light Color", "Set Chest Light Color", "Set All Lights Color", "Look Left or Right", "Look Up or Down", "Turn":
-            return #selector(soundModifier(sender:))
+            return #selector(multipleChoiceModifier(sender:))
         case "Turn Left", "Turn Right":
             return #selector(angleModifier(sender:))
         case "Set Eye Light", "If":
-            return #selector(setEyeLightModifier(sender:))
+            return #selector(twoOptionModifier(sender:))
         case "Drive":
             return #selector(driveModifier(sender:))
         case "Drive Forward", "Drive Backward":
             return #selector(distanceSpeedModifier(sender:))
         case "Wait for Time", "Repeat":
-            return #selector(waitModifier(sender:))
+            return #selector(stepperModifier(sender:))
         case "Set Variable":
             return #selector(variableModifier(sender:))
         default:
@@ -689,8 +674,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     if let range = voiceControlLabel.range(of: wordToRemove){
                         voiceControlLabel.removeSubrange(range)
                     }
-                }
-                else if block.name.contains("Turn") {
+                } else if block.name.contains("Turn") {
                     let wordToRemove = "Turn "
                     if let range = voiceControlLabel.range(of: wordToRemove){
                         voiceControlLabel.removeSubrange(range)
@@ -699,8 +683,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
                 if movingBlocks {
                     blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
-                }
-                else {
+                } else {
                     blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
                 }
 
@@ -722,8 +705,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
                 if movingBlocks {
                     blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(voiceControlLabel2)", "Before \(block.name)"]
-                }
-                else {
+                } else {
                     blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(voiceControlLabel2)", "\(block.name)"]
                 }
 
@@ -737,8 +719,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
                 if movingBlocks {
                     blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
-                }
-                else {
+                } else {
                     blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
                 }
 
@@ -748,36 +729,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
 
-
-        func changeModifierBlockColor(color: String) -> UIColor {
-            // test with black
-            if color.elementsEqual("black"){
-                return UIColor.black
-            }
-            if color.elementsEqual("red"){
-                return UIColor.red
-            }
-            if color.elementsEqual("orange"){
-                return UIColor.orange
-            }
-            if color.elementsEqual("yellow"){
-                return UIColor.yellow
-            }
-            if color.elementsEqual("green"){
-                return UIColor.green
-            }
-            if color.elementsEqual("blue"){
-                // RGB values from Storyboard source code
-                return UIColor(displayP3Red: 0, green: 0.5898, blue: 1, alpha: 1)
-            }
-            if color.elementsEqual("purple"){
-                return UIColor(displayP3Red: 0.58188, green: 0.2157, blue: 1, alpha: 1)
-            }
-            if color.elementsEqual("white"){
-                return UIColor.white
-            }
-            return UIColor.yellow //default color
-        }
     /* CollectionView contains the actual collection of blocks (i.e. the program that is being created with the blocks)
      This method creates and returns the cell at a given index
      */
@@ -872,11 +823,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     addAccessibilityLabel(blockView: blockView, block: block, blockModifier: "function", blockLocation: indexPath.row+1, blockIndex: indexPath.row)
                     cell.addSubview(blockView)
                     allBlockViews.append(blockView)
-
                 }
             }
         }
-        
         
         // Deactivates all modifier blocks in the workspace while a block is being moved.
         // Switch control and VO will also skip over the modifier block.
@@ -899,9 +848,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
     }
     
-    @objc  func waitModifier(sender: UIButton!) {
+    @objc  func stepperModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "WaitModifier", sender: nil)
+        performSegue(withIdentifier: "StepperModifier", sender: nil)
     }
     
     @objc func angleModifier(sender: UIButton!) {
@@ -909,49 +858,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         performSegue(withIdentifier: "TurnRightModifier", sender: nil)
     }
     
-    @objc func lightColorModifier(sender: UIButton!) {
+    @objc func twoOptionModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "ColorModifier", sender: nil)
-    }
-    
-    @objc func setEyeLightModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "EyeLightModifier", sender: nil)
+        performSegue(withIdentifier: "TwoOptionModifier", sender: nil)
     }
     
     @objc func variableModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "VariableModifier", sender: nil)
     }
-    
-    @objc func ifModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "IfModifier", sender: nil)
-    }
-    
-    @objc func turnModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "turnModifier", sender: nil)
-    }
-    
-    @objc func lookUpDownModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "lookUpDownModifier", sender: nil)
-    }
-    
-    @objc func lookLeftRightModifier(sender: UIButton!) {
-        modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "lookLeftRightModifier", sender: nil)
-    }
-    
+  
     @objc func driveModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "driveModifier", sender: nil)
     }
     
-    @objc func soundModifier(sender: UIButton!) {
+    @objc func multipleChoiceModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "SoundModifier", sender: nil)
+        performSegue(withIdentifier: "MultipleChoiceModifier", sender: nil)
     }
     
     @objc func buttonClicked(sender: UIButton!){
@@ -1015,7 +939,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                     blocksProgram.reloadData()
                     
-                    
                     let mySelectedBlockVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectedBlockViewController") as! SelectedBlockViewController
                     
                     containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
@@ -1024,7 +947,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             }
         }
-       
     }
   
     // MARK: - - Navigation
@@ -1075,9 +997,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
 }
 
-
-
-
 /// Alerts the user that all the blocks will be deleted. If user selects yes, blocks in current function are delected
 /// - Parameter sender: Clear All button
 //    @IBAction func clearAll(_ sender: Any) {
@@ -1093,4 +1012,42 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 //
 //        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
 //        self.present(alert, animated: true)
+//    }
+
+
+//func changeModifierBlockColor(color: String) -> UIColor {
+//    // test with black
+//    if color.elementsEqual("black"){
+//        return UIColor.black
+//    }
+//    if color.elementsEqual("red"){
+//        return UIColor.red
+//    }
+//    if color.elementsEqual("orange"){
+//        return UIColor.orange
+//    }
+//    if color.elementsEqual("yellow"){
+//        return UIColor.yellow
+//    }
+//    if color.elementsEqual("green"){
+//        return UIColor.green
+//    }
+//    if color.elementsEqual("blue"){
+//        // RGB values from Storyboard source code
+//        return UIColor(displayP3Red: 0, green: 0.5898, blue: 1, alpha: 1)
+//    }
+//    if color.elementsEqual("purple"){
+//        return UIColor(displayP3Red: 0.58188, green: 0.2157, blue: 1, alpha: 1)
+//    }
+//    if color.elementsEqual("white"){
+//        return UIColor.white
+//    }
+//    return UIColor.yellow //default color
+//}
+
+
+//    func delay(_ announcement: String, _ seconds: Int){
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: {
+//            self.makeAnnouncement(announcement)
+//        })
 //    }

@@ -41,7 +41,7 @@ class SelectedBlockViewController: UIViewController {
         if blocks![0].isModifiable ?? false {
             let modifierButton = createModifierButton()
             modifierButton.addTarget(self, action: #selector(modifierPressed(sender:)), for: .touchUpInside)
-            self.view.addSubview(modifierButton)
+            myBlockView.addSubview(modifierButton)
         }
        
         // Do any additional setup after loading the view.
@@ -63,7 +63,7 @@ class SelectedBlockViewController: UIViewController {
     }
     
     func createModifierButton() -> CustomButton {
-        let modifierButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:((blockSize / 8) * 9), width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+        let modifierButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:(-blockSize * 8) / 9, width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
         
         let dict = getModifierDictionary() // holds properties of all modifier blocks
         let name = blocks![0].name
@@ -142,7 +142,6 @@ class SelectedBlockViewController: UIViewController {
                 text = "\(text) = \(placeHolderBlock.attributes["variableValue"] ?? secondDefault ?? "N/A")"
                 //modifierInformation = text
             }
-            
             modifierButton.setTitle(text, for: .normal)
             
             // TODO: allow for font to be either .title1 or .title2 depending on what fits best
