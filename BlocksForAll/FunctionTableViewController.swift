@@ -143,6 +143,7 @@ class FunctionTableViewController: UITableViewController {
                     }
                 }
             })
+            
             // Create Cancel button with action handlder
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
                 print("Cancel button tapped")
