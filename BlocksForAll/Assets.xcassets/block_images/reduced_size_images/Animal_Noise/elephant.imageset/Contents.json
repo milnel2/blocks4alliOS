@@ -3,6 +3,16 @@
     {
       "filename" : "elephant.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-elephant.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

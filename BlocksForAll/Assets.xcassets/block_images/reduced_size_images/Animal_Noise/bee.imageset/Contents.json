@@ -3,6 +3,16 @@
     {
       "filename" : "buzz_sound.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-buzz.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

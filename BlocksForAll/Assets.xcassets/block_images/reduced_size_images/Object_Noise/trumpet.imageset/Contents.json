@@ -3,6 +3,16 @@
     {
       "filename" : "trumpet_sound.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-trumpet.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

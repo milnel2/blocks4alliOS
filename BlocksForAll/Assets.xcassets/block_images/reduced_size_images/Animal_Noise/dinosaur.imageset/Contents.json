@@ -3,6 +3,16 @@
     {
       "filename" : "dinosaur.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark-dinosaur.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
