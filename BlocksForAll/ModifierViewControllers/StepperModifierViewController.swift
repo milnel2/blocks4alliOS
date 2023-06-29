@@ -167,7 +167,6 @@ class StepperModifierViewController: UIViewController {
       
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
           if segue.destination is BlocksViewController{
-              // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
               functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)" // Tell BlocksViewController which sound was selected
           }
     }
