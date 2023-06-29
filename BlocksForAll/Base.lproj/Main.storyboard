@@ -165,7 +165,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="Cwg-wl-dN5">
-                                <rect key="frame" x="170" y="388" width="760" height="300"/>
+                                <rect key="frame" x="170" y="394" width="760" height="300"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ane-f3-gcc">
                                         <rect key="frame" x="0.0" y="0.0" width="330" height="300"/>
@@ -232,31 +232,17 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvu-FP-rqn">
-                                <rect key="frame" x="69" y="70" width="228" height="233.5"/>
+                                <rect key="frame" x="69" y="70" width="211" height="195"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" label="Back"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="228" id="f5K-ok-FFO"/>
+                                    <constraint firstAttribute="width" constant="211" id="f5K-ok-FFO"/>
                                 </constraints>
                                 <state key="normal" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="YEE-PZ-SjD" kind="show" id="Oq5-da-dqe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-Px-NWC">
-                                <rect key="frame" x="363.5" y="248" width="353" height="90"/>
-                                <accessibility key="accessibilityConfiguration" label="Add Robots "/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="fBB-LT-UJY"/>
-                                    <constraint firstAttribute="width" constant="353" id="gqo-Hj-EDI"/>
-                                </constraints>
-                                <color key="tintColor" systemColor="labelColor"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="AddRobotButton"/>
-                                <connections>
-                                    <segue destination="cJF-Nc-M7L" kind="show" id="SES-Og-HDs"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SettingsTitle" translatesAutoresizingMaskIntoConstraints="NO" id="glw-m4-ShG">
@@ -270,10 +256,24 @@
                                     <constraint firstAttribute="height" constant="100" id="wR7-EF-sdu"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-Px-NWC">
+                                <rect key="frame" x="472" y="230" width="157" height="154"/>
+                                <accessibility key="accessibilityConfiguration" label="Add Robots "/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="154" id="fBB-LT-UJY"/>
+                                    <constraint firstAttribute="width" constant="157" id="gqo-Hj-EDI"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="AddRobotButton"/>
+                                <connections>
+                                    <segue destination="cJF-Nc-M7L" kind="show" id="SES-Og-HDs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.47450977560000002" blue="0.18823529780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="Skb-Px-NWC" firstAttribute="top" secondItem="glw-m4-ShG" secondAttribute="bottom" constant="26" id="67w-Th-QOO"/>
+                            <constraint firstItem="Skb-Px-NWC" firstAttribute="top" secondItem="glw-m4-ShG" secondAttribute="bottom" constant="8" id="67w-Th-QOO"/>
                             <constraint firstAttribute="trailing" secondItem="xnj-s6-6gX" secondAttribute="trailing" id="8lX-dP-OFG"/>
                             <constraint firstItem="glw-m4-ShG" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" constant="10" id="Bek-Qg-Xev"/>
                             <constraint firstItem="glw-m4-ShG" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="122" id="EHi-jX-upe"/>
@@ -281,13 +281,13 @@
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" id="G80-Bk-XGK"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="49" id="HEb-6Y-kgc"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="top" secondItem="0DE-vi-VZO" secondAttribute="top" id="JmA-La-d5C"/>
-                            <constraint firstItem="glw-m4-ShG" firstAttribute="leading" secondItem="Rvu-FP-rqn" secondAttribute="trailing" constant="59" id="PHk-kv-bcP"/>
+                            <constraint firstItem="glw-m4-ShG" firstAttribute="leading" secondItem="Rvu-FP-rqn" secondAttribute="trailing" constant="76" id="PHk-kv-bcP"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="bottom" secondItem="0DE-vi-VZO" secondAttribute="bottom" id="RdE-pI-DPm"/>
-                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Rvu-FP-rqn" secondAttribute="bottom" constant="84.5" id="Ypa-Qm-t7O"/>
+                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Rvu-FP-rqn" secondAttribute="bottom" constant="129" id="Ypa-Qm-t7O"/>
                             <constraint firstAttribute="trailing" secondItem="Cwg-wl-dN5" secondAttribute="trailing" constant="150" id="bDI-BD-TtJ"/>
-                            <constraint firstItem="Skb-Px-NWC" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" id="n7X-O2-6Hd"/>
+                            <constraint firstItem="Skb-Px-NWC" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" constant="10.5" id="n7X-O2-6Hd"/>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="150" id="vuR-QM-3Ne"/>
-                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Skb-Px-NWC" secondAttribute="bottom" constant="50" id="wbr-Av-TD7"/>
+                            <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Skb-Px-NWC" secondAttribute="bottom" constant="10" id="wbr-Av-TD7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pUy-ez-HU8"/>
@@ -1662,13 +1662,13 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="nZi-qD-DBG">
-                                <rect key="frame" x="307" y="368" width="466" height="274"/>
+                                <rect key="frame" x="306.5" y="368" width="467" height="274.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="vAj-Po-emI">
-                                        <rect key="frame" x="0.0" y="0.0" width="466" height="133"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="467" height="133.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywf-kX-izT">
-                                                <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133.5" height="133.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <state key="normal" backgroundImage="Off">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1678,7 +1678,7 @@ For further information on Blocks4All, please visit our website. For further det
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7e-AE-Lha">
-                                                <rect key="frame" x="333" y="0.0" width="133" height="133"/>
+                                                <rect key="frame" x="333.5" y="0.0" width="133.5" height="133.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <state key="normal" title=" " backgroundImage="On">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1690,7 +1690,7 @@ For further information on Blocks4All, please visit our website. For further det
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="TWO OPTION VALUE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwb-pX-XHB">
-                                        <rect key="frame" x="0.0" y="233" width="466" height="41"/>
+                                        <rect key="frame" x="0.0" y="233.5" width="467" height="41"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1733,7 +1733,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="AddRobotButton" width="911" height="224"/>
+        <image name="AddRobotButton" width="576" height="576"/>
         <image name="Apple" width="133" height="133"/>
         <image name="B4A_Robot_outline" width="2048" height="2048"/>
         <image name="Back" width="2048" height="2048"/>
