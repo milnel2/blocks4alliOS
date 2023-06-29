@@ -170,18 +170,18 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ane-f3-gcc">
                                         <rect key="frame" x="0.0" y="0.0" width="330" height="300"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Block Size = 3" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1C-po-fkn">
-                                                <rect key="frame" x="0.0" y="0.0" width="330" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Block Size = 3" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" showsExpansionTextWhenTruncated="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1C-po-fkn">
+                                                <rect key="frame" x="0.0" y="0.0" width="330" height="150"/>
                                                 <accessibility key="accessibilityConfiguration" label="Block Size"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="Thc-cS-otG"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Thc-cS-otG"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="150" minValue="100" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="MtH-Ah-Bj0">
-                                                <rect key="frame" x="-2" y="50" width="334" height="251"/>
+                                                <rect key="frame" x="-2" y="150" width="334" height="151"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ibw-ev-62a"/>
                                                 </constraints>
@@ -195,21 +195,21 @@
                                             <constraint firstAttribute="height" constant="300" id="XUE-7t-M2V"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="70" translatesAutoresizingMaskIntoConstraints="NO" id="SAC-my-RII">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="SAC-my-RII">
                                         <rect key="frame" x="430" y="0.0" width="330" height="300"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Icons or Text" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAG-tB-Z7y">
-                                                <rect key="frame" x="0.0" y="0.0" width="330" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="330" height="150"/>
                                                 <accessibility key="accessibilityConfiguration" label="Show Icons or Text"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="qfZ-4T-f9C"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="qfZ-4T-f9C"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="CR6-PX-9Cg">
-                                                <rect key="frame" x="0.0" y="120" width="330" height="181"/>
+                                                <rect key="frame" x="0.0" y="150" width="330" height="151"/>
                                                 <segments>
                                                     <segment title="" image="Show_Icons"/>
                                                     <segment title="" image="Show_Text"/>
@@ -228,6 +228,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="AAp-gl-yqv"/>
+                                    <constraint firstItem="dAG-tB-Z7y" firstAttribute="centerY" secondItem="C1C-po-fkn" secondAttribute="centerY" id="Q50-mw-1j0"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvu-FP-rqn">
@@ -1727,7 +1728,7 @@ For further information on Blocks4All, please visit our website. For further det
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ebu-O5-0hJ"/>
-        <segue reference="PIe-sL-Fqa"/>
+        <segue reference="SES-Og-HDs"/>
         <segue reference="gnX-kj-isW"/>
         <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
