@@ -127,8 +127,8 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
               let textView = UILabel(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
               textView.text = items[index].capitalized
               
+              
               // Text Style
-              textView.textColor = .black
               textView.backgroundColor = .clear
               textView.textAlignment = .center
               textView.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
