@@ -458,7 +458,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             } else if attributeName == "distance" {  // drive forward and backwards blocks
                 if defaults.integer(forKey: "showText") == 0 {  // show icon mode
                     text = "\(placeHolderBlock.attributes["distance"]!) cm \n"
-                    modifierInformation = text + ", \(placeHolderBlock.attributes["speed"]!)"
+                    modifierInformation = text + ", at \(placeHolderBlock.attributes["speed"]!) speed"
                 } else {  // show text mode
                     text = "\(placeHolderBlock.attributes["distance"]!) cm, \(placeHolderBlock.attributes["speed"]!)"
                     modifierInformation = text
@@ -516,6 +516,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // the main part of the block is focused first, then the modifier button
         cell.accessibilityElements = [blockView, button]
+        button.accessibilityLabel = modifierInformation
         
         // update addedBlocks
         block.addedBlocks[0] = placeHolderBlock
