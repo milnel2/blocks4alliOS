@@ -140,8 +140,12 @@ class SelectedBlockViewController: UIViewController {
             modifierButton.setTitle(text, for: .normal)
             
             // TODO: allow for font to be either .title1 or .title2 depending on what fits best
-            modifierButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title1)
-            modifierButton.setTitleColor(.black, for: .normal)
+            modifierButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 30.0)
+            if #available(iOS 13.0, *) {
+                modifierButton.setTitleColor(.label, for: .normal)
+            } else {
+                modifierButton.setTitleColor(.black, for: .normal)
+            }
             modifierButton.titleLabel?.numberOfLines = 0
         }
         return modifierButton
