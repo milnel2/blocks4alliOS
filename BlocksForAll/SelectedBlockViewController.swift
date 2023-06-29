@@ -72,13 +72,13 @@ class SelectedBlockViewController: UIViewController {
         }
         // the current state of the block modifier - used for voiceOver
         //TODO: should this be added back in?
-//        var modifierInformation = placeHolderBlock.attributes[attributeName] ?? nil
+        //        var modifierInformation = placeHolderBlock.attributes[attributeName] ?? nil
         
         // choose image path
         var image: UIImage?
         if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
             image = UIImage(named: imagePath!)
-
+            
             if image != nil { // make sure that the image actually exists
                 modifierButton.setBackgroundImage(image, for: .normal)
             } else { // print error
@@ -87,23 +87,33 @@ class SelectedBlockViewController: UIViewController {
             }
         } else {
             // blocks that don't have an imagePath in the dictionary have an image based on their attribute (ex. cat and bragging sounds)
-            image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
-            if secondAttributeName != nil && secondDefault != nil{
-                image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)")
-            }
-            // handle show icon or show text for modifiers that change depending on the settings
-            if defaults.integer(forKey: "showText") == 1 && showTextImage != nil{
-                // show text image
-                image = UIImage(named: showTextImage!)
-            }
-            if image != nil { // make sure that the image actually exists
-                modifierButton.setBackgroundImage(image, for: .normal)
-            } else {
-                print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
-                modifierButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            if secondAttributeName != "variableValue" {
+                image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                if secondAttributeName != nil && secondDefault != nil
+                { image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)") }
+                
+                // handle show icon or show text for modifiers that change depending on the settings
+                if defaults.integer(forKey: "showText") == 1 && showTextImage != nil{
+                    // show text image
+                    image = UIImage(named: showTextImage!)
+                }
+                if image != nil {  // make sure that the image actually exists
+                    modifierButton.setBackgroundImage(image, for: .normal)
+                } else {
+                    print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                    modifierButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                }
+            } else if defaults.value(forKey: "showText") as! Int == 0 {
+                // set variable modifier blocks are a bit different than other modifier blocks
+                image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)Icon") // these special images are called (fruitName)Icon (ex. AppleIcon)
+                if image != nil {  // make sure that the image actually exists
+                    modifierButton.setBackgroundImage(image, for: .normal)
+                } else {
+                    print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                    modifierButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                }
             }
         }
-        
         if displaysText == "true" { // modifier blocks that display text on them (ex. turn left)
             var text = "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)"
             // handle text formatting based on type of block
@@ -132,24 +142,27 @@ class SelectedBlockViewController: UIViewController {
                     text = "\(text) seconds"
                 }
                 //modifierInformation = text
-            } else if attributeName == "variableSelected" {
-                // variable blocks
-                text = "\(text) = \(placeHolderBlock.attributes["variableValue"] ?? secondDefault ?? "N/A")"
-                //modifierInformation = text
+            } else if attributeName == "variableSelected" {  // variable blocks
+                if defaults.value(forKey: "showText") as! Int == 0 {
+                    text = "\n\n= \(placeHolderBlock.attributes["variableValue"] ?? "0.0")"
+                } else {
+                    text = "\(placeHolderBlock.attributes["variableSelected"] ?? defaultValue) = \(placeHolderBlock.attributes["variableValue"] ?? secondDefault ?? "0.0")"
+                }
+                modifierButton.setTitle(text, for: .normal)
+                
+                // TODO: allow for font to be either .title1 or .title2 depending on what fits best
+                modifierButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 30.0)
+                if #available(iOS 13.0, *) {
+                    modifierButton.setTitleColor(.label, for: .normal)
+                } else {
+                    modifierButton.setTitleColor(.black, for: .normal)
+                }
+                modifierButton.titleLabel?.numberOfLines = 0
             }
-            modifierButton.setTitle(text, for: .normal)
-            
-            // TODO: allow for font to be either .title1 or .title2 depending on what fits best
-            modifierButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 30.0)
-            if #available(iOS 13.0, *) {
-                modifierButton.setTitleColor(.label, for: .normal)
-            } else {
-                modifierButton.setTitleColor(.black, for: .normal)
-            }
-            modifierButton.titleLabel?.numberOfLines = 0
         }
         return modifierButton
     }
+        
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

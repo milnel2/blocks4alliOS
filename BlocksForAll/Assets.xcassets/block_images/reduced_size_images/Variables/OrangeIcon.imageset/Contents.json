@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "orange.svg",
+      "filename" : "orangeIcon.svg",
       "idiom" : "universal"
     },
     {
@@ -11,15 +11,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "dark-orange.svg",
+      "filename" : "orangeIcon dark.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

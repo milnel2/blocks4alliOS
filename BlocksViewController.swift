@@ -431,21 +431,33 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         } else {
             // blocks that don't have an imagePath in the dictionary have an image based on their attribute (ex. cat and bragging sounds)
-            image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
-            if secondAttributeName != nil && secondDefault != nil
-                { image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)") }
+            if secondAttributeName != "variableValue" {
+                image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                if secondAttributeName != nil && secondDefault != nil
+                    { image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)") }
+                
+                // handle show icon or show text for modifiers that change depending on the settings
+                if defaults.integer(forKey: "showText") == 1 && showTextImage != nil{
+                    // show text image
+                    image = UIImage(named: showTextImage!)
+                }
+                if image != nil {  // make sure that the image actually exists
+                    button.setBackgroundImage(image, for: .normal)
+                } else {
+                    print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                    button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                }
+            } else if defaults.value(forKey: "showText") as! Int == 0 {
+                // set variable modifier blocks are a bit different than other modifier blocks
+                image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)Icon") // these special images are called (fruitName)Icon (ex. AppleIcon)
+                if image != nil {  // make sure that the image actually exists
+                    button.setBackgroundImage(image, for: .normal)
+                } else {
+                    print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                    button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                }
+            }
             
-            // handle show icon or show text for modifiers that change depending on the settings
-            if defaults.integer(forKey: "showText") == 1 && showTextImage != nil{
-                // show text image
-                image = UIImage(named: showTextImage!)
-            }
-            if image != nil {  // make sure that the image actually exists
-                button.setBackgroundImage(image, for: .normal)
-            } else {
-                print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
-                button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-            }
         }
         
         if displaysText == "true" {  // modifier blocks that display text on them (ex. turn left)
@@ -471,12 +483,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
                 modifierInformation = text
             } else if attributeName == "variableSelected" {  // variable blocks
-                text = "\(text) = \(placeHolderBlock.attributes["variableValue"]!)"
-                modifierInformation = text
+                if defaults.value(forKey: "showText") as! Int == 0 {
+                    text = "\n\n= \(placeHolderBlock.attributes["variableValue"] ?? secondDefault ?? "0.0")"
+                } else {
+                    text = "\(placeHolderBlock.attributes["variableSelected"] ?? defaultValue ) = \(placeHolderBlock.attributes["variableValue"] ?? secondDefault ?? "0.0")"
+                }
+                
+                modifierInformation = "\(placeHolderBlock.attributes["variableSelected"] ?? defaultValue ) = \(placeHolderBlock.attributes["variableValue"] ?? secondDefault ?? "0.0")"
             }
             
             button.setTitle(text, for: .normal)
-            
+           
             // TODO: allow for font to be either .title1 or .title2 depending on what fits best
             button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
             button.titleLabel?.adjustsFontForContentSizeCategory = true

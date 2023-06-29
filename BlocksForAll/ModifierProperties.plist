@@ -212,13 +212,11 @@
 		<key>secondAttributeName</key>
 		<string>variableValue</string>
 		<key>secondDefault</key>
-		<string>0</string>
+		<string>0.0</string>
 		<key>accessibilityHint</key>
 		<string>Double tap to set variable value</string>
 		<key>displaysText</key>
 		<string>true</string>
-		<key>imagePath</key>
-		<string>variableModifierBackground</string>
 	</dict>
 	<key>Drive</key>
 	<dict>
