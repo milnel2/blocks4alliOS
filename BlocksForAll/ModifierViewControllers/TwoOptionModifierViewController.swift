@@ -46,8 +46,7 @@ class TwoOptionModifierViewController: UIViewController {
       
     private var optionOne = "N/A"  // String value of option one
     private var optionTwo = "N/A"  // String value of option two
-    
-    // TODO: should buttonSize be the same value as blockSize?
+
     private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each option button 
       
     override func viewDidLoad() {
@@ -202,7 +201,6 @@ class TwoOptionModifierViewController: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
           if segue.destination is BlocksViewController{
-              // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
               functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)" // Tell BlocksViewController which sound was selected
           }
     }

@@ -44,10 +44,10 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
            "Object Noise": ["laser", "squeak", "trumpet", "random object"],
            "Vehicle Noise": ["airplane", "beep", "boat", "helicopter", "siren", "speed boost", "start engine", "tire squeal", "train" ,"random vehicle"],
            "Speak" : ["hi", "bye", "cool", "haha", "hi", "huh", "let's go", "oh", "tah dah!", "uh huh", "uh oh", "wah", "wee hee!", "wee", "wow", "yippe!" ,"random word"],
-           "Set Right Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "light off"],
-           "Set Left Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "light off"],
-           "Set Chest Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "light off"],
-           "Set All Lights Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "light off"],
+           "Set Right Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
+           "Set Left Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
+           "Set Chest Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
+           "Set All Lights Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
            "Look Left or Right" : ["variableSelected", "Select Look Left or Right Variable\nMaximum and minimum:\nLeft = -120, Right = 120"],
            "Look Up or Down" : ["variableSelected", "Select Look Up or Down Variable\nMaximum and minimum:\nUp = -20, Down = 7.5"],
            "Turn" : ["variableSelected",  "Select turn variable"]]
@@ -127,8 +127,8 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
               let textView = UILabel(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
               textView.text = items[index].capitalized
               
+              
               // Text Style
-              textView.textColor = .black
               textView.backgroundColor = .clear
               textView.textAlignment = .center
               textView.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
