@@ -50,9 +50,17 @@ class BlockView: UIView, UITextFieldDelegate {
         //let isModifierBlock = isModifierOrContainerBlock(block: block)
         let isModifierBlock = block.isModifiable ?? false
         
-        let myViewHeight: Int
+        var myViewHeight: Int
         let myFrame: CGRect
-        let myViewWidth = blockSize
+        let myViewWidth: Int
+        
+        if block.isInToolBox ?? false {  // the blocks should be wider if they are in the toolbox
+            //TODO: test this on different size screens
+            myViewWidth = (blockSize * 3) / 2
+        } else {
+            myViewWidth = blockSize
+        }
+        
         if isModifierBlock {
             myViewHeight = blockSize * 2
             myFrame = CGRect(x: 0, y: -myViewHeight/2, width: myViewWidth, height: myViewHeight)
@@ -69,13 +77,19 @@ class BlockView: UIView, UITextFieldDelegate {
             var image = UIImage(named: imageName)
             let imv: UIImageView
             if isModifierBlock {
-                image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight / 2))
+                image = imageWithImage(image: image!, scaledToSize: CGSize(width: blockSize, height: myViewHeight / 2))
                 imv = UIImageView.init(image: image)
                 imv.layer.position.y = CGFloat((blockSize * 6) / 4)
+                if block.isInToolBox ?? false {  // center the image if the block is in the toolbox
+                    imv.layer.position.x = CGFloat((myViewWidth) - ((blockSize * 4) / 5))
+                }
             } else {
-                image = imageWithImage(image: image!, scaledToSize: CGSize(width: myViewWidth, height: myViewHeight))
+                image = imageWithImage(image: image!, scaledToSize: CGSize(width: blockSize, height: myViewHeight))
                 imv = UIImageView.init(image: image)
                 imv.layer.position.y = CGFloat((blockSize / 2))
+                if block.isInToolBox ?? false {  // center the image if the block is in the toolbox
+                    imv.layer.position.x = CGFloat((myViewWidth) - ((blockSize * 4) / 5))
+                }
                 
             }
             
@@ -87,7 +101,26 @@ class BlockView: UIView, UITextFieldDelegate {
             myView.addSubview(imv)
         }else {
             let myLabel = UILabel.init(frame: myFrame)
-            myLabel.text = block.name
+            myLabel.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
+            myLabel.numberOfLines = 0
+            myLabel.adjustsFontForContentSizeCategory = true
+            let currentFontSize = myLabel.font.pointSize
+            
+            var name = block.name
+            if currentFontSize > 31.0 { // dynamic text is being used, so some of the labels need to be shortened
+                name = removePhrase(phraseToRemove: " Noise", originalString: name)
+                name = removePhrase(phraseToRemove: "Drive ", originalString: name)
+                name = removePhrase(phraseToRemove: "Set ", originalString: name)
+                name = removePhrase(phraseToRemove: " Color", originalString: name)
+                name = removePhrase(phraseToRemove: " for Time", originalString: name)
+                name = removePhrase(phraseToRemove: " or ", originalString: name, replaceWith: "/")
+                name = removePhrase(phraseToRemove: "Repeat ", originalString: name)
+                name = removePhrase(phraseToRemove: "Ear ", originalString: name)
+                name = removePhrase(phraseToRemove: "Toward", originalString: name, replaceWith: "at")
+                name = removePhrase(phraseToRemove: " Functions", originalString: name)
+                name = removePhrase(phraseToRemove: "Backward", originalString: name, replaceWith: "Back")
+            }
+            myLabel.text = name
             myLabel.textAlignment = .center
             if #available(iOS 13.0, *) {
                 myLabel.textColor = UIColor.label
@@ -95,9 +128,7 @@ class BlockView: UIView, UITextFieldDelegate {
                 myLabel.textColor = UIColor.black
             }
             myLabel.layer.zPosition = 1
-            myLabel.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
-            myLabel.numberOfLines = 0
-            myLabel.adjustsFontForContentSizeCategory = true
+           
             
             if isModifierBlock {
                 myLabel.layer.position.y = CGFloat((blockSize * 6) / 4)
@@ -107,6 +138,20 @@ class BlockView: UIView, UITextFieldDelegate {
             myView.addSubview(myLabel)
         }
         return myView
+    }
+    
+    ///  Given a string and a phrase, removes the phrase from the string and replaces it if possible. Returns the new string
+    private func removePhrase (phraseToRemove: String, originalString: String, replaceWith: String = "") -> String{
+        var newString = originalString
+        if phraseToRemove == "Set " { // the Set Variable block should not be edited, only the Set Light blocks
+            if newString.range(of: "Set Variable") != nil {
+                return originalString
+            }
+        }
+        if let range = newString.range(of: phraseToRemove){
+            newString.replaceSubrange(range, with: replaceWith)
+        }
+        return newString
     }
     
 }

@@ -205,14 +205,14 @@ class BlockTableViewController: UITableViewController {
                 var functionToolBlockArray = [Block]()
                 
                 //Adds Create/Edit Functions button to Functions category
-                let createFunctionBlock = Block(name: "Create/Edit Functions", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#00BBE5")), double: false, isModifiable: true)!
+                let createFunctionBlock = Block(name: "Create/Edit Functions", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#00BBE5")), double: false, isModifiable: true, isInToolBox: true)!
                 createFunctionBlock.type = "Function"
                 functionToolBlockArray.append(createFunctionBlock)
                 toolBoxBlockArray += [createFunctionBlock]
                 
                 for function in functionBlocks{
                     var blockBeingCreated: Block
-                        blockBeingCreated = Block(name: function, color: Color.init(uiColor:UIColor(named: "light_purple_block")!), double: false, isModifiable: false)!
+                        blockBeingCreated = Block(name: function, color: Color.init(uiColor:UIColor(named: "light_purple_block")!), double: false, isModifiable: false, isInToolBox: true)!
                     blockBeingCreated.type = "Function"
                     functionToolBlockArray.append(blockBeingCreated)
                     toolBoxBlockArray += [blockBeingCreated]
@@ -231,7 +231,7 @@ class BlockTableViewController: UITableViewController {
                         if let colorString = dictItem.object(forKey: "color") as? String{
                             let color2 = Color.init(uiColor: UIColor(named: "\(colorString)") ?? UIColor.gray)
                             if let double = dictItem.object(forKey: "double") as? Bool{
-                                guard let block = Block(name: name as! String, color: color2 , double: double, isModifiable: isModifiable) else {
+                                guard let block = Block(name: name as! String, color: color2 , double: double, isModifiable: isModifiable, isInToolBox: true) else {
                                     fatalError("Unable to instantiate block")
                                 }
                                 if let imageName = dictItem.object(forKey: "imageName") as? String{

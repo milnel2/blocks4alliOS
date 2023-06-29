@@ -74,6 +74,8 @@ class Block: Codable {
     var attributes = [String:String]() //dictionary that holds attibute values for block (e.g. distance and speed)
     var isModifiable: Bool? //true if it has a modifier block
     
+    var isInToolBox: Bool? // true if this block is being shown in the toolbox. False for blocks in the workspace
+    
     
     //MARK: - json variable
     // From Paul, create a variable for creating the json encoded data, using the self data of the block in question
@@ -107,6 +109,26 @@ class Block: Codable {
         self.type = type
         self.acceptedTypes = acceptedTypes
         self.isModifiable = isModifiable
+        self.isInToolBox = false
+        
+    }
+    
+    init?(name: String, color: Color, double: Bool, imageName: String? = nil, addedBlocks: [Block] = [], type: String = "Operation", acceptedTypes: [String] = [], isModifiable: Bool = false, isInToolBox: Bool){
+        
+        //TODO: check that color is initialized as well
+        if name.isEmpty {
+            return nil
+        }
+        
+        self.name = name
+        self.color = color
+        self.double = double
+        self.imageName = imageName
+        self.addedBlocks = addedBlocks
+        self.type = type
+        self.acceptedTypes = acceptedTypes
+        self.isModifiable = isModifiable
+        self.isInToolBox = isInToolBox
         
     }
     
