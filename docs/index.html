@@ -25,10 +25,54 @@
     <!-- Custom styles for this template -->
     <link href="css/freelancer.css" rel="stylesheet">
     <link href='darkmode.css' rel='stylesheet'>
+    <link href='navbar.css' rel='stylesheet'>
 
     </head>
     <body id="page-top">
-      <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <ul role="menubar" aria-label="functions" id="appmenu">
+        <li role="menuitem" aria-haspopup="true">
+          Activities
+          <ul role="menu">
+            <li role="menuitem">
+              <a href="danceCircle1.html">Dance Circle (K-5)</a>
+            </li>
+            <li role="menuitem">
+              <a href="danceCircle2.html">Dance Circle (6-8)</a>
+            </li>
+            <li role="menuitem">Print</li>
+          </ul>
+        </li>
+        <li role="menuitem" aria-haspopup="true">
+          Tutorials
+          <ul role="menu">
+            <li role="menuitem">
+              <a href="switchcontrol.html">Switch Control</a>
+            </li>
+            <li role="menuitem">
+              <a href="voiceover.html">Voice Over</a>
+            </li>
+          </ul>
+        </li>
+        <li role="menuitem" aria-haspopup="true">
+          Research
+        </li>
+        <li role="menuitem" aria-haspopup="true">
+          Dark Mode
+          <ul role="menu">
+            <li role="menuitem">
+              <button class="theme-btn light" onclick="setTheme('light')" title="Light mode">
+                Light Mode
+              </button>
+            </li>
+            <li role="menuitem">
+              <button class="theme-btn dark" onclick="setTheme('dark')" title="Dark mode">
+                Dark Mode
+              </button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
           <a class="navbar-brand js-scroll-trigger" href="#page-top"><h1>Blocks4All</h1></a> 
       <ul>
@@ -48,7 +92,7 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
 
     
 
@@ -168,6 +212,8 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/freelancer.min.js"></script>
+    <script src="navbar.js"></script>
+
 
     <script>
       const setTheme = theme => document.documentElement.className = theme;

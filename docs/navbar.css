@@ -1,86 +1,53 @@
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-
+#appmenu {
+	width:100%;
+	float: left;
+	margin: 0;
+	padding: 0;
+	color: #fff;
+	background-color: #369;
+	padding: .25em;
+}
+#appmenu li {
+	white-space: nowrap;
+	display:block;
+	padding: .25em .75em;
+	margin: 0;
+	border: 1px solid #fff;
+}
+#appmenu > li {
+	float: left;
+	background-color: #036;
+	text-align: center;
+	position:relative;
+	cursor: pointer;
+}
+#appmenu :hover,
+#appmenu :focus {
+	background-color: #fff;
+	color: #036;
+	border: 1px solid #036;
+	text-decoration: underline;
 }
 
-
-
-
-.jumbotron{
-	  color:white;
-	  background:url(./photos/logs.JPG);
-	  background-size:cover;
-	  background-repeat:no-repeat;
+#appmenu :hover li,
+#appmenu :focus li {
+	color: #fff;
+	background-color: #036;
 }
 
-.jumbotron .circular{
-	width: 150px;
-	height: 150px;
-	border-radius: 75px;
-	-webkit-border-radius: 75px;
-	-moz-border-radius: 75px;
-	background: url(./photos/lauren_backpacking.JPG) no-repeat;
-	background-size:cover;
-	box-shadow: 0 0 2px rgba(0, 0, 0, .8);
-	-webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .8);
-	-moz-box-shadow: 0 0 2px rgba(0, 0, 0, .8);
+#appmenu > li > ul {
+	display: none;
+	position:absolute;
+	left:0;
+	right:0;
+	top:100%;
+	padding:0;
+	margin:0;
+	background-color: #036;
+	width: 200%;
+	text-align: left;
 }
 
-
-
-.jumbotron .contact{
-	    background-color: rgba(227,167,104,0.93);
-	    padding: 20px;
-		color:black;
-}
-
-.jumbotron .about_me{
-	    background-color: rgba(19,100,100,0.92);
-	    padding: 20px;
-
-}
-
-.jumbotron h2{
-	color:#E3A869;
-}
-
-.jumbotron p{
-	font-size: medium;
-}
-
-.jumbotron a{
-	color:#E3A869;
-	
-}
-
-.jumbotron a:hover{
-	color:#f18511;
-	text-decoration:none;
-}
-
-.contact-info p{
-	color: black;
-	font-size:large;
-}
-
-.navbar {
-  margin-bottom: 20px;
-  text-decoration:none;
-  padding-right:2px;
-}
-
-.nav navbar-nav navbar-right{
-    text-decoration:none;
-    color:#E3A869;
-    padding-right:2px;
-}
-
-.navbar a:hover{
-	color:#E3A869;
-	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-}
-
-.projects h2{
-	color:black;
+#appmenu > li[aria-expanded="true"] > ul {
+	display:block;
 }
