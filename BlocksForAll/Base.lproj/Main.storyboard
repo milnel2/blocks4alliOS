@@ -454,7 +454,7 @@ For further information on Blocks4All, please visit our website. For further det
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXL-nz-dw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-437.77777777777777" y="560"/>
+            <point key="canvasLocation" x="-1299" y="272"/>
         </scene>
         <!--Robot Table View Controller-->
         <scene sceneID="c6j-qc-ZGN">
@@ -488,7 +488,7 @@ For further information on Blocks4All, please visit our website. For further det
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QXa-OY-u2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1175" y="1394.0740740740739"/>
+            <point key="canvasLocation" x="-1299" y="883"/>
         </scene>
         <!--Blocks View Controller-->
         <scene sceneID="xPO-0B-V5c">
@@ -933,7 +933,7 @@ For further information on Blocks4All, please visit our website. For further det
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2c-JQ-QCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="247.22222222222223" y="271.85185185185185"/>
+            <point key="canvasLocation" x="782" y="1450"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="28s-Hb-jSN">
@@ -1035,7 +1035,7 @@ For further information on Blocks4All, please visit our website. For further det
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLF-rh-Lei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063.8888888888889" y="505.18518518518516"/>
+            <point key="canvasLocation" x="1484" y="1450"/>
         </scene>
         <!--Set Variable Mod View Controller-->
         <scene sceneID="nes-7T-TeT">
@@ -1193,7 +1193,7 @@ For further information on Blocks4All, please visit our website. For further det
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44J-gd-q9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1190" y="831.11111111111109"/>
+            <point key="canvasLocation" x="88" y="1450"/>
         </scene>
         <!--Drive Variables-->
         <scene sceneID="fYN-sz-j03">
@@ -1371,7 +1371,7 @@ For further information on Blocks4All, please visit our website. For further det
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IeQ-ZC-B5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1366.6666666666667" y="1825.9259259259259"/>
+            <point key="canvasLocation" x="-615" y="1450"/>
         </scene>
         <!--Function Table View Controller-->
         <scene sceneID="aDN-GG-hnK">
@@ -1538,7 +1538,7 @@ For further information on Blocks4All, please visit our website. For further det
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFv-2q-OPs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2513" y="831"/>
+            <point key="canvasLocation" x="-615" y="679"/>
         </scene>
         <!--Stepper Mod View Controller-->
         <scene sceneID="kZ6-wN-MWT">
@@ -1625,7 +1625,7 @@ For further information on Blocks4All, please visit our website. For further det
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qP6-FY-Bry" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1773" y="1422"/>
+            <point key="canvasLocation" x="88" y="679"/>
         </scene>
         <!--Two Option Mod View Controller-->
         <scene sceneID="mIl-hH-ubo">
@@ -1723,14 +1723,17 @@ For further information on Blocks4All, please visit our website. For further det
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wVT-Fd-Pik" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2485" y="1718"/>
+            <point key="canvasLocation" x="782" y="679"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ebu-O5-0hJ"/>
         <segue reference="SES-Og-HDs"/>
-        <segue reference="gnX-kj-isW"/>
         <segue reference="Oq5-da-dqe"/>
+        <segue reference="D3Q-1e-yCW"/>
+        <segue reference="PIe-sL-Fqa"/>
+        <segue reference="Tu2-KF-poC"/>
+        <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AddRobotButton" width="576" height="576"/>
