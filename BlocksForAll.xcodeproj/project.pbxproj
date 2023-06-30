@@ -144,21 +144,15 @@
 		F18FEEDB1EB115AF007C15B8 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				8D8D66032A3A43330086E14A /* ModifierProperties.plist */,
-				FD63882F2A3100D3005F49F7 /* Fonts */,
-				F1D395BA2006DBB300C6D993 /* BlocksMenus */,
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
-				F16BA3BB1F57919600A94FBA /* MainMenuViewController.swift */,
-				8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */,
-				FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */,
-				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
-				F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */,
-				F18FFFB91E65B0FC0090C4B6 /* Assets.xcassets */,
 				F18FFFBB1E65B0FC0090C4B6 /* LaunchScreen.storyboard */,
+				F1D395BA2006DBB300C6D993 /* BlocksMenus */,
+				F18FFFB91E65B0FC0090C4B6 /* Assets.xcassets */,
+				FD63882F2A3100D3005F49F7 /* Fonts */,
 				F18FFFBE1E65B0FC0090C4B6 /* Info.plist */,
-				F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */,
-				F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */,
 				FD3A594F2A3A270900122BEF /* CustomHexColor.swift */,
+				F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */,
+				F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -188,16 +182,16 @@
 			children = (
 				F7CAF42923EE103400901E99 /* ModifierViewControllers */,
 				701A43861EC26EFD00314599 /* BlocksViewController.swift */,
-				F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */,
-				F79EC1F32A266813009B8784 /* BlockToMoveCollectionViewController.swift */,
 				F10F71681E65BFF50049F3AA /* Block.swift */,
 				F186EB871EE0D8B100C2FA4B /* BlockView.swift */,
 				F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */,
-				F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */,
-				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
+				FDEB68B52A4F355A00E522D0 /* ToolboxViewControllers */,
+				FDEB68B62A4F364300E522D0 /* FunctionTableControllers */,
+				F16BA3BB1F57919600A94FBA /* MainMenuViewController.swift */,
+				8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */,
+				FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */,
+				FDEB68B42A4F347500E522D0 /* RobotViewControllers */,
 				A9937EA8267BAB3B00A56E8A /* CustomButton.swift */,
-				844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */,
-				844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */,
 				F18FEEDB1EB115AF007C15B8 /* Helper */,
 			);
 			path = BlocksForAll;
@@ -216,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				F16BA3BD1F59103A00A94FBA /* BlocksMenu.plist */,
+				8D8D66032A3A43330086E14A /* ModifierProperties.plist */,
 			);
 			path = BlocksMenus;
 			sourceTree = "<group>";
@@ -244,6 +239,35 @@
 				FD3A594D2A3A196B00122BEF /* CustomFont.swift */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FDEB68B42A4F347500E522D0 /* RobotViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
+				F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */,
+			);
+			path = RobotViewControllers;
+			sourceTree = "<group>";
+		};
+		FDEB68B52A4F355A00E522D0 /* ToolboxViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F13A0AE81E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift */,
+				F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */,
+				F186EB851EE0D73500C2FA4B /* SelectedBlockViewController.swift */,
+				F79EC1F32A266813009B8784 /* BlockToMoveCollectionViewController.swift */,
+			);
+			path = ToolboxViewControllers;
+			sourceTree = "<group>";
+		};
+		FDEB68B62A4F364300E522D0 /* FunctionTableControllers */ = {
+			isa = PBXGroup;
+			children = (
+				844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */,
+				844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */,
+			);
+			path = FunctionTableControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
