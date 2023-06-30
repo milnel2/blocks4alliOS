@@ -33,6 +33,7 @@ class DistanceSpeedModViewController: UIViewController{
     @IBOutlet weak var speedImage: UIImageView!
     
     override func viewDidLoad() {
+        
         // Get Speed and Distance values
         // Default Distance: 30 or preserve last selection
         let previousDistanceString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
@@ -63,6 +64,7 @@ class DistanceSpeedModViewController: UIViewController{
        
         // Dynamic Text
         back.titleLabel?.adjustsFontForContentSizeCategory = true
+        setFontStyle()
     }
     
     /// Updates distance value when slider moved
@@ -164,6 +166,21 @@ class DistanceSpeedModViewController: UIViewController{
         }
         // Update accessibility tools each time that the screen is updated
         updateAccessibilityTools()
+    }
+    
+    /// Set all labels to custom font
+    private func setFontStyle() {
+        distanceTitle.adjustsFontForContentSizeCategory = true
+        distanceTitle.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
+        
+        distanceDisplayed.adjustsFontForContentSizeCategory = true
+        distanceDisplayed.font =  UIFont.accessibleFont(withStyle: .title2, size: 26.0)
+        
+        speedTitle.adjustsFontForContentSizeCategory = true
+        speedTitle.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
+        
+        speedLabel.adjustsFontForContentSizeCategory = true
+        speedLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

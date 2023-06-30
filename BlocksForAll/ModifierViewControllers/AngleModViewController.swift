@@ -41,6 +41,7 @@ class AngleModViewController: UIViewController {
         // Accessibility
         back.titleLabel?.adjustsFontForContentSizeCategory = true
         turnView.accessibilityElements = [back!, angleTitle!, angleDisplayed!, angleSlider!]
+        setFontStyle()
     }
     
     /// When angle slider moved, get rounded value and convert to degrees 
@@ -57,6 +58,15 @@ class AngleModViewController: UIViewController {
         // Accessibility
         sender.accessibilityValue = "\(Int(roundedAngle)) degrees"
         angleDisplayed.accessibilityValue = "Current angle is \(Int(roundedAngle)) degrees"
+    }
+    
+    /// Set all labels to custom font
+    private func setFontStyle() {
+        angleTitle.adjustsFontForContentSizeCategory = true
+        angleTitle.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
+        
+        angleDisplayed.adjustsFontForContentSizeCategory = true
+        angleDisplayed.font =  UIFont.accessibleFont(withStyle: .title2, size: 26.0)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
