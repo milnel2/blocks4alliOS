@@ -107,7 +107,7 @@ class DriveVariables: UIViewController {
     }
    
     /// Called whenever updateScreen() is called. Updates accessibility labels and values to match what is being displayed
-    func updateAccessibilityLabel() {
+    private func updateAccessibilityLabel() {
         slowButton.accessibilityLabel = "Slower. Current speed: \(speed)"
         fastButton.accessibilityLabel = "Faster. Current speed: \(speed)"
     }

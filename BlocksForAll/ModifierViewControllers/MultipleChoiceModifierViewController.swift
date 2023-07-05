@@ -183,7 +183,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     }
       
     //TODO: test and finish this method
-    func createVoiceControlLabels(button: UIButton) {
+    private func createVoiceControlLabels(button: UIButton) {
         var voiceControlLabel = button.accessibilityLabel!
         let wordToRemove = " Noise"
         if let range = voiceControlLabel.range(of: wordToRemove){
@@ -219,7 +219,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     }
       
     /// Builds and returns a UICollectionView to hold the modifier buttons
-    func configureCollectionView() -> UICollectionView{
+    private func configureCollectionView() -> UICollectionView{
         // Calculate where the collectionView should be put on the screen
         // TODO: center cells in collectionView?
         let screenWidth = Int(screenSize.width)
@@ -255,7 +255,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     }
       
     /// Takes an image and returns a resized version of it
-    func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+    private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
         image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!

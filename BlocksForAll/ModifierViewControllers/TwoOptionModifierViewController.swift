@@ -82,7 +82,7 @@ class TwoOptionModifierViewController: UIViewController {
       }
     
     /// Sets up button and sets image or text for the button
-    func configureButton (button : UIButton, optionName : String) {
+    private func configureButton (button : UIButton, optionName : String) {
         let image = UIImage(named: optionName)
         if image != nil && defaults.value(forKey: "showText") as! Int == 0 {
            // Show Icons is on and the image was found
@@ -116,7 +116,7 @@ class TwoOptionModifierViewController: UIViewController {
     }
     
     /// Takes an image and returns a resized version of it
-    func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+    private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
         image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
@@ -165,7 +165,7 @@ class TwoOptionModifierViewController: UIViewController {
     }
 
     /// Call whenever things are changed on the screen
-    func updateAccessibilityLabel() {
+    private func updateAccessibilityLabel() {
         optionTwoButton.accessibilityLabel = "\(optionTwo)."
         optionOneButton.accessibilityLabel = "\(optionOne)."
         modifierValueLabel.accessibilityLabel = "Current selection: \(modifierValue)"
@@ -181,7 +181,7 @@ class TwoOptionModifierViewController: UIViewController {
     }
     
     //TODO: test and finish this method
-    func createVoiceControlLabels(button: UIButton) {
+    private func createVoiceControlLabels(button: UIButton) {
         var voiceControlLabel = button.accessibilityLabel!
         let wordToRemove = " Noise"
         if let range = voiceControlLabel.range(of: wordToRemove)
