@@ -90,6 +90,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         //Dynamic Text
         setFontStyle()
     }
+    
       
     ///  Number of items in the section of the collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -101,6 +102,13 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! MultipleChoiceButtonCell
         let index = indexPath.item  // numerical index of cell
           
+        // Reset labels and images in cells
+        // Below code is from https://stackoverflow.com/questions/23647833/uicollectionviewcell-is-overlapped-when-scrolling
+        for view in cell.subviews {
+          view.removeFromSuperview()
+        }
+        // Above code is from https://stackoverflow.com/questions/23647833/uicollectionviewcell-is-overlapped-when-scrolling
+       
         // Create an image for the cell
         let image = UIImage(named: items[index])
         if image != nil && defaults.value(forKey: "showText") as! Int == 0 {
@@ -163,7 +171,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     /// Called when an option button is pressed
     /// Deselect all buttons except for the currently selected one (only one can be selected at a time)
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        for cell in collectionView.visibleCells{ // deselect all buttons
+        for cell in collectionView.visibleCells{ // deselect all visible buttons
             cell.isSelected = false
             cell.layer.borderWidth = 0
         }
