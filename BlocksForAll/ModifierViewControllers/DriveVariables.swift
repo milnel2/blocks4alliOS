@@ -13,7 +13,7 @@ class DriveVariables: UIViewController {
     /* Screen for selecting what variable should be used for driving forward or backward. */
     
     // Drive variables
-    var modifierBlockIndexSender: Int?
+    var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
     var variableSelected: String = "orange"
     var variableSelectedTwo: String = "orange"
     var speed: String = "Normal"

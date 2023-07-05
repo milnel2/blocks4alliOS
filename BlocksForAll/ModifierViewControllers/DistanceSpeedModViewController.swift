@@ -16,7 +16,7 @@ class DistanceSpeedModViewController: UIViewController{
     // Distance variables
     var distance: Double = 30
     var speed: String = "Normal"
-    var modifierBlockIndexSender: Int?
+    var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
     var robotSpeed: Double = 3
     let interval: Float = 10
     

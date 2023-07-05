@@ -13,7 +13,7 @@ class SetVariableModViewController: UIViewController {
     /* Screen for selecting a variable and setting its value*/
     
     // Variable variables
-    var modifierBlockIndexSender: Int?
+    var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
     // Initialize the variable selected and variable value
     var variableSelected: String = "orange"
     var variableValue: Double = 0.0

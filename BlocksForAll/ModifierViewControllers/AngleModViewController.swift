@@ -14,7 +14,7 @@ class AngleModViewController: UIViewController {
     
     // Angle variables
     var angle: Double = 90
-    var modifierBlockIndexSender: Int?
+    var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
     var roundedAngle: Float = 90
     let interval: Float = 15
     
