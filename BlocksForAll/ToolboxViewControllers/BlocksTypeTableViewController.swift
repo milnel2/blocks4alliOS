@@ -8,19 +8,21 @@
 
 import UIKit
 
+/// The Toolbox menu that allows you to select the block type (e.g. sounds, drive, etc.).
 class BlocksTypeTableViewController: UITableViewController {
-    /*Toolbox menu that allows you to select the block type*/
     
-    var blockDict = NSArray()
-    var blockTypes = [Block]()
-    var indexToAdd = 0
-    var blockSize = 150
+    //MARK: Properties
+    var blockDict = NSArray()  // A dictionary created from the BlocksMenu.
+    var blockTypes = [Block]()  // A list of all the block types.
+    var indexToAdd = 0  // Tracks which index of block has been added.
+    var blockSize = 150  // Used to determine the position of the subviews.
     
     //used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
     
-    //MARK: - viewDidLoad function
+    //MARK: - viewDidLoad Function
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.title = "Toolbox"
         

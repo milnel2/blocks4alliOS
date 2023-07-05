@@ -13,8 +13,8 @@ import AudioToolbox
 class BlockView: UIView, UITextFieldDelegate {
     
     var blocks: [Block]  // The block in the view. May be multiple blocks if the block includes start/end blocks (repeat block, etc.)
-    var blockSize = 150  // TODO: Define this var.
-    let blockSpacing = 1  // TODO: Find out what this does.
+    var blockSize = 150  // Creates the width and height of the block view.
+    let blockSpacing = 1  // TODO: Find out what this does. If anything.
     
     //MARK: - Initialization
     init (frame : CGRect, block : [Block], myBlockSize: Int) {
