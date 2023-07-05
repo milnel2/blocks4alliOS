@@ -8,7 +8,9 @@
 
 body {
   font-family: "Inter";
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  background-color: var(--light-dark);
+ }
 
 p, ul, ol {
   font-size: 20px; }
@@ -34,7 +36,9 @@ h4,
 h5,
 h6 {
   font-weight: 700;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  color: var(--text-color);
+ }
 
 hr.star-light,
 hr.star-primary {
@@ -152,64 +156,7 @@ li img{
     .scroll-top .btn:focus {
       outline: none; }
 
-#mainNav {
-  font-weight: 700;
-  text-transform: uppercase;
-  border: none;
-  background: #123C61; }
-  #mainNav a:focus {
-    outline: none; }
-  #mainNav .navbar-brand {
-    font-size: 1.1rem;
-    color: var(--light-dark); }
-    #mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-      color: var(--light-dark); }
-  #mainNav .navbar-nav {
-    letter-spacing: 1px; }
-    #mainNav .navbar-nav li.nav-item a.nav-link {
-      color: var(--light-dark); }
-      #mainNav .navbar-nav li.nav-item a.nav-link:hover {
-        color: var(--main-color-1);
-        outline: none; }
-      #mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
-        color: var(--light-dark); }
-  #mainNav .navbar-toggler {
-    font-size: 14px;
-    padding: 11px;
-    text-transform: uppercase;
-    color: var(--light-dark);
-    border-color: var(--light-dark); }
-    #mainNav .navbar-toggler:focus, #mainNav .navbar-toggler:hover {
-      color: var(--light-dark);
-      border-color: var(--main-color-1);
-      background-color: var(--main-color-1); }
-
 @media (min-width: 992px) {
-  #mainNav {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
-    -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
-    transition: padding-top 0.3s, padding-bottom 0.3s; }
-    #mainNav .navbar-brand {
-      font-size: 2em;
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      transition: all 0.3s; }
-    #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
-      color: var(--light-dark);
-      border-radius: 3px;
-      background: var(--main-color-1); }
-      
-      #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
-        color: var(--light-dark);
-        background: var(--main-color-1); }
-  #mainNav.navbar-shrink {
-    padding-top: 10px;
-    padding-bottom: 10px; }
-    #mainNav.navbar-shrink .navbar-brand {
-      font-size: 1.5em; } }
-
 header.masthead {
   padding-top: 100px;
   padding-bottom: 50px;
@@ -217,7 +164,7 @@ header.masthead {
   color: var(--border-color);
   background: var(--main-color-1); }
 header.masthead p a {
-  color: var(--border-color);
+  color: var(--text-color);
     
     }
 header.masthead p a:hover {

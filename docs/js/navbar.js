@@ -54,7 +54,7 @@ Array.prototype.forEach.call(appsMenuItems, function(el, i){
 			} else {
 				this.setAttribute('aria-expanded', "false");
 			}
-			event.preventDefault();
+			// event.preventDefault();
 			return false;
 		});
 		el.addEventListener("keydown", function(event) {
@@ -77,6 +77,7 @@ Array.prototype.forEach.call(appsMenuItems, function(el, i){
 					prevdef = true;
 					break;
 				case keys.enter:
+					
 				case keys.down:
 					this.click();
 					subindex = 0;
@@ -145,10 +146,10 @@ Array.prototype.forEach.call(subMenuItems, function(el, i){
 			}
 			return false;
 		});
-	el.addEventListener("click", function(event) {
-			alert(this.innerHTML);
-			event.preventDefault();
-			event.stopPropagation();
-			return false;
-		});
+	// el.addEventListener("click", function(event) {
+	// 		alert(this.innerHTML);
+	// 		event.preventDefault();
+	// 		event.stopPropagation();
+	// 		return false;
+	// 	});
 });

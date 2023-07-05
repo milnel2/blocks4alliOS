@@ -12,24 +12,28 @@
     <title>Blocks4All</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     
 
 
     <!-- Custom styles for this template -->
-    <link href="css/freelancer.css" rel="stylesheet">
-    <link href='darkmode.css' rel='stylesheet'>
-    <link href='navbar.css' rel='stylesheet'>
+    <link href="../css/freelancer.css" rel="stylesheet">
+    <link href='../css/darkmode.css' rel='stylesheet'>
+    <link href='../css/navbar.css' rel='stylesheet'>
 
     </head>
     <body id="page-top">
+    
+    <!-- Navbar -->
+    
       <ul role="menubar" aria-label="functions" id="appmenu">
+        <li role="menuitem" aria-haspopup="true">
+          <a href="index.html">Blocks4All</a>
+        </li>
         <li role="menuitem" aria-haspopup="true">
           Activities
           <ul role="menu">
@@ -39,7 +43,6 @@
             <li role="menuitem">
               <a href="danceCircle2.html">Dance Circle (6-8)</a>
             </li>
-            <li role="menuitem">Print</li>
           </ul>
         </li>
         <li role="menuitem" aria-haspopup="true">
@@ -54,7 +57,7 @@
           </ul>
         </li>
         <li role="menuitem" aria-haspopup="true">
-          Research
+          <a href="research.html">Research</a>
         </li>
         <li role="menuitem" aria-haspopup="true">
           Dark Mode
@@ -72,54 +75,28 @@
           </ul>
         </li>
       </ul>
-      <!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container">
-          <a class="navbar-brand js-scroll-trigger" href="#page-top"><h1>Blocks4All</h1></a> 
-      <ul>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li><a href="tutorials.html">Tutorials</a></li>
-            <a href="activities.html" aria-expanded="false">
-              <li class="has-submenu">
-              Activities
-            <ul>
-                <li><a href="danceCircle1.html"> Dance Circle (K-5)</a></li>
-                <li><a href="danceCircle2.html"> Dance Circle (6-8)</a></li>
-            </ul>
-        </li>
-        <li><a href="research.html">Research</a></li>
-      </ul>
-          </ul>
-        </div>
-      </div>
-    </nav> -->
-
-    
-
  
     <!-- Header -->
     <header class="masthead">
       <div class="container">
         <div class="row">
           <div class="col-lg-4 mr-auto">
-              <p>Learn beginning programming concepts by placing blocks to control the <a href=https://www.makewonder.com> Dash robot.</a>
+              <p>
+                Learn beginning programming concepts by placing blocks to control the <a href=https://www.makewonder.com> Dash robot.</a>
               </p>
               <p>
                   Blocks4All is a block-based programming environment for the iPad to help you learn basic programming concepts. It is accessible with VoiceOver, Switch Control, and Voice Control. It was designed by a research group at Macalester College. The app requires the Dash robot in order to run, but the research group is not affiliated with <a href=https://www.makewonder.com>Wonder Workshop.</a>
-              
               </p> 
-
           </div>
-                      <div class="col-lg-6 ml-auto">
-            <img class="img-fluid" src="img/blocks4all.png" alt="Screenshot of Blocks4All app">
-          </div>
+            <div class="col-lg-6 ml-auto">
+              <img class="img-fluid" src="../img/blocks4all.png" alt="Screenshot of Blocks4All app">
+            </div>
             <div class="col-lg-10 mx-auto text-center">
                 <a href=https://apps.apple.com/zw/app/blocksforall/id1446492589 class="btn btn-lg btn-outline">
                 <i class="fa fa-download"></i>
                     Download the App
                 </a>
-            </div> 
-
+            </div>
         </div>
       </div>
     </header>
@@ -139,8 +116,7 @@
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
               </div>
-                
-              <img class="img-fluid" src="img/control_category.png" alt="Dance Circle (K-5)">
+              <img class="img-fluid" src="../img/control_category.png" alt="Dance Circle (K-5)">
             </a>
           </div>
           <div class="col-sm-6 portfolio-item">
@@ -151,7 +127,7 @@
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/dance2.png" alt="Dance Circle (6-8)">
+              <img class="img-fluid" src="../img/dance2.png" alt="Dance Circle (6-8)">
             </a>
           </div>
         </div>
@@ -203,18 +179,16 @@
     
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/popper/popper.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/freelancer.min.js"></script>
-    <script src="navbar.js"></script>
-
-
+    <script src="../js/freelancer.min.js"></script>
+    <script src="../js/navbar.js"></script>
     <script>
       const setTheme = theme => document.documentElement.className = theme;
     </script>

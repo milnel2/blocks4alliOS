@@ -1,17 +1,3 @@
-.theme-btn {
-    width: 3em;
-    height: 3em;
-    padding: 0.5em;
-    border-radius: 50%;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    }
-    .theme-btn img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    }
 
 /* color palette for light and dark mode */
 /* Colors: main-color-1: 90D7FF, border-color: 0a0f13, star-color: white, main-color-2: 123C61, close-to-white: eeeeee, button-border: black, button-background: 1a252f,  */
