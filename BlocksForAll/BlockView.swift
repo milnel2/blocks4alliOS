@@ -9,70 +9,65 @@
 import UIKit
 import AudioToolbox
 
+/// Given a block, creates the view that should be shown.
 class BlockView: UIView, UITextFieldDelegate {
-    /*Given a block, creates the view that should be shown*/
     
-    var blocks: [Block]
-    var blockSize = 150
-    let blockSpacing = 1
+    var blocks: [Block]  // The block in the view. May be multiple blocks if the block includes start/end blocks (repeat block, etc.)
+    var blockSize = 150  // TODO: Define this var.
+    let blockSpacing = 1  // TODO: Find out what this does.
     
-    var pickedItem: UITextField?
-    
-    //MARK: - init Block View
+    //MARK: - Initialization
     init (frame : CGRect, block : [Block], myBlockSize: Int) {
+        
         self.blocks = block
         super.init(frame : frame)
         blockSize = myBlockSize
         self.addSubview(simpleView(FromBlock: block))
     }
     
-    //MARK: - Element Focus
-    override func accessibilityElementDidBecomeFocused() {
+    //MARK: - Accessible Element Focus
+    override func accessibilityElementDidBecomeFocused()
+    {
         print(blocks[0].name + " is focused")
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder)
+    {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
-    }
-    
-    //MARK: - simpleView
+    //MARK: - View Creation
     func simpleView(FromBlock block: [Block]) -> UIView {
+        
         let block = block[0]
         
-        //let isModifierBlock = isModifierOrContainerBlock(block: block)
         let isModifierBlock = block.isModifiable ?? false
         
         var myViewHeight: Int
         let myFrame: CGRect
         let myViewWidth: Int
         
-        if block.isInToolBox ?? false {  // the blocks should be wider if they are in the toolbox
+        // Makes the blocks wider if they are in the toolbox.
+        if block.isInToolBox ?? false {
             //TODO: test this on different size screens
             myViewWidth = (blockSize * 3) / 2
         } else {
             myViewWidth = blockSize
         }
         
+        // Sets the view and frame size based on whether the block has a modifier or not.
         if isModifierBlock {
-            myViewHeight = blockSize * 2
+            myViewHeight = blockSize * 2  // Modifier blocks are twice the height of normal blocks
             myFrame = CGRect(x: 0, y: -myViewHeight/2, width: myViewWidth, height: myViewHeight)
         } else {
             myViewHeight = blockSize
             myFrame = CGRect(x: 0, y: 0, width: myViewWidth, height: myViewHeight)
-
         }
         
+        // Sets the view properties (e.g. background color & image).
         let myView = UIView(frame: myFrame)
         myView.backgroundColor = block.color.uiColor
-        if(block.imageName != nil && defaults.integer(forKey: "showText") == 0){
+        if(block.imageName != nil && defaults.integer(forKey: "showText") == 0) {
             let imageName = block.imageName!
             var image = UIImage(named: imageName)
             let imv: UIImageView
@@ -90,16 +85,10 @@ class BlockView: UIView, UITextFieldDelegate {
                 if block.isInToolBox ?? false {  // center the image if the block is in the toolbox
                     imv.layer.position.x = CGFloat((myViewWidth) - ((blockSize * 4) / 5))
                 }
-                
             }
-            
-            //            if #available(iOS 11.0, *) {
-            //                imv.adjustsImageSizeForAccessibilityContentSizeCategory = true
-            //            } else {
-            //                // Fallback on earlier versions
-            //            }
             myView.addSubview(imv)
         }else {
+            // Sets the block label if it doesn't have an image or if the app is in show text mode.
             let myLabel = UILabel.init(frame: myFrame)
             myLabel.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
             myLabel.numberOfLines = 0
@@ -107,7 +96,7 @@ class BlockView: UIView, UITextFieldDelegate {
             let currentFontSize = myLabel.font.pointSize
             
             var name = block.name
-            if currentFontSize > 31.0 { // dynamic text is being used, so some of the labels need to be shortened
+            if currentFontSize > 31.0 { // If dynamic text is being used, some of the labels need to be shortened.
                 name = removePhrase(phraseToRemove: " Noise", originalString: name)
                 name = removePhrase(phraseToRemove: "Drive ", originalString: name)
                 name = removePhrase(phraseToRemove: "Set ", originalString: name)
@@ -120,29 +109,47 @@ class BlockView: UIView, UITextFieldDelegate {
                 name = removePhrase(phraseToRemove: " Functions", originalString: name)
                 name = removePhrase(phraseToRemove: "Backward", originalString: name, replaceWith: "Back")
             }
+            
+            // Sets text properties (e.g alignment & color)
             myLabel.text = name
             myLabel.textAlignment = .center
+            myLabel.layer.zPosition = 1
+            
             if #available(iOS 13.0, *) {
                 myLabel.textColor = UIColor.label
             } else {
                 myLabel.textColor = UIColor.black
             }
-            myLabel.layer.zPosition = 1
-           
             
             if isModifierBlock {
                 myLabel.layer.position.y = CGFloat((blockSize * 6) / 4)
             } else {
                 myLabel.layer.position.y = CGFloat(blockSize / 2)
             }
+            
             myView.addSubview(myLabel)
         }
+        
         return myView
     }
     
-    ///  Given a string and a phrase, removes the phrase from the string and replaces it if possible. Returns the new string
-    private func removePhrase (phraseToRemove: String, originalString: String, replaceWith: String = "") -> String{
+    //MARK: - Supporting Functions
+    /// Scales given image to the given size, and returns the new scaled image.
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage {
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
+    /// Given a string and a phrase, removes the phrase from the string and replaces it if possible. Returns the new string.
+    private func removePhrase (phraseToRemove: String, originalString: String, replaceWith: String = "") -> String {
+        
         var newString = originalString
+        
         if phraseToRemove == "Set " { // the Set Variable block should not be edited, only the Set Light blocks
             if newString.range(of: "Set Variable") != nil {
                 return originalString
@@ -151,7 +158,7 @@ class BlockView: UIView, UITextFieldDelegate {
         if let range = newString.range(of: phraseToRemove){
             newString.replaceSubrange(range, with: replaceWith)
         }
+        
         return newString
     }
-    
 }
