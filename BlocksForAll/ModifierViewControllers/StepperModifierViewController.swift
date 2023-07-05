@@ -21,8 +21,8 @@ class StepperModifierViewController: UIViewController {
       // the values are dictionaries of string : string that holds different attributes to be shown on thte screen
       // the minimum value is also the default value
     private let optionDictionary: [String:[String : String]] =
-    ["Wait for Time" :  ["attributeName" : "wait", "min" : "1", "max" : "10", "unitIfSingular" : "second", "unitIfPlural" : "seconds", "increaseImage" : "orange_plus", "decreaseImage" : "orange_minus"],
-     "Repeat" : ["attributeName" : "timesToRepeat", "min" : "2", "max" : "20", "unitIfSingular" : "time", "unitIfPlural" : "times", "increaseImage" : "orange_plus", "decreaseImage" : "orange_minus"]]
+    ["Wait for Time" :  ["attributeName" : "wait", "min" : "1", "max" : "10", "unitIfSingular" : "second", "unitIfPlural" : "seconds", "increaseImage" : "orange_plus", "decreaseImage" : "orange_minus", "Default image" : "controlModifierBackground"],
+     "Repeat" : ["attributeName" : "timesToRepeat", "min" : "2", "max" : "20", "unitIfSingular" : "time", "unitIfPlural" : "times", "increaseImage" : "orange_plus", "decreaseImage" : "orange_minus", "Default image" : "controlModifierBackground"]]
     private var modifierValue = 2  // current value of the stepper
     private var attributeName = ""  // Used for accessing and saving data, taken from optionDictionary (ex. if optionType = "Wait for Time", attributeName is "wait"
     private var min = "0"  // minimum value of the stepper, taken from optionDictionary
@@ -36,8 +36,7 @@ class StepperModifierViewController: UIViewController {
     @IBOutlet weak var modifierValueLabel: UILabel!  // label between the buttons that shows the current value
     @IBOutlet weak var increaseButton: UIButton!  // plus button on screen
 
-    // TODO: should buttonSize be the same value as blockSize? i.e. should the size of the buttons change when the blockSize changes?
-    //private let buttonSize = 150 // the size of each stepper button
+    private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each option button
       
     override func viewDidLoad() {
         // get the optionType from the button that caused this screen to open, this will be displayed at the top of the screen
@@ -58,8 +57,9 @@ class StepperModifierViewController: UIViewController {
         checkIfValueExists(variableName: "decreaseImage", value: decreaseImagePath)
           
         // Formatting and design of screen
-        increaseButton.setImage(UIImage(named: increaseImagePath), for: .normal)  // plus button
-        decreaseButton.setImage(UIImage(named: decreaseImagePath), for: .normal)  // minus button
+        configureButton(button: increaseButton, optionName: increaseImagePath)// plus button
+        configureButton(button: decreaseButton, optionName: decreaseImagePath)
+        // minus button
         optionModTitle.text = optionType // Set title of the screen
        
         // default value: minimum value or preserve last selection
@@ -83,6 +83,51 @@ class StepperModifierViewController: UIViewController {
         }
         // Dynamic Text
         setFontStyle()
+    }
+    
+    /// Sets up button and sets image or text for the button
+    func configureButton (button : UIButton, optionName : String) {
+        button.setImage(nil, for: .normal) // remove any previous image
+        let image = UIImage(named: optionName)
+        if image != nil && defaults.value(forKey: "showText") as! Int == 0 {
+           // Show Icons is on and the image was found
+          let resizedImage = resizeImage(
+            image: image!,
+            scaledToSize: CGSize(
+                width: buttonSize,
+                height: buttonSize)) // resize the image to fit the button
+            button.setBackgroundImage(resizedImage, for: .normal)
+        } else {
+            // No image was found and/or Show Text is on
+            // Naming convention for color assets is (attributeName)Color
+            // ex. animalNoiseColor, emotionNoiseColor
+            let backgroundImagePath = optionDictionary[optionType]?["Default image"] ?? "N/A"
+            checkIfValueExists(variableName: "backgroundImagePath", value: backgroundImagePath)
+            let resizedImage = resizeImage(
+                image: UIImage(named: backgroundImagePath)!,
+                scaledToSize: CGSize(
+                width: buttonSize,
+                height: buttonSize)) // resize the image to fit the button
+            button.setBackgroundImage(resizedImage, for: .normal)
+            if button == increaseButton {
+                button.setTitle("More", for: .normal)
+            } else {
+                button.setTitle("Less", for: .normal)
+            }
+
+            if image == nil {
+                print("Image \(optionName) not found in StepperModifierViewController")
+            }
+        }
+    }
+    
+    /// Takes an image and returns a resized version of it
+    func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
     
     /// Increase the modifierValue if possible and update visuals and accessibillity tools
@@ -149,6 +194,8 @@ class StepperModifierViewController: UIViewController {
         modifierValueLabel.font = UIFont.accessibleBoldFont(withStyle: .title2, size: 50.0)
         optionModTitle.adjustsFontForContentSizeCategory = true
         optionModTitle.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
+        increaseButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
+        decreaseButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
     }
       
     /// Given a variable name and its value, prints out an error statement if the value is "N/A"
