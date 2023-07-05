@@ -155,6 +155,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
             cell.accessibilityHint = "Selected"
         } else {
             cell.isSelected = false
+            cell.layer.borderWidth = 0
         }
         return cell
     }
