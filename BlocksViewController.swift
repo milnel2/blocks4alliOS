@@ -16,6 +16,8 @@ var currentWorkspace = String()  // workspace you are currently editing on scree
 
 let startIndex = 0
 
+
+
 var endIndex: Int { return functionsDict[currentWorkspace]!.count - 1 }
 
 //MARK: - Block Selection Delegate Protocol
@@ -109,15 +111,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         blockSize = defaults.value(forKey: "blockSize") as! Int
         
-      
-        if #available(iOS 13.0, *) {
-            let deleteBlock = UIAccessibilityCustomAction (name: "Delete Block") { _ in
-                self.trashClicked()
-                return true
-            }
-            
-            self.accessibilityCustomActions = [deleteBlock]
-        }
+
+
+        let deleteBlock = UIAccessibilityCustomAction(
+                name: "Delete Block",
+                target: self,
+                selector: #selector(deleteBlockCustomAction))
+                                   
+        accessibilityCustomActions = [deleteBlock]
+    
+        
 
         
         if currentWorkspace != "Main Workspace" {
@@ -161,6 +164,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func deleteBlockCustomAction() -> Bool {
+        blocksBeingMoved.removeAll()
+        blocksProgram.reloadData()
+        print("put in trash")
+        finishMovingBlocks()
+        return true
     }
     
     // MARK: - - Block Selection Delegate functions
@@ -247,7 +258,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
 
     /// Run the actual program when the trash button is clicked
-    func trashClicked() {
+    func trashClicked()  {
         let announcement = blocksBeingMoved[0].name + " placed in trash."
         playTrashToggleButton.accessibilityLabel = announcement
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
@@ -256,6 +267,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksProgram.reloadData()
         finishMovingBlocks()
     }
+    
+
     
     func playClicked(){
         if(!connectedRobots()){
@@ -904,18 +917,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     
-    //Custom Actions API for Block
-
-//    @available(iOS 13.0, *)
-//    func configuredAction() {
-//        let deleteBlock = UIAccessibilityCustomAction (name: "Delete Block") { _ in
-//            self.trashClicked()
-//            return true
-//            }
-//            self.accessibilityCustomActions = [deleteBlock]
-//        }
-//    
-//    
    
     
     /// Called when a block is selected in the collectionView, so either selects block to move or places blocks
