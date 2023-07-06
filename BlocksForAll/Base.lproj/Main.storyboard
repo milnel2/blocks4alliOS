@@ -1727,10 +1727,11 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="CWQ-aM-vhy"/>
         <segue reference="ebu-O5-0hJ"/>
-        <segue reference="SES-Og-HDs"/>
+        <segue reference="PIe-sL-Fqa"/>
         <segue reference="gnX-kj-isW"/>
-        <segue reference="Oq5-da-dqe"/>
+        <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AddRobotButton" width="576" height="576"/>

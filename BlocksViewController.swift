@@ -58,10 +58,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
    
     @IBOutlet weak var blocksProgram: UICollectionView!   // View on bottom of screen that shows blocks in workspace
-
+    
+    
     // Views
     var allBlockViews = [BlockView]()  // Top-level controller for toolbox view controllers
     var containerViewController: UINavigationController?
+
     
     // Robot variables
     var robotRunning = false
@@ -93,6 +95,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //workspaceContainerView.bringSubviewToFront(workspaceNameLabel)
     }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,6 +108,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             defaults.setValue(150, forKey: "blockSize")
         }
         blockSize = defaults.value(forKey: "blockSize") as! Int
+        
+      
+        if #available(iOS 13.0, *) {
+            let deleteBlock = UIAccessibilityCustomAction (name: "Delete Block") { _ in
+                self.trashClicked()
+                return true
+            }
+            
+            self.accessibilityCustomActions = [deleteBlock]
+        }
+
         
         if currentWorkspace != "Main Workspace" {
             //workspaceNameLabel.text = "\(currentWorkspace) Function"
@@ -390,11 +404,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         if block.addedBlocks.isEmpty{
             let placeholderBlock = Block(name: name, color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
-
+            
             block.addedBlocks.append(placeholderBlock!)
             placeholderBlock?.addAttributes(key: attributeName, value: "\(defaultValue)")
             if secondAttributeName != nil && secondDefault != nil
-                { placeholderBlock?.addAttributes(key: secondAttributeName!, value: "\(secondDefault!)") }
+            { placeholderBlock?.addAttributes(key: secondAttributeName!, value: "\(secondDefault!)") }
         }
         // renamed block.addedBlocks[0] for simplicity
         let placeHolderBlock = block.addedBlocks[0]
@@ -434,7 +448,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             if secondAttributeName != "variableValue" {
                 image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
                 if secondAttributeName != nil && secondDefault != nil
-                    { image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)") }
+                { image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)") }
                 
                 // handle show icon or show text for modifiers that change depending on the settings
                 if defaults.integer(forKey: "showText") == 1 && showTextImage != nil{
@@ -493,7 +507,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
             
             button.setTitle(text, for: .normal)
-           
+            
             // TODO: allow for font to be either .title1 or .title2 depending on what fits best
             button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
             button.titleLabel?.adjustsFontForContentSizeCategory = true
@@ -514,6 +528,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //TODO: this line doesn't really do anything, it is just the same as modifierInformation
         let voiceControlLabel = modifierInformation
         
+        
         //TODO: test on different operating systems
         if #available(iOS 13.0, *) {
             button.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
@@ -522,6 +537,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         button.addTarget(self, action: selector, for: .touchUpInside)  // connect what happens when the button is pressed
         
         cell.addSubview(button)  // add button to cell
+        
 
         //create blockView
         let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
@@ -621,6 +637,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     ///   - blockModifier:  describes the state of the block modifier (e.g. 2 times for repeat 2 times)
     ///   - blockLocation: location of block in workspace (e.g. 2 of 4)
     func addAccessibilityLabel(blockView: UIView, block:Block, blockModifier:String, blockLocation: Int, blockIndex: Int){
+    
         blockView.isAccessibilityElement = true
         var accessibilityLabel = ""
         let blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(functionsDict[currentWorkspace]!.count)
@@ -886,13 +903,35 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return myLabel
     }
     
+    
+    //Custom Actions API for Block
+
+//    @available(iOS 13.0, *)
+//    func configuredAction() {
+//        let deleteBlock = UIAccessibilityCustomAction (name: "Delete Block") { _ in
+//            self.trashClicked()
+//            return true
+//            }
+//            self.accessibilityCustomActions = [deleteBlock]
+//        }
+//    
+//    
+   
+    
     /// Called when a block is selected in the collectionView, so either selects block to move or places blocks
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.remembersLastFocusedIndexPath = true
         if (!robotRunning) {  // disable editing while robot is running
+//            @available(iOS 13.0, *)
+//            func configuredAction(){}
             if(movingBlocks){
+                    print("hello")
                     addBlocks(blocksBeingMoved, at: indexPath.row)
                     containerViewController?.popViewController(animated: false)
+//                if #available(iOS 13.0, *) {
+//                    configuredAction()
+//                    print("hello")
+//                }
                     finishMovingBlocks()
             }else{
                 if(indexPath.row < functionsDict[currentWorkspace]!.count){  // otherwise empty block at end

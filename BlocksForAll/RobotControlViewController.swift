@@ -112,6 +112,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     }
 }
 
+
 class ExecutingProgram {
     var positions: [(funcName: String, position: Int)]
     // position used to find index of block in blocksToExec
@@ -175,6 +176,7 @@ class ExecutingProgram {
         //the current block being check for executing it's from the [] of blocks that are being executed at the position value that we increment with this function (and repeat and if functions)
         
         print(blockToExec)
+        
         var duration = 2.0
         // default duration of any command
         
@@ -183,6 +185,7 @@ class ExecutingProgram {
         
         switch blockToExec.name{
         //SOUNDS CATEGORY
+            
             //TODO: test all sounds
         case "Animal Noise":
             let animal = blockToExec.addedBlocks[0].attributes["animalNoise"]

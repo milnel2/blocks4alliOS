@@ -28,12 +28,14 @@ class BlockView: UIView, UITextFieldDelegate {
     
     //MARK: - Element Focus
     override func accessibilityElementDidBecomeFocused() {
+        
         print(blocks[0].name + " is focused")
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
@@ -43,6 +45,7 @@ class BlockView: UIView, UITextFieldDelegate {
         return newImage
     }
     
+        
     //MARK: - simpleView
     func simpleView(FromBlock block: [Block]) -> UIView {
         let block = block[0]
@@ -52,6 +55,7 @@ class BlockView: UIView, UITextFieldDelegate {
         
         var myViewHeight: Int
         let myFrame: CGRect
+
         let myViewWidth: Int
         
         if block.isInToolBox ?? false {  // the blocks should be wider if they are in the toolbox
@@ -60,6 +64,9 @@ class BlockView: UIView, UITextFieldDelegate {
         } else {
             myViewWidth = blockSize
         }
+
+
+
         
         if isModifierBlock {
             myViewHeight = blockSize * 2
@@ -137,6 +144,7 @@ class BlockView: UIView, UITextFieldDelegate {
             }
             myView.addSubview(myLabel)
         }
+        
         return myView
     }
     
