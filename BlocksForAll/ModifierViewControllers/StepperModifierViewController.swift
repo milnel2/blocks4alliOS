@@ -196,6 +196,14 @@ class StepperModifierViewController: UIViewController {
         optionModTitle.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
         increaseButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
         decreaseButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
+        // Allow for dark mode if possible
+        if #available(iOS 13.0, *) {
+            increaseButton.setTitleColor(.label, for: .normal)
+            decreaseButton.setTitleColor(.label, for: .normal)
+        } else {
+            increaseButton.setTitleColor(.black, for: .normal)
+            decreaseButton.setTitleColor(.black, for: .normal)
+        }
     }
       
     /// Given a variable name and its value, prints out an error statement if the value is "N/A"

@@ -248,7 +248,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         myCollectionView.dataSource = self
         myCollectionView.isAccessibilityElement = true
         myCollectionView.backgroundColor = .clear
-          
+        
         optionModView.addSubview(myCollectionView)
           
         return myCollectionView
