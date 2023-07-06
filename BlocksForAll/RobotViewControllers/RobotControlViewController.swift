@@ -520,14 +520,14 @@ class ExecutingProgram {
             
         case "Look Left":
             let lookleft = WWCommandSet()
-            lookleft.setHeadPositionPan(WWCommandHeadPosition.init(degree: -60))
+            lookleft.setHeadPositionPan(WWCommandHeadPosition.init(degree: 60))
             duration = 0.3
             cmdToSend.add(lookleft, withDuration: duration)
             myAction =  WWCommandToolbelt.moveStop()
             
         case "Look Right":
             let lookright = WWCommandSet()
-            lookright.setHeadPositionPan(WWCommandHeadPosition.init(degree: 60))
+            lookright.setHeadPositionPan(WWCommandHeadPosition.init(degree: -60))
             duration = 0.3
             cmdToSend.add(lookright, withDuration: duration)
             myAction =  WWCommandToolbelt.moveStop()

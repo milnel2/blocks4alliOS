@@ -13,12 +13,14 @@ class DistanceSpeedModViewController: UIViewController{
     /* View controller for the Distance and Speed modifier scene */
     
     //TODO: update these based on Dash API
+    // Distance variables
     var distance: Double = 30
     var speed: String = "Normal"
-    var modifierBlockIndexSender: Int?
+    var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
     var robotSpeed: Double = 3
     let interval: Float = 10
     
+    // View controller elements
     @IBOutlet weak var distanceSlider: UISlider!
     @IBOutlet weak var slowButton: UIButton!
     @IBOutlet weak var fastButton: UIButton!
@@ -28,112 +30,130 @@ class DistanceSpeedModViewController: UIViewController{
     @IBOutlet var distanceSpeedView: UIView!
     @IBOutlet var distanceTitle: UILabel!
     @IBOutlet var speedTitle: UILabel!
-    
     @IBOutlet weak var speedImage: UIImageView!
+    
     override func viewDidLoad() {
-        // Debug VO route
-        distanceSpeedView.accessibilityElements = [distanceTitle!, distanceDisplayed!, distanceSlider!, speedTitle!, slowButton!, speedLabel!, speedImage!, fastButton!, back!]
         
-        //Makes buttons easier to select with Voice Control
+        // Get Speed and Distance values
+        // Default Distance: 30 or preserve last selection
+        let previousDistanceString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
+        let previousDistance = Int(previousDistanceString)
+        
+        // preserve previously selected value
+        distance = Double(previousDistance!)
+        
+        // Default Speed: Normal or preserve last selection
+        let previousSpeedString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+        
+        // preserves previously selected value
+        speed = previousSpeedString
+        
+        // Update the screen
+        distanceSlider.setValue(Float(distance), animated: false)
+        updateScreen()
+    
+        // Accessibility
+        // Voice Over and Switch Control
+        distanceSpeedView.accessibilityElements = [back!, distanceTitle!, distanceDisplayed!, distanceSlider!, speedTitle!, slowButton!, speedLabel!, speedImage!, fastButton!]
+        
+        //Voice Control
         if #available(iOS 13.0, *) {
             slowButton.accessibilityUserInputLabels = ["Slower", "Decrease", "Minus", "Subtract"]
             fastButton.accessibilityUserInputLabels = ["Faster", "Increase", "Plus", "Add"]
         }
-        
-        // default speed: Normal or preserve last selection
-        let previousDistanceString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
-        let previousDistance = Int(previousDistanceString)
-        distanceDisplayed.text = "\(previousDistance ?? 30)"
-        distanceSlider.setValue(Float(previousDistance!), animated: true)
-        distanceSlider.accessibilityValue = "\(previousDistance ?? 30) centimeters"
-        
-        // preserve previously selected value
-        distance = Double(previousDistance!)
-        speedLabel.text = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
-        
-        // preserves previously selected value
-        speed = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
-        
-        distanceDisplayed.accessibilityValue = "Current distance is \(Int(distance)) centimeters"
-        
+       
+        // Dynamic Text
         back.titleLabel?.adjustsFontForContentSizeCategory = true
-        
-        
-        if defaults.value(forKey: "showText") as! Int == 0 {
-            let imagePath = "\(speed) Icon"
-            let image = UIImage(named: imagePath)
-            if image != nil {
-                speedImage.image = image
-                speedImage.isHidden = false
-            }
-        } else {
-            speedImage.isHidden = true
-        }
+        setFontStyle()
     }
     
     /// Updates distance value when slider moved
     @IBAction func distanceSliderChanged(_ sender: UISlider) {
-        let roundingNumber: Float = (interval/2.0)
+        // Update distance
         distance = Double(sender.value)
-        let roundedDistance = (interval*floorf(((sender.value+roundingNumber)/interval)))
-        sender.accessibilityValue = "\(Int(roundedDistance)) centimeters"
-        sender.setValue(roundedDistance, animated:false)
-        distanceDisplayed.text = "\(Int(roundedDistance))"
-        distanceDisplayed.accessibilityValue = "Current distance is \(Int(roundedDistance)) centimeters"
+        
+        // Update the screen
+        updateScreen()
     }
-    
     
     /// If minus button pressed, speed changes to one less and speed label updated with this value
     @IBAction func slowButtonPressed(_ sender: UIButton) {
+        // Reduce the speed by one interval, if possible
         switch speed {
         case "Really Fast":
             speed = "Fast"
-            speedLabel.text = speed
         case "Fast":
             speed = "Normal"
-            speedLabel.text = speed
         case "Normal":
             speed = "Slow"
-            speedLabel.text = speed
         case "Slow":
             speed = "Really Slow"
-            speedLabel.text = speed
         default:
             print("can't be slowed")
         }
-        if defaults.value(forKey: "showText") as! Int == 0 {
-            let imagePath = "\(speed) Icon"
-            let image = UIImage(named: imagePath)
-            if image != nil {
-                speedImage.image = image
-                speedImage.isHidden = false
-            }
-        } else {
-            speedImage.isHidden = true
-        }
-       
-        updateAccessibilityLabel()
+        updateScreen()
     }
     
     /// If plus button pressed, speed changes to one more and speed label updated with this value
     @IBAction func fastButtonPressed(_ sender: UIButton) {
+        // Increase the speed by one interval, if possible
         switch speed {
         case "Really Slow":
             speed = "Slow"
-            speedLabel.text = speed
         case "Slow":
             speed = "Normal"
-            speedLabel.text = speed
         case "Normal":
             speed = "Fast"
-            speedLabel.text = speed
         case "Fast":
             speed = "Really Fast"
-            speedLabel.text = speed
         default:
             print("can't make faster")
         }
+        updateScreen()
+    }
+    
+    /// Called whenever updateScreen() is called. Updates accessibility labels and values to match what is being displayed
+    private func updateAccessibilityTools() {
+        // Distance
+        distanceDisplayed.accessibilityValue = "Current distance is \(Int(distance)) centimeters"
+        distanceSlider.accessibilityValue = "\(Int(distance)) centimeters"
         
+        // Speed
+        slowButton.accessibilityLabel = "Slower. Current speed: \(speed)"
+        fastButton.accessibilityLabel = "Faster. Current speed: \(speed)"
+        speedLabel.accessibilityLabel = "Current speed is \(speed)"
+        
+        if !speedImage.isHidden {
+            speedImage.isAccessibilityElement = true
+            switch speed {
+            case "Really Slow":
+                speedImage.accessibilityLabel = "Two snails"
+            case "Slow":
+                speedImage.accessibilityLabel = "One snail"
+            case "Normal":
+                speedImage.accessibilityLabel = "One snail and one bunny"
+            case "Fast":
+                speedImage.accessibilityLabel = "One bunny"
+            case "Really Fast":
+                speedImage.accessibilityLabel = "Two bunnies"
+            default:
+                speedImage.accessibilityLabel = ""
+            }
+        }
+    }
+    
+    /// Call whenever data is changed to update the screen to match it
+    private func updateScreen() {
+        // Distance
+        // Calculate rounded value
+        let roundingNumber: Float = (interval / 2.0)
+        let roundedDistance = (interval * floorf(((distanceSlider.value + roundingNumber) / interval)))
+        distanceDisplayed.text = "\(Int(roundedDistance))"
+        distanceSlider.setValue(roundedDistance, animated: false)
+        
+        // Speed
+        speedLabel.text = speed
+        // Update speed image if showIcons is on
         if defaults.value(forKey: "showText") as! Int == 0 {
             let imagePath = "\(speed) Icon"
             let image = UIImage(named: imagePath)
@@ -144,12 +164,23 @@ class DistanceSpeedModViewController: UIViewController{
         } else {
             speedImage.isHidden = true
         }
-        updateAccessibilityLabel()
+        // Update accessibility tools each time that the screen is updated
+        updateAccessibilityTools()
     }
     
-    func updateAccessibilityLabel() {
-        slowButton.accessibilityLabel = "Slower. Current speed: \(speed)"
-        fastButton.accessibilityLabel = "Faster. Current speed: \(speed)"
+    /// Set all labels to custom font
+    private func setFontStyle() {
+        distanceTitle.adjustsFontForContentSizeCategory = true
+        distanceTitle.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
+        
+        distanceDisplayed.adjustsFontForContentSizeCategory = true
+        distanceDisplayed.font =  UIFont.accessibleFont(withStyle: .title2, size: 26.0)
+        
+        speedTitle.adjustsFontForContentSizeCategory = true
+        speedTitle.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
+        
+        speedLabel.adjustsFontForContentSizeCategory = true
+        speedLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

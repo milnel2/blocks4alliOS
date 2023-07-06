@@ -10,41 +10,34 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-    
+    // View Controller Elements
     @IBOutlet weak var showIconsOrText: UISegmentedControl!
-    
     @IBOutlet weak var blockSizeLabel: UILabel!
-    
     @IBOutlet weak var blockSizeSlider: UISlider!
-    
     @IBOutlet weak var showIconsLabel: UILabel!
-    
     @IBOutlet var settingsView: UIView!
-    
     @IBOutlet weak var backButton: UIButton!
-    
-    @IBOutlet weak var settingsLabel: UILabel!
-
     @IBOutlet var addRobotsButton: UIButton!
     
     override func viewDidLoad() {
         // Change fonts to custom font
-//        settingsLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
         blockSizeLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
         showIconsLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
         
-        // select the current setitng
-        // value is 0 to show icons and 1 to show text
+        // select the current setting for Show Text/Show Icons
+        // show icons = 0
+        // show text = 1
         if defaults.value(forKey: "showText") != nil {
+            // use previously selected value
             showIconsOrText.selectedSegmentIndex = defaults.value(forKey: "showText") as! Int
-        
         }
-        else
-        { defaults.setValue(0, forKey:"showText")
+        else {
+            // show icons by default
+            defaults.setValue(0, forKey:"showText")
         }
                 
-
         if defaults.value(forKey: "blockSize") == nil {
+            // set blockSize to 150 by default
             defaults.setValue(150, forKey: "blockSize")
         }
         
@@ -59,7 +52,7 @@ class SettingsViewController: UIViewController {
         blockSizeSlider.accessibilityValue = "\(Int(displayValue))"
         
         blockSizeLabel.accessibilityValue = "= \(Int(displayValue))"
-//
+
         if defaults.value(forKey: "showText") as! Int == 0 {
             showIconsLabel.accessibilityValue = "Show icons selected"
             showIconsLabel.text = "Show Icons"
@@ -70,15 +63,14 @@ class SettingsViewController: UIViewController {
         }
         
         blockSizeLabel.adjustsFontForContentSizeCategory = true
-        
         showIconsLabel.adjustsFontForContentSizeCategory = true
         
     }
+    /// Called when the showIconsOrText switch is pressed
     @IBAction func showIconsOrTextSelected(_ sender: UISegmentedControl, forEvent event: UIEvent) {
         // set value to 0 to show icons and 1 to show text
         defaults.setValue(sender.selectedSegmentIndex, forKey: "showText")
         defaults.synchronize()
-        
         if sender.selectedSegmentIndex == 0 {
             sender.accessibilityLabel = "Show icons"
             showIconsLabel.text = "Show Icons"
@@ -90,6 +82,7 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    /// Called when the blockSizeSlider is changed. Updates screen and default values
     @IBAction func blockSizeSliderChanged(_ sender: UISlider) {
         // make slider increment by 25
         // rounding from https://developer.apple.com/forums/thread/23010
@@ -102,38 +95,26 @@ class SettingsViewController: UIViewController {
         // save value
         defaults.setValue(sender.value, forKey: "blockSize")
         
-        // change the slider value that goes from 100-200 to go from 1-5
+        // unccoment this to change the slider value that goes from 100-200 to go from 1-5
         //let displayValue = ((Int(sender.value) - 100) / 25) + 1
         
         // can also use this line instead so that the slider can increment by 10s using voice over
-        // it goes from 1-11
+        // It increments by 10s but on the screen it increments by 1s and goes from 1-11
         let displayValue = ((Int(sender.value) - 100) / 10) + 1
         
         sender.accessibilityValue = "\(Int(displayValue))"
         // update label
         updateBlockSizeLabel(value: displayValue)
-        
-       
     }
     
-    // given a float, sets text for block size label
+    /// Given a float, sets text for block size label
     private func updateBlockSizeLabel (value : Float) {
         blockSizeLabel.text = "Block Size = \(Int(value))"
     }
     
-    // given a int, sets text for block size label
+    /// Given an int, sets text for block size label
     private func updateBlockSizeLabel (value : Int) {
         blockSizeLabel.text = "Block Size = \(value)"
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

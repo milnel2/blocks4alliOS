@@ -12,36 +12,32 @@ let defaults = UserDefaults.standard  // Used to know block size and if in showI
 
 class MainMenuViewController: UIViewController {
     
-    @IBOutlet weak var welcomeLabel: UILabel!
-    
+    // View Controller Elements
     @IBOutlet weak var getStarted: UIButton!
-    
     @IBOutlet weak var instructions: UIButton!
-    
     @IBOutlet weak var addRobots: UIButton!
     
+    var blockSize = 150 // this controls the size of the blocks you put down in the Building Screen
+    
     override func viewDidLoad() {
-//        welcomeLabel.adjustsFontForContentSizeCategory = true
-//
-//        welcomeLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 40.0)
-        
+        // Accessibility
         getStarted.titleLabel?.adjustsFontForContentSizeCategory = true
         instructions.titleLabel?.adjustsFontForContentSizeCategory = true
         addRobots.titleLabel?.adjustsFontForContentSizeCategory = true
         
+        // Default settings
+        // if show icons/show text hasn't been set yet, set showText to showIcons by default
         if  defaults.value(forKey: "showText") == nil {
-            defaults.setValue(0, forKey: "showText")  // set showText to showIcons by default
+            defaults.setValue(0, forKey: "showText")
         }
-        
+        // if blockSize hasn't been set yet, set it to be 150 by default
         if defaults.value(forKey: "blockSize") == nil {
-            defaults.setValue(150, forKey: "blockSize")  // set blockSize to be 150 by default
+            defaults.setValue(150, forKey: "blockSize")
         }
     }
-    
-    var blockSize = 150 /* this controls the size of the blocks you put down in the Building Screen */
+   
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
         if #available(iOS 11.0, *) {
             if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
                 print("accessibility enabled")
@@ -63,7 +59,6 @@ class MainMenuViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if let myDestination = segue.destination as? BlocksViewController{
             myDestination.blockSize = blockSize
-            myDestination.blockSize = blockSize
             print("block size " , blockSize)
         }
         if let destinationViewController = segue.destination as? UINavigationController{
@@ -71,13 +66,5 @@ class MainMenuViewController: UIViewController {
                 print("block size 2 " , blockSize)
             }
         }
-        
     }
-    
-//    @IBAction func loadFromAddRobots(_ sender: Any) {
-//        load()
-//    }
-//    @IBAction func loadFromGetStarted(_ sender: Any) {
-//        load()
-//    }
-   }
+}

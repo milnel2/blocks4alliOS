@@ -9,86 +9,53 @@
 import Foundation
 import UIKit
 
-/**
- this class allows users to select a variable and set its value
- **/
 class SetVariableModViewController: UIViewController {
+    /* Screen for selecting a variable and setting its value*/
     
-    var modifierBlockIndexSender: Int?
-    
-    //initialize the variable selected and variable value
+    // Variable variables
+    var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
+    // Initialize the variable selected and variable value
     var variableSelected: String = "orange"
     var variableValue: Double = 0.0
 
+    // View Controller Elements
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var back: UIButton!
-    
     @IBOutlet weak var setVariableTitle: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var setVarView: UIView!
     @IBOutlet var setVarTitle: UILabel!
-    @IBOutlet var NegativeLabel: UILabel!
+    @IBOutlet var variableValueInput: UITextField!
+    var activeField: UITextField?
     
+    /// Deselects all buttons but currently selected one (only one can be selected at a time)
     @IBAction func buttonPressed(_ sender: UIButton) {
-        //Deselects all buttons but currently selected one (only one can be selected at a time)
-        self.buttons.forEach { (button) in
-            button.layer.borderWidth = 0
-            button.isSelected = false
-                }
-        //Selects pressed button
-        sender.layer.borderWidth = 10
-        sender.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
-        sender.isSelected = true
         if let buttonID = sender.accessibilityIdentifier {
             variableSelected = buttonID
         }
+        updateScreen()
     }
     
-    @IBOutlet weak var VariableValue: UITextField!
-    
-    //stores variable value when entered
+    /// Stores variable value when variableValueInput has a value entered
     @IBAction func VariableValue(_ sender: UITextField) {
-        variableValue = Double(VariableValue?.text ?? "0") ?? 0
+        variableValue = Double(variableValueInput?.text ?? "0") ?? 0
         viewTapped()
     }
     
-    var activeField: UITextField?
-    
     @objc override func viewDidLoad() {
         super.viewDidLoad()
-        //Change to custom font
-        setVariableTitle.adjustsFontForContentSizeCategory = true
-        setVariableTitle.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
-        valueLabel.adjustsFontSizeToFitWidth = true
-        valueLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
-        descriptionLabel.adjustsFontSizeToFitWidth = true
-        descriptionLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
- 
-        //Makes text field easier to select with Voice Control
-        if #available(iOS 13.0, *) {
-            VariableValue.accessibilityUserInputLabels = ["Value"]
-        }
-        
-        // default: orange or preserve last selection
+        // Preserves previously selected variable or default variable (orange)
         let previousSetVariable: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
-
         variableSelected = previousSetVariable
         
-        for button in buttons {
-            //Highlights current variable when mod view is entered
-            if variableSelected == button.accessibilityIdentifier {
-                button.layer.borderWidth = 10
-                button.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
-                button.isSelected = true
-            }else{
-                button.isSelected = false
-            }
-        }
+        // Preserves previously selected variable value or default value (0.0)
+        let previousVariableValue: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] ?? "0.0"
+        variableValue = Double(previousVariableValue) ?? 0.0
         
-        VariableValue!.delegate = self
+        variableValueInput!.delegate = self
         
-        //below code brings up number keyboard when variable value text field clicked.
+        // Below code brings up number keyboard when variable value text field clicked.
         let tapRecogniser = UITapGestureRecognizer()
         tapRecogniser.addTarget(self, action: #selector(self.viewTapped))
         self.view.addGestureRecognizer(tapRecogniser)
@@ -100,16 +67,43 @@ class SetVariableModViewController: UIViewController {
         // Add touch gesture for contentView
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnTextView(gesture:))))
         
-        back.titleLabel?.adjustsFontForContentSizeCategory = true
+        // Update screen
+        updateScreen()
+        
+        // Accessibility
+        // VoiceOver
+        setVarView.accessibilityElements = [back!, setVariableTitle!, buttons!, valueLabel!, variableValueInput!, descriptionLabel!]
+        // Voice Control
+        if #available(iOS 13.0, *) {
+            variableValueInput.accessibilityUserInputLabels = ["Value"]
+        }
+        // Dynamic Text
+        setFontStyle()
+    }
+    
+    /// Call whenever data is changed to update the screen to match it
+    private func updateScreen() {
+        for button in buttons {
+            //Highlights current variable and deselects all others
+            if variableSelected == button.accessibilityIdentifier {
+                button.layer.borderWidth = 10
+                button.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+                button.isSelected = true
+            } else {
+                button.layer.borderWidth = 0
+                button.isSelected = false
+            }
+        }
+        variableValueInput.text = String(variableValue)
     }
     
     /** https://appsandbiscuits.com/getting-what-the-user-typed-ios-7-2e56a678e7a7
-     help from Andy O'Sullivan regarding how to dismiss keyboard when return clicked **/
+     Help from Andy O'Sullivan regarding how to dismiss keyboard when return clicked **/
     @objc func viewTapped(){
         self.view.endEditing(true)
     }
     
-    //returns actual field for the variable value text
+    /// Returns actual field for the variable value text
     @objc func returnTextView(gesture: UIGestureRecognizer) {
         guard activeField != nil else {
             return
@@ -118,9 +112,19 @@ class SetVariableModViewController: UIViewController {
         activeField = nil
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.destination is BlocksViewController{
-//            variableDict.updateValue(variableValue, forKey: variableSelected)
+    /// Set all labels to custom font
+    private func setFontStyle() {
+        setVariableTitle.adjustsFontForContentSizeCategory = true
+        setVariableTitle.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
+        valueLabel.adjustsFontSizeToFitWidth = true
+        valueLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
+        descriptionLabel.adjustsFontSizeToFitWidth = true
+        descriptionLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is BlocksViewController {
             functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Double(variableValue))"
         }
@@ -145,7 +149,7 @@ extension SetVariableModViewController: UITextFieldDelegate {
 
 // MARK: Keyboard Handling
 extension SetVariableModViewController{
-    // when keyboard appears, the text on the set variable page is all shifted up so nothing is covered by the keyboard
+    // When keyboard appears, the text on the set variable page is all shifted up so nothing is covered by the keyboard
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {

@@ -9,120 +9,122 @@
 import Foundation
 import UIKit
 
-/**
-Screen for selecting what variable should be used for driving forward or backward.
-**/
 class DriveVariables: UIViewController {
+    /* Screen for selecting what variable should be used for driving forward or backward. */
     
-    var modifierBlockIndexSender: Int?
+    // Drive variables
+    var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
     var variableSelected: String = "orange"
     var variableSelectedTwo: String = "orange"
     var speed: String = "Normal"
     
+    // View Controller Elements
     @IBOutlet var buttons: [UIButton]!
-    
-    //speed buttons and labels
     @IBOutlet weak var slowButton: UIButton!
     @IBOutlet weak var fastButton: UIButton!
     @IBOutlet weak var speedLabel: UILabel!
-    
     @IBOutlet weak var back: UIButton!
-    
     @IBOutlet weak var driveTitleLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var speedTitle: UILabel!
     
-    //possible speed options for when the steppers are clicked
-    @IBAction func slowButtonPressed(_ sender: UIButton) {
-        switch speed {
-        case "Really Fast":
-            speed = "Fast"
-            speedLabel.text = speed
-        case "Fast":
-            speed = "Normal"
-            speedLabel.text = speed
-        case "Normal":
-            speed = "Slow"
-            speedLabel.text = speed
-        case "Slow":
-            speed = "Really Slow"
-            speedLabel.text = speed
-        default:
-            print("can't be slowed")
-        }
-        updateAccessibilityLabel()
-    }
-    
-    @IBAction func fastButtonPressed(_ sender: UIButton) {
-        switch speed {
-        case "Really Slow":
-            speed = "Slow"
-            speedLabel.text = speed
-        case "Slow":
-            speed = "Normal"
-            speedLabel.text = speed
-        case "Normal":
-            speed = "Fast"
-            speedLabel.text = speed
-        case "Fast":
-            speed = "Really Fast"
-            speedLabel.text = speed
-        default:
-            print("can't make faster")
-        }
-        updateAccessibilityLabel()
-    }
-    
-    @IBAction func buttonPressed(_ sender: UIButton) {
-        //Deselects all buttons but currently selected one (only one can be selected at a time)
-        self.buttons.forEach { (button) in
-            button.layer.borderWidth = 0
-                }
-        //Selects pressed button
-        sender.layer.borderWidth = 10
-        sender.layer.borderColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-        if let buttonID = sender.accessibilityIdentifier {
-            variableSelected = buttonID
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Changing to custom font
-        speedLabel.adjustsFontForContentSizeCategory = true
-        speedLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
-        driveTitleLabel.adjustsFontForContentSizeCategory = true
-        driveTitleLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
-        distanceLabel.adjustsFontForContentSizeCategory = true
-        distanceLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
-        speedTitle.adjustsFontForContentSizeCategory = true
-        speedTitle.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
+        // preserves previously selected distance variable and speed value
+        speed = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
         
-        //Makes buttons easier to select with Voice Control
+        variableSelected = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        
+        // Update screen
+        updateScreen()
+        
+        // Accessiblity
+        // Voice Control
         if #available(iOS 13.0, *) {
             slowButton.accessibilityUserInputLabels = ["Slower", "Decrease", "Minus", "Subtract"]
             fastButton.accessibilityUserInputLabels = ["Faster", "Increase", "Plus", "Add"]
         }
+        // Dynamic Text
+        back.titleLabel?.adjustsFontForContentSizeCategory = true
+        setFontStyle()
+    }
     
-        // preserves previously selected distance variable and speed value 
-        speedLabel.text = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
-        speed = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
-        
-        // default: orange or preserve last selection
-        let previousSelectedVariableOne: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
-        
-        variableSelected = previousSelectedVariableOne
-        
+    /// If minus button pressed, speed changes to one less and speed label updated with this value
+    @IBAction func slowButtonPressed(_ sender: UIButton) {
+        switch speed {
+        case "Really Fast":
+            speed = "Fast"
+        case "Fast":
+            speed = "Normal"
+        case "Normal":
+            speed = "Slow"
+        case "Slow":
+            speed = "Really Slow"
+        default:
+            print("can't be slowed")
+        }
+        updateScreen()
+    }
+    
+    /// If plus button pressed, speed changes to one more and speed label updated with this value
+    @IBAction func fastButtonPressed(_ sender: UIButton) {
+        switch speed {
+        case "Really Slow":
+            speed = "Slow"
+        case "Slow":
+            speed = "Normal"
+        case "Normal":
+            speed = "Fast"
+        case "Fast":
+            speed = "Really Fast"
+        default:
+            print("can't make faster")
+        }
+        updateScreen()
+    }
+    
+    /// Called when one of the variable buttons are pressed. Deselects all buttons but the currently selected one. Only one button can be selected at a time.
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        variableSelected = sender.accessibilityIdentifier ?? ""
+        updateScreen()
+    }
+    
+    /// Call whenever data is changed to update the screen to match it
+    private func updateScreen() {
+        speedLabel.text = speed
         for button in buttons {
-            //Highlights current variable when mod view is entered
+            // Highlight current variable
             if variableSelected == button.accessibilityIdentifier {
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+            } else {
+                // Deselect all other variables
+                button.layer.borderWidth = 0
             }
         }
+        updateAccessibilityLabel()
+    }
+   
+    /// Called whenever updateScreen() is called. Updates accessibility labels and values to match what is being displayed
+    private func updateAccessibilityLabel() {
+        slowButton.accessibilityLabel = "Slower. Current speed: \(speed)"
+        fastButton.accessibilityLabel = "Faster. Current speed: \(speed)"
+    }
+    
+    /// Set all labels to custom font
+    private func setFontStyle() {
+        speedLabel.adjustsFontForContentSizeCategory = true
+        speedLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
         
-        back.titleLabel?.adjustsFontForContentSizeCategory = true
+        driveTitleLabel.adjustsFontForContentSizeCategory = true
+        driveTitleLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
+        
+        distanceLabel.adjustsFontForContentSizeCategory = true
+        distanceLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
+        
+        speedTitle.adjustsFontForContentSizeCategory = true
+        speedTitle.font = UIFont.accessibleFont(withStyle: .title2, size: 26.0)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -130,10 +132,5 @@ class DriveVariables: UIViewController {
             functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
         }
-    }
-    
-    func updateAccessibilityLabel() {
-        slowButton.accessibilityLabel = "Slower. Current speed: \(speed)"
-        fastButton.accessibilityLabel = "Faster. Current speed: \(speed)"
     }
 }

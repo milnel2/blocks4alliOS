@@ -9,8 +9,8 @@
 import UIKit
 import AudioToolbox
 
+/// The TableViewCell that contains the blocks in the Toolbox.
 class BlockTableViewCell: UITableViewCell {
-    /*TableViewCell that contains the blocks in the Toolbox*/
     
     //MARK: Properties
     @IBOutlet weak var blockView: UIView!
@@ -28,5 +28,4 @@ class BlockTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-
 }

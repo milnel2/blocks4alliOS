@@ -24,7 +24,6 @@ class FunctionTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    @IBOutlet weak var functionView: FunctionView!
     
     //button to delete functions
     let deleteButton: CustomButton = {
