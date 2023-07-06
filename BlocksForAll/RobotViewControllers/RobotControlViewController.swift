@@ -91,14 +91,21 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
             print("in if iscomplete")
             self.executingProgram = nil
             programHasCompleted()
+            refreshScreen() // This unhighlights the final block in the workspace
             return  // no more commands left
         }
-    
-        executingProgram.executeNextCommandExecProgram()
+       
         // initial call of executeNextCommand on an executingProgram
+        executingProgram.executeNextCommandExecProgram()
+        refreshScreen() // refreshes any highlights on the blocks
+        
     }
 
     func robot(_ robot: WWRobot!, didFinishCommand sequence: WWCommandSetSequence!) {
+        // if there was a block that was just run, set its isRunning to false
+        if executingProgram?.blockCurrentlyRunning != nil {
+            executingProgram?.blockCurrentlyRunning!.isRunning = false
+        }
         executeNextCommandRobotControllVC()
     }
 
@@ -110,8 +117,11 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     func programHasCompleted() {
         // subclasses may override
     }
+    
+    func refreshScreen() {
+        // subclasses may override
+    }
 }
-
 
 class ExecutingProgram {
     var positions: [(funcName: String, position: Int)]
@@ -125,6 +135,7 @@ class ExecutingProgram {
     var blocksToExec: [Block]{
         return functionsDictToExec[currentFunction]!
     }
+    var blockCurrentlyRunning: Block? = nil // the block from blocksToExec that is currently running
     //array blocks (blocksStack) to be executed by the executing program
     
     var repeatCountAndIndexArray: [(timesToR: Int, index: Int)] = []
@@ -152,6 +163,7 @@ class ExecutingProgram {
     var funcIsComplete: Bool {
         if positions.count != 0{
             return positions[positions.count - 1].position >= blocksToExec.count
+           
         } else {
             return true
         }
@@ -176,7 +188,10 @@ class ExecutingProgram {
         //the current block being check for executing it's from the [] of blocks that are being executed at the position value that we increment with this function (and repeat and if functions)
         
         print(blockToExec)
-        
+        // set the block that is being run .isRunning to true so that it gets highlighted
+        blockToExec.isRunning = true
+        blockCurrentlyRunning = blockToExec
+       
         var duration = 2.0
         // default duration of any command
         
@@ -616,6 +631,7 @@ class ExecutingProgram {
         sendCommandSequenceToRobots(cmdSeq: cmdToSend)
         positions[positions.count - 1].position += 1
         // increase the position so that the blockToExec is updated to the next block in the block stack
+        
         if positions[positions.count - 1].position == functionsDictToExec[positions[positions.count - 1].funcName]?.count{
             //checks to see if the function is completed
             positions.removeLast()

@@ -182,6 +182,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
     }
     
+    /// This function gets called from the RobotControllerViewController so that the block that is currently running gets highlighted
+    override func refreshScreen() {
+        blocksProgram.reloadData()
+    }
+    
     //TODO: LAUREN, figure out what this code is for
     func setParentViewController(_ myVC: UIViewController) {
         containerViewController = myVC as? UINavigationController

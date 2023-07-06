@@ -80,6 +80,7 @@ class Block: Codable {
     var attributes = [String : String]()  // Dictionary that holds attribute values for block (e.g. distance and speed).
     var isModifiable: Bool?  // True if it has a modifier block.
     var isInToolBox: Bool?  // True if this block is being shown in the toolbox. False for blocks in the workspace.
+    var isRunning: Bool = false // True if the block is currently running. False if not. Used to highlight the block that is running. 
     
     
     //MARK: - JSON Variable
@@ -123,6 +124,7 @@ class Block: Codable {
         self.acceptedTypes = acceptedTypes
         self.isModifiable = isModifiable
         self.isInToolBox = false  // Assumes the block is not in the toolbox on initialization.
+        self.isRunning = false
     }
     init?(name: String,
           color: Color,
@@ -149,6 +151,7 @@ class Block: Codable {
         self.acceptedTypes = acceptedTypes
         self.isModifiable = isModifiable
         self.isInToolBox = isInToolBox
+        self.isRunning = false
     }
     
     //MARK: - Public Functions
