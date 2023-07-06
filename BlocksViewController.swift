@@ -110,17 +110,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             defaults.setValue(150, forKey: "blockSize")
         }
         blockSize = defaults.value(forKey: "blockSize") as! Int
-        
-
-
-//        let deleteBlock = UIAccessibilityCustomAction(
-//                name: "Delete Block",
-//                target: self,
-//                selector: #selector(deleteBlockCustomAction))
-//
-//        accessibilityCustomActions = [deleteBlock]
-    
-        
 
         
         if currentWorkspace != "Main Workspace" {
@@ -166,12 +155,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // Dispose of any resources that can be recreated.
     }
     
-//    @objc func deleteBlockCustomAction() -> Bool {
-//        blocksProgram.reloadData()
-//        print("put in trash")
-//        finishMovingBlocks()
-//        return true
-//    }
+    @objc func deleteBlockCustomAction() -> Bool {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.containerViewController?.popViewController(animated: false)})
+        blocksProgram.reloadData()
+        finishMovingBlocks()
+        print("put in trash")
+        return true
+    }
     
     // MARK: - - Block Selection Delegate functions
     /// Called when blocks are placed in workspace, so clears blocksBeingMoved
@@ -938,6 +929,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 //                    configuredAction()
 //                    print("hello")
 //                }
+                let deleteBlock = UIAccessibilityCustomAction(
+                    name: "Delete Block",
+                    target: self,
+                    selector: #selector(deleteBlockCustomAction))
+                    
+                accessibilityCustomActions = [deleteBlock]
+                
                     finishMovingBlocks()
             }else{
                 if(indexPath.row < functionsDict[currentWorkspace]!.count){  // otherwise empty block at end
