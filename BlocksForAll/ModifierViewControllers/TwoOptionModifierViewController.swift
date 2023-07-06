@@ -173,7 +173,7 @@ class TwoOptionModifierViewController: UIViewController {
     
     private func setFontStyle() {
         modifierValueLabel.adjustsFontForContentSizeCategory = true
-        modifierValueLabel.font = UIFont.accessibleBoldFont(withStyle: .title2, size: 50.0)
+        modifierValueLabel.font = UIFont.accessibleBoldFont(withStyle: .title2, size: 40.0)
         optionModTitle.adjustsFontForContentSizeCategory = true
         optionModTitle.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
         optionOneButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
