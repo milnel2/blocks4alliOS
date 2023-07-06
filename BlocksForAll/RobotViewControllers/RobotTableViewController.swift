@@ -22,7 +22,6 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         // Make table background transparent
         tableView.backgroundColor = UIColor.clear
         
