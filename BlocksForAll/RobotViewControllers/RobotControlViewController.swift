@@ -191,6 +191,8 @@ class ExecutingProgram {
         // set the block that is being run .isRunning to true so that it gets highlighted
         blockToExec.isRunning = true
         blockCurrentlyRunning = blockToExec
+        // Announce on VoiceOver that a block is being run
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: "Running \(blockToExec.name)")
        
         var duration = 2.0
         // default duration of any command
