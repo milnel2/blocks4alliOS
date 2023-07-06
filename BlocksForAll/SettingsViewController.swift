@@ -43,7 +43,12 @@ class SettingsViewController: UIViewController {
         
         let blockSize = defaults.value(forKey: "blockSize") as! Float
         
+
         blockSizeSlider.setValue(blockSize, animated: false)
+        
+        blockSizeSlider.minimumTrackTintColor = #colorLiteral(red: 0.05098039216, green: 0.07450980392, blue: 0.3294117647, alpha: 1)
+        blockSizeSlider.thumbTintColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
+        
         
         let displayValue = ((Int(blockSize) - 100) / 10) + 1
         

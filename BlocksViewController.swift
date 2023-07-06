@@ -167,7 +167,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     @objc func deleteBlockCustomAction() -> Bool {
-        blocksBeingMoved.removeAll()
         blocksProgram.reloadData()
         print("put in trash")
         finishMovingBlocks()
