@@ -8,25 +8,20 @@
 
 import UIKit
 
+/// Toolbox menu that displays the blocks of a certain type. (e.g. animal, vehicle, etc. categories within sound)
 class BlockTableViewController: UITableViewController {
-    /*Toolbox menu that displays the blocks of a certain type*/
     
     //MARK: Properties
     var toolBoxBlockArray = [Block]()
     var blockTypes = NSArray()
     var typeIndex: Int! = 0
     
-    //used to pass on delegate to selectedBlockViewController
+    // used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
     
-    //update these as collection view changes
+    // update these as collection view changes
     var blockSize = 150
     let blockSpacing = 0
-    
-//    func getDocumentsDirectory() -> URL{
-//        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-//        return paths[0]
-//    }
     
     //MARK: - viewDidLoad function
     override func viewDidLoad() {
@@ -37,6 +32,7 @@ class BlockTableViewController: UITableViewController {
             self.navigationController?.navigationItem.largeTitleDisplayMode = .automatic
         }
         
+        // Gets the blockType information from the Blocks Menu dictionary
         blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
             self.title = blockType.object(forKey: "type") as? String
@@ -44,8 +40,6 @@ class BlockTableViewController: UITableViewController {
         self.accessibilityHint = "Double tap from toolbox to add block to workspace"
         
         createBlocksArray()
-        
-        //self.navigationItem.backBarButtonItem?.accessibilityLabel = "Cancel"
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,14 +66,8 @@ class BlockTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of BlockTableViewCell.")
         }
         
-        //let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        
         let block = toolBoxBlockArray[indexPath.row]
-        
-        //probably get rid of special blocktableviewcell and just add blockView to each cell
         cell.block = block
-        //cell.nameLabel.text = block.name
-        //cell.blockView.backgroundColor = block.color
         
         let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockSize, height: blockSize),  block: [block], myBlockSize: blockSize)
         cell.accessibilityLabel = block.name
@@ -99,12 +87,12 @@ class BlockTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //let height = tableView.bounds.height/CGFloat(blocks.count)
         return CGFloat(blockSize + blockSpacing)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let block = toolBoxBlockArray[(tableView.indexPathForSelectedRow?.row)!]
+        
         //If Create/Edit Functions button is pressed, segues to functions menu
         if block.name == "Create/Edit Functions" {
             performSegue(withIdentifier: "createFunctionPressed", sender: self)
@@ -124,7 +112,7 @@ class BlockTableViewController: UITableViewController {
         // Letting destination controller know which blocks type was picked
         if segue.identifier == "blockSelected" {
             if let myDestination = segue.destination as? SelectedBlockViewController{
-                //copy to ensure that you get a new id for each block
+                // copy to ensure that you get a new id for each block
                 let b2 = tableView.cellForRow(at: tableView.indexPathForSelectedRow!)
                 var block = toolBoxBlockArray[(tableView.indexPathForSelectedRow?.row)!].copy()
                 for myView in (b2?.subviews)!{
@@ -133,68 +121,25 @@ class BlockTableViewController: UITableViewController {
                     }
                 }
                 
-                if block.double{
+                if block.double {
                     let endBlockName = "End " + block.name
                     let endBlock = Block(name: endBlockName, color: block.color, double: true, isModifiable: false)
                     endBlock?.counterpart.append(block)
                     block.counterpart.append(endBlock ?? block)
                     myDestination.blocks = [block, endBlock!]
-                }else{
+                } else {
                     myDestination.blocks = [block]
                 }
                 myDestination.delegate = self.delegate
             }
         }
     }
-    
-//    func save(){
-//        let fileManager = FileManager.default
-//
-//        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave2.json")
-//        do{
-//            //Deletes previous save in order to rewrite for each save action
-//            try fileManager.removeItem(at: filename)
-//        }catch{
-//            print("couldn't delete previous Blocks4AllSave")
-//        }
-//
-//        // string that json text is appended too
-//        var writeText = String()
-//        /** block represents each block belonging to the global array of blocks in the workspace. blocksStack holds all blocks on the screen. **/
-//        let funcNames = functionsDict.keys
-//        //gets all the function names in functionsDict as an array of strings
-//
-//        for name in funcNames{
-//        // for all functions
-//            writeText.append("New Function \n")
-//            writeText.append(name)
-//            //adds name of function immediately after the new function and prior to the next object so that it can be parsed same way as blocks
-//            writeText.append("\n Next Object \n")
-//            // allows name to be handled in load at the same time as blocks
-//            for block in functionsDict[name]!{
-//                // for block in the current fuctionsDict function's array of blocks
-//                if let jsonText = block.jsonVar{
-//                    // sets jsonText to block.jsonVar which removes counterparts so it doesn't wind up with an infite amount of counterparts
-//                    writeText.append(String(data: jsonText, encoding: .utf8)!)
-//                    //adds the jsonText as .utf8 as a string to the writeText string
-//                    writeText.append("\n Next Object \n")
-//                    //marks next object
-//                }
-//                do{
-//                    try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-//                    // writes the accumlated string of json objects to a single file
-//                }catch{
-//                    print("couldn't create json for", block)
-//                }
-//            }
-//        }
-//
-//    }
-    //MARK: Private Methods
+
+    //MARK: - Create Blocks Array
     
     //TODO: Clean this method it's a bit convoluted
+    /// Creating the toolbox by reading in from the .plist file.
     private func createBlocksArray(){
-        /*Creating the toolbox by reading in from the .plist file */
         if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
             // blockTypes is a nsArray object with the contents of the ReleaseBlocksMenu.plist file, type index is an Int Var starts at 0, so it takes the contents of ReleaseBlocksMenu.plist and sets it to blockType as an NSDictionary
             
@@ -204,13 +149,14 @@ class BlockTableViewController: UITableViewController {
                 let functionBlocks = Array(functionsDictToUse.keys)
                 var functionToolBlockArray = [Block]()
                 
-                //Adds Create/Edit Functions button to Functions category
-                let createFunctionBlock = Block(name: "Create/Edit Functions", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#00BBE5")), double: false, isModifiable: true, isInToolBox: true)!
+                // Adds Create/Edit Functions button to Functions category
+                // TODO: This block should probably get its color from assets as well to be consistant.
+                let createFunctionBlock = Block(name: "Create/Edit Functions", color: Color.init(uiColor:UIColor(hexString: "#00BBE5")), double: false, isModifiable: true, isInToolBox: true)!
                 createFunctionBlock.type = "Function"
                 functionToolBlockArray.append(createFunctionBlock)
                 toolBoxBlockArray += [createFunctionBlock]
                 
-                for function in functionBlocks{
+                for function in functionBlocks {
                     var blockBeingCreated: Block
                         blockBeingCreated = Block(name: function, color: Color.init(uiColor:UIColor(named: "light_purple_block")!), double: false, isModifiable: false, isInToolBox: true)!
                     blockBeingCreated.type = "Function"
@@ -219,8 +165,9 @@ class BlockTableViewController: UITableViewController {
                 }
             }
 
+            // creates array from the first object in blocksMenu.plist aka Sounds, Controls, Drive, Sounds, etc.
             if let blockArray = blockType.object(forKey: "Blocks") as? NSArray{
-                // creates array from the first object in blocksMenu.plist aka Sounds, Controls, Drive, Sounds, etc.
+    
                 for item in blockArray{
                     // for block in category Sounds, Control, etc.
                     if let dictItem = item as? NSDictionary{
@@ -253,6 +200,7 @@ class BlockTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Voice Control Labels
     func createVoiceControlLabels(for block: Block, in cell: UITableViewCell) {
         if #available (iOS 13.0, *) {
             let type = self.title
@@ -262,7 +210,6 @@ class BlockTableViewController: UITableViewController {
                 if block.name == "Wait for Time"{
                     cell.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
                 }
-//                save()
                 
             case "Drive":
                 var voiceControlLabel = block.name
@@ -281,7 +228,6 @@ class BlockTableViewController: UITableViewController {
                 }
                     
                 cell.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
-//                save()
                 
             case "Lights":
                 var voiceControlLabel = block.name
@@ -299,7 +245,6 @@ class BlockTableViewController: UITableViewController {
                 }
                 
                 cell.accessibilityUserInputLabels = ["\(voiceControlLabel2)", "\(voiceControlLabel)", "\(block.name)"]
-//                save()
                 
             case "Look":
                 var voiceControlLabel = block.name
@@ -309,11 +254,9 @@ class BlockTableViewController: UITableViewController {
                 }
                 
                 cell.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(block.name)"]
-//                save()
                 
             default:
                 cell.accessibilityUserInputLabels = ["\(block.name)"]
-//                save()
             }
         }
     }

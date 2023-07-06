@@ -1,4 +1,4 @@
-//  edit 6/18/19
+//
 //  SelectedBlockViewController.swift
 //  BlocksForAll
 //
@@ -8,9 +8,8 @@
 
 import UIKit
 
+/// View controller that displays the currently selected block (selected either from workspace or toolbox), which you are moving.
 class SelectedBlockViewController: UIViewController {
-    /*View controller that displays the currently selected block (selected either from workspace or
-     toolbox, which you are moving */
     
     var blocks: [Block]?
     var blockSize = 200
@@ -19,12 +18,11 @@ class SelectedBlockViewController: UIViewController {
     
     //MARK: - viewDidLoad function
     override func viewDidLoad() {
-        print("\n")
-        print("entered viewDidLoad")
+        
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem?.accessibilityLabel = "Back"
         
-        //Puts top of selected block view at the top of the screen
+        // Puts top of selected block view at the top of the screen
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         }
@@ -37,7 +35,6 @@ class SelectedBlockViewController: UIViewController {
                 
         if blocks![0].isModifiable ?? false {
             let modifierButton = createModifierButton()
-            modifierButton.addTarget(self, action: #selector(modifierPressed(sender:)), for: .touchUpInside)
             myBlockView.addSubview(modifierButton)
         }
        
@@ -55,10 +52,8 @@ class SelectedBlockViewController: UIViewController {
         delegate?.beginMovingBlocks(blocks!)
         delegate?.setParentViewController(self.parent!)
     }
-    @objc func modifierPressed(sender: UIButton!) {
-        print("Modifier button in toolbox pressed")
-    }
     
+    //MARK: - Show modifier in moving block
     func createModifierButton() -> CustomButton {
         let modifierButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:(-blockSize * 8) / 9, width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
         
@@ -163,8 +158,8 @@ class SelectedBlockViewController: UIViewController {
         }
         return modifierButton
     }
-        
     
+    //MARK: - Private Functions
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -178,8 +173,8 @@ class SelectedBlockViewController: UIViewController {
         }
     }
     
+    /// Converts ModifierProperties plist to a NSDictionary.
     private func getModifierDictionary () -> NSDictionary?{
-        /* converts ModifierProperties plost to a NSDictionary*/
         // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
         let dict: NSDictionary?
          if let path = Bundle.main.path(forResource: "ModifierProperties", ofType: "plist") {
@@ -191,7 +186,7 @@ class SelectedBlockViewController: UIViewController {
         return dict!
     }
     
-    /// gets values for modifier blocks from a dictionary and returns them as a tuple. Prints errors if properties cannot be found
+    /// Gets values for modifier blocks from a dictionary and returns them as a tuple. Prints errors if properties cannot be found.
     private func getModifierData (name : String, dict : NSDictionary) -> (String, String, String?, String, String?, String?, String?) {
         if dict[name] == nil {
             print("\(name) could not be found in modifier block dictionary")

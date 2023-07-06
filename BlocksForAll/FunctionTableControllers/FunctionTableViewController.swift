@@ -8,21 +8,14 @@
 
 import UIKit
 
-////keeps old function name when renamed so it can then be renamed in main workspace
-//var oldKey = [String]()
-//var newKey = [String]()
-
-//help from Brian Voong
+// Help from Brian Voong
 class FunctionTableViewController: UITableViewController {
-
+    /* Holds the function cells in a table view */
+    // Keeps old function name when renamed so it can then be renamed in main workspace
     var oldKey = [String]()
     var newKey = [String]()
-    
-    //functions are all the names of the functions a user creates
-    var functions: [String] = Array(functionsDict.keys)
-    var functionWidth = 500
-    var functionHeight = 150
-    let functionSpacing = 0
+
+    var functions: [String] = Array(functionsDict.keys) // All the names of the functions a user creates
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,16 +35,7 @@ class FunctionTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationItem.title = "Functions Menu"
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    //adds a new row after plus button tapped, then alert allows you to name the function
+    /// Adds a new row after plus button tapped, then an alert allows you to name the function
     @IBAction func insertFunction(_ sender: Any) {
         let alert = UIAlertController(title: "Enter function name", message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
@@ -69,21 +53,26 @@ class FunctionTableViewController: UITableViewController {
         self.present(alert, animated: true)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = "Functions Menu"
+    }
     
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return functions.count
     }
 
-    //row has function name displayed
+    /// Creates cells for tableView. Row has function name displayed
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "FunctionTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FunctionTableViewCell else{
@@ -91,14 +80,11 @@ class FunctionTableViewController: UITableViewController {
         }
         cell.nameButton.setTitle(functions[indexPath.row], for: .normal)
         cell.functionTableViewController = self
-        
-//        let function = functions[indexPath.row]
-//        cell.function = function
 
         return cell
     }
     
-    //Cell auto-resizes based on accessibility font
+    /// Cell auto-resizes based on accessibility font
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -106,12 +92,12 @@ class FunctionTableViewController: UITableViewController {
         return UITableView.automaticDimension
     }
 
-    //prevents main workspace from being in the functions menu
+    /// Prevent main workspace from being in the functions menu
     func removeMainWorkspace(){
         functions = functions.filter {$0 != "Main Workspace"}
     }
     
-    //deletes a row from functions menu and gets rid of this function's values
+    /// Deletes a row from functions menu and gets rid of this function's values
     func deleteCell(cell: UITableViewCell) {
         if let deletionIndexPath = tableView.indexPath(for: cell) {
             oldKey.append(functions[deletionIndexPath.row])
@@ -126,7 +112,7 @@ class FunctionTableViewController: UITableViewController {
                 self.functions.remove(at: deletionIndexPath.row)
                 self.tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
                 
-                //Removes deleted function blocks from main workspace
+                // Remove deleted function blocks from main workspace
                 for function in functionsDict.keys{
                     for block in functionsDict[function]!{
                         for oldFunctionName in self.oldKey{
@@ -142,6 +128,7 @@ class FunctionTableViewController: UITableViewController {
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
                 print("Cancel button tapped")
             }
+            
             //Add OK and Cancel button to dialog message
             dialogMessage.addAction(yes)
             dialogMessage.addAction(cancel)
@@ -151,15 +138,12 @@ class FunctionTableViewController: UITableViewController {
         }
     }
     
-    //delete row with old function name and replace with new name. Value for both remains consistent.
+    // Delete row with old function name and replace with new name. Value for both remains consistent.
     func renameCell(cell: UITableViewCell) {
         if let renameIndexPath = tableView.indexPath(for: cell) {
             oldKey.append(functions[renameIndexPath.row])
             let val = functionsDict[functions[renameIndexPath.row]]
-//            functionsDict.removeValue(forKey: functions[renameIndexPath.row])
-//            functions.remove(at: renameIndexPath.row)
-//            tableView.deleteRows(at: [renameIndexPath], with: .automatic)
-            
+        // Show alert
         let alert = UIAlertController(title: "Enter function name", message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "Your file name"
@@ -172,7 +156,7 @@ class FunctionTableViewController: UITableViewController {
             functionsDict.updateValue(val!, forKey: self.functions[self.functions.count - 1])
             let insertionIndexPath = NSIndexPath(row: self.functions.count-1, section: 0)
             self.tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
-            //below updates all blocks in the app to show the right name after a rename, it literally goes through every block and every possible old name so this is really not efficent but hopefully this fixes the crashing from a long time
+            // Below updates all blocks in the app to show the right name after a rename, it literally goes through every block and every possible old name so this is really not efficent but hopefully this fixes the crashing from a long time
             for function in functionsDict.keys{
                 for block in functionsDict[function]!{
                     for oldFunctionName in self.oldKey{
@@ -187,10 +171,8 @@ class FunctionTableViewController: UITableViewController {
             self.tableView.deleteRows(at: [renameIndexPath], with: .automatic)
             functionsDict.updateValue(val!, forKey: self.functions[self.functions.count - 1])
         }))
-        
         self.present(alert, animated: true)
         }
-        
     }
     
     @objc func blockModifier(cell: UITableViewCell, sender: UIButton!) {
@@ -199,16 +181,11 @@ class FunctionTableViewController: UITableViewController {
         performSegue(withIdentifier: "functionsToBlocks", sender: nil)
     }
     
-    //leave function's menu and return to main workspace window when button pressed
+    /// Leave function's menu and return to main workspace window when button pressed
     @IBAction func backToMainWorkspace(_ sender: Any) {
         currentWorkspace = "Main Workspace"
         performSegue(withIdentifier: "functionsToBlocks", sender: nil)
     }
-    
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//    }
 }
 
 

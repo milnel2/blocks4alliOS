@@ -17,7 +17,7 @@ class BlocksTypeTableViewController: UITableViewController {
     var indexToAdd = 0  // Tracks which index of block has been added.
     var blockSize = 150  // Used to determine the position of the subviews.
     
-    //used to pass on delegate to selectedBlockViewController
+    // Used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
     
     //MARK: - viewDidLoad Function
@@ -41,6 +41,8 @@ class BlocksTypeTableViewController: UITableViewController {
         createBlocksArray()
     }
     
+    // An attempt to re-load the colors in the toolbox when switched to dark mode.
+    // Partially worked, but if the root of the problem with the Color class can be fixed, this function won't be needed anymore.
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
@@ -75,7 +77,7 @@ class BlocksTypeTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Table view data source
+    // MARK: - Table view Data Source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -99,18 +101,17 @@ class BlocksTypeTableViewController: UITableViewController {
         } else {
             cell.textLabel?.textColor = UIColor.black
         }
+        // Cell properties.
         cell.textLabel?.textAlignment = .left
         cell.textLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 29.0)
         cell.backgroundColor = blockType.color.uiColor
-        //cell.bounds.height = 200
         cell.accessibilityLabel = blockType.name + " category"
         cell.accessibilityHint = "Double tap to explore blocks in this category"
         
-        // add icon to the toolbox options
-        // the icon should be roughly 80 x 80 pixels
-        
+        // Option to add an icon to the toollbox blocks.
+        // The icon should be roughly 80 x 80 pixels.
         if cell.textLabel != nil {
-            // only add the icon if dynamic text sizing is not being used
+            // Only adds the icon if dynamic text sizing is not being used.
             //TODO: check that this works on the larger IPad
             if cell.textLabel!.font.pointSize <= 34 {
                 let imagePath = "\(blockType.name)Icon.pdf"
@@ -137,23 +138,27 @@ class BlocksTypeTableViewController: UITableViewController {
         
     }
     
+    //MARK: - Create blocks array
     //TODO: this is really convoluted, probably a better way of doing this
-    private func createBlocksArray(){
+    private func createBlocksArray() {
         for item in blockDict{
-            //for item in blockDict which is a NSArray that contains contents of BlocksMenu.plist
+            // for item in blockDict which is a NSArray that contains contents of BlocksMenu.plist
             if let blockType = item as? NSDictionary{
                 // for every item blockType is a constant set to the item as a NSDictionary
-                //initializes the block properities
+                // initializes the block properities
                 let name = blockType.object(forKey: "type") as? String
                 let isModifiable = blockType.object(forKey: "isModifiable") as? Bool ?? false
                 let double = blockType.object(forKey: "double") as? Bool ?? false
+                
                 var color = Color.init(uiColor:UIColor.green )
                 if let colorString = blockType.object(forKey: "color") as? String{
                     color = Color.init(uiColor: UIColor(named: "\(colorString)") ?? UIColor.gray)
                 }
+                
                 guard let block = Block(name: name!, color: color, double: double, isModifiable: isModifiable) else {
                     fatalError("Unable to instantiate block")
                 }
+                
                 blockTypes += [block]
                 // adds block to the array of blocks that are the different types used for automatically generating the toolbox UI components
             }
@@ -169,22 +174,8 @@ class BlocksTypeTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         // Letting destination controller know which blocks type was picked
         if let myDestination = segue.destination as? BlockTableViewController{
-            //if let blockCell = sender as?
             myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
             myDestination.delegate = self.delegate
         }
-    }
-}
-
-extension UIColor{
-    static func colorFrom(hexString:String, alpha:CGFloat = 1.0)->UIColor{
-        var rgbValue:UInt32 = 0
-        let scanner = Scanner(string: hexString)
-        scanner.scanLocation = 1 // bypass # character
-        scanner.scanHexInt32(&rgbValue)
-        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/255.0
-        let green = CGFloat((rgbValue & 0x00FF00) >> 8)/255.0
-        let blue = CGFloat((rgbValue & 0x0000FF))/255.0
-        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
 }

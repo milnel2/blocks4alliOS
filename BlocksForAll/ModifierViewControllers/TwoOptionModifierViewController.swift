@@ -178,6 +178,14 @@ class TwoOptionModifierViewController: UIViewController {
         optionModTitle.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
         optionOneButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
         optionTwoButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 34.0)
+        // Allow for dark mode if possible
+        if #available(iOS 13.0, *) {
+            optionOneButton.setTitleColor(.label, for: .normal)
+            optionTwoButton.setTitleColor(.label, for: .normal)
+        } else {
+            optionOneButton.setTitleColor(.black, for: .normal)
+            optionTwoButton.setTitleColor(.black, for: .normal)
+        }
     }
     
     //TODO: test and finish this method
