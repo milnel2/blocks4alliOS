@@ -251,6 +251,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             modifierBlock.isEnabled = true
             modifierBlock.isAccessibilityElement = true
         }
+        
+        if functionsDict[currentWorkspace] != nil {
+            for block in functionsDict[currentWorkspace]! {
+                block.isRunning = false
+            }
+        }
+        
+        refreshScreen()
     }
 
     /// Run the actual program when the trash button is clicked
@@ -292,6 +300,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierBlock.isAccessibilityElement = false
             }
         }
+        refreshScreen()
+      
     }
     
     func stopClicked(){
