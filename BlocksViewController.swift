@@ -113,12 +113,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
 
 
-        let deleteBlock = UIAccessibilityCustomAction(
-                name: "Delete Block",
-                target: self,
-                selector: #selector(deleteBlockCustomAction))
-                                   
-        accessibilityCustomActions = [deleteBlock]
+//        let deleteBlock = UIAccessibilityCustomAction(
+//                name: "Delete Block",
+//                target: self,
+//                selector: #selector(deleteBlockCustomAction))
+//
+//        accessibilityCustomActions = [deleteBlock]
     
         
 
@@ -166,12 +166,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // Dispose of any resources that can be recreated.
     }
     
-    @objc func deleteBlockCustomAction() -> Bool {
-        blocksProgram.reloadData()
-        print("put in trash")
-        finishMovingBlocks()
-        return true
-    }
+//    @objc func deleteBlockCustomAction() -> Bool {
+//        blocksProgram.reloadData()
+//        print("put in trash")
+//        finishMovingBlocks()
+//        return true
+//    }
     
     // MARK: - - Block Selection Delegate functions
     /// Called when blocks are placed in workspace, so clears blocksBeingMoved

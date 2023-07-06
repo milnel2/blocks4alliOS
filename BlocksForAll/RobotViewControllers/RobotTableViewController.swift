@@ -88,13 +88,16 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         cell.layer.borderWidth = 8
         cell.layer.borderColor = #colorLiteral(red: 0.05098039216, green: 0.07450980392, blue: 0.3294117647, alpha: 1)
         
+        // Voice Over Label Setup for Cell
+        
+        
         // Add highlight to cell when robot is connected
         if(robot.isConnected()) {
             cell.layer.borderWidth = 8
             cell.layer.borderColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
-            cell.accessibilityLabel = "Robot Connected"
+            cell.accessibilityLabel =  robot.name + "Connected"
         } else {
-            cell.accessibilityLabel = "Click to connect Robot"
+            cell.accessibilityLabel = "Click to connect to" + robot.name
         }
         
         DispatchQueue.main.async {
