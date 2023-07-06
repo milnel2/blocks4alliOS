@@ -144,7 +144,8 @@ class BlockView: UIView, UITextFieldDelegate {
             }
             myView.addSubview(myLabel)
         }
-        if !(block.isInToolBox ?? true) && block.isRunning {
+        block.isInToolBox = block.isInToolBox ?? false
+        if !block.isInToolBox! && block.isRunning {
             myView.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
             myView.layer.borderWidth = 15
         } else {

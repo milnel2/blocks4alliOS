@@ -196,6 +196,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     }
     
+    /// This function gets called from the RobotControllerViewController so that the block that is currently running gets highlighted
+    override func refreshScreen() {
+        blocksProgram.reloadData()
+    }
+  
+    
     /// Removes blocks from current function and updates the saved data file.
     func clearAllBlocks(){
         if currentWorkspace == "Main Workspace"{
