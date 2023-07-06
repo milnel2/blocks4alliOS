@@ -16,25 +16,23 @@ import UIKit
 var robotManager:WWRobotManager? = nil
 var robots = [WWRobot]()
 
-
 class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
+    /* Shows the available robots to connect to in a tableView on the Add Robots screen*/
     //MARK: - viewDidLoad function
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //
-        //        Make table background transparent
+        
+        // Make table background transparent
         tableView.backgroundColor = UIColor.clear
         
-        if(robotManager == nil){
+        if(robotManager == nil) {
             robotManager = WWRobotManager()
             robotManager?.add(self)
-            
         }
         
         robotManager?.startScanning(forRobots: 2.0)
-        if(!robots.isEmpty){
+        if(!robots.isEmpty) {
             print(robots[0])
         }
         // Uncomment the following line to preserve selection between presentations
@@ -67,7 +65,7 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         
         let maskLayer = CALayer()
         maskLayer.backgroundColor = UIColor.black.cgColor
-        maskLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 0, dy: verticalPadding/2)
+        maskLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 0, dy: verticalPadding / 2)
         cell.layer.mask = maskLayer
         
         // From WW sample code
@@ -92,78 +90,83 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         cell.layer.borderColor = #colorLiteral(red: 0.05098039216, green: 0.07450980392, blue: 0.3294117647, alpha: 1)
         
         // Add highlight to cell when robot is connected
-        if(robot.isConnected()){
+        if(robot.isConnected()) {
             cell.layer.borderWidth = 8
             cell.layer.borderColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
             cell.accessibilityLabel = "Robot Connected"
-            
         } else {
             cell.accessibilityLabel = "Click to connect Robot"
         }
         
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
             self.tableView.reloadData()
         }
        
         return cell
     }
     
+    /// Called when a cell in the table is pressed
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let robot = robots[indexPath.row]
+        // Disconnect for robot if already connected
         if (robot.isConnected()) {
             robotManager?.disconnect(from: robot)
             self.tableView.reloadData()
         } else {
+            // Otherwise, connect to the robot
             robotManager?.connect(to: robot)
         }
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     // MARK: - robot manager
-    func manager(_: WWRobotManager, didUpdateDiscoveredRobots: WWRobot){
-        DispatchQueue.main.async{
+    func manager(_: WWRobotManager, didUpdateDiscoveredRobots: WWRobot) {
+        DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     
-    func manager(_: WWRobotManager, didLose robot: WWRobot){
+    func manager(_: WWRobotManager, didLose robot: WWRobot) {
         var i  = 0
-        for r in robots{
-            if(r == robot){
+        for r in robots {
+            if(r == robot) {
                 robots.remove(at: i)
             }
             i += 1
         }
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     
-    func manager(_: WWRobotManager, didConnect robot: WWRobot){
-        DispatchQueue.main.async{
+    /// Called when a robot is connected
+    func manager(_: WWRobotManager, didConnect robot: WWRobot) {
+        DispatchQueue.main.async {
             self.tableView.reloadData()
         }
         //refreshConnectedRobots()
     }
     
-    func manager(_: WWRobotManager, didFailToConnect robot: WWRobot, error: WWError){
+    /// Called when a robot fails to connect
+    func manager(_: WWRobotManager, didFailToConnect robot: WWRobot, error: WWError) {
         NSLog("failed to connect to robot: %@, with error: %@", robot.name, error)
     }
     
-    func manager(_: WWRobotManager, didDiscover robot: WWRobot){
-        if !robots.contains(robot){
+    /// Called when a robot is discovered
+    func manager(_: WWRobotManager, didDiscover robot: WWRobot) {
+        if !robots.contains(robot) {
             robots.append(robot)
         }
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
             self.tableView.reloadData()
-            
         }
         print("found a robot")
     }
     
+    /// Called when a robot is disconnected
     func manager(_ manager: WWRobotManager!, didDisconnectRobot robot: WWRobot!) {
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
