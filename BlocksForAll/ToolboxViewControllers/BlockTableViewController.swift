@@ -205,7 +205,7 @@ class BlockTableViewController: UITableViewController {
                 var functionToolBlockArray = [Block]()
                 
                 //Adds Create/Edit Functions button to Functions category
-                let createFunctionBlock = Block(name: "Create/Edit Functions", color: Color.init(uiColor:UIColor.colorFrom(hexString: "#00BBE5")), double: false, isModifiable: true, isInToolBox: true)!
+                let createFunctionBlock = Block(name: "Create/Edit Functions", color: Color.init(uiColor:UIColor(hexString: "#00BBE5")), double: false, isModifiable: true, isInToolBox: true)!
                 createFunctionBlock.type = "Function"
                 functionToolBlockArray.append(createFunctionBlock)
                 toolBoxBlockArray += [createFunctionBlock]
