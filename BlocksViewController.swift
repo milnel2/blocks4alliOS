@@ -53,7 +53,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     // Block variables
     private var blocksBeingMoved = [Block]()  // Blocks currently being moved (includes nested blocks)
-    private var blockSize = 150
+    var blockSize = 150
     private let blockSpacing = 1
     private let startIndex = 0
     private var endIndex: Int { return functionsDict[currentWorkspace]!.count - 1 }
