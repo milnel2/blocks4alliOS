@@ -80,7 +80,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // set block size based on block size from settings or 150 by default
         blockSize = defaults.value(forKey: "blockSize") as? Int ?? 150
-       
+        
+        // Custom Action for Block in workspace
+        let deleteBlock = UIAccessibilityCustomAction(
+            name: "Delete Block",
+            target: self,
+            selector: #selector(deleteBlockCustomAction))
+        
+        blocksProgram.accessibilityCustomActions = [deleteBlock]
         
         // If working on a function
         if currentWorkspace != "Main Workspace" {
@@ -138,17 +145,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     //MARK: - Accessibility Methods
     /// Creates the custom rotor action for SwitchControl to delete blocks
-
-    /// // Custom Action for Block in workspace
-    let deleteBlock = UIAccessibilityCustomAction(
-        name: "Delete Block",
-        target: BlocksViewController.self,
-        selector: #selector(deleteBlockCustomAction))
-    
     @objc func deleteBlockCustomAction() -> Bool {
-        print("put in trash")
         blocksProgram.reloadData()
         finishMovingBlocks()
+        print("put in trash")
         return true
     }
     
@@ -160,7 +160,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     ///   - blockLocation: location of block in workspace (e.g. 2 of 4)
     func addAccessibilityLabel(blockView: UIView, block:Block, blockModifier:String, blockLocation: Int, blockIndex: Int){
         blockView.isAccessibilityElement = true
-        blockView.accessibilityCustomActions = [deleteBlock]
         var accessibilityLabel = ""
         let blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(functionsDict[currentWorkspace]!.count)
         var accessibilityHint = ""
