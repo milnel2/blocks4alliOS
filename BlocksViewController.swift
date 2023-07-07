@@ -87,7 +87,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             target: self,
             selector: #selector(deleteBlockCustomAction))
         
-        blocksProgram.accessibilityCustomActions = [deleteBlock]
+       
         
         // If working on a function
         if currentWorkspace != "Main Workspace" {
@@ -158,8 +158,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     ///   - block:  block being displayed
     ///   - blockModifier:  describes the state of the block modifier (e.g. 2 times for repeat 2 times)
     ///   - blockLocation: location of block in workspace (e.g. 2 of 4)
+    ///
     func addAccessibilityLabel(blockView: UIView, block:Block, blockModifier:String, blockLocation: Int, blockIndex: Int){
         blockView.isAccessibilityElement = true
+        
+        // Add Custom Action for deleting block
+        let deleteBlock = UIAccessibilityCustomAction(
+            name: "Delete Block",
+            target: self,
+            selector: #selector(deleteBlockCustomAction))
+        blockView.accessibilityCustomActions = [deleteBlock]
+        
+        
         var accessibilityLabel = ""
         let blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(functionsDict[currentWorkspace]!.count)
         var accessibilityHint = ""
@@ -585,11 +595,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             if movingBlocks {
                     addBlocks(blocksBeingMoved, at: indexPath.row)
                     containerViewController?.popViewController(animated: false)
-                let deleteBlock = UIAccessibilityCustomAction(
-                    name: "Delete Block",
-                    target: self,
-                    selector: #selector(deleteBlockCustomAction))
-                accessibilityCustomActions = [deleteBlock]
+
                 finishMovingBlocks()
             } else {
                 if indexPath.row < functionsDict[currentWorkspace]!.count {  // otherwise empty block at end
