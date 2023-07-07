@@ -467,7 +467,6 @@ class ExecutingProgram {
         case "Set Eye Light":
             let light = playLight(lightBlock: blockToExec)
             myAction.setEyeLight(light)
-            //                    myAction.setChestLight(light)
             
         case "Set Left Ear Light Color":
             let light = playLight(lightBlock: blockToExec)
@@ -836,8 +835,8 @@ class ExecutingProgram {
     func playLight (lightBlock: Block) -> WWCommandLightRGB {
         let color = lightBlock.addedBlocks[0].attributes["lightColor"] ?? "white"
         var selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
-        switch color{
-        case "light off": // this used to be black, but black lights do not exist, it is just turning the light off
+        switch color {
+        case "Off": // this used to be black, but black lights do not exist, it is just turning the light off
             selectedColor = WWCommandLightRGB.init(red: 0, green: 0, blue: 0)
         case "white":
             selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
