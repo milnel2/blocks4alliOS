@@ -125,6 +125,7 @@ class BlockView: UIView, UITextFieldDelegate {
                 name = removePhrase(phraseToRemove: "Ear ", originalString: name)
                 name = removePhrase(phraseToRemove: "Toward", originalString: name, replaceWith: "at")
                 name = removePhrase(phraseToRemove: " Functions", originalString: name)
+                name = removePhrase(phraseToRemove: "Forward", originalString: name, replaceWith: "Ahead")
                 name = removePhrase(phraseToRemove: "Backward", originalString: name, replaceWith: "Back")
             }
             myLabel.text = name
