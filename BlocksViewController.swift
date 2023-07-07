@@ -80,7 +80,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // set block size based on block size from settings or 150 by default
         blockSize = defaults.value(forKey: "blockSize") as? Int ?? 150
-
+        
+        // Custom Action for Block in workspace
+        let deleteBlock = UIAccessibilityCustomAction(
+            name: "Delete Block",
+            target: self,
+            selector: #selector(deleteBlockCustomAction))
+        
+        blocksProgram.accessibilityCustomActions = [deleteBlock]
+        
         // If working on a function
         if currentWorkspace != "Main Workspace" {
             mainWorkspaceButton.isHidden = false  // Show Back to Main Workspace arrow button
@@ -138,8 +146,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     //MARK: - Accessibility Methods
     /// Creates the custom rotor action for SwitchControl to delete blocks
     @objc func deleteBlockCustomAction() -> Bool {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            self.containerViewController?.popViewController(animated: false)})
         blocksProgram.reloadData()
         finishMovingBlocks()
         print("put in trash")
