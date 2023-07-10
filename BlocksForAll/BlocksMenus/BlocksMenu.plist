@@ -159,20 +159,6 @@
 				<key>isModifiable</key>
 				<true/>
 				<key>name</key>
-				<string>Set Eye Light</string>
-				<key>color</key>
-				<string>gold_block</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>set_eye_light.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>isModifiable</key>
-				<true/>
-				<key>name</key>
 				<string>Set Left Ear Light Color</string>
 				<key>color</key>
 				<string>gold_block</string>
@@ -201,13 +187,13 @@
 				<key>isModifiable</key>
 				<true/>
 				<key>name</key>
-				<string>Set Chest Light Color</string>
+				<string>Set Front Light Color</string>
 				<key>color</key>
 				<string>gold_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>set_chest_light.pdf</string>
+				<string>set_front_light</string>
 			</dict>
 			<dict>
 				<key>type</key>

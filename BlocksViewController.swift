@@ -108,6 +108,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
         blocksProgram.dataSource = self
+        
+        allModifierBlocks.removeAll()
     }
     
     /// Main Menu Segue
@@ -356,7 +358,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             //Calls RobotControllerViewController play function
             play(functionsDictToPlay: functionsDict)
             robotRunning = true
-
             // disable modifier blocks while the robot is running
             for modifierBlock in allModifierBlocks {
                 modifierBlock.isEnabled = false
@@ -378,6 +379,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         movingBlocks = false
         stopIsOption = false
         changePlayTrashButton()
+        print("robot running false")
         robotRunning = false
         
         // reenable modifier blocks
@@ -568,7 +570,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // Deactivates all modifier blocks in the workspace while a block is being moved.
         // Switch control and VO will also skip over the modifier block.
-        if (movingBlocks) {
+        if (movingBlocks || robotRunning) {
             for modifierBlock in allModifierBlocks {
                 modifierBlock.isEnabled = false
                 modifierBlock.isAccessibilityElement = false
@@ -856,11 +858,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// Given the name for a modifier block, returns a Selector for the button
     private func getModifierSelector(name : String) -> Selector? {
         switch name {
-        case "Animal Noise", "Vehicle Noise", "Object Noise", "Emotion Noise", "Speak", "Set Right Ear Light Color", "Set Left Ear Light Color", "Set Chest Light Color", "Set All Lights Color", "Look Left or Right", "Look Up or Down", "Turn":
+        case "Animal Noise", "Vehicle Noise", "Object Noise", "Emotion Noise", "Speak", "Set Right Ear Light Color", "Set Left Ear Light Color", "Set Front Light Color", "Set All Lights Color", "Look Left or Right", "Look Up or Down", "Turn":
             return #selector(multipleChoiceModifier(sender:))
         case "Wait for Time", "Repeat":
             return #selector(stepperModifier(sender:))
-        case "Set Eye Light", "If":
+        case "If":
             return #selector(twoOptionModifier(sender:))
         case "Turn Left", "Turn Right":
             return #selector(angleModifier(sender:))

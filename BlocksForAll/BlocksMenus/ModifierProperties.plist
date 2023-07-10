@@ -107,15 +107,6 @@
 		<key>displaysText</key>
 		<string>true</string>
 	</dict>
-	<key>Set Eye Light</key>
-	<dict>
-		<key>attributeName</key>
-		<string>eyeLight</string>
-		<key>default</key>
-		<string>On</string>
-		<key>accessibilityHint</key>
-		<string>Double tap to turn eye light on or off</string>
-	</dict>
 	<key>Set Right Ear Light Color</key>
 	<dict>
 		<key>attributeName</key>
@@ -142,7 +133,7 @@
 		<key>accessibilityHint</key>
 		<string>Double tap to set light color</string>
 	</dict>
-	<key>Set Chest Light Color</key>
+	<key>Set Front Light Color</key>
 	<dict>
 		<key>attributeName</key>
 		<string>modifierBlockColor</string>

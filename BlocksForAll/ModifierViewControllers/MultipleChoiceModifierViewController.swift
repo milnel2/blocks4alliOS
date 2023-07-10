@@ -34,7 +34,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
            "Speak" : ["hi", "bye", "cool", "haha", "hi", "huh", "let's go", "oh", "tah dah!", "uh huh", "uh oh", "wah", "wee hee!", "wee", "wow", "yippe!" ,"random word"],
            "Set Right Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
            "Set Left Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
-           "Set Chest Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
+           "Set Front Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
            "Set All Lights Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
            "Look Left or Right" : ["variableSelected", "Select Look Left or Right Variable\nMaximum and minimum:\nLeft = -120, Right = 120"],
            "Look Up or Down" : ["variableSelected", "Select Look Up or Down Variable\nMaximum and minimum:\nUp = -20, Down = 7.5"],
