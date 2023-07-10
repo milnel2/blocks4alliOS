@@ -192,7 +192,8 @@ class ExecutingProgram {
         blockToExec.isRunning = true
         blockCurrentlyRunning = blockToExec
         // Announce on VoiceOver that a block is being run
-        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: "\(blockToExec.name)")
+        UIAccessibility.post(notification: .announcement, argument: "\(blockToExec.name)")
+        
        
         var duration = 2.0
         // default duration of any command
@@ -345,7 +346,7 @@ class ExecutingProgram {
             // what the statement evaluates to
             let data = getSensorData()
             // what info we get from the robot
-            if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "hear_voice"{
+            if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "Hear voice"{
             // check if the if statement is evaluating for a hear_voice
                 if(!data.isEmpty){
                 // if there is some data from the robot
@@ -357,6 +358,8 @@ class ExecutingProgram {
                                 print("hear Voice true")
                                 ifCondition = true
                                 // if it does hear a voice, evaluate the if statement to true
+                            } else {
+                                ifCondition = false
                             }
                     }
                     }
@@ -366,10 +369,11 @@ class ExecutingProgram {
                             if(micData.amplitude > 0){
                                 print("hear Voice true")
                                 ifCondition = true
-                    
-                        }
+                            } else {
+                                ifCondition = false
+                            }
                     }
-                    }
+                }
 //                    let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
 //                    print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
 //                    if(micData.amplitude > 0){
@@ -378,17 +382,20 @@ class ExecutingProgram {
 //                        // if it does hear a voice, evaluate the if statement to true
 //                    }
                     // check if hearing voice, tbh not quite sure how this one works dash is rarely consistent with these if statements but the code is solid
-            } else if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "obstacle_sensed"{
+            } else if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "Obstacle sensed"{
             // check if the if statement is evaluating for a obstacle_sensed
                 if(!data.isEmpty){
                 // checks if there is data from the robot
                     let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
                     let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
                     print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
+                    print("checking for obstacle")
                     if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
                         print("obstacle in front true")
                         ifCondition = true
                         // checks to see if there is a obstacle sensed, if so changes the condition, to evaluate true
+                    } else {
+                        ifCondition = false
                     }
                 }
             }
@@ -467,11 +474,11 @@ class ExecutingProgram {
         case "Set Eye Light":
             let light = playLight(lightBlock: blockToExec)
             myAction.setEyeLight(light)
-            
+            //TODO: set chest light is what seems to change the eye light color for dot robot
+            //TODO: eye light doesn't seem to be able to turn off
         case "Set Left Ear Light Color":
             let light = playLight(lightBlock: blockToExec)
             myAction.setLeftEarLight(light)
-            
         case "Set Right Ear Light Color":
             let light = playLight(lightBlock: blockToExec)
             myAction.setRightEarLight(light)
