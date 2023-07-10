@@ -46,7 +46,7 @@ class SettingsViewController: UIViewController {
 
         blockSizeSlider.setValue(blockSize, animated: false)
         
-        blockSizeSlider.minimumTrackTintColor = #colorLiteral(red: 0.05098039216, green: 0.07450980392, blue: 0.3294117647, alpha: 1)
+        blockSizeSlider.minimumTrackTintColor =  #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
         blockSizeSlider.thumbTintColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
         
         

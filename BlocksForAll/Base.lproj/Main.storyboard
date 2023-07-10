@@ -1662,13 +1662,13 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView autoresizesSubviews="NO" opaque="NO" contentMode="center" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="nZi-qD-DBG">
-                                <rect key="frame" x="267" y="368" width="546" height="274"/>
+                                <rect key="frame" x="266.5" y="368" width="547" height="274.5"/>
                                 <subviews>
                                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="center" spacing="280" translatesAutoresizingMaskIntoConstraints="NO" id="vAj-Po-emI">
-                                        <rect key="frame" x="0.0" y="0.0" width="546" height="133"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="547" height="133.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywf-kX-izT">
-                                                <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133.5" height="133.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Ywf-kX-izT" secondAttribute="height" multiplier="1:1" id="6lW-3e-zEa"/>
                                                 </constraints>
@@ -1681,7 +1681,7 @@ For further information on Blocks4All, please visit our website. For further det
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7e-AE-Lha">
-                                                <rect key="frame" x="413" y="0.0" width="133" height="133"/>
+                                                <rect key="frame" x="413.5" y="0.0" width="133.5" height="133.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="S7e-AE-Lha" secondAttribute="height" multiplier="1:1" id="9vR-dU-vYc"/>
                                                 </constraints>
@@ -1696,7 +1696,7 @@ For further information on Blocks4All, please visit our website. For further det
                                         </subviews>
                                     </stackView>
                                     <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" text="TWO OPTION VALUE" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwb-pX-XHB">
-                                        <rect key="frame" x="0.0" y="233" width="546" height="41"/>
+                                        <rect key="frame" x="0.0" y="233.5" width="547" height="41"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1734,9 +1734,9 @@ For further information on Blocks4All, please visit our website. For further det
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="IVp-4f-s1y"/>
-        <segue reference="PIe-sL-Fqa"/>
+        <segue reference="SES-Og-HDs"/>
         <segue reference="Tu2-KF-poC"/>
-        <segue reference="XsQ-5G-ZnB"/>
+        <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AddRobotButton" width="576" height="576"/>

@@ -15,6 +15,7 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
     
@@ -80,6 +81,8 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
             print("no connected robots")
         }
     }
+    
+    
     
     func executeNextCommandRobotControllVC() {
         print("in poll for next commnad")

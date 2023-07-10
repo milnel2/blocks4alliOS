@@ -61,7 +61,7 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         let cell = tableView.dequeueReusableCell(withIdentifier: "robotCell", for: indexPath)
         
         // Spacing between each cell
-        let verticalPadding: CGFloat = 6
+        let verticalPadding: CGFloat = 4
         
         let maskLayer = CALayer()
         maskLayer.backgroundColor = UIColor.black.cgColor
@@ -86,15 +86,16 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         cell.textLabel?.textAlignment = .center
         cell.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
-        cell.layer.borderWidth = 8
+        cell.layer.borderWidth = 10
         cell.layer.borderColor = #colorLiteral(red: 0.05098039216, green: 0.07450980392, blue: 0.3294117647, alpha: 1)
         
-        // Voice Over Label Setup for Cell
-        
-        
+//        if robot.isLoading{
+//            UIProgressView()
+//        }
         // Add highlight to cell when robot is connected
         if(robot.isConnected()) {
-            cell.layer.borderWidth = 8
+        
+            cell.layer.borderWidth = 10
             cell.layer.borderColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
             cell.accessibilityLabel =  robot.name + "Connected"
         } else {

@@ -140,8 +140,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     //MARK: - Accessibility Methods
     /// Creates the custom rotor action for SwitchControl to delete blocks
     @objc func deleteBlockCustomAction() -> Bool {
-        blocksProgram.reloadData()
-        finishMovingBlocks()
+        let focusedCell = UIAccessibility.focusedElement(using: UIAccessibility.AssistiveTechnologyIdentifier.notificationVoiceOver) as! UICollectionViewCell
+        if let indexPath = blocksProgram?.indexPath(for: focusedCell) {
+            // perform the custom action here using the indexPath information
+            print(indexPath.row)
+            selectBlock(block: functionsDict[currentWorkspace]![indexPath.row], location: indexPath.row)
+        }
         print("put in trash")
         return true
     }
@@ -157,11 +161,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blockView.isAccessibilityElement = true
         
         // Add Custom Action for deleting block
-        let deleteBlock = UIAccessibilityCustomAction(
-            name: "Delete Block",
-            target: self,
-            selector: #selector(deleteBlockCustomAction))
-        blockView.accessibilityCustomActions = [deleteBlock]
+        if !block.name.contains("Function Start") && !block.name.contains("Function End") {
+            let deleteBlock = UIAccessibilityCustomAction(
+                name: "Delete Block",
+                target: self,
+                selector: #selector(deleteBlockCustomAction))
+            blockView.accessibilityCustomActions = [deleteBlock]
+        }
         
         
         var accessibilityLabel = ""
@@ -582,6 +588,34 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return cell
     }
     
+    func selectBlock (block myBlock:Block, location blocksStackIndex:Int ){
+        if myBlock.double == true {
+            var indexOfCounterpart = -1
+            var blockcounterparts = [Block]()
+            for i in 0..<functionsDict[currentWorkspace]!.count {
+                for block in myBlock.counterpart{
+                    if block === functionsDict[currentWorkspace]![i]{
+                        indexOfCounterpart = i
+                        blockcounterparts.append(block)
+                    }
+                }
+            }
+            var indexPathArray = [IndexPath]()
+            var tempBlockStack = [Block]()
+            for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
+                indexPathArray += [IndexPath.init(row: i, section: 0)]
+                tempBlockStack += [functionsDict[currentWorkspace]![i]]
+            }
+            blocksBeingMoved = tempBlockStack
+            functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
+        } else { //only a single block to be removed
+            blocksBeingMoved = [functionsDict[currentWorkspace]![blocksStackIndex]]
+            functionsDict[currentWorkspace]!.remove(at: blocksStackIndex)
+        }
+        blocksProgram.reloadData()
+    }
+    
+    
     /// Called when a block is selected in the collectionView, so either selects block to move or places blocks
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.remembersLastFocusedIndexPath = true
@@ -605,30 +639,31 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         return
                     }
                     
-                    if myBlock.double == true {
-                        var indexOfCounterpart = -1
-                        var blockcounterparts = [Block]()
-                        for i in 0..<functionsDict[currentWorkspace]!.count {
-                            for block in myBlock.counterpart{
-                                if block === functionsDict[currentWorkspace]![i]{
-                                    indexOfCounterpart = i
-                                    blockcounterparts.append(block)
-                                }
-                            }
-                        }
-                        var indexPathArray = [IndexPath]()
-                        var tempBlockStack = [Block]()
-                        for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
-                            indexPathArray += [IndexPath.init(row: i, section: 0)]
-                            tempBlockStack += [functionsDict[currentWorkspace]![i]]
-                        }
-                        blocksBeingMoved = tempBlockStack
-                        functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
-                    } else { //only a single block to be removed
-                        blocksBeingMoved = [functionsDict[currentWorkspace]![blocksStackIndex]]
-                        functionsDict[currentWorkspace]!.remove(at: blocksStackIndex)
-                    }
-                    blocksProgram.reloadData()
+//                    if myBlock.double == true {
+//                        var indexOfCounterpart = -1
+//                        var blockcounterparts = [Block]()
+//                        for i in 0..<functionsDict[currentWorkspace]!.count {
+//                            for block in myBlock.counterpart{
+//                                if block === functionsDict[currentWorkspace]![i]{
+//                                    indexOfCounterpart = i
+//                                    blockcounterparts.append(block)
+//                                }
+//                            }
+//                        }
+//                        var indexPathArray = [IndexPath]()
+//                        var tempBlockStack = [Block]()
+//                        for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
+//                            indexPathArray += [IndexPath.init(row: i, section: 0)]
+//                            tempBlockStack += [functionsDict[currentWorkspace]![i]]
+//                        }
+//                        blocksBeingMoved = tempBlockStack
+//                        functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
+//                    } else { //only a single block to be removed
+//                        blocksBeingMoved = [functionsDict[currentWorkspace]![blocksStackIndex]]
+//                        functionsDict[currentWorkspace]!.remove(at: blocksStackIndex)
+//                    }
+                    selectBlock(block: myBlock, location: blocksStackIndex)
+                    
                     
                     let mySelectedBlockVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectedBlockViewController") as! SelectedBlockViewController
                     
