@@ -50,6 +50,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // Variables for display
     private var stopIsOption = false // True if the stop button can be shown
     private var movingBlocks = false  // True if the user is currently moving a block. Disable modifier blocks if this is true.
+    private var arrowToPlaceFirstBlock: UIImageView? = nil // The arrow image that gets shown when the user is about to place the first block in the workspace
     
     // Block variables
     private var blocksBeingMoved = [Block]()  // Blocks currently being moved (includes nested blocks)
@@ -70,7 +71,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //Order contents of workspace to be more intuitive with Switch Control and VoiceOver
         mainView.accessibilityElements = [toolboxView!, workspaceContainerView!]
         workspaceContainerView.accessibilityElements = [blocksProgram!, playTrashToggleButton!, mainMenuButton!, mainWorkspaceButton!]
-        
     }
 
     override func viewDidLoad() {
@@ -137,6 +137,43 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// This function gets called from the RobotControllerViewController so that the block that is currently running gets highlighted
     override func refreshScreen() {
         blocksProgram.reloadData()
+    }
+    
+    private func showArrowToPlaceFirstBlock() {
+        let img = UIImage(named: "Back")
+        let resizedImage = resizeImage(image: img!, scaledToSize: CGSize(width: blockSize, height: blockSize))  // resize the image to scale correctly
+        let imv = UIImageView(image: resizedImage)
+        // Turn arrow to point down
+        imv.transform = imv.transform.rotated(by: -(.pi / 2))
+        // Move arrow down the screen
+        imv.transform = imv.transform.translatedBy(x: -workspaceContainerView.frame.width / 2 , y: 0)
+        
+        
+        arrowToPlaceFirstBlock = imv
+        
+        // Accessibility
+        arrowToPlaceFirstBlock?.isAccessibilityElement = true
+        arrowToPlaceFirstBlock?.accessibilityLabel = "Image of arrow pointing down to show where the first block will be placed in the workspace."
+        imv.isAccessibilityElement = true
+        blocksProgram.accessibilityElements = [imv]
+        
+        blocksProgram.addSubview(imv)
+      
+        // Bounce the arrow up and down
+        // got the code to repeat and autoreverse an animation from https://developer.apple.com/forums/thread/666312
+        UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations:  {
+            let amountToMove = 70.0
+            imv.transform = imv.transform.translatedBy(x: amountToMove, y: 0)
+        })
+    }
+    
+    /// Takes an image and returns a resized version of it. Used by showArrowToPlaceFirstBlock()
+    private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
     }
     
     //MARK: - Accessibility Methods
@@ -275,6 +312,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         movingBlocks = false
         blocksBeingMoved.removeAll()
         changePlayTrashButton()  // Toggling the play/trash button
+        
+        // Remove the arrow in the workspace when blocks are done moving
+        if arrowToPlaceFirstBlock != nil {
+            arrowToPlaceFirstBlock?.removeFromSuperview()
+            blocksProgram.accessibilityElements = []
+        }
     }
     
     /// Called when blocks have been selected to be moved, saves them to blocksBeingMoved
@@ -284,6 +327,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksBeingMoved = blocks
         blocksProgram.reloadData()
         changePlayTrashButton()
+        // If there are no blocks in the workspace, show the arrow of where the first block will go
+        if functionsDict[currentWorkspace]!.count == 0 {
+            showArrowToPlaceFirstBlock()
+        }
     }
     
     //TODO: LAUREN, figure out what this code is for
@@ -589,10 +636,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         collectionView.remembersLastFocusedIndexPath = true
         if !robotRunning {  // disable editing while robot is running
             if movingBlocks {
-                    addBlocks(blocksBeingMoved, at: indexPath.row)
-                    containerViewController?.popViewController(animated: false)
-
+                addBlocks(blocksBeingMoved, at: indexPath.row)
+                containerViewController?.popViewController(animated: false)
                 finishMovingBlocks()
+                
             } else {
                 if indexPath.row < functionsDict[currentWorkspace]!.count {  // otherwise empty block at end
                     movingBlocks = true
