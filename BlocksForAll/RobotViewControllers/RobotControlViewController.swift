@@ -485,7 +485,7 @@ class ExecutingProgram {
             let light = playLight(lightBlock: blockToExec)
             myAction.setRightEarLight(light)
             
-        case "Set Chest Light Color":
+        case "Set Front Light Color":
             let light = playLight(lightBlock: blockToExec)
             myAction.setChestLight(light)
             
