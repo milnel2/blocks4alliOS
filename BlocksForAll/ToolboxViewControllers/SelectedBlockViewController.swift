@@ -110,6 +110,17 @@ class SelectedBlockViewController: UIViewController {
             }
         }
         if displaysText == "true" { // modifier blocks that display text on them (ex. turn left)
+            
+            // set up fonts before setting the text
+            modifierButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
+            modifierButton.titleLabel?.adjustsFontForContentSizeCategory = true
+            if #available(iOS 13.0, *) {
+                modifierButton.setTitleColor(.label, for: .normal)
+            } else {
+                modifierButton.setTitleColor(.black, for: .normal)
+            }
+            modifierButton.titleLabel?.numberOfLines = 0
+            
             var text = "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)"
             // handle text formatting based on type of block
             if attributeName == "angle" {
@@ -120,12 +131,18 @@ class SelectedBlockViewController: UIViewController {
                 //drive forward and backwards blocks
                 if defaults.integer(forKey: "showText") == 0 {
                     // show icon mode
-                    text = "\(placeHolderBlock.attributes["distance"] ?? defaultValue) cm \n"
-                    //modifierInformation = text + ", \(placeHolderBlock.attributes["speed"] ?? secondDefault)"
+                    if modifierButton.titleLabel?.font.pointSize ?? 26 <= 34 {
+                        text = "30 cm \n"
+                    } else {
+                        text = "30\n"
+                    }
                 } else {
                     // show text mode
-                    text = "\(placeHolderBlock.attributes["distance"] ?? defaultValue) cm, \(placeHolderBlock.attributes["speed"] ?? secondDefault ?? "N/A")"
-                    //modifierInformation = text
+                    if modifierButton.titleLabel?.font.pointSize ?? 26 <= 34 {
+                        text = "30 cm, \nNormal)"
+                    } else {
+                        text = "30, \nNormal"
+                    }
                 }
             } else if attributeName == "wait" {
                 // wait blocks

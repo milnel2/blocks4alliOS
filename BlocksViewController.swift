@@ -70,6 +70,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //Order contents of workspace to be more intuitive with Switch Control and VoiceOver
         mainView.accessibilityElements = [toolboxView!, workspaceContainerView!]
         workspaceContainerView.accessibilityElements = [blocksProgram!, playTrashToggleButton!, mainMenuButton!, mainWorkspaceButton!]
+        
     }
 
     override func viewDidLoad() {
@@ -643,10 +644,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// Use for modifier buttons. Calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values
     func createModifierCustomButton() -> CustomButton {
         let tempButton = CustomButton(frame: CGRect(
-            x: (blockSize / 7),
+            x: (blockSize / 11),
             y:startingHeight - ((blockSize / 5) * 4) - count * (blockSize  / 2 + blockSpacing),
-            width: (blockSize / 4) * 3,
-            height: (blockSize / 4) * 3))
+            width: (blockSize / 7) * 6,
+            height: (blockSize / 7) * 6))
         tempButton.layer.zPosition = 1
         allModifierBlocks.append(tempButton)
         return tempButton
@@ -724,8 +725,20 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
             }
         }
+        
         // modifier blocks that display text on them (ex. turn left shows the degrees)
         if displaysText == "true" {
+            
+            // set up fonts before setting the text
+            button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
+            button.titleLabel?.adjustsFontForContentSizeCategory = true
+            if #available(iOS 13.0, *) {
+                button.setTitleColor(.label, for: .normal)
+            } else {
+                button.setTitleColor(.black, for: .normal)
+            }
+            button.titleLabel?.numberOfLines = 0
+            
             var text = "\(placeHolderBlock.attributes[attributeName] ?? "N/A")"
             // handle text formatting based on type of block
             if attributeName == "angle" {
@@ -734,10 +747,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierInformation = text
             } else if attributeName == "distance" {  // drive forward and backwards blocks
                 if defaults.integer(forKey: "showText") == 0 {  // show icon mode
-                    text = "\(placeHolderBlock.attributes["distance"]!) cm \n"
+                    
+                    if button.titleLabel?.font.pointSize ?? 26 <= 34 {
+                        text = "\(placeHolderBlock.attributes["distance"]!) cm \n"
+                    } else {
+                        text = "\(placeHolderBlock.attributes["distance"]!)\n"
+                    }
+                    
                     modifierInformation = text + ", at \(placeHolderBlock.attributes["speed"]!) speed"
-                } else {  // show text mode
-                    text = "\(placeHolderBlock.attributes["distance"]!) cm, \(placeHolderBlock.attributes["speed"]!)"
+                } else if defaults.integer(forKey: "showText") == 1 {  // show text mode
+                    if button.titleLabel?.font.pointSize ?? 26 <= 34 {
+                        text = "\(placeHolderBlock.attributes["distance"]!) cm, \(placeHolderBlock.attributes["speed"]!)"
+                    } else {
+                        text = "\(placeHolderBlock.attributes["distance"]!) \(placeHolderBlock.attributes["speed"]!)"
+                    }
+                    
                     modifierInformation = text
                 }
             } else if attributeName == "wait" {  // wait blocks
@@ -757,16 +781,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
             
             button.setTitle(text, for: .normal)
-            
-            // fonts
-            button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
-            button.titleLabel?.adjustsFontForContentSizeCategory = true
-            if #available(iOS 13.0, *) {
-                button.setTitleColor(.label, for: .normal)
-            } else {
-                button.setTitleColor(.black, for: .normal)
-            }
-            button.titleLabel?.numberOfLines = 0
         }
         
         button.tag = indexPath.row
