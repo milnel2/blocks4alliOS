@@ -80,13 +80,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // set block size based on block size from settings or 150 by default
         blockSize = defaults.value(forKey: "blockSize") as? Int ?? 150
-        
-        // Custom Action for Block in workspace
-        let deleteBlock = UIAccessibilityCustomAction(
-            name: "Delete Block",
-            target: self,
-            selector: #selector(deleteBlockCustomAction))
-        
        
         
         // If working on a function
