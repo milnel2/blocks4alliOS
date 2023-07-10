@@ -89,7 +89,6 @@ class BlocksTypeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier
-        
         let cellIdentifier = "BlockTypeTableViewCell"
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
@@ -122,6 +121,23 @@ class BlocksTypeTableViewController: UITableViewController {
                 imv.layer.position.y = CGFloat(blockSize / 2)
                 imv.layer.position.x = CGFloat((blockSize * 6) / 5)
                 cell.addSubview(imv)
+            }
+        }
+        
+        // Makes the categories that Dot cannot use opaque
+        if dotRobotIsConnected {
+            switch cell.textLabel?.text {
+            case "Drive", "Motion":
+                cell.backgroundColor = cell.backgroundColor?.withAlphaComponent(0.25)
+            default:
+                break
+            }
+        } else {
+            switch cell.textLabel?.text {
+            case "Drive", "Motion":
+                cell.backgroundColor = cell.backgroundColor?.withAlphaComponent(1.0)
+            default:
+                break
             }
         }
        
@@ -159,8 +175,10 @@ class BlocksTypeTableViewController: UITableViewController {
                     fatalError("Unable to instantiate block")
                 }
                 
-                blockTypes += [block]
-                // adds block to the array of blocks that are the different types used for automatically generating the toolbox UI components
+                if !dotRobotIsConnected || name != "Drive" || name != "Motion" {
+                    blockTypes += [block]
+                    // adds block to the array of blocks that are the different types used for automatically generating the toolbox UI components
+                }
             }
         }
     }

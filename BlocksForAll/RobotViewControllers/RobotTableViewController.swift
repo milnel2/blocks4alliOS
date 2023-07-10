@@ -15,6 +15,7 @@ import UIKit
 
 var robotManager:WWRobotManager? = nil
 var robots = [WWRobot]()
+var dotRobotIsConnected = false
 
 class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
     /* Shows the available robots to connect to in a tableView on the Add Robots screen*/
@@ -61,7 +62,7 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         let cell = tableView.dequeueReusableCell(withIdentifier: "robotCell", for: indexPath)
         
         // Spacing between each cell
-        let verticalPadding: CGFloat = 6
+        let verticalPadding: CGFloat = 4
         
         let maskLayer = CALayer()
         maskLayer.backgroundColor = UIColor.black.cgColor
@@ -72,9 +73,9 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         let robot = robots[indexPath.row]
         
         // Change avatar of robot depending on type of robot
-        if robot.name == "Dot" {
+        if robot.robotType.description == "1002" {  // The robot type of a Dot robot.
             cell.imageView?.image = UIImage(named: "RobotAvatar_Dot")
-        } else if robot.name == "Dash" || robot.name == "Coby" {
+        } else if robot.robotType.description == "1001" {  // The robot type of a Dash robot.
             cell.imageView?.image = UIImage(named: "RobotAvatar_Dash")
         } else {
             cell.imageView?.image = UIImage(named: "Robot_avatar")
@@ -86,19 +87,27 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         cell.textLabel?.textAlignment = .center
         cell.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
-        cell.layer.borderWidth = 8
+        cell.layer.borderWidth = 10
         cell.layer.borderColor = #colorLiteral(red: 0.05098039216, green: 0.07450980392, blue: 0.3294117647, alpha: 1)
         
-        // Voice Over Label Setup for Cell
-        
-        
+//        if robot.isLoading{
+//            UIProgressView()
+//        }
         // Add highlight to cell when robot is connected
         if(robot.isConnected()) {
-            cell.layer.borderWidth = 8
+        
+            cell.layer.borderWidth = 10
             cell.layer.borderColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
             cell.accessibilityLabel =  robot.name + "Connected"
         } else {
             cell.accessibilityLabel = "Click to connect to" + robot.name
+        }
+        
+        // Sets global variable to track if a Dot robot is connected
+        if robot.isConnected() && robot.robotType.description == "1002" {
+            dotRobotIsConnected = true
+        } else {
+            dotRobotIsConnected = false
         }
         
         DispatchQueue.main.async {
