@@ -194,7 +194,6 @@ class ExecutingProgram {
         // Announce on VoiceOver that a block is being run
         UIAccessibility.post(notification: .announcement, argument: "\(blockToExec.name)")
         
-       
         var duration = 2.0
         // default duration of any command
         

@@ -556,7 +556,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     allBlockViews.append(blockView)
 
                 default:
-                    print("Non matching case. \(name) could not be found. Check collectionView() method in BlocksViewController.")
+                    print("Non matching case. \(name) could not be found. Check collectionView() method in BlocksViewController. If \(name) is a custom function, ignore this message")
                    // TODO: handle if the non-matching case is actually a function, then these next lines can be removed after that is fixed
                     let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
                     addAccessibilityLabel(blockView: blockView, block: block, blockModifier: "function", blockLocation: indexPath.row+1, blockIndex: indexPath.row)
