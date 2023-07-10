@@ -121,7 +121,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         // this takes the object as a string and turns it into a data object named jsonPart
                         let blockBeingCreated = try? JSONDecoder().decode(Block.self, from: jsonObject!)
                         // this is the block being made
-                        functionBlockStack.append(blockBeingCreated!)
+                        if blockBeingCreated != nil {
+                            functionBlockStack.append(blockBeingCreated!)
+                        }
                         // adds the created block to the array of blocks that will later be set to the array of blocks for the current function
                     }
                     functionsDictFromSave[functionName] = functionBlockStack

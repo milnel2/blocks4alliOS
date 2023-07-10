@@ -15,6 +15,7 @@ import UIKit
 
 var robotManager:WWRobotManager? = nil
 var robots = [WWRobot]()
+var dotRobotIsConnected = false
 
 class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
     /* Shows the available robots to connect to in a tableView on the Add Robots screen*/
@@ -72,9 +73,9 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         let robot = robots[indexPath.row]
         
         // Change avatar of robot depending on type of robot
-        if robot.name == "Dot" {
+        if robot.robotType.description == "1002" {  // The robot type of a Dot robot.
             cell.imageView?.image = UIImage(named: "RobotAvatar_Dot")
-        } else if robot.name == "Dash" || robot.name == "Coby" {
+        } else if robot.robotType.description == "1001" {  // The robot type of a Dash robot.
             cell.imageView?.image = UIImage(named: "RobotAvatar_Dash")
         } else {
             cell.imageView?.image = UIImage(named: "Robot_avatar")
@@ -100,6 +101,13 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
             cell.accessibilityLabel =  robot.name + "Connected"
         } else {
             cell.accessibilityLabel = "Click to connect to" + robot.name
+        }
+        
+        // Sets global variable to track if a Dot robot is connected
+        if robot.isConnected() && robot.robotType.description == "1002" {
+            dotRobotIsConnected = true
+        } else {
+            dotRobotIsConnected = false
         }
         
         DispatchQueue.main.async {
