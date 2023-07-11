@@ -39,6 +39,7 @@ class BlocksTypeTableViewController: UITableViewController {
         blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
         
         createBlocksArray()
+        delegate?.setParentViewController(self.parent ?? self)
     }
     
     // An attempt to re-load the colors in the toolbox when switched to dark mode.

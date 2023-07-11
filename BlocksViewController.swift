@@ -385,8 +385,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     private func trashClicked() {
         let announcement = blocksBeingMoved[0].name + " placed in trash."
         playTrashToggleButton.accessibilityLabel = announcement
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            self.containerViewController?.popViewController(animated: false)})
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.containerViewController?.popViewController(animated: false)//})
         print("put in trash")
         blocksProgram.reloadData()
         finishMovingBlocks()
@@ -714,7 +714,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     
                     let mySelectedBlockVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectedBlockViewController") as! SelectedBlockViewController
-                    
+                    mySelectedBlockVC.delegate = self
                     containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
                     mySelectedBlockVC.blocks = blocksBeingMoved
                     changePlayTrashButton()
