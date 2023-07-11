@@ -488,7 +488,7 @@ class ExecutingProgram {
                 eyeRing.setAllBitmap(true)
                 myAction.setEyeRing(eyeRing)
             }
-        case "Play Spiral Light":
+        case "Spiral Light":
             // Turn spiral light on
             duration = 0.0
             playEyeLightSpiral(myAction: myAction, cmdSet: cmdToSend)
