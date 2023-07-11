@@ -943,7 +943,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             return #selector(multipleChoiceModifier(sender:))
         case "Wait for Time", "Repeat":
             return #selector(stepperModifier(sender:))
-        case "If":
+        case "If", "Set Eye Light":
             return #selector(twoOptionModifier(sender:))
         case "Turn Left", "Turn Right":
             return #selector(angleModifier(sender:))

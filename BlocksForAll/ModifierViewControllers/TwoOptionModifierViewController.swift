@@ -20,7 +20,8 @@ class TwoOptionModifierViewController: UIViewController {
       // the keys are the same as what gets put in the optionModTitle and are accessed by using optionType
       // the values are dictionaries of string : string that holds different attributes to be shown on the screen
     private let optionDictionary: [String:[String : String]] =
-        ["If" : ["attributeName" : "booleanSelected", "Option 1" : "Hear voice", "Option 2" : "Obstacle sensed", "Default image" : "controlModifierBackground"]
+        ["Set Eye Light" : ["attributeName" : "eyeLight", "Option 1" : "On", "Option 2" : "Off", "Default image" : "controlModifierBackground"],
+            "If" : ["attributeName" : "booleanSelected", "Option 1" : "Hear voice", "Option 2" : "Obstacle sensed", "Default image" : "controlModifierBackground"]
         ]
     private var attributeName = ""  // Used for accessing and saving data, taken from optionDictionary (ex. if optionType = "Wait for Time", attributeName is "wait"
     private var optionOne = "N/A"  // String value of option one

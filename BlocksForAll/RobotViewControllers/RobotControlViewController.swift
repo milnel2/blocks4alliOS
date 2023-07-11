@@ -476,13 +476,19 @@ class ExecutingProgram {
         //LIGHTS CATEGORY
         //MARK: change this code and make is smoother once we have user input
         case "Set Eye Light":
-            let light = playLight(lightBlock: blockToExec)
-           // WWCommandE
-            //myAction.setEyeRing(<#T##eye: WWCommandEyeRing!##WWCommandEyeRing!#>)
+            // Turn eye light off
+            let value = blockToExec.addedBlocks[0].attributes["eyeLight"] ?? "Off"
+            if value == "Off" {
+                let eyeRing = WWCommandEyeRing()
+                eyeRing.setAllBitmap(false)
+                myAction.setEyeRing(eyeRing)
+            } else {
+                // Turn eye light on
+                let eyeRing = WWCommandEyeRing()
+                eyeRing.setAllBitmap(true)
+                myAction.setEyeRing(eyeRing)
+            }
             
-            myAction.setEyeLight(light)
-            //TODO: set chest light is what seems to change the eye light color for dot robot
-            //TODO: eye light doesn't seem to be able to turn off
         case "Set Left Ear Light Color":
             let light = playLight(lightBlock: blockToExec)
             myAction.setLeftEarLight(light)
@@ -500,6 +506,19 @@ class ExecutingProgram {
             myAction.setRightEarLight(light)
             myAction.setLeftEarLight(light)
             myAction.setChestLight(light)
+            
+            // Turn eye light off
+            let value = blockToExec.addedBlocks[0].attributes["lightColor"] ?? "Off"
+            if value == "Off" {
+                let eyeRing = WWCommandEyeRing()
+                eyeRing.setAllBitmap(false)
+                myAction.setEyeRing(eyeRing)
+            } else {
+                // Turn eye light on
+                let eyeRing = WWCommandEyeRing()
+                eyeRing.setAllBitmap(true)
+                myAction.setEyeRing(eyeRing)
+            }
             
         //MOTION CATEGORY
         case "Wiggle":
