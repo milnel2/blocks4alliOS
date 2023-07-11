@@ -223,6 +223,20 @@
 				<key>imageName</key>
 				<string>set_all_lights.pdf</string>
 			</dict>
+			<dict>
+				<key>type</key>
+				<string>Statement</string>
+				<key>isModifiable</key>
+				<false/>
+				<key>name</key>
+				<string>Play Spiral Light</string>
+				<key>color</key>
+				<string>gold_block</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>play_spiral_light</string>
+			</dict>
 		</array>
 	</dict>
 	<dict>

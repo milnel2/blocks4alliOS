@@ -488,6 +488,10 @@ class ExecutingProgram {
                 eyeRing.setAllBitmap(true)
                 myAction.setEyeRing(eyeRing)
             }
+        case "Play Spiral Light":
+            // Turn spiral light on
+            duration = 0.0
+            playEyeLightSpiral(myAction: myAction, cmdSet: cmdToSend)
             
         case "Set Left Ear Light Color":
             let light = playLight(lightBlock: blockToExec)
@@ -679,6 +683,48 @@ class ExecutingProgram {
         }
     }
 
+    func playEyeLightSpiral(myAction: WWCommandSet, cmdSet: WWCommandSetSequence) {
+        let spiralDuration = 0.04
+        Timer.scheduledTimer(timeInterval: spiralDuration, target: self, selector: #selector(eyeLightTimerFire(timer:)),  userInfo: [myAction, cmdSet, spiralDuration] as [Any] , repeats: true)
+    }
+    
+    var currentSpiralLightIndex = 0 // the current single light that should be turned on
+    var numberOfTimesSpun = 0 // number of times the eyeLightTimer has been fired
+    @objc func eyeLightTimerFire(timer: Timer!) {
+        // These two lines make the spiral consist of two adjacent lights
+        let currentLightIndex = (currentSpiralLightIndex % 11) + 1
+        let nextLightIndex = (currentLightIndex + 1) % 11
+        // Update currentSpiralLightIndex
+        currentSpiralLightIndex = currentLightIndex
+        
+        let eyeRing = WWCommandEyeRing()
+        eyeRing.setAllBitmap(false) // Turn off all lights
+        // Turn on two of the lights
+        eyeRing.setLEDValue(true, at: UInt(currentLightIndex))
+        eyeRing.setLEDValue(true, at: UInt(nextLightIndex))
+        
+        let userInfo = timer.userInfo as! NSArray
+        let myAction = userInfo[0] as! WWCommandSet
+        let cmdToSend = userInfo[1] as! WWCommandSetSequence
+        let spiralDuration = userInfo[2] as! Double
+        myAction.setEyeRing(eyeRing)
+        
+        // Send the command to turn on the lights
+        cmdToSend.add(myAction, withDuration: spiralDuration)
+        sendCommandSequenceToRobots(cmdSeq: cmdToSend)
+        numberOfTimesSpun += 1
+        
+        let desiredFullRevolutions = 5
+        // End the spinning
+        if numberOfTimesSpun == (12 * desiredFullRevolutions) {
+            timer.invalidate()
+            // Turn all lights back on
+            eyeRing.setAllBitmap(true)
+            myAction.setEyeRing(eyeRing)
+            cmdToSend.add(myAction, withDuration: spiralDuration)
+            sendCommandSequenceToRobots(cmdSeq: cmdToSend)
+        }
+    }
   
     func ifFalse(){
         // used to skip over blocks inside an IF statement if the IF statement returns false
