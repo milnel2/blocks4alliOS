@@ -1177,14 +1177,12 @@ For further information on Blocks4All, please visit our website. For further det
                     </view>
                     <navigationItem key="navigationItem" id="vBc-yS-huA"/>
                     <connections>
-                        <outlet property="NegativeLabel" destination="I8l-wa-KJu" id="jP5-bC-DPa"/>
-                        <outlet property="VariableValue" destination="0EE-tA-7aY" id="Rbn-tb-XMp"/>
                         <outlet property="back" destination="lJh-zd-RGp" id="qTr-vv-bAT"/>
                         <outlet property="descriptionLabel" destination="I8l-wa-KJu" id="GMz-uE-NLz"/>
-                        <outlet property="setVarTitle" destination="5Gb-Uk-oE9" id="FDX-HA-4CU"/>
                         <outlet property="setVarView" destination="jNy-ch-2PD" id="aPy-HI-Qzl"/>
                         <outlet property="setVariableTitle" destination="5Gb-Uk-oE9" id="B2A-YG-O48"/>
                         <outlet property="valueLabel" destination="aCi-eq-XZm" id="V0R-rr-zLG"/>
+                        <outlet property="variableValueInput" destination="0EE-tA-7aY" id="cAO-1Q-Zat"/>
                         <outletCollection property="buttons" destination="GrT-2z-xvO" collectionClass="NSMutableArray" id="xMz-Rm-SYu"/>
                         <outletCollection property="buttons" destination="Uv9-Kz-RsF" collectionClass="NSMutableArray" id="R71-k6-1Jv"/>
                         <outletCollection property="buttons" destination="rgQ-Jh-7kw" collectionClass="NSMutableArray" id="WIy-0J-OHU"/>
@@ -1663,13 +1661,13 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView autoresizesSubviews="NO" opaque="NO" contentMode="center" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="nZi-qD-DBG">
-                                <rect key="frame" x="266.5" y="368" width="547" height="274.5"/>
+                                <rect key="frame" x="267" y="368" width="546" height="274"/>
                                 <subviews>
                                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="center" spacing="280" translatesAutoresizingMaskIntoConstraints="NO" id="vAj-Po-emI">
-                                        <rect key="frame" x="0.0" y="0.0" width="547" height="133.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="546" height="133"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywf-kX-izT">
-                                                <rect key="frame" x="0.0" y="0.0" width="133.5" height="133.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Ywf-kX-izT" secondAttribute="height" multiplier="1:1" id="6lW-3e-zEa"/>
                                                 </constraints>
@@ -1682,7 +1680,7 @@ For further information on Blocks4All, please visit our website. For further det
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7e-AE-Lha">
-                                                <rect key="frame" x="413.5" y="0.0" width="133.5" height="133.5"/>
+                                                <rect key="frame" x="413" y="0.0" width="133" height="133"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="S7e-AE-Lha" secondAttribute="height" multiplier="1:1" id="9vR-dU-vYc"/>
                                                 </constraints>
@@ -1697,7 +1695,7 @@ For further information on Blocks4All, please visit our website. For further det
                                         </subviews>
                                     </stackView>
                                     <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" text="TWO OPTION VALUE" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwb-pX-XHB">
-                                        <rect key="frame" x="0.0" y="233.5" width="547" height="41"/>
+                                        <rect key="frame" x="0.0" y="233" width="546" height="41"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1734,7 +1732,7 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tjn-hR-3fo"/>
+        <segue reference="2YI-wg-iJ2"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="gnX-kj-isW"/>
         <segue reference="Oq5-da-dqe"/>
