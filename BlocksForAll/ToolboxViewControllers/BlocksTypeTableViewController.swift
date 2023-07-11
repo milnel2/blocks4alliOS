@@ -124,11 +124,15 @@ class BlocksTypeTableViewController: UITableViewController {
             }
         }
         
-        // Makes the categories that Dot cannot use opaque
+        // Makes the categories that Dot cannot use deactivate
         if dotRobotIsConnected {
             switch cell.textLabel?.text {
             case "Drive", "Motion":
                 cell.backgroundColor = cell.backgroundColor?.withAlphaComponent(0.25)
+                if #available(iOS 13.0, *) {
+                    cell.accessibilityRespondsToUserInteraction = false
+                }
+                cell.isUserInteractionEnabled = false
             default:
                 break
             }
@@ -136,6 +140,10 @@ class BlocksTypeTableViewController: UITableViewController {
             switch cell.textLabel?.text {
             case "Drive", "Motion":
                 cell.backgroundColor = cell.backgroundColor?.withAlphaComponent(1.0)
+                if #available(iOS 13.0, *) {
+                    cell.accessibilityRespondsToUserInteraction = true
+                }
+                cell.isUserInteractionEnabled = true
             default:
                 break
             }
@@ -175,10 +183,8 @@ class BlocksTypeTableViewController: UITableViewController {
                     fatalError("Unable to instantiate block")
                 }
                 
-                if !dotRobotIsConnected || name != "Drive" || name != "Motion" {
-                    blockTypes += [block]
-                    // adds block to the array of blocks that are the different types used for automatically generating the toolbox UI components
-                }
+                blockTypes += [block]
+                // adds block to the array of blocks that are the different types used for automatically generating the toolbox UI components
             }
         }
     }
