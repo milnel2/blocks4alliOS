@@ -325,7 +325,7 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_OOH)
             case "wow":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_WOW)
-            case "tah dah":
+            case "tah dah!":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_TAH_DAH)
             case "uh huh":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_HUH)
@@ -333,10 +333,12 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_OH)
             case "wah":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_WAH)
-            case "wee hee":
+            case "wee hee!":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEEHEE)
-            case "yippe":
+            case "yippe!":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_YIPPE)
+            case "wee":
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEE)
             case "random word":
                 playNoise(myAction: myAction, sound: speakSoundFiles[.random(in: speakSoundFiles.indices)])
             default:
@@ -475,6 +477,9 @@ class ExecutingProgram {
         //MARK: change this code and make is smoother once we have user input
         case "Set Eye Light":
             let light = playLight(lightBlock: blockToExec)
+           // WWCommandE
+            //myAction.setEyeRing(<#T##eye: WWCommandEyeRing!##WWCommandEyeRing!#>)
+            
             myAction.setEyeLight(light)
             //TODO: set chest light is what seems to change the eye light color for dot robot
             //TODO: eye light doesn't seem to be able to turn off

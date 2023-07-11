@@ -143,6 +143,7 @@
                         <outlet property="addRobots" destination="RT2-NS-4g9" id="o5b-0n-fX1"/>
                         <outlet property="getStarted" destination="CMD-Kc-2pq" id="a5L-17-cMF"/>
                         <outlet property="instructions" destination="vpe-31-2KD" id="xun-jX-VUn"/>
+                        <outlet property="robotImageView" destination="bML-d3-3Tw" id="72s-Zo-2oI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVo-bF-iCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1733,9 +1734,9 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IVp-4f-s1y"/>
+        <segue reference="Tjn-hR-3fo"/>
         <segue reference="SES-Og-HDs"/>
-        <segue reference="Tu2-KF-poC"/>
+        <segue reference="gnX-kj-isW"/>
         <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>

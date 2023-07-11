@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
  
 let defaults = UserDefaults.standard  // Used to know block size and if in showIcons or in showText mode. Global so that all files can access it. From Paul Hegarty, lectures 13 and 14
 
@@ -16,8 +17,11 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var getStarted: UIButton!
     @IBOutlet weak var instructions: UIButton!
     @IBOutlet weak var addRobots: UIButton!
+    @IBOutlet weak var robotImageView: UIImageView!
     
     var blockSize = 150 // this controls the size of the blocks you put down in the Building Screen
+    
+    var audioPlayer: AVAudioPlayer?  // Used to play the sound effect the plays when you tap the robot image
     
     override func viewDidLoad() {
         // Accessibility
@@ -34,7 +38,53 @@ class MainMenuViewController: UIViewController {
         if defaults.value(forKey: "blockSize") == nil {
             defaults.setValue(150, forKey: "blockSize")
         }
+        
+        // adding a gesture recognizer for an image view is from https://stackoverflow.com/questions/30990902/detect-uiimageview-touch-in-swift#:~:text=You%20can%20detect%20touches%20on,explicitly%20in%20storyboard%20or%20programmatically.
+        robotImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(robotImageTapped)))
     }
+    
+    @objc private func robotImageTapped(_ recognizer: UITapGestureRecognizer) {
+        // Play sound
+        guard let path = Bundle.main.path(forResource: "DashMainMenuSound", ofType:"mp3") else {
+            print("couldnt find sound")
+                 return }
+        let url = URL(fileURLWithPath: path)
+        print("playing \(path)")
+        do {
+            if audioPlayer == nil {
+               audioPlayer = try AVAudioPlayer(contentsOf: url)
+            }
+            audioPlayer?.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        // Play animation
+        let oneActionTime = 0.15  // Make this number bigger to slow down the animation
+        let distanceToWiggleDivider = 15.0  // Make this number bigger to make the wiggle larger
+        
+        // Turn to the right
+        UIView.animate(withDuration: oneActionTime, delay: 0, options: .curveEaseInOut, animations:  {
+            self.robotImageView.transform = self.robotImageView.transform.rotated(by: .pi / distanceToWiggleDivider)
+        })
+        
+        // Turn all the way to the left
+        UIView.animate(withDuration: oneActionTime * 2, delay: oneActionTime, options: .curveEaseInOut, animations:  {
+            self.robotImageView.transform = self.robotImageView.transform.rotated(by: -.pi / (distanceToWiggleDivider / 2))
+        })
+        
+        // Turn back to the right
+        UIView.animate(withDuration: oneActionTime * 2, delay: oneActionTime * 3, options: .curveEaseInOut, animations:  {
+            self.robotImageView.transform = self.robotImageView.transform.rotated(by: .pi / (distanceToWiggleDivider / 2))
+        })
+        
+        // Turn left and return to the original position
+        UIView.animate(withDuration: oneActionTime, delay: oneActionTime * 5, options: .curveEaseInOut, animations:  {
+            self.robotImageView.transform = self.robotImageView.transform.rotated(by: -.pi / distanceToWiggleDivider)
+        })
+        
+    }
+   
    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)

@@ -148,14 +148,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // Move arrow down the screen
         imv.transform = imv.transform.translatedBy(x: -workspaceContainerView.frame.width / 2 , y: 0)
         
-        
         arrowToPlaceFirstBlock = imv
         
-        // Accessibility
-        arrowToPlaceFirstBlock?.isAccessibilityElement = true
-        arrowToPlaceFirstBlock?.accessibilityLabel = "Image of arrow pointing down to show where the first block will be placed in the workspace."
-        imv.isAccessibilityElement = true
-        blocksProgram.accessibilityElements = [imv]
+        // Accessibility - uncomment to make the arrow an accessibility element
+//        arrowToPlaceFirstBlock?.isAccessibilityElement = true
+//        arrowToPlaceFirstBlock?.accessibilityLabel = "Image of arrow pointing down to show where the first block will be placed in the workspace."
+//        imv.isAccessibilityElement = true
+//        blocksProgram.accessibilityElements = [imv]
         
         blocksProgram.addSubview(imv)
       
