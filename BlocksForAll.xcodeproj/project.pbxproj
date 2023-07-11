@@ -38,6 +38,7 @@
 		F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F18FFFBB1E65B0FC0090C4B6 /* LaunchScreen.storyboard */; };
 		F18FFFC81E65B0FC0090C4B6 /* BlocksForAllTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFC71E65B0FC0090C4B6 /* BlocksForAllTests.swift */; };
 		F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */; };
+		F73D31762A5DFA0F00008126 /* AddRobotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73D31752A5DFA0F00008126 /* AddRobotViewController.swift */; };
 		FD3A594E2A3A196B00122BEF /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A594D2A3A196B00122BEF /* CustomFont.swift */; };
 		FD3A59502A3A270900122BEF /* CustomHexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A594F2A3A270900122BEF /* CustomHexColor.swift */; };
 		FD3A59562A3B639E00122BEF /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */; };
@@ -99,6 +100,7 @@
 		F18FFFC91E65B0FC0090C4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewCell.swift; sourceTree = "<group>"; };
 		F1F68E7F20771C7900BFBD8E /* Installation Manual.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Installation Manual.pdf"; sourceTree = "<group>"; };
+		F73D31752A5DFA0F00008126 /* AddRobotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRobotViewController.swift; sourceTree = "<group>"; };
 		FD3A594D2A3A196B00122BEF /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		FD3A594F2A3A270900122BEF /* CustomHexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHexColor.swift; sourceTree = "<group>"; };
 		FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		FDEB68B42A4F347500E522D0 /* RobotViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F73D31752A5DFA0F00008126 /* AddRobotViewController.swift */,
 				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
 				F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */,
 			);
@@ -394,6 +397,7 @@
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
 				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
+				F73D31762A5DFA0F00008126 /* AddRobotViewController.swift in Sources */,
 				8D27A4522A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift in Sources */,
 				F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */,
 				02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */,
