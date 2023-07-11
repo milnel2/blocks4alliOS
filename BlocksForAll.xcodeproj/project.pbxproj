@@ -74,7 +74,7 @@
 		8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceModifierViewController.swift; sourceTree = "<group>"; };
 		8D8D66032A3A43330086E14A /* ModifierProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
 		8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoOptionModifierViewController.swift; sourceTree = "<group>"; };
-		8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DashMainMenuSound.mp3; path = ../../../../Downloads/DashMainMenuSound.mp3; sourceTree = "<group>"; };
+		8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DashMainMenuSound.mp3; sourceTree = "<group>"; };
 		8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperModifierViewController.swift; sourceTree = "<group>"; };
 		8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A9937EA8267BAB3B00A56E8A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
