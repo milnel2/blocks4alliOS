@@ -40,7 +40,6 @@ class BlockTableViewController: UITableViewController {
         self.accessibilityHint = "Double tap from toolbox to add block to workspace"
         
         createBlocksArray()
-
     }
     
     override func didReceiveMemoryWarning() {
