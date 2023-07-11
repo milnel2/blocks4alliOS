@@ -54,8 +54,8 @@ class SelectedBlockViewController: UIViewController {
     }
     
     //MARK: - Show modifier in moving block
-    func createModifierButton() -> CustomButton {
-        let modifierButton = CustomButton(frame: CGRect(x: (blockSize / 7), y:(-blockSize * 8) / 9, width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+    func createModifierButton() -> UIButton {
+        let modifierButton = UIButton(frame: CGRect(x: (blockSize / 7), y:(-blockSize * 8) / 9, width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
         
         let dict = getModifierDictionary() // holds properties of all modifier blocks
         let name = blocks![0].name

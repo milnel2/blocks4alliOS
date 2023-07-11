@@ -18,8 +18,8 @@ class FunctionTableViewCell: UITableViewCell {
     
     // Buttons
     // Button to delete functions
-    let deleteButton: CustomButton = {
-        let button = CustomButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+    let deleteButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.setTitle("Delete", for: .normal)
         button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
@@ -35,8 +35,8 @@ class FunctionTableViewCell: UITableViewCell {
     }()
     
     // Button to rename functions
-    let renameButton: CustomButton = {
-        let button = CustomButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+    let renameButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.setTitle("Rename", for: .normal)
         button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
@@ -52,8 +52,8 @@ class FunctionTableViewCell: UITableViewCell {
     }()
     
     // Button for initial naming of function
-    let nameButton: CustomButton = {
-        let button = CustomButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+    let nameButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.setTitle("Sample Function", for: .normal)
         button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 28.0)
         button.backgroundColor = UIColor(named: "light_purple_block")

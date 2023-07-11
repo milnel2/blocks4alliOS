@@ -20,7 +20,6 @@
 		8DBF4A7F2A5DB5D20075429C /* DashMainMenuSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */; };
 		8DCBEA552A49F8A500A26043 /* StepperModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */; };
 		8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */; };
-		A9937EA9267BAB3B00A56E8A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9937EA8267BAB3B00A56E8A /* CustomButton.swift */; };
 		D8DFD3FF234E538C00874892 /* WWRobotAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12116981EA7E0DD009976B1 /* WWRobotAPI.framework */; };
 		F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */; };
 		F10F71691E65BFF50049F3AA /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71681E65BFF50049F3AA /* Block.swift */; };
@@ -76,7 +75,6 @@
 		8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DashMainMenuSound.mp3; sourceTree = "<group>"; };
 		8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperModifierViewController.swift; sourceTree = "<group>"; };
 		8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		A9937EA8267BAB3B00A56E8A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewController.swift; sourceTree = "<group>"; };
 		F10F71681E65BFF50049F3AA /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlocksForAll-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 				8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */,
 				FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */,
 				FDEB68B42A4F347500E522D0 /* RobotViewControllers */,
-				A9937EA8267BAB3B00A56E8A /* CustomButton.swift */,
 				F18FEEDB1EB115AF007C15B8 /* Helper */,
 			);
 			path = BlocksForAll;
@@ -386,7 +383,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */,
-				A9937EA9267BAB3B00A56E8A /* CustomButton.swift in Sources */,
 				02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */,
 				025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */,
 				8DCBEA552A49F8A500A26043 /* StepperModifierViewController.swift in Sources */,

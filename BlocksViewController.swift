@@ -36,7 +36,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var blocksProgram: UICollectionView!   // View on bottom of screen that shows blocks in workspace
 
     // Main workspace  buttons
-    @IBOutlet weak var mainMenuButton: CustomButton! // Home button. Brings you to main menu.
+    @IBOutlet weak var mainMenuButton: UIButton! // Home button. Brings you to main menu.
     //@IBOutlet weak var clearAllButton: CustomButton! // the clear all button has been removed
     @IBOutlet weak var mainWorkspaceButton: UIButton!  // Arrow button that shows when you are working on a function. Brings you back to the main workspace
     @IBOutlet weak var playTrashToggleButton: UIButton! // Play button
@@ -62,7 +62,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // Modifier block variables
     private var startingHeight = 0  // A value for calculating the y position of BlockViews
     private var count = 0  // Number of blocks in the workspace
-    private var allModifierBlocks = [CustomButton]()  // A list of all the modifier blocks in the workspace
+    private var allModifierBlocks = [UIButton]()  // A list of all the modifier blocks in the workspace
     private var modifierBlockIndex: Int?  // An integer used to identify which modifier block was clicked when going to other screens.
     
     //MARK: - View Controller Methods
@@ -113,7 +113,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     /// Main Menu Segue
-    @IBAction func goToMainMenu(_ sender: CustomButton) {
+    @IBAction func goToMainMenu(_ sender: UIButton) {
             performSegue(withIdentifier: "toMainMenu", sender: self)
     }
     
@@ -724,8 +724,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     //MARK: - Modifier Button Methods
     /// Use for modifier buttons. Calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values
-    func createModifierCustomButton() -> CustomButton {
-        let tempButton = CustomButton(frame: CGRect(
+    func createModifierCustomButton() -> UIButton {
+        let tempButton = UIButton(frame: CGRect(
             x: (blockSize / 11),
             y:startingHeight - ((blockSize / 5) * 4) - count * (blockSize  / 2 + blockSpacing),
             width: (blockSize / 7) * 6,
