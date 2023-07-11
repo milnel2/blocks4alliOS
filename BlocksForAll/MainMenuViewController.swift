@@ -45,17 +45,16 @@ class MainMenuViewController: UIViewController {
     
     @objc private func robotImageTapped(_ recognizer: UITapGestureRecognizer) {
         // Play sound
+        // Code to play audio is from https://www.tutorialspoint.com/how-to-play-a-sound-using-swift
         guard let path = Bundle.main.path(forResource: "DashMainMenuSound", ofType:"mp3") else {
-            print("couldnt find sound")
+            print("Couldn't find sound file for DashMainMenuSound")
                  return }
         let url = URL(fileURLWithPath: path)
-        print("playing \(path)")
         do {
             if audioPlayer == nil {
                audioPlayer = try AVAudioPlayer(contentsOf: url)
             }
             audioPlayer?.play()
-            
         } catch let error {
             print(error.localizedDescription)
         }
