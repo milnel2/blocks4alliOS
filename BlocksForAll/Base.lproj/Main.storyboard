@@ -1147,7 +1147,7 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Negative = backwards,  upwards, or left " textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8l-wa-KJu">
-                                <rect key="frame" x="351.5" y="584" width="377.5" height="85"/>
+                                <rect key="frame" x="351.5" y="538.5" width="377.5" height="85"/>
                                 <accessibility key="accessibilityConfiguration" label="Enter a negative number to use a variable for backwards,  downwards, or left actions later on"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="nTe-My-dxn"/>
@@ -1163,13 +1163,13 @@ For further information on Blocks4All, please visit our website. For further det
                             <constraint firstItem="lJh-zd-RGp" firstAttribute="leading" secondItem="jNy-ch-2PD" secondAttribute="leadingMargin" constant="20" id="8NY-c4-kPE"/>
                             <constraint firstItem="aCi-eq-XZm" firstAttribute="baseline" secondItem="0EE-tA-7aY" secondAttribute="baseline" id="99C-Mg-OIz"/>
                             <constraint firstItem="0EE-tA-7aY" firstAttribute="centerX" secondItem="jNy-ch-2PD" secondAttribute="centerX" id="HGI-3G-iuY"/>
+                            <constraint firstItem="I8l-wa-KJu" firstAttribute="firstBaseline" secondItem="0EE-tA-7aY" secondAttribute="baseline" constant="50" id="Lia-Uk-vcJ"/>
                             <constraint firstItem="5Gb-Uk-oE9" firstAttribute="top" secondItem="SV0-Mq-XPC" secondAttribute="bottom" constant="150" id="NBQ-X0-0u6"/>
                             <constraint firstItem="aCi-eq-XZm" firstAttribute="leading" secondItem="jNy-ch-2PD" secondAttribute="leading" constant="176" id="OTB-WM-eAE"/>
                             <constraint firstItem="9VU-2z-y9k" firstAttribute="centerX" secondItem="jNy-ch-2PD" secondAttribute="centerX" id="TaS-ng-EUL"/>
                             <constraint firstItem="0EE-tA-7aY" firstAttribute="top" secondItem="9VU-2z-y9k" secondAttribute="bottom" constant="83" id="WZE-EE-ZEq"/>
                             <constraint firstItem="lJh-zd-RGp" firstAttribute="top" secondItem="SV0-Mq-XPC" secondAttribute="bottom" constant="30" id="XHY-nQ-Jyb"/>
                             <constraint firstItem="I8l-wa-KJu" firstAttribute="centerX" secondItem="jNy-ch-2PD" secondAttribute="centerX" id="XJf-eA-vIu"/>
-                            <constraint firstItem="A5c-IO-lHl" firstAttribute="top" secondItem="I8l-wa-KJu" secondAttribute="bottom" constant="141" id="mJs-Wx-sNP"/>
                             <constraint firstItem="9VU-2z-y9k" firstAttribute="top" secondItem="5Gb-Uk-oE9" secondAttribute="bottom" constant="62.5" id="tcN-Ix-AEs"/>
                             <constraint firstItem="0EE-tA-7aY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aCi-eq-XZm" secondAttribute="trailing" constant="8" symbolic="YES" id="urk-VC-crZ"/>
                         </constraints>
