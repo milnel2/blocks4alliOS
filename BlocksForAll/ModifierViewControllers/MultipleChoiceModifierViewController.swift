@@ -150,6 +150,9 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
           
         if attributeName == "lightColor" {
             cell.accessibilityLabel = "\(items[index]) color.Option \(index + 1) of \(items.count)"
+        } else if attributeName == "variableSelected" {
+            cell.accessibilityLabel = "\(items[index]). Option \(index + 1) of \(items.count)"
+
         } else {
             cell.accessibilityLabel = "\(items[index]) sound. Option \(index + 1) of \(items.count)"
         }
