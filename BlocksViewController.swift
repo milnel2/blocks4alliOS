@@ -112,11 +112,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         allModifierBlocks.removeAll()
     }
     
-    /// Main Menu Segue
-    @IBAction func goToMainMenu(_ sender: UIButton) {
-            performSegue(withIdentifier: "toMainMenu", sender: self)
-    }
-    
     /// Main Workspace Segue
     @IBAction func goToMainWorkspace(_ sender: Any) {
         currentWorkspace = "Main Workspace"
@@ -126,6 +121,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     private func makeAnnouncement(_ announcement: String){
         UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: NSLocalizedString(announcement, comment: ""))
+    }
+    
+    /// Main Menu Segue
+    @IBAction func homeButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true)
     }
     
     // MARK: - Memory/Data Methods
