@@ -716,13 +716,15 @@ class ExecutingProgram {
         
         let desiredFullRevolutions = 5
         // End the spinning
-        if numberOfTimesSpun == (12 * desiredFullRevolutions) {
+        if numberOfTimesSpun >= (12 * desiredFullRevolutions) {
             timer.invalidate()
             // Turn all lights back on
             eyeRing.setAllBitmap(true)
             myAction.setEyeRing(eyeRing)
             cmdToSend.add(myAction, withDuration: spiralDuration)
             sendCommandSequenceToRobots(cmdSeq: cmdToSend)
+            currentSpiralLightIndex = 0
+            numberOfTimesSpun = 0
         }
     }
   
