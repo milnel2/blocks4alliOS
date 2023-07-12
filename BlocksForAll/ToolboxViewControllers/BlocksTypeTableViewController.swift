@@ -29,6 +29,7 @@ class BlocksTypeTableViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
             self.navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+            self.shouldGroupAccessibilityChildren = true
         }
         
         self.tableView.bounces = true
