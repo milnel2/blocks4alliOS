@@ -86,6 +86,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // If working on a function
         if currentWorkspace != "Main Workspace" {
             mainWorkspaceButton.isHidden = false  // Show Back to Main Workspace arrow button
+            if #available(iOS 13.0, *) {
+                workspaceTitle.textColor = .label
+            } else {
+                workspaceTitle.textColor = .black
+            }
+            workspaceTitle.text = "Return to Main Workspace"
+            
             if functionsDict[currentWorkspace]!.isEmpty{
                 let startBlock = Block.init(
                     name: "\(currentWorkspace) Function Start",
@@ -104,6 +111,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         } else {
             mainWorkspaceButton.isHidden = true // Hide Back to Main Workspace arrow button. Already in Main Workspace.
+            workspaceTitle.textColor = UIColor(named: "navy_text")
+            workspaceTitle.text = "Main Workspace"
         }
         self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self

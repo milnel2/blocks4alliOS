@@ -40,7 +40,6 @@
 		F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */; };
 		F73D31762A5DFA0F00008126 /* AddRobotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73D31752A5DFA0F00008126 /* AddRobotViewController.swift */; };
 		FD3A594E2A3A196B00122BEF /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A594D2A3A196B00122BEF /* CustomFont.swift */; };
-		FD3A59502A3A270900122BEF /* CustomHexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A594F2A3A270900122BEF /* CustomHexColor.swift */; };
 		FD3A59562A3B639E00122BEF /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */; };
 		FD6388312A310311005F49F7 /* Aphont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388302A310311005F49F7 /* Aphont.ttf */; };
 		FD6388322A310311005F49F7 /* Aphont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6388302A310311005F49F7 /* Aphont.ttf */; };
@@ -102,7 +101,6 @@
 		F1F68E7F20771C7900BFBD8E /* Installation Manual.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Installation Manual.pdf"; sourceTree = "<group>"; };
 		F73D31752A5DFA0F00008126 /* AddRobotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRobotViewController.swift; sourceTree = "<group>"; };
 		FD3A594D2A3A196B00122BEF /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
-		FD3A594F2A3A270900122BEF /* CustomHexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHexColor.swift; sourceTree = "<group>"; };
 		FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		FD6388302A310311005F49F7 /* Aphont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Aphont.ttf; sourceTree = "<group>"; };
 		FD6388332A310363005F49F7 /* AphontBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AphontBold.ttf; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				F18FFFB91E65B0FC0090C4B6 /* Assets.xcassets */,
 				FD63882F2A3100D3005F49F7 /* Fonts */,
 				F18FFFBE1E65B0FC0090C4B6 /* Info.plist */,
-				FD3A594F2A3A270900122BEF /* CustomHexColor.swift */,
 				F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */,
 				F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */,
 			);
@@ -391,7 +388,6 @@
 				8DCBEA552A49F8A500A26043 /* StepperModifierViewController.swift in Sources */,
 				F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */,
 				F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */,
-				FD3A59502A3A270900122BEF /* CustomHexColor.swift in Sources */,
 				62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */,
 				844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */,
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
