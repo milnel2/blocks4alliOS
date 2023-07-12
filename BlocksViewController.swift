@@ -829,6 +829,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 button.setTitleColor(.black, for: .normal)
             }
             button.titleLabel?.numberOfLines = 0
+            button.titleLabel?.textAlignment = .center
             
             var text = "\(placeHolderBlock.attributes[attributeName] ?? "N/A")"
             // handle text formatting based on type of block
