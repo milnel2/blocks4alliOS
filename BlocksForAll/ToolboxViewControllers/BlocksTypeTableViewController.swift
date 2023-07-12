@@ -42,37 +42,6 @@ class BlocksTypeTableViewController: UITableViewController {
         delegate?.setParentViewController(self.parent ?? self)
     }
     
-    // An attempt to re-load the colors in the toolbox when switched to dark mode.
-    // Partially worked, but if the root of the problem with the Color class can be fixed, this function won't be needed anymore.
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        if #available(iOS 13.0, *) {  // Color change tests only work in iOS 13.0 and above
-            if previousTraitCollection!.hasDifferentColorAppearance(comparedTo: traitCollection) {  // Tests if the screen was switched between dark/light mode
-                for block in blockTypes {
-                    switch block.name {
-                    case "Sounds":
-                        block.color = Color.init(uiColor: UIColor(named: "blue_block")!)
-                    case "Drive":
-                        block.color = Color.init(uiColor: UIColor(named: "green_block")!)
-                    case "Lights":
-                        block.color = Color.init(uiColor: UIColor(named: "gold_block")!)
-                    case "Control":
-                        block.color = Color.init(uiColor: UIColor(named: "orange_block")!)
-                    case "Motion":
-                        block.color = Color.init(uiColor: UIColor(named: "red_block")!)
-                    case "Variables":
-                        block.color = Color.init(uiColor: UIColor(named: "dark_purple_block")!)
-                    case "Functions":
-                        block.color = Color.init(uiColor: UIColor(named: "light_purple_block")!)
-                    default:
-                        print("Block not found")
-                    }
-                }
-            }
-        }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -104,7 +73,7 @@ class BlocksTypeTableViewController: UITableViewController {
         // Cell properties.
         cell.textLabel?.textAlignment = .left
         cell.textLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 29.0)
-        cell.backgroundColor = blockType.color.uiColor
+        cell.backgroundColor = UIColor(named: "\(blockType.colorName)")
         cell.accessibilityLabel = blockType.name + " category"
         cell.accessibilityHint = "Double tap to explore blocks in this category"
         
@@ -175,12 +144,12 @@ class BlocksTypeTableViewController: UITableViewController {
                 let isModifiable = blockType.object(forKey: "isModifiable") as? Bool ?? false
                 let double = blockType.object(forKey: "double") as? Bool ?? false
                 
-                var color = Color.init(uiColor:UIColor.green )
+                var color = "green_block"
                 if let colorString = blockType.object(forKey: "color") as? String{
-                    color = Color.init(uiColor: UIColor(named: "\(colorString)") ?? UIColor.gray)
+                    color = colorString
                 }
                 
-                guard let block = Block(name: name!, color: color, double: double, isModifiable: isModifiable) else {
+                guard let block = Block(name: name!, colorName: color, double: double, isModifiable: isModifiable) else {
                     fatalError("Unable to instantiate block")
                 }
                 
