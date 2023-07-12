@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <accessibilityOverrides dynamicTypePreference="11"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -247,7 +247,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SettingsTitle" translatesAutoresizingMaskIntoConstraints="NO" id="glw-m4-ShG">
-                                <rect key="frame" x="356" y="122" width="388" height="100"/>
+                                <rect key="frame" x="346" y="122" width="388" height="100"/>
                                 <accessibility key="accessibilityConfiguration" label="Settings">
                                     <accessibilityTraits key="traits" staticText="YES"/>
                                     <bool key="isElement" value="YES"/>
@@ -258,7 +258,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skb-Px-NWC">
-                                <rect key="frame" x="472" y="230" width="157" height="154"/>
+                                <rect key="frame" x="461.5" y="230" width="157" height="154"/>
                                 <accessibility key="accessibilityConfiguration" label="Add Robots "/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="154" id="fBB-LT-UJY"/>
@@ -276,17 +276,16 @@
                         <constraints>
                             <constraint firstItem="Skb-Px-NWC" firstAttribute="top" secondItem="glw-m4-ShG" secondAttribute="bottom" constant="8" id="67w-Th-QOO"/>
                             <constraint firstAttribute="trailing" secondItem="xnj-s6-6gX" secondAttribute="trailing" id="8lX-dP-OFG"/>
-                            <constraint firstItem="glw-m4-ShG" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" constant="10" id="Bek-Qg-Xev"/>
+                            <constraint firstItem="glw-m4-ShG" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" id="Bek-Qg-Xev"/>
                             <constraint firstItem="glw-m4-ShG" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="122" id="EHi-jX-upe"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="top" secondItem="qRr-Xs-d4l" secondAttribute="bottom" constant="70" id="EWf-Bj-ppa"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leading" id="G80-Bk-XGK"/>
                             <constraint firstItem="Rvu-FP-rqn" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="49" id="HEb-6Y-kgc"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="top" secondItem="0DE-vi-VZO" secondAttribute="top" id="JmA-La-d5C"/>
-                            <constraint firstItem="glw-m4-ShG" firstAttribute="leading" secondItem="Rvu-FP-rqn" secondAttribute="trailing" constant="76" id="PHk-kv-bcP"/>
                             <constraint firstItem="xnj-s6-6gX" firstAttribute="bottom" secondItem="0DE-vi-VZO" secondAttribute="bottom" id="RdE-pI-DPm"/>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Rvu-FP-rqn" secondAttribute="bottom" constant="129" id="Ypa-Qm-t7O"/>
                             <constraint firstAttribute="trailing" secondItem="Cwg-wl-dN5" secondAttribute="trailing" constant="150" id="bDI-BD-TtJ"/>
-                            <constraint firstItem="Skb-Px-NWC" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" constant="10.5" id="n7X-O2-6Hd"/>
+                            <constraint firstItem="Skb-Px-NWC" firstAttribute="centerX" secondItem="0DE-vi-VZO" secondAttribute="centerX" id="n7X-O2-6Hd"/>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="leading" secondItem="0DE-vi-VZO" secondAttribute="leadingMargin" constant="150" id="vuR-QM-3Ne"/>
                             <constraint firstItem="Cwg-wl-dN5" firstAttribute="top" secondItem="Skb-Px-NWC" secondAttribute="bottom" constant="10" id="wbr-Av-TD7"/>
                         </constraints>
@@ -420,16 +419,16 @@ For further information on Blocks4All, please visit our website. For further det
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
-                                <rect key="frame" x="100" y="271.5" width="860" height="463.5"/>
+                                <rect key="frame" x="123" y="252.5" width="838" height="431.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                 <connections>
                                     <segue destination="XOJ-Tu-hH8" kind="embed" id="sot-c6-H0b"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a robot from the list below. If you don't see any robots, try turning your robot off and on again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVq-QZ-GAv">
-                                <rect key="frame" x="279" y="120" width="526" height="101.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a robot from the list below. If you don't see any robots, try turning your robot off and on again." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVq-QZ-GAv">
+                                <rect key="frame" x="279" y="120" width="526" height="54.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -438,16 +437,16 @@ For further information on Blocks4All, please visit our website. For further det
                         <constraints>
                             <constraint firstItem="gVq-QZ-GAv" firstAttribute="top" secondItem="6i5-m2-CBz" secondAttribute="bottom" constant="-125" id="3Gi-20-mXb"/>
                             <constraint firstItem="Kj3-mC-EmF" firstAttribute="top" secondItem="6Hh-dq-UJ7" secondAttribute="top" id="84v-uf-aUD"/>
-                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="top" secondItem="gVq-QZ-GAv" secondAttribute="bottom" constant="50" id="9dP-ly-9qK"/>
+                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="top" secondItem="gVq-QZ-GAv" secondAttribute="bottom" constant="78" id="9dP-ly-9qK"/>
                             <constraint firstItem="Kj3-mC-EmF" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leading" id="9rE-ws-0EE"/>
                             <constraint firstItem="gVq-QZ-GAv" firstAttribute="centerX" secondItem="6Hh-dq-UJ7" secondAttribute="centerX" constant="2" id="Lv1-Rf-Xpo"/>
-                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leading" constant="100" id="OUu-2f-8vs"/>
+                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leading" constant="123" id="OUu-2f-8vs"/>
                             <constraint firstItem="6i5-m2-CBz" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leadingMargin" constant="30" id="YTX-SA-EWr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gVq-QZ-GAv" secondAttribute="trailing" constant="255" id="biY-oh-R04"/>
                             <constraint firstItem="6i5-m2-CBz" firstAttribute="top" secondItem="Yhr-81-ujC" secondAttribute="bottom" constant="50" id="dwZ-FD-v1t"/>
                             <constraint firstAttribute="bottom" secondItem="Kj3-mC-EmF" secondAttribute="bottom" id="iyv-Td-srH"/>
-                            <constraint firstItem="Zck-g6-6V2" firstAttribute="top" secondItem="QLJ-MJ-LN5" secondAttribute="bottom" constant="75" id="j5L-BI-hYW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="QLJ-MJ-LN5" secondAttribute="trailing" constant="100" id="jX1-fW-6ph"/>
+                            <constraint firstItem="Zck-g6-6V2" firstAttribute="top" secondItem="QLJ-MJ-LN5" secondAttribute="bottom" constant="126" id="j5L-BI-hYW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QLJ-MJ-LN5" secondAttribute="trailing" constant="99" id="jX1-fW-6ph"/>
                             <constraint firstAttribute="trailing" secondItem="Kj3-mC-EmF" secondAttribute="trailing" id="mAS-Zm-8ED"/>
                         </constraints>
                     </view>
@@ -462,15 +461,15 @@ For further information on Blocks4All, please visit our website. For further det
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
-                        <rect key="frame" x="0.0" y="0.0" width="860" height="463.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="838" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="robotCell" rowHeight="84" id="KUQ-1B-5Sg" customClass="RobotCell" customModule="BlocksForAll" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="860" height="84"/>
+                                <rect key="frame" x="0.0" y="50" width="838" height="84"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KUQ-1B-5Sg" id="ZfT-J5-i3d">
-                                    <rect key="frame" x="0.0" y="0.0" width="860" height="84"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="838" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" red="0.050980392156862744" green="0.074509803921568626" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
@@ -1052,7 +1051,7 @@ For further information on Blocks4All, please visit our website. For further det
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select and Set a Variable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gb-Uk-oE9">
                                 <rect key="frame" x="391.5" y="150" width="297.5" height="33.5"/>
-                                <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
+                                <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select and set a variable"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1148,7 +1147,7 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Negative = backwards,  upwards, or left " textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8l-wa-KJu">
-                                <rect key="frame" x="351.5" y="584" width="377.5" height="85"/>
+                                <rect key="frame" x="351.5" y="538.5" width="377.5" height="85"/>
                                 <accessibility key="accessibilityConfiguration" label="Enter a negative number to use a variable for backwards,  downwards, or left actions later on"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="nTe-My-dxn"/>
@@ -1164,13 +1163,13 @@ For further information on Blocks4All, please visit our website. For further det
                             <constraint firstItem="lJh-zd-RGp" firstAttribute="leading" secondItem="jNy-ch-2PD" secondAttribute="leadingMargin" constant="20" id="8NY-c4-kPE"/>
                             <constraint firstItem="aCi-eq-XZm" firstAttribute="baseline" secondItem="0EE-tA-7aY" secondAttribute="baseline" id="99C-Mg-OIz"/>
                             <constraint firstItem="0EE-tA-7aY" firstAttribute="centerX" secondItem="jNy-ch-2PD" secondAttribute="centerX" id="HGI-3G-iuY"/>
+                            <constraint firstItem="I8l-wa-KJu" firstAttribute="firstBaseline" secondItem="0EE-tA-7aY" secondAttribute="baseline" constant="50" id="Lia-Uk-vcJ"/>
                             <constraint firstItem="5Gb-Uk-oE9" firstAttribute="top" secondItem="SV0-Mq-XPC" secondAttribute="bottom" constant="150" id="NBQ-X0-0u6"/>
                             <constraint firstItem="aCi-eq-XZm" firstAttribute="leading" secondItem="jNy-ch-2PD" secondAttribute="leading" constant="176" id="OTB-WM-eAE"/>
                             <constraint firstItem="9VU-2z-y9k" firstAttribute="centerX" secondItem="jNy-ch-2PD" secondAttribute="centerX" id="TaS-ng-EUL"/>
                             <constraint firstItem="0EE-tA-7aY" firstAttribute="top" secondItem="9VU-2z-y9k" secondAttribute="bottom" constant="83" id="WZE-EE-ZEq"/>
                             <constraint firstItem="lJh-zd-RGp" firstAttribute="top" secondItem="SV0-Mq-XPC" secondAttribute="bottom" constant="30" id="XHY-nQ-Jyb"/>
                             <constraint firstItem="I8l-wa-KJu" firstAttribute="centerX" secondItem="jNy-ch-2PD" secondAttribute="centerX" id="XJf-eA-vIu"/>
-                            <constraint firstItem="A5c-IO-lHl" firstAttribute="top" secondItem="I8l-wa-KJu" secondAttribute="bottom" constant="141" id="mJs-Wx-sNP"/>
                             <constraint firstItem="9VU-2z-y9k" firstAttribute="top" secondItem="5Gb-Uk-oE9" secondAttribute="bottom" constant="62.5" id="tcN-Ix-AEs"/>
                             <constraint firstItem="0EE-tA-7aY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aCi-eq-XZm" secondAttribute="trailing" constant="8" symbolic="YES" id="urk-VC-crZ"/>
                         </constraints>
@@ -1222,14 +1221,14 @@ For further information on Blocks4All, please visit our website. For further det
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CO9-t8-AAm">
                                 <rect key="frame" x="96" y="260" width="113" height="33.5"/>
-                                <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
+                                <accessibility key="accessibilityConfiguration" hint="Select a variable. Choose a fruit below" label="Distance"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71Y-9j-yaK">
                                 <rect key="frame" x="96" y="515" width="84.5" height="33.5"/>
-                                <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
+                                <accessibility key="accessibilityConfiguration" hint="Select a speed." label="Speed"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1263,9 +1262,8 @@ For further information on Blocks4All, please visit our website. For further det
                                     <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="rle-AG-8Eg"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Drive Variables" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0B-P4-bMi">
-                                <rect key="frame" x="409.5" y="150" width="261" height="33.5"/>
-                                <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Drive Variable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0B-P4-bMi">
+                                <rect key="frame" x="416.5" y="150" width="247.5" height="33.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1381,7 +1379,7 @@ For further information on Blocks4All, please visit our website. For further det
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="aOU-ox-hHe" userLabel="FunctionTableViewCell" customClass="FunctionTableViewCell" customModule="BlocksForAll" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aOU-ox-hHe" userLabel="FunctionTableViewCell" customClass="FunctionTableViewCell" customModule="BlocksForAll" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="235" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aOU-ox-hHe" id="PV9-Gx-WXQ">
@@ -1515,18 +1513,6 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TuK-wM-fSO">
-                                <rect key="frame" x="129" y="177" width="823" height="614"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ean-pE-yHH">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -1542,7 +1528,6 @@ For further information on Blocks4All, please visit our website. For further det
                     <navigationItem key="navigationItem" id="Rlr-zo-HDV"/>
                     <connections>
                         <outlet property="back" destination="7yj-Ik-X8W" id="YLO-VR-mzo"/>
-                        <outlet property="collectionView" destination="TuK-wM-fSO" id="LM5-Na-0wd"/>
                         <outlet property="optionModTitle" destination="AxI-El-jaR" id="IaY-Hd-hs4"/>
                         <outlet property="optionModView" destination="pcs-vo-2Zv" id="0kg-Wc-dNt"/>
                         <outlet property="optionalExtraLabel" destination="M0M-a3-X3n" id="LfZ-m5-kcd"/>
@@ -1550,7 +1535,7 @@ For further information on Blocks4All, please visit our website. For further det
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFv-2q-OPs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="285.55555555555554" y="246.66666666666666"/>
+            <point key="canvasLocation" x="286" y="247"/>
         </scene>
         <!--Stepper Mod View Controller-->
         <scene sceneID="kZ6-wN-MWT">
@@ -1746,8 +1731,8 @@ For further information on Blocks4All, please visit our website. For further det
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="D3Q-1e-yCW"/>
-        <segue reference="PIe-sL-Fqa"/>
-        <segue reference="XsQ-5G-ZnB"/>
+        <segue reference="SES-Og-HDs"/>
+        <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AddRobotButton" width="576" height="576"/>

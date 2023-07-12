@@ -79,6 +79,7 @@ class FunctionTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of FunctionTableViewCell.")
         }
         cell.nameButton.setTitle(functions[indexPath.row], for: .normal)
+        cell.nameButton.accessibilityLabel = "\(functions[indexPath.row]). Double tap to edit function."
         cell.functionTableViewController = self
 
         return cell

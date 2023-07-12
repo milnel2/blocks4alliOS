@@ -86,15 +86,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // If working on a function
         if currentWorkspace != "Main Workspace" {
             mainWorkspaceButton.isHidden = false  // Show Back to Main Workspace arrow button
+            if #available(iOS 13.0, *) {
+                workspaceTitle.textColor = .label
+            } else {
+                workspaceTitle.textColor = .black
+            }
+            workspaceTitle.text = "Return to Main Workspace"
+            
             if functionsDict[currentWorkspace]!.isEmpty{
                 let startBlock = Block.init(
                     name: "\(currentWorkspace) Function Start",
-                    color: Color.init(uiColor: UIColor(named: "light_purple_block")!),
+                    colorName: "light_purple_block",
                     double: true,
                     isModifiable: false)
                 let endBlock = Block.init(
                     name: "\(currentWorkspace) Function End",
-                    color: Color.init(uiColor:UIColor(named: "light_purple_block")!),
+                    colorName: "light_purple_block",
                     double: true,
                     isModifiable: false)
                 startBlock!.counterpart = [endBlock!]
@@ -104,6 +111,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         } else {
             mainWorkspaceButton.isHidden = true // Hide Back to Main Workspace arrow button. Already in Main Workspace.
+            workspaceTitle.textColor = UIColor(named: "navy_text")
+            workspaceTitle.text = "Main Workspace"
         }
         self.navigationController?.isNavigationBarHidden = true
         blocksProgram.delegate = self
@@ -240,9 +249,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // TODO: rewrite this method
     func createVoiceControlLabels(for block: Block, in blockView: UIView) {
         if #available (iOS 13.0, *) {
-            let color = block.color.uiColor
+            let color = block.colorName
             switch color {
-            case UIColor(named: "orange_block"):  // Control
+            case "orange_block":  // Control
                 if movingBlocks {
                     if block.name == "Wait for Time" {
                         blockView.accessibilityUserInputLabels = ["Before Wait", "Before \(block.name)"]
@@ -251,7 +260,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     blockView.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
                 }
 
-            case UIColor(named: "green_block"):  // Drive
+            case "green_block":  // Drive
                 var voiceControlLabel = block.name
                 if block.name.contains("Drive") {
                     let wordToRemove = "Drive "
@@ -271,7 +280,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
                 }
 
-            case UIColor(named: "gold_block"):  // Lights
+            case "gold_block":  // Lights
                 var voiceControlLabel = block.name
                 let wordToRemove = "Set "
                 if let range = voiceControlLabel.range(of: wordToRemove){
@@ -292,7 +301,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(voiceControlLabel2)", "\(block.name)"]
                 }
             
-            case UIColor(named: "red_block"):  // Look
+            case "red_block":  // Look
                 var voiceControlLabel = block.name
                 let wordToRemove = "Look "
                 if let range = voiceControlLabel.range(of: wordToRemove){
@@ -497,9 +506,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         let myLabel = UILabel.init(frame: frame)
         myLabel.text = block.name
         myLabel.textAlignment = .center
-        myLabel.textColor = block.color.uiColor
+        myLabel.textColor = UIColor(named: "\(block.colorName)")
         myLabel.numberOfLines = 0
-        myLabel.backgroundColor = block.color.uiColor
+        myLabel.backgroundColor = UIColor(named: "\(block.colorName)")
         return myLabel
     }
     
@@ -743,7 +752,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         //  Create the block
         if block.addedBlocks.isEmpty{
-            let placeholderBlock = Block(name: name, color: Color.init(uiColor:UIColor.lightGray) , double: false, type: "Boolean", isModifiable: true)
+            let placeholderBlock = Block(name: name, colorName: "gray_color", double: false, type: "Boolean", isModifiable: true)
             block.addedBlocks.append(placeholderBlock!)
             placeholderBlock?.addAttributes(key: attributeName, value: "\(defaultValue)")
             if secondAttributeName != nil && secondDefault != nil

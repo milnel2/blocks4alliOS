@@ -32,7 +32,7 @@ class InstructionsViewController: UIViewController {
         // Set link appearance
         self.instructionsText.linkTextAttributes = [
             .font: UIFont.accessibleFont(withStyle: .body, size: 26.0),
-            .foregroundColor: UIColor(hexString: "#52b2bf"),
+            .foregroundColor: UIColor(named: "linkText_color") ?? UIColor.systemBlue,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         

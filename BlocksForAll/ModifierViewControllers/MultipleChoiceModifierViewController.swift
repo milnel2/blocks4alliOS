@@ -90,8 +90,9 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         
         // Accessibility
         // Voice Over
-        optionModView.accessibilityElements = [back!, optionModTitle!, collectionView]
+        optionModView.accessibilityElements = [back!, optionModTitle!, optionalExtraLabel!, collectionView]
         optionModTitle.accessibilityLabel = optionType
+        optionalExtraLabel.accessibilityLabel = optionalExtraLabel.text
         //Dynamic Text
         setFontStyle()
     }
@@ -159,6 +160,9 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
           
         if attributeName == "lightColor" {
             cell.accessibilityLabel = "\(items[index]) color.Option \(index + 1) of \(items.count)"
+        } else if attributeName == "variableSelected" {
+            cell.accessibilityLabel = "\(items[index]). Option \(index + 1) of \(items.count)"
+
         } else {
             cell.accessibilityLabel = "\(items[index]) sound. Option \(index + 1) of \(items.count)"
         }
