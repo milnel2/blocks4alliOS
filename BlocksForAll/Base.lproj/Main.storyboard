@@ -461,7 +461,7 @@ For further information on Blocks4All, please visit our website. For further det
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
-                        <rect key="frame" x="0.0" y="0.0" width="838" height="431.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="838" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1051,7 +1051,7 @@ For further information on Blocks4All, please visit our website. For further det
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select and Set a Variable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gb-Uk-oE9">
                                 <rect key="frame" x="391.5" y="150" width="297.5" height="33.5"/>
-                                <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
+                                <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select and set a variable"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1221,14 +1221,14 @@ For further information on Blocks4All, please visit our website. For further det
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CO9-t8-AAm">
                                 <rect key="frame" x="96" y="260" width="113" height="33.5"/>
-                                <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
+                                <accessibility key="accessibilityConfiguration" hint="Select a variable. Choose a fruit below" label="Distance"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="71Y-9j-yaK">
                                 <rect key="frame" x="96" y="515" width="84.5" height="33.5"/>
-                                <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
+                                <accessibility key="accessibilityConfiguration" hint="Select a speed." label="Speed"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1262,9 +1262,8 @@ For further information on Blocks4All, please visit our website. For further det
                                     <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="rle-AG-8Eg"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Drive Variables" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0B-P4-bMi">
-                                <rect key="frame" x="409.5" y="150" width="261" height="33.5"/>
-                                <accessibility key="accessibilityConfiguration" hint="Choose a fruit below" label="Select a variable"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Drive Variable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0B-P4-bMi">
+                                <rect key="frame" x="416.5" y="150" width="247.5" height="33.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1731,7 +1730,7 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="2YI-wg-iJ2"/>
+        <segue reference="D3Q-1e-yCW"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="Oq5-da-dqe"/>
     </inferredMetricsTieBreakers>
