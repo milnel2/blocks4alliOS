@@ -123,7 +123,7 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         // Disconnect for robot if already connected
         if (robot.isConnected()) {
             robotManager?.disconnect(from: robot)
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
         } else {
             // Otherwise, connect to the robot
             robotManager?.connect(to: robot)

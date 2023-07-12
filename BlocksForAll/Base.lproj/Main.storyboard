@@ -420,16 +420,16 @@ For further information on Blocks4All, please visit our website. For further det
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
-                                <rect key="frame" x="123" y="252.5" width="838" height="431.5"/>
+                                <rect key="frame" x="100" y="271.5" width="860" height="463.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                 <connections>
                                     <segue destination="XOJ-Tu-hH8" kind="embed" id="sot-c6-H0b"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a robot from the list below. If you don't see any robots, try turning your robot off and on again." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVq-QZ-GAv">
-                                <rect key="frame" x="279" y="120" width="526" height="54.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a robot from the list below. If you don't see any robots, try turning your robot off and on again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVq-QZ-GAv">
+                                <rect key="frame" x="279" y="120" width="526" height="101.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -438,16 +438,16 @@ For further information on Blocks4All, please visit our website. For further det
                         <constraints>
                             <constraint firstItem="gVq-QZ-GAv" firstAttribute="top" secondItem="6i5-m2-CBz" secondAttribute="bottom" constant="-125" id="3Gi-20-mXb"/>
                             <constraint firstItem="Kj3-mC-EmF" firstAttribute="top" secondItem="6Hh-dq-UJ7" secondAttribute="top" id="84v-uf-aUD"/>
-                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="top" secondItem="gVq-QZ-GAv" secondAttribute="bottom" constant="78" id="9dP-ly-9qK"/>
+                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="top" secondItem="gVq-QZ-GAv" secondAttribute="bottom" constant="50" id="9dP-ly-9qK"/>
                             <constraint firstItem="Kj3-mC-EmF" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leading" id="9rE-ws-0EE"/>
                             <constraint firstItem="gVq-QZ-GAv" firstAttribute="centerX" secondItem="6Hh-dq-UJ7" secondAttribute="centerX" constant="2" id="Lv1-Rf-Xpo"/>
-                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leading" constant="123" id="OUu-2f-8vs"/>
+                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leading" constant="100" id="OUu-2f-8vs"/>
                             <constraint firstItem="6i5-m2-CBz" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leadingMargin" constant="30" id="YTX-SA-EWr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gVq-QZ-GAv" secondAttribute="trailing" constant="255" id="biY-oh-R04"/>
                             <constraint firstItem="6i5-m2-CBz" firstAttribute="top" secondItem="Yhr-81-ujC" secondAttribute="bottom" constant="50" id="dwZ-FD-v1t"/>
                             <constraint firstAttribute="bottom" secondItem="Kj3-mC-EmF" secondAttribute="bottom" id="iyv-Td-srH"/>
-                            <constraint firstItem="Zck-g6-6V2" firstAttribute="top" secondItem="QLJ-MJ-LN5" secondAttribute="bottom" constant="126" id="j5L-BI-hYW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="QLJ-MJ-LN5" secondAttribute="trailing" constant="99" id="jX1-fW-6ph"/>
+                            <constraint firstItem="Zck-g6-6V2" firstAttribute="top" secondItem="QLJ-MJ-LN5" secondAttribute="bottom" constant="75" id="j5L-BI-hYW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QLJ-MJ-LN5" secondAttribute="trailing" constant="100" id="jX1-fW-6ph"/>
                             <constraint firstAttribute="trailing" secondItem="Kj3-mC-EmF" secondAttribute="trailing" id="mAS-Zm-8ED"/>
                         </constraints>
                     </view>
@@ -462,15 +462,15 @@ For further information on Blocks4All, please visit our website. For further det
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="XOJ-Tu-hH8" customClass="RobotTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="VTT-op-Ui3">
-                        <rect key="frame" x="0.0" y="0.0" width="838" height="431.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="860" height="463.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="robotCell" rowHeight="84" id="KUQ-1B-5Sg" customClass="RobotCell" customModule="BlocksForAll" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="838" height="84"/>
+                                <rect key="frame" x="0.0" y="50" width="860" height="84"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KUQ-1B-5Sg" id="ZfT-J5-i3d">
-                                    <rect key="frame" x="0.0" y="0.0" width="838" height="84"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="860" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" red="0.050980392156862744" green="0.074509803921568626" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
@@ -1381,7 +1381,7 @@ For further information on Blocks4All, please visit our website. For further det
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aOU-ox-hHe" userLabel="FunctionTableViewCell" customClass="FunctionTableViewCell" customModule="BlocksForAll" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCell" id="aOU-ox-hHe" userLabel="FunctionTableViewCell" customClass="FunctionTableViewCell" customModule="BlocksForAll" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="235" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aOU-ox-hHe" id="PV9-Gx-WXQ">
@@ -1515,6 +1515,18 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TuK-wM-fSO">
+                                <rect key="frame" x="129" y="177" width="823" height="614"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ean-pE-yHH">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -1530,6 +1542,7 @@ For further information on Blocks4All, please visit our website. For further det
                     <navigationItem key="navigationItem" id="Rlr-zo-HDV"/>
                     <connections>
                         <outlet property="back" destination="7yj-Ik-X8W" id="YLO-VR-mzo"/>
+                        <outlet property="collectionView" destination="TuK-wM-fSO" id="LM5-Na-0wd"/>
                         <outlet property="optionModTitle" destination="AxI-El-jaR" id="IaY-Hd-hs4"/>
                         <outlet property="optionModView" destination="pcs-vo-2Zv" id="0kg-Wc-dNt"/>
                         <outlet property="optionalExtraLabel" destination="M0M-a3-X3n" id="LfZ-m5-kcd"/>
@@ -1537,7 +1550,7 @@ For further information on Blocks4All, please visit our website. For further det
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xFv-2q-OPs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="286" y="247"/>
+            <point key="canvasLocation" x="285.55555555555554" y="246.66666666666666"/>
         </scene>
         <!--Stepper Mod View Controller-->
         <scene sceneID="kZ6-wN-MWT">
@@ -1661,13 +1674,13 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView autoresizesSubviews="NO" opaque="NO" contentMode="center" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="nZi-qD-DBG">
-                                <rect key="frame" x="266.5" y="368" width="547" height="274.5"/>
+                                <rect key="frame" x="267" y="368" width="546" height="274"/>
                                 <subviews>
                                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="center" spacing="280" translatesAutoresizingMaskIntoConstraints="NO" id="vAj-Po-emI">
-                                        <rect key="frame" x="0.0" y="0.0" width="547" height="133.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="546" height="133"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywf-kX-izT">
-                                                <rect key="frame" x="0.0" y="0.0" width="133.5" height="133.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Ywf-kX-izT" secondAttribute="height" multiplier="1:1" id="6lW-3e-zEa"/>
                                                 </constraints>
@@ -1680,7 +1693,7 @@ For further information on Blocks4All, please visit our website. For further det
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7e-AE-Lha">
-                                                <rect key="frame" x="413.5" y="0.0" width="133.5" height="133.5"/>
+                                                <rect key="frame" x="413" y="0.0" width="133" height="133"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="S7e-AE-Lha" secondAttribute="height" multiplier="1:1" id="9vR-dU-vYc"/>
                                                 </constraints>
@@ -1695,7 +1708,7 @@ For further information on Blocks4All, please visit our website. For further det
                                         </subviews>
                                     </stackView>
                                     <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" text="TWO OPTION VALUE" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwb-pX-XHB">
-                                        <rect key="frame" x="0.0" y="233.5" width="547" height="41"/>
+                                        <rect key="frame" x="0.0" y="233" width="546" height="41"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1732,10 +1745,9 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DJw-3M-vha"/>
-        <segue reference="2YI-wg-iJ2"/>
-        <segue reference="SES-Og-HDs"/>
-        <segue reference="Oq5-da-dqe"/>
+        <segue reference="D3Q-1e-yCW"/>
+        <segue reference="PIe-sL-Fqa"/>
+        <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AddRobotButton" width="576" height="576"/>

@@ -199,13 +199,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blockView.isAccessibilityElement = true
         
         // Add Custom Action for deleting block
-        if !block.name.contains("Function Start") && !block.name.contains("Function End") {
-            let deleteBlock = UIAccessibilityCustomAction(
-                name: "Delete Block",
-                target: self,
-                selector: #selector(deleteBlockCustomAction))
-            blockView.accessibilityCustomActions = [deleteBlock]
-        }
+//        if !block.name.contains("Function Start") && !block.name.contains("Function End") {
+//            let deleteBlock = UIAccessibilityCustomAction(
+//                name: "Delete Block",
+//                target: self,
+//                selector: #selector(deleteBlockCustomAction))
+//            blockView.accessibilityCustomActions = [deleteBlock]
+//        }
         
         
         var accessibilityLabel = ""

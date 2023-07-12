@@ -49,6 +49,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     @IBOutlet var optionModView: UIView! // view within the view controller
     @IBOutlet var optionModTitle: UILabel! // label at top of screen
     @IBOutlet weak var optionalExtraLabel: UILabel! // label underneath optionModTitle. Used for some of the variable modifiiers
+    @IBOutlet weak var collectionView: UICollectionView! // collection view that contains the multiple choice options for the modifier
     private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each button that is showed in the collection view
     // From https://stackoverflow.com/questions/24110762/swift-determine-ios-screen-size
     private let screenSize: CGRect = UIScreen.main.bounds // size of the screen that the app is being run on. Used to build button layout
@@ -70,11 +71,15 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
             attributeName = getAttributeName()
             optionalExtraLabel.text = ""  // set the extra label to empty by default
         }
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(MultipleChoiceButtonCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
          
-        let collectionView = configureCollectionView()
+        //let collectionView = configureCollectionView()
           
-        collectionView.isAccessibilityElement = false
-        collectionView.shouldGroupAccessibilityChildren = true  // this and more good voiceOver tips are from https://medium.com/bpxl-craft/how-to-make-voiceover-more-friendly-in-your-ios-app-8fac34ab8c51
+//        collectionView.isAccessibilityElement = false
+//        collectionView.shouldGroupAccessibilityChildren = true  // this and more good voiceOver tips are from https://medium.com/bpxl-craft/how-to-make-voiceover-more-friendly-in-your-ios-app-8fac34ab8c51
           
         optionModTitle.text = optionType  // Set title of the screen
           
@@ -95,6 +100,11 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     ///  Number of items in the section of the collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.items.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var size = CGSize(width: CGFloat(buttonSize), height: CGFloat(buttonSize))
+        return size
     }
       
     /// Called when the collectionView is being populated with cells
@@ -218,42 +228,6 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         return tempAttributeName
     }
       
-    /// Builds and returns a UICollectionView to hold the modifier buttons
-    private func configureCollectionView() -> UICollectionView{
-        // Calculate where the collectionView should be put on the screen
-        // TODO: center cells in collectionView?
-        let screenWidth = Int(screenSize.width)
-        let screenHeight = Int(screenSize.height)
-        
-        let soundModTitleY = Int(optionModTitle.layer.position.y)
-        let collectionViewPadding = screenWidth / 5
-          
-        let collectionViewHeight = screenHeight - collectionViewPadding - soundModTitleY  // take into account padding and the optionModTitle for how tall the collection view should be
-        let collectionViewWidth = screenWidth - collectionViewPadding  // take into account padding for how wide the collection view should be
-          
-        let middleOfScreenY = Int(screenHeight / 2) - Int(collectionViewHeight / 2)
-        let middleOfScreenX = Int(screenWidth / 2) - Int(collectionViewWidth / 2)
-        
-        let startingY = Int(middleOfScreenY + (soundModTitleY))
-        let startingX = Int(middleOfScreenX)
-          
-        // Configure the layout of the collectionView
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: buttonSize, height: buttonSize) // size of each cell
-          
-        // Create and set up the collectionView
-        let myCollectionView = UICollectionView(frame: CGRect(x: startingX, y: startingY, width: collectionViewWidth, height: collectionViewHeight), collectionViewLayout: layout)
-        myCollectionView.register(MultipleChoiceButtonCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
-        myCollectionView.delegate = self
-        myCollectionView.dataSource = self
-        myCollectionView.isAccessibilityElement = true
-        myCollectionView.backgroundColor = .clear
-        
-        optionModView.addSubview(myCollectionView)
-          
-        return myCollectionView
-    }
-      
     /// Takes an image and returns a resized version of it
     private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
@@ -262,6 +236,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         UIGraphicsEndImageContext()
         return newImage
     }
+    
     /// Set all labels to custom font
     private func setFontStyle() {
         optionalExtraLabel.adjustsFontForContentSizeCategory = true
