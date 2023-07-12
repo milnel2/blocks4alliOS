@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Blocks4All is an accessible block-based programming environment">
     <meta name="author" content="Lauren Milne">
-      
-
     <title>Blocks4All</title>
 
     <!-- Bootstrap core CSS -->
@@ -16,8 +14,6 @@
 
     <!-- Custom fonts for this template -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css"> -->
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 
     <!-- Custom styles for this template -->
@@ -25,55 +21,38 @@
     <link href="../css/slideshow.css" rel="stylesheet">
     <link href='../css/darkmode.css' rel='stylesheet'>
     <link href='../css/navbar.css' rel='stylesheet'>
+    <link href='../css/testnav.css' rel='stylesheet'>
 
   </head>
 
   <body id="page-top">
 
+    <!-- Mobile Navbar -->
+
+    <nav aria-labelledby="hamburger" id="mobileNavbar">
+      <button id="hamburger" class="hamburger" aria-label="Show Navigation Menu" aria-expanded="false" tabindex="0">☰</button>
+    
+      <div id="navMenu" class="navMenu hidden vh">
+        <button id="closeNavMenu" class="closeBtn" aria-label="Hide Navigation Menu">×</button>
+        <ul role="menubar" aria-label="functions">
+          <li role="menuitem" aria-haspopup="false"><a href="index.html">Blocks4All</a></li>
+          <li role="menuitem" aria-haspopup="false"><a href="tutorials.html">Tutorials</a></li>
+          <li role="menuitem" aria-haspopup="false"><a href="research.html">Research</a></li>
+        </ul>
+      </div>
+    </nav>
+
     <!-- Navigation -->
+    
     <ul role="menubar" aria-label="functions" id="appmenu">
-      <li role="menuitem" aria-haspopup="true">
-        <a href="index.html">Home</a>
+      <li role="menuitem" aria-haspopup="false">
+        <a href="index.html">Blocks4All</a>
       </li>
-      <li role="menuitem" aria-haspopup="true">
-        Activities
-        <ul role="menu">
-          <li role="menuitem">
-            <a href="danceCircle1.html">Dance Circle (K-5)</a>
-          </li>
-          <li role="menuitem">
-            <a href="danceCircle2.html">Dance Circle (6-8)</a>
-          </li>
-        </ul>
+      <li role="menuitem" aria-haspopup="false">
+        <a href="tutorials.html">Tutorials</a>
       </li>
-      <li role="menuitem" aria-haspopup="true">
-        Tutorials
-        <ul role="menu">
-          <li role="menuitem">
-            <a href="switchcontrol.html">Switch Control</a>
-          </li>
-          <li role="menuitem">
-            <a href="voiceover.html">Voice Over</a>
-          </li>
-        </ul>
-      </li>
-      <li role="menuitem" aria-haspopup="true">
+      <li role="menuitem" aria-haspopup="false">
         <a href="research.html">Research</a>
-      </li>
-      <li role="menuitem" aria-haspopup="true">
-        Dark Mode
-        <ul role="menu">
-          <li role="menuitem">
-            <button class="theme-btn light" onclick="setTheme('light')" title="Light mode">
-              Light Mode
-            </button>
-          </li>
-          <li role="menuitem">
-            <button class="theme-btn dark" onclick="setTheme('dark')" title="Dark mode">
-              Dark Mode
-            </button>
-          </li>
-        </ul>
       </li>
     </ul>
 
@@ -86,11 +65,9 @@
               </p>
               <p>
                   Blocks4All is a block-based programming environment for the iPad to help you learn basic programming concepts. It is accessible with VoiceOver, Switch Control, and Voice Control. It was designed by a research group at Macalester College. The app requires the Dash robot in order to run, but the research group is not affiliated with <a href=https://www.makewonder.com>Wonder Workshop.</a>
-              
               </p> 
-
           </div>
-            <div class="col-lg-6 ml-auto">
+            <div class="col-lg-6 ml-auto" id="slideshow">
                 <!-- Slideshow container -->
                 <div class="slideshow-container">
 
@@ -126,12 +103,6 @@
                     <span class="dot" onclick="currentSlide(3)"></span>
                 </div>
             </div>
-            <div class="col-lg-10 mx-auto text-center">
-                <a href=https://apps.apple.com/zw/app/blocksforall/id1446492589 class="btn btn-lg btn-outline">
-                <i class="fa fa-download"></i>
-                    Download the App
-                </a>
-            </div> 
         </div>
       </div>
     </header>
@@ -171,51 +142,23 @@
         <i class="fa fa-chevron-up" aria-hidden="true"></i>
     </a>
   </div>
-  
 
   <!-- Bootstrap core JavaScript -->
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/popper/popper.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-
-
+  
   <!-- Plugin JavaScript -->
   <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for this template -->
   <script src="../js/freelancer.min.js"></script>
   <script src="../js/navbar.js"></script>
-  <script>
-  let slideIndex = 1;
-  showSlides(slideIndex);
-
-  // Next/previous controls
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
-
-  // Thumbnail image controls
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
-
-  function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";
-    dots[slideIndex-1].className += " active";
-  }
-  </script>
+  <script src="../js/slideshow.js"></script>
+  <script src="../js/darkmode.js"></script>
+  <script src="../js/testnav.js"></script>
+  <script src="../js/stickynav.js"></script>
 
 </body>
 

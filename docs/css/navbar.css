@@ -1,58 +1,82 @@
 @import "darkmode.css";
 
-#appmenu {
-	width:100%;
-	float: left;
-	margin: 0;
-	padding: 0;
-	color: var(--text-color);
-	background-color: var(--main-color-2);
-	padding: .25em;
-}
-#appmenu li {
-	white-space: nowrap;
-	display:block;
-	padding: .25em .75em;
-	margin: 0;
-	border: 1px solid var(--light-dark);
-}
-#appmenu a {
-	color: var(--text-color)
-}
-#appmenu > li {
-	float: left;
-	background-color: var(--main-color-1);
-	text-align: center;
-	position:relative;
-	cursor: pointer;
-}
-#appmenu :hover,
-#appmenu :focus {
-	background-color: var(--light-dark);
-	color: var(--text-color);
-	border: 1px solid var(--main-color-1);
-	text-decoration: underline;
-}
+@media (max-width: 767px) {
+	#appmenu {
+		border: 0;
+		clip: rect(0 0 0 0);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+		display:none;
+	}
+  }
 
-#appmenu :hover li,
-#appmenu :focus li {
-	color: var(--light-dark);
-	background-color: var(--main-color-1);
-}
+@media (min-width: 768px){
+	#appmenu {
+		width:100%;
+		float: left;
+		margin: 0;
+		padding: 0;
+		color: var(--text-color);
+		background-color: var(--main-color-2);
+		padding: .25em;
+		z-index: 999;
+	}
+	#appmenu li {
+		white-space: nowrap;
+		display:block;
+		padding: .25em .75em;
+		margin: 0;
+		border: 1px solid var(--light-dark);
+	}
+	#appmenu a {
+		color: var(--text-color)
+	}
+	#appmenu > li {
+		float: left;
+		background-color: var(--main-color-1);
+		text-align: center;
+		position:relative;
+		cursor: pointer;
+	}
+	#appmenu :hover,
+	#appmenu :focus {
+		background-color: var(--light-dark);
+		color: var(--text-color);
+		border: 1px solid var(--main-color-1);
+		text-decoration: underline;
+	}
 
-#appmenu > li > ul {
-	display: none;
-	position:absolute;
-	left:0;
-	right:0;
-	top:100%;
-	padding:0;
-	margin:0;
-	background-color: var(--main-color-1);
-	width: 200%;
-	text-align: left;
-}
+	#appmenu :hover li,
+	#appmenu :focus li {
+		color: var(--light-dark);
+		background-color: var(--main-color-1);
+	}
 
-#appmenu > li[aria-expanded="true"] > ul {
-	display:block;
+	#appmenu > li > ul {
+		display: none;
+		position:absolute;
+		left:0;
+		right:0;
+		top:100%;
+		padding:0;
+		margin:0;
+		background-color: var(--main-color-1);
+		width: 200%;
+		text-align: left;
+	}
+
+	#appmenu > li[aria-expanded="true"] > ul {
+		display:block;
+	}
+
+	.sticky {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		padding-top: 60px
+	}
 }

@@ -1,0 +1,166 @@
+
+@import "darkmode.css";
+
+@media (min-width: 768px) {
+  #mobileNavbar {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+      display:none;
+  }
+}
+
+
+@media (max-width:767px){
+  :root {
+      --side-panel: 170px;
+  }
+    
+  #mobileNavbar *, ::before, ::after {
+    box-sizing: border-box;
+  }
+  
+  #mobileNavbar :focus {
+    outline: 3px solid var(--main-color-1);
+  }
+  
+  #mobileNavbar ::-moz-focus-inner {
+    border: 0;
+  }
+  
+  #mobileNavbar body {
+    position: relative;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  #mobileNavbar p {
+    font-size: 1.3em;
+    line-height: 1.3;
+  }
+  
+  #mobileNavbar .navMenu {
+    width: var(--side-panel);
+    color: var(--light-dark);
+    background: var(--light-dark);
+    overflow: hidden;
+    position: fixed;
+    height: 100%;
+    transition: width .4s linear;
+    z-index: 10;
+  }
+  
+  #mobileNavbar .closeBtn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: var(--text-color);
+    padding: 0 5px;
+    background: var(--light-dark);
+  }
+  
+  #mobileNavbar .hamburger {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    padding: 0 5px 4px;
+    z-index: 12;
+    transition: margin .4s linear;
+    color: var(--text-color);
+  }
+  
+  #mobileNavbar .hamburger-z {
+    z-index: 1;
+  }
+  
+  #mobileNavbar .hidden {
+    width: 0;
+  }
+  
+  #mobileNavbar .vh {
+    visibility: hidden;
+  }
+  
+  #mobileNavbar button {
+    font-size: 2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #mobileNavbar ul {
+    list-style: none;
+    padding: 1.4em;
+    line-height: 1.4;
+    background: var(--light-dark);
+    padding-top: 70px;
+  }
+  
+  #mobileNavbar ul li {
+    padding: 5px 0;
+    color: var(--text-color)
+  }
+  
+  #mobileNavbar .navMenu a {
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+    font-size: 1.2em;
+  }
+  
+  #mobileNavbar .navMenu a:hover {
+    border-bottom: solid 1px;
+  }
+  
+  #mobileNavbar main {
+    padding: 1.2em;
+    transition: margin-left .4s linear;
+    position: relative;
+    z-index: 1;
+  }
+  
+  #mobileNavbar h1 {
+    margin: 0;  
+  }
+  
+  #mobileNavbar .main-right {
+    padding-left: 4em;  
+  }
+  
+  #mobileNavbar .menuOpen {
+    margin-left: var(--side-panel);
+  }
+  
+  #mobileNavbar .overlay {
+    position: fixed;
+    z-index: 8;
+    top: 0;
+    right: 0;
+    left: var(--side-panel);
+    bottom: 0;
+    background: var(--light-dark);
+    height: 100%;
+  }
+
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+}
+  
+/* @media (max-width: 480px) {
+  .navMenu {
+    width: 100%;
+  }
+
+  .menuOpen {
+    margin-left: 0;
+  }
+
+} */
