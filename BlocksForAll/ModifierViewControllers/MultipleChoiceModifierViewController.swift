@@ -85,8 +85,9 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         
         // Accessibility
         // Voice Over
-        optionModView.accessibilityElements = [back!, optionModTitle!, collectionView]
+        optionModView.accessibilityElements = [back!, optionModTitle!, optionalExtraLabel!, collectionView]
         optionModTitle.accessibilityLabel = optionType
+        optionalExtraLabel.accessibilityLabel = optionalExtraLabel.text
         //Dynamic Text
         setFontStyle()
     }
