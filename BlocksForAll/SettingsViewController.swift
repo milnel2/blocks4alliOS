@@ -115,11 +115,13 @@ class SettingsViewController: UIViewController {
     /// Given a float, sets text for block size label
     private func updateBlockSizeLabel (value : Float) {
         blockSizeLabel.text = "Block Size = \(Int(value))"
+        blockSizeLabel.accessibilityValue = "= \(Int(value))"
     }
     
     /// Given an int, sets text for block size label
     private func updateBlockSizeLabel (value : Int) {
         blockSizeLabel.text = "Block Size = \(value)"
+        blockSizeLabel.accessibilityValue = "= \(Int(value))"
     }
 
 }
