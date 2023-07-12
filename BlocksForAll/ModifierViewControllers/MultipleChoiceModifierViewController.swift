@@ -90,7 +90,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         
         // Accessibility
         // Voice Over
-        optionModView.accessibilityElements = [back!, optionModTitle!, optionalExtraLabel!, collectionView]
+        optionModView.accessibilityElements = [back!, optionModTitle!, optionalExtraLabel!, collectionView!]
         optionModTitle.accessibilityLabel = optionType
         optionalExtraLabel.accessibilityLabel = optionalExtraLabel.text
         //Dynamic Text
@@ -104,7 +104,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = CGSize(width: CGFloat(buttonSize), height: CGFloat(buttonSize))
+        let size = CGSize(width: CGFloat(buttonSize), height: CGFloat(buttonSize))
         return size
     }
       
