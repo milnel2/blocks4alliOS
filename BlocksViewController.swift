@@ -54,6 +54,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     // Block variables
     private var blocksBeingMoved = [Block]()  // Blocks currently being moved (includes nested blocks)
+    private var indexOfMovingBlock = -1 // Variable that tracks where block originally was from in the workspace, used to place block back in workspace if move is stopped (navigate to a different screen) set to -1 if moving block is from toolbox
     var blockSize = 150
     private let blockSpacing = 1
     private let startIndex = 0
@@ -123,11 +124,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Main Menu Segue
     @IBAction func goToMainMenu(_ sender: UIButton) {
-            performSegue(withIdentifier: "toMainMenu", sender: self)
+        finishMovingBlocks()
+        performSegue(withIdentifier: "toMainMenu", sender: self)
     }
     
     /// Main Workspace Segue
     @IBAction func goToMainWorkspace(_ sender: Any) {
+        finishMovingBlocks()
         currentWorkspace = "Main Workspace"
         //Segues from the main workspace to itself to reload the view (switches from functions workspace to main)
         performSegue(withIdentifier: "mainToMain", sender: self)
@@ -323,9 +326,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // MARK: - Block Selection Delegate functions
     /// Called when blocks are placed in workspace, so clears blocksBeingMoved
     func finishMovingBlocks() {
+        //TODO add in logic to place moving blocks at original location
+        if indexOfMovingBlock != -1{
+            print("moving stopped, place blocks at " , indexOfMovingBlock)
+            addBlocks(blocksBeingMoved, at: indexOfMovingBlock)
+        }
         movingBlocks = false
         blocksBeingMoved.removeAll()
         changePlayTrashButton()  // Toggling the play/trash button
+        indexOfMovingBlock = -1
         
         // Remove the arrow in the workspace when blocks are done moving
         if arrowToPlaceFirstBlock != nil {
@@ -379,13 +388,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Determine what to do based on the state of the play button when it was clicked. Delete blocks if moving blocks, stop blocks if stopIsOption, or play program.
     @IBAction func playButtonClicked(_ sender: Any) {
-        print("in playButtonClicked")
+        finishMovingBlocks()
         if (movingBlocks)
             { trashClicked() }
         else if stopIsOption
             { stopClicked() }
         else {
-            print("in play clicked")
             playClicked()
         }
     }
@@ -429,7 +437,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Stop the program
     private func stopClicked() {
-        print("in stop clicked")
         self.executingProgram = nil
         programHasCompleted()
     }
@@ -439,7 +446,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         movingBlocks = false
         stopIsOption = false
         changePlayTrashButton()
-        print("robot running false")
         robotRunning = false
         
         // reenable modifier blocks
@@ -460,6 +466,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Called after selecting a place to add a block to the workspace, makes accessibility announcements and place blocks in the blockProgram stack, etc...
     private func addBlocks(_ blocks: [Block], at index: Int) {
+        indexOfMovingBlock = -1
         //change for beginning
         var announcement = ""
         if (index != 0) {
@@ -644,6 +651,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return cell
     }
     
+    //selects a block to be moved in the workspace
     func selectBlock (block myBlock:Block, location blocksStackIndex:Int ){
         if myBlock.double == true {
             var indexOfCounterpart = -1
@@ -694,31 +702,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         movingBlocks = false
                         return
                     }
-                    
-//                    if myBlock.double == true {
-//                        var indexOfCounterpart = -1
-//                        var blockcounterparts = [Block]()
-//                        for i in 0..<functionsDict[currentWorkspace]!.count {
-//                            for block in myBlock.counterpart{
-//                                if block === functionsDict[currentWorkspace]![i]{
-//                                    indexOfCounterpart = i
-//                                    blockcounterparts.append(block)
-//                                }
-//                            }
-//                        }
-//                        var indexPathArray = [IndexPath]()
-//                        var tempBlockStack = [Block]()
-//                        for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
-//                            indexPathArray += [IndexPath.init(row: i, section: 0)]
-//                            tempBlockStack += [functionsDict[currentWorkspace]![i]]
-//                        }
-//                        blocksBeingMoved = tempBlockStack
-//                        functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
-//                    } else { //only a single block to be removed
-//                        blocksBeingMoved = [functionsDict[currentWorkspace]![blocksStackIndex]]
-//                        functionsDict[currentWorkspace]!.remove(at: blocksStackIndex)
-//                    }
                     selectBlock(block: myBlock, location: blocksStackIndex)
+                    indexOfMovingBlock = blocksStackIndex
                     
                     
                     let mySelectedBlockVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectedBlockViewController") as! SelectedBlockViewController

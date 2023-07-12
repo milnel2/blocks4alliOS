@@ -419,7 +419,7 @@ For further information on Blocks4All, please visit our website. For further det
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLJ-MJ-LN5">
-                                <rect key="frame" x="123" y="265.5" width="838" height="418.5"/>
+                                <rect key="frame" x="100" y="237.5" width="885" height="497.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                 <connections>
@@ -437,16 +437,16 @@ For further information on Blocks4All, please visit our website. For further det
                         <constraints>
                             <constraint firstItem="gVq-QZ-GAv" firstAttribute="top" secondItem="6i5-m2-CBz" secondAttribute="bottom" constant="-125" id="3Gi-20-mXb"/>
                             <constraint firstItem="Kj3-mC-EmF" firstAttribute="top" secondItem="6Hh-dq-UJ7" secondAttribute="top" id="84v-uf-aUD"/>
-                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="top" secondItem="gVq-QZ-GAv" secondAttribute="bottom" constant="78" id="9dP-ly-9qK"/>
+                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="top" secondItem="gVq-QZ-GAv" secondAttribute="bottom" constant="50" id="9dP-ly-9qK"/>
                             <constraint firstItem="Kj3-mC-EmF" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leading" id="9rE-ws-0EE"/>
                             <constraint firstItem="gVq-QZ-GAv" firstAttribute="centerX" secondItem="6Hh-dq-UJ7" secondAttribute="centerX" constant="2" id="Lv1-Rf-Xpo"/>
-                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leading" constant="123" id="OUu-2f-8vs"/>
+                            <constraint firstItem="QLJ-MJ-LN5" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leading" constant="100" id="OUu-2f-8vs"/>
                             <constraint firstItem="6i5-m2-CBz" firstAttribute="leading" secondItem="6Hh-dq-UJ7" secondAttribute="leadingMargin" constant="30" id="YTX-SA-EWr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gVq-QZ-GAv" secondAttribute="trailing" constant="255" id="biY-oh-R04"/>
                             <constraint firstItem="6i5-m2-CBz" firstAttribute="top" secondItem="Yhr-81-ujC" secondAttribute="bottom" constant="50" id="dwZ-FD-v1t"/>
                             <constraint firstAttribute="bottom" secondItem="Kj3-mC-EmF" secondAttribute="bottom" id="iyv-Td-srH"/>
-                            <constraint firstItem="Zck-g6-6V2" firstAttribute="top" secondItem="QLJ-MJ-LN5" secondAttribute="bottom" constant="126" id="j5L-BI-hYW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="QLJ-MJ-LN5" secondAttribute="trailing" constant="99" id="jX1-fW-6ph"/>
+                            <constraint firstItem="Zck-g6-6V2" firstAttribute="top" secondItem="QLJ-MJ-LN5" secondAttribute="bottom" constant="75" id="j5L-BI-hYW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QLJ-MJ-LN5" secondAttribute="trailing" constant="75" id="jX1-fW-6ph"/>
                             <constraint firstAttribute="trailing" secondItem="Kj3-mC-EmF" secondAttribute="trailing" id="mAS-Zm-8ED"/>
                         </constraints>
                     </view>
