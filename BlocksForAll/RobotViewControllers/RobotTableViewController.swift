@@ -17,6 +17,7 @@ var robotManager:WWRobotManager? = nil
 var robots = [WWRobot]()
 var dotRobotIsConnected = false
 
+
 class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
     /* Shows the available robots to connect to in a tableView on the Add Robots screen*/
     //MARK: - viewDidLoad function
@@ -64,10 +65,13 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         // Spacing between each cell
         let verticalPadding: CGFloat = 4
         
+        tableView.contentInset.bottom = -verticalPadding
+        
         let maskLayer = CALayer()
         maskLayer.backgroundColor = UIColor.black.cgColor
         maskLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 0, dy: verticalPadding / 2)
         cell.layer.mask = maskLayer
+        
         
         // From WW sample code
         let robot = robots[indexPath.row]
@@ -95,7 +99,6 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
 //        }
         // Add highlight to cell when robot is connected
         if(robot.isConnected()) {
-        
             cell.layer.borderWidth = 10
             cell.layer.borderColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
             cell.accessibilityLabel =  robot.name + "Connected"
