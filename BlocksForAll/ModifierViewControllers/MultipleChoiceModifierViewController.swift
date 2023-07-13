@@ -31,7 +31,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
            "Emotion Noise" : ["bragging", "confused", "giggle", "grunt", "sigh", "snore", "surprised", "yawn" ,"random emotion"],
            "Object Noise": ["laser", "squeak", "trumpet", "random object"],
            "Vehicle Noise": ["airplane", "beep", "boat", "helicopter", "siren", "speed boost", "start engine", "tire squeal", "train" ,"random vehicle"],
-           "Speak" : ["hi", "bye", "cool", "haha", "huh", "let's go", "oh", "wow", "tah dah!", "uh huh", "uh oh", "wah", "wee hee!", "wee", "wow", "yippe!" ,"random word"],
+           "Speak" : ["hi", "bye", "cool", "haha", "huh", "let's go", "oh", "wow", "tah dah!", "uh huh", "uh oh", "wah", "wee hee!", "wow", "yippe!" ,"random word"],
            "Set Right Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
            "Set Left Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
            "Set Front Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],

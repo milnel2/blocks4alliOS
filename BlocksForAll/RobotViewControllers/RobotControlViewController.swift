@@ -337,7 +337,7 @@ class ExecutingProgram {
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEEHEE)
             case "yippe!":
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_YIPPE)
-            case "wee":
+            case "wee": // wee sound does not work
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEE)
             case "random word":
                 playNoise(myAction: myAction, sound: speakSoundFiles[.random(in: speakSoundFiles.indices)])
