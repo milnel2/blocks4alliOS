@@ -7,6 +7,39 @@
 //
 
 import UIKit
+import SwiftUI
+
+// Make stripe pattern for blocks in toolbox that are unavailable for Dot robots
+// From https://stackoverflow.com/questions/39182041/how-to-fill-a-uiview-with-an-alternating-stripe-pattern-programmatically-using-s
+
+extension UIColor {
+    
+    /// make a diagonal striped pattern
+    func patternStripes(color2: UIColor = .white, barThickness t: CGFloat = 25.0) -> UIColor {
+        let dim: CGFloat = t * 2.0 * sqrt(2.0)
+
+        let img = UIGraphicsImageRenderer(size: .init(width: dim, height: dim)).image { context in
+
+            // rotate the context and shift up
+            context.cgContext.rotate(by: CGFloat.pi / 4.0)
+            context.cgContext.translateBy(x: 0.0, y: -2.0 * t)
+
+            let bars: [(UIColor,UIBezierPath)] = [
+                (self,  UIBezierPath(rect: .init(x: 0.0, y: 0.0, width: dim * 2.0, height: t))),
+                (color2,UIBezierPath(rect: .init(x: 0.0, y: t, width: dim * 2.0, height: t)))
+            ]
+
+            bars.forEach {  $0.0.setFill(); $0.1.fill() }
+            
+            // move down and paint again
+            context.cgContext.translateBy(x: 0.0, y: 2.0 * t)
+            bars.forEach {  $0.0.setFill(); $0.1.fill() }
+        }
+        
+        return UIColor(patternImage: img)
+    }
+}
+
 
 /// The Toolbox menu that allows you to select the block type (e.g. sounds, drive, etc.).
 class BlocksTypeTableViewController: UITableViewController {
@@ -78,6 +111,7 @@ class BlocksTypeTableViewController: UITableViewController {
         cell.accessibilityLabel = blockType.name + " category"
         cell.accessibilityHint = "Double tap to explore blocks in this category"
         
+
         // Option to add an icon to the toollbox blocks.
         // The icon should be roughly 80 x 80 pixels.
         if cell.textLabel != nil {
@@ -95,12 +129,13 @@ class BlocksTypeTableViewController: UITableViewController {
             }
         }
         
+      
         // Makes the categories that Dot cannot use deactivate
         if dotRobotIsConnected {
             // TODO make this a property of the block instead
             switch cell.textLabel?.text {
             case "Drive", "Motion":
-                cell.backgroundColor = cell.backgroundColor?.withAlphaComponent(0.25)
+                cell.backgroundColor = UIColor.gray.patternStripes(color2: .darkGray)
                 if #available(iOS 13.0, *) {
                     cell.accessibilityRespondsToUserInteraction = false
                 }
