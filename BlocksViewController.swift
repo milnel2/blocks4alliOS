@@ -54,7 +54,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     // Block variables
     private var blocksBeingMoved = [Block]()  // Blocks currently being moved (includes nested blocks)
-    private var indexOfMovingBlock = -1 // Variable that tracks where block originally was from in the workspace, used to place block back in workspace if move is stopped (navigate to a different screen) set to -1 if moving block is from toolbox
+    private var indexOfMovingBlock: Int? = nil  // Optional Variable that tracks where block originally was from in the workspace, used to place block back in workspace if move is stopped (navigate to a different screen) set to nil if moving block is from toolbox
     var blockSize = 150
     private let blockSpacing = 1
     private let startIndex = 0
@@ -326,16 +326,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // MARK: - Block Selection Delegate functions
     /// Called when blocks are placed in workspace, so clears blocksBeingMoved
     func finishMovingBlocks() {
-        //TODO add in logic to place moving blocks at original location
-        if indexOfMovingBlock != -1{
-            print("moving stopped, place blocks at " , indexOfMovingBlock)
-            addBlocks(blocksBeingMoved, at: indexOfMovingBlock)
+        if indexOfMovingBlock != nil {  // Replaces the block in the Workspace if it is from the workspace
+            print("moving stopped, place blocks at " , indexOfMovingBlock!)
+            addBlocks(blocksBeingMoved, at: indexOfMovingBlock!)
         }
         movingBlocks = false
         blocksBeingMoved.removeAll()
         changePlayTrashButton()  // Toggling the play/trash button
-        indexOfMovingBlock = -1
-        
+        indexOfMovingBlock = nil
+
         // Remove the arrow in the workspace when blocks are done moving
         if arrowToPlaceFirstBlock != nil {
             arrowToPlaceFirstBlock?.removeFromSuperview()
@@ -346,6 +345,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// Called when blocks have been selected to be moved, saves them to blocksBeingMoved
     /// - Parameter blocks: blocks selected to be moved
     func beginMovingBlocks(_ blocks: [Block]) {
+        print("moving block")
         movingBlocks = true
         blocksBeingMoved = blocks
         blocksProgram.reloadData()
@@ -388,7 +388,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Determine what to do based on the state of the play button when it was clicked. Delete blocks if moving blocks, stop blocks if stopIsOption, or play program.
     @IBAction func playButtonClicked(_ sender: Any) {
-        finishMovingBlocks()
         if (movingBlocks)
             { trashClicked() }
         else if stopIsOption
@@ -400,6 +399,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     /// Run the actual program when the trash button is clicked
     private func trashClicked() {
+        indexOfMovingBlock = nil
         let announcement = blocksBeingMoved[0].name + " placed in trash."
         playTrashToggleButton.accessibilityLabel = announcement
         self.containerViewController?.popViewController(animated: false)
@@ -466,7 +466,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Called after selecting a place to add a block to the workspace, makes accessibility announcements and place blocks in the blockProgram stack, etc...
     private func addBlocks(_ blocks: [Block], at index: Int) {
-        indexOfMovingBlock = -1
         //change for beginning
         var announcement = ""
         if (index != 0) {
@@ -475,6 +474,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         } else {
             announcement = blocks[0].name + " placed at beginning"
         }
+        indexOfMovingBlock = nil
         makeAnnouncement(announcement)
         
         //add a completion block here
@@ -822,6 +822,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 // <angle>°
                 text = "\(text)\u{00B0}"
                 modifierInformation = text
+                button.titleLabel?.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 36.0)
+            } else if attributeName == "timesToRepeat" {
+                button.titleLabel?.sizeToFit()
             } else if attributeName == "distance" {  // drive forward and backwards blocks
                 if defaults.integer(forKey: "showText") == 0 {  // show icon mode
                     
