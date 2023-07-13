@@ -205,8 +205,6 @@
 	</dict>
 	<key>Set Variable</key>
 	<dict>
-		<key>attributeName</key>
-		<string>variableSelected</string>
 		<key>default</key>
 		<string>Orange</string>
 		<key>secondAttributeName</key>
@@ -217,6 +215,10 @@
 		<string>Double tap to set variable value</string>
 		<key>displaysText</key>
 		<string>true</string>
+		<key>attributeName</key>
+		<string>variableSelected</string>
+		<key>imagePath</key>
+		<string>variableModifierBackground</string>
 	</dict>
 	<key>Drive</key>
 	<dict>

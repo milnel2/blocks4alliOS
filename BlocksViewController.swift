@@ -751,60 +751,103 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         let button = createModifierCustomButton() // set up button sizing and layering
         
         // modifiers for if and repeat blocks are a bit different than other blocks
-        if name == "If" {
-            switch placeHolderBlock.attributes["booleanSelected"] {
-            case "Hear voice":
-                modifierInformation = "robot hears voice"
-            case "Obstacle sensed":
-                modifierInformation = "robot senses obstacle"
-            default:
-                modifierInformation = "false"
-                placeHolderBlock.attributes[attributeName] = "false"
-            }
-        } else if name == "Repeat" {
+//        if name == "If" {
+//            switch placeHolderBlock.attributes["booleanSelected"] {
+//            case "Hear voice":
+//                modifierInformation = "robot hears voice"
+//            case "Obstacle sensed":
+//                modifierInformation = "robot senses obstacle"
+//            default:
+//                modifierInformation = "false"
+//                placeHolderBlock.attributes[attributeName] = "false"
+//            }
+//        } else
+        if name == "Repeat" {
             modifierInformation = "\(placeHolderBlock.attributes[attributeName]!) times"
         }
-        // choose image path
-        var image: UIImage?
-        if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
-            image = UIImage(named: imagePath!)
-            if image != nil { // make sure that the image actually exists
-                button.setBackgroundImage(image, for: .normal)
-            } else { // print error
-                print("Image file not found: \(imagePath!)")
-                button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-            }
-        } else {
-            // blocks that don't have an imagePath in the dictionary have an image based on their attribute (ex. cat and bragging sounds)
-            if secondAttributeName != "variableValue" {
-                image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
-                if secondAttributeName != nil && secondDefault != nil
+        
+        if defaults.value(forKey: "showText") as! Int == 0 || (displaysText == "true" && defaults.value(forKey: "showText") as! Int == 1) {  // show icon is on
+            // choose image path
+            var image: UIImage?
+            if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
+                image = UIImage(named: imagePath!)
+                if image != nil { // make sure that the image actually exists
+                    button.setBackgroundImage(image, for: .normal)
+                } else { // print error
+                    print("Image file not found: \(imagePath!)")
+                    button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                }
+            } else {
+                // blocks that don't have an imagePath in the dictionary have an image based on their attribute (ex. cat and bragging sounds)
+                if secondAttributeName != "variableValue" {
+                    image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                    if secondAttributeName != nil && secondDefault != nil
                     { image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)") }
-                // handle show icon or show text for modifiers that change depending on the settings
-                if defaults.integer(forKey: "showText") == 1 && showTextImage != nil {
-                    image = UIImage(named: showTextImage!) // show text image
-                }
-                if image != nil {  // make sure that the image actually exists
-                    button.setBackgroundImage(image, for: .normal)
-                } else {
-                    print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
-                    button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-                }
-            } else if defaults.value(forKey: "showText") as! Int == 0 {
-                // set variable modifier blocks are a bit different than other modifier blocks
-                image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)Icon") // these special images are called (fruitName)Icon (ex. AppleIcon)
-                if image != nil {  // make sure that the image actually exists
-                    button.setBackgroundImage(image, for: .normal)
-                } else {
-                    print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
-                    button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                    // handle show icon or show text for modifiers that change depending on the settings
+                    if defaults.integer(forKey: "showText") == 1 && showTextImage != nil {
+                        image = UIImage(named: showTextImage!) // show text image
+                    }
+                    if image != nil {  // make sure that the image actually exists
+                        button.setBackgroundImage(image, for: .normal)
+                    } else {
+                        print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                        button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                    }
+                } else if defaults.value(forKey: "showText") as! Int == 0 {
+                    // set variable modifier blocks are a bit different than other modifier blocks
+                    image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)Icon") // these special images are called (fruitName)Icon (ex. AppleIcon)
+                    if image != nil {  // make sure that the image actually exists
+                        button.setBackgroundImage(image, for: .normal)
+                    } else {
+                        print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                        button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                    }
                 }
             }
+        } else if displaysText != "true" {  // show text is on
+            // No image was found and/or Show Text is on
+            // set up fonts before setting the text
+            button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
+            button.titleLabel?.adjustsFontForContentSizeCategory = true
+            
+            if #available(iOS 13.0, *) {
+                button.setTitleColor(.label, for: .normal)
+            } else {
+                button.setTitleColor(.black, for: .normal)
+            }
+            
+            var colorPath: String = ""
+            if name.contains("Light Color") || name.contains("Lights Color") {
+                // light modifiers have a different color for each button, so there is a different naming convention
+                colorPath = "\(modifierInformation)OpaqueColor"
+            } else {
+                let backgroundImagePath = "\(attributeName)Background"
+                let backgroundImage = UIImage(named: backgroundImagePath)
+                if backgroundImage != nil {
+                    button.setBackgroundImage(backgroundImage, for: .normal)
+                } else {
+                    button.backgroundColor =  UIColor(named: "whiteOpaqueColor")
+                }
+            }
+            if colorPath != "" {
+                let myUIColor = UIColor(named: colorPath)
+                button.backgroundColor = myUIColor ?? UIColor(named: "whiteOpaqueColor")
+            }
+            
+            if attributeName == "booleanSelected" || attributeName == "eyeLight" {
+                button.backgroundColor = UIColor(named: "whiteOpaqueColor") ?? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            }
+            button.layer.cornerRadius = 20
+            // add button rounded border
+
+            
+            button.setTitle(modifierInformation.capitalized, for: .normal)
+            button.titleLabel?.numberOfLines = 2
+            button.titleLabel?.lineBreakMode = .byWordWrapping
         }
         
         // modifier blocks that display text on them (ex. turn left shows the degrees)
         if displaysText == "true" {
-            
             // set up fonts before setting the text
             button.titleLabel?.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 26.0)
             button.titleLabel?.adjustsFontForContentSizeCategory = true
@@ -898,6 +941,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // the main part of the block is focused first, then the modifier button
         cell.accessibilityElements = [blockView, button]
         button.accessibilityLabel = modifierInformation
+        
     }
     
     /// Gets values for modifier blocks from a dictionary and returns them as a tuple. Prints errors if properties cannot be found

@@ -68,48 +68,91 @@ class SelectedBlockViewController: UIViewController {
         // the current state of the block modifier - used for voiceOver
         //TODO: should this be added back in?
         //        var modifierInformation = placeHolderBlock.attributes[attributeName] ?? nil
-        
-        // choose image path
-        var image: UIImage?
-        if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
-            image = UIImage(named: imagePath!)
-            
-            if image != nil { // make sure that the image actually exists
-                modifierButton.setBackgroundImage(image, for: .normal)
-            } else { // print error
-                print("Image file not found: \(imagePath!)")
-                modifierButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-            }
-        } else {
-            // blocks that don't have an imagePath in the dictionary have an image based on their attribute (ex. cat and bragging sounds)
-            if secondAttributeName != "variableValue" {
-                image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
-                if secondAttributeName != nil && secondDefault != nil
-                { image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)") }
+        if defaults.value(forKey: "showText") as! Int == 0 || (displaysText == "true" && defaults.value(forKey: "showText") as! Int == 1) { // show icons is on
+            // choose image path
+            var image: UIImage?
+            if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
+                image = UIImage(named: imagePath!)
                 
-                // handle show icon or show text for modifiers that change depending on the settings
-                if defaults.integer(forKey: "showText") == 1 && showTextImage != nil{
-                    // show text image
-                    image = UIImage(named: showTextImage!)
-                }
-                if image != nil {  // make sure that the image actually exists
+                if image != nil { // make sure that the image actually exists
                     modifierButton.setBackgroundImage(image, for: .normal)
-                } else {
-                    print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                } else { // print error
+                    print("Image file not found: \(imagePath!)")
                     modifierButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                 }
-            } else if defaults.value(forKey: "showText") as! Int == 0 {
-                // set variable modifier blocks are a bit different than other modifier blocks
-                image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)Icon") // these special images are called (fruitName)Icon (ex. AppleIcon)
-                if image != nil {  // make sure that the image actually exists
-                    modifierButton.setBackgroundImage(image, for: .normal)
-                } else {
-                    print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
-                    modifierButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            } else {
+                // blocks that don't have an imagePath in the dictionary have an image based on their attribute (ex. cat and bragging sounds)
+                if secondAttributeName != "variableValue" {
+                    image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                    if secondAttributeName != nil && secondDefault != nil
+                    { image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)") }
+                    
+                    // handle show icon or show text for modifiers that change depending on the settings
+                    if defaults.integer(forKey: "showText") == 1 && showTextImage != nil{
+                        // show text image
+                        image = UIImage(named: showTextImage!)
+                    }
+                    if image != nil {  // make sure that the image actually exists
+                        modifierButton.setBackgroundImage(image, for: .normal)
+                    } else {
+                        print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                        modifierButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                    }
+                } else if defaults.value(forKey: "showText") as! Int == 0 {
+                    // set variable modifier blocks are a bit different than other modifier blocks
+                    image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)Icon") // these special images are called (fruitName)Icon (ex. AppleIcon)
+                    if image != nil {  // make sure that the image actually exists
+                        modifierButton.setBackgroundImage(image, for: .normal)
+                    } else {
+                        print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                        modifierButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                    }
                 }
             }
+        } else if displaysText != "true" {  // show text is on
+            // No image was found and/or Show Text is on
+            // set up fonts before setting the text
+            modifierButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
+            modifierButton.titleLabel?.adjustsFontForContentSizeCategory = true
+            
+            if #available(iOS 13.0, *) {
+                modifierButton.setTitleColor(.label, for: .normal)
+            } else {
+                modifierButton.setTitleColor(.black, for: .normal)
+            }
+            
+            var colorPath: String = ""
+            if name.contains("Light Color") || name.contains("Lights Color") {
+                // light modifiers have a different color for each button, so there is a different naming convention
+                colorPath = "yellowOpaqueColor"
+            } else {
+                let backgroundImagePath = "\(attributeName)Background"
+                let backgroundImage = UIImage(named: backgroundImagePath)
+                if backgroundImage != nil {
+                    modifierButton.setBackgroundImage(backgroundImage, for: .normal)
+                } else {
+                    modifierButton.backgroundColor =  UIColor(named: "whiteOpaqueColor")
+                }
+            }
+            if colorPath != "" {
+                let myUIColor = UIColor(named: colorPath)
+                modifierButton.backgroundColor = myUIColor ??  UIColor(named: "whiteOpaqueColor")
+            }
+            
+            if attributeName == "booleanSelected" || attributeName == "eyeLight" {
+                modifierButton.backgroundColor = UIColor(named: "whiteOpaqueColor") ?? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            }
+           
+            modifierButton.layer.cornerRadius = 20
+            // add button rounded border
+
+            modifierButton.setTitle(defaultValue.capitalized, for: .normal)
+            modifierButton.titleLabel?.numberOfLines = 2
+            modifierButton.titleLabel?.lineBreakMode = .byWordWrapping
         }
-        if displaysText == "true" { // modifier blocks that display text on them (ex. turn left)
+                                                               
+        if displaysText == "true" {
+            // modifier blocks that display text on them (ex. turn left)
             
             // set up fonts before setting the text
             modifierButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
@@ -139,7 +182,7 @@ class SelectedBlockViewController: UIViewController {
                 } else {
                     // show text mode
                     if modifierButton.titleLabel?.font.pointSize ?? 26 <= 34 {
-                        text = "30 cm, \nNormal)"
+                        text = "30 cm, \nNormal"
                     } else {
                         text = "30, \nNormal"
                     }
