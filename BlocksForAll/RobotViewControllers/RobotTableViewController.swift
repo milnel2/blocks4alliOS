@@ -30,9 +30,9 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         if(robotManager == nil) {
             robotManager = WWRobotManager()
             robotManager?.add(self)
+            robotManager?.startScanning(forRobots: 2.0)
         }
         
-        robotManager?.startScanning(forRobots: 2.0)
         if(!robots.isEmpty) {
             print(robots[0])
         }
@@ -106,13 +106,6 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
             cell.accessibilityLabel = "Click to connect to" + robot.name
         }
         
-        // Sets global variable to track if a Dot robot is connected
-        if robot.isConnected() && robot.robotType.description == "1002" {
-            dotRobotIsConnected = true
-        } else {
-            dotRobotIsConnected = false
-        }
-        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -131,6 +124,7 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
             // Otherwise, connect to the robot
             robotManager?.connect(to: robot)
         }
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -160,6 +154,18 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+        
+        // Sets global variable to track if JUST a Dot robot is connected
+        var connectedRobotTypes = [String]()
+        for connectedRobot in robots where connectedRobot.isConnected() {
+            connectedRobotTypes.append(connectedRobot.robotType.description)
+        }
+        print("HELLO", connectedRobotTypes)
+        if connectedRobotTypes.contains("1002") && !connectedRobotTypes.contains("1001") {
+            dotRobotIsConnected = true
+        } else {
+            dotRobotIsConnected = false
+        }
         //refreshConnectedRobots()
     }
     
@@ -183,6 +189,18 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
     func manager(_ manager: WWRobotManager!, didDisconnectRobot robot: WWRobot!) {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+        }
+        
+        // Sets global variable to track if JUST a Dot robot is connected
+        var connectedRobotTypes = [String]()
+        for connectedRobot in robots where connectedRobot.isConnected() {
+            connectedRobotTypes.append(connectedRobot.robotType.description)
+        }
+        print("HELLO", connectedRobotTypes)
+        if connectedRobotTypes.contains("1002") && !connectedRobotTypes.contains("1001") {
+            dotRobotIsConnected = true
+        } else {
+            dotRobotIsConnected = false
         }
     }
 }
