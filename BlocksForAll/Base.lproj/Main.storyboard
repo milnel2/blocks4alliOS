@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <accessibilityOverrides dynamicTypePreference="11"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -835,9 +835,10 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqa-ry-KPK">
-                                <rect key="frame" x="40" y="30" width="223" height="195"/>
+                                <rect key="frame" x="40" y="30" width="220" height="195"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="fj0-md-sZc"/>
                                     <constraint firstAttribute="height" constant="195" id="qHH-Lt-lUs"/>
                                 </constraints>
                                 <state key="normal" image="Back">
@@ -902,7 +903,6 @@ For further information on Blocks4All, please visit our website. For further det
                         <constraints>
                             <constraint firstItem="ukk-FT-0dn" firstAttribute="top" secondItem="3dn-sh-pry" secondAttribute="bottom" constant="131" id="1dm-IJ-w6O"/>
                             <constraint firstItem="aXq-Lg-wuF" firstAttribute="centerX" secondItem="33V-6u-7DC" secondAttribute="centerX" id="6rW-Z1-Upy"/>
-                            <constraint firstItem="M3X-6I-Kgi" firstAttribute="leading" secondItem="Rqa-ry-KPK" secondAttribute="trailing" constant="213" id="73X-5M-hQ3"/>
                             <constraint firstItem="33V-6u-7DC" firstAttribute="top" secondItem="Rqa-ry-KPK" secondAttribute="bottom" constant="30" id="F7f-Mb-G6X"/>
                             <constraint firstAttribute="trailing" secondItem="MuZ-k8-W3G" secondAttribute="trailing" constant="129" id="PFX-hv-V1r"/>
                             <constraint firstItem="3dn-sh-pry" firstAttribute="top" secondItem="aXq-Lg-wuF" secondAttribute="bottom" constant="82" id="VOm-Qi-dDg"/>
@@ -966,7 +966,7 @@ For further information on Blocks4All, please visit our website. For further det
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Angle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPI-lo-vAq">
-                                <rect key="frame" x="498" y="203" width="84.5" height="81"/>
+                                <rect key="frame" x="497.5" y="203" width="85" height="81"/>
                                 <accessibility key="accessibilityConfiguration" hint="How much should the robot turn" label="Angle"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="81" id="oFI-xf-e4P"/>
@@ -983,9 +983,10 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jM-yw-zZG">
-                                <rect key="frame" x="40" y="30" width="220.5" height="195"/>
+                                <rect key="frame" x="40" y="30" width="220" height="195"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="JfU-V3-KjP"/>
                                     <constraint firstAttribute="height" constant="195" id="d3a-J0-lnv"/>
                                 </constraints>
                                 <state key="normal" image="Back">
@@ -1016,7 +1017,6 @@ For further information on Blocks4All, please visit our website. For further det
                             <constraint firstItem="hik-92-oYa" firstAttribute="top" secondItem="52s-Ei-stU" secondAttribute="bottom" constant="332" id="L8I-CH-zfQ"/>
                             <constraint firstItem="4jM-yw-zZG" firstAttribute="leading" secondItem="0me-MT-hwN" secondAttribute="leadingMargin" constant="20" id="MQe-PP-WWF"/>
                             <constraint firstItem="vPI-lo-vAq" firstAttribute="centerX" secondItem="0me-MT-hwN" secondAttribute="centerX" id="QMc-Gu-N8F"/>
-                            <constraint firstItem="vPI-lo-vAq" firstAttribute="leading" secondItem="4jM-yw-zZG" secondAttribute="trailing" constant="237.5" id="ST7-T6-lY1"/>
                             <constraint firstItem="52s-Ei-stU" firstAttribute="leading" secondItem="HuR-8Y-sXT" secondAttribute="trailing" constant="8" symbolic="YES" id="Wf5-3O-N28"/>
                             <constraint firstItem="HuR-8Y-sXT" firstAttribute="centerX" secondItem="0me-MT-hwN" secondAttribute="centerX" id="WuE-FK-ZY1"/>
                             <constraint firstItem="vPI-lo-vAq" firstAttribute="top" secondItem="pSJ-xI-sbp" secondAttribute="bottom" constant="203" id="Zj2-sd-Xx8"/>
@@ -1206,11 +1206,11 @@ For further information on Blocks4All, please visit our website. For further det
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iih-8Y-Qzv">
-                                <rect key="frame" x="40" y="30" width="211" height="195"/>
+                                <rect key="frame" x="40" y="30" width="220" height="195"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="195" id="6Gj-7f-euP"/>
-                                    <constraint firstAttribute="width" constant="211" id="yuo-pC-Bd4"/>
+                                    <constraint firstAttribute="width" constant="220" id="yuo-pC-Bd4"/>
                                 </constraints>
                                 <state key="normal" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1672,13 +1672,13 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView autoresizesSubviews="NO" opaque="NO" contentMode="center" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="nZi-qD-DBG">
-                                <rect key="frame" x="267" y="368" width="546" height="274"/>
+                                <rect key="frame" x="266.5" y="368" width="547" height="274.5"/>
                                 <subviews>
                                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="center" spacing="280" translatesAutoresizingMaskIntoConstraints="NO" id="vAj-Po-emI">
-                                        <rect key="frame" x="0.0" y="0.0" width="546" height="133"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="547" height="133.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywf-kX-izT">
-                                                <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133.5" height="133.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Ywf-kX-izT" secondAttribute="height" multiplier="1:1" id="6lW-3e-zEa"/>
                                                 </constraints>
@@ -1691,7 +1691,7 @@ For further information on Blocks4All, please visit our website. For further det
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7e-AE-Lha">
-                                                <rect key="frame" x="413" y="0.0" width="133" height="133"/>
+                                                <rect key="frame" x="413.5" y="0.0" width="133.5" height="133.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="S7e-AE-Lha" secondAttribute="height" multiplier="1:1" id="9vR-dU-vYc"/>
                                                 </constraints>
@@ -1706,7 +1706,7 @@ For further information on Blocks4All, please visit our website. For further det
                                         </subviews>
                                     </stackView>
                                     <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" text="TWO OPTION VALUE" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwb-pX-XHB">
-                                        <rect key="frame" x="0.0" y="233" width="546" height="41"/>
+                                        <rect key="frame" x="0.0" y="233.5" width="547" height="41"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
