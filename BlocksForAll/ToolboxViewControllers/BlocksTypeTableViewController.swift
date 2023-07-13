@@ -10,6 +10,8 @@ import UIKit
 import SwiftUI
 
 // Make stripe pattern for blocks in toolbox that are unavailable for Dot robots
+// From https://stackoverflow.com/questions/39182041/how-to-fill-a-uiview-with-an-alternating-stripe-pattern-programmatically-using-s
+
 extension UIColor {
     
     /// make a diagonal striped pattern
