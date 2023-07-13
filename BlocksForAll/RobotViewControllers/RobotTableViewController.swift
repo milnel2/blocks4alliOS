@@ -30,8 +30,8 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         if(robotManager == nil) {
             robotManager = WWRobotManager()
             robotManager?.add(self)
-            robotManager?.startScanning(forRobots: 2.0)
         }
+        robotManager?.startScanning(forRobots: 2.0)
         
         if(!robots.isEmpty) {
             print(robots[0])
