@@ -806,7 +806,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if displaysText == "true" {
             
             // set up fonts before setting the text
-            button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
+            button.titleLabel?.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 26.0)
             button.titleLabel?.adjustsFontForContentSizeCategory = true
             if #available(iOS 13.0, *) {
                 button.setTitleColor(.label, for: .normal)
@@ -822,9 +822,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 // <angle>°
                 text = "\(text)\u{00B0}"
                 modifierInformation = text
-                button.titleLabel?.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 36.0)
+                button.titleLabel?.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 28.0)
             } else if attributeName == "timesToRepeat" {
-                button.titleLabel?.sizeToFit()
+                button.titleLabel?.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 42.0)
             } else if attributeName == "distance" {  // drive forward and backwards blocks
                 if defaults.integer(forKey: "showText") == 0 {  // show icon mode
                     
