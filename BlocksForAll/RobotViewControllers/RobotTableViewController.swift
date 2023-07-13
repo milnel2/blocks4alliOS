@@ -65,7 +65,9 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
         // Spacing between each cell
         let verticalPadding: CGFloat = 4
         
-        tableView.contentInset.bottom = -verticalPadding
+        tableView.contentInset.bottom = -verticalPadding/2
+        tableView.contentInset.top = -verticalPadding/2
+        
         
         let maskLayer = CALayer()
         maskLayer.backgroundColor = UIColor.black.cgColor
