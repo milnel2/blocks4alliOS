@@ -132,6 +132,7 @@ class BlocksTypeTableViewController: UITableViewController {
       
         // Makes the categories that Dot cannot use deactivate
         if dotRobotIsConnected {
+            // TODO make this a property of the block instead
             switch cell.textLabel?.text {
             case "Drive", "Motion":
                 cell.backgroundColor = UIColor.gray.patternStripes(color2: .darkGray)
