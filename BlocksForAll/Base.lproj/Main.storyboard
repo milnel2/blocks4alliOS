@@ -1513,9 +1513,8 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tE3-mB-f3X">
-                                <rect key="frame" x="117" y="253" width="844" height="557"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tE3-mB-f3X">
+                                <rect key="frame" x="120" y="271" width="840" height="539"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sno-HP-3aF">
                                     <size key="itemSize" width="128" height="128"/>
@@ -1528,12 +1527,16 @@ For further information on Blocks4All, please visit our website. For further det
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="tE3-mB-f3X" secondAttribute="trailing" constant="100" id="3Xr-Un-m25"/>
                             <constraint firstItem="M0M-a3-X3n" firstAttribute="centerX" secondItem="pcs-vo-2Zv" secondAttribute="centerX" id="KE8-Sf-h9H"/>
                             <constraint firstItem="AxI-El-jaR" firstAttribute="centerY" secondItem="7yj-Ik-X8W" secondAttribute="centerY" id="Tci-Sf-Plm"/>
                             <constraint firstItem="M0M-a3-X3n" firstAttribute="firstBaseline" secondItem="AxI-El-jaR" secondAttribute="baseline" constant="80" id="ZZ2-HN-VSy"/>
+                            <constraint firstItem="tE3-mB-f3X" firstAttribute="leading" secondItem="pcs-vo-2Zv" secondAttribute="leadingMargin" constant="100" id="gOC-b3-Ckb"/>
                             <constraint firstItem="AxI-El-jaR" firstAttribute="centerX" secondItem="pcs-vo-2Zv" secondAttribute="centerX" id="jFz-TI-JLs"/>
+                            <constraint firstItem="tE3-mB-f3X" firstAttribute="top" secondItem="AxI-El-jaR" secondAttribute="bottom" constant="102.5" id="kfY-mc-kFL"/>
                             <constraint firstItem="AxI-El-jaR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7yj-Ik-X8W" secondAttribute="trailing" constant="10" id="qmN-tc-qE0"/>
                             <constraint firstItem="7yj-Ik-X8W" firstAttribute="top" secondItem="pcs-vo-2Zv" secondAttribute="top" constant="30" id="reh-CS-3F1"/>
+                            <constraint firstItem="tE3-mB-f3X" firstAttribute="bottom" secondItem="pcs-vo-2Zv" secondAttribute="bottomMargin" id="xHO-IF-M5N"/>
                             <constraint firstItem="7yj-Ik-X8W" firstAttribute="leading" secondItem="pcs-vo-2Zv" secondAttribute="leadingMargin" constant="10" id="yr5-bp-os1"/>
                         </constraints>
                     </view>
