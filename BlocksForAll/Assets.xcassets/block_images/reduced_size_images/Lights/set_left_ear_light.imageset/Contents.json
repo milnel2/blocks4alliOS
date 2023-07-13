@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "set_right_ear_light.svg",
+      "filename" : "set_left_ear_light.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "dark-set_right_ear_light.svg",
+      "filename" : "dark-set_left_ear_light.svg",
       "idiom" : "universal"
     }
   ],
