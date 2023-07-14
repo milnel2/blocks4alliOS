@@ -123,5 +123,10 @@ class SettingsViewController: UIViewController {
         blockSizeLabel.text = "Block Size = \(value)"
         blockSizeLabel.accessibilityValue = "= \(Int(value))"
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationViewController = segue.destination as? AddRobotViewController {
+            destinationViewController.sentFromWorkspace = false
+        }
+    }
 }

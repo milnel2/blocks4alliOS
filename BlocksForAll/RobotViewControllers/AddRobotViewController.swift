@@ -9,6 +9,7 @@
 import UIKit
 
 class AddRobotViewController: UIViewController {
+    var sentFromWorkspace = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +18,10 @@ class AddRobotViewController: UIViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        if sentFromWorkspace{
+            performSegue(withIdentifier: "robotMenuToWorkspace", sender: self)
+        }else{
+            performSegue(withIdentifier: "robotMenuToSettings", sender: self)
+        }
     }
-
 }
