@@ -86,6 +86,7 @@ class BlockView: UIView, UITextFieldDelegate {
             if isModifierBlock {
                 image = imageWithImage(image: image!, scaledToSize: CGSize(width: blockSize, height: myViewHeight / 2))
                 imv = UIImageView.init(image: image)
+                imv.image = UIImage(named: imageName)
                 imv.layer.position.y = CGFloat((blockSize * 6) / 4)
                 if block.isInToolBox ?? false {  // center the image if the block is in the toolbox
                     imv.layer.position.x = CGFloat((myViewWidth) - ((blockSize * 4) / 5))
@@ -93,6 +94,7 @@ class BlockView: UIView, UITextFieldDelegate {
             } else {
                 image = imageWithImage(image: image!, scaledToSize: CGSize(width: blockSize, height: myViewHeight))
                 imv = UIImageView.init(image: image)
+                imv.image = UIImage(named: imageName)
                 imv.layer.position.y = CGFloat((blockSize / 2))
                 if block.isInToolBox ?? false {  // center the image if the block is in the toolbox
                     imv.layer.position.x = CGFloat((myViewWidth) - ((blockSize * 4) / 5))
