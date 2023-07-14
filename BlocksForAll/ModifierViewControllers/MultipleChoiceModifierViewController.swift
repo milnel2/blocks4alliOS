@@ -36,8 +36,8 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
            "Set Left Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
            "Set Front Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
            "Set All Lights Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
-           "Look Left or Right" : ["variableSelected", "Select Look Left or Right Variable\nMaximum and minimum:\nLeft = -120, Right = 120"],
-           "Look Up or Down" : ["variableSelected", "Select Look Up or Down Variable\nMaximum and minimum:\nUp = -20, Down = 7.5"],
+           "Look Left or Right" : ["variableSelected", "Select Look Left or Right Variable\nLeft = -120, Right = 120"],
+           "Look Up or Down" : ["variableSelected", "Select Look Up or Down Variable\nUp = -20, Down = 7.5"],
            "Turn" : ["variableSelected",  "Select turn variable"]]
     private let variableArray =  ["Orange", "Banana", "Apple", "Cherry", "Watermelon"] // the different variable choices for variable modifier screens
     private var items: [String] = [] // holds the specific array of modifier type strings accessed from the optionDictionary

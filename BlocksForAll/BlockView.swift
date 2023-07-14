@@ -10,7 +10,7 @@ import UIKit
 import AudioToolbox
 
 class BlockView: UIView, UITextFieldDelegate {
-    /*Given a block, creates the view that should be shown*/
+    /*Given a block, creates the view that should be shown - seems to create everything but the modifier button*/
     
     var blocks: [Block]
     var blockSize = 150
@@ -64,9 +64,6 @@ class BlockView: UIView, UITextFieldDelegate {
         } else {
             myViewWidth = blockSize
         }
-
-
-
         
         if isModifierBlock {
             myViewHeight = blockSize * 2
