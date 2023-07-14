@@ -834,11 +834,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 button.backgroundColor = myUIColor ?? UIColor(named: "whiteOpaqueColor")
             }
             
-            if attributeName == "booleanSelected" || attributeName == "eyeLight" {
-                button.backgroundColor = UIColor(named: "whiteOpaqueColor") ?? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            }
-            button.layer.cornerRadius = 20
-            // add button rounded border
+            
+            button.layer.cornerRadius = 20 // add button rounded border
 
             
             button.setTitle(modifierInformation.capitalized, for: .normal)
