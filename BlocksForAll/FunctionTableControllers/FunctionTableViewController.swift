@@ -15,7 +15,7 @@ class FunctionTableViewController: UITableViewController {
     var oldKey = [String]()
     var newKey = [String]()
 
-    var functions: [String] = Array(functionsDict.keys) // All the names of the functions a user creates
+    var functions: [String] = Array(functionsDict.keys) // All the names of the functions a user creates placed in an array instead of dictionary so has a set order
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +108,6 @@ class FunctionTableViewController: UITableViewController {
             
             // Create Yes button with action handler
             let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
-                print("yes button tapped")
                 functionsDict.removeValue(forKey: self.functions[deletionIndexPath.row])
                 self.functions.remove(at: deletionIndexPath.row)
                 self.tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
@@ -147,7 +146,7 @@ class FunctionTableViewController: UITableViewController {
         // Show alert
         let alert = UIAlertController(title: "Enter function name", message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
-            textField.placeholder = "Your file name"
+            textField.placeholder = "Your function name"
         }
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
@@ -164,6 +163,7 @@ class FunctionTableViewController: UITableViewController {
                         if block.name == oldFunctionName{
                             block.name = self.newKey[self.oldKey.firstIndex(of: oldFunctionName)!]
                         }
+                        //if block.name == oldFunctionName +
                     }
                 }
             }
