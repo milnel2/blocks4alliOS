@@ -19,23 +19,46 @@
         <link href='../css/navbar.css' rel='stylesheet'>
         <link href='../css/testnav.css' rel='stylesheet'>
     
-    
         </head>
         
     <body>
-        <nav aria-labelledby="hamburger" id="mobileNavbar">
+
+      <nav aria-labelledby="hamburger" id="mobileNavbar">
+        <ul id="topheader">
+          <li>
             <button id="hamburger" class="hamburger" aria-label="Show Navigation Menu" aria-expanded="false" tabindex="0">☰</button>
-          
-            <div id="navMenu" class="navMenu hidden vh">
-              <button id="closeNavMenu" class="closeBtn" aria-label="Hide Navigation Menu">×</button>
-              <ul role="menubar" aria-label="functions">
-                <li role="menuitem" aria-haspopup="false"><a href="index.html">Blocks4All</a></li>
-                <li role="menuitem" aria-haspopup="false"><a href="activities.html">Activities</a></li>
-                <li role="menuitem" aria-haspopup="false"><a href="tutorials.html">Tutorials</a></li>
-                <li role="menuitem" aria-haspopup="false"><a href="research.html">Research</a></li>
-              </ul>
-            </div>
-          </nav>
+          </li>
+          <li id="logo">
+            <p>
+              Blocks4All
+            </p>
+          </li>
+        </ul>
+      
+        <div id="navMenu" class="navMenu hidden vh">
+          <button id="closeNavMenu" class="closeBtn" aria-label="Hide Navigation Menu">×</button>
+          <ul role="menubar" aria-label="functions">
+            <li role="menuitem" aria-haspopup="false"><a href="index.html">Blocks4All</a></li>
+            <li role="menuitem" aria-haspopup="false"><a href="tutorials.html">Tutorials</a></li>
+            <li role="menuitem" aria-haspopup="false"><a href="research.html">Research</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- <nav aria-labelledby="hamburger" id="mobileNavbar">
+        <button id="hamburger" class="hamburger" aria-label="Show Navigation Menu" aria-expanded="false" tabindex="0">☰</button>
+      
+        <div id="navMenu" class="navMenu hidden vh">
+          <button id="closeNavMenu" class="closeBtn" aria-label="Hide Navigation Menu">×</button>
+          <ul role="menubar" aria-label="functions">
+            <li role="menuitem" aria-haspopup="false"><a href="index.html">Blocks4All</a></li>
+            <li role="menuitem" aria-haspopup="false"><a href="tutorials.html">Tutorials</a></li>
+            <li role="menuitem" aria-haspopup="false"><a href="research.html">Research</a></li>
+          </ul>
+        </div>
+      </nav> -->
+  
+      
 
               <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top d-lg-none">
@@ -56,7 +79,6 @@
       <script src="../js/freelancer.min.js"></script>
       <script src="../js/navbar.js"></script>
       <script src="../js/darkmode.js"></script>
-      <script src="../js/testnav.js"></script>
       <script src="../js/testnav.js"></script>
       <script src="../js/stickynav.js"></script>
   

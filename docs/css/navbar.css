@@ -56,23 +56,6 @@
 		background-color: var(--main-color-1);
 	}
 
-	#appmenu > li > ul {
-		display: none;
-		position:absolute;
-		left:0;
-		right:0;
-		top:100%;
-		padding:0;
-		margin:0;
-		background-color: var(--main-color-1);
-		width: 200%;
-		text-align: left;
-	}
-
-	#appmenu > li[aria-expanded="true"] > ul {
-		display:block;
-	}
-
 	.sticky {
 		position: fixed;
 		top: 0;

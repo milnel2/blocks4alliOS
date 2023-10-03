@@ -12,6 +12,45 @@ body {
   background-color: var(--light-dark);
  }
 
+@media (min-width: 450px) {
+
+  .video{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: 300px;
+  }
+
+  .videoDescription {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+}
+
+@media (max-width: 449px) {
+  .video-container {
+    padding-top: 75%;
+    height: 0px;
+    position: relative;
+  }
+  
+  .video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .videoDescription {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+}
+
 p, ul, ol {
   font-size: 20px;
   color: var(--text-color)
@@ -21,18 +60,10 @@ p.small {
   font-size: 16px;
   color: var(--text-color)
  }
-
- .videoWrapper {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-}
-.videoWrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+p.really-small {
+  font-size: 12px;
+  color: var(--text-color);
+  font-style: italic;
 }
 
 .footer-below{
@@ -95,7 +126,7 @@ hr.star-primary {
 
 hr.star-primary:after {
   color: var(--text-color);
-  background-color: var(--light-dark); }
+  }
 
 .img-centered {
   margin: 0 auto; }
@@ -103,19 +134,42 @@ hr.star-primary:after {
 section {
   padding: 100px 0; }
 
+.picture-right {
+  float: right;
+}
+
 section.success {
-  color: var(--border-color);
+  color: var(--text-color);
   background: var(--main-color-1);
 }
 
-section.success a{
-    color: var(--border-color);
-    
+section.success a, div, ol{
+    color: var(--text-color);
+}
+
+section.success a:hover{
+  color: var(--link-hover);
 }
 
 section.success .list-group-item{
     background: var(--main-color-1);
+}
 
+section.bg-dark {
+  color: var(--text-color);
+  background: var(--light-dark);
+}
+
+section.bg-dark a, div, ol{
+  color: var(--text-color);
+}
+
+section.bg-dark a:hover{
+  color:var(--link-hover);
+}
+
+section.bg-dark .list-group-item{
+  background: var(--light-dark);
 }
 
 ol {
@@ -133,7 +187,7 @@ ol ul li::before{
 
 ol li::before {
   content: counter(my-awesome-counter) ".  ";
-  color: var(--main-color-2);
+  color: var(--text-color);
   font-weight: 700;
     font-size: 1.5em;
     margin-right: 0.5rem;
