@@ -535,6 +535,13 @@ footer {
     color: white;
 }
 
+footer a:hover {
+    color: white;
+    outline: none;
+}
+
+
+
 footer h3 {
     margin-bottom: 30px;
 }
