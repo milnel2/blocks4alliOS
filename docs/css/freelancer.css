@@ -62,20 +62,20 @@ hr.star-primary:after {
     content: '\f005';
 }
 
-hr.star-light {
-    border-color: #123C61;
-}
-
-hr.star-light:after {
-    color: #123C61;
-    background-color: #ADD5F9;
-}
-
 hr.star-primary {
     border-color: #123C61;
 }
 
 hr.star-primary:after {
+    color: #123C61;
+    background-color: #ADD5F9;
+}
+
+hr.star-light {
+    border-color: #123C61;
+}
+
+hr.star-light:after {
     color: #123C61;
     background-color: white;
 }
@@ -275,7 +275,7 @@ header.masthead {
     padding-bottom: 50px;
     text-align: left;
     color: #123C61;
-    background-color: #ADD5F9;
+    background-color: white;
 }
 
 
@@ -322,6 +322,11 @@ header.masthead .intro-text .skills {
     header.masthead .intro-text .skills {
         font-size: 1.75em;
     }
+}
+
+#portfolio {
+    background-color: #ADD5F9;
+    color: #123C61;
 }
 
 #portfolio .portfolio-item {
