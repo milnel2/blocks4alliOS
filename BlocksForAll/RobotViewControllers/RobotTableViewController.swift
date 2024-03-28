@@ -62,18 +62,6 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "robotCell", for: indexPath)
         
-        // Spacing between each cell
-        let verticalPadding: CGFloat = 4
-        
-        tableView.contentInset.bottom = -verticalPadding/2
-        tableView.contentInset.top = -verticalPadding/2
-        
-        
-        let maskLayer = CALayer()
-        maskLayer.backgroundColor = UIColor.black.cgColor
-        maskLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 0, dy: verticalPadding / 2)
-        cell.layer.mask = maskLayer
-        
         
         // From WW sample code
         let robot = robots[indexPath.row]
@@ -108,9 +96,6 @@ class RobotTableViewController: UITableViewController, WWRobotManagerObserver {
             cell.accessibilityLabel = "Click to connect to" + robot.name
         }
         
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
        
         return cell
     }
