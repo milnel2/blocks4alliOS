@@ -584,7 +584,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.6;
+				MARKETING_VERSION = 5.8;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -617,7 +617,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.6;
+				MARKETING_VERSION = 5.8;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
