@@ -599,17 +599,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     y: startingHeight + blockSize / 2 - count * (blockSize / 2 + blockSpacing),
                     width: blockSize + 2 * blockSpacing,
                     height: blockSize / 2))
-                
+                print(b.name)
                 if b.name.contains("Function Start") {
                     myView.accessibilityLabel = "Inside \(currentWorkspace) function"
                     myView.text = "Inside \(currentWorkspace) function"
                 } else {
                     myView.accessibilityLabel = "Inside " + b.name
                     myView.text = "Inside " + b.name
+                    myView.isAccessibilityElement = true
+                   
                 }
                 cell.addSubview(myView)
+                cell.accessibilityElements = [myView]
+                
                 count += 1
             }
+            
             let name = block.name
             let modifierInformation = ""
             if isModifierBlock(name: name) {
@@ -620,8 +625,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 case "End If", "End Repeat", "End Repeat Forever", "Repeat Forever", "Look Forward", "Look Toward Voice", "Look Right", "Look Left", "Look Straight", "Look Down", "Look Up", "Wiggle", "Nod", "Spiral Light":
        
                     let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
+                    
+                    
+                    
                     addAccessibilityLabel(blockView: blockView, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
                     cell.addSubview(blockView)
+                    
+                    // if the block is nested in another block, add that item to accessibility elements
+                    let nestedBlock = cell.accessibilityElement(at: 0)
+                    if (nestedBlock != nil) {
+                        cell.accessibilityElements = [blockView, nestedBlock!]
+                    }
                     allBlockViews.append(blockView)
 
                 default:
@@ -936,7 +950,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         addAccessibilityLabel(blockView: blockView, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
         
         // the main part of the block is focused first, then the modifier button
-        cell.accessibilityElements = [blockView, button]
+        // if the block is nested in another block, add that item to accessibility elements
+        let nestedBlock = cell.accessibilityElement(at: 0)
+        if (nestedBlock != nil) {
+            cell.accessibilityElements = [blockView, button, nestedBlock!]
+        } else {
+            cell.accessibilityElements = [blockView, button]
+        }
+        
+        
+        
+        
         button.accessibilityLabel = modifierInformation
         
     }
