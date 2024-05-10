@@ -23,10 +23,12 @@ class DriveVariables: UIViewController {
     @IBOutlet weak var slowButton: UIButton!
     @IBOutlet weak var fastButton: UIButton!
     @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var speedImage: UIImageView!
     @IBOutlet weak var back: UIButton!
     @IBOutlet weak var driveTitleLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var speedTitle: UILabel!
+    @IBOutlet var driveVariablesView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +50,14 @@ class DriveVariables: UIViewController {
         // Dynamic Text
         back.titleLabel?.adjustsFontForContentSizeCategory = true
         setFontStyle()
+        
+        // Voice Over and Switch Control
+        driveVariablesView.accessibilityElements = [back!, driveTitleLabel!, distanceLabel!, buttons!, speedTitle!, slowButton!, speedLabel!, speedImage!, fastButton!]
+
     }
     
     /// If minus button pressed, speed changes to one less and speed label updated with this value
-    @IBAction func slowButtonPressed(_ sender: UIButton) {
+    @IBAction func slowButtonPressed(_ sender: Any) {
         switch speed {
         case "Really Fast":
             speed = "Fast"
@@ -103,6 +109,19 @@ class DriveVariables: UIViewController {
                 button.layer.borderWidth = 0
             }
         }
+        
+        // Update speed image if showIcons is on
+        if defaults.value(forKey: "showText") as! Int == 0 {
+            let imagePath = "\(speed) Icon"
+            let image = UIImage(named: imagePath)
+            if image != nil {
+                speedImage.image = image
+                speedImage.isHidden = false
+            }
+        } else {
+            speedImage.isHidden = true
+        }
+        
         updateAccessibilityLabel()
     }
    
@@ -110,6 +129,24 @@ class DriveVariables: UIViewController {
     private func updateAccessibilityLabel() {
         slowButton.accessibilityLabel = "Slower. Current speed: \(speed)"
         fastButton.accessibilityLabel = "Faster. Current speed: \(speed)"
+        
+        if !speedImage.isHidden {
+            speedImage.isAccessibilityElement = true
+            switch speed {
+            case "Really Slow":
+                speedImage.accessibilityLabel = "Two snails"
+            case "Slow":
+                speedImage.accessibilityLabel = "One snail"
+            case "Normal":
+                speedImage.accessibilityLabel = "One snail and one bunny"
+            case "Fast":
+                speedImage.accessibilityLabel = "One bunny"
+            case "Really Fast":
+                speedImage.accessibilityLabel = "Two bunnies"
+            default:
+                speedImage.accessibilityLabel = ""
+            }
+        }
     }
     
     /// Set all labels to custom font

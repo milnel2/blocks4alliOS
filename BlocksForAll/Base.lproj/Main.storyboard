@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <accessibilityOverrides dynamicTypePreference="11"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -84,6 +84,7 @@
                                                                 <accessibility key="accessibilityConfiguration" label="Help"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="100" id="FdW-0P-oCY"/>
+                                                                    <constraint firstAttribute="width" secondItem="vpe-31-2KD" secondAttribute="height" multiplier="385:346" id="ZDx-bp-RGW"/>
                                                                     <constraint firstAttribute="width" secondItem="vpe-31-2KD" secondAttribute="height" multiplier="385:346" id="w5N-6D-QM0"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Help" image="Question_Mark">
@@ -95,9 +96,6 @@
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="vpe-31-2KD" firstAttribute="width" secondItem="vpe-31-2KD" secondAttribute="height" multiplier="385:346" id="ZDx-bp-RGW"/>
-                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
@@ -871,7 +869,7 @@ For further information on Blocks4All, please visit our website. For further det
                                         <accessibility key="accessibilityConfiguration" label="Slower"/>
                                         <state key="normal" title=" " image="green_minus"/>
                                         <connections>
-                                            <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="hDu-fY-S5y"/>
+                                            <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="A8Y-pp-x39"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="ypF-E4-Cn8">
@@ -928,8 +926,8 @@ For further information on Blocks4All, please visit our website. For further det
                         <outlet property="distanceSlider" destination="33V-6u-7DC" id="0JE-We-bFu"/>
                         <outlet property="distanceSpeedView" destination="nbW-AW-Yn9" id="p0A-9G-wTb"/>
                         <outlet property="distanceTitle" destination="M3X-6I-Kgi" id="Gi0-ES-Lcs"/>
-                        <outlet property="fastButton" destination="X6X-ia-LTz" id="OHL-ID-D61"/>
-                        <outlet property="slowButton" destination="WtH-IO-eXP" id="di7-Dk-6Oi"/>
+                        <outlet property="fastButton" destination="X6X-ia-LTz" id="t47-yH-quT"/>
+                        <outlet property="slowButton" destination="WtH-IO-eXP" id="L5p-An-nV6"/>
                         <outlet property="speedImage" destination="5K2-Vk-uvN" id="NzW-TD-gnE"/>
                         <outlet property="speedLabel" destination="XeR-95-VOA" id="5zh-Za-eW3"/>
                         <outlet property="speedTitle" destination="aXq-Lg-wuF" id="f95-1f-29d"/>
@@ -1237,35 +1235,6 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBY-tV-GhI">
-                                <rect key="frame" x="768" y="579" width="138" height="133"/>
-                                <accessibility key="accessibilityConfiguration" label="Faster">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                                <state key="normal" title=" " image="purple_plus"/>
-                                <connections>
-                                    <action selector="fastButtonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="dUL-82-SIY"/>
-                                    <action selector="fastButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="eZr-Up-ZS8"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Normal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agB-BY-ixs">
-                                <rect key="frame" x="428.5" y="626" width="223" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="223" id="i6i-K0-FF9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beN-6U-HNX">
-                                <rect key="frame" x="251" y="579" width="138" height="135"/>
-                                <accessibility key="accessibilityConfiguration" label="Slower"/>
-                                <state key="normal" title=" " image="purple_minus"/>
-                                <connections>
-                                    <action selector="slowButtonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="bxq-A5-z9F"/>
-                                    <action selector="slowButtonPressed:" destination="PBc-35-QW0" eventType="touchUpInside" id="rle-AG-8Eg"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Drive Variable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0B-P4-bMi">
                                 <rect key="frame" x="416.5" y="150" width="247.5" height="33.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
@@ -1327,30 +1296,62 @@ For further information on Blocks4All, please visit our website. For further det
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="6dU-BC-smd">
+                                <rect key="frame" x="277" y="591.5" width="526" height="133"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6A-Pm-nob">
+                                        <rect key="frame" x="0.0" y="0.0" width="138" height="133"/>
+                                        <accessibility key="accessibilityConfiguration" label="Slower"/>
+                                        <state key="normal" title=" " image="purple_minus"/>
+                                        <connections>
+                                            <action selector="slowButtonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="IH7-l8-b0c"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="VVz-EI-Non">
+                                        <rect key="frame" x="188" y="11" width="150" height="111"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Normal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAX-qM-mqr">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="41"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="OZy-xc-hgv"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="Pgv-Wd-w4d"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Normal Icon" translatesAutoresizingMaskIntoConstraints="NO" id="vrs-NW-jwL">
+                                                <rect key="frame" x="0.0" y="41" width="150" height="70"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sr-TT-kf6">
+                                        <rect key="frame" x="388" y="0.0" width="138" height="133"/>
+                                        <accessibility key="accessibilityConfiguration" label="Faster"/>
+                                        <state key="normal" title=" " image="purple_plus"/>
+                                        <connections>
+                                            <action selector="fastButtonPressed:" destination="jdf-AY-L53" eventType="touchUpInside" id="srD-cU-s1d"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="agB-BY-ixs" firstAttribute="centerY" secondItem="beN-6U-HNX" secondAttribute="centerY" id="8Fe-9r-oLB"/>
                             <constraint firstItem="CO9-t8-AAm" firstAttribute="leading" secondItem="utL-p4-Poc" secondAttribute="leading" constant="96" id="AXR-RB-ctp"/>
                             <constraint firstItem="71Y-9j-yaK" firstAttribute="top" secondItem="sTH-CW-GNb" secondAttribute="bottom" constant="43" id="Cbn-gW-AAl"/>
+                            <constraint firstItem="6dU-BC-smd" firstAttribute="top" secondItem="71Y-9j-yaK" secondAttribute="bottom" constant="43" id="Cx7-Mg-Pcc"/>
                             <constraint firstItem="Iih-8Y-Qzv" firstAttribute="leading" secondItem="utL-p4-Poc" secondAttribute="leadingMargin" constant="20" id="Ekc-QQ-J6e"/>
-                            <constraint firstItem="beN-6U-HNX" firstAttribute="leading" secondItem="utL-p4-Poc" secondAttribute="leading" constant="251" id="HNw-Xi-AZZ"/>
                             <constraint firstItem="71Y-9j-yaK" firstAttribute="leading" secondItem="utL-p4-Poc" secondAttribute="leadingMargin" constant="76" id="InD-Ry-B1W"/>
-                            <constraint firstItem="vJ1-EE-v4N" firstAttribute="top" secondItem="agB-BY-ixs" secondAttribute="bottom" constant="143" id="Kx3-yg-FWx"/>
                             <constraint firstItem="sTH-CW-GNb" firstAttribute="top" secondItem="utL-p4-Poc" secondAttribute="top" constant="339" id="LUG-UN-ulE"/>
-                            <constraint firstItem="agB-BY-ixs" firstAttribute="centerY" secondItem="jBY-tV-GhI" secondAttribute="centerY" constant="1" id="Lxb-Xq-cpZ"/>
                             <constraint firstItem="CO9-t8-AAm" firstAttribute="top" secondItem="TiD-b4-zdy" secondAttribute="bottom" constant="260" id="QiJ-ge-52h"/>
-                            <constraint firstItem="agB-BY-ixs" firstAttribute="centerX" secondItem="sTH-CW-GNb" secondAttribute="centerX" id="Tpw-TE-5Qm"/>
                             <constraint firstItem="sTH-CW-GNb" firstAttribute="centerX" secondItem="utL-p4-Poc" secondAttribute="centerX" id="ZQK-CH-ocB"/>
                             <constraint firstItem="Iih-8Y-Qzv" firstAttribute="top" secondItem="TiD-b4-zdy" secondAttribute="bottom" constant="30" id="gge-mx-KiU"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="71Y-9j-yaK" secondAttribute="trailing" constant="20" symbolic="YES" id="io1-aN-gNs"/>
+                            <constraint firstItem="6dU-BC-smd" firstAttribute="centerX" secondItem="utL-p4-Poc" secondAttribute="centerX" id="o8X-M8-47m"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CO9-t8-AAm" secondAttribute="trailing" constant="20" symbolic="YES" id="oM9-av-3O3"/>
-                            <constraint firstItem="vJ1-EE-v4N" firstAttribute="top" secondItem="jBY-tV-GhI" secondAttribute="bottom" constant="98" id="qTE-Ue-VSO"/>
-                            <constraint firstItem="jBY-tV-GhI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="beN-6U-HNX" secondAttribute="trailing" constant="8" symbolic="YES" id="rFp-0W-QQN"/>
-                            <constraint firstAttribute="trailing" secondItem="jBY-tV-GhI" secondAttribute="trailing" constant="174" id="wD3-eZ-o8q"/>
                             <constraint firstItem="b0B-P4-bMi" firstAttribute="top" secondItem="TiD-b4-zdy" secondAttribute="bottom" constant="150" id="yOd-aS-Xdb"/>
                             <constraint firstItem="b0B-P4-bMi" firstAttribute="centerX" secondItem="utL-p4-Poc" secondAttribute="centerX" id="zVj-Fj-VHz"/>
-                            <constraint firstItem="vJ1-EE-v4N" firstAttribute="top" secondItem="beN-6U-HNX" secondAttribute="bottom" constant="96" id="zmI-0Y-rvH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kb7-ZB-cSO"/>
@@ -1358,9 +1359,11 @@ For further information on Blocks4All, please visit our website. For further det
                         <outlet property="back" destination="Iih-8Y-Qzv" id="ymK-wi-zvT"/>
                         <outlet property="distanceLabel" destination="CO9-t8-AAm" id="Gl3-WH-pKE"/>
                         <outlet property="driveTitleLabel" destination="b0B-P4-bMi" id="QG0-gP-cK6"/>
-                        <outlet property="fastButton" destination="jBY-tV-GhI" id="SWA-mD-ceM"/>
-                        <outlet property="slowButton" destination="beN-6U-HNX" id="MXg-Xy-2Wy"/>
-                        <outlet property="speedLabel" destination="agB-BY-ixs" id="RNC-0a-Apz"/>
+                        <outlet property="driveVariablesView" destination="utL-p4-Poc" id="ZDU-Wk-igW"/>
+                        <outlet property="fastButton" destination="0Sr-TT-kf6" id="3uu-uf-mdi"/>
+                        <outlet property="slowButton" destination="W6A-Pm-nob" id="Xts-nd-bVX"/>
+                        <outlet property="speedImage" destination="vrs-NW-jwL" id="jR7-Gz-X1i"/>
+                        <outlet property="speedLabel" destination="NAX-qM-mqr" id="aeJ-bb-iGs"/>
                         <outlet property="speedTitle" destination="71Y-9j-yaK" id="QxS-dy-jMk"/>
                         <outletCollection property="buttons" destination="OWd-yU-SCQ" collectionClass="NSMutableArray" id="FPZ-Ai-Lgr"/>
                         <outletCollection property="buttons" destination="OWd-yU-SCQ" collectionClass="NSMutableArray" id="xuV-eY-mXC"/>
@@ -1680,13 +1683,13 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView autoresizesSubviews="NO" opaque="NO" contentMode="center" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="nZi-qD-DBG">
-                                <rect key="frame" x="267" y="368" width="546" height="274"/>
+                                <rect key="frame" x="266.5" y="368" width="547" height="274.5"/>
                                 <subviews>
                                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="center" spacing="280" translatesAutoresizingMaskIntoConstraints="NO" id="vAj-Po-emI">
-                                        <rect key="frame" x="0.0" y="0.0" width="546" height="133"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="547" height="133.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywf-kX-izT">
-                                                <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133.5" height="133.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Ywf-kX-izT" secondAttribute="height" multiplier="1:1" id="6lW-3e-zEa"/>
                                                 </constraints>
@@ -1699,7 +1702,7 @@ For further information on Blocks4All, please visit our website. For further det
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7e-AE-Lha">
-                                                <rect key="frame" x="413" y="0.0" width="133" height="133"/>
+                                                <rect key="frame" x="413.5" y="0.0" width="133.5" height="133.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="S7e-AE-Lha" secondAttribute="height" multiplier="1:1" id="9vR-dU-vYc"/>
                                                 </constraints>
@@ -1714,7 +1717,7 @@ For further information on Blocks4All, please visit our website. For further det
                                         </subviews>
                                     </stackView>
                                     <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" text="TWO OPTION VALUE" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwb-pX-XHB">
-                                        <rect key="frame" x="0.0" y="233" width="546" height="41"/>
+                                        <rect key="frame" x="0.0" y="233.5" width="547" height="41"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1751,7 +1754,7 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="36F-bB-1lV"/>
+        <segue reference="kbj-oh-DCS"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
         <segue reference="Oq5-da-dqe"/>
@@ -1795,16 +1798,16 @@ For further information on Blocks4All, please visit our website. For further det
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
