@@ -127,7 +127,10 @@ class BlockView: UIView, UITextFieldDelegate {
                 name = removePhrase(phraseToRemove: "Forward", originalString: name, replaceWith: "Ahead")
                 name = removePhrase(phraseToRemove: "Backward", originalString: name, replaceWith: "Back")
             }
-            myLabel.text = name
+            if (!(block.name == "End Repeat" || block.name == "End If")) {
+                myLabel.text = name
+            }
+           
             myLabel.textAlignment = .center
             if #available(iOS 13.0, *) {
                 myLabel.textColor = UIColor.label
