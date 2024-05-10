@@ -27,7 +27,7 @@ class SelectedBlockViewController: UIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
         
-        let myFrame = CGRect(x: 0, y: Int(self.view.bounds.height/2), width: 0, height: 0)
+        let myFrame = CGRect(x: 0, y: Int(15 * self.view.bounds.height / 24), width: 0, height: 0)
         
         let myBlockView = BlockView.init(frame: myFrame, block: blocks!, myBlockSize: blockSize)
         
