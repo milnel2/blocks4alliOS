@@ -127,7 +127,8 @@ class BlockView: UIView, UITextFieldDelegate {
                 name = removePhrase(phraseToRemove: "Forward", originalString: name, replaceWith: "Ahead")
                 name = removePhrase(phraseToRemove: "Backward", originalString: name, replaceWith: "Back")
             }
-            if (!(block.name == "End Repeat" || block.name == "End If")) {
+            // Don't add a label to the end of double blocks
+            if (!(block.name == "End Repeat" || block.name == "End If" || block.name == "End Repeat Forever")) {
                 myLabel.text = name
             }
            

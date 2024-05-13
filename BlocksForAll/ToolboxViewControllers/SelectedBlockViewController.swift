@@ -37,7 +37,7 @@ class SelectedBlockViewController: UIViewController {
             let modifierButton = createModifierButton()
             myBlockView.addSubview(modifierButton)
         }
-       
+        
         // Do any additional setup after loading the view.
         let label = (blocks?[0].name)! + " selected. Select location in workspace to place it"
         
@@ -47,6 +47,19 @@ class SelectedBlockViewController: UIViewController {
         
         self.view.isAccessibilityElement = true
         self.view.accessibilityLabel = label
+        
+        
+        // Testing
+        // TODO: also include custom functions
+        // TODO: make a global list of the custom functions?
+        if (blocks![0].double) {
+            let nestedBlockView = createNestedBlockView()
+            myBlockView.addSubview(nestedBlockView)
+        }
+        
+        // Testing
+       
+        
         UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: self.view)
         
         delegate?.beginMovingBlocks(blocks!)
@@ -214,6 +227,66 @@ class SelectedBlockViewController: UIViewController {
             modifierButton.titleLabel?.numberOfLines = 0
         }
         return modifierButton
+    }
+    
+    /// Creates a label to be added to a block when it is selected. The label says how many blocks are nested within that block. (Used for blocks like repeat, if, etc.)
+    func createNestedBlockView() -> UIView {
+        // Create the view for the label and put it at the top of the block
+        var nestedBlockView = UIView(frame: CGRect(x: 0, y:(-blockSize * 5) / 4, width: blockSize, height: (blockSize / 4)))
+        
+        // Non-modifiable blocks are shorter, so they have to be placed lower on the screen
+        if (!blocks![0].isModifiable!){
+            nestedBlockView = UIView(frame: CGRect(x: 0, y:(-blockSize/4), width: blockSize, height: (blockSize / 4)))
+        }
+        
+        // Set the background color of the view to be the same as the background color of the block
+        nestedBlockView.backgroundColor = UIColor(named: "\(blocks![0].colorName)")
+        
+        
+        let nestedBlockLabel = UILabel()
+
+        // TODO: calculate this value
+        let numNestedBlocks = 0 // the number of blocks that are nested inside of this block
+        var label = (blocks?[0].name)! + "block with " + String(numNestedBlocks) + " nested blocks selected. Select location in workspace to place it" // Accessibility label for voiceOver
+        
+        // Set text for the label based on the number of nested blocks (singular or plural)
+        if (numNestedBlocks == 1) {
+            nestedBlockLabel.text = "1 Nested Block"
+            label = (blocks?[0].name)! + "block with 1 nested block selected. Select location in workspace to place it" // Accessibility label for voiceOver
+        } else {
+            nestedBlockLabel.text = String(numNestedBlocks) + " Nested Blocks"
+        }
+        
+        // Text styling
+        nestedBlockLabel.textAlignment = .center
+        nestedBlockLabel.font = UIFont.accessibleFont(withStyle: .title1, size: 20.0)
+        
+        // Label styling
+        nestedBlockLabel.backgroundColor = .white
+        nestedBlockLabel.layer.cornerRadius = 6
+        nestedBlockLabel.layer.masksToBounds = true
+        
+        // Code for centering a UILabel inside a UIView is from StackOverflow user devbot10's answer from 2018: https://stackoverflow.com/questions/34645943/how-to-center-uilabel-in-swift
+        
+        nestedBlockLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        nestedBlockView.addSubview(nestedBlockLabel)
+        
+        nestedBlockLabel.centerXAnchor.constraint(equalTo: nestedBlockView.centerXAnchor).isActive = true
+        nestedBlockLabel.centerYAnchor.constraint(equalTo: nestedBlockView.centerYAnchor).isActive = true
+
+        // End of code citation
+        
+        // Set the size of the label based on its parent view
+        nestedBlockLabel.widthAnchor.constraint(equalTo: nestedBlockView.widthAnchor, multiplier: 0.9).isActive = true
+        nestedBlockLabel.heightAnchor.constraint(equalTo: nestedBlockView.heightAnchor, multiplier: 0.6).isActive = true
+        
+        // Accessibility
+        nestedBlockLabel.adjustsFontSizeToFitWidth = true
+        nestedBlockView.isAccessibilityElement = true
+        self.view.accessibilityLabel = label
+        
+        return nestedBlockView
     }
     
     //MARK: - Private Functions
