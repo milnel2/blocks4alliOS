@@ -156,14 +156,18 @@ class FunctionTableViewController: UITableViewController {
             functionsDict.updateValue(val!, forKey: self.functions[self.functions.count - 1])
             let insertionIndexPath = NSIndexPath(row: self.functions.count-1, section: 0)
             self.tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
+            
             // Below updates all blocks in the app to show the right name after a rename, it literally goes through every block and every possible old name so this is really not efficent but hopefully this fixes the crashing from a long time
             for function in functionsDict.keys{
                 for block in functionsDict[function]!{
                     for oldFunctionName in self.oldKey{
                         if block.name == oldFunctionName{
                             block.name = self.newKey[self.oldKey.firstIndex(of: oldFunctionName)!]
+                        } else if block.name == String(oldFunctionName + " Function Start") {
+                            block.name = String(self.newKey[self.oldKey.firstIndex(of: oldFunctionName)!] + " Function Start")
+                        } else if block.name == String(oldFunctionName + " Function End") {
+                            block.name = String(self.newKey[self.oldKey.firstIndex(of: oldFunctionName)!] + " Function End")
                         }
-                        //if block.name == oldFunctionName +
                     }
                 }
             }
@@ -178,6 +182,7 @@ class FunctionTableViewController: UITableViewController {
     
     @objc func blockModifier(cell: UITableViewCell, sender: UIButton!) {
         let functionIndexPath = tableView.indexPath(for: cell)
+       
         currentWorkspace = functions[(functionIndexPath?.row)!]
         performSegue(withIdentifier: "functionsToBlocks", sender: nil)
     }
