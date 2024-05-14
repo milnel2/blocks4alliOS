@@ -71,6 +71,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         super.viewDidAppear(animated)
         //Order contents of workspace to be more intuitive with Switch Control and VoiceOver
         mainView.accessibilityElements = [toolboxView!, workspaceContainerView!]
+        
+        // TODO: allow scrolling in the workspace with Switch Control
+            // blocksProgram.isAccessibilityElement = true // allows workspace scrolling with Switch Control, but you can no longer access the blocks inside
+       
         workspaceContainerView.accessibilityElements = [blocksProgram!, playTrashToggleButton!, mainMenuButton!, mainWorkspaceButton!]
     }
 
@@ -329,7 +333,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if indexOfMovingBlock != nil {  // Replaces the block in the Workspace if it is from the workspace
             print("moving stopped, place blocks at " , indexOfMovingBlock!)
             addBlocks(blocksBeingMoved, at: indexOfMovingBlock!)
+            
         }
+       
         movingBlocks = false
         blocksBeingMoved.removeAll()
         changePlayTrashButton()  // Toggling the play/trash button
@@ -340,6 +346,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             arrowToPlaceFirstBlock?.removeFromSuperview()
             blocksProgram.accessibilityElements = []
         }
+        
+        
     }
     
     /// Called when blocks have been selected to be moved, saves them to blocksBeingMoved
@@ -699,9 +707,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         collectionView.remembersLastFocusedIndexPath = true
         if !robotRunning {  // disable editing while robot is running
             if movingBlocks {
+                
                 addBlocks(blocksBeingMoved, at: indexPath.row)
                 containerViewController?.popViewController(animated: false)
                 finishMovingBlocks()
+                
                 
             } else {
                 if indexPath.row < functionsDict[currentWorkspace]!.count {  // otherwise empty block at end
