@@ -48,18 +48,12 @@ class SelectedBlockViewController: UIViewController {
         self.view.isAccessibilityElement = true
         self.view.accessibilityLabel = label
         
-        
-        // Testing
-        // TODO: also include custom functions
-        // TODO: make a global list of the custom functions?
+        // Add label to blocks if they are able to have other blocks nested inside them
         if (blocks![0].double) {
             let nestedBlockView = createNestedBlockView()
             myBlockView.addSubview(nestedBlockView)
         }
-        
-        // Testing
-       
-        
+    
         UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: self.view)
         
         delegate?.beginMovingBlocks(blocks!)
