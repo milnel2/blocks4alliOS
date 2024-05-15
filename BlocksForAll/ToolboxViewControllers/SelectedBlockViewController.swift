@@ -245,8 +245,9 @@ class SelectedBlockViewController: UIViewController {
         
         let nestedBlockLabel = UILabel()
 
-        // TODO: calculate this value
-        let numNestedBlocks = 0 // the number of blocks that are nested inside of this block
+       
+        let numNestedBlocks = blocks!.count - 2 // the number of blocks that are nested inside of this block (don't count the start and end blocks)
+        
         var label = (blocks?[0].name)! + "block with " + String(numNestedBlocks) + " nested blocks selected. Select location in workspace to place it" // Accessibility label for voiceOver
         
         // Set text for the label based on the number of nested blocks (singular or plural)
