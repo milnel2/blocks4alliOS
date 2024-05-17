@@ -20,6 +20,20 @@ import CoreBluetooth
 var robotManager:WWRobotManager? = nil
 var robots = [CBPeripheral]()
 var dotRobotIsConnected = false
+var connectedRobots = [CBPeripheral]()
+
+let dashServiceUUID = CBUUID(string: "af237777-879d-6186-1f49-deca0e85d9c1")
+let dashCharacteristicUUID = CBUUID(string: "af230002-879d-6186-1f49-deca0e85d9c1")
+let dashSensorUUID = CBUUID(string: "af230006-879d-6186-1f49-deca0e85d9c1")
+let dashSensorUUID2 = CBUUID(string: "af230003-879d-6186-1f49-deca0e85d9c1")
+let dashInfoUUID = CBUUID(string: "af230001-879d-6186-1f49-deca0e85d9c1")
+let dotSensorUUID = CBUUID(string: "af230003-879d-6186-1f49-deca0e85d9c1")
+
+var dashCharacteristic:CBCharacteristic? = nil
+var dashSensorCharacteristic:CBCharacteristic? = nil
+var dashSensorCharacteristic2:CBCharacteristic? = nil
+var dashInfoCharacteristic:CBCharacteristic? = nil
+
 
 
 class RobotTableViewController: UITableViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -29,10 +43,7 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     // MARK: Properties
     var centralManager: CBCentralManager!
     var dashPeripheral: CBPeripheral?
-    let dashServiceUUID = CBUUID(string: "af237777-879d-6186-1f49-deca0e85d9c1")
-    let dashCharacteristicUUID = CBUUID(string: "af230002-879d-6186-1f49-deca0e85d9c1")
-    let dashSensorUUID = CBUUID(string: "af230006-879d-6186-1f49-deca0e85d9c1")
-    let dotSensorUUID = CBUUID(string: "af230003-879d-6186-1f49-deca0e85d9c1")
+   
 
     // MARK: View Lifecycle
     override func viewDidLoad() {
@@ -43,7 +54,7 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
       
         // set up Central Device to start scanning for robots
         centralManager = CBCentralManager(delegate: self, queue: nil)
-       
+        print("robots: ", robots)
         if(!robots.isEmpty) {
             print(robots[0])
         }
@@ -102,7 +113,12 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: (any Error)?) {
         // refresh robots list
         robots = centralManager.retrieveConnectedPeripherals(withServices: [dashServiceUUID])
-
+        let index = connectedRobots.firstIndex(of: peripheral)
+        if (index != nil) {
+            connectedRobots.remove(at: index!)
+        }
+       
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -122,6 +138,7 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        connectedRobots.append(peripheral)
         peripheral.discoverServices([dashServiceUUID])
         
         DispatchQueue.main.async {
@@ -162,12 +179,51 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         }
         
     }
+   
+    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: (any Error)?) {
+        if characteristic == dashSensorCharacteristic2 {
+            if characteristic.value == nil {
+                print("characteristic value is nil")
+                return
+            }
+            
+            let dataString = characteristic.value!.hexEncodedString()
+            //print("first hex:", dataString)
+            var dataList = [Int]()
+            //print(Array(dataString))
+            
+            //let dataList = [int(dataString[i:i + 2], 16) for i in range(0, len(dataString), 2)]
+        }
+        //print("-----")
+        
+    }
     
+    // TODO: read sensor data
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: (any Error)?) {
+        //print("updated value")
+        if characteristic == dashSensorCharacteristic2 {
+            //print("sensor changed")
+            if characteristic.value == nil {
+                print("characteristic value is nil")
+                return
+            }
+            
+            //let dataString = characteristic.value!.hexEncodedString()
+            //print("updated hex:", dataString)
+            //var dataList = [Int]()
+            //print(Array(dataString)[7])
+            
+            //let dataList = [int(dataString[i:i + 2], 16) for i in range(0, len(dataString), 2)]
+        }
+        //print("-----")
+    }
+    
+   
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let characteristics = service.characteristics else { return }
         for characteristic in characteristics {
-         
             if characteristic.uuid == dashCharacteristicUUID {
+                dashCharacteristic = characteristic
                 // TODO: remove this, right now it is just for testing to know when a robot is connected
                 let sound = "SYSTBIRTHDAY"
                 var data = [UInt8](repeating: 0, count: 1 + sound.count)
@@ -176,10 +232,17 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
                     data[i + 1] = UInt8(char.asciiValue!)
                 }
                 peripheral.writeValue(Data(data), for: characteristic, type: .withoutResponse)
-                return
+            } else if characteristic.uuid == dashSensorUUID {
+                dashSensorCharacteristic = characteristic
+            } else if characteristic.uuid == dashSensorUUID2 {
+                dashSensorCharacteristic2 = characteristic
+            } else if characteristic.uuid == dashInfoUUID {
+                dashInfoCharacteristic = characteristic
             }
             
         }
+        
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -270,5 +333,18 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+}
+
+// Data extension from Martin R. on https://stackoverflow.com/questions/39075043/how-to-convert-data-to-hex-string-in-swift
+extension Data {
+    struct HexEncodingOptions: OptionSet {
+        let rawValue: Int
+        static let upperCase = HexEncodingOptions(rawValue: 1 << 0)
+    }
+
+    func hexEncodedString(options: HexEncodingOptions = []) -> String {
+        let format = options.contains(.upperCase) ? "%02hhX" : "%02hhx"
+        return self.map { String(format: format, $0) }.joined()
     }
 }

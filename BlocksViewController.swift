@@ -418,7 +418,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Run the actual program when the play button is clicked
     private func playClicked() {
-        if(!connectedRobots()) {
+        if(!areRobotsConnected()) {
             //no robots
             let announcement = "Connect to the dash robot. "
             UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: announcement)

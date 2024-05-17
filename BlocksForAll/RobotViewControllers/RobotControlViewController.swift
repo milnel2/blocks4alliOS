@@ -8,9 +8,9 @@
 //
 
 import UIKit
+import CoreBluetooth
 
-class RobotControlViewController: UIViewController, WWRobotObserver {
-    
+class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     var executingProgram: ExecutingProgram?
 
     override func viewDidLoad() {
@@ -30,59 +30,56 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     }
     
     func refreshConnectedRobots(){
-        let connectedRobots = robotManager?.allConnectedRobots
-        if connectedRobots != nil {
-            for r in connectedRobots!{
-                if let robot = r as? WWRobot{
-                    robot.add(self)
-                    robot.add(WWEventToolbelt.orientationShake())
-                }
-            }
-        }
+//        let connectedRobots = robotManager?.allConnectedRobots
+//        if connectedRobots != nil {
+//            for r in connectedRobots!{
+//                if let robot = r as? WWRobot{
+//                    robot.add(self)
+//                    robot.add(WWEventToolbelt.orientationShake())
+//                }
+//            }
+//        }
     }
     
     func robot(_ robot: WWRobot!, eventsTriggered events: [Any]!) {
-        for event in events{
-            if let e = event as? WWEvent{
-                if e.isEqual(WWEventToolbelt.orientationShake()){
-                    print("Robot is shaking!")
-                }
-            }
-        }
+//        for event in events{
+//            if let e = event as? WWEvent{
+//                if e.isEqual(WWEventToolbelt.orientationShake()){
+//                    print("Robot is shaking!")
+//                }
+//            }
+//        }
     }
     
     func robot(_ robot: WWRobot!, didStopExecutingCommand sequence: WWCommandSetSequence!, withResults results: [AnyHashable : Any]!) {
-        let connectedRobots = robotManager?.allConnectedRobots
-        for _ in connectedRobots!{
-            robot.resetState()
-        }
+//        let connectedRobots = robotManager?.allConnectedRobots
+//        for _ in connectedRobots!{
+//            robot.resetState()
+//        }
     }
     
-    func connectedRobots() -> Bool{
-        if let connectedRobots = robotManager?.allConnectedRobots {
-            return !connectedRobots.isEmpty
-        } else {
-            return false
-        }
+    func areRobotsConnected() -> Bool{
+        return !connectedRobots.isEmpty
     }
     
     //this function allows the blocks in the workspace to be sent to the robot
     func play(functionsDictToPlay: [String : [Block]]){
         print("in play")
-        let connectedRobots = robotManager?.allConnectedRobots
-        if connectedRobots != nil{
+       
+        if areRobotsConnected() {
+            print("numRobots: ", connectedRobots.count)
+            connectedRobots[0].setNotifyValue(true, for: dashSensorCharacteristic2!)
+            connectedRobots[0].setNotifyValue(true, for: dashSensorCharacteristic!)
+            connectedRobots[0].setNotifyValue(true, for: dashInfoCharacteristic!)
             // var repeatCommands = [WWCommandSet]()
-            executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay)
+            executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: self)
             //creates executing program
             executeNextCommandRobotControllVC()
             //makes initial executeNextCommandRobotControllVC call
-            
             } else {
             print("no connected robots")
         }
     }
-    
-    
     
     func executeNextCommandRobotControllVC() {
         print("in poll for next commnad")
@@ -103,8 +100,8 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
         refreshScreen() // refreshes any highlights on the blocks
         
     }
-
-    func robot(_ robot: WWRobot!, didFinishCommand sequence: WWCommandSetSequence!) {
+    
+    func finishedCommand() {
         // if there was a block that was just run, set its isRunning to false
         if executingProgram?.blockCurrentlyRunning != nil {
             executingProgram?.blockCurrentlyRunning!.isRunning = false
@@ -113,7 +110,6 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
     }
 
     var isProgramComplete: Bool {
-        print("in program is complete")
         return executingProgram?.funcIsComplete ?? true
     }
     
@@ -127,10 +123,14 @@ class RobotControlViewController: UIViewController, WWRobotObserver {
 }
 
 class ExecutingProgram {
+    
+    
     var positions: [(funcName: String, position: Int)]
     // position used to find index of block in blocksToExec
     var functionsDictToExec: [String : [Block]]
     //all functions in program
+    
+    var robotControlViewController: RobotControlViewController
     
     var currentFunction: String
     //currentWorkspace/function being read
@@ -147,7 +147,7 @@ class ExecutingProgram {
     //variablesDict is used to keep track of the variables and their values, string is the name of the variable, double is the value of the variable
     var ifCondition: Bool = false
     
-    init(functionsDictToExecute: [String:[Block]]) {
+    init(functionsDictToExecute: [String:[Block]], robotControlViewController: RobotControlViewController) {
         self.functionsDictToExec = functionsDictToExecute
         // we can latter change this for functions so it takes a dictionary of names and blocksstacks to execute yada yada
         self.variablesDict["apple"] = 0.0
@@ -161,6 +161,9 @@ class ExecutingProgram {
         
         //self.blocksToExec = functionsDictToExec[currentFunction]!
         self.positions = [(currentFunction, 0)]
+        
+        
+        self.robotControlViewController = robotControlViewController
     }
     
     var funcIsComplete: Bool {
@@ -178,7 +181,6 @@ class ExecutingProgram {
     }
     
     func executeNextCommandExecProgram() {
-        print("in execute nextcommand")
         guard !funcIsComplete else {
             return
         }
@@ -186,7 +188,7 @@ class ExecutingProgram {
         
         var myAction = WWCommandSet()
         // set of commands to be executed
-
+        
         let blockToExec = functionsDictToExec[positions[positions.count - 1].funcName]![(positions[positions.count - 1].position)]
         //the current block being check for executing it's from the [] of blocks that are being executed at the position value that we increment with this function (and repeat and if functions)
         
@@ -212,29 +214,29 @@ class ExecutingProgram {
             
             switch animal {
             case "bee":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BUZZ)
+                playNoise(myAction: myAction, sound: "SYSTUS_LIPBUZZ")
             case "cat":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_CAT)
+                playNoise(myAction: myAction, sound: "SYSTFX_CAT_01")
             case "crocodile":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_CROCODILE)
+                playNoise(myAction: myAction, sound: "SYSTCROCODILE")
             case "dinosaur":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_DINOSAUR)
+                playNoise(myAction: myAction, sound: "SYSTDINOSAUR_3")
             case "dog":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_DOG)
+                playNoise(myAction: myAction, sound: "SYSTFX_DOG_02")
             case "elephant":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_ELEPHANT)
+                playNoise(myAction: myAction, sound: "SYSTELEPHANT_0")
             case "goat":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOAT)
+                playNoise(myAction: myAction, sound: "SYSTFX_03_GOAT")
             case "horse":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_HORSE)
+                playNoise(myAction: myAction, sound: "SYSTHORSEWHIN3")
             case "lion":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_LION)
+                playNoise(myAction: myAction, sound: "SYSTFX_LION_01")
             case "turkey":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_GOBBLE)
+                playNoise(myAction: myAction, sound: "SYSTGOBBLE_001")
             case "random animal":
                 playNoise(myAction: myAction, sound: animalSoundFiles[.random(in: animalSoundFiles.indices)])
             default:
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_CAT)
+                playNoise(myAction: myAction, sound: "SYSTFX_CAT_01")
             }
             
         case "Vehicle Noise":
@@ -662,10 +664,8 @@ class ExecutingProgram {
                 print("There is no command")
             }
         }
-        
         cmdToSend.add(myAction, withDuration: duration)
         // and command set myAction set by cases above to cmdToSend which a sequence of command sets
-        print(cmdToSend)
         sendCommandSequenceToRobots(cmdSeq: cmdToSend)
         positions[positions.count - 1].position += 1
         // increase the position so that the blockToExec is updated to the next block in the block stack
@@ -681,6 +681,8 @@ class ExecutingProgram {
             }
             print("current function:", currentFunction)
         }
+       
+       
     }
 
     func playEyeLightSpiral(myAction: WWCommandSet, cmdSet: WWCommandSetSequence) {
@@ -747,10 +749,29 @@ class ExecutingProgram {
 
     //decomposition of all actions that have to do with sound/noise
     func playNoise (myAction: WWCommandSet, sound: String){
-        let speaker = WWCommandSpeaker.init(defaultSound: sound)
-        myAction.setSound(speaker)
+        var data = [UInt8](repeating: 0, count: 1 + sound.count)
+        data[0] = 24
+        for (i, char) in sound.enumerated() {
+            data[i + 1] = UInt8(char.asciiValue!)
+        }
+        
+        sendDataToDash(data: Data(data), withDuration: 1.5)
     }
     
+    func sendDataToDash(data: Data, withDuration: Float) {
+        if (connectedRobots.isEmpty || dashCharacteristic == nil) {
+            return // TODO: handle if there is no connected robot or no characteristic to send to
+        }
+        for robot in connectedRobots {
+            robot.writeValue(data, for: dashCharacteristic!, type: .withoutResponse)
+        }
+        
+        let timer2 = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
+            self.robotControlViewController.finishedCommand()
+        }
+    
+    }
+
     func playWait(waitBlock: Block, cmdToSend: WWCommandSetSequence) -> WWCommandSet {
         var wait = 0.0
         wait = Double(waitBlock.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
@@ -952,13 +973,14 @@ class ExecutingProgram {
     }
 
     func sendCommandSequenceToRobots(cmdSeq: WWCommandSetSequence) {
-        let connectedRobots = robotManager?.allConnectedRobots
-        for r in connectedRobots!{
+        for r in connectedRobots{
             if let robot = r as? WWRobot{
                 robot.executeCommand(cmdSeq, withOptions: nil)
             }
         }
     }
+    
+    //TODO: update sound file names in arrays
 
     let animalSoundFiles =
         [WW_SOUNDFILE_CAT,
