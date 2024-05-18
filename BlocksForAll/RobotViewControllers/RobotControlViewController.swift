@@ -244,27 +244,27 @@ class ExecutingProgram {
 
             switch vehicle {
             case "airplane":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_AIRPLANE)
+                playNoise(myAction: myAction, sound: "SYSTAIRPORTJET")
             case "beep":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BEEP)
+                playNoise(myAction: myAction, sound: "SYSTHAPPY_HONK")
             case "boat":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BOAT)
+                playNoise(myAction: myAction, sound: "SYSTTUGBOAT_01")
             case "helicopter":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_HELICOPTER)
+                playNoise(myAction: myAction, sound: "SYSTHELICOPTER")
             case "siren":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SIREN)
+                playNoise(myAction: myAction, sound: "SYSTX_SIREN_02")
             case "speed boost":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SPEED_BOOST)
+                playNoise(myAction: myAction, sound: "SYSTSPEEDBOOST")
             case "start engine":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_ENGINE_REV)
+                playNoise(myAction: myAction, sound: "SYSTENGINE_REV")
             case "tire squeal":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_TIRE_SQUEAL)
+                playNoise(myAction: myAction, sound: "SYSTTIRESQUEAL")
             case "train":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRAIN)
+                playNoise(myAction: myAction, sound: "SYSTTRAIN_WHIS")
             case "random vehicle":
                 playNoise(myAction: myAction, sound: vehicleSoundFiles[.random(in: vehicleSoundFiles.indices)])
             default:
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_AIRPLANE)
+                playNoise(myAction: myAction, sound: "SYSTAIRPORTJET")
             }
             
         case "Object Noise":
@@ -272,15 +272,15 @@ class ExecutingProgram {
             
             switch object {
             case "laser":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_LASERS)
+                playNoise(myAction: myAction, sound: "")  // TODO: find laser file name
             case "trumpet":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_TRUMPET)
+                playNoise(myAction: myAction, sound: "SYSTTRUMPET_01")
             case "squeak":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SQUEAK)
+                playNoise(myAction: myAction, sound: "") //TODO: find squeak file name
             case "random object":
                 playNoise(myAction: myAction, sound: objectSoundFiles[.random(in: objectSoundFiles.indices)])
             default:
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_LASERS)
+                playNoise(myAction: myAction, sound: "SYSTTRUMPET_01")
             }
             
         case "Emotion Noise":
@@ -288,25 +288,25 @@ class ExecutingProgram {
             
             switch emotion {
             case "bragging":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BRAGGING)
+                playNoise(myAction: myAction, sound: "SYSTBRAGGING1A") // TODO: bragging not available on Dot
             case "confused":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_CONFUSED)
+                playNoise(myAction: myAction, sound: "SYSTCONFUSED_1") // TODO: not on dot
             case "giggle":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_GIGGLE)
+                playNoise(myAction: myAction, sound: "SYSTGIGGLE_03") // TODO: giggle sound on dot is: "SYSTGIGGLE"
             case "grunt":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_GRUNT)
+                playNoise(myAction: myAction, sound: "SYSTHUMPH") // TODO: humph sound has a different name on dot
             case "sigh":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SIGH)
+                playNoise(myAction: myAction, sound: "SYSTSIGH_DASH") // TODO: sigh is not on dot
             case "surprised":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SURPRISED)
+                playNoise(myAction: myAction, sound: "SYSTDASH_WHAA1") // TODO: not on dot
             case "yawn":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_YAWN)
+                playNoise(myAction: myAction, sound: "SYSTTIRED_YAWN") // TODO: not on dot
             case "random emotion":
                 playNoise(myAction: myAction, sound: emotionSoundFiles[.random(in: emotionSoundFiles.indices)])
             case "snore":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_SNORING)
+                playNoise(myAction: myAction, sound: "SYSTSNORING") // TODO: dot has a different file name for snoring
             default:
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BRAGGING)
+                playNoise(myAction: myAction, sound: "SYSTBRAGGING1A")
             }
             
         case "Speak":
@@ -314,37 +314,39 @@ class ExecutingProgram {
 
             switch word {
             case "hi":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_HI)
+                playNoise(myAction: myAction, sound: "SYSTDASH_HI_VO") // TODO: not on dot
             case "bye":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_BYE)
+                playNoise(myAction: myAction, sound: "SYSTGOODBYE") // TODO: not on dot
             case "cool":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_COOL)
+                playNoise(myAction: myAction, sound: "SYSTCOOL") // TODO: not on dot
             case "haha":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_HAHA)
+                playNoise(myAction: myAction, sound: "SYSTHAPPYLAUGH") // TODO: not on dot
             case "let's go":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_LETS_GO)
+                playNoise(myAction: myAction, sound: "SYSTLETS_GO") // TODO: not on dot
+            case "huh":
+                playNoise(myAction: myAction, sound: "SYSTHUH_06") // TODO: not on dot
             case "oh":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_OOH)
+                playNoise(myAction: myAction, sound: "SYSTOHH_06") // TODO: not on dot
             case "wow":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_WOW)
+                playNoise(myAction: myAction, sound: "SYSTDASH_WOW_3") // TODO: not on dot
             case "tah dah!":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_TAH_DAH)
+                playNoise(myAction: myAction, sound: WW_SOUNDFILE_TAH_DAH) // TODO: find sound file for tah dah
             case "uh huh":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_HUH)
+                playNoise(myAction: myAction, sound: "SYSTYAUHHUH") //TODO: not on dot
             case "uh oh":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_UH_OH)
+                playNoise(myAction: myAction, sound: "SYSTWHUH_OH_20") // TODO: not on dot
             case "wah":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_WAH)
+                playNoise(myAction: myAction, sound: "SYSTBWAHH") // TODO: not on dot
             case "wee hee!":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEEHEE)
+                playNoise(myAction: myAction, sound: "SYSTWHEEYEEYEE") // TODO: not on dot
             case "yippe!":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_YIPPE)
-            case "wee": // wee sound does not work
+                playNoise(myAction: myAction, sound: "SYSTYIPPEE") // TODO: not on dot
+            case "wee": // TODO: wee sound does not work
                 playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEE)
             case "random word":
                 playNoise(myAction: myAction, sound: speakSoundFiles[.random(in: speakSoundFiles.indices)])
             default:
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_HI)
+                playNoise(myAction: myAction, sound: "SYSTDASH_HI_VO")
             }
             
         //CONTROL CATEGORY
@@ -755,7 +757,7 @@ class ExecutingProgram {
             data[i + 1] = UInt8(char.asciiValue!)
         }
         
-        sendDataToDash(data: Data(data), withDuration: 1.5)
+        sendDataToDash(data: Data(data), withDuration: 2)
     }
     
     func sendDataToDash(data: Data, withDuration: Float) {
@@ -766,6 +768,7 @@ class ExecutingProgram {
             robot.writeValue(data, for: dashCharacteristic!, type: .withoutResponse)
         }
         
+        // timer code from https://www.hackingwithswift.com/articles/117/the-ultimate-guide-to-timer
         let timer2 = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
             self.robotControlViewController.finishedCommand()
         }
@@ -981,57 +984,60 @@ class ExecutingProgram {
     }
     
     //TODO: update sound file names in arrays
-
+    //TODO: test sounds on Dot
     let animalSoundFiles =
-        [WW_SOUNDFILE_CAT,
-         WW_SOUNDFILE_CROCODILE,
-         WW_SOUNDFILE_DINOSAUR,
-         WW_SOUNDFILE_DOG,
-         WW_SOUNDFILE_ELEPHANT,
-         WW_SOUNDFILE_GOAT,
-         WW_SOUNDFILE_HORSE,
-         WW_SOUNDFILE_LION,
-         WW_SOUNDFILE_GOBBLE,
-         WW_SOUNDFILE_BUZZ]
-    
+        ["SYSTUS_LIPBUZZ",
+         "SYSTFX_CAT_01",
+         "SYSTCROCODILE",
+         "SYSTDINOSAUR_3",
+         "SYSTFX_DOG_02",
+         "SYSTELEPHANT_0",
+         "SYSTFX_03_GOAT",
+         "SYSTHORSEWHIN3",
+         "SYSTFX_LION_01",
+         "SYSTGOBBLE_001"]
+       
     let vehicleSoundFiles =
-        [WW_SOUNDFILE_AIRPLANE,
-         WW_SOUNDFILE_BEEP,
-         WW_SOUNDFILE_BOAT,
-         WW_SOUNDFILE_HELICOPTER,
-         WW_SOUNDFILE_SIREN,
-         WW_SOUNDFILE_SPEED_BOOST,
-         WW_SOUNDFILE_ENGINE_REV,
-         WW_SOUNDFILE_TIRE_SQUEAL,
-         WW_SOUNDFILE_TRAIN]
+        ["SYSTAIRPORTJET",
+         "SYSTHAPPY_HONK",
+         "SYSTTUGBOAT_01",
+         "SYSTHELICOPTER",
+         "SYSTX_SIREN_02",
+         "SYSTSPEEDBOOST",
+         "SYSTENGINE_REV",
+         "SYSTTIRESQUEAL",
+         "SYSTTRAIN_WHIS"]
     
     let objectSoundFiles =
-        [WW_SOUNDFILE_LASERS,
-         WW_SOUNDFILE_TRUMPET,
-         WW_SOUNDFILE_SQUEAK]
+        [WW_SOUNDFILE_LASERS, // TODO: find laser sound file name
+         "SYSTTRUMPET_01",
+         WW_SOUNDFILE_SQUEAK] // TODO: find squeak sound file name
     
     let emotionSoundFiles =
-        [WW_SOUNDFILE_BRAGGING,
-         WW_SOUNDFILE_CONFUSED,
-         WW_SOUNDFILE_GIGGLE,
-         WW_SOUNDFILE_GRUNT,
-         WW_SOUNDFILE_SIGH,
-         WW_SOUNDFILE_SURPRISED,
-         WW_SOUNDFILE_YAWN,
-         WW_SOUNDFILE_SNORING]
+        ["SYSTBRAGGING1A",
+         "SYSTCONFUSED_1",
+         "SYSTGIGGLE_03",
+         "SYSTHUMPH",
+         "SYSTSIGH_DASH",
+         "SYSTDASH_WHAA1",
+         "SYSTTIRED_YAWN",
+         "SYSTSNORING"]
     
     let speakSoundFiles =
-        [WW_SOUNDFILE_HI,
-         WW_SOUNDFILE_BYE,
-         WW_SOUNDFILE_COOL,
-         WW_SOUNDFILE_HAHA,
-         WW_SOUNDFILE_LETS_GO,
-         WW_SOUNDFILE_OOH,
-         WW_SOUNDFILE_WOW,
+        ["SYSTDASH_HI_VO",
+         "SYSTGOODBYE",
+         "SYSTCOOL",
+         "SYSTHAPPYLAUGH",
+         "SYSTLETS_GO",
+         "SYSTOHH_06",
+         "SYSTDASH_WOW_3",
          WW_SOUNDFILE_TAH_DAH,
-         WW_SOUNDFILE_UH_HUH,
-         WW_SOUNDFILE_UH_OH,
-         WW_SOUNDFILE_WAH,
-         WW_SOUNDFILE_WEEHEE,
-         WW_SOUNDFILE_YIPPE]
+         "SYSTYAUHHUH",
+         "SYSTWHUH_OH_20",
+         "SYSTBWAHH",
+         "SYSTWHEEYEEYEE",
+         "SYSTYIPPEE"]
 }
+
+
+//TODO: add music sound block with do, re, mi,... with durations to play them (on dot)
