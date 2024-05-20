@@ -422,7 +422,7 @@ class ExecutingProgram {
             print("in Repeat")
             //repeatCountAndIndexArray keeps track of how many times to repeat which loop
             repeatCountAndIndexArray.append((timesToR: Int(blockToExec.addedBlocks[0].attributes["timesToRepeat"] ?? "0") ?? 0, index: (positions[positions.count - 1].position) ))
-            // adds to repeatCountAndIndexArray the current blocks index and the value of howmany times it has left to repeat
+            // adds to repeatCountAndIndexArray the current blocks index and the value of how many times it has left to repeat
             print(repeatCountAndIndexArray)
             
         case "End Repeat" :
@@ -547,11 +547,7 @@ class ExecutingProgram {
             
         //LOOK CATEGORY
         case "Look Up":
-            let lookup = WWCommandSet()
-            lookup.setHeadPositionTilt(WWCommandHeadPosition.init(degree: -30))
-            duration = 0.3
-            cmdToSend.add(lookup, withDuration: duration)
-            myAction =  WWCommandToolbelt.moveStop()
+            setHeadPosition(y: 22, x: 0, duration: 2)
             
         case "Look Down":
             let lookdown = WWCommandSet()
@@ -559,13 +555,10 @@ class ExecutingProgram {
             duration = 0.3
             cmdToSend.add(lookdown, withDuration: duration)
             myAction =  WWCommandToolbelt.moveStop()
+            //setHeadPosition(y: 30, x: 0, duration: 0.4)
             
         case "Look Left":
-            let lookleft = WWCommandSet()
-            lookleft.setHeadPositionPan(WWCommandHeadPosition.init(degree: 60))
-            duration = 0.3
-            cmdToSend.add(lookleft, withDuration: duration)
-            myAction =  WWCommandToolbelt.moveStop()
+            setHeadPosition(y: 0, x: 135, duration: 2)
             
         case "Look Right":
             let lookright = WWCommandSet()
@@ -575,11 +568,7 @@ class ExecutingProgram {
             myAction =  WWCommandToolbelt.moveStop()
             
         case "Look Forward":
-            let lookforward = WWCommandSet()
-            lookforward.setHeadPositionTilt(WWCommandHeadPosition.init(degree:0), pan: WWCommandHeadPosition.init(degree:0))
-            duration = 0.3
-            cmdToSend.add(lookforward, withDuration: duration)
-            myAction =  WWCommandToolbelt.moveStop()
+            setHeadPosition(y: 0, x: 0, duration: 2)
             
         //VARIABLES CATEGORY
         case "Set Variable":
@@ -671,6 +660,38 @@ class ExecutingProgram {
        
        
     }
+    
+    func setHeadPosition(y: Int, x: Int, duration: Float) {
+        // Set head position code is based off https://github.com/vdwel/RobotControl/blob/master/robot.py
+        if (y < -7) || (y > 22){
+            print("Head cannot go lower than -7 degrees and higher than 22 degrees.")
+            return
+        }
+        
+        if (x < -135) || (y > 135){
+            print("Head cannot move more than 135 degrees.")
+            return
+        }
+        var yAngle = y
+        //TODO: handle negative values
+//        if (yAngle < 0) {
+//            yAngle += 0b10000000  // add negative sign bit
+//        }
+        
+        print(yAngle)
+        var data = [UInt8](repeating: 0, count: 2)
+        data[0] = 7
+        data[1] = UInt8(yAngle)
+        sendDataToDash(data: Data(data), withDuration: duration)
+        
+        var xAngle = x
+        //TODO: handle negative x values
+        // TODO: head never goes back to center when turning to the side
+        data = [UInt8](repeating: 0, count: 2)
+        data[0] = 6
+        data[1] = UInt8(xAngle)
+        sendDataToDash(data: Data(data), withDuration: duration)
+    }
 
     func playEyeLightSpiral() {
         let spiralDuration = 0.04
@@ -710,7 +731,7 @@ class ExecutingProgram {
     
     func setEyeLightWithIndices(indices: [Int], withDuration: Double) {
         var data = [UInt8](repeating: 0, count: 3)
-        data[0] = 9 //
+        data[0] = 9
             
         // each bit represents one of the 12 lights on the eye. Since we are using UInt8 to send data, it has to be sent in chunks
         var bitString: UInt16 = 0b0000000000000000
@@ -769,7 +790,7 @@ class ExecutingProgram {
         }
         
         // timer code from https://www.hackingwithswift.com/articles/117/the-ultimate-guide-to-timer
-        let timer2 = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
             self.robotControlViewController.finishedCommand()
         }
     
