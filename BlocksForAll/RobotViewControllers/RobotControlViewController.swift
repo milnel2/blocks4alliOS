@@ -462,11 +462,11 @@ class ExecutingProgram {
         //DRIVE CATEGORY
         case "Drive Forward":
             //drive constant is positive because this is drive forward
-            myAction = playDrive(driveBlock: blockToExec, driveConstant: 1.0, cmdToSend: cmdToSend)
+            playDrive(driveBlock: blockToExec, driveConstant: 1.0)
             
         case "Drive Backward":
             //drive constant is negative because this is drive backward
-            myAction = playDrive(driveBlock: blockToExec, driveConstant: -1.0, cmdToSend: cmdToSend)
+            playDrive(driveBlock: blockToExec, driveConstant: -1.0)
             
             /* right now this code allows Dash to pivot from the wheel in the direction he is turning in (e.g. right turn, pivot on right wheel),
              if he needs to pivot from his head/center, then the direction he is turning in would need to be negative */
@@ -580,7 +580,7 @@ class ExecutingProgram {
             }
             // if the variable value is positive then set the drive constant to go forward, if negative set it to go backwards, the distance value for the drive will be gathered the same way as the driveconstant was initialized and that's handled in the playDrive function
             print("in Drive, driveConstant", driveConstant)
-            myAction = playDrive(driveBlock: blockToExec, driveConstant: driveConstant, cmdToSend: cmdToSend)
+            playDrive(driveBlock: blockToExec, driveConstant: driveConstant)
             
         case "Turn":
             var direction = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
@@ -669,11 +669,11 @@ class ExecutingProgram {
             yAngle += 0b10000000  // add negative sign bit
         }
         
-        print(yAngle)
         var data = [UInt8](repeating: 0, count: 2)
         data[0] = 7
         data[1] = UInt8(yAngle)
-        sendDataToDash(data: Data(data), withDuration: duration)
+        
+        sendDataToDashNoDuration(data: Data(data)) // send first command without a duration so that the second command is the only one that has a time on it (otherwise it acts as if this block is two blocks)
         
         var xAngle = x
         
@@ -685,7 +685,7 @@ class ExecutingProgram {
         data = [UInt8](repeating: 0, count: 3)
         data[0] = 6
         data[1] = UInt8(xAngle)
-        sendDataToDash(data: Data(data), withDuration: duration)
+        sendDataToDash(data: Data(data), withDuration: Double(duration))
     }
 
     func playEyeLightSpiral() {
@@ -745,7 +745,7 @@ class ExecutingProgram {
         
        
         let duration = Float(withDuration)
-        sendDataToDash(data: Data(data), withDuration: duration)
+        sendDataToDash(data: Data(data), withDuration: Double(duration))
     }
   
     func ifFalse(){
@@ -776,7 +776,7 @@ class ExecutingProgram {
         sendDataToDash(data: Data(data), withDuration: 2)
     }
     
-    func sendDataToDash(data: Data, withDuration: Float) {
+    func sendDataToDash(data: Data, withDuration: Double) {
         if (connectedRobots.isEmpty || dashCharacteristic == nil) {
             return // TODO: handle if there is no connected robot or no characteristic to send to
         }
@@ -784,11 +784,22 @@ class ExecutingProgram {
             robot.writeValue(data, for: dashCharacteristic!, type: .withoutResponse)
         }
         
+        
         // timer code from https://www.hackingwithswift.com/articles/117/the-ultimate-guide-to-timer
-        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
+        Timer.scheduledTimer(withTimeInterval: withDuration, repeats: false) { timer in
             self.robotControlViewController.finishedCommand()
         }
     
+    }
+    
+    // Send a command to Dash. Does not call finishedCommand afterwards. 
+    func sendDataToDashNoDuration(data: Data) {
+        if (connectedRobots.isEmpty || dashCharacteristic == nil) {
+            return // TODO: handle if there is no connected robot or no characteristic to send to
+        }
+        for robot in connectedRobots {
+            robot.writeValue(data, for: dashCharacteristic!, type: .withoutResponse)
+        }
     }
 
     func playWait(waitBlock: Block, cmdToSend: WWCommandSetSequence) -> WWCommandSet {
@@ -802,7 +813,7 @@ class ExecutingProgram {
 
     
     //decomposition of drive functions
-    func playDrive (driveBlock: Block, driveConstant: Double,  cmdToSend: WWCommandSetSequence) -> WWCommandSet {
+    func playDrive (driveBlock: Block, driveConstant: Double){
         var distance = 0.0
         var robotSpeed = 0.0
         var speed: String
@@ -856,22 +867,54 @@ class ExecutingProgram {
             }
             // speed cases
         }
-        let setAngular = WWCommandBodyLinearAngular(linear: ((driveDirection) * robotSpeed), angular: 0)
+        var linearVelocity = driveDirection * (robotSpeed * 4)
+        let angularVelocity = 0
         //linear velocity is the speed times the direction, aka speed times the positive forward or negative backwards, 0 angular momentum so no turning
-        let drive = WWCommandSet()
-        drive.setBodyLinearAngular(setAngular)
-        /*by multiplying (distance/robotSpped) by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
+        
+        
+        /*by multiplying (distance/robotSpeed) by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
          distance he needs to in the right time. However he travels a little too far on the really slow speed. */
         // this needs fine tuning, generally works fine, but probably a better way to account for this
         // really need internal API from wonderworkshop to make this work
+        // TODO: test distances again
         var durationModifier = 1.25
         if distance > 89{
             durationModifier = 1.05
         } else if distance > 59{
             durationModifier = 1.1
         }
-        cmdToSend.add(drive, withDuration: (distance/robotSpeed) * durationModifier)
-        return WWCommandToolbelt.moveStop()
+        
+        
+        let driveDuration = (distance/robotSpeed) * durationModifier
+        if (linearVelocity < 0) { // TODO: handle negative values
+            linearVelocity *= -1
+            linearVelocity += 0b100000000000
+            return
+        }
+        var data = [UInt8](repeating: 0, count: 4)
+        data[0] = 2 // drive command
+        data[1] = UInt8(linearVelocity) & 0b11111111
+        data[2] = UInt8(angularVelocity) & 0b11111111
+        data[3] = ((UInt8(linearVelocity) & 0b11110000) >> 8) | ((UInt8(angularVelocity) & 0b11110000) >> 5)
+        
+        print("TElling dash to drive")
+        sendDataToDash(data: Data(data), withDuration: (driveDuration) * 1.25)
+        
+        Timer.scheduledTimer(withTimeInterval: driveDuration, repeats: false) { timer in
+            // stop driving
+            self.stopWheels()
+        }
+       
+    }
+    
+    func stopWheels() {
+        print("stopping dash")
+        var data = [UInt8](repeating: 0, count: 4)
+        data[0] = 2
+        data[1] = 0
+        data[2] = 0
+        data[3] = 0
+        self.sendDataToDashNoDuration(data: Data(data))
     }
     
     // MARK: decomposition of turn functions
