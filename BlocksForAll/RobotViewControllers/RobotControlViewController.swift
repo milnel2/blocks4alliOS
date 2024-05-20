@@ -550,22 +550,13 @@ class ExecutingProgram {
             setHeadPosition(y: 22, x: 0, duration: 2)
             
         case "Look Down":
-            let lookdown = WWCommandSet()
-            lookdown.setHeadPositionTilt(WWCommandHeadPosition.init(degree:30))
-            duration = 0.3
-            cmdToSend.add(lookdown, withDuration: duration)
-            myAction =  WWCommandToolbelt.moveStop()
-            //setHeadPosition(y: 30, x: 0, duration: 0.4)
+            setHeadPosition(y: -7, x: 0, duration: 0.4)
             
         case "Look Left":
-            setHeadPosition(y: 0, x: 135, duration: 2)
+            setHeadPosition(y: 0, x: -64, duration: 2)
             
         case "Look Right":
-            let lookright = WWCommandSet()
-            lookright.setHeadPositionPan(WWCommandHeadPosition.init(degree: -60))
-            duration = 0.3
-            cmdToSend.add(lookright, withDuration: duration)
-            myAction =  WWCommandToolbelt.moveStop()
+            setHeadPosition(y: 0, x: 64, duration: 2)
             
         case "Look Forward":
             setHeadPosition(y: 0, x: 0, duration: 2)
@@ -668,15 +659,15 @@ class ExecutingProgram {
             return
         }
         
-        if (x < -135) || (y > 135){
-            print("Head cannot move more than 135 degrees.")
+        if (x < -64) || (y > 64){
+            print("Head cannot move more than 64 degrees.")
             return
         }
         var yAngle = y
-        //TODO: handle negative values
-//        if (yAngle < 0) {
-//            yAngle += 0b10000000  // add negative sign bit
-//        }
+        if (yAngle < 0) {
+            yAngle *= -1
+            yAngle += 0b10000000  // add negative sign bit
+        }
         
         print(yAngle)
         var data = [UInt8](repeating: 0, count: 2)
@@ -685,9 +676,13 @@ class ExecutingProgram {
         sendDataToDash(data: Data(data), withDuration: duration)
         
         var xAngle = x
-        //TODO: handle negative x values
+        
+        if (xAngle < 0) {
+            xAngle *= -1
+            xAngle += 0b10000000  // add negative sign bit
+        }
         // TODO: head never goes back to center when turning to the side
-        data = [UInt8](repeating: 0, count: 2)
+        data = [UInt8](repeating: 0, count: 3)
         data[0] = 6
         data[1] = UInt8(xAngle)
         sendDataToDash(data: Data(data), withDuration: duration)
