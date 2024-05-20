@@ -214,29 +214,29 @@ class ExecutingProgram {
             
             switch animal {
             case "bee":
-                playNoise(myAction: myAction, sound: "SYSTUS_LIPBUZZ")
+                playNoise(sound: "SYSTUS_LIPBUZZ")
             case "cat":
-                playNoise(myAction: myAction, sound: "SYSTFX_CAT_01")
+                playNoise(sound: "SYSTFX_CAT_01")
             case "crocodile":
-                playNoise(myAction: myAction, sound: "SYSTCROCODILE")
+                playNoise(sound: "SYSTCROCODILE")
             case "dinosaur":
-                playNoise(myAction: myAction, sound: "SYSTDINOSAUR_3")
+                playNoise(sound: "SYSTDINOSAUR_3")
             case "dog":
-                playNoise(myAction: myAction, sound: "SYSTFX_DOG_02")
+                playNoise(sound: "SYSTFX_DOG_02")
             case "elephant":
-                playNoise(myAction: myAction, sound: "SYSTELEPHANT_0")
+                playNoise(sound: "SYSTELEPHANT_0")
             case "goat":
-                playNoise(myAction: myAction, sound: "SYSTFX_03_GOAT")
+                playNoise(sound: "SYSTFX_03_GOAT")
             case "horse":
-                playNoise(myAction: myAction, sound: "SYSTHORSEWHIN3")
+                playNoise(sound: "SYSTHORSEWHIN3")
             case "lion":
-                playNoise(myAction: myAction, sound: "SYSTFX_LION_01")
+                playNoise(sound: "SYSTFX_LION_01")
             case "turkey":
-                playNoise(myAction: myAction, sound: "SYSTGOBBLE_001")
+                playNoise(sound: "SYSTGOBBLE_001")
             case "random animal":
-                playNoise(myAction: myAction, sound: animalSoundFiles[.random(in: animalSoundFiles.indices)])
+                playNoise(sound: animalSoundFiles[.random(in: animalSoundFiles.indices)])
             default:
-                playNoise(myAction: myAction, sound: "SYSTFX_CAT_01")
+                playNoise(sound: "SYSTFX_CAT_01")
             }
             
         case "Vehicle Noise":
@@ -244,27 +244,27 @@ class ExecutingProgram {
 
             switch vehicle {
             case "airplane":
-                playNoise(myAction: myAction, sound: "SYSTAIRPORTJET")
+                playNoise(sound: "SYSTAIRPORTJET")
             case "beep":
-                playNoise(myAction: myAction, sound: "SYSTHAPPY_HONK")
+                playNoise(sound: "SYSTHAPPY_HONK")
             case "boat":
-                playNoise(myAction: myAction, sound: "SYSTTUGBOAT_01")
+                playNoise(sound: "SYSTTUGBOAT_01")
             case "helicopter":
-                playNoise(myAction: myAction, sound: "SYSTHELICOPTER")
+                playNoise(sound: "SYSTHELICOPTER")
             case "siren":
-                playNoise(myAction: myAction, sound: "SYSTX_SIREN_02")
+                playNoise(sound: "SYSTX_SIREN_02")
             case "speed boost":
-                playNoise(myAction: myAction, sound: "SYSTSPEEDBOOST")
+                playNoise(sound: "SYSTSPEEDBOOST")
             case "start engine":
-                playNoise(myAction: myAction, sound: "SYSTENGINE_REV")
+                playNoise(sound: "SYSTENGINE_REV")
             case "tire squeal":
-                playNoise(myAction: myAction, sound: "SYSTTIRESQUEAL")
+                playNoise(sound: "SYSTTIRESQUEAL")
             case "train":
-                playNoise(myAction: myAction, sound: "SYSTTRAIN_WHIS")
+                playNoise(sound: "SYSTTRAIN_WHIS")
             case "random vehicle":
-                playNoise(myAction: myAction, sound: vehicleSoundFiles[.random(in: vehicleSoundFiles.indices)])
+                playNoise(sound: vehicleSoundFiles[.random(in: vehicleSoundFiles.indices)])
             default:
-                playNoise(myAction: myAction, sound: "SYSTAIRPORTJET")
+                playNoise(sound: "SYSTAIRPORTJET")
             }
             
         case "Object Noise":
@@ -272,15 +272,15 @@ class ExecutingProgram {
             
             switch object {
             case "laser":
-                playNoise(myAction: myAction, sound: "")  // TODO: find laser file name
+                playNoise(sound: "")  // TODO: find laser file name
             case "trumpet":
-                playNoise(myAction: myAction, sound: "SYSTTRUMPET_01")
+                playNoise(sound: "SYSTTRUMPET_01")
             case "squeak":
-                playNoise(myAction: myAction, sound: "") //TODO: find squeak file name
+                playNoise(sound: "") //TODO: find squeak file name
             case "random object":
-                playNoise(myAction: myAction, sound: objectSoundFiles[.random(in: objectSoundFiles.indices)])
+                playNoise(sound: objectSoundFiles[.random(in: objectSoundFiles.indices)])
             default:
-                playNoise(myAction: myAction, sound: "SYSTTRUMPET_01")
+                playNoise(sound: "SYSTTRUMPET_01")
             }
             
         case "Emotion Noise":
@@ -288,25 +288,25 @@ class ExecutingProgram {
             
             switch emotion {
             case "bragging":
-                playNoise(myAction: myAction, sound: "SYSTBRAGGING1A") // TODO: bragging not available on Dot
+                playNoise(sound: "SYSTBRAGGING1A") // TODO: bragging not available on Dot
             case "confused":
-                playNoise(myAction: myAction, sound: "SYSTCONFUSED_1") // TODO: not on dot
+                playNoise(sound: "SYSTCONFUSED_1") // TODO: not on dot
             case "giggle":
-                playNoise(myAction: myAction, sound: "SYSTGIGGLE_03") // TODO: giggle sound on dot is: "SYSTGIGGLE"
+                playNoise(sound: "SYSTGIGGLE_03") // TODO: giggle sound on dot is: "SYSTGIGGLE"
             case "grunt":
-                playNoise(myAction: myAction, sound: "SYSTHUMPH") // TODO: humph sound has a different name on dot
+                playNoise(sound: "SYSTHUMPH") // TODO: humph sound has a different name on dot
             case "sigh":
-                playNoise(myAction: myAction, sound: "SYSTSIGH_DASH") // TODO: sigh is not on dot
+                playNoise(sound: "SYSTSIGH_DASH") // TODO: sigh is not on dot
             case "surprised":
-                playNoise(myAction: myAction, sound: "SYSTDASH_WHAA1") // TODO: not on dot
+                playNoise(sound: "SYSTDASH_WHAA1") // TODO: not on dot
             case "yawn":
-                playNoise(myAction: myAction, sound: "SYSTTIRED_YAWN") // TODO: not on dot
+                playNoise(sound: "SYSTTIRED_YAWN") // TODO: not on dot
             case "random emotion":
-                playNoise(myAction: myAction, sound: emotionSoundFiles[.random(in: emotionSoundFiles.indices)])
+                playNoise(sound: emotionSoundFiles[.random(in: emotionSoundFiles.indices)])
             case "snore":
-                playNoise(myAction: myAction, sound: "SYSTSNORING") // TODO: dot has a different file name for snoring
+                playNoise(sound: "SYSTSNORING") // TODO: dot has a different file name for snoring
             default:
-                playNoise(myAction: myAction, sound: "SYSTBRAGGING1A")
+                playNoise(sound: "SYSTBRAGGING1A")
             }
             
         case "Speak":
@@ -314,39 +314,39 @@ class ExecutingProgram {
 
             switch word {
             case "hi":
-                playNoise(myAction: myAction, sound: "SYSTDASH_HI_VO") // TODO: not on dot
+                playNoise(sound: "SYSTDASH_HI_VO") // TODO: not on dot
             case "bye":
-                playNoise(myAction: myAction, sound: "SYSTGOODBYE") // TODO: not on dot
+                playNoise(sound: "SYSTGOODBYE") // TODO: not on dot
             case "cool":
-                playNoise(myAction: myAction, sound: "SYSTCOOL") // TODO: not on dot
+                playNoise(sound: "SYSTCOOL") // TODO: not on dot
             case "haha":
-                playNoise(myAction: myAction, sound: "SYSTHAPPYLAUGH") // TODO: not on dot
+                playNoise(sound: "SYSTHAPPYLAUGH") // TODO: not on dot
             case "let's go":
-                playNoise(myAction: myAction, sound: "SYSTLETS_GO") // TODO: not on dot
+                playNoise(sound: "SYSTLETS_GO") // TODO: not on dot
             case "huh":
-                playNoise(myAction: myAction, sound: "SYSTHUH_06") // TODO: not on dot
+                playNoise(sound: "SYSTHUH_06") // TODO: not on dot
             case "oh":
-                playNoise(myAction: myAction, sound: "SYSTOHH_06") // TODO: not on dot
+                playNoise(sound: "SYSTOHH_06") // TODO: not on dot
             case "wow":
-                playNoise(myAction: myAction, sound: "SYSTDASH_WOW_3") // TODO: not on dot
+                playNoise(sound: "SYSTDASH_WOW_3") // TODO: not on dot
             case "tah dah!":
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_TAH_DAH) // TODO: find sound file for tah dah
+                playNoise(sound: WW_SOUNDFILE_TAH_DAH) // TODO: find sound file for tah dah
             case "uh huh":
-                playNoise(myAction: myAction, sound: "SYSTYAUHHUH") //TODO: not on dot
+                playNoise(sound: "SYSTYAUHHUH") //TODO: not on dot
             case "uh oh":
-                playNoise(myAction: myAction, sound: "SYSTWHUH_OH_20") // TODO: not on dot
+                playNoise(sound: "SYSTWHUH_OH_20") // TODO: not on dot
             case "wah":
-                playNoise(myAction: myAction, sound: "SYSTBWAHH") // TODO: not on dot
+                playNoise(sound: "SYSTBWAHH") // TODO: not on dot
             case "wee hee!":
-                playNoise(myAction: myAction, sound: "SYSTWHEEYEEYEE") // TODO: not on dot
+                playNoise(sound: "SYSTWHEEYEEYEE") // TODO: not on dot
             case "yippe!":
-                playNoise(myAction: myAction, sound: "SYSTYIPPEE") // TODO: not on dot
+                playNoise(sound: "SYSTYIPPEE") // TODO: not on dot
             case "wee": // TODO: wee sound does not work
-                playNoise(myAction: myAction, sound: WW_SOUNDFILE_WEE)
+                playNoise(sound: WW_SOUNDFILE_WEE)
             case "random word":
-                playNoise(myAction: myAction, sound: speakSoundFiles[.random(in: speakSoundFiles.indices)])
+                playNoise(sound: speakSoundFiles[.random(in: speakSoundFiles.indices)])
             default:
-                playNoise(myAction: myAction, sound: "SYSTDASH_HI_VO")
+                playNoise(sound: "SYSTDASH_HI_VO")
             }
             
         //CONTROL CATEGORY
@@ -480,54 +480,39 @@ class ExecutingProgram {
         //LIGHTS CATEGORY
         //MARK: change this code and make is smoother once we have user input
         case "Set Eye Light":
-            // Turn eye light off
             let value = blockToExec.addedBlocks[0].attributes["eyeLight"] ?? "Off"
             if value == "Off" {
-                let eyeRing = WWCommandEyeRing()
-                eyeRing.setAllBitmap(false)
-                myAction.setEyeRing(eyeRing)
+                playEyeLight(on: false)
             } else {
-                // Turn eye light on
-                let eyeRing = WWCommandEyeRing()
-                eyeRing.setAllBitmap(true)
-                myAction.setEyeRing(eyeRing)
+                playEyeLight(on: true)
             }
+            
         case "Spiral Light":
             // Turn spiral light on
             duration = 0.0
-            playEyeLightSpiral(myAction: myAction, cmdSet: cmdToSend)
+            playEyeLightSpiral()
             
         case "Set Left Ear Light Color":
-            let light = playLight(lightBlock: blockToExec)
-            myAction.setLeftEarLight(light)
+            playLight(lightBlock: blockToExec, positionBits: 11)
+        
         case "Set Right Ear Light Color":
-            let light = playLight(lightBlock: blockToExec)
-            myAction.setRightEarLight(light)
+            playLight(lightBlock: blockToExec, positionBits: 12)
             
         case "Set Front Light Color":
-            let light = playLight(lightBlock: blockToExec)
-            myAction.setChestLight(light)
+            playLight(lightBlock: blockToExec, positionBits: 3)
             
         case "Set All Lights Color":
-            let light = playLight(lightBlock: blockToExec)
-            myAction.setEyeLight(light)
-            myAction.setRightEarLight(light)
-            myAction.setLeftEarLight(light)
-            myAction.setChestLight(light)
+            playLight(lightBlock: blockToExec, positionBits: 3)
+            playLight(lightBlock: blockToExec, positionBits: 11)
+            playLight(lightBlock: blockToExec, positionBits: 12)
             
-            // Turn eye light off
             let value = blockToExec.addedBlocks[0].attributes["lightColor"] ?? "Off"
             if value == "Off" {
-                let eyeRing = WWCommandEyeRing()
-                eyeRing.setAllBitmap(false)
-                myAction.setEyeRing(eyeRing)
+                playEyeLight(on: false)
             } else {
-                // Turn eye light on
-                let eyeRing = WWCommandEyeRing()
-                eyeRing.setAllBitmap(true)
-                myAction.setEyeRing(eyeRing)
+                playEyeLight(on: true)
             }
-            
+           
         //MOTION CATEGORY
         case "Wiggle":
             duration = 2.0
@@ -687,9 +672,9 @@ class ExecutingProgram {
        
     }
 
-    func playEyeLightSpiral(myAction: WWCommandSet, cmdSet: WWCommandSetSequence) {
+    func playEyeLightSpiral() {
         let spiralDuration = 0.04
-        Timer.scheduledTimer(timeInterval: spiralDuration, target: self, selector: #selector(eyeLightTimerFire(timer:)),  userInfo: [myAction, cmdSet, spiralDuration] as [Any] , repeats: true)
+        Timer.scheduledTimer(timeInterval: spiralDuration, target: self, selector: #selector(eyeLightTimerFire(timer:)),  userInfo: spiralDuration as Any , repeats: true)
     }
     
     var currentSpiralLightIndex = 0 // the current single light that should be turned on
@@ -701,21 +686,14 @@ class ExecutingProgram {
         // Update currentSpiralLightIndex
         currentSpiralLightIndex = currentLightIndex
         
-        let eyeRing = WWCommandEyeRing()
-        eyeRing.setAllBitmap(false) // Turn off all lights
-        // Turn on two of the lights
-        eyeRing.setLEDValue(true, at: UInt(currentLightIndex))
-        eyeRing.setLEDValue(true, at: UInt(nextLightIndex))
+        playEyeLight(on: false)// Turn off all lights
         
-        let userInfo = timer.userInfo as! NSArray
-        let myAction = userInfo[0] as! WWCommandSet
-        let cmdToSend = userInfo[1] as! WWCommandSetSequence
-        let spiralDuration = userInfo[2] as! Double
-        myAction.setEyeRing(eyeRing)
+
+        let spiralDuration = timer.userInfo as! Double
         
-        // Send the command to turn on the lights
-        cmdToSend.add(myAction, withDuration: spiralDuration)
-        sendCommandSequenceToRobots(cmdSeq: cmdToSend)
+        // Send the command to turn on the two lights
+        setEyeLightWithIndices(indices: [currentLightIndex, nextLightIndex], withDuration: spiralDuration)
+        
         numberOfTimesSpun += 1
         
         let desiredFullRevolutions = 5
@@ -723,13 +701,35 @@ class ExecutingProgram {
         if numberOfTimesSpun >= (12 * desiredFullRevolutions) {
             timer.invalidate()
             // Turn all lights back on
-            eyeRing.setAllBitmap(true)
-            myAction.setEyeRing(eyeRing)
-            cmdToSend.add(myAction, withDuration: spiralDuration)
-            sendCommandSequenceToRobots(cmdSeq: cmdToSend)
+            playEyeLight(on: true)
+     
             currentSpiralLightIndex = 0
             numberOfTimesSpun = 0
         }
+    }
+    
+    func setEyeLightWithIndices(indices: [Int], withDuration: Double) {
+        var data = [UInt8](repeating: 0, count: 3)
+        data[0] = 9 //
+            
+        // each bit represents one of the 12 lights on the eye. Since we are using UInt8 to send data, it has to be sent in chunks
+        var bitString: UInt16 = 0b0000000000000000
+        
+        // add a 1 in each index that should be turned on
+        for index in indices {
+            var indexBit: UInt16 = 0b0000000000000001
+            indexBit = indexBit << index
+            bitString += indexBit
+        }
+        
+        // chunk the data into two UInt8 values
+        // got help with chunking from Tamas_Papp's answer on https://discourse.julialang.org/t/convert-uint16-to-two-uint8/7115
+        data[1] = UInt8(bitString >> 8)
+        data[2] = UInt8(bitString & 0b0000000011111111)
+        
+       
+        let duration = Float(withDuration)
+        sendDataToDash(data: Data(data), withDuration: duration)
     }
   
     func ifFalse(){
@@ -750,7 +750,7 @@ class ExecutingProgram {
     }
 
     //decomposition of all actions that have to do with sound/noise
-    func playNoise (myAction: WWCommandSet, sound: String){
+    func playNoise (sound: String){
         var data = [UInt8](repeating: 0, count: 1 + sound.count)
         data[0] = 24
         for (i, char) in sound.enumerated() {
@@ -937,30 +937,56 @@ class ExecutingProgram {
 
     
     //decomposition of light functions
-    func playLight (lightBlock: Block) -> WWCommandLightRGB {
+    func playLight (lightBlock: Block, positionBits: Int) {
         let color = lightBlock.addedBlocks[0].attributes["lightColor"] ?? "white"
-        var selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
+        var selectedColor = (red: 255, green: 255, blue: 255)
         switch color {
         case "Off": // this used to be black, but black lights do not exist, it is just turning the light off
-            selectedColor = WWCommandLightRGB.init(red: 0, green: 0, blue: 0)
+            selectedColor = (red: 0, green: 0, blue: 0)
         case "white":
-            selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
+            selectedColor = (red: 255, green: 255, blue: 255)
         case "red":
-            selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0, blue: 0)
+            selectedColor = (red: 255, green: 0, blue: 0)
         case "green":
-            selectedColor = WWCommandLightRGB.init(red: 0, green: 0.9, blue: 0)
+            selectedColor = (red: 0, green: 255, blue: 0)
         case "blue":
-            selectedColor = WWCommandLightRGB.init(red: 0, green: 0, blue: 0.9)
+            selectedColor = (red: 0, green: 0, blue: 255)
         case "orange":
-            selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.2, blue: 0)
+            selectedColor = (red: 255, green: 50, blue: 0)
         case "yellow":
-            selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0)
+            selectedColor = (red: 255, green: 255, blue: 0)
         case "purple":
-            selectedColor = WWCommandLightRGB.init(red: 75, green: 0, blue: 130)
+            selectedColor = (red: 75, green: 0, blue: 130)
         default:
-            selectedColor = WWCommandLightRGB.init(red: 0.9, green: 0.9, blue: 0.9)
+            selectedColor = (red: 255, green: 255, blue: 255)
         }
-        return selectedColor!
+        
+        var data = [UInt8](repeating: 0, count: 4)
+        data[0] = UInt8(positionBits)
+        data[1] = UInt8(selectedColor.red)
+        data[2] = UInt8(selectedColor.green)
+        data[3] = UInt8(selectedColor.blue)
+                        
+        sendDataToDash(data: Data(data), withDuration: 1)
+    }
+    
+    func playEyeLight(on: Bool) {
+        var data = [UInt8](repeating: 0, count: 3)
+        data[0] = 9 //
+        
+        // Turn eye light off
+        
+        if !on {
+            data[1] = 0
+            data[2] = 0
+        } else {
+            // Turn eye light on
+            // each bit represents one of the 12 lights on the eye. Since we are using UInt8 to send data, it has to be sent in chunks
+            data[1] = 0b00001111
+            data[2] = 0b11111111
+        }
+        
+        sendDataToDash(data: Data(data), withDuration: 1)
     }
 
     func getSensorData() -> [WWSensorSet] {
