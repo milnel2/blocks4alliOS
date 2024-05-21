@@ -424,6 +424,7 @@ class ExecutingProgram {
             repeatCountAndIndexArray.append((timesToR: Int(blockToExec.addedBlocks[0].attributes["timesToRepeat"] ?? "0") ?? 0, index: (positions[positions.count - 1].position) ))
             // adds to repeatCountAndIndexArray the current blocks index and the value of how many times it has left to repeat
             print(repeatCountAndIndexArray)
+            sendDataToDash(data: Data([0]), withDuration: 0.5)
             
         case "End Repeat" :
             print("in End Repeat")
@@ -440,6 +441,7 @@ class ExecutingProgram {
                 // change the position to the begining of the repeat loop
             }
             print(repeatCountAndIndexArray)
+            sendDataToDash(data: Data([0]), withDuration: 0.5)
             
         case "Repeat Forever":
             print("in Repeat")
@@ -447,12 +449,14 @@ class ExecutingProgram {
             repeatCountAndIndexArray.append((timesToR: 1, index: (positions[positions.count - 1].position) ))
             // adds to repeatCountAndIndexArray the current blocks index and the value of howmany times it has left to repeat
             print(repeatCountAndIndexArray)
+            sendDataToDash(data: Data([0]), withDuration: 0.5)
             
         case "End Repeat Forever" :
             print("in End Repeat")
             positions[positions.count - 1].position = repeatCountAndIndexArray[(repeatCountAndIndexArray.count - 1)].index
             // change the position to the begining of the repeat loop
             print(repeatCountAndIndexArray)
+            sendDataToDash(data: Data([0]), withDuration: 0.5)
             
             
         case "Wait for Time":
