@@ -456,8 +456,8 @@ class ExecutingProgram {
             
             
         case "Wait for Time":
-            myAction = playWait(waitBlock: blockToExec, cmdToSend: cmdToSend)
-            duration = 0.1
+            playWait(waitBlock: blockToExec)
+            
             
         //DRIVE CATEGORY
         case "Drive Forward":
@@ -797,13 +797,10 @@ class ExecutingProgram {
         }
     }
 
-    func playWait(waitBlock: Block, cmdToSend: WWCommandSetSequence) -> WWCommandSet {
-        var wait = 0.0
-        wait = Double(waitBlock.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
-        let waitingPeriod = WWCommandSet()
-        print("waiting", wait)
-        cmdToSend.add(waitingPeriod, withDuration: wait)
-        return WWCommandToolbelt.moveStop()
+    func playWait(waitBlock: Block) {
+        var wait = Double(waitBlock.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
+        print("waiting: ", wait)
+        sendDataToDash(data: Data([0]), withDuration: wait)
     }
 
     
