@@ -567,6 +567,8 @@ class ExecutingProgram {
             //assigns the variable value from current block attributes to the variables dict in executing program
             print("set variable, variablesDict:", variablesDict)
             
+            sendDataToDash(data: Data([0]), withDuration: 1)
+            
             
         case "Drive":
             var driveConstant = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
@@ -876,6 +878,7 @@ class ExecutingProgram {
          distance he needs to in the right time. However he travels a little too far on the really slow speed. */
         // this needs fine tuning, generally works fine, but probably a better way to account for this
         // really need internal API from wonderworkshop to make this work
+       
         // TODO: test distances again
         var durationModifier = 1.25
         if distance > 89{
@@ -930,58 +933,35 @@ class ExecutingProgram {
     // MARK: decomposition of turn functions
     func playTurn (turnBlock: Block){
         var angleToTurn: Double = 90
+        var angularVelocity = 0
         //matches defualt displayed angle
         if turnBlock.name == "Turn"{
         //name of variable turn block is "Turn"
             angleToTurn = variablesDict[turnBlock.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
-            //get the variable selected value for the turn block, go through added and get the added block atttribues, default orange, default 0 degrees
+            //get the variable selected value for the turn block, go through added and get the added block attribues, default orange, default 0 degrees
             if angleToTurn > 0{
-                // if angle to turn is positve turn clockwise
-                let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: -1.570795)
-                // 0 linear velocity in cm/s then angular is pi for 1/2, tau for 1 a revolution in one second, that's too fast to be accuturate so doing 1/4 tau for quater turn per second, -value for a clockwise direction
-                let turn = WWCommandSet()
-                turn.setBodyLinearAngular(setAngular)
-               // cmdToSend.add(turn, withDuration: (angleToTurn/90))
-                //duration is cut to time basesd of of angular momentum right now 90 because the velocity is 1/4 turn(90degrees) a second
+                angularVelocity = -250
             } else {
-                // if angle to turn is negative turn counter clockwise
-                let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: 1.570795)
-                // 0 linear velocity in cm/s then angular is pi for 1/2, tau for 1 a revolution in one second, that's too fast to be accuturate so doing 1/4 tau for quater turn per second, +value for a counterclockwise direction
-                let turn = WWCommandSet()
-                turn.setBodyLinearAngular(setAngular)
-                //cmdToSend.add(turn, withDuration: ((angleToTurn/90) * -1))
-                //duration is cut to time basesd of of angular momentum right now 90 because the velocity is 1/4 turn(90degrees) a second angle to turn is a negative value(which this else statement is for) change the angle to turn to a postive value to calculate duration better
+                angularVelocity = 250
+                angleToTurn *= -1 // make angleToTurn positive
             }
+            
         } else if turnBlock.name.contains("Turn Left") {
             angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90 // go through added block to find the attribute angle
+            angularVelocity = 250
             
-            let angularVelocity = 250
-            let linearVelocity = 0
-            
-            let data = calculateDriveCommand(linearVelocity: linearVelocity, angularVelocity: angularVelocity)
-            let turnDuration = angleToTurn/60 // TODO: do testing and fine tuning
-            
-            sendDataToDash(data: Data(data), withDuration: turnDuration * 1.25) // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
-            
-            Timer.scheduledTimer(withTimeInterval: turnDuration, repeats: false) { timer in
-                // stop driving after the turnDuration has passed
-                self.stopWheels()
-            }
         } else if turnBlock.name.contains("Turn Right") {
             angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90
-            let angularVelocity = -250
-            let linearVelocity = 0
-            
-            let data = calculateDriveCommand(linearVelocity: linearVelocity, angularVelocity: angularVelocity)
-            let turnDuration = angleToTurn/60
-            
-            sendDataToDash(data: Data(data), withDuration: turnDuration * 1.25) // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
-            
-            
-            Timer.scheduledTimer(withTimeInterval: turnDuration, repeats: false) { timer in
-                // stop driving after the turnDuration has passed
-                self.stopWheels()
-            }
+            angularVelocity = -250
+        }
+        let data = calculateDriveCommand(linearVelocity: 0, angularVelocity: angularVelocity)
+        let turnDuration = angleToTurn/60 // TODO: do testing and fine tuning
+        
+        sendDataToDash(data: Data(data), withDuration: turnDuration * 1.25) // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
+        
+        Timer.scheduledTimer(withTimeInterval: turnDuration, repeats: false) { timer in
+            // stop driving after the turnDuration has passed
+            self.stopWheels()
         }
     }
 
