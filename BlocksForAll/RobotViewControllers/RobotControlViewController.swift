@@ -867,7 +867,7 @@ class ExecutingProgram {
             }
             // speed cases
         }
-        var linearVelocity = driveDirection * (robotSpeed * 4)
+        var linearVelocity = Int(driveDirection * (robotSpeed * 4))
         let angularVelocity = 0
         //linear velocity is the speed times the direction, aka speed times the positive forward or negative backwards, 0 angular momentum so no turning
         
@@ -884,24 +884,22 @@ class ExecutingProgram {
             durationModifier = 1.1
         }
         
-        
         let driveDuration = (distance/robotSpeed) * durationModifier
         if (linearVelocity < 0) { // TODO: handle negative values
-            linearVelocity *= -1
-            linearVelocity += 0b100000000000
-            return
+            // Not sure why but it seems like 0b10000000000 (1024) is the maximum backwards speed, so the linear velocity has to be bigger than 1024. The bigger the value is, the slower it will go in the backwards direction
+            linearVelocity = 2048 - (-linearVelocity)
         }
+        // Bitwise operators for chunking drive command is from: https://www.maissan.net/articles/dash-and-dot/6
         var data = [UInt8](repeating: 0, count: 4)
         data[0] = 2 // drive command
-        data[1] = UInt8(linearVelocity) & 0b11111111
+        data[1] = UInt8(linearVelocity & 0b11111111)
         data[2] = UInt8(angularVelocity) & 0b11111111
-        data[3] = ((UInt8(linearVelocity) & 0b11110000) >> 8) | ((UInt8(angularVelocity) & 0b11110000) >> 5)
+        data[3] = UInt8((linearVelocity & 0b1111111100000000) >> 8) | UInt8((angularVelocity & 0b1111111100000000) >> 5)
         
-        print("TElling dash to drive")
         sendDataToDash(data: Data(data), withDuration: (driveDuration) * 1.25)
         
         Timer.scheduledTimer(withTimeInterval: driveDuration, repeats: false) { timer in
-            // stop driving
+            // stop driving after the driveDuration has passed
             self.stopWheels()
         }
        
