@@ -599,27 +599,20 @@ class ExecutingProgram {
         case "Look Up or Down":
             let lookUpOrDown = WWCommandSet()
             let degree = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
-            lookUpOrDown.setHeadPositionTilt(WWCommandHeadPosition.init(degree: degree))
+            
             // should be .initWithDegree, but for some reason that doesn't work, may need to be in radians
             //Negative command values represent left (horizontal) or up (vertical). Positive command values represents right (horizontally) or down (vertically).
-            // ranges from  -20 to 7.5
-            duration = 0.3
-            cmdToSend.add(lookUpOrDown, withDuration: duration)
-            myAction = WWCommandToolbelt.moveStop()
-            print("lookUpOrDown, degree", degree)
+            // ranges from  -20 to 7.5 TODO: update these ranges
+            
+            setHeadPosition(y: Int(degree), x: 0, duration: 2) // TODO: allow for floats and not just ints
             
             
         case "Look Left or Right":
             let lookLeftOrRight = WWCommandSet()
             let degree = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
-            lookLeftOrRight.setHeadPositionPan(WWCommandHeadPosition.init(degree: degree))
-            // should be .initWithDegree, but for some reason that doesn't work, may need to be in radians
             //Negative command values represent left (horizontal) or up (vertical). Positive command values represents right (horizontally) or down (vertically).
-            //-120.0 to 120.0
-            duration = 0.3
-            cmdToSend.add(lookLeftOrRight, withDuration: duration)
-            myAction =  WWCommandToolbelt.moveStop()
-            print("lookUpOrDown, degree", degree)
+            //-120.0 to 120.0 //TODO: update range
+            setHeadPosition(y: 0, x: Int(degree), duration: 2) // TODO: allow for floats and not just ints
             
         // not best way but using default for Functions
         default:
