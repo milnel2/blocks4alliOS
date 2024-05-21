@@ -471,11 +471,11 @@ class ExecutingProgram {
             /* right now this code allows Dash to pivot from the wheel in the direction he is turning in (e.g. right turn, pivot on right wheel),
              if he needs to pivot from his head/center, then the direction he is turning in would need to be negative */
         case "Turn Left":
-            myAction = playTurn(turnBlock: blockToExec, direction: 0, cmdToSend: cmdToSend)
+           playTurn(turnBlock: blockToExec)
            
             
         case "Turn Right":
-            myAction = playTurn(turnBlock: blockToExec, direction:1, cmdToSend: cmdToSend)
+            playTurn(turnBlock: blockToExec)
             
         //LIGHTS CATEGORY
         //MARK: change this code and make is smoother once we have user input
@@ -592,7 +592,7 @@ class ExecutingProgram {
             }
             // if postive turn clockwise, else counter clockwise(might have that mixed up)
             print("in Turn, direction", direction)
-            myAction = playTurn(turnBlock: blockToExec, direction: Double(direction), cmdToSend: cmdToSend)
+            playTurn(turnBlock: blockToExec)
         
         case "Look Up or Down":
             let lookUpOrDown = WWCommandSet()
@@ -885,24 +885,36 @@ class ExecutingProgram {
         }
         
         let driveDuration = (distance/robotSpeed) * durationModifier
-        if (linearVelocity < 0) { // TODO: handle negative values
-            // Not sure why but it seems like 0b10000000000 (1024) is the maximum backwards speed, so the linear velocity has to be bigger than 1024. The bigger the value is, the slower it will go in the backwards direction
-            linearVelocity = 2048 - (-linearVelocity)
-        }
-        // Bitwise operators for chunking drive command is from: https://www.maissan.net/articles/dash-and-dot/6
-        var data = [UInt8](repeating: 0, count: 4)
-        data[0] = 2 // drive command
-        data[1] = UInt8(linearVelocity & 0b11111111)
-        data[2] = UInt8(angularVelocity) & 0b11111111
-        data[3] = UInt8((linearVelocity & 0b1111111100000000) >> 8) | UInt8((angularVelocity & 0b1111111100000000) >> 5)
+       
+        let data = calculateDriveCommand(linearVelocity: linearVelocity, angularVelocity: angularVelocity)
         
-        sendDataToDash(data: Data(data), withDuration: (driveDuration) * 1.25)
+        sendDataToDash(data: Data(data), withDuration: (driveDuration) * 1.25)  // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
         
         Timer.scheduledTimer(withTimeInterval: driveDuration, repeats: false) { timer in
             // stop driving after the driveDuration has passed
             self.stopWheels()
         }
        
+    }
+    
+    func calculateDriveCommand(linearVelocity: Int, angularVelocity: Int) -> [UInt8] {
+        var linearVelocity = linearVelocity
+        if (linearVelocity < 0) {
+            // Not sure why but it seems like 0b10000000000 (1024) is the maximum backwards speed, so the linear velocity has to be bigger than 1024. The bigger the value is, the slower it will go in the backwards direction
+            linearVelocity = 2048 - (-linearVelocity)
+        }
+        var angularVelocity = angularVelocity
+        if (angularVelocity < 0) { // handle negative angles
+            angularVelocity = 2048 - (-angularVelocity)
+        }
+        // Bitwise operators for chunking drive command is from: https://www.maissan.net/articles/dash-and-dot/6
+        var data = [UInt8](repeating: 0, count: 4)
+        data[0] = 2 // drive command
+        data[1] = UInt8(linearVelocity & 0b11111111)
+        data[2] = UInt8(angularVelocity & 0b11111111)
+        data[3] = UInt8((linearVelocity & 0b1111111100000000) >> 8) | UInt8((angularVelocity & 0b1111111100000000) >> 5)
+        
+        return data
     }
     
     func stopWheels() {
@@ -916,7 +928,7 @@ class ExecutingProgram {
     }
     
     // MARK: decomposition of turn functions
-    func playTurn (turnBlock: Block, direction: Double, cmdToSend: WWCommandSetSequence)-> WWCommandSet {
+    func playTurn (turnBlock: Block){
         var angleToTurn: Double = 90
         //matches defualt displayed angle
         if turnBlock.name == "Turn"{
@@ -929,7 +941,7 @@ class ExecutingProgram {
                 // 0 linear velocity in cm/s then angular is pi for 1/2, tau for 1 a revolution in one second, that's too fast to be accuturate so doing 1/4 tau for quater turn per second, -value for a clockwise direction
                 let turn = WWCommandSet()
                 turn.setBodyLinearAngular(setAngular)
-                cmdToSend.add(turn, withDuration: (angleToTurn/90))
+               // cmdToSend.add(turn, withDuration: (angleToTurn/90))
                 //duration is cut to time basesd of of angular momentum right now 90 because the velocity is 1/4 turn(90degrees) a second
             } else {
                 // if angle to turn is negative turn counter clockwise
@@ -937,59 +949,40 @@ class ExecutingProgram {
                 // 0 linear velocity in cm/s then angular is pi for 1/2, tau for 1 a revolution in one second, that's too fast to be accuturate so doing 1/4 tau for quater turn per second, +value for a counterclockwise direction
                 let turn = WWCommandSet()
                 turn.setBodyLinearAngular(setAngular)
-                cmdToSend.add(turn, withDuration: ((angleToTurn/90) * -1))
+                //cmdToSend.add(turn, withDuration: ((angleToTurn/90) * -1))
                 //duration is cut to time basesd of of angular momentum right now 90 because the velocity is 1/4 turn(90degrees) a second angle to turn is a negative value(which this else statement is for) change the angle to turn to a postive value to calculate duration better
             }
         } else if turnBlock.name.contains("Turn Left") {
-            angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90
-            // go through added block to find the attribute angle
-            let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: 1.570795)
-            //0 linear velocity in cm/s then angular is pi for 1/2, tau for 1 a revolution in one second, that's too fast to be accuturate so doing 1/4 tau for quater turn per second, +value for a counterclockwise direction
-            let turn = WWCommandSet()
-            turn.setBodyLinearAngular(setAngular)
-            cmdToSend.add(turn, withDuration: (angleToTurn/90))
-            //duration is cut to time basesd of of angular momentum right now 90 because the velocity is 1/4 turn(90degrees) a second
+            angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90 // go through added block to find the attribute angle
+            
+            let angularVelocity = 250
+            let linearVelocity = 0
+            
+            let data = calculateDriveCommand(linearVelocity: linearVelocity, angularVelocity: angularVelocity)
+            let turnDuration = angleToTurn/60 // TODO: do testing and fine tuning
+            
+            sendDataToDash(data: Data(data), withDuration: turnDuration * 1.25) // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
+            
+            Timer.scheduledTimer(withTimeInterval: turnDuration, repeats: false) { timer in
+                // stop driving after the turnDuration has passed
+                self.stopWheels()
+            }
         } else if turnBlock.name.contains("Turn Right") {
             angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90
-            let setAngular = WWCommandBodyLinearAngular(linear: 0 , angular: -1.570795)
-            // 0 linear velocity in cm/s then angular is pi for 1/2, tau for 1 a revolution in one second, that's too fast to be accuturate so doing 1/4 tau for quater turn per second, -value for a clockwise direction
-            let turn = WWCommandSet()
-            turn.setBodyLinearAngular(setAngular)
-            cmdToSend.add(turn, withDuration: (angleToTurn/90))
-            //duration is cut to time basesd of of angular momentum right now 90 because the velocity is 1/4 turn(90degrees) a second
+            let angularVelocity = -250
+            let linearVelocity = 0
+            
+            let data = calculateDriveCommand(linearVelocity: linearVelocity, angularVelocity: angularVelocity)
+            let turnDuration = angleToTurn/60
+            
+            sendDataToDash(data: Data(data), withDuration: turnDuration * 1.25) // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
+            
+            
+            Timer.scheduledTimer(withTimeInterval: turnDuration, repeats: false) { timer in
+                // stop driving after the turnDuration has passed
+                self.stopWheels()
+            }
         }
-        var waitAdd = 0.0
-        // variable used for fine tuning duration of commands for accurate turning
-        if angleToTurn > 314{
-            waitAdd = 0.1
-        }
-        // use this for fine turning
-//        if angleToTurn <= 45{
-//            waitAdd = -0.01
-//        } else if angleToTurn <= 90{
-//            waitAdd = 0.0
-//        } else if angleToTurn <= 135{
-//            waitAdd = 0.01
-//        } else if angleToTurn <= 180{
-//            waitAdd = 0.02
-//        } else if angleToTurn <= 225{
-//            waitAdd = 0.03
-//        } else if angleToTurn <= 270{
-//            waitAdd = 0.04
-//        } else if angleToTurn <= 225{
-//            waitAdd = 0.05
-//        } else if angleToTurn <= 315{
-//            waitAdd = 0.06
-//        }  else if angleToTurn <= 360{
-//            waitAdd = 0.07
-//        }
-        let wait = (0.75 + waitAdd)
-        // need to wait 1.0 seconds then add a value for fine tuneing
-        let waitingPeriod = WWCommandSet()
-        cmdToSend.add(waitingPeriod, withDuration: wait)
-        //send a wait command so that the stop command below doesn't interupt the turn
-        // there's got to be a better way but this works for now, sorry goodluck! -Mariella
-        return WWCommandToolbelt.moveStop()
     }
 
     

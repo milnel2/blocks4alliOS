@@ -225,7 +225,7 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
             if characteristic.uuid == dashCharacteristicUUID {
                 dashCharacteristic = characteristic
                 // TODO: remove this, right now it is just for testing to know when a robot is connected
-                let sound = "SYSTBIRTHDAY"
+                let sound = "SYSTROBOT_01"
                 var data = [UInt8](repeating: 0, count: 1 + sound.count)
                 data[0] = 24
                 for (i, char) in sound.enumerated() {
