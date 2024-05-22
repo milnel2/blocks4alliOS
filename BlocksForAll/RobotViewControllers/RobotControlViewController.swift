@@ -68,9 +68,9 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
        
         if areRobotsConnected() {
             print("numRobots: ", connectedRobots.count)
-            connectedRobots[0].setNotifyValue(true, for: dashSensorCharacteristic2!)
-            connectedRobots[0].setNotifyValue(true, for: dashSensorCharacteristic!)
-            connectedRobots[0].setNotifyValue(true, for: dashInfoCharacteristic!)
+            connectedRobots[0].peripheral.setNotifyValue(true, for: dashSensorCharacteristic2!)
+            connectedRobots[0].peripheral.setNotifyValue(true, for: dashSensorCharacteristic!)
+            connectedRobots[0].peripheral.setNotifyValue(true, for: dashInfoCharacteristic!)
             // var repeatCommands = [WWCommandSet]()
             executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: self)
             //creates executing program
@@ -780,7 +780,7 @@ class ExecutingProgram {
             return // TODO: handle if there is no connected robot or no characteristic to send to
         }
         for robot in connectedRobots {
-            robot.writeValue(data, for: dashCharacteristic!, type: .withoutResponse)
+            robot.peripheral.writeValue(data, for: dashCharacteristic!, type: .withoutResponse)
         }
         
         
@@ -797,7 +797,7 @@ class ExecutingProgram {
             return // TODO: handle if there is no connected robot or no characteristic to send to
         }
         for robot in connectedRobots {
-            robot.writeValue(data, for: dashCharacteristic!, type: .withoutResponse)
+            robot.peripheral.writeValue(data, for: dashCharacteristic!, type: .withoutResponse)
         }
     }
 

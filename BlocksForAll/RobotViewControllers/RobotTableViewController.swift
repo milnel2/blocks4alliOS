@@ -18,9 +18,9 @@ import CoreBluetooth
  }*/
 
 var robotManager:WWRobotManager? = nil
-var robots = [CBPeripheral]()
+var robots = [Robot]()
 var dotRobotIsConnected = false
-var connectedRobots = [CBPeripheral]()
+var connectedRobots = [Robot]()
 
 let dashServiceUUID = CBUUID(string: "af237777-879d-6186-1f49-deca0e85d9c1")
 let dashCharacteristicUUID = CBUUID(string: "af230002-879d-6186-1f49-deca0e85d9c1")
@@ -89,19 +89,24 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         
         var alreadyInList = false
         for robot in robots {
-            if (peripheral.identifier ==  robot.identifier) {
+            if (peripheral.identifier ==  robot.peripheral.identifier) {
                 // Robot is already in the list
                 alreadyInList = true
                 print("Already in list")
             }
         }
-        if (!robots.contains(peripheral) && !alreadyInList) {
-            robots.append(peripheral)
+
+        // if the robot isn't already in the list, add it to the list of robots
+        if (!alreadyInList) {
+            let newRobot = Robot(peripheral: peripheral)
+            robots.append(newRobot)
         }
         
+        // Reload table
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+        
        // TODO: add a button to scan for robots? Then we can stop scanning at other times
 //        dashPeripheral = peripheral
 //        dashPeripheral?.delegate = self
@@ -110,14 +115,27 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         
     }
     
+    func getRobotFromPeripheral(peripheral: CBPeripheral) -> Robot? {
+        for robot in robots {
+            if (peripheral.identifier ==  robot.peripheral.identifier) {
+                return robot
+            }
+        }
+        print("Error, robot not found")
+        return nil
+    }
+    
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: (any Error)?) {
         // refresh robots list
-        robots = centralManager.retrieveConnectedPeripherals(withServices: [dashServiceUUID])
-        let index = connectedRobots.firstIndex(of: peripheral)
+        robots = []
+        centralManager.scanForPeripherals(withServices: [dashServiceUUID], options: nil)
+        
+        // remove disconnected robot from the list of connected robots
+        guard let robot = getRobotFromPeripheral(peripheral: peripheral) else { return }
+        let index = connectedRobots.firstIndex(of: robot)
         if (index != nil) {
             connectedRobots.remove(at: index!)
         }
-       
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -138,7 +156,10 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        connectedRobots.append(peripheral)
+        
+        let newRobot = Robot(peripheral: peripheral)
+        connectedRobots.append(newRobot)
+        
         peripheral.discoverServices([dashServiceUUID])
         
         DispatchQueue.main.async {
@@ -288,7 +309,7 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         cell.imageView?.image = UIImage(named: "Robot_avatar")
         
         // Default Cell Layout
-        cell.textLabel?.text = robot.name
+        cell.textLabel?.text = robot.peripheral.name
         cell.textLabel?.textColor = .white
         cell.textLabel?.textAlignment = .center
         cell.layer.cornerRadius = 20
@@ -302,13 +323,13 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         
         //Add highlight to cell when robot is connected
         //TODO: different indicators for connecting and connected
-        if(robot.state == .connected) {
+        if(robot.peripheral.state == .connected) {
             print("it's connected still")
             cell.layer.borderWidth = 9
             cell.layer.borderColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
-            cell.accessibilityLabel =  (robot.name ?? "Unnamed Robot") + "Connected"
+            cell.accessibilityLabel =  (robot.peripheral.name ?? "Unnamed Robot") + "Connected"
         }else {
-            cell.accessibilityLabel = "Click to connect to" + (robot.name ?? "Unnamed Robot")
+            cell.accessibilityLabel = "Click to connect to" + (robot.peripheral.name ?? "Unnamed Robot")
         }
        
         return cell
@@ -316,16 +337,16 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     
     /// Called when a cell in the table is pressed
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let robot = robots[indexPath.row]
-        print(robot.state.rawValue)
+        let robotPeripheral = robots[indexPath.row].peripheral
+//        print(robot.state.rawValue)
         // Disconnect for robot if already connected
-        if (robot.state == .connected || robot.state == .connecting) {
+        if (robotPeripheral.state == .connected || robotPeripheral.state == .connecting) {
             print("already connected")
-            centralManager.cancelPeripheralConnection(robot)
+            centralManager.cancelPeripheralConnection(robotPeripheral)
             
         } else {
             // Otherwise, connect to the robot
-            dashPeripheral = robot
+            dashPeripheral = robotPeripheral
             dashPeripheral?.delegate = self
             centralManager.connect(dashPeripheral!)
         }
