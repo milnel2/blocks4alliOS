@@ -17,7 +17,6 @@ import CoreBluetooth
  
  }*/
 
-var robotManager:WWRobotManager? = nil
 var robots = [Robot]()
 var dotRobotIsConnected = false
 var connectedRobots = [Robot]()

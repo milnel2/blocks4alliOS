@@ -30,6 +30,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     }
     
     func refreshConnectedRobots(){
+        // TODO: implement
 //        let connectedRobots = robotManager?.allConnectedRobots
 //        if connectedRobots != nil {
 //            for r in connectedRobots!{
@@ -41,22 +42,6 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
 //        }
     }
     
-    func robot(_ robot: WWRobot!, eventsTriggered events: [Any]!) {
-//        for event in events{
-//            if let e = event as? WWEvent{
-//                if e.isEqual(WWEventToolbelt.orientationShake()){
-//                    print("Robot is shaking!")
-//                }
-//            }
-//        }
-    }
-    
-    func robot(_ robot: WWRobot!, didStopExecutingCommand sequence: WWCommandSetSequence!, withResults results: [AnyHashable : Any]!) {
-//        let connectedRobots = robotManager?.allConnectedRobots
-//        for _ in connectedRobots!{
-//            robot.resetState()
-//        }
-    }
     
     func areRobotsConnected() -> Bool{
         return !connectedRobots.isEmpty
@@ -71,7 +56,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
             connectedRobots[0].peripheral.setNotifyValue(true, for: dashSensorCharacteristic2!)
             connectedRobots[0].peripheral.setNotifyValue(true, for: dashSensorCharacteristic1!)
             connectedRobots[0].peripheral.setNotifyValue(true, for: dashInfoCharacteristic!)
-            // var repeatCommands = [WWCommandSet]()
+
             executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: self)
             //creates executing program
             executeNextCommandRobotControllVC()
@@ -186,8 +171,6 @@ class ExecutingProgram {
         }
         // stops if completed
         
-        var myAction = WWCommandSet()
-        // set of commands to be executed
         
         let blockToExec = functionsDictToExec[positions[positions.count - 1].funcName]![(positions[positions.count - 1].position)]
         //the current block being check for executing it's from the [] of blocks that are being executed at the position value that we increment with this function (and repeat and if functions)
@@ -201,9 +184,7 @@ class ExecutingProgram {
         
         var duration = 2.0
         // default duration of any command
-        
-        let cmdToSend = WWCommandSetSequence()
-        //an array of command sets to be sent, made of myAction type things
+    
         
         switch blockToExec.name{
         //SOUNDS CATEGORY
@@ -330,7 +311,7 @@ class ExecutingProgram {
             case "wow":
                 playNoise(sound: "SYSTDASH_WOW_3") // TODO: not on dot
             case "tah dah!":
-                playNoise(sound: WW_SOUNDFILE_TAH_DAH) // TODO: find sound file for tah dah
+                playNoise(sound: "WW_SOUNDFILE_TAH_DAH") // TODO: find sound file for tah dah
             case "uh huh":
                 playNoise(sound: "SYSTYAUHHUH") //TODO: not on dot
             case "uh oh":
@@ -342,7 +323,7 @@ class ExecutingProgram {
             case "yippe!":
                 playNoise(sound: "SYSTYIPPEE") // TODO: not on dot
             case "wee": // TODO: wee sound does not work
-                playNoise(sound: WW_SOUNDFILE_WEE)
+                playNoise(sound: "WW_SOUNDFILE_WEE")
             case "random word":
                 playNoise(sound: speakSoundFiles[.random(in: speakSoundFiles.indices)])
             default:
@@ -509,36 +490,38 @@ class ExecutingProgram {
            
         //MOTION CATEGORY
         case "Wiggle":
-            duration = 2.0
-            let rotateLeft = WWCommandSet()
-            rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -20.0, rightWheel: 20.0))
-            let rotateRight = WWCommandSet()
-            rotateRight.setBodyWheels(WWCommandBodyWheels.init(leftWheel: 20.0, rightWheel: -20.0))
-            
-            var wiggleIndex = 0
-            while wiggleIndex < 2 {
-                cmdToSend.add(rotateLeft, withDuration: duration)
-                cmdToSend.add(rotateRight, withDuration: duration)
-                wiggleIndex += 1
-            }
-            myAction = WWCommandToolbelt.moveStop()
-            wiggleIndex = 0
+            print("wiggle needs to be implemented")
+//            duration = 2.0
+//            let rotateLeft = WWCommandSet()
+//            rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -20.0, rightWheel: 20.0))
+//            let rotateRight = WWCommandSet()
+//            rotateRight.setBodyWheels(WWCommandBodyWheels.init(leftWheel: 20.0, rightWheel: -20.0))
+//            
+//            var wiggleIndex = 0
+//            while wiggleIndex < 2 {
+//                cmdToSend.add(rotateLeft, withDuration: duration)
+//                cmdToSend.add(rotateRight, withDuration: duration)
+//                wiggleIndex += 1
+//            }
+//            myAction = WWCommandToolbelt.moveStop()
+//            wiggleIndex = 0
             
         case "Nod":
-            let lookup = WWCommandSet()
-            lookup.setHeadPositionTilt(WWCommandHeadPosition.init(degree: -30))
-            let lookdown = WWCommandSet()
-            lookdown.setHeadPositionTilt(WWCommandHeadPosition.init(degree:30))
-            duration = 1.0
-            var nodIndex = 0
-            while nodIndex < 1 {
-                cmdToSend.add(lookup, withDuration:duration)
-                cmdToSend.add(lookdown, withDuration:duration)
-                nodIndex += 1
-            }
-            myAction = WWCommandToolbelt.moveStop()
-            nodIndex = 0
-            
+            print("nod needs to be implemented")
+//            let lookup = WWCommandSet()
+//            lookup.setHeadPositionTilt(WWCommandHeadPosition.init(degree: -30))
+//            let lookdown = WWCommandSet()
+//            lookdown.setHeadPositionTilt(WWCommandHeadPosition.init(degree:30))
+//            duration = 1.0
+//            var nodIndex = 0
+//            while nodIndex < 1 {
+//                cmdToSend.add(lookup, withDuration:duration)
+//                cmdToSend.add(lookdown, withDuration:duration)
+//                nodIndex += 1
+//            }
+//            myAction = WWCommandToolbelt.moveStop()
+//            nodIndex = 0
+//            
         //LOOK CATEGORY
         case "Look Up":
             setHeadPosition(y: 22, x: 0, duration: 2)
@@ -603,7 +586,7 @@ class ExecutingProgram {
             playTurn(turnBlock: blockToExec)
         
         case "Look Up or Down":
-            let lookUpOrDown = WWCommandSet()
+            
             let degree = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
             
             // should be .initWithDegree, but for some reason that doesn't work, may need to be in radians
@@ -614,7 +597,7 @@ class ExecutingProgram {
             
             
         case "Look Left or Right":
-            let lookLeftOrRight = WWCommandSet()
+           
             let degree = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
             //Negative command values represent left (horizontal) or up (vertical). Positive command values represents right (horizontally) or down (vertically).
             //-120.0 to 120.0 //TODO: update range
@@ -632,9 +615,8 @@ class ExecutingProgram {
                 print("There is no command, blockToExec name = ", blockToExec.name)
             }
         }
-        cmdToSend.add(myAction, withDuration: duration)
-        // and command set myAction set by cases above to cmdToSend which a sequence of command sets
-        sendCommandSequenceToRobots(cmdSeq: cmdToSend)
+       
+       
         positions[positions.count - 1].position += 1
         // increase the position so that the blockToExec is updated to the next block in the block stack
         
@@ -815,7 +797,7 @@ class ExecutingProgram {
     }
 
     func playWait(waitBlock: Block) {
-        var wait = Double(waitBlock.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
+        let wait = Double(waitBlock.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
         print("waiting: ", wait)
         sendDataToDash(data: Data([0]), withDuration: wait)
     }
@@ -1026,25 +1008,7 @@ class ExecutingProgram {
         sendDataToDash(data: Data(data), withDuration: 1)
     }
 
-    func getSensorData() -> [WWSensorSet] {
-        var sensorSet: [WWSensorSet] = []
-        let connectedRobots = robotManager?.allConnectedRobots
-        for r in connectedRobots!{
-            if let robot = r as? WWRobot{
-                sensorSet.append(robot.history.currentState())
-            }
-        }
-        //return sensorSet as! [WWSensorSet]
-        return sensorSet
-    }
-
-    func sendCommandSequenceToRobots(cmdSeq: WWCommandSetSequence) {
-        for r in connectedRobots{
-            if let robot = r as? WWRobot{
-                robot.executeCommand(cmdSeq, withOptions: nil)
-            }
-        }
-    }
+   
     
     //TODO: update sound file names in arrays
     //TODO: test sounds on Dot
@@ -1072,9 +1036,9 @@ class ExecutingProgram {
          "SYSTTRAIN_WHIS"]
     
     let objectSoundFiles =
-        [WW_SOUNDFILE_LASERS, // TODO: find laser sound file name
+        ["WW_SOUNDFILE_LASERS", // TODO: find laser sound file name
          "SYSTTRUMPET_01",
-         WW_SOUNDFILE_SQUEAK] // TODO: find squeak sound file name
+         "WW_SOUNDFILE_SQUEAK"] // TODO: find squeak sound file name
     
     let emotionSoundFiles =
         ["SYSTBRAGGING1A",
@@ -1094,7 +1058,7 @@ class ExecutingProgram {
          "SYSTLETS_GO",
          "SYSTOHH_06",
          "SYSTDASH_WOW_3",
-         WW_SOUNDFILE_TAH_DAH,
+         "WW_SOUNDFILE_TAH_DAH",
          "SYSTYAUHHUH",
          "SYSTWHUH_OH_20",
          "SYSTBWAHH",
