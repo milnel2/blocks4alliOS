@@ -34,7 +34,11 @@ class Robot: Equatable {
         // Spatial
     var tilt: Int // I'm unsure of the difference between tilt and lean
     var lean: Int
-    var zAcceleration: Int
+    var headX: Int // x coordinate of the head
+    var headY: Int // y coordinate of the head
+    var leftWheel: Int
+    var rightWheel: Int
+    var wheelDistance: Int
         // Sound
     var clap: Bool // True if a clap is heard
         //Object detection
@@ -42,6 +46,12 @@ class Robot: Equatable {
     var rightSensorSeesDot: Bool
     var dotWasSeen: Bool
     var rearDistanceSensor: Int // value from 0 to 255 of how close an object is (255 is closest, 0 is farthest)
+        // Acceleration
+    var zAcceleration: Int
+    var deltaXRotationAcceleration: Int
+    var deltaYRotationAcceleration: Int
+    var deltaZRotationAcceleration: Int
+    var zRotationAcceleration: Int
     
     
     
@@ -72,6 +82,15 @@ class Robot: Equatable {
         self.leftDistanceSensor = 0
         self.rightDistanceSensor = 0
         self.rearDistanceSensor = 0
+        self.headX = 0
+        self.headY = 0
+        self.leftWheel = 0
+        self.rightWheel = 0
+        self.deltaXRotationAcceleration = 0
+        self.deltaYRotationAcceleration = 0
+        self.deltaZRotationAcceleration = 0
+        self.zRotationAcceleration = 0
+        self.wheelDistance = 0
     }
     //TODO: documentation
     
@@ -84,40 +103,59 @@ class Robot: Equatable {
         // Sensors currently being used by Blocks4All
         leftDistanceSensor = dataList[7]
         rightDistanceSensor = dataList[6]
-        print("Left = ", leftDistanceSensor, " Right = ", rightDistanceSensor)
+        
+        
         // Sensors not currently in use
         rearDistanceSensor = dataList[8]
+        
+        let head = (dataList[0x12] << 8) + dataList[0x13]
+        headX = head & 0b0000000111111111  // select last 9 bits
+        headY = (head & 0b1111111000000000) >> 9  // select first 7 bits
+        if (headX > 255) {
+            // signed integer conversion
+            headX -= 512
+        }
+        
+        if (headY > 63) {
+            headY -= 128
+        }
+        
+        headX = headX * 135 / 244 // convert to degrees
+        headY = headY * 22 / 49 // convert to degrees
+        
+        leftWheel = (dataList[0x11] << 8) + dataList[0x10]
+        rightWheel = (dataList[0x0F] << 8) + dataList[0x0E]
+        
+        // Rotation Acceleration calculations
+        var z = (dataList[0x0D] << 8) + dataList[0x0C]
+        var deltaZ = z - zRotationAcceleration
+        
+        if abs(deltaZ) > 0x7FFF {
+            if deltaZ < 0 {
+                deltaZ += 0x10000
+            } else {
+                deltaZ = -1 * (0x10000 - deltaZ)
+            }
+        }
+        deltaZRotationAcceleration = deltaZ
+        zRotationAcceleration = z
+        
+        deltaXRotationAcceleration = ((dataList[0x04] & 0b1111) << 8) + dataList[0x05]
+        if (deltaXRotationAcceleration > 0x7FF) {
+            deltaXRotationAcceleration -= 0x1000
+        }
+        
+        deltaYRotationAcceleration = ((dataList[0x04] & 0b11110000) << 4) + dataList[0x03]
+        if (deltaYRotationAcceleration > 0x7FF) {
+            deltaYRotationAcceleration -= 0x1000
+        }
+        
+        wheelDistance = (dataList[0x09] & 0b1111 << 12) + (dataList[0x0B] << 8) + dataList[0x0A]
+        if (wheelDistance > 0x7FFF) {
+            wheelDistance -= 0x10000
+        }
     }
-    
-  
-  
-    //head = (dataList[0x12] << 8) + dataList[0x13]
-    //headX = head & 0b0000000111111111  # select last 9 bits
-    //headY = (head & 0b1111111000000000) >> 9  # select first 7 bits
-    //headX = headX - 512 if headX > 255 else headX  # signed integer conversie
-    //headY = headY - 128 if headY > 63 else headY
-    //self.headX = headX * 135 / 244  # convert to degrees
-    //self.headY = headY * 22 / 49  # convert to degrees
-    //self.leftWheel = (dataList[0x11] << 8) + dataList[0x10]
-    //self.rightWheel = (dataList[0x0F] << 8) + dataList[0x0E]
-    //zRotationAcceleration = (dataList[0x0D] << 8) + dataList[0x0C]
-    //deltaZRotationAcceleration = zRotationAcceleration - self.zRotationAcceleration
-    //if abs(deltaZRotationAcceleration) > 0x7FFF:
-    //    if deltaZRotationAcceleration < 0:
-    //        deltaZRotationAcceleration = 0x10000 + deltaZRotationAcceleration
-    //    else:
-    //        deltaZRotationAcceleration = -1 * (0x10000 - deltaZRotationAcceleration)
-    //self.deltaZRotationAcceleration = deltaZRotationAcceleration
-    //self.zRotationAcceleration = zRotationAcceleration
-    //self.deltaXRotationAcceleration = ((dataList[0x04] & 0b1111) << 8) + dataList[0x05]
-    //self.deltaXRotationAcceleration = self.deltaXRotationAcceleration - 0x1000 if self.deltaXRotationAcceleration > 0x7FF else self.deltaXRotationAcceleration
-    //self.deltaYRotationAcceleration = ((dataList[0x04] & 0b11110000) << 4) + dataList[0x03]
-    //self.deltaYRotationAcceleration = self.deltaYRotationAcceleration - 0x1000 if self.deltaYRotationAcceleration > 0x7FF else self.deltaYRotationAcceleration
-    //self.unknown1 = ((dataList[0x02]) << 8) + dataList[0x02]
-    //self.unknown1 = self.unknown1 - 0x10000 if self.unknown1 > 0x7FFF else self.unknown1
-    //self.WheelDistance = (dataList[0x09] & 0b1111 << 12) + (dataList[0x0B] << 8) + dataList[0x0A]
-    //self.WheelDistance = self.WheelDistance - 0x10000 if self.WheelDistance > 0x7FFF else self.WheelDistance
-    //
+
 
     
     func updateSensorData2(data: String) {
