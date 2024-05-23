@@ -352,72 +352,60 @@ class ExecutingProgram {
         //CONTROL CATEGORY
         case "If":
             // what the statement evaluates to
-            let data = getSensorData()
             // what info we get from the robot
             if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "Hear voice"{
             // check if the if statement is evaluating for a hear_voice
-                if(!data.isEmpty){
-                // if there is some data from the robot
-                    if(data.count>5){
-                        for n in 0...4 {
-                            let micData: WWSensorMicrophone = data[n].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
-                            print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
-                            if(micData.amplitude > 0){
-                                print("hear Voice true")
-                                ifCondition = true
-                                // if it does hear a voice, evaluate the if statement to true
-                            } else {
-                                ifCondition = false
-                            }
-                    }
-                    }
-                    else{
-                            let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
-                            print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
-                            if(micData.amplitude > 0){
-                                print("hear Voice true")
-                                ifCondition = true
-                            } else {
-                                ifCondition = false
-                            }
+                
+                // TODO: if we allow multiple robots to each evaluate the if condition, will that mess up the sequence of the rest of the blocks? Maybe we should disable the aility to connect to more than one robot
+                var numTrue = 0
+                for i in 0..<20 { // Check multiple times if the robot hears a sound in order to reduce error
+                    if (connectedRobots[0].canHearSound()) {
+                        numTrue += 1
                     }
                 }
-//                    let micData: WWSensorMicrophone = data[0].sensor(for: WWComponentId(WW_SENSOR_MICROPHONE)) as! WWSensorMicrophone
-//                    print("amp: ", micData.amplitude, "direction: ", micData.triangulationAngle)
-//                    if(micData.amplitude > 0){
-//                        print("hear Voice true")
+                
+                if (numTrue >= 10) { // if sounds was heard at least half of the time, evaluate the if statement to true
+                   
+                    print("hear Voice true")
+                    ifCondition = true
+                } else {
+                    ifCondition = false
+                }
+      
+
+                   
+//            } else if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "Obstacle sensed"{
+//            // check if the if statement is evaluating for a obstacle_sensed
+//                if(!data.isEmpty){
+//                // checks if there is data from the robot
+//                    let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
+//                    let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
+//                    print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
+//                    print("checking for obstacle")
+//                    if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
+//                        print("obstacle in front true")
 //                        ifCondition = true
-//                        // if it does hear a voice, evaluate the if statement to true
+//                        // checks to see if there is a obstacle sensed, if so changes the condition, to evaluate true
+//                    } else {
+//                        ifCondition = false
 //                    }
-                    // check if hearing voice, tbh not quite sure how this one works dash is rarely consistent with these if statements but the code is solid
-            } else if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "Obstacle sensed"{
-            // check if the if statement is evaluating for a obstacle_sensed
-                if(!data.isEmpty){
-                // checks if there is data from the robot
-                    let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
-                    let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
-                    print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
-                    print("checking for obstacle")
-                    if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
-                        print("obstacle in front true")
-                        ifCondition = true
-                        // checks to see if there is a obstacle sensed, if so changes the condition, to evaluate true
-                    } else {
-                        ifCondition = false
-                    }
-                }
-            }
+//                }
+           }
 
             if(ifCondition){
                 print("TRUE")
                 //if it's true, just keep going
+                sendDataToDash(data: Data([0]), withDuration: 1.0) // TODO: replace this function with one with a different name to make the code more readable
             
             }else{
-                ifFalse()
                 // run the ifFalse function, this is to skip over blocks that aren't supposed to be executed
+                ifFalse()
+                sendDataToDash(data: Data([0]), withDuration: 1.0)
+                
             }
             print(ifCondition)
-            
+        case "End If":
+            sendDataToDash(data: Data([0]), withDuration: 0.5)  // TODO: replace this function with one with a different name to make the code more readable
         case "Repeat":
             print("in Repeat")
             //repeatCountAndIndexArray keeps track of how many times to repeat which loop
@@ -564,6 +552,18 @@ class ExecutingProgram {
             
         case "Look Forward":
             setHeadPosition(y: 0, x: 0, duration: 2)
+        
+        case "Look Toward Voice": // TODO: improve accuracy
+            var soundDirectionSum = 0
+            let numSamples = 100
+            for _ in 0..<numSamples { // Check the sound direction multiple times in order to reduce error
+                soundDirectionSum += connectedRobots[0].soundDirection
+            }
+
+            let averageSoundDirection = Int(soundDirectionSum / numSamples)
+            let xAngle = -averageSoundDirection // angle signs are swapped from soundDirection data to sending data to robot
+       
+            setHeadPosition(y: 0, x: xAngle, duration: 2)
             
         //VARIABLES CATEGORY
         case "Set Variable":
@@ -627,7 +627,7 @@ class ExecutingProgram {
                 // adds this call of the function to the positions array of tuples so that executing current function knows where to start, -1 value is because beneth here the position value is increased this lets the next block start at an index of 0
                 print("in function")
             } else {
-                print("There is no command")
+                print("There is no command, blockToExec name = ", blockToExec.name)
             }
         }
         cmdToSend.add(myAction, withDuration: duration)
@@ -653,16 +653,27 @@ class ExecutingProgram {
     
     func setHeadPosition(y: Int, x: Int, duration: Float) {
         // Set head position code is based off https://github.com/vdwel/RobotControl/blob/master/robot.py
-        if (y < -7) || (y > 22){
-            print("Head cannot go lower than -7 degrees and higher than 22 degrees.")
-            return
+        var yAngle = y
+        var xAngle = x
+        if (yAngle < -7) {
+            print("Head cannot go lower than -7 degrees.")
+            yAngle = -7
+            
+        } else if (yAngle > 22) {
+            print("Head cannot go higher than 22 degrees.")
+            yAngle = 22
+            
         }
         
-        if (x < -64) || (y > 64){
+        
+        if (xAngle < -64){
             print("Head cannot move more than 64 degrees.")
-            return
+            xAngle = -64
+        } else if (xAngle > 64){
+            print("Head cannot move more than 64 degrees.")
+            xAngle = 64
         }
-        var yAngle = y
+       
         if (yAngle < 0) {
             yAngle *= -1
             yAngle += 0b10000000  // add negative sign bit
@@ -674,7 +685,7 @@ class ExecutingProgram {
         
         sendDataToDashNoDuration(data: Data(data)) // send first command without a duration so that the second command is the only one that has a time on it (otherwise it acts as if this block is two blocks)
         
-        var xAngle = x
+       
         
         if (xAngle < 0) {
             xAngle *= -1

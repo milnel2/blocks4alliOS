@@ -157,7 +157,7 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         
-        let newRobot = Robot(peripheral: peripheral)
+        guard let newRobot = getRobotFromPeripheral(peripheral: peripheral) else { return }
         connectedRobots.append(newRobot)
         
         peripheral.discoverServices([dashServiceUUID])
@@ -224,13 +224,16 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         //print("updated value")
         if characteristic == dashSensorCharacteristic2 {
             //print("sensor changed")
+            guard let robot = getRobotFromPeripheral(peripheral: peripheral) else { return }
+            let dataString = characteristic.value!.hexEncodedString()
+            robot.updateSensorData2(data: dataString)
+            
             if characteristic.value == nil {
                 print("characteristic value is nil")
                 return
             }
             
-            //let dataString = characteristic.value!.hexEncodedString()
-            //print("updated hex:", dataString)
+           
             //var dataList = [Int]()
             //print(Array(dataString)[7])
             
