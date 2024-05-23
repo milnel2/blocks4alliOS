@@ -69,7 +69,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
         if areRobotsConnected() {
             print("numRobots: ", connectedRobots.count)
             connectedRobots[0].peripheral.setNotifyValue(true, for: dashSensorCharacteristic2!)
-            connectedRobots[0].peripheral.setNotifyValue(true, for: dashSensorCharacteristic!)
+            connectedRobots[0].peripheral.setNotifyValue(true, for: dashSensorCharacteristic1!)
             connectedRobots[0].peripheral.setNotifyValue(true, for: dashInfoCharacteristic!)
             // var repeatCommands = [WWCommandSet]()
             executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: self)
@@ -372,24 +372,26 @@ class ExecutingProgram {
                     ifCondition = false
                 }
       
-
                    
-//            } else if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "Obstacle sensed"{
-//            // check if the if statement is evaluating for a obstacle_sensed
-//                if(!data.isEmpty){
-//                // checks if there is data from the robot
-//                    let distanceDataFL: WWSensorDistance =  data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_LEFT_FACING)) as! WWSensorDistance
-//                    let distanceDataFR: WWSensorDistance = data[0].sensor(for: WWComponentId(WW_SENSOR_DISTANCE_FRONT_RIGHT_FACING)) as! WWSensorDistance
-//                    print("distance: ", distanceDataFL.reflectance, distanceDataFR.reflectance)
-//                    print("checking for obstacle")
-//                    if(distanceDataFL.reflectance > 0.5 || distanceDataFR.reflectance > 0.5){
-//                        print("obstacle in front true")
-//                        ifCondition = true
-//                        // checks to see if there is a obstacle sensed, if so changes the condition, to evaluate true
-//                    } else {
-//                        ifCondition = false
-//                    }
-//                }
+            } else if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "Obstacle sensed"{
+            // check if the if statement is evaluating for a obstacle_sensed
+                
+                print("checking for obstacle")
+                // TODO: if we allow multiple robots to each evaluate the if condition, will that mess up the sequence of the rest of the blocks? Maybe we should disable the aility to connect to more than one robot
+                var numTrue = 0
+                for i in 0..<20 { // Check multiple times if the robot detectsObject in order to reduce error
+                    if (connectedRobots[0].isObstacleDetected()) {
+                        numTrue += 1
+                    }
+                }
+                
+                if (numTrue >= 10) { // if obstacle was detected at least half of the time, evaluate the if statement to true
+                   
+                    print("detect obstacle true")
+                    ifCondition = true
+                } else {
+                    ifCondition = false
+                }
            }
 
             if(ifCondition){

@@ -24,13 +24,13 @@ var connectedRobots = [Robot]()
 
 let dashServiceUUID = CBUUID(string: "af237777-879d-6186-1f49-deca0e85d9c1")
 let dashCharacteristicUUID = CBUUID(string: "af230002-879d-6186-1f49-deca0e85d9c1")
-let dashSensorUUID = CBUUID(string: "af230006-879d-6186-1f49-deca0e85d9c1")
+let dashSensorUUID1 = CBUUID(string: "af230006-879d-6186-1f49-deca0e85d9c1")
 let dashSensorUUID2 = CBUUID(string: "af230003-879d-6186-1f49-deca0e85d9c1")
 let dashInfoUUID = CBUUID(string: "af230001-879d-6186-1f49-deca0e85d9c1")
 let dotSensorUUID = CBUUID(string: "af230003-879d-6186-1f49-deca0e85d9c1")
 
 var dashCharacteristic:CBCharacteristic? = nil
-var dashSensorCharacteristic:CBCharacteristic? = nil
+var dashSensorCharacteristic1:CBCharacteristic? = nil
 var dashSensorCharacteristic2:CBCharacteristic? = nil
 var dashInfoCharacteristic:CBCharacteristic? = nil
 
@@ -229,17 +229,19 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
             robot.updateSensorData2(data: dataString)
             
             if characteristic.value == nil {
-                print("characteristic value is nil")
+                print("Sensor 2 characteristic value is nil")
                 return
             }
-            
-           
-            //var dataList = [Int]()
-            //print(Array(dataString)[7])
-            
-            //let dataList = [int(dataString[i:i + 2], 16) for i in range(0, len(dataString), 2)]
+        } else if (characteristic == dashSensorCharacteristic1) {
+            guard let robot = getRobotFromPeripheral(peripheral: peripheral) else { return }
+            let dataString = characteristic.value!.hexEncodedString()
+            robot.updateSensorData1(data: dataString)
+            if characteristic.value == nil {
+                print("Sensor 1 characteristic value is nil")
+                return
+            }
         }
-        //print("-----")
+       
     }
     
    
@@ -256,8 +258,8 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
                     data[i + 1] = UInt8(char.asciiValue!)
                 }
                 peripheral.writeValue(Data(data), for: characteristic, type: .withoutResponse)
-            } else if characteristic.uuid == dashSensorUUID {
-                dashSensorCharacteristic = characteristic
+            } else if characteristic.uuid == dashSensorUUID1 {
+                dashSensorCharacteristic1 = characteristic
             } else if characteristic.uuid == dashSensorUUID2 {
                 dashSensorCharacteristic2 = characteristic
             } else if characteristic.uuid == dashInfoUUID {
