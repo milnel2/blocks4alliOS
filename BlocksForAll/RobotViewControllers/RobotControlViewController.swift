@@ -490,21 +490,24 @@ class ExecutingProgram {
            
         //MOTION CATEGORY
         case "Wiggle":
-            print("wiggle needs to be implemented")
-//            duration = 2.0
-//            let rotateLeft = WWCommandSet()
-//            rotateLeft.setBodyWheels(WWCommandBodyWheels.init(leftWheel: -20.0, rightWheel: 20.0))
-//            let rotateRight = WWCommandSet()
-//            rotateRight.setBodyWheels(WWCommandBodyWheels.init(leftWheel: 20.0, rightWheel: -20.0))
-//            
-//            var wiggleIndex = 0
-//            while wiggleIndex < 2 {
-//                cmdToSend.add(rotateLeft, withDuration: duration)
-//                cmdToSend.add(rotateRight, withDuration: duration)
-//                wiggleIndex += 1
-//            }
-//            myAction = WWCommandToolbelt.moveStop()
-//            wiggleIndex = 0
+            let turnLeft = calculateDriveCommand(linearVelocity: 0, angularVelocity: 650)
+            let turnRight = calculateDriveCommand(linearVelocity: 0, angularVelocity: -650)
+           
+            sendDataToDashNoDuration(data: Data(turnLeft))
+//            // timer code from https://www.hackingwithswift.com/articles/117/the-ultimate-guide-to-timer
+            Timer.scheduledTimer(withTimeInterval: 0.75, repeats: false) { timer in
+                self.sendDataToDashNoDuration(data: Data(turnRight))
+                Timer.scheduledTimer(withTimeInterval: 0.75, repeats: false) { timer in
+                    self.sendDataToDashNoDuration(data: Data(turnLeft))
+                    Timer.scheduledTimer(withTimeInterval: 0.75, repeats: false) { timer in
+                        self.sendDataToDashNoDuration(data: Data(turnRight))
+                        Timer.scheduledTimer(withTimeInterval: 0.75, repeats: false) { timer in
+                            self.stopWheels()
+                            self.sendDataToDash(data: Data([0]), withDuration: 0.1) // Move on to next block
+                        }
+                    }
+                }
+            }
             
         case "Nod":
             let lookFoward = setHeadYPosition(y: 0)
@@ -524,9 +527,7 @@ class ExecutingProgram {
                             self.sendDataToDashNoDuration(data: Data(lookDown))
                             Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { timer in
                                 self.sendDataToDashNoDuration(data: Data(lookFoward))
-                                Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { timer in
-                                    self.sendDataToDash(data: Data([0]), withDuration: 2)
-                                }
+                                self.sendDataToDash(data: Data([0]), withDuration: 0.1) // Move on to next block
                             }
                         }
                     }
