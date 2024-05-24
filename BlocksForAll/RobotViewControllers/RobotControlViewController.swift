@@ -182,9 +182,6 @@ class ExecutingProgram {
         // Announce on VoiceOver that a block is being run
         UIAccessibility.post(notification: .announcement, argument: "\(blockToExec.name)")
         
-        var duration = 2.0
-        // default duration of any command
-    
         
         switch blockToExec.name{
         //SOUNDS CATEGORY
@@ -378,24 +375,24 @@ class ExecutingProgram {
             if(ifCondition){
                 print("TRUE")
                 //if it's true, just keep going
-                sendDataToDash(data: Data([0]), withDuration: 1.0) // TODO: replace this function with one with a different name to make the code more readable
+                finishCommand(withDuration: 1)
             
             }else{
                 // run the ifFalse function, this is to skip over blocks that aren't supposed to be executed
                 ifFalse()
-                sendDataToDash(data: Data([0]), withDuration: 1.0)
+                finishCommand(withDuration: 1)
                 
             }
             print(ifCondition)
         case "End If":
-            sendDataToDash(data: Data([0]), withDuration: 0.5)  // TODO: replace this function with one with a different name to make the code more readable
+            finishCommand(withDuration: 0.5)
         case "Repeat":
             print("in Repeat")
             //repeatCountAndIndexArray keeps track of how many times to repeat which loop
             repeatCountAndIndexArray.append((timesToR: Int(blockToExec.addedBlocks[0].attributes["timesToRepeat"] ?? "0") ?? 0, index: (positions[positions.count - 1].position) ))
             // adds to repeatCountAndIndexArray the current blocks index and the value of how many times it has left to repeat
             print(repeatCountAndIndexArray)
-            sendDataToDash(data: Data([0]), withDuration: 0.5)
+            finishCommand(withDuration: 0.5)
             
         case "End Repeat" :
             print("in End Repeat")
@@ -412,7 +409,7 @@ class ExecutingProgram {
                 // change the position to the begining of the repeat loop
             }
             print(repeatCountAndIndexArray)
-            sendDataToDash(data: Data([0]), withDuration: 0.5)
+            finishCommand(withDuration: 0.5)
             
         case "Repeat Forever":
             print("in Repeat")
@@ -420,14 +417,14 @@ class ExecutingProgram {
             repeatCountAndIndexArray.append((timesToR: 1, index: (positions[positions.count - 1].position) ))
             // adds to repeatCountAndIndexArray the current blocks index and the value of howmany times it has left to repeat
             print(repeatCountAndIndexArray)
-            sendDataToDash(data: Data([0]), withDuration: 0.5)
+            finishCommand(withDuration: 0.5)
             
         case "End Repeat Forever" :
             print("in End Repeat")
             positions[positions.count - 1].position = repeatCountAndIndexArray[(repeatCountAndIndexArray.count - 1)].index
             // change the position to the begining of the repeat loop
             print(repeatCountAndIndexArray)
-            sendDataToDash(data: Data([0]), withDuration: 0.5)
+            finishCommand(withDuration: 0.5)
             
             
         case "Wait for Time":
@@ -456,15 +453,16 @@ class ExecutingProgram {
         //MARK: change this code and make is smoother once we have user input
         case "Set Eye Light":
             let value = blockToExec.addedBlocks[0].attributes["eyeLight"] ?? "Off"
+            var data: [UInt8]
             if value == "Off" {
-                playEyeLight(on: false)
+                data = playEyeLight(on: false)
             } else {
-                playEyeLight(on: true)
+                data = playEyeLight(on: true)
             }
+            sendDataToDash(data: Data(data), withDuration: 1)
             
         case "Spiral Light":
             // Turn spiral light on
-            duration = 0.0
             playEyeLightSpiral()
             
         case "Set Left Ear Light Color":
@@ -482,11 +480,13 @@ class ExecutingProgram {
             playLight(lightBlock: blockToExec, positionBits: 12)
             
             let value = blockToExec.addedBlocks[0].attributes["lightColor"] ?? "Off"
+            var data: [UInt8]
             if value == "Off" {
-                playEyeLight(on: false)
+                data = playEyeLight(on: false)
             } else {
-                playEyeLight(on: true)
+                data = playEyeLight(on: true)
             }
+            sendDataToDash(data: Data(data), withDuration: 1)
            
         //MOTION CATEGORY
         case "Wiggle":
@@ -503,7 +503,7 @@ class ExecutingProgram {
                         self.sendDataToDashNoDuration(data: Data(turnRight))
                         Timer.scheduledTimer(withTimeInterval: 0.75, repeats: false) { timer in
                             self.stopWheels()
-                            self.sendDataToDash(data: Data([0]), withDuration: 0.1) // Move on to next block
+                            self.finishCommand(withDuration: 0.1) // Move on to next block
                         }
                     }
                 }
@@ -527,7 +527,7 @@ class ExecutingProgram {
                             self.sendDataToDashNoDuration(data: Data(lookDown))
                             Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { timer in
                                 self.sendDataToDashNoDuration(data: Data(lookFoward))
-                                self.sendDataToDash(data: Data([0]), withDuration: 0.1) // Move on to next block
+                                self.finishCommand(withDuration: 0.1) // Move on to next block
                             }
                         }
                     }
@@ -575,7 +575,7 @@ class ExecutingProgram {
             //assigns the variable value from current block attributes to the variables dict in executing program
             print("set variable, variablesDict:", variablesDict)
             
-            sendDataToDash(data: Data([0]), withDuration: 1)
+            finishCommand(withDuration: 1)
             
             
         case "Drive":
@@ -622,7 +622,7 @@ class ExecutingProgram {
             let degree = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
             //Negative command values represent left (horizontal) or up (vertical). Positive command values represents right (horizontally) or down (vertically).
             //-120.0 to 120.0 //TODO: update range
-            // TODO: allow for floats and not just ints
+            // TODO: update slider to not allow floats, since ints are all that can be sent to the robot
             let data = setHeadXandYPostion(x: Int(degree), y: 0)
             sendDataToDashNoDuration(data: Data(data.xData))  // send first command without a duration so that the second command is the only one that has a time on it (otherwise it acts as if this block is two blocks)
             sendDataToDash(data: Data(data.yData), withDuration: 2)
@@ -674,7 +674,7 @@ class ExecutingProgram {
             xAngle *= -1
             xAngle += 0b10000000  // add negative sign bit
         }
-        // TODO: head never goes back to center when turning to the side
+       
         var data = [UInt8](repeating: 0, count: 2)
         data = [UInt8](repeating: 0, count: 3)
         data[0] = 6
@@ -686,6 +686,7 @@ class ExecutingProgram {
     
     /// Generate and return data string array for setting the robot head y position
     func setHeadYPosition(y: Int) -> [UInt8]{
+        // TODO: head keeps going back to center without being told to
         // Set head position code is based off https://github.com/vdwel/RobotControl/blob/master/robot.py
         var yAngle = y
         if (yAngle < -7) {
@@ -702,7 +703,7 @@ class ExecutingProgram {
             yAngle *= -1
             yAngle += 0b10000000  // add negative sign bit
         }
-        
+    
         var data = [UInt8](repeating: 0, count: 2)
         data[0] = 7
         data[1] = UInt8(yAngle)
@@ -717,10 +718,11 @@ class ExecutingProgram {
         return (xData: data1, yData: data2)
     }
 
-
+    /// Plays eye light spiral by creating a repeating timer that fires to change which lights are turned on
     func playEyeLightSpiral() {
         let spiralDuration = 0.04
         Timer.scheduledTimer(timeInterval: spiralDuration, target: self, selector: #selector(eyeLightTimerFire(timer:)),  userInfo: spiralDuration as Any , repeats: true)
+        finishCommand(withDuration: 2)
     }
     
     var currentSpiralLightIndex = 0 // the current single light that should be turned on
@@ -732,13 +734,13 @@ class ExecutingProgram {
         // Update currentSpiralLightIndex
         currentSpiralLightIndex = currentLightIndex
         
-        playEyeLight(on: false)// Turn off all lights
+        let data = playEyeLight(on: false)// Turn off all lights
+        sendDataToDashNoDuration(data: Data(data))
         
-
         let spiralDuration = timer.userInfo as! Double
         
         // Send the command to turn on the two lights
-        setEyeLightWithIndices(indices: [currentLightIndex, nextLightIndex], withDuration: spiralDuration)
+        setEyeLightWithIndices(indices: [currentLightIndex, nextLightIndex])
         
         numberOfTimesSpun += 1
         
@@ -751,10 +753,12 @@ class ExecutingProgram {
      
             currentSpiralLightIndex = 0
             numberOfTimesSpun = 0
+            
         }
     }
     
-    func setEyeLightWithIndices(indices: [Int], withDuration: Double) {
+    /// Given an array of indices,
+    func setEyeLightWithIndices(indices: [Int]) {
         var data = [UInt8](repeating: 0, count: 3)
         data[0] = 9
             
@@ -773,9 +777,7 @@ class ExecutingProgram {
         data[1] = UInt8(bitString >> 8)
         data[2] = UInt8(bitString & 0b0000000011111111)
         
-       
-        let duration = Float(withDuration)
-        sendDataToDash(data: Data(data), withDuration: Double(duration))
+        sendDataToDashNoDuration(data: Data(data))
     }
   
     func ifFalse(){
@@ -814,11 +816,15 @@ class ExecutingProgram {
             robot.peripheral.writeValue(data, for: dashCharacteristic!, type: .withoutResponse)
         }
         
-        // timer code from https://www.hackingwithswift.com/articles/117/the-ultimate-guide-to-timer
+        finishCommand(withDuration: withDuration)
+    
+    }
+    
+    /// Send message that the block has finished running with optional parameter to wait before sending the message
+    func finishCommand(withDuration: Double = 0) {
         Timer.scheduledTimer(withTimeInterval: withDuration, repeats: false) { timer in
             self.robotControlViewController.finishedCommand()
         }
-    
     }
     
     // Send a command to Dash. Does not call finishedCommand afterwards. 
@@ -834,7 +840,7 @@ class ExecutingProgram {
     func playWait(waitBlock: Block) {
         let wait = Double(waitBlock.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
         print("waiting: ", wait)
-        sendDataToDash(data: Data([0]), withDuration: wait)
+        finishCommand(withDuration: wait)
     }
 
     
@@ -1024,7 +1030,7 @@ class ExecutingProgram {
         sendDataToDash(data: Data(data), withDuration: 1)
     }
     
-    func playEyeLight(on: Bool) {
+    func playEyeLight(on: Bool) -> [UInt8] {
         var data = [UInt8](repeating: 0, count: 3)
         data[0] = 9 //
         
@@ -1040,7 +1046,8 @@ class ExecutingProgram {
             data[2] = 0b11111111
         }
         
-        sendDataToDash(data: Data(data), withDuration: 1)
+        return data
+        
     }
 
    

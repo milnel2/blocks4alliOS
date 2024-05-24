@@ -76,7 +76,7 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     // MARK: CBCentralManagerDelegate
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
-            centralManager.scanForPeripherals(withServices: [dashServiceUUID], options: nil)
+            centralManager.scanForPeripherals(withServices: [dashServiceUUID], options: nil) //TODO: allow for dot to be connected also
         } else {
             // TODO: Handle Bluetooth not available
             print("Bluetooth not available or permission not given")
