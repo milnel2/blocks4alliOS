@@ -902,19 +902,43 @@ class ExecutingProgram {
         // this needs fine tuning, generally works fine, but probably a better way to account for this
         // really need internal API from wonderworkshop to make this work
        
-        // TODO: test distances again
-        var durationModifier = 1.25
-        if distance > 89{
-            durationModifier = 1.05
-        } else if distance > 59{
-            durationModifier = 1.1
+        
+        var durationModifier = 2.00
+        // fine tune duratoin modifier
+        if distance < 20 {
+            durationModifier = 2.9
+        } else if distance >= 40 {
+            durationModifier = 1.8
+            if distance >= 60 {
+                durationModifier = 1.7
+            }
+            if distance >= 70 {
+                durationModifier = 1.65
+            }
+            if distance >= 80 {
+                durationModifier = 1.57
+            }
+            if distance >= 100 {
+                durationModifier = 1.53
+            }
+        }
+        
+        if robotSpeed <= 10 {
+            if (distance < 40) {
+                durationModifier *= 0.75
+            } else {
+                durationModifier *= 0.9
+            }
+            if robotSpeed <= 5 {
+                durationModifier *= 0.9
+            }
         }
         
         let driveDuration = (distance/robotSpeed) * durationModifier
        
         let data = calculateDriveCommand(linearVelocity: linearVelocity, angularVelocity: angularVelocity)
         
-        sendDataToDash(data: Data(data), withDuration: (driveDuration) * 1.25)  // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
+        sendDataToDash(data: Data(data), withDuration: (driveDuration) + 0.3)  // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
         
         Timer.scheduledTimer(withTimeInterval: driveDuration, repeats: false) { timer in
             // stop driving after the driveDuration has passed
@@ -978,7 +1002,43 @@ class ExecutingProgram {
             angularVelocity = -250
         }
         let data = calculateDriveCommand(linearVelocity: 0, angularVelocity: angularVelocity)
-        let turnDuration = angleToTurn/60 // TODO: do testing and fine tuning
+        var turnDuration = angleToTurn/50
+        // Angle fine tuning
+        if angleToTurn < 30 {
+            turnDuration = angleToTurn / 15
+        }
+        if angleToTurn >= 30 {
+            turnDuration = angleToTurn / 25
+        }
+        if angleToTurn > 44 {
+            turnDuration = angleToTurn / 35
+        }
+        if angleToTurn > 59 {
+            turnDuration = angleToTurn / 42
+        }
+        if angleToTurn > 74 {
+            turnDuration = angleToTurn / 45
+        }
+        if angleToTurn == 90 {
+            turnDuration = angleToTurn / 50
+        }
+        if angleToTurn > 90 {
+            turnDuration = angleToTurn / 60
+        }
+        if angleToTurn > 120 {
+            turnDuration = angleToTurn / 70
+        }
+        if angleToTurn > 179 {
+            turnDuration = angleToTurn / 75
+        }
+        if angleToTurn > 240 {
+            turnDuration = angleToTurn / 80
+        }
+        if angleToTurn > 300 {
+            turnDuration = angleToTurn / 85
+        }
+        
+        
         
         sendDataToDash(data: Data(data), withDuration: turnDuration * 1.25) // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
         
