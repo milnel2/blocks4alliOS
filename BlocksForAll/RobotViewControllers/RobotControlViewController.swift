@@ -186,7 +186,7 @@ class ExecutingProgram {
         
         switch blockToExec.name{
         //SOUNDS CATEGORY
-            
+        // Resource for sound file names: https://github.com/playi/wwjs-examples/blob/master/sounds.md
             //TODO: test all sounds
         case "Animal Noise":
             let animal = blockToExec.addedBlocks[0].attributes["animalNoise"]
@@ -251,11 +251,11 @@ class ExecutingProgram {
             
             switch object {
             case "laser":
-                playNoise(sound: "")  // TODO: find laser file name
+                playNoise(sound: "SYSTBOT_CUTE_0")
             case "trumpet":
                 playNoise(sound: "SYSTTRUMPET_01")
             case "squeak":
-                playNoise(sound: "") //TODO: find squeak file name
+                playNoise(sound: "SYSTOT_CUTE_04")
             case "random object":
                 playNoise(sound: objectSoundFiles[.random(in: objectSoundFiles.indices)])
             default:
@@ -309,7 +309,7 @@ class ExecutingProgram {
             case "wow":
                 playNoise(sound: "SYSTDASH_WOW_3") // TODO: not on dot
             case "tah dah!":
-                playNoise(sound: "WW_SOUNDFILE_TAH_DAH") // TODO: find sound file for tah dah
+                playNoise(sound: "SYSTTAH_DAH_01") // TODO: check on dot
             case "uh huh":
                 playNoise(sound: "SYSTYAUHHUH") //TODO: not on dot
             case "uh oh":
@@ -321,7 +321,7 @@ class ExecutingProgram {
             case "yippe!":
                 playNoise(sound: "SYSTYIPPEE") // TODO: not on dot
             case "wee": // TODO: wee sound does not work
-                playNoise(sound: "WW_SOUNDFILE_WEE")
+                playNoise(sound: "SYSTEXCITED_01")
             case "random word":
                 playNoise(sound: speakSoundFiles[.random(in: speakSoundFiles.indices)])
             default:
@@ -1107,7 +1107,7 @@ class ExecutingProgram {
 
    
     
-    //TODO: update sound file names in arrays
+    
     //TODO: test sounds on Dot
     let animalSoundFiles =
         ["SYSTUS_LIPBUZZ",
@@ -1133,9 +1133,9 @@ class ExecutingProgram {
          "SYSTTRAIN_WHIS"]
     
     let objectSoundFiles =
-        ["WW_SOUNDFILE_LASERS", // TODO: find laser sound file name
+        ["SYSTBOT_CUTE_0",
          "SYSTTRUMPET_01",
-         "WW_SOUNDFILE_SQUEAK"] // TODO: find squeak sound file name
+         "SYSTOT_CUTE_04"]
     
     let emotionSoundFiles =
         ["SYSTBRAGGING1A",
@@ -1155,12 +1155,13 @@ class ExecutingProgram {
          "SYSTLETS_GO",
          "SYSTOHH_06",
          "SYSTDASH_WOW_3",
-         "WW_SOUNDFILE_TAH_DAH",
+         "SYSTTAH_DAH_01",
          "SYSTYAUHHUH",
          "SYSTWHUH_OH_20",
          "SYSTBWAHH",
          "SYSTWHEEYEEYEE",
-         "SYSTYIPPEE"]
+         "SYSTYIPPEE",
+         "SYSTEXCITED_01"]
 }
 
 
