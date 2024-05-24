@@ -633,6 +633,7 @@ class ExecutingProgram {
                 positions.append((funcName: currentFunction, position: -1))
                 // adds this call of the function to the positions array of tuples so that executing current function knows where to start, -1 value is because beneth here the position value is increased this lets the next block start at an index of 0
                 print("in function")
+                finishCommand(withDuration: 1)
             } else {
                 print("There is no command, blockToExec name = ", blockToExec.name)
             }
