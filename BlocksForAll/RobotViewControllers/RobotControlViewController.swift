@@ -507,36 +507,52 @@ class ExecutingProgram {
 //            wiggleIndex = 0
             
         case "Nod":
-            print("nod needs to be implemented")
-//            let lookup = WWCommandSet()
-//            lookup.setHeadPositionTilt(WWCommandHeadPosition.init(degree: -30))
-//            let lookdown = WWCommandSet()
-//            lookdown.setHeadPositionTilt(WWCommandHeadPosition.init(degree:30))
-//            duration = 1.0
-//            var nodIndex = 0
-//            while nodIndex < 1 {
-//                cmdToSend.add(lookup, withDuration:duration)
-//                cmdToSend.add(lookdown, withDuration:duration)
-//                nodIndex += 1
-//            }
-//            myAction = WWCommandToolbelt.moveStop()
-//            nodIndex = 0
-//            
+            let lookFoward = setHeadYPosition(y: 0)
+            let lookUp = setHeadYPosition(y: 22)
+            let lookDown = setHeadYPosition(y: -7)
+            
+            sendDataToDashNoDuration(data: Data(lookFoward))
+            
+            // timer code from https://www.hackingwithswift.com/articles/117/the-ultimate-guide-to-timer
+            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { timer in
+                self.sendDataToDashNoDuration(data: Data(lookUp))
+                Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { timer in
+                    self.sendDataToDashNoDuration(data: Data(lookDown))
+                    Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { timer in
+                        self.sendDataToDashNoDuration(data: Data(lookUp))
+                        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { timer in
+                            self.sendDataToDashNoDuration(data: Data(lookDown))
+                            Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { timer in
+                                self.sendDataToDashNoDuration(data: Data(lookFoward))
+                                Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { timer in
+                                    self.sendDataToDash(data: Data([0]), withDuration: 2)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         //LOOK CATEGORY
         case "Look Up":
-            setHeadPosition(y: 22, x: 0, duration: 2)
+            let data = setHeadYPosition(y: 22)
+            sendDataToDash(data: Data(data), withDuration: 2)
             
         case "Look Down":
-            setHeadPosition(y: -7, x: 0, duration: 0.4)
+            let data = setHeadYPosition(y: -7)
+            sendDataToDash(data: Data(data), withDuration: 2)
             
         case "Look Left":
-            setHeadPosition(y: 0, x: -64, duration: 2)
+            let data = setHeadXPosition(x: -64)
+            sendDataToDash(data: Data(data), withDuration: 2)
             
         case "Look Right":
-            setHeadPosition(y: 0, x: 64, duration: 2)
+            let data = setHeadXPosition(x: 64)
+            sendDataToDash(data: Data(data), withDuration: 2)
             
         case "Look Forward":
-            setHeadPosition(y: 0, x: 0, duration: 2)
+            let data = setHeadXandYPostion(x: 0, y: 0)
+            sendDataToDashNoDuration(data: Data(data.xData))  // send first command without a duration so that the second command is the only one that has a time on it (otherwise it acts as if this block is two blocks)
+            sendDataToDash(data: Data(data.yData), withDuration: 2)
         
         case "Look Toward Voice": // TODO: improve accuracy
             var soundDirectionSum = 0
@@ -548,7 +564,9 @@ class ExecutingProgram {
             let averageSoundDirection = Int(soundDirectionSum / numSamples)
             let xAngle = -averageSoundDirection // angle signs are swapped from soundDirection data to sending data to robot
        
-            setHeadPosition(y: 0, x: xAngle, duration: 2)
+            let data = setHeadXandYPostion(x: xAngle, y: 0)
+            sendDataToDashNoDuration(data: Data(data.xData))  // send first command without a duration so that the second command is the only one that has a time on it (otherwise it acts as if this block is two blocks)
+            sendDataToDash(data: Data(data.yData), withDuration: 2)
             
         //VARIABLES CATEGORY
         case "Set Variable":
@@ -593,16 +611,20 @@ class ExecutingProgram {
             //Negative command values represent left (horizontal) or up (vertical). Positive command values represents right (horizontally) or down (vertically).
             // ranges from  -20 to 7.5 TODO: update these ranges
             
-            setHeadPosition(y: Int(degree), x: 0, duration: 2) // TODO: allow for floats and not just ints
-            
+            // TODO: allow for floats and not just ints
+            let data = setHeadXandYPostion(x: 0, y: Int(degree))
+            sendDataToDashNoDuration(data: Data(data.xData))  // send first command without a duration so that the second command is the only one that has a time on it (otherwise it acts as if this block is two blocks)
+            sendDataToDash(data: Data(data.yData), withDuration: 2)
             
         case "Look Left or Right":
            
             let degree = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
             //Negative command values represent left (horizontal) or up (vertical). Positive command values represents right (horizontally) or down (vertically).
             //-120.0 to 120.0 //TODO: update range
-            setHeadPosition(y: 0, x: Int(degree), duration: 2) // TODO: allow for floats and not just ints
-            
+            // TODO: allow for floats and not just ints
+            let data = setHeadXandYPostion(x: Int(degree), y: 0)
+            sendDataToDashNoDuration(data: Data(data.xData))  // send first command without a duration so that the second command is the only one that has a time on it (otherwise it acts as if this block is two blocks)
+            sendDataToDash(data: Data(data.yData), withDuration: 2)
         // not best way but using default for Functions
         default:
             if blockToExec.type == "Function" {
@@ -635,10 +657,36 @@ class ExecutingProgram {
        
     }
     
-    func setHeadPosition(y: Int, x: Int, duration: Float) {
+    /// Generate and return data string array for setting the robot head x position
+    func setHeadXPosition(x: Int) -> [UInt8] {
+        // Set head position code is based off https://github.com/vdwel/RobotControl/blob/master/robot.py
+        var xAngle = x
+        
+        if (xAngle < -64){
+            print("Head cannot move more than 64 degrees.")
+            xAngle = -64
+        } else if (xAngle > 64){
+            print("Head cannot move more than 64 degrees.")
+            xAngle = 64
+        }
+        if (xAngle < 0) {
+            xAngle *= -1
+            xAngle += 0b10000000  // add negative sign bit
+        }
+        // TODO: head never goes back to center when turning to the side
+        var data = [UInt8](repeating: 0, count: 2)
+        data = [UInt8](repeating: 0, count: 3)
+        data[0] = 6
+        data[1] = UInt8(xAngle)
+        
+        return data
+        
+    }
+    
+    /// Generate and return data string array for setting the robot head y position
+    func setHeadYPosition(y: Int) -> [UInt8]{
         // Set head position code is based off https://github.com/vdwel/RobotControl/blob/master/robot.py
         var yAngle = y
-        var xAngle = x
         if (yAngle < -7) {
             print("Head cannot go lower than -7 degrees.")
             yAngle = -7
@@ -649,15 +697,6 @@ class ExecutingProgram {
             
         }
         
-        
-        if (xAngle < -64){
-            print("Head cannot move more than 64 degrees.")
-            xAngle = -64
-        } else if (xAngle > 64){
-            print("Head cannot move more than 64 degrees.")
-            xAngle = 64
-        }
-       
         if (yAngle < 0) {
             yAngle *= -1
             yAngle += 0b10000000  // add negative sign bit
@@ -667,20 +706,16 @@ class ExecutingProgram {
         data[0] = 7
         data[1] = UInt8(yAngle)
         
-        sendDataToDashNoDuration(data: Data(data)) // send first command without a duration so that the second command is the only one that has a time on it (otherwise it acts as if this block is two blocks)
-        
-       
-        
-        if (xAngle < 0) {
-            xAngle *= -1
-            xAngle += 0b10000000  // add negative sign bit
-        }
-        // TODO: head never goes back to center when turning to the side
-        data = [UInt8](repeating: 0, count: 3)
-        data[0] = 6
-        data[1] = UInt8(xAngle)
-        sendDataToDash(data: Data(data), withDuration: Double(duration))
+        return data
     }
+    
+    /// Generate and return tuple of two data string arrays for setting the robot head x and y position
+    func setHeadXandYPostion(x: Int, y: Int) -> (xData: [UInt8], yData: [UInt8]) {
+        let data1 = setHeadXPosition(x: x)
+        let data2 = setHeadYPosition(y: y)
+        return (xData: data1, yData: data2)
+    }
+
 
     func playEyeLightSpiral() {
         let spiralDuration = 0.04
@@ -759,7 +794,7 @@ class ExecutingProgram {
         }
     }
 
-    //decomposition of all actions that have to do with sound/noise
+    /// Play the passed sound file name
     func playNoise (sound: String){
         var data = [UInt8](repeating: 0, count: 1 + sound.count)
         data[0] = 24
@@ -777,7 +812,6 @@ class ExecutingProgram {
         for robot in connectedRobots {
             robot.peripheral.writeValue(data, for: dashCharacteristic!, type: .withoutResponse)
         }
-        
         
         // timer code from https://www.hackingwithswift.com/articles/117/the-ultimate-guide-to-timer
         Timer.scheduledTimer(withTimeInterval: withDuration, repeats: false) { timer in
