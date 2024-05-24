@@ -52,7 +52,6 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
         print("in play")
        
         if areRobotsConnected() {
-            print("numRobots: ", connectedRobots.count)
             connectedRobots[0].peripheral.setNotifyValue(true, for: dashSensorCharacteristic2!)
             connectedRobots[0].peripheral.setNotifyValue(true, for: dashSensorCharacteristic1!)
             connectedRobots[0].peripheral.setNotifyValue(true, for: dashInfoCharacteristic!)
@@ -336,14 +335,13 @@ class ExecutingProgram {
                 
                 // TODO: if we allow multiple robots to each evaluate the if condition, will that mess up the sequence of the rest of the blocks? Maybe we should disable the aility to connect to more than one robot
                 var numTrue = 0
-                for i in 0..<20 { // Check multiple times if the robot hears a sound in order to reduce error
+                for _ in 0..<20 { // Check multiple times if the robot hears a sound in order to reduce error
                     if (connectedRobots[0].canHearSound()) {
                         numTrue += 1
                     }
                 }
                 
                 if (numTrue >= 10) { // if sounds was heard at least half of the time, evaluate the if statement to true
-                   
                     print("hear Voice true")
                     ifCondition = true
                 } else {
@@ -357,7 +355,7 @@ class ExecutingProgram {
                 print("checking for obstacle")
                 // TODO: if we allow multiple robots to each evaluate the if condition, will that mess up the sequence of the rest of the blocks? Maybe we should disable the aility to connect to more than one robot
                 var numTrue = 0
-                for i in 0..<20 { // Check multiple times if the robot detectsObject in order to reduce error
+                for _ in 0..<20 { // Check multiple times if the robot detectsObject in order to reduce error
                     if (connectedRobots[0].isObstacleDetected()) {
                         numTrue += 1
                     }
@@ -403,7 +401,7 @@ class ExecutingProgram {
             // if the last index of the repeatCountAndIndexArray and if we're done repeating it and there are 0 timesToR(times left to repeat)
                 repeatCountAndIndexArray.remove(at: (repeatCountAndIndexArray.count - 1) )
                 // remove the tuple at the end of the array where the timesToR(times left to repeat) to repeat count is 0
-            }else {
+            } else {
             // if the loop needs to be repeated it goes to the last index of repeatCountAndIndexArray so that you get to the innermost repeat loop
                 positions[positions.count - 1].position = repeatCountAndIndexArray[(repeatCountAndIndexArray.count - 1)].index
                 // change the position to the begining of the repeat loop
@@ -494,7 +492,7 @@ class ExecutingProgram {
             let turnRight = calculateDriveCommand(linearVelocity: 0, angularVelocity: -650)
            
             sendDataToDashNoDuration(data: Data(turnLeft))
-//            // timer code from https://www.hackingwithswift.com/articles/117/the-ultimate-guide-to-timer
+            // timer code from https://www.hackingwithswift.com/articles/117/the-ultimate-guide-to-timer
             Timer.scheduledTimer(withTimeInterval: 0.75, repeats: false) { timer in
                 self.sendDataToDashNoDuration(data: Data(turnRight))
                 Timer.scheduledTimer(withTimeInterval: 0.75, repeats: false) { timer in
@@ -577,7 +575,6 @@ class ExecutingProgram {
             
             finishCommand(withDuration: 1)
             
-            
         case "Drive":
             var driveConstant = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
             // gets distance by getting the block, getting its added block, getting the block attribute for variable selected then taking that variable and running it through variablesDict to get it's current value and set that to the distance, defualt orange and 0.0
@@ -639,7 +636,6 @@ class ExecutingProgram {
             }
         }
        
-       
         positions[positions.count - 1].position += 1
         // increase the position so that the blockToExec is updated to the next block in the block stack
         
@@ -654,8 +650,6 @@ class ExecutingProgram {
             }
             print("current function:", currentFunction)
         }
-       
-       
     }
     
     /// Generate and return data string array for setting the robot head x position
@@ -737,8 +731,6 @@ class ExecutingProgram {
         let data = playEyeLight(on: false)// Turn off all lights
         sendDataToDashNoDuration(data: Data(data))
         
-        let spiralDuration = timer.userInfo as! Double
-        
         // Send the command to turn on the two lights
         setEyeLightWithIndices(indices: [currentLightIndex, nextLightIndex])
         
@@ -749,15 +741,15 @@ class ExecutingProgram {
         if numberOfTimesSpun >= (12 * desiredFullRevolutions) {
             timer.invalidate()
             // Turn all lights back on
-            playEyeLight(on: true)
+            let data = playEyeLight(on: true)
+            sendDataToDashNoDuration(data: Data(data))
      
             currentSpiralLightIndex = 0
             numberOfTimesSpun = 0
-            
         }
     }
     
-    /// Given an array of indices,
+    /// Given an array of indices, turns on the corresponding eye light leds
     func setEyeLightWithIndices(indices: [Int]) {
         var data = [UInt8](repeating: 0, count: 3)
         data[0] = 9
@@ -808,6 +800,7 @@ class ExecutingProgram {
         sendDataToDash(data: Data(data), withDuration: 2)
     }
     
+    /// Send data to dash to execute and then sends the finish command message after a duration
     func sendDataToDash(data: Data, withDuration: Double) {
         if (connectedRobots.isEmpty || dashCharacteristic == nil) {
             return // TODO: handle if there is no connected robot or no characteristic to send to
@@ -827,7 +820,7 @@ class ExecutingProgram {
         }
     }
     
-    // Send a command to Dash. Does not call finishedCommand afterwards. 
+    /// Send a command to Dash. Does not call finishCommand afterwards.  Only sends the data
     func sendDataToDashNoDuration(data: Data) {
         if (connectedRobots.isEmpty || dashCharacteristic == nil) {
             return // TODO: handle if there is no connected robot or no characteristic to send to
@@ -899,7 +892,7 @@ class ExecutingProgram {
             }
             // speed cases
         }
-        var linearVelocity = Int(driveDirection * (robotSpeed * 4))
+        let linearVelocity = Int(driveDirection * (robotSpeed * 4))
         let angularVelocity = 0
         //linear velocity is the speed times the direction, aka speed times the positive forward or negative backwards, 0 angular momentum so no turning
         
