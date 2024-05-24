@@ -5,7 +5,7 @@
 //  Created by Lucy Rubin on 5/22/24.
 //  Copyright © 2024 Blocks4All. All rights reserved.
 //
-
+// Core Bluetooth functionality based on : https://www.maissan.net/articles/dash-and-dot and https://github.com/vdwel/RobotControl/tree/master
 import UIKit
 import CoreBluetooth
 /// Class to represent the Core Bluetooth Peripheral Object for each robot that is controlled by Blocks4All

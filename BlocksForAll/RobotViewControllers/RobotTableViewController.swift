@@ -6,8 +6,7 @@
 //  Copyright © 2017 Lauren Milne. All rights reserved.
 //
 
-// Core Bluetooth functionality based on https://www.maissan.net/articles/dash-and-dot/4
-// https://github.com/Corepox/morseapi/blob/master/drive.py
+// Core Bluetooth functionality based on https://www.maissan.net/articles/dash-and-dot/4 and https://github.com/Corepox/morseapi/blob/master/drive.py
 
 import UIKit
 import CoreBluetooth

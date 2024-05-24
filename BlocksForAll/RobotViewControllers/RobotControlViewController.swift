@@ -7,6 +7,8 @@
 //  Copyright © 2017 Lauren Milne. All rights reserved.
 //
 
+// Core Bluetooth functionality based on : https://www.maissan.net/articles/dash-and-dot and https://github.com/vdwel/RobotControl/tree/master
+
 import UIKit
 import CoreBluetooth
 
