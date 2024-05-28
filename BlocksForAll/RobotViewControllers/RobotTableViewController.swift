@@ -16,6 +16,8 @@ import CoreBluetooth
  
  }*/
 
+
+
 var robots = [Robot]()
 var dotRobotIsConnected = false
 var connectedRobots = [Robot]()
@@ -32,6 +34,8 @@ var dashSensorCharacteristic1:CBCharacteristic? = nil
 var dashSensorCharacteristic2:CBCharacteristic? = nil
 var dashInfoCharacteristic:CBCharacteristic? = nil
 
+var globalCentralManager: CBCentralManager? = nil // used so that the central manager can be saved between sessions of the table view being open
+
 
 
 class RobotTableViewController: UITableViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -39,19 +43,25 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
 
 
     // MARK: Properties
-    var centralManager: CBCentralManager!
-    var dashPeripheral: CBPeripheral?
    
-
+    var dashPeripheral: CBPeripheral?
+    var localCentralManager: CBCentralManager!
+    
     // MARK: View Lifecycle
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         // Make table background transparent
                tableView.backgroundColor = UIColor.clear
       
         // set up Central Device to start scanning for robots
-        centralManager = CBCentralManager(delegate: self, queue: nil)
+        if globalCentralManager == nil {
+            localCentralManager = CBCentralManager(delegate: self, queue: nil)
+            globalCentralManager = localCentralManager
+        } else {
+            localCentralManager = globalCentralManager
+        }
         print("robots: ", robots)
         if(!robots.isEmpty) {
             print(robots[0])
@@ -71,11 +81,12 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+   
     // MARK: CBCentralManagerDelegate
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
-            centralManager.scanForPeripherals(withServices: [dashServiceUUID], options: nil) //TODO: allow for dot to be connected also
+            localCentralManager.scanForPeripherals(withServices: [dashServiceUUID], options: nil) //TODO: allow for dot to be connected also
         } else {
             // TODO: Handle Bluetooth not available
             print("Bluetooth not available or permission not given")
@@ -124,14 +135,11 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: (any Error)?) {
-        // refresh robots list
-        robots = []
-        centralManager.scanForPeripherals(withServices: [dashServiceUUID], options: nil)
-        
         // remove disconnected robot from the list of connected robots
         guard let robot = getRobotFromPeripheral(peripheral: peripheral) else { return }
         let index = connectedRobots.firstIndex(of: robot)
         if (index != nil) {
+            
             connectedRobots.remove(at: index!)
         }
         
@@ -154,7 +162,6 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        
         guard let newRobot = getRobotFromPeripheral(peripheral: peripheral) else { return }
         connectedRobots.append(newRobot)
         
@@ -345,13 +352,13 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         // Disconnect for robot if already connected
         if (robotPeripheral.state == .connected || robotPeripheral.state == .connecting) {
             print("already connected")
-            centralManager.cancelPeripheralConnection(robotPeripheral)
+            localCentralManager.cancelPeripheralConnection(robotPeripheral)
             
         } else {
             // Otherwise, connect to the robot
             dashPeripheral = robotPeripheral
             dashPeripheral?.delegate = self
-            centralManager.connect(dashPeripheral!)
+            localCentralManager.connect(dashPeripheral!)
         }
         
         DispatchQueue.main.async {
@@ -372,3 +379,5 @@ extension Data {
         return self.map { String(format: format, $0) }.joined()
     }
 }
+
+
