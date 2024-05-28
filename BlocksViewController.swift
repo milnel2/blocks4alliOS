@@ -649,7 +649,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 default:
                     // the block is a custom function
                     let functions: [String] = Array(functionsDict.keys) // All the names of the functions a user creates placed in an array
-                    if (functions.contains(block.name)) {
+                    if (functions.contains(block.name) || block.name.contains("Function Start") || block.name.contains("Function End")) {
                         let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
                         addAccessibilityLabel(blockView: blockView, block: block, blockModifier: "function", blockLocation: indexPath.row+1, blockIndex: indexPath.row)
                         cell.addSubview(blockView)

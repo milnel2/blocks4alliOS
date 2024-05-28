@@ -615,7 +615,7 @@ class ExecutingProgram {
             let data = setHeadXandYPostion(x: 0, y: Int(degree))
             sendDataToDashNoDuration(data: Data(data.xData))  // send first command without a duration so that the second command is the only one that has a time on it (otherwise it acts as if this block is two blocks)
             sendDataToDash(data: Data(data.yData), withDuration: 2)
-            
+        
         case "Look Left or Right":
            
             let degree = variablesDict[blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0
@@ -627,12 +627,15 @@ class ExecutingProgram {
             sendDataToDash(data: Data(data.yData), withDuration: 2)
         // not best way but using default for Functions
         default:
+            if blockToExec.name.contains("Function Start") || blockToExec.name.contains("Function End") {
+                finishCommand(withDuration: 0.5)
+            }
             if blockToExec.type == "Function" {
                 currentFunction = blockToExec.name
                 // changes current function to the function being called
                 positions.append((funcName: currentFunction, position: -1))
                 // adds this call of the function to the positions array of tuples so that executing current function knows where to start, -1 value is because beneth here the position value is increased this lets the next block start at an index of 0
-                print("in function")
+               
                 finishCommand(withDuration: 1)
             } else {
                 print("There is no command, blockToExec name = ", blockToExec.name)
