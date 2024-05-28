@@ -801,7 +801,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if defaults.value(forKey: "showText") as! Int == 0 || (displaysText == "true" && defaults.value(forKey: "showText") as! Int == 1) {  // show icon is on
             // choose image path
             var image: UIImage?
-            if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
+            if imagePath != nil && secondAttributeName != "variableValue"{ // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
                 image = UIImage(named: imagePath!)
                 if image != nil { // make sure that the image actually exists
                     button.setBackgroundImage(image, for: .normal)
@@ -834,7 +834,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
                         button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                     }
-                }
+                } 
             }
         } else if displaysText != "true" {  // show text is on
             // No image was found and/or Show Text is on
