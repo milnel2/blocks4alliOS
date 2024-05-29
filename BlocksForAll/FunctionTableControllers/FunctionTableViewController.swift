@@ -13,7 +13,7 @@ class FunctionTableViewController: UITableViewController {
     /* Holds the function cells in a table view */
     // Keeps old function name when renamed so it can then be renamed in main workspace
     var oldKey = [String]()
-    var newKey = [String]()
+    var newKey: String = ""
 
     var functions: [String] = Array(functionsDict.keys) // All the names of the functions a user creates placed in an array instead of dictionary so has a set order
 
@@ -44,10 +44,14 @@ class FunctionTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
             let textField = alert.textFields![0] as UITextField
-            self.functions.append(textField.text!)
-            functionsDict.updateValue([], forKey: self.functions[self.functions.count - 1])
-            let insertionIndexPath = NSIndexPath(row: self.functions.count-1, section: 0)
-            self.tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
+            if self.validateFunctionName(name: textField.text!, currentAlert: alert) {
+                // name is valid, create new function
+                self.functions.append(textField.text!)
+                functionsDict.updateValue([], forKey: self.functions[self.functions.count - 1])
+                let insertionIndexPath = NSIndexPath(row: self.functions.count-1, section: 0)
+                self.tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
+            }
+            
         }))
 
         self.present(alert, animated: true)
@@ -151,33 +155,77 @@ class FunctionTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
             let textField = alert.textFields![0] as UITextField
-            self.functions.append(textField.text!)
-            self.newKey.append(self.functions[self.functions.count - 1])
-            functionsDict.updateValue(val!, forKey: self.functions[self.functions.count - 1])
-            let insertionIndexPath = NSIndexPath(row: self.functions.count-1, section: 0)
-            self.tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
             
-            // Below updates all blocks in the app to show the right name after a rename, it literally goes through every block and every possible old name so this is really not efficent but hopefully this fixes the crashing from a long time
-            for function in functionsDict.keys{
-                for block in functionsDict[function]!{
-                    for oldFunctionName in self.oldKey{
-                        if block.name == oldFunctionName{
-                            block.name = self.newKey[self.oldKey.firstIndex(of: oldFunctionName)!]
-                        } else if block.name == String(oldFunctionName + " Function Start") {
-                            block.name = String(self.newKey[self.oldKey.firstIndex(of: oldFunctionName)!] + " Function Start")
-                        } else if block.name == String(oldFunctionName + " Function End") {
-                            block.name = String(self.newKey[self.oldKey.firstIndex(of: oldFunctionName)!] + " Function End")
+            if self.validateFunctionName(name: textField.text!, currentAlert: alert) {
+                // new name is valid, rename the function
+                self.functions.append(textField.text!)
+                self.newKey = self.functions[self.functions.count - 1]
+                functionsDict.updateValue(val!, forKey: self.functions[self.functions.count - 1])
+                let insertionIndexPath = NSIndexPath(row: self.functions.count-1, section: 0)
+                self.tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
+                
+                // Below updates all blocks in the app to show the right name after a rename, it literally goes through every block and every possible old name so this is really not efficent but hopefully this fixes the crashing from a long time
+                for function in functionsDict.keys{
+                    for block in functionsDict[function]!{
+                        for oldFunctionName in self.oldKey{
+                            if block.name == oldFunctionName{
+                               
+                                block.name = self.newKey
+                            } else if block.name == String(oldFunctionName + " Function Start") {
+                                block.name = String(self.newKey + " Function Start")
+                            } else if block.name == String(oldFunctionName + " Function End") {
+                                block.name = String(self.newKey + " Function End")
+                            }
                         }
                     }
                 }
+                functionsDict.removeValue(forKey: self.functions[renameIndexPath.row])
+                self.functions.remove(at: renameIndexPath.row)
+                self.tableView.deleteRows(at: [renameIndexPath], with: .automatic)
+                functionsDict.updateValue(val!, forKey: self.functions[self.functions.count - 1])
             }
-            functionsDict.removeValue(forKey: self.functions[renameIndexPath.row])
-            self.functions.remove(at: renameIndexPath.row)
-            self.tableView.deleteRows(at: [renameIndexPath], with: .automatic)
-            functionsDict.updateValue(val!, forKey: self.functions[self.functions.count - 1])
         }))
         self.present(alert, animated: true)
         }
+    }
+    
+    func validateFunctionName(name: String, currentAlert: UIAlertController) -> Bool{
+        let dictionary = self.getModifierDictionary()!
+        if (dictionary[name] != nil) {
+            // Name is protected, show an alert do not rename the function
+            currentAlert.dismiss(animated: true) {
+                let invalidNameAlert = UIAlertController(title: "Name is protected", message: "Choose a different name", preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.present(invalidNameAlert, animated: true)
+            }
+            return false
+        } else if (name == "") {
+            // Name is empty string
+            currentAlert.dismiss(animated: true) {
+                let invalidNameAlert = UIAlertController(title: "Name cannot be empty", message: "Choose a different name", preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.present(invalidNameAlert, animated: true)
+            }
+            return false
+        } else if (self.functions.contains(name))  {
+            // Duplicate custom function name
+            currentAlert.dismiss(animated: true) {
+                let invalidNameAlert = UIAlertController(title: "Name already exists", message: "Choose a different name", preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.present(invalidNameAlert, animated: true)
+            }
+            return false
+        } else if (self.oldKey.contains(name))  {
+            // Function name was used previously but removed
+            currentAlert.dismiss(animated: true) {
+                let invalidNameAlert = UIAlertController(title: "Name cannot have been used before", message: "Choose a different name", preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.present(invalidNameAlert, animated: true)
+            }
+            return false
+        }
+        return true
+        
     }
     
     @objc func blockModifier(cell: UITableViewCell, sender: UIButton!) {
@@ -191,6 +239,19 @@ class FunctionTableViewController: UITableViewController {
     @IBAction func backToMainWorkspace(_ sender: Any) {
         currentWorkspace = "Main Workspace"
         performSegue(withIdentifier: "functionsToBlocks", sender: nil)
+    }
+    
+    /// Converts ModifierProperties plost to a NSDictionary
+    private func getModifierDictionary () -> NSDictionary?{
+        // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
+        let dict: NSDictionary?
+         if let path = Bundle.main.path(forResource: "ModifierProperties", ofType: "plist") {
+            dict = NSDictionary(contentsOfFile: path)
+         } else {
+             print("could not access ModifierProperties plist")
+             return nil
+         }
+        return dict!
     }
 }
 
