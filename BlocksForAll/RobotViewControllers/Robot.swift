@@ -13,6 +13,13 @@ class Robot: Equatable {
     
     var peripheral: CBPeripheral // peripheral object used for Core Bluetooth
     
+    // Core Bluetooth Characteristics
+    var dashCharacteristic:CBCharacteristic? = nil
+    var dashSensorCharacteristic1:CBCharacteristic? = nil
+    var dashSensorCharacteristic2:CBCharacteristic? = nil
+    var dashInfoCharacteristic:CBCharacteristic? = nil
+
+    
     // Sensors currently in use by Blocks4All
         // Sound
     var soundLevel: Int // value from 0 to 255 of how much sound is heard

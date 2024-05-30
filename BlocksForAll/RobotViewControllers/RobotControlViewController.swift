@@ -54,9 +54,12 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
         print("in play")
        
         if areRobotsConnected() {
-            connectedRobots[0].peripheral.setNotifyValue(true, for: dashSensorCharacteristic2!)
-            connectedRobots[0].peripheral.setNotifyValue(true, for: dashSensorCharacteristic1!)
-            connectedRobots[0].peripheral.setNotifyValue(true, for: dashInfoCharacteristic!)
+            for robot in connectedRobots {
+                robot.peripheral.setNotifyValue(true, for: robot.dashSensorCharacteristic2!)
+               robot.peripheral.setNotifyValue(true, for: robot.dashSensorCharacteristic1!)
+                robot.peripheral.setNotifyValue(true, for: robot.dashInfoCharacteristic!)
+            }
+            
 
             executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: self)
             //creates executing program
@@ -264,62 +267,61 @@ class ExecutingProgram {
             
         case "Emotion Noise":
             let emotion = blockToExec.addedBlocks[0].attributes["emotionNoise"]
-            
+            // TODO: all emotion sounds do not work on Dot
             switch emotion {
             case "bragging":
-                playNoise(sound: "SYSTBRAGGING1A") // TODO: bragging not available on Dot
+                playNoise(sound: "SYSTBRAGGING1A")
             case "confused":
-                playNoise(sound: "SYSTCONFUSED_1") // TODO: not on dot
-            case "giggle":
+                playNoise(sound: "SYSTCONFUSED_1")
                 playNoise(sound: "SYSTGIGGLE_03") // TODO: giggle sound on dot is: "SYSTGIGGLE"
             case "grunt":
-                playNoise(sound: "SYSTHUMPH") // TODO: humph sound has a different name on dot
+                playNoise(sound: "SYSTHUMPH")
             case "sigh":
-                playNoise(sound: "SYSTSIGH_DASH") // TODO: sigh is not on dot
+                playNoise(sound: "SYSTSIGH_DASH")
             case "surprised":
-                playNoise(sound: "SYSTDASH_WHAA1") // TODO: not on dot
+                playNoise(sound: "SYSTDASH_WHAA1")
             case "yawn":
-                playNoise(sound: "SYSTTIRED_YAWN") // TODO: not on dot
+                playNoise(sound: "SYSTTIRED_YAWN")
             case "random emotion":
                 playNoise(sound: emotionSoundFiles[.random(in: emotionSoundFiles.indices)])
             case "snore":
-                playNoise(sound: "SYSTSNORING") // TODO: dot has a different file name for snoring
+                playNoise(sound: "SYSTSNORING")
             default:
                 playNoise(sound: "SYSTBRAGGING1A")
             }
             
         case "Speak":
             let word = blockToExec.addedBlocks[0].attributes["speak"]
-
+            // TODO: all speak sounds do not work on Dot
             switch word {
             case "hi":
-                playNoise(sound: "SYSTDASH_HI_VO") // TODO: not on dot
+                playNoise(sound: "SYSTDASH_HI_VO")
             case "bye":
-                playNoise(sound: "SYSTGOODBYE") // TODO: not on dot
+                playNoise(sound: "SYSTGOODBYE")
             case "cool":
-                playNoise(sound: "SYSTCOOL") // TODO: not on dot
+                playNoise(sound: "SYSTCOOL")
             case "haha":
-                playNoise(sound: "SYSTHAPPYLAUGH") // TODO: not on dot
+                playNoise(sound: "SYSTHAPPYLAUGH")
             case "let's go":
-                playNoise(sound: "SYSTLETS_GO") // TODO: not on dot
+                playNoise(sound: "SYSTLETS_GO")
             case "huh":
-                playNoise(sound: "SYSTHUH_06") // TODO: not on dot
+                playNoise(sound: "SYSTHUH_06")
             case "oh":
-                playNoise(sound: "SYSTOHH_06") // TODO: not on dot
+                playNoise(sound: "SYSTOHH_06")
             case "wow":
-                playNoise(sound: "SYSTDASH_WOW_3") // TODO: not on dot
+                playNoise(sound: "SYSTDASH_WOW_3")
             case "tah dah!":
-                playNoise(sound: "SYSTTAH_DAH_01") // TODO: check on dot
+                playNoise(sound: "SYSTTAH_DAH_01")
             case "uh huh":
-                playNoise(sound: "SYSTYAUHHUH") //TODO: not on dot
+                playNoise(sound: "SYSTYAUHHUH")
             case "uh oh":
-                playNoise(sound: "SYSTWHUH_OH_20") // TODO: not on dot
+                playNoise(sound: "SYSTWHUH_OH_20")
             case "wah":
-                playNoise(sound: "SYSTBWAHH") // TODO: not on dot
+                playNoise(sound: "SYSTBWAHH")
             case "wee hee!":
-                playNoise(sound: "SYSTWHEEYEEYEE") // TODO: not on dot
+                playNoise(sound: "SYSTWHEEYEEYEE")
             case "yippe!":
-                playNoise(sound: "SYSTYIPPEE") // TODO: not on dot
+                playNoise(sound: "SYSTYIPPEE")
             case "wee": // TODO: wee sound does not work
                 playNoise(sound: "SYSTEXCITED_01")
             case "random word":
@@ -335,7 +337,7 @@ class ExecutingProgram {
             if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "Hear voice"{
             // check if the if statement is evaluating for a hear_voice
                 
-                // TODO: if we allow multiple robots to each evaluate the if condition, will that mess up the sequence of the rest of the blocks? Maybe we should disable the aility to connect to more than one robot
+                // TODO: if we allow multiple robots to each evaluate the if condition, will that mess up the sequence of the rest of the blocks? Maybe we should disable the ability to connect to more than one robot
                 var numTrue = 0
                 for _ in 0..<20 { // Check multiple times if the robot hears a sound in order to reduce error
                     if (connectedRobots[0].canHearSound()) {
@@ -808,11 +810,12 @@ class ExecutingProgram {
     
     /// Send data to dash to execute and then sends the finish command message after a duration
     func sendDataToDash(data: Data, withDuration: Double) {
-        if (connectedRobots.isEmpty || dashCharacteristic == nil) {
+        if (connectedRobots.isEmpty ) {
             return // TODO: handle if there is no connected robot or no characteristic to send to
         }
+       
         for robot in connectedRobots {
-            robot.peripheral.writeValue(data, for: dashCharacteristic!, type: .withoutResponse)
+            robot.peripheral.writeValue(data, for: robot.dashCharacteristic!, type: .withoutResponse)
         }
         
         finishCommand(withDuration: withDuration)
@@ -828,11 +831,11 @@ class ExecutingProgram {
     
     /// Send a command to Dash. Does not call finishCommand afterwards.  Only sends the data
     func sendDataToDashNoDuration(data: Data) {
-        if (connectedRobots.isEmpty || dashCharacteristic == nil) {
-            return // TODO: handle if there is no connected robot or no characteristic to send to
+        if (connectedRobots.isEmpty ) {
+            return // TODO: handle if there is no connected robot
         }
         for robot in connectedRobots {
-            robot.peripheral.writeValue(data, for: dashCharacteristic!, type: .withoutResponse)
+            robot.peripheral.writeValue(data, for: robot.dashCharacteristic!, type: .withoutResponse)
         }
     }
 

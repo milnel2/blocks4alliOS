@@ -55,8 +55,8 @@ class BlocksTypeTableViewController: UITableViewController {
     
     //MARK: - viewDidLoad Function
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
         self.title = "Toolbox"
         
         if #available(iOS 11.0, *) {
@@ -129,32 +129,7 @@ class BlocksTypeTableViewController: UITableViewController {
             }
         }
         
-      
-        // Makes the categories that Dot cannot use deactivate
-        if dotRobotIsConnected {
-            // TODO make this a property of the block instead
-            switch cell.textLabel?.text {
-            case "Drive", "Motion":
-                cell.backgroundColor = UIColor.gray.patternStripes(color2: .darkGray)
-                if #available(iOS 13.0, *) {
-                    cell.accessibilityRespondsToUserInteraction = false
-                }
-                cell.isUserInteractionEnabled = false
-            default:
-                break
-            }
-        } else {
-            switch cell.textLabel?.text {
-            case "Drive", "Motion":
-                cell.backgroundColor = cell.backgroundColor?.withAlphaComponent(1.0)
-                if #available(iOS 13.0, *) {
-                    cell.accessibilityRespondsToUserInteraction = true
-                }
-                cell.isUserInteractionEnabled = true
-            default:
-                break
-            }
-        }
+    
        
         //Makes label more intuitive for Voice Control
         if #available(iOS 13.0, *) {
@@ -174,6 +149,7 @@ class BlocksTypeTableViewController: UITableViewController {
     private func createBlocksArray() {
         for item in blockDict{
             // for item in blockDict which is a NSArray that contains contents of BlocksMenu.plist
+            
             if let blockType = item as? NSDictionary{
                 // for every item blockType is a constant set to the item as a NSDictionary
                 // initializes the block properities
@@ -190,8 +166,20 @@ class BlocksTypeTableViewController: UITableViewController {
                     fatalError("Unable to instantiate block")
                 }
                 
-                blockTypes += [block]
-                // adds block to the array of blocks that are the different types used for automatically generating the toolbox UI components
+                
+                  // Makes the categories that Dot cannot use deactivate
+                if numDotsConnected > 0 && numDotsConnected == connectedRobots.count && (block.name == "Drive" || block.name == "Motion") { // all connected robots are Dots
+                      // TODO make this a property of the block instead
+                    print("Not allowed on Dash: ", block.name)
+                     
+                    // don't add the category
+                  } else {
+                      
+                      blockTypes += [block]
+                      // adds block to the array of blocks that are the different types used for automatically generating the toolbox UI components
+                  }
+                
+               
             }
         }
     }

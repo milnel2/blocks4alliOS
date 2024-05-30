@@ -19,7 +19,7 @@ import CoreBluetooth
 
 
 var robots = [Robot]()
-var dotRobotIsConnected = false
+var numDotsConnected = 0
 var connectedRobots = [Robot]()
 
 let dashServiceUUID = CBUUID(string: "af237777-879d-6186-1f49-deca0e85d9c1")
@@ -29,10 +29,6 @@ let dashSensorUUID2 = CBUUID(string: "af230003-879d-6186-1f49-deca0e85d9c1")
 let dashInfoUUID = CBUUID(string: "af230001-879d-6186-1f49-deca0e85d9c1")
 let dotSensorUUID = CBUUID(string: "af230003-879d-6186-1f49-deca0e85d9c1")
 
-var dashCharacteristic:CBCharacteristic? = nil
-var dashSensorCharacteristic1:CBCharacteristic? = nil
-var dashSensorCharacteristic2:CBCharacteristic? = nil
-var dashInfoCharacteristic:CBCharacteristic? = nil
 
 var globalCentralManager: CBCentralManager? = nil // used so that the central manager can be saved between sessions of the table view being open
 
@@ -95,7 +91,6 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
 
     /// Called when a robot is discovered
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        
         var alreadyInList = false
         for robot in robots {
             if (peripheral.identifier ==  robot.peripheral.identifier) {
@@ -111,17 +106,17 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
             robots.append(newRobot)
         }
         
-        // Reload table
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+       
         
        // TODO: add a button to scan for robots? Then we can stop scanning at other times
 //        dashPeripheral = peripheral
 //        dashPeripheral?.delegate = self
 //        centralManager.stopScan()
 //        centralManager.connect(dashPeripheral!)
-        
+        // Reload table
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func getRobotFromPeripheral(peripheral: CBPeripheral) -> Robot? {
@@ -141,6 +136,10 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         if (index != nil) {
             
             connectedRobots.remove(at: index!)
+        }
+        
+        if robot.peripheral.name == "Dot" {
+            numDotsConnected -= 1
         }
         
         DispatchQueue.main.async {
@@ -164,6 +163,11 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         guard let newRobot = getRobotFromPeripheral(peripheral: peripheral) else { return }
         connectedRobots.append(newRobot)
+        
+        // Update number of Dots connected
+        if newRobot.peripheral.name == "Dot" {
+            numDotsConnected += 1
+        }
         
         peripheral.discoverServices([dashServiceUUID])
         
@@ -207,7 +211,8 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     }
    
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: (any Error)?) {
-        if characteristic == dashSensorCharacteristic2 {
+        guard let robot = getRobotFromPeripheral(peripheral: peripheral) else { return }
+        if characteristic == robot.dashSensorCharacteristic2 {
             if characteristic.value == nil {
                 print("characteristic value is nil")
                 return
@@ -226,10 +231,10 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     
     // TODO: read sensor data
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: (any Error)?) {
-        //print("updated value")
-        if characteristic == dashSensorCharacteristic2 {
-            //print("sensor changed")
-            guard let robot = getRobotFromPeripheral(peripheral: peripheral) else { return }
+        
+        guard let robot = getRobotFromPeripheral(peripheral: peripheral) else { return }
+        if characteristic == robot.dashSensorCharacteristic2 {
+           
             let dataString = characteristic.value!.hexEncodedString()
             robot.updateSensorData2(data: dataString)
             
@@ -237,7 +242,7 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
                 print("Sensor 2 characteristic value is nil")
                 return
             }
-        } else if (characteristic == dashSensorCharacteristic1) {
+        } else if (characteristic == robot.dashSensorCharacteristic1) {
             guard let robot = getRobotFromPeripheral(peripheral: peripheral) else { return }
             let dataString = characteristic.value!.hexEncodedString()
             robot.updateSensorData1(data: dataString)
@@ -246,15 +251,15 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
                 return
             }
         }
-       
     }
     
    
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let characteristics = service.characteristics else { return }
+        guard let robot = getRobotFromPeripheral(peripheral: peripheral) else { return }
         for characteristic in characteristics {
             if characteristic.uuid == dashCharacteristicUUID {
-                dashCharacteristic = characteristic
+                robot.dashCharacteristic = characteristic
                 // TODO: remove this, right now it is just for testing to know when a robot is connected
                 let sound = "SYSTROBOT_01"
                 var data = [UInt8](repeating: 0, count: 1 + sound.count)
@@ -264,11 +269,11 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
                 }
                 peripheral.writeValue(Data(data), for: characteristic, type: .withoutResponse)
             } else if characteristic.uuid == dashSensorUUID1 {
-                dashSensorCharacteristic1 = characteristic
+                robot.dashSensorCharacteristic1 = characteristic
             } else if characteristic.uuid == dashSensorUUID2 {
-                dashSensorCharacteristic2 = characteristic
+                robot.dashSensorCharacteristic2 = characteristic
             } else if characteristic.uuid == dashInfoUUID {
-                dashInfoCharacteristic = characteristic
+                robot.dashInfoCharacteristic = characteristic
             }
             
         }
@@ -303,20 +308,21 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "robotCell", for: indexPath)
         
-        // From WW sample code
         let robot = robots[indexPath.row]
         
-        //TODO: detect if robot is a dot or a dash
+        //TODO: detect if robot is a dot or a dash, right now it's only doing it based on the name of the robot
         // Change avatar of robot depending on type of robot
-//        if robot.robotType.description == "1002" {  // The robot type of a Dot robot.
-//            cell.imageView?.image = UIImage(named: "RobotAvatar_Dot")
-//        } else if robot.robotType.description == "1001" {  // The robot type of a Dash robot.
-//            cell.imageView?.image = UIImage(named: "RobotAvatar_Dash")
-//        } else {
-//            cell.imageView?.image = UIImage(named: "Robot_avatar")
-//        }
+        if robot.peripheral.name == "Dot" {
+            cell.imageView?.image = UIImage(named: "RobotAvatar_Dot")
+        } else if robot.peripheral.name == "Dash"{
+            cell.imageView?.image = UIImage(named: "RobotAvatar_Dash")
+        } else {
+            cell.imageView?.image = UIImage(named: "Robot_avatar")
+        }
         
-        cell.imageView?.image = UIImage(named: "Robot_avatar")
+   
+        
+       
         
         // Default Cell Layout
         cell.textLabel?.text = robot.peripheral.name

@@ -13,8 +13,8 @@ class BlockTableViewController: UITableViewController {
     
     //MARK: Properties
     var toolBoxBlockArray = [Block]()
-    var blockTypes = NSArray()
     var typeIndex: Int! = 0
+    var blockTypesDict = NSArray()
     
     // used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
@@ -32,9 +32,18 @@ class BlockTableViewController: UITableViewController {
             self.navigationController?.navigationItem.largeTitleDisplayMode = .automatic
         }
         
-        // Gets the blockType information from the Blocks Menu dictionary
-        blockTypes = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
-        if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
+          // Makes the categories that Dot cannot use deactivate
+        if (numDotsConnected > 0 && numDotsConnected == connectedRobots.count) { // all connected robots are Dots
+            
+            // Gets the blockType information from the Dot Blocks Menu dictionary
+            blockTypesDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "DotBlocksMenu", ofType: "plist")!)!
+        } else {
+            // Gets the blockType information from the Blocks Menu dictionary
+            blockTypesDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
+        }
+        
+       
+        if let blockType = blockTypesDict.object(at: typeIndex) as? NSDictionary{
             self.title = blockType.object(forKey: "type") as? String
         }
         self.accessibilityHint = "Double tap from toolbox to add block to workspace"
@@ -74,6 +83,9 @@ class BlockTableViewController: UITableViewController {
         
         createVoiceControlLabels(for: block, in: cell)
         
+        cell.addSubview(myView)
+        
+        
         if block.name == "Create/Edit Functions" {
             cell.accessibilityHint = "Double tap to go to functions menu."
         }
@@ -81,7 +93,7 @@ class BlockTableViewController: UITableViewController {
             cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
         }
         
-        cell.addSubview(myView)
+       
         
         return cell
     }
@@ -140,7 +152,7 @@ class BlockTableViewController: UITableViewController {
     //TODO: Clean this method it's a bit convoluted
     /// Creating the toolbox by reading in from the .plist file.
     private func createBlocksArray(){
-        if let blockType = blockTypes.object(at: typeIndex) as? NSDictionary{
+        if let blockType = blockTypesDict.object(at: typeIndex) as? NSDictionary{
             // blockTypes is a nsArray object with the contents of the ReleaseBlocksMenu.plist file, type index is an Int Var starts at 0, so it takes the contents of ReleaseBlocksMenu.plist and sets it to blockType as an NSDictionary
             
             if (blockType.object(forKey: "type") as? String == "Functions"){
@@ -190,8 +202,19 @@ class BlockTableViewController: UITableViewController {
                                 if let acceptedTypes = dictItem.object(forKey: "acceptedTypes") as? [String]{
                                     block.acceptedTypes = acceptedTypes
                                 }
-                                toolBoxBlockArray += [block]
-                                // adds block to the toolbox
+                                // Makes the categories that Dot cannot use deactivate
+                                  if numDotsConnected > 0 && numDotsConnected == connectedRobots.count && (block.name == "Emotion Noise" || block.name == "Speak") { // all connected robots are Dots
+                                        // TODO make this a property of the block instead
+                                      print("Not allowed on Dash: ", block.name)
+                                       
+                                      // don't add the category
+                                    } else {
+                                        
+                                        toolBoxBlockArray += [block]
+                                        // adds block to the toolbox
+                                    }
+                              
+                                
                             }
                         }
                     }
