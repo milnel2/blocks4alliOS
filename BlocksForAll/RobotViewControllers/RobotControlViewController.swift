@@ -186,7 +186,9 @@ class ExecutingProgram {
         // Announce on VoiceOver that a block is being run
         UIAccessibility.post(notification: .announcement, argument: "\(blockToExec.name)")
         
-        
+        if connectedRobots.count == 0 {
+            return
+        }
         switch blockToExec.name{
         //SOUNDS CATEGORY
         // Resource for sound file names: https://github.com/playi/wwjs-examples/blob/master/sounds.md
@@ -566,7 +568,7 @@ class ExecutingProgram {
 
             let averageSoundDirection = Int(soundDirectionSum / numSamples)
             let xAngle = -averageSoundDirection // angle signs are swapped from soundDirection data to sending data to robot
-       
+            print("sound direction: ", xAngle)
             let data = setHeadXandYPostion(x: xAngle, y: 0)
             sendDataToDashNoDuration(data: Data(data.xData))  // send first command without a duration so that the second command is the only one that has a time on it (otherwise it acts as if this block is two blocks)
             sendDataToDash(data: Data(data.yData), withDuration: 2)

@@ -236,7 +236,7 @@ class Robot: Equatable {
         }
         
         let averageSensorValue = Int((leftDistanceSensor + rightDistanceSensor) / 2)
-        return averageSensorValue > 200
+        return averageSensorValue > 50
     }
     
     /// Given a hex string, parses into an array of integers to use for sensor data
