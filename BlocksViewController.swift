@@ -396,6 +396,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Determine what to do based on the state of the play button when it was clicked. Delete blocks if moving blocks, stop blocks if stopIsOption, or play program.
     @IBAction func playButtonClicked(_ sender: Any) {
+        print("Moving blocks = ", movingBlocks, " stop is Option = ", stopIsOption)
         if (movingBlocks)
             { trashClicked() }
         else if stopIsOption

@@ -53,6 +53,8 @@ class BlocksTypeTableViewController: UITableViewController {
     // Used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
     
+    var isInFreeplay = false // true if toolbox is in the freeplay screen
+    
     //MARK: - viewDidLoad Function
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,10 +72,33 @@ class BlocksTypeTableViewController: UITableViewController {
         self.accessibilityLabel = "Toolbox Menu"
         self.accessibilityHint = "Double tap from menu to select block category"
        
-        blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
+        if (self.parent?.parent is FreePlayWorkspaceViewController) {
+            isInFreeplay = true
+        } else {
+            isInFreeplay = false
+        }
+        print("FREEPLAY = ", isInFreeplay)
+        if isInFreeplay {
+            blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "FreeplayBlocksMenu", ofType: "plist")!)!
+            self.navigationController?.isNavigationBarHidden = true
+        } else {
+            blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "BlocksMenu", ofType: "plist")!)!
+            self.navigationController?.isNavigationBarHidden = false
+        }
+       
         
         createBlocksArray()
         delegate?.setParentViewController(self.parent ?? self)
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       print("will appear")
+        if isInFreeplay {
+            self.navigationController?.isNavigationBarHidden = true
+        } else {
+            self.navigationController?.isNavigationBarHidden = false
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -117,7 +142,7 @@ class BlocksTypeTableViewController: UITableViewController {
         if cell.textLabel != nil {
             // Only adds the icon if dynamic text sizing is not being used.
             //TODO: check that this works on the larger IPad
-            if cell.textLabel!.font.pointSize <= 34 {
+            if cell.textLabel!.font.pointSize <= 34 && !isInFreeplay{ // TODO: make icons work in freeplay mode
                 let imagePath = "\(blockType.name)Icon.pdf"
                 let image = UIImage(named: imagePath)
                 let imv: UIImageView
@@ -135,6 +160,7 @@ class BlocksTypeTableViewController: UITableViewController {
         if #available(iOS 13.0, *) {
             cell.accessibilityUserInputLabels = ["\(blockType.name)"]
         }
+        cell.selectionStyle = .none // TODO: if the selection style is not none, the selected cell stays gray after navigating back to it
         
         return cell
     }
@@ -166,18 +192,19 @@ class BlocksTypeTableViewController: UITableViewController {
                     fatalError("Unable to instantiate block")
                 }
                 
-                
                   // Makes the categories that Dot cannot use deactivate
                 if numDotsConnected > 0 && numDotsConnected == connectedRobots.count && (block.name == "Drive" || block.name == "Motion") { // all connected robots are Dots
                       // TODO make this a property of the block instead
                     print("Not allowed on Dash: ", block.name)
                      
+                    
                     // don't add the category
+
                   } else {
-                      
                       blockTypes += [block]
                       // adds block to the array of blocks that are the different types used for automatically generating the toolbox UI components
                   }
+                
                 
                
             }

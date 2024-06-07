@@ -20,14 +20,22 @@ class SelectedBlockViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.backBarButtonItem?.accessibilityLabel = "Back"
         
         // Puts top of selected block view at the top of the screen
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         }
+        var myFrame = CGRect()
+        if self.parent?.parent is FreePlayWorkspaceViewController {
+            blockSize = 125
+            myFrame = CGRect(x: 0, y: Int(7 * self.view.bounds.height / 26), width: 0, height: 0)
+        } else {
+            blockSize = 200
+            myFrame = CGRect(x: 0, y: Int(15 * self.view.bounds.height / 24), width: 0, height: 0)
+        }
         
-        let myFrame = CGRect(x: 0, y: Int(15 * self.view.bounds.height / 24), width: 0, height: 0)
         
         let myBlockView = BlockView.init(frame: myFrame, block: blocks!, myBlockSize: blockSize)
         
