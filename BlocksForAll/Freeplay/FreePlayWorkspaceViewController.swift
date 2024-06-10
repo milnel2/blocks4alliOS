@@ -19,4 +19,20 @@ class FreePlayWorkspaceViewController:  BlocksViewController {
         super.viewDidLoad()
         currentActorImageView.alpha = 0.3
     }
+    
+//    @objc override func distanceSpeedModifier(sender: UIButton!) {
+//
+//        performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
+//    }
+//    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let modiferVC = segue.destination as? DistanceSpeedModViewController {
+           
+            modiferVC.parentVC = segue.source
+           
+        }
+       
+        
+        super.prepare(for: segue, sender: sender)
+    }
 }

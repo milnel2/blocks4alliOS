@@ -32,8 +32,9 @@ class DistanceSpeedModViewController: UIViewController{
     @IBOutlet var speedTitle: UILabel!
     @IBOutlet weak var speedImage: UIImageView!
     
+   
+    var parentVC: UIViewController?
     override func viewDidLoad() {
-        
         // Get Speed and Distance values
         // Default Distance: 30 or preserve last selection
         let previousDistanceString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
@@ -65,8 +66,18 @@ class DistanceSpeedModViewController: UIViewController{
         // Dynamic Text
         back.titleLabel?.adjustsFontForContentSizeCategory = true
         setFontStyle()
+        
+        
     }
     
+    @IBAction func backButtonPress(_ sender: Any) {
+        if let _ = parentVC as? FreePlayWorkspaceViewController {
+            performSegue(withIdentifier: "backToFreeplay", sender: nil)
+        } else if let _ = parentVC as? BlocksViewController {
+            performSegue(withIdentifier: "backToRobotWorkspace", sender: nil)
+        }
+    }
+  
     /// Updates distance value when slider moved
     @IBAction func distanceSliderChanged(_ sender: UISlider) {
         // Update distance

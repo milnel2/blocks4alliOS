@@ -25,6 +25,8 @@ class AngleModViewController: UIViewController {
     @IBOutlet var turnView: UIView!
     @IBOutlet weak var angleTitle: UILabel!
     
+    
+    var parentVC: UIViewController?
     override func viewDidLoad() {
         // default angle: 90 or preserve last selection
         let previousAngleString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["angle"] ?? "90"
@@ -42,6 +44,13 @@ class AngleModViewController: UIViewController {
         back.titleLabel?.adjustsFontForContentSizeCategory = true
         turnView.accessibilityElements = [back!, angleTitle!, angleDisplayed!, angleSlider!]
         setFontStyle()
+    }
+    @IBAction func backButtonPress(_ sender: Any) {
+        if let _ = parentVC as? FreePlayWorkspaceViewController {
+            performSegue(withIdentifier: "backToFreeplay", sender: nil)
+        } else if let _ = parentVC as? BlocksViewController {
+            performSegue(withIdentifier: "backToRobotWorkspace", sender: nil)
+        }
     }
     
     /// When angle slider moved, get rounded value and convert to degrees 

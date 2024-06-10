@@ -66,6 +66,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     private var allModifierBlocks = [UIButton]()  // A list of all the modifier blocks in the workspace
     private var modifierBlockIndex: Int?  // An integer used to identify which modifier block was clicked when going to other screens.
     
+    
+  
     //MARK: - View Controller Methods
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -80,6 +82,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
         // Change to custom font
         workspaceTitle.adjustsFontForContentSizeCategory = true
         workspaceTitle.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
@@ -1080,6 +1084,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     @objc func distanceSpeedModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
+        
         performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
     }
     
@@ -1114,11 +1119,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // Segue to DistanceSpeedModViewController
         if let destinationViewController = segue.destination as? DistanceSpeedModViewController {
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+            destinationViewController.parentVC = segue.source
         }
         
         // Segue to AngleModViewController
         if let destinationViewController = segue.destination as? AngleModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+            destinationViewController.parentVC = segue.source
         }
         
         // Segue to SetVariableModViewController
