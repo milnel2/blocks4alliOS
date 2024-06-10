@@ -29,6 +29,15 @@ class SetVariableModViewController: UIViewController {
     @IBOutlet var variableValueInput: UITextField!
     var activeField: UITextField?
     
+    var parentVC: UIViewController?
+    
+    @IBAction func backButtonPress(_ sender: Any) {
+        if let _ = parentVC as? FreePlayWorkspaceViewController {
+            performSegue(withIdentifier: "backToFreeplay", sender: nil)
+        } else if let _ = parentVC as? BlocksViewController {
+            performSegue(withIdentifier: "backToRobotWorkspace", sender: nil)
+        }
+    }
     /// Deselects all buttons but currently selected one (only one can be selected at a time)
     @IBAction func buttonPressed(_ sender: UIButton) {
         if let buttonID = sender.accessibilityIdentifier {

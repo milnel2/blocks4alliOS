@@ -30,6 +30,8 @@ class DriveVariables: UIViewController {
     @IBOutlet weak var speedTitle: UILabel!
     @IBOutlet var driveVariablesView: UIView!
     
+    var parentVC: UIViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,6 +56,15 @@ class DriveVariables: UIViewController {
         // Voice Over and Switch Control
         driveVariablesView.accessibilityElements = [back!, driveTitleLabel!, distanceLabel!, buttons!, speedTitle!, slowButton!, speedLabel!, speedImage!, fastButton!]
 
+    }
+    
+    
+    @IBAction func backButtonPress(_ sender: Any) {
+        if let _ = parentVC as? FreePlayWorkspaceViewController {
+            performSegue(withIdentifier: "backToFreeplay", sender: nil)
+        } else if let _ = parentVC as? BlocksViewController {
+            performSegue(withIdentifier: "backToRobotWorkspace", sender: nil)
+        }
     }
     
     /// If minus button pressed, speed changes to one less and speed label updated with this value

@@ -1131,11 +1131,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // Segue to SetVariableModViewController
         if let destinationViewController = segue.destination as? SetVariableModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+            destinationViewController.parentVC = segue.source
         }
         
         // Segue to DriveVariables
         if let destinationViewController = segue.destination as? DriveVariables{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+            destinationViewController.parentVC = segue.source
         }
 
         // Segue to EyeLightModifierViewController

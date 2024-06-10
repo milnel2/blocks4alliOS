@@ -1288,7 +1288,6 @@ For further information on Blocks4All, please visit our website. For further det
                                 </state>
                                 <connections>
                                     <action selector="backButtonPress:" destination="JzC-8L-d8W" eventType="touchUpInside" id="NHv-3Y-k9q"/>
-                                    <segue destination="uoc-nU-c4a" kind="show" identifier="backToRobotWorkspace" id="IVp-4f-s1y"/>
                                 </connections>
                             </button>
                             <slider contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="360" translatesAutoresizingMaskIntoConstraints="NO" id="HuR-8Y-sXT" userLabel="Angle Slider">
@@ -1433,7 +1432,7 @@ For further information on Blocks4All, please visit our website. For further det
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="uoc-nU-c4a" kind="show" id="2YI-wg-iJ2"/>
+                                    <action selector="backButtonPress:" destination="B5M-ey-3HD" eventType="touchUpInside" id="uLG-sv-fE4"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCi-eq-XZm">
@@ -1483,6 +1482,8 @@ For further information on Blocks4All, please visit our website. For further det
                         <outletCollection property="buttons" destination="rgQ-Jh-7kw" collectionClass="NSMutableArray" id="WIy-0J-OHU"/>
                         <outletCollection property="buttons" destination="e5m-D2-7ru" collectionClass="NSMutableArray" id="oPv-Ou-dNv"/>
                         <outletCollection property="buttons" destination="Skb-YP-GZa" collectionClass="NSMutableArray" id="a7v-fP-8qS"/>
+                        <segue destination="uoc-nU-c4a" kind="show" identifier="backToRobotWorkspace" id="VUH-cz-wTv"/>
+                        <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplay" id="0Dq-5A-mfR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44J-gd-q9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1512,7 +1513,7 @@ For further information on Blocks4All, please visit our website. For further det
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="uoc-nU-c4a" kind="show" id="kbj-oh-DCS"/>
+                                    <action selector="backButtonPress:" destination="jdf-AY-L53" eventType="touchUpInside" id="nj4-5L-9E4"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CO9-t8-AAm">
@@ -1670,6 +1671,8 @@ For further information on Blocks4All, please visit our website. For further det
                         <outletCollection property="buttons" destination="HeO-ti-YFz" collectionClass="NSMutableArray" id="TyR-fH-1Du"/>
                         <outletCollection property="buttons" destination="IoX-XS-X1x" collectionClass="NSMutableArray" id="Ahr-se-ybh"/>
                         <outletCollection property="buttons" destination="tKW-E7-HOd" collectionClass="NSMutableArray" id="axa-zZ-lyb"/>
+                        <segue destination="uoc-nU-c4a" kind="show" identifier="backToRobotWorkspace" id="17X-Fz-tRk"/>
+                        <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplay" id="bbR-fH-VNm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IeQ-ZC-B5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1799,9 +1802,6 @@ For further information on Blocks4All, please visit our website. For further det
                                 <state key="normal" title="Back" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="uoc-nU-c4a" kind="show" id="D3Q-1e-yCW"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MULTIPLE CHOICE MODIFIER TYPE TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxI-El-jaR">
                                 <rect key="frame" x="315" y="86.5" width="450.5" height="82"/>
@@ -1883,9 +1883,6 @@ For further information on Blocks4All, please visit our website. For further det
                                 <state key="normal" title="Back" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="uoc-nU-c4a" kind="show" id="z9o-ps-gUP"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STEPPER MODIFIER TYPE TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOM-Mf-5kA">
                                 <rect key="frame" x="300.5" y="107" width="479.5" height="41"/>
@@ -1970,9 +1967,6 @@ For further information on Blocks4All, please visit our website. For further det
                                 <state key="normal" title="Back" image="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="uoc-nU-c4a" kind="show" id="blN-l4-FMy"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TWO OPTION MODIFIER TYPE TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRu-Ox-rVQ">
                                 <rect key="frame" x="267" y="107" width="546.5" height="41"/>
@@ -2093,10 +2087,10 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="g0f-Hs-dMn"/>
         <segue reference="Mdl-ke-gN7"/>
         <segue reference="CWQ-aM-vhy"/>
-        <segue reference="IVp-4f-s1y"/>
+        <segue reference="17X-Fz-tRk"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="gnX-kj-isW"/>
-        <segue reference="ne4-yA-8MV"/>
+        <segue reference="bbR-fH-VNm"/>
         <segue reference="XsQ-5G-ZnB"/>
     </inferredMetricsTieBreakers>
     <resources>
