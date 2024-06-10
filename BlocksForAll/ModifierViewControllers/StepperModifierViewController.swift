@@ -38,6 +38,7 @@ class StepperModifierViewController: UIViewController {
 
     private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each option button
       
+    var parentVC: UIViewController?
     override func viewDidLoad() {
         // get the optionType from the button that caused this screen to open, this will be displayed at the top of the screen
         optionType = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name
@@ -85,6 +86,13 @@ class StepperModifierViewController: UIViewController {
         setFontStyle()
     }
     
+    @IBAction func backButtonPress(_ sender: Any) {
+        if let _ = parentVC as? FreePlayWorkspaceViewController {
+            performSegue(withIdentifier: "backToFreeplay", sender: nil)
+        } else if let _ = parentVC as? BlocksViewController {
+            performSegue(withIdentifier: "backToRobotWorkspace", sender: nil)
+        }
+    }
     /// Sets up button and sets image or text for the button
     private func configureButton (button : UIButton, optionName : String) {
         button.setImage(nil, for: .normal) // remove any previous image

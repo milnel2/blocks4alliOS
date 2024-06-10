@@ -54,6 +54,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     // From https://stackoverflow.com/questions/24110762/swift-determine-ios-screen-size
     private let screenSize: CGRect = UIScreen.main.bounds // size of the screen that the app is being run on. Used to build button layout
      
+    var parentVC: UIViewController?
     override func viewDidLoad() {
         
         optionType = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name  // get the optionType from the button that caused this screen to open
@@ -97,7 +98,14 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         setFontStyle()
     }
     
-      
+    @IBAction func backButtonPress(_ sender: Any) {
+        if let _ = parentVC as? FreePlayWorkspaceViewController {
+            performSegue(withIdentifier: "backToFreeplay", sender: nil)
+        } else if let _ = parentVC as? BlocksViewController {
+            performSegue(withIdentifier: "backToRobotWorkspace", sender: nil)
+        }
+    }
+    
     ///  Number of items in the section of the collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.items.count

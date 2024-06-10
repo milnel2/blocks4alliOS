@@ -1143,16 +1143,19 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // Segue to EyeLightModifierViewController
         if let destinationViewController = segue.destination as? TwoOptionModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+            destinationViewController.parentVC = segue.source
         }
         
         // Segue to MultipleChoiceModifierViewController
         if let destinationViewController = segue.destination as? MultipleChoiceModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+            destinationViewController.parentVC = segue.source
         }
         
         // Segue to StepperModifierViewController
         if let destinationViewController = segue.destination as? StepperModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+            destinationViewController.parentVC = segue.source
         }
     }
 }

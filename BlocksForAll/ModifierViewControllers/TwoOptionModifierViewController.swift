@@ -38,6 +38,7 @@ class TwoOptionModifierViewController: UIViewController {
     @IBOutlet var buttons: [UIButton]!  // array holding both of the buttons
     @IBOutlet weak var optionTwoButton: UIButton!  // right button on screen
 
+    var parentVC: UIViewController?
     override func viewDidLoad() {
         optionType = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name  // get the optionType from the button that caused this screen to open, this will be displayed at the top of the screen
           
@@ -80,6 +81,13 @@ class TwoOptionModifierViewController: UIViewController {
         // Dynamic Text
         setFontStyle()
       }
+    @IBAction func backButtonPress(_ sender: Any) {
+        if let _ = parentVC as? FreePlayWorkspaceViewController {
+            performSegue(withIdentifier: "backToFreeplay", sender: nil)
+        } else if let _ = parentVC as? BlocksViewController {
+            performSegue(withIdentifier: "backToRobotWorkspace", sender: nil)
+        }
+    }
     
     /// Sets up button and sets image or text for the button
     private func configureButton (button : UIButton, optionName : String) {
