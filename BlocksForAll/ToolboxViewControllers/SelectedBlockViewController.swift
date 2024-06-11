@@ -309,6 +309,7 @@ class SelectedBlockViewController: UIViewController {
     /// Converts ModifierProperties plist to a NSDictionary.
     private func getModifierDictionary () -> NSDictionary?{
         // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
+        
         let dict: NSDictionary?
          if let path = Bundle.main.path(forResource: "ModifierProperties", ofType: "plist") {
             dict = NSDictionary(contentsOfFile: path)

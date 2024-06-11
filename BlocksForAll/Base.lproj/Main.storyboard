@@ -204,7 +204,7 @@
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="YEE-PZ-SjD" kind="show" id="fe7-LE-0jv"/>
+                                                            <action selector="goToMainMenu:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="Ccj-wb-4WS"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gMF-Vw-CjH" userLabel="Change Background">
@@ -228,6 +228,30 @@
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="8qF-Y7-eCZ" userLabel="Middle View">
                                                 <rect key="frame" x="289" y="0.0" width="613" height="405"/>
                                                 <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kKQ-2P-KlV" userLabel="OutputView" customClass="FreeplayOutputView" customModule="BlocksForAll" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="613" height="405"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="sz8-Xi-Sni">
+                                                                <rect key="frame" x="0.0" y="0.0" width="613" height="405"/>
+                                                            </imageView>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B4A_Robot_outline" translatesAutoresizingMaskIntoConstraints="NO" id="bLB-X1-ktl" userLabel="Actor">
+                                                                <rect key="frame" x="186.5" y="138.5" width="240" height="128"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="240" id="Cbs-Ef-XvZ"/>
+                                                                    <constraint firstAttribute="height" constant="128" id="LeQ-PC-sr7"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="bLB-X1-ktl" firstAttribute="centerX" secondItem="sz8-Xi-Sni" secondAttribute="centerX" id="1gg-G3-Cc8"/>
+                                                            <constraint firstItem="bLB-X1-ktl" firstAttribute="centerY" secondItem="sz8-Xi-Sni" secondAttribute="centerY" id="4LK-W6-MZT"/>
+                                                            <constraint firstItem="sz8-Xi-Sni" firstAttribute="leading" secondItem="kKQ-2P-KlV" secondAttribute="leading" id="6Gz-nE-XcX"/>
+                                                            <constraint firstAttribute="bottom" secondItem="sz8-Xi-Sni" secondAttribute="bottom" id="Iza-st-oom"/>
+                                                            <constraint firstAttribute="trailing" secondItem="sz8-Xi-Sni" secondAttribute="trailing" id="TPF-Ln-bwC"/>
+                                                            <constraint firstItem="sz8-Xi-Sni" firstAttribute="top" secondItem="kKQ-2P-KlV" secondAttribute="top" id="atp-QD-eJE"/>
+                                                        </constraints>
+                                                    </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KI8-EN-GKe">
                                                         <rect key="frame" x="286" y="8" width="41.5" height="46"/>
                                                         <constraints>
@@ -237,21 +261,15 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezs-Ta-LYC" userLabel="Output View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="613" height="405"/>
-                                                        <connections>
-                                                            <segue destination="2fp-BX-uJE" kind="embed" id="lT8-wK-8j8"/>
-                                                        </connections>
-                                                    </containerView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGray3Color"/>
                                                 <constraints>
                                                     <constraint firstItem="KI8-EN-GKe" firstAttribute="top" secondItem="8qF-Y7-eCZ" secondAttribute="topMargin" id="6pH-fP-mHe"/>
                                                     <constraint firstItem="KI8-EN-GKe" firstAttribute="centerX" secondItem="8qF-Y7-eCZ" secondAttribute="centerX" id="Gjn-Nj-ygM"/>
-                                                    <constraint firstItem="ezs-Ta-LYC" firstAttribute="top" secondItem="8qF-Y7-eCZ" secondAttribute="top" id="ItK-RL-pgx"/>
-                                                    <constraint firstItem="ezs-Ta-LYC" firstAttribute="centerX" secondItem="KI8-EN-GKe" secondAttribute="centerX" id="rnB-uN-03O"/>
-                                                    <constraint firstAttribute="bottom" secondItem="ezs-Ta-LYC" secondAttribute="bottom" id="twU-Kt-F9w"/>
-                                                    <constraint firstItem="ezs-Ta-LYC" firstAttribute="leading" secondItem="8qF-Y7-eCZ" secondAttribute="leading" id="v2d-Lu-TN1"/>
+                                                    <constraint firstItem="kKQ-2P-KlV" firstAttribute="top" secondItem="8qF-Y7-eCZ" secondAttribute="top" id="IYI-Iv-gcd"/>
+                                                    <constraint firstItem="kKQ-2P-KlV" firstAttribute="leading" secondItem="8qF-Y7-eCZ" secondAttribute="leading" id="O9d-kF-XVj"/>
+                                                    <constraint firstItem="kKQ-2P-KlV" firstAttribute="centerX" secondItem="KI8-EN-GKe" secondAttribute="centerX" id="dex-DP-ZVX"/>
+                                                    <constraint firstItem="kKQ-2P-KlV" firstAttribute="centerY" secondItem="8qF-Y7-eCZ" secondAttribute="centerY" id="lGw-hM-YJB"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="WkD-Ee-gPm" userLabel="Left View">
@@ -422,20 +440,24 @@
                     <connections>
                         <outlet property="CurrentActorImageView" destination="5xA-lS-fn9" id="JC1-a4-H2m"/>
                         <outlet property="blocksProgram" destination="ei4-9x-SF4" id="TWu-jB-6iq"/>
+                        <outlet property="freeplayOutputView" destination="kKQ-2P-KlV" id="7Yf-AU-3Q9"/>
                         <outlet property="mainMenuButton" destination="9YL-5Y-1hw" id="McB-ea-ozc"/>
                         <outlet property="mainView" destination="jWr-ZO-kXm" id="deS-DP-VoI"/>
                         <outlet property="mainWorkspaceButton" destination="R10-4x-ECs" id="Hx9-Ps-yHS"/>
+                        <outlet property="outputActorViewTemp" destination="bLB-X1-ktl" id="ebT-Pc-CWf"/>
+                        <outlet property="outputBackgroundImageView" destination="sz8-Xi-Sni" id="Ssu-09-1gv"/>
                         <outlet property="playTrashToggleButton" destination="N8m-L7-Ufr" id="3ux-a2-cIE"/>
                         <outlet property="toolboxView" destination="xWd-TO-AEv" id="K2L-Ws-Olt"/>
                         <outlet property="workspaceContainerView" destination="aV3-yC-Sxx" id="rAT-Gb-aCG"/>
                         <outlet property="workspaceTitle" destination="KI8-EN-GKe" id="bIL-fd-Omn"/>
                         <segue destination="PBc-35-QW0" kind="show" identifier="DistanceSpeedModifier" id="Ifr-Iv-956"/>
-                        <segue destination="JzC-8L-d8W" kind="show" identifier="TurnRightModifier" id="g0f-Hs-dMn"/>
+                        <segue destination="JzC-8L-d8W" kind="show" identifier="SliderModifier" id="g0f-Hs-dMn"/>
                         <segue destination="B5M-ey-3HD" kind="show" identifier="VariableModifier" id="urv-T1-OGz"/>
                         <segue destination="jdf-AY-L53" kind="show" identifier="driveModifier" id="ilo-gl-Ojn"/>
                         <segue destination="sKo-Tc-eyH" kind="show" identifier="TwoOptionModifier" id="yHo-Ic-oSY"/>
                         <segue destination="a8r-3H-fGk" kind="show" identifier="StepperModifier" id="rJ0-q9-MJC"/>
                         <segue destination="I6l-mr-M6V" kind="show" identifier="MultipleChoiceModifier" id="lP2-dK-nFu"/>
+                        <segue destination="YEE-PZ-SjD" kind="show" identifier="toMainMenu" id="OfV-so-xeL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zMf-n1-Jxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -935,7 +957,7 @@ For further information on Blocks4All, please visit our website. For further det
                         <outlet property="workspaceTitle" destination="DAu-wd-2Fx" id="nGM-3K-Ve4"/>
                         <segue destination="cJF-Nc-M7L" kind="show" identifier="AddRobotSegue" id="PIe-sL-Fqa"/>
                         <segue destination="PBc-35-QW0" kind="show" identifier="DistanceSpeedModifier" id="CWQ-aM-vhy"/>
-                        <segue destination="JzC-8L-d8W" kind="show" identifier="TurnRightModifier" id="cqe-hd-fim"/>
+                        <segue destination="JzC-8L-d8W" kind="show" identifier="SliderModifier" id="cqe-hd-fim"/>
                         <segue destination="B5M-ey-3HD" kind="show" identifier="VariableModifier" id="DJw-3M-vha"/>
                         <segue destination="jdf-AY-L53" kind="show" identifier="driveModifier" id="ZVu-V8-d1q"/>
                         <segue destination="YEE-PZ-SjD" kind="show" identifier="toMainMenu" id="XsQ-5G-ZnB"/>
@@ -1198,17 +1220,17 @@ For further information on Blocks4All, please visit our website. For further det
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="aXq-Lg-wuF" firstAttribute="centerX" secondItem="33V-6u-7DC" secondAttribute="centerX" id="6rW-Z1-Upy"/>
-                            <constraint firstItem="ukk-FT-0dn" firstAttribute="top" secondItem="3dn-sh-pry" secondAttribute="bottom" constant="140" id="7FA-yE-fvJ"/>
                             <constraint firstItem="mWY-8C-Rp8" firstAttribute="centerX" secondItem="nbW-AW-Yn9" secondAttribute="centerX" id="9am-Be-HVw"/>
                             <constraint firstItem="3dn-sh-pry" firstAttribute="centerX" secondItem="nbW-AW-Yn9" secondAttribute="centerX" id="A02-BZ-a2o"/>
+                            <constraint firstItem="MuZ-k8-W3G" firstAttribute="top" secondItem="zJX-ce-Uh5" secondAttribute="bottom" constant="234" id="EW7-RB-cMX"/>
                             <constraint firstItem="33V-6u-7DC" firstAttribute="top" secondItem="Rqa-ry-KPK" secondAttribute="bottom" constant="30" id="F7f-Mb-G6X"/>
+                            <constraint firstItem="ukk-FT-0dn" firstAttribute="top" secondItem="3dn-sh-pry" secondAttribute="bottom" constant="140" id="IqP-x5-EvQ"/>
                             <constraint firstAttribute="trailing" secondItem="MuZ-k8-W3G" secondAttribute="trailing" constant="129" id="PFX-hv-V1r"/>
-                            <constraint firstItem="MuZ-k8-W3G" firstAttribute="top" secondItem="zJX-ce-Uh5" secondAttribute="bottom" constant="234" id="Wpg-BW-il8"/>
+                            <constraint firstItem="M3X-6I-Kgi" firstAttribute="top" secondItem="zJX-ce-Uh5" secondAttribute="bottom" constant="150" id="RZB-na-p88"/>
+                            <constraint firstItem="Rqa-ry-KPK" firstAttribute="top" secondItem="zJX-ce-Uh5" secondAttribute="bottom" constant="30" id="TA1-TT-oLh"/>
                             <constraint firstItem="MuZ-k8-W3G" firstAttribute="centerY" secondItem="33V-6u-7DC" secondAttribute="centerY" id="aSQ-j6-Vb0"/>
                             <constraint firstItem="3dn-sh-pry" firstAttribute="top" secondItem="aXq-Lg-wuF" secondAttribute="bottom" constant="73" id="aZ4-T9-LNW"/>
-                            <constraint firstItem="M3X-6I-Kgi" firstAttribute="top" secondItem="zJX-ce-Uh5" secondAttribute="bottom" constant="150" id="baU-Vf-JF4"/>
                             <constraint firstItem="M3X-6I-Kgi" firstAttribute="centerX" secondItem="nbW-AW-Yn9" secondAttribute="centerX" id="hAM-ag-vgt"/>
-                            <constraint firstItem="Rqa-ry-KPK" firstAttribute="top" secondItem="zJX-ce-Uh5" secondAttribute="bottom" constant="30" id="j9d-lw-F8x"/>
                             <constraint firstItem="Rqa-ry-KPK" firstAttribute="leading" secondItem="nbW-AW-Yn9" secondAttribute="leadingMargin" constant="20" id="o0I-zm-O1S"/>
                             <constraint firstItem="MuZ-k8-W3G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="33V-6u-7DC" secondAttribute="trailing" constant="8" symbolic="YES" id="rCk-kw-buo"/>
                             <constraint firstItem="33V-6u-7DC" firstAttribute="centerX" secondItem="nbW-AW-Yn9" secondAttribute="centerX" id="vwf-eO-ZbB"/>
@@ -1232,7 +1254,7 @@ For further information on Blocks4All, please visit our website. For further det
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2c-JQ-QCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011" y="1036"/>
+            <point key="canvasLocation" x="1017" y="1013"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="28s-Hb-jSN">
@@ -1252,10 +1274,10 @@ For further information on Blocks4All, please visit our website. For further det
             </objects>
             <point key="canvasLocation" x="281" y="-489"/>
         </scene>
-        <!--Turn-->
+        <!--Slider Modifier-->
         <scene sceneID="M8C-xf-t1F">
             <objects>
-                <viewController title="Turn" modalPresentationStyle="fullScreen" id="JzC-8L-d8W" customClass="AngleModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Turn" modalPresentationStyle="fullScreen" id="JzC-8L-d8W" userLabel="Slider Modifier" customClass="SliderModifierController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pSJ-xI-sbp"/>
                         <viewControllerLayoutGuide type="bottom" id="hik-92-oYa"/>
@@ -1325,11 +1347,11 @@ For further information on Blocks4All, please visit our website. For further det
                     </view>
                     <navigationItem key="navigationItem" id="0Y8-Xp-wUV"/>
                     <connections>
-                        <outlet property="angleDisplayed" destination="52s-Ei-stU" id="ztt-0Z-rzi"/>
-                        <outlet property="angleSlider" destination="HuR-8Y-sXT" id="ctg-yU-TaL"/>
-                        <outlet property="angleTitle" destination="vPI-lo-vAq" id="w2n-0N-BAp"/>
                         <outlet property="back" destination="4jM-yw-zZG" id="DcI-pZ-HCm"/>
+                        <outlet property="optionModTitle" destination="vPI-lo-vAq" id="w2n-0N-BAp"/>
+                        <outlet property="slider" destination="HuR-8Y-sXT" id="ctg-yU-TaL"/>
                         <outlet property="turnView" destination="0me-MT-hwN" id="4Po-EH-DIc"/>
+                        <outlet property="valueDisplayed" destination="52s-Ei-stU" id="ztt-0Z-rzi"/>
                         <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplay" id="ne4-yA-8MV"/>
                     </connections>
                 </viewController>
@@ -2065,43 +2087,6 @@ For further information on Blocks4All, please visit our website. For further det
             </objects>
             <point key="canvasLocation" x="1017" y="247"/>
         </scene>
-        <!--Freeplay Output View Controller-->
-        <scene sceneID="WOc-ZG-lQK">
-            <objects>
-                <viewController id="2fp-BX-uJE" customClass="FreeplayOutputViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5lF-F9-dJr"/>
-                        <viewControllerLayoutGuide type="bottom" id="VEH-a2-Gqo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7Ng-gz-dHp">
-                        <rect key="frame" x="0.0" y="0.0" width="613" height="405"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="bOX-id-ZdN">
-                                <rect key="frame" x="0.0" y="0.0" width="613" height="405"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="B4A_Robot_outline" translatesAutoresizingMaskIntoConstraints="NO" id="2ta-WN-qeu" userLabel="Actor">
-                                <rect key="frame" x="186" y="138" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="bOX-id-ZdN" firstAttribute="top" secondItem="7Ng-gz-dHp" secondAttribute="top" id="Fx7-5b-N8X"/>
-                            <constraint firstAttribute="trailing" secondItem="bOX-id-ZdN" secondAttribute="trailing" id="ddK-yA-29j"/>
-                            <constraint firstAttribute="bottom" secondItem="bOX-id-ZdN" secondAttribute="bottom" id="fwt-RT-6y1"/>
-                            <constraint firstItem="bOX-id-ZdN" firstAttribute="leading" secondItem="7Ng-gz-dHp" secondAttribute="leading" id="ks1-nm-5wE"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="actorImageView" destination="2ta-WN-qeu" id="X42-Av-TNw"/>
-                        <outlet property="backgroundImageView" destination="bOX-id-ZdN" id="GLx-2Z-trU"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xFl-FW-2YA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1964" y="-2394"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="yHo-Ic-oSY"/>
@@ -2115,8 +2100,8 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="9yF-xM-tas"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="gnX-kj-isW"/>
-        <segue reference="49V-DB-b5U"/>
-        <segue reference="fe7-LE-0jv"/>
+        <segue reference="ne4-yA-8MV"/>
+        <segue reference="OfV-so-xeL"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AddRobotButton" width="576" height="576"/>

@@ -53,7 +53,7 @@ class BlocksTypeTableViewController: UITableViewController {
     // Used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
     
-    var isInFreeplay = false // true if toolbox is in the freeplay screen
+   
     
     //MARK: - viewDidLoad Function
     override func viewDidLoad() {
@@ -72,12 +72,7 @@ class BlocksTypeTableViewController: UITableViewController {
         self.accessibilityLabel = "Toolbox Menu"
         self.accessibilityHint = "Double tap from menu to select block category"
        
-        if (self.parent?.parent is FreePlayWorkspaceViewController) {
-            isInFreeplay = true
-        } else {
-            isInFreeplay = false
-        }
-        print("FREEPLAY = ", isInFreeplay)
+        
         if isInFreeplay {
             blockDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "FreeplayBlocksMenu", ofType: "plist")!)!
             self.navigationController?.isNavigationBarHidden = true

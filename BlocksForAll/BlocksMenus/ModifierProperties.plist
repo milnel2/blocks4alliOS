@@ -256,5 +256,57 @@
 		<key>accessibilityHint</key>
 		<string>Double tap to set Look Left or Right variable</string>
 	</dict>
+	<key>Move Up</key>
+	<dict>
+		<key>attributeName</key>
+		<string>movement</string>
+		<key>default</key>
+		<string>1</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set distance</string>
+		<key>displaysText</key>
+		<string>true</string>
+		<key>imagePath</key>
+		<string>driveModifierBackground</string>
+	</dict>
+	<key>Move Down</key>
+	<dict>
+		<key>attributeName</key>
+		<string>movement</string>
+		<key>default</key>
+		<string>1</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set distance</string>
+		<key>displaysText</key>
+		<string>true</string>
+		<key>imagePath</key>
+		<string>driveModifierBackground</string>
+	</dict>
+	<key>Move Left</key>
+	<dict>
+		<key>attributeName</key>
+		<string>movement</string>
+		<key>default</key>
+		<string>1</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set distance</string>
+		<key>displaysText</key>
+		<string>true</string>
+		<key>imagePath</key>
+		<string>driveModifierBackground</string>
+	</dict>
+	<key>Move Right</key>
+	<dict>
+		<key>attributeName</key>
+		<string>movement</string>
+		<key>default</key>
+		<string>1</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set distance</string>
+		<key>displaysText</key>
+		<string>true</string>
+		<key>imagePath</key>
+		<string>driveModifierBackground</string>
+	</dict>
 </dict>
 </plist>

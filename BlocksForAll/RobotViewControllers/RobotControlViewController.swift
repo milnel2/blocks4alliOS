@@ -73,6 +73,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     func executeNextCommandRobotControllVC() {
         print("in poll for next commnad")
         guard let executingProgram = executingProgram else {
+            print ("Error in executing command: executing program does not exist")
             return  // not running
         }
         guard !executingProgram.funcIsComplete else {
@@ -113,6 +114,9 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
 
 class ExecutingProgram {
     
+    var actors: [VirtualRobot] = []
+    
+    var actorImage: UIImageView? = nil
     
     var positions: [(funcName: String, position: Int)]
     // position used to find index of block in blocksToExec
@@ -153,6 +157,7 @@ class ExecutingProgram {
         
         
         self.robotControlViewController = robotControlViewController
+        print("actor image 1 = ", actorImage)
     }
     
     var funcIsComplete: Bool {
@@ -186,7 +191,7 @@ class ExecutingProgram {
         // Announce on VoiceOver that a block is being run
         UIAccessibility.post(notification: .announcement, argument: "\(blockToExec.name)")
         
-        if connectedRobots.count == 0 {
+        if connectedRobots.count == 0 && !isInFreeplay{
             return
         }
         switch blockToExec.name{
@@ -629,6 +634,18 @@ class ExecutingProgram {
             let data = setHeadXandYPostion(x: Int(degree), y: 0)
             sendDataToDashNoDuration(data: Data(data.xData))  // send first command without a duration so that the second command is the only one that has a time on it (otherwise it acts as if this block is two blocks)
             sendDataToDash(data: Data(data.yData), withDuration: 2)
+        case "Move Up" :
+            print("Move up")
+            playMove(moveBlock: blockToExec, xDirection: 0, yDirection: -1)
+        case "Move Down":
+            print("move down")
+            playMove(moveBlock: blockToExec, xDirection: 0, yDirection: 1)
+        case "Move Left":
+            print("move left")
+            playMove(moveBlock: blockToExec, xDirection: -1, yDirection: 0)
+        case "Move Right":
+            print("move right")
+            playMove(moveBlock: blockToExec, xDirection: 1, yDirection: 0)
         // not best way but using default for Functions
         default:
             if blockToExec.name.contains("Function Start") || blockToExec.name.contains("Function End") {
@@ -724,6 +741,7 @@ class ExecutingProgram {
 
     /// Plays eye light spiral by creating a repeating timer that fires to change which lights are turned on
     func playEyeLightSpiral() {
+        // TODO: freeplay
         let spiralDuration = 0.04
         Timer.scheduledTimer(timeInterval: spiralDuration, target: self, selector: #selector(eyeLightTimerFire(timer:)),  userInfo: spiralDuration as Any , repeats: true)
         finishCommand(withDuration: 2)
@@ -801,13 +819,21 @@ class ExecutingProgram {
 
     /// Play the passed sound file name
     func playNoise (sound: String){
-        var data = [UInt8](repeating: 0, count: 1 + sound.count)
-        data[0] = 24
-        for (i, char) in sound.enumerated() {
-            data[i + 1] = UInt8(char.asciiValue!)
+        if (isInFreeplay) {
+            print("Play noise", sound)
+            // TODO: implement playing noise
+           
+            finishCommand(withDuration: 2.0)
+        } else {
+            var data = [UInt8](repeating: 0, count: 1 + sound.count)
+            data[0] = 24
+            for (i, char) in sound.enumerated() {
+                data[i + 1] = UInt8(char.asciiValue!)
+            }
+            
+            sendDataToDash(data: Data(data), withDuration: 2)
         }
         
-        sendDataToDash(data: Data(data), withDuration: 2)
     }
     
     /// Send data to dash to execute and then sends the finish command message after a duration
@@ -842,119 +868,139 @@ class ExecutingProgram {
     }
 
     func playWait(waitBlock: Block) {
+        // TODO: implement for freeplay
         let wait = Double(waitBlock.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
         print("waiting: ", wait)
         finishCommand(withDuration: wait)
     }
 
-    
+    func playMove(moveBlock: Block, xDirection: Int, yDirection: Int) {
+        let distance = (Double(moveBlock.addedBlocks[0].attributes["movement"] ?? "1") ?? 1 ) * 10
+        let animationDuration = distance / 50
+        // Code to animate UIImage is from Dharmesh Kheni's answer on:  https://stackoverflow.com/questions/32133056/how-can-i-move-an-image-in-swift
+        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveLinear, animations: {
+               // this will change Y position of your imageView center
+               // by 1 every time you press button
+            self.actorImage!.center.y += (distance * CGFloat(yDirection)) // TODO: can't go past the walls
+            self.actorImage!.center.x += (distance * CGFloat(xDirection))
+           }, completion: nil)
+        finishCommand(withDuration: animationDuration)
+    }
     //decomposition of drive functions
     func playDrive (driveBlock: Block, driveConstant: Double){
-        var distance = 0.0
-        var robotSpeed = 0.0
-        var speed: String
-        //used for cases since speed has 6 set speeds
-        var driveDirection = driveConstant
-        // drive constant choose direction 1.0 for forwards, -1.0 for backwards
-        speed = driveBlock.addedBlocks[0].attributes["speed"] ?? "Normal"
-        if driveBlock.name == "Drive"{
-            // block named Drive rather than Drive Forward or Drive Backward, Drive is for variables
-            distance = variablesDict[driveBlock.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
-            // gets distance by getting the block, getting its added block, getting the block attribute for variable selected then taking that variable and running it through variablesDict to get it's current value and set that to the distance, defualt orange and 0.0
-            if distance > 0{
-                driveDirection = 1.0
-            } else if distance < 0{
-                distance = distance * -1
-                driveDirection = -1.0
-            }
-            // sets up negative distance values to result in a backwards drive constant
-            switch speed {
-            case "Really Fast":
-                robotSpeed = 50.0
-            case "Fast":
-                robotSpeed = 40.0
-            case "Normal":
-                robotSpeed = 30.0
-            case "Slow":
-                robotSpeed = 10.0
-            case "Really Slow":
-                robotSpeed = 5.0
-            default:
-                robotSpeed = 30.0
-            }
-            // speed cases
-            print("Drive variable, robot speed, distance", robotSpeed, " , ", distance)
+        if isInFreeplay {
+            print("drive block")
+            // TODO: implement for freeplay
+           
+            finishCommand(withDuration: 1.5)
         } else {
-            distance = Double(driveBlock.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
-            // gets speed an distance from the added block
-            switch speed {
-            case "Really Fast":
-                robotSpeed = 50.0
-            case "Fast":
-                robotSpeed = 40.0
-            case "Normal":
-                robotSpeed = 30.0
-            case "Slow":
-                robotSpeed = 10.0
-            case "Really Slow":
-                robotSpeed = 5.0
-            default:
-                robotSpeed = 30.0
-            }
-            // speed cases
-        }
-        let linearVelocity = Int(driveDirection * (robotSpeed * 4))
-        let angularVelocity = 0
-        //linear velocity is the speed times the direction, aka speed times the positive forward or negative backwards, 0 angular momentum so no turning
-        
-        
-        /*by multiplying (distance/robotSpeed) by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
-         distance he needs to in the right time. However he travels a little too far on the really slow speed. */
-        // this needs fine tuning, generally works fine, but probably a better way to account for this
-        // really need internal API from wonderworkshop to make this work
-       
-        
-        var durationModifier = 2.00
-        // fine tune duratoin modifier
-        if distance < 20 {
-            durationModifier = 2.9
-        } else if distance >= 40 {
-            durationModifier = 1.8
-            if distance >= 60 {
-                durationModifier = 1.7
-            }
-            if distance >= 70 {
-                durationModifier = 1.65
-            }
-            if distance >= 80 {
-                durationModifier = 1.57
-            }
-            if distance >= 100 {
-                durationModifier = 1.53
-            }
-        }
-        
-        if robotSpeed <= 10 {
-            if (distance < 40) {
-                durationModifier *= 0.75
+            var distance = 0.0
+            var robotSpeed = 0.0
+            var speed: String
+            //used for cases since speed has 6 set speeds
+            var driveDirection = driveConstant
+            // drive constant choose direction 1.0 for forwards, -1.0 for backwards
+            speed = driveBlock.addedBlocks[0].attributes["speed"] ?? "Normal"
+            if driveBlock.name == "Drive"{
+                // block named Drive rather than Drive Forward or Drive Backward, Drive is for variables
+                distance = variablesDict[driveBlock.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
+                // gets distance by getting the block, getting its added block, getting the block attribute for variable selected then taking that variable and running it through variablesDict to get it's current value and set that to the distance, defualt orange and 0.0
+                if distance > 0{
+                    driveDirection = 1.0
+                } else if distance < 0{
+                    distance = distance * -1
+                    driveDirection = -1.0
+                }
+                // sets up negative distance values to result in a backwards drive constant
+                switch speed {
+                case "Really Fast":
+                    robotSpeed = 50.0
+                case "Fast":
+                    robotSpeed = 40.0
+                case "Normal":
+                    robotSpeed = 30.0
+                case "Slow":
+                    robotSpeed = 10.0
+                case "Really Slow":
+                    robotSpeed = 5.0
+                default:
+                    robotSpeed = 30.0
+                }
+                // speed cases
+                print("Drive variable, robot speed, distance", robotSpeed, " , ", distance)
             } else {
-                durationModifier *= 0.9
+                distance = Double(driveBlock.addedBlocks[0].attributes["distance"] ?? "30") ?? 30
+                // gets speed an distance from the added block
+                switch speed {
+                case "Really Fast":
+                    robotSpeed = 50.0
+                case "Fast":
+                    robotSpeed = 40.0
+                case "Normal":
+                    robotSpeed = 30.0
+                case "Slow":
+                    robotSpeed = 10.0
+                case "Really Slow":
+                    robotSpeed = 5.0
+                default:
+                    robotSpeed = 30.0
+                }
+                // speed cases
             }
-            if robotSpeed <= 5 {
-                durationModifier *= 0.9
+            let linearVelocity = Int(driveDirection * (robotSpeed * 4))
+            let angularVelocity = 0
+            //linear velocity is the speed times the direction, aka speed times the positive forward or negative backwards, 0 angular momentum so no turning
+            
+            
+            /*by multiplying (distance/robotSpeed) by 1.25, the time needed to start and stop Dash is taken into account, and he more or less travels the
+             distance he needs to in the right time. However he travels a little too far on the really slow speed. */
+            // this needs fine tuning, generally works fine, but probably a better way to account for this
+            // really need internal API from wonderworkshop to make this work
+           
+            
+            var durationModifier = 2.00
+            // fine tune duratoin modifier
+            if distance < 20 {
+                durationModifier = 2.9
+            } else if distance >= 40 {
+                durationModifier = 1.8
+                if distance >= 60 {
+                    durationModifier = 1.7
+                }
+                if distance >= 70 {
+                    durationModifier = 1.65
+                }
+                if distance >= 80 {
+                    durationModifier = 1.57
+                }
+                if distance >= 100 {
+                    durationModifier = 1.53
+                }
+            }
+            
+            if robotSpeed <= 10 {
+                if (distance < 40) {
+                    durationModifier *= 0.75
+                } else {
+                    durationModifier *= 0.9
+                }
+                if robotSpeed <= 5 {
+                    durationModifier *= 0.9
+                }
+            }
+            
+            let driveDuration = (distance/robotSpeed) * durationModifier
+           
+            let data = calculateDriveCommand(linearVelocity: linearVelocity, angularVelocity: angularVelocity)
+            
+            sendDataToDash(data: Data(data), withDuration: (driveDuration) + 0.3)  // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
+            
+            Timer.scheduledTimer(withTimeInterval: driveDuration, repeats: false) { timer in
+                // stop driving after the driveDuration has passed
+                self.stopWheels()
             }
         }
         
-        let driveDuration = (distance/robotSpeed) * durationModifier
-       
-        let data = calculateDriveCommand(linearVelocity: linearVelocity, angularVelocity: angularVelocity)
-        
-        sendDataToDash(data: Data(data), withDuration: (driveDuration) + 0.3)  // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
-        
-        Timer.scheduledTimer(withTimeInterval: driveDuration, repeats: false) { timer in
-            // stop driving after the driveDuration has passed
-            self.stopWheels()
-        }
        
     }
     
@@ -990,78 +1036,86 @@ class ExecutingProgram {
     
     // MARK: decomposition of turn functions
     func playTurn (turnBlock: Block){
-        var angleToTurn: Double = 90
-        var angularVelocity = 0
-        //matches defualt displayed angle
-        if turnBlock.name == "Turn"{
-        //name of variable turn block is "Turn"
-            angleToTurn = variablesDict[turnBlock.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
-            //get the variable selected value for the turn block, go through added and get the added block attribues, default orange, default 0 degrees
-            if angleToTurn > 0{
-                angularVelocity = -250
-            } else {
+        if isInFreeplay {
+            print("turn")
+            //TODO: implement for freeplay
+            finishCommand(withDuration: 1.5)
+        } else {
+            var angleToTurn: Double = 90
+            var angularVelocity = 0
+            //matches defualt displayed angle
+            if turnBlock.name == "Turn"{
+            //name of variable turn block is "Turn"
+                angleToTurn = variablesDict[turnBlock.addedBlocks[0].attributes["variableSelected"] ?? "orange"] ?? 0.0
+                //get the variable selected value for the turn block, go through added and get the added block attribues, default orange, default 0 degrees
+                if angleToTurn > 0{
+                    angularVelocity = -250
+                } else {
+                    angularVelocity = 250
+                    angleToTurn *= -1 // make angleToTurn positive
+                }
+                
+            } else if turnBlock.name.contains("Turn Left") {
+                angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90 // go through added block to find the attribute angle
                 angularVelocity = 250
-                angleToTurn *= -1 // make angleToTurn positive
+                
+            } else if turnBlock.name.contains("Turn Right") {
+                angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90
+                angularVelocity = -250
+            }
+            let data = calculateDriveCommand(linearVelocity: 0, angularVelocity: angularVelocity)
+            var turnDuration = angleToTurn/50
+            // Angle fine tuning
+            if angleToTurn < 30 {
+                turnDuration = angleToTurn / 15
+            }
+            if angleToTurn >= 30 {
+                turnDuration = angleToTurn / 25
+            }
+            if angleToTurn > 44 {
+                turnDuration = angleToTurn / 35
+            }
+            if angleToTurn > 59 {
+                turnDuration = angleToTurn / 42
+            }
+            if angleToTurn > 74 {
+                turnDuration = angleToTurn / 45
+            }
+            if angleToTurn == 90 {
+                turnDuration = angleToTurn / 50
+            }
+            if angleToTurn > 90 {
+                turnDuration = angleToTurn / 60
+            }
+            if angleToTurn > 120 {
+                turnDuration = angleToTurn / 70
+            }
+            if angleToTurn > 179 {
+                turnDuration = angleToTurn / 75
+            }
+            if angleToTurn > 240 {
+                turnDuration = angleToTurn / 80
+            }
+            if angleToTurn > 300 {
+                turnDuration = angleToTurn / 85
             }
             
-        } else if turnBlock.name.contains("Turn Left") {
-            angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90 // go through added block to find the attribute angle
-            angularVelocity = 250
             
-        } else if turnBlock.name.contains("Turn Right") {
-            angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90
-            angularVelocity = -250
-        }
-        let data = calculateDriveCommand(linearVelocity: 0, angularVelocity: angularVelocity)
-        var turnDuration = angleToTurn/50
-        // Angle fine tuning
-        if angleToTurn < 30 {
-            turnDuration = angleToTurn / 15
-        }
-        if angleToTurn >= 30 {
-            turnDuration = angleToTurn / 25
-        }
-        if angleToTurn > 44 {
-            turnDuration = angleToTurn / 35
-        }
-        if angleToTurn > 59 {
-            turnDuration = angleToTurn / 42
-        }
-        if angleToTurn > 74 {
-            turnDuration = angleToTurn / 45
-        }
-        if angleToTurn == 90 {
-            turnDuration = angleToTurn / 50
-        }
-        if angleToTurn > 90 {
-            turnDuration = angleToTurn / 60
-        }
-        if angleToTurn > 120 {
-            turnDuration = angleToTurn / 70
-        }
-        if angleToTurn > 179 {
-            turnDuration = angleToTurn / 75
-        }
-        if angleToTurn > 240 {
-            turnDuration = angleToTurn / 80
-        }
-        if angleToTurn > 300 {
-            turnDuration = angleToTurn / 85
+            
+            sendDataToDash(data: Data(data), withDuration: turnDuration * 1.25) // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
+            
+            Timer.scheduledTimer(withTimeInterval: turnDuration, repeats: false) { timer in
+                // stop driving after the turnDuration has passed
+                self.stopWheels()
+            }
         }
         
-        
-        
-        sendDataToDash(data: Data(data), withDuration: turnDuration * 1.25) // block duration time has to be slightly longer to allow for time for the wheels to stop before going on to the next block
-        
-        Timer.scheduledTimer(withTimeInterval: turnDuration, repeats: false) { timer in
-            // stop driving after the turnDuration has passed
-            self.stopWheels()
-        }
     }
 
     
     //decomposition of light functions
     func playLight (lightBlock: Block, positionBits: Int) {
+        // TODO: implement for freeplay
         let color = lightBlock.addedBlocks[0].attributes["lightColor"] ?? "white"
         var selectedColor = (red: 255, green: 255, blue: 255)
         switch color {

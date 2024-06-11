@@ -23,8 +23,7 @@ class BlockTableViewController: UITableViewController {
     var blockSize = 150
     let blockSpacing = 0
     
-    var isInFreeplay = false // true if toolbox is in the freeplay screen
-    
+ 
     //MARK: - viewDidLoad function
     override func viewDidLoad() {
     
@@ -34,12 +33,7 @@ class BlockTableViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationItem.largeTitleDisplayMode = .automatic
         }
-        if (self.parent?.parent is FreePlayWorkspaceViewController) {
-            isInFreeplay = true
-            print("set freeplay to true")
-        } else {
-            isInFreeplay = false
-        }
+       
         if isInFreeplay {
             blockTypesDict = NSArray(contentsOfFile: Bundle.main.path(forResource: "FreeplayBlocksMenu", ofType: "plist")!)!
         } else if (numDotsConnected > 0 && numDotsConnected == connectedRobots.count) { // all connected robots are Dots
@@ -233,6 +227,7 @@ class BlockTableViewController: UITableViewController {
     }
     
     // MARK: - Voice Control Labels
+    // TODO: update for freeplay
     func createVoiceControlLabels(for block: Block, in cell: UITableViewCell) {
         if #available (iOS 13.0, *) {
             let type = self.title

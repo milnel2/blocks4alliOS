@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */; };
+		025AEB3E22BA9AEF004EB6AC /* SliderModifierController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AEB3D22BA9AEF004EB6AC /* SliderModifierController.swift */; };
 		02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */; };
 		02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */; };
 		62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */; };
@@ -19,8 +19,9 @@
 		8D27A4522A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */; };
 		8D412CA82C138E51005B736F /* FreeplayToolboxBlockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D412CA72C138E51005B736F /* FreeplayToolboxBlockType.swift */; };
 		8D412CAA2C13915E005B736F /* FreeplayBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D412CA92C13915E005B736F /* FreeplayBlocksMenu.plist */; };
+		8D655A7A2C18BB2B00B86BB1 /* VirtualRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D655A792C18BB2B00B86BB1 /* VirtualRobot.swift */; };
 		8D822CDA2C137B3300A8A20D /* FreePlayWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */; };
-		8D822CDC2C138B3100A8A20D /* FreeplayOutputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CDB2C138B3100A8A20D /* FreeplayOutputViewController.swift */; };
+		8D822CDC2C138B3100A8A20D /* FreeplayOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */; };
 		8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8D66032A3A43330086E14A /* ModifierProperties.plist */; };
 		8D954F592A4B2E9800F10A26 /* TwoOptionModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */; };
 		8DBF4A7F2A5DB5D20075429C /* DashMainMenuSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */; };
@@ -69,7 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleModViewController.swift; sourceTree = "<group>"; };
+		025AEB3D22BA9AEF004EB6AC /* SliderModifierController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderModifierController.swift; sourceTree = "<group>"; };
 		02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceSpeedModViewController.swift; sourceTree = "<group>"; };
 		57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveVariables.swift; sourceTree = "<group>"; };
 		62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVariableModViewController.swift; sourceTree = "<group>"; };
@@ -81,8 +82,9 @@
 		8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceModifierViewController.swift; sourceTree = "<group>"; };
 		8D412CA72C138E51005B736F /* FreeplayToolboxBlockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeplayToolboxBlockType.swift; sourceTree = "<group>"; };
 		8D412CA92C13915E005B736F /* FreeplayBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FreeplayBlocksMenu.plist; sourceTree = "<group>"; };
+		8D655A792C18BB2B00B86BB1 /* VirtualRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualRobot.swift; sourceTree = "<group>"; };
 		8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreePlayWorkspaceViewController.swift; sourceTree = "<group>"; };
-		8D822CDB2C138B3100A8A20D /* FreeplayOutputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeplayOutputViewController.swift; sourceTree = "<group>"; };
+		8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeplayOutputView.swift; sourceTree = "<group>"; };
 		8D8D66032A3A43330086E14A /* ModifierProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
 		8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoOptionModifierViewController.swift; sourceTree = "<group>"; };
 		8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DashMainMenuSound.mp3; sourceTree = "<group>"; };
@@ -147,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */,
-				8D822CDB2C138B3100A8A20D /* FreeplayOutputViewController.swift */,
+				8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */,
 				8D412CA72C138E51005B736F /* FreeplayToolboxBlockType.swift */,
 			);
 			path = Freeplay;
@@ -243,7 +245,7 @@
 		F7CAF42923EE103400901E99 /* ModifierViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				025AEB3D22BA9AEF004EB6AC /* AngleModViewController.swift */,
+				025AEB3D22BA9AEF004EB6AC /* SliderModifierController.swift */,
 				02A8EDB722B2A621000342F4 /* DistanceSpeedModViewController.swift */,
 				57C1BCFD22D51F13003FCD70 /* DriveVariables.swift */,
 				62BFCBC922C3F4C50078FA60 /* SetVariableModViewController.swift */,
@@ -273,6 +275,7 @@
 				F121169E1EA823C8009976B1 /* RobotTableViewController.swift */,
 				F18FEEDF1EB14329007C15B8 /* RobotControlViewController.swift */,
 				8DD0F8492BFE7DD0005021EB /* Robot.swift */,
+				8D655A792C18BB2B00B86BB1 /* VirtualRobot.swift */,
 			);
 			path = RobotViewControllers;
 			sourceTree = "<group>";
@@ -417,7 +420,7 @@
 			files = (
 				8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */,
 				02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */,
-				025AEB3E22BA9AEF004EB6AC /* AngleModViewController.swift in Sources */,
+				025AEB3E22BA9AEF004EB6AC /* SliderModifierController.swift in Sources */,
 				8DCBEA552A49F8A500A26043 /* StepperModifierViewController.swift in Sources */,
 				F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */,
 				8D412CA82C138E51005B736F /* FreeplayToolboxBlockType.swift in Sources */,
@@ -430,13 +433,14 @@
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
 				8D822CDA2C137B3300A8A20D /* FreePlayWorkspaceViewController.swift in Sources */,
 				F73D31762A5DFA0F00008126 /* AddRobotViewController.swift in Sources */,
-				8D822CDC2C138B3100A8A20D /* FreeplayOutputViewController.swift in Sources */,
+				8D822CDC2C138B3100A8A20D /* FreeplayOutputView.swift in Sources */,
 				8D27A4522A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift in Sources */,
 				F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */,
 				02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */,
 				FD3A594E2A3A196B00122BEF /* CustomFont.swift in Sources */,
 				F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */,
 				F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */,
+				8D655A7A2C18BB2B00B86BB1 /* VirtualRobot.swift in Sources */,
 				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
 				8D954F592A4B2E9800F10A26 /* TwoOptionModifierViewController.swift in Sources */,
 				701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */,

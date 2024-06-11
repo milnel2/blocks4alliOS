@@ -101,14 +101,14 @@
 		<key>color</key>
 		<string>green_block</string>
 		<key>type</key>
-		<string>Drive</string>
+		<string>Move</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
 				<key>isModifiable</key>
 				<true/>
 				<key>name</key>
-				<string>Drive Forward</string>
+				<string>Move Up</string>
 				<key>type</key>
 				<string>Statement</string>
 				<key>color</key>
@@ -124,7 +124,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
-				<string>Drive Backward</string>
+				<string>Move Down</string>
 				<key>color</key>
 				<string>green_block</string>
 				<key>double</key>
@@ -138,7 +138,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
-				<string>Turn Left</string>
+				<string>Move Left</string>
 				<key>color</key>
 				<string>green_block</string>
 				<key>double</key>
@@ -152,7 +152,7 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
-				<string>Turn Right</string>
+				<string>Move Right</string>
 				<key>color</key>
 				<string>green_block</string>
 				<key>double</key>

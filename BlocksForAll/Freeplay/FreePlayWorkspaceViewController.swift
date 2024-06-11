@@ -10,29 +10,61 @@ import Foundation
 import UIKit
 import AVFoundation
 
-class FreePlayWorkspaceViewController:  BlocksViewController {
+var isInFreeplay: Bool = false // global variable for if the freeplay workspace is open
+class FreePlayWorkspaceViewController: BlocksViewController {
     
+    @IBOutlet weak var freeplayOutputView: FreeplayOutputView!
     
     @IBOutlet weak var currentActorImageView: UIImageView!
-   
+    
+    var actors: [VirtualRobot] = []
+    
+    @IBOutlet weak var outputBackgroundImageView: UIImageView!
+    
+    @IBOutlet weak var outputActorViewTemp: UIImageView!
+    
     override func viewDidLoad() {
+        isInFreeplay = true
         super.viewDidLoad()
-        currentActorImageView.alpha = 0.3
+        executingProgram?.actorImage = outputActorViewTemp
+                currentActorImageView.alpha = 0.3
     }
+    //this function allows the blocks in the workspace to be sent to the robot
+    override func play(functionsDictToPlay: [String : [Block]]){
+        executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: self)
+
+        executingProgram?.actorImage = outputActorViewTemp
+        //creates executing program
+        executeNextCommandRobotControllVC()
+        //makes initial executeNextCommandRobotControllVC call
+      
+        
+    }
+    
+    override func playClicked() {
+    
+        stopIsOption = true
+        changePlayTrashButton()
+        //Calls RobotControllerViewController play function
+        play(functionsDictToPlay: functionsDict)
+        robotRunning = true
+        // disable modifier blocks while the robot is running
+        for modifierBlock in allModifierBlocks {
+            modifierBlock.isEnabled = false
+            modifierBlock.isAccessibilityElement = false
+        }
+        refreshScreen()
+    }
+//    /// Play the passed sound file name
+//    override func playNoise (sound: String){
+//        print("new noise = ", sound)
+//    }
+//    
     
 //    @objc override func distanceSpeedModifier(sender: UIButton!) {
 //
 //        performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
 //    }
 //    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let modiferVC = segue.destination as? DistanceSpeedModViewController {
-           
-            modiferVC.parentVC = segue.source
-           
-        }
-       
-        
-        super.prepare(for: segue, sender: sender)
-    }
+   
 }

@@ -113,6 +113,7 @@ class BlockView: UIView, UITextFieldDelegate {
             let currentFontSize = myLabel.font.pointSize
             
             var name = block.name
+            //TODO: update for freeplay mode
             if currentFontSize > 31.0 { // dynamic text is being used, so some of the labels need to be shortened
                 name = removePhrase(phraseToRemove: " Noise", originalString: name)
                 name = removePhrase(phraseToRemove: "Drive ", originalString: name)

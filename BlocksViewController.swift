@@ -45,10 +45,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBOutlet weak var workspaceTitle: UILabel!  // Label at top of screen
     
     // Robot variables
-    private var robotRunning = false  // True if the robot is running. Used to disable code editing while robot is active.
+    internal var robotRunning = false  // True if the robot is running. Used to disable code editing while robot is active.
 
     // Variables for display
-    private var stopIsOption = false // True if the stop button can be shown
+    internal var stopIsOption = false // True if the stop button can be shown
     private var movingBlocks = false  // True if the user is currently moving a block. Disable modifier blocks if this is true.
     private var arrowToPlaceFirstBlock: UIImageView? = nil // The arrow image that gets shown when the user is about to place the first block in the workspace
     
@@ -63,7 +63,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // Modifier block variables
     private var startingHeight = 0  // A value for calculating the y position of BlockViews
     private var count = 0  // Number of blocks in the workspace
-    private var allModifierBlocks = [UIButton]()  // A list of all the modifier blocks in the workspace
+    internal var allModifierBlocks = [UIButton]()  // A list of all the modifier blocks in the workspace
     private var modifierBlockIndex: Int?  // An integer used to identify which modifier block was clicked when going to other screens.
     
     
@@ -133,6 +133,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// Main Menu Segue
     @IBAction func goToMainMenu(_ sender: UIButton) {
         finishMovingBlocks()
+        print("freeplay = false")
+        isInFreeplay = false
         performSegue(withIdentifier: "toMainMenu", sender: self)
     }
     
@@ -165,8 +167,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         let imv = UIImageView(image: resizedImage)
         // Turn arrow to point down
         imv.transform = imv.transform.rotated(by: -(.pi / 2))
-        // Move arrow down the screen
-        imv.transform = imv.transform.translatedBy(x: -workspaceContainerView.frame.width / 2 , y: 0)
+       
+        // Position arrow vertically on the screen
+        imv.transform = imv.transform.translatedBy(x: -blocksProgram.frame.height / 2 , y: 0)
         
         arrowToPlaceFirstBlock = imv
         
@@ -258,6 +261,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     // TODO: rewrite this method
+    // TODO: update for freeplay
     func createVoiceControlLabels(for block: Block, in blockView: UIView) {
         if #available (iOS 13.0, *) {
             let color = block.colorName
@@ -376,7 +380,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     //MARK: - Play/Stop/Trash Methods
   
     /// Changes the play button back and forth from trash to play
-    private func changePlayTrashButton() {
+    internal func changePlayTrashButton() {
         if movingBlocks {
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
             playTrashToggleButton.accessibilityLabel = "Place in Trash"
@@ -422,7 +426,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     /// Run the actual program when the play button is clicked
-    private func playClicked() {
+    func playClicked() {
         if(!areRobotsConnected()) {
             //no robots
             let announcement = "Connect to the dash robot. "
@@ -772,10 +776,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         let (selector, defaultValue, attributeName, accessibilityHint, imagePath, displaysText, secondAttributeName, secondDefault, showTextImage) = getModifierData(name: name, dict: dict!)  // constants taken from dict based on name
         
+        
+       
         //  Create the block
         if block.addedBlocks.isEmpty{
             let placeholderBlock = Block(name: name, colorName: "gray_color", double: false, type: "Boolean", isModifiable: true)
             block.addedBlocks.append(placeholderBlock!)
+            
             placeholderBlock?.addAttributes(key: attributeName, value: "\(defaultValue)")
             if secondAttributeName != nil && secondDefault != nil
                 { placeholderBlock?.addAttributes(key: secondAttributeName!, value: "\(secondDefault!)") }
@@ -783,6 +790,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // renamed block.addedBlocks[0] for simplicity
         let placeHolderBlock = block.addedBlocks[0]
+        
+        
        
         var modifierInformation = placeHolderBlock.attributes[attributeName] ?? ""  // the current state of the block modifier - used for voiceOver
         let button = createModifierCustomButton() // set up button sizing and layering
@@ -900,7 +909,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 text = "\(text)\u{00B0}"
                 modifierInformation = text
                 button.titleLabel?.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 28.0)
-            } else if attributeName == "timesToRepeat" {
+            } 
+            else if attributeName == "timesToRepeat" {
                 button.titleLabel?.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 42.0)
             } else if attributeName == "distance" {  // drive forward and backwards blocks
                 if defaults.integer(forKey: "showText") == 0 {  // show icon mode
@@ -1034,10 +1044,18 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             return #selector(angleModifier(sender:))
         case "Drive":
             return #selector(driveModifier(sender:))
-        case "Drive Forward", "Drive Backward":
+        case "Drive Forward", "Drive Backward": // TODO: update for freeplay
             return #selector(distanceSpeedModifier(sender:))
         case "Set Variable":
             return #selector(variableModifier(sender:))
+        case "Move Up":
+            return #selector(angleModifier(sender:))
+        case "Move Down":
+            return #selector(angleModifier(sender:))
+        case "Move Left":
+            return #selector(angleModifier(sender:))
+        case "Move Right":
+            return #selector(angleModifier(sender:))
         default:
             print("Modifier Selector for \(name) could not be found. Check switch statement in getModifierSelector() method.")
             return nil
@@ -1089,8 +1107,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     @objc func angleModifier(sender: UIButton!) {
+        print("angle modifier")
         modifierBlockIndex = sender.tag
-        performSegue(withIdentifier: "TurnRightModifier", sender: nil)
+        performSegue(withIdentifier: "SliderModifier", sender: nil)
     }
     
     @objc func variableModifier(sender: UIButton!) {
@@ -1122,8 +1141,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             destinationViewController.parentVC = segue.source
         }
         
-        // Segue to AngleModViewController
-        if let destinationViewController = segue.destination as? AngleModViewController{
+        // Segue to SliderModifieViewController
+        if let destinationViewController = segue.destination as? SliderModifierController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
         }
