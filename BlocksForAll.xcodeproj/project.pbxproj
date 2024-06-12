@@ -27,6 +27,9 @@
 		8DBF4A7F2A5DB5D20075429C /* DashMainMenuSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */; };
 		8DCBEA552A49F8A500A26043 /* StepperModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */; };
 		8DD0F84A2BFE7DD0005021EB /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD0F8492BFE7DD0005021EB /* Robot.swift */; };
+		8DE37B012C1A3C39006DB159 /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37B002C1A3C39006DB159 /* ProjectCollectionViewCell.swift */; };
+		8DE37B032C1A3D68006DB159 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37B022C1A3D68006DB159 /* Project.swift */; };
+		8DE37B052C1A3F12006DB159 /* ProjectGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37B042C1A3F12006DB159 /* ProjectGalleryViewController.swift */; };
 		8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */; };
 		D8DFD3FF234E538C00874892 /* WWRobotAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F12116981EA7E0DD009976B1 /* WWRobotAPI.framework */; };
 		F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */; };
@@ -90,6 +93,9 @@
 		8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DashMainMenuSound.mp3; sourceTree = "<group>"; };
 		8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperModifierViewController.swift; sourceTree = "<group>"; };
 		8DD0F8492BFE7DD0005021EB /* Robot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
+		8DE37B002C1A3C39006DB159 /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
+		8DE37B022C1A3D68006DB159 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		8DE37B042C1A3F12006DB159 /* ProjectGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGalleryViewController.swift; sourceTree = "<group>"; };
 		8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F10F71661E65BAA00049F3AA /* BlockTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableViewController.swift; sourceTree = "<group>"; };
 		F10F71681E65BFF50049F3AA /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
@@ -155,6 +161,16 @@
 			path = Freeplay;
 			sourceTree = "<group>";
 		};
+		8DE37AFF2C1A3C24006DB159 /* GalleryViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8DE37B002C1A3C39006DB159 /* ProjectCollectionViewCell.swift */,
+				8DE37B022C1A3D68006DB159 /* Project.swift */,
+				8DE37B042C1A3F12006DB159 /* ProjectGalleryViewController.swift */,
+			);
+			path = GalleryViewControllers;
+			sourceTree = "<group>";
+		};
 		F12116971EA7E0DA009976B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +221,7 @@
 		F18FFFB11E65B0FB0090C4B6 /* BlocksForAll */ = {
 			isa = PBXGroup;
 			children = (
+				8DE37AFF2C1A3C24006DB159 /* GalleryViewControllers */,
 				F7CAF42923EE103400901E99 /* ModifierViewControllers */,
 				701A43861EC26EFD00314599 /* BlocksViewController.swift */,
 				F10F71681E65BFF50049F3AA /* Block.swift */,
@@ -431,9 +448,11 @@
 				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,
 				8DD0F84A2BFE7DD0005021EB /* Robot.swift in Sources */,
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
+				8DE37B052C1A3F12006DB159 /* ProjectGalleryViewController.swift in Sources */,
 				8D822CDA2C137B3300A8A20D /* FreePlayWorkspaceViewController.swift in Sources */,
 				F73D31762A5DFA0F00008126 /* AddRobotViewController.swift in Sources */,
 				8D822CDC2C138B3100A8A20D /* FreeplayOutputView.swift in Sources */,
+				8DE37B012C1A3C39006DB159 /* ProjectCollectionViewCell.swift in Sources */,
 				8D27A4522A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift in Sources */,
 				F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */,
 				02A8EDB822B2A621000342F4 /* DistanceSpeedModViewController.swift in Sources */,
@@ -446,6 +465,7 @@
 				701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */,
 				FD3A59562A3B639E00122BEF /* InstructionsViewController.swift in Sources */,
 				844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */,
+				8DE37B032C1A3D68006DB159 /* Project.swift in Sources */,
 				F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

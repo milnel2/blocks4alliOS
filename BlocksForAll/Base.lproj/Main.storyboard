@@ -7,9 +7,134 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Project Gallery View Controller-->
+        <scene sceneID="q4d-JT-UGR">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="cPr-av-dP5" userLabel="Project Gallery View Controller" customClass="ProjectGalleryViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x14-XD-4cD"/>
+                        <viewControllerLayoutGuide type="bottom" id="9bj-5e-IJc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Upg-AY-Tqn">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="960" placeholderIntrinsicHeight="600" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xUy-6j-lyY">
+                                <rect key="frame" x="60" y="106" width="960" height="598"/>
+                                <color key="backgroundColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bmf-ch-61o">
+                                    <size key="itemSize" width="959" height="477"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProjectsCell" id="dDB-N5-2lZ" customClass="ProjectCollectionViewCell" customModule="BlocksForAll" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="60.5" width="959" height="477"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2mk-aQ-E3a">
+                                            <rect key="frame" x="0.0" y="0.0" width="959" height="477"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eaA-uL-9qc">
+                                                    <rect key="frame" x="99" y="35" width="755" height="291"/>
+                                                    <color key="backgroundColor" red="0.94081050157546997" green="0.74590134620666504" blue="0.74175041913986206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="291" id="WMf-9Z-vvN"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workspace Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaU-Xr-WL0">
+                                                    <rect key="frame" x="412" y="334" width="135" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2r0-CP-9SR">
+                                                    <rect key="frame" x="446.5" y="412" width="66" height="35"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Open"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MxJ-js-rtv">
+                                                    <rect key="frame" x="436.5" y="358" width="86" height="35"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Rename"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eaA-uL-9qc" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" constant="-3" id="03P-uX-pgj"/>
+                                                <constraint firstItem="MxJ-js-rtv" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="8gr-De-Rvn"/>
+                                                <constraint firstItem="eaA-uL-9qc" firstAttribute="top" secondItem="2mk-aQ-E3a" secondAttribute="top" constant="35" id="KFD-CD-GCY"/>
+                                                <constraint firstItem="EaU-Xr-WL0" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="h0f-li-y0F"/>
+                                                <constraint firstAttribute="bottom" secondItem="2r0-CP-9SR" secondAttribute="bottom" constant="30" id="hXt-4B-kHi"/>
+                                                <constraint firstItem="MxJ-js-rtv" firstAttribute="top" secondItem="EaU-Xr-WL0" secondAttribute="bottom" constant="3" id="jpp-Wv-jOk"/>
+                                                <constraint firstItem="EaU-Xr-WL0" firstAttribute="top" secondItem="eaA-uL-9qc" secondAttribute="bottom" constant="8" symbolic="YES" id="lf1-8F-JPC"/>
+                                                <constraint firstItem="eaA-uL-9qc" firstAttribute="leading" secondItem="2mk-aQ-E3a" secondAttribute="leading" constant="99" id="lr8-Th-WtQ"/>
+                                                <constraint firstItem="2r0-CP-9SR" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="qga-e6-cuf"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" name="eyeLightColor"/>
+                                        <size key="customSize" width="959" height="477"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="eaA-uL-9qc" id="jDJ-1k-fAe"/>
+                                            <outlet property="openButton" destination="2r0-CP-9SR" id="agG-nT-d8C"/>
+                                            <outlet property="projectNameLabel" destination="EaU-Xr-WL0" id="uYA-XY-iBj"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="qtu-1o-0mS">
+                                <rect key="frame" x="589" y="712" width="42" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="-&gt;"/>
+                                <connections>
+                                    <action selector="rightScrollPressed:" destination="cPr-av-dP5" eventType="touchUpInside" id="dc9-x3-kiY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8SP-Ww-TNd">
+                                <rect key="frame" x="438" y="712" width="42" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="&lt;-"/>
+                                <connections>
+                                    <action selector="leftScrollPressed:" destination="cPr-av-dP5" eventType="touchUpInside" id="WWw-tt-MiD"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEB-Tm-fzp">
+                                <rect key="frame" x="530" y="719" width="20" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <constraints>
+                            <constraint firstItem="DEB-Tm-fzp" firstAttribute="centerX" secondItem="Upg-AY-Tqn" secondAttribute="centerX" id="9DP-pj-hVf"/>
+                            <constraint firstItem="xUy-6j-lyY" firstAttribute="centerY" secondItem="Upg-AY-Tqn" secondAttribute="centerY" id="J45-TU-6nz"/>
+                            <constraint firstItem="DEB-Tm-fzp" firstAttribute="centerX" secondItem="xUy-6j-lyY" secondAttribute="centerX" id="TZC-OO-r5Q"/>
+                            <constraint firstItem="DEB-Tm-fzp" firstAttribute="centerY" secondItem="8SP-Ww-TNd" secondAttribute="centerY" id="YYb-hB-9uW"/>
+                            <constraint firstItem="qtu-1o-0mS" firstAttribute="centerY" secondItem="DEB-Tm-fzp" secondAttribute="centerY" id="ZLg-Bw-ckQ"/>
+                            <constraint firstItem="DEB-Tm-fzp" firstAttribute="leading" secondItem="8SP-Ww-TNd" secondAttribute="trailing" constant="50" id="e1R-4L-AO4"/>
+                            <constraint firstItem="xUy-6j-lyY" firstAttribute="centerX" secondItem="Upg-AY-Tqn" secondAttribute="centerX" id="pIn-QN-LSO"/>
+                            <constraint firstItem="qtu-1o-0mS" firstAttribute="leading" secondItem="DEB-Tm-fzp" secondAttribute="trailing" constant="50" id="tXN-1p-r6d"/>
+                            <constraint firstItem="8SP-Ww-TNd" firstAttribute="top" secondItem="xUy-6j-lyY" secondAttribute="bottom" constant="8" id="yen-vw-1CA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ze8-ys-MBX"/>
+                    <connections>
+                        <outlet property="displayedCellIndexLabel" destination="DEB-Tm-fzp" id="Jzk-3Y-aFU"/>
+                        <outlet property="leftScrollButton" destination="8SP-Ww-TNd" id="KNv-le-rSF"/>
+                        <outlet property="projectGalleryCollectionView" destination="xUy-6j-lyY" id="fYu-6F-hiG"/>
+                        <outlet property="rightScrollButton" destination="qtu-1o-0mS" id="rUD-68-U8R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q2w-3x-CXY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2724.4444444444443" y="-1181.4814814814813"/>
+        </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="On8-Fi-nz2">
             <objects>
@@ -57,15 +182,23 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyM-Bb-zzW">
-                                                        <rect key="frame" x="104" y="127.5" width="195" height="34.5"/>
+                                                        <rect key="frame" x="104" y="95.5" width="195" height="34.5"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Play with Virtual Robot"/>
                                                         <connections>
-                                                            <segue destination="48V-Ne-C7Q" kind="show" id="anc-wo-mDz"/>
+                                                            <segue destination="48V-Ne-C7Q" kind="show" id="G3r-s1-Nmn"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ION-0T-0zG">
+                                                        <rect key="frame" x="163" y="191.5" width="77.5" height="34.5"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Gallery"/>
+                                                        <connections>
+                                                            <segue destination="cPr-av-dP5" kind="show" id="OZ6-eB-oUv"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTX-6k-pMV">
-                                                        <rect key="frame" x="137.5" y="246.5" width="128.5" height="51.5"/>
+                                                        <rect key="frame" x="137.5" y="278.5" width="128.5" height="51.5"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Mazes" subtitle="Not Implemented"/>
                                                     </button>
@@ -2095,10 +2228,10 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="g0f-Hs-dMn"/>
         <segue reference="d7W-eK-Vpz"/>
         <segue reference="Ifr-Iv-956"/>
-        <segue reference="cfB-AU-Heg"/>
+        <segue reference="Tjn-hR-3fo"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="gnX-kj-isW"/>
-        <segue reference="ne4-yA-8MV"/>
+        <segue reference="G3r-s1-Nmn"/>
         <segue reference="OfV-so-xeL"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -2129,6 +2262,9 @@ For further information on Blocks4All, please visit our website. For further det
         <image name="orange_plus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="purple_minus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="purple_plus" width="133.44094848632812" height="133.44094848632812"/>
+        <namedColor name="eyeLightColor">
+            <color red="0.88999998569488525" green="0.85100001096725464" blue="0.24300000071525574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="main_background">
             <color red="0.93300002813339233" green="0.47499999403953552" blue="0.18799999356269836" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -2152,6 +2288,9 @@ For further information on Blocks4All, please visit our website. For further det
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
