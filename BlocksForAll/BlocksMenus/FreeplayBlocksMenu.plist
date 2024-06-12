@@ -144,7 +144,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>turn_left.pdf</string>
+				<string>move_left.pdf</string>
 			</dict>
 			<dict>
 				<key>isModifiable</key>
@@ -158,7 +158,7 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>turn_right.pdf</string>
+				<string>move_right.pdf</string>
 			</dict>
 		</array>
 	</dict>

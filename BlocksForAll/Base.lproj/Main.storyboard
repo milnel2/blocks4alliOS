@@ -1288,7 +1288,6 @@ For further information on Blocks4All, please visit our website. For further det
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Angle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPI-lo-vAq">
                                 <rect key="frame" x="497.5" y="203" width="85" height="81"/>
-                                <accessibility key="accessibilityConfiguration" hint="How much should the robot turn" label="Angle"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="81" id="oFI-xf-e4P"/>
                                 </constraints>
@@ -1298,7 +1297,6 @@ For further information on Blocks4All, please visit our website. For further det
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52s-Ei-stU">
                                 <rect key="frame" x="857.5" y="332" width="145.5" height="146"/>
-                                <accessibility key="accessibilityConfiguration" label="Angle"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1320,7 +1318,6 @@ For further information on Blocks4All, please visit our website. For further det
                             <slider contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="360" translatesAutoresizingMaskIntoConstraints="NO" id="HuR-8Y-sXT" userLabel="Angle Slider">
                                 <rect key="frame" x="228.5" y="401" width="623" height="31"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <accessibility key="accessibilityConfiguration" hint="0 to 360 degrees" label="Angle Slider"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="619" id="FIT-vq-gBr"/>
                                 </constraints>
@@ -1353,6 +1350,7 @@ For further information on Blocks4All, please visit our website. For further det
                         <outlet property="turnView" destination="0me-MT-hwN" id="4Po-EH-DIc"/>
                         <outlet property="valueDisplayed" destination="52s-Ei-stU" id="ztt-0Z-rzi"/>
                         <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplay" id="ne4-yA-8MV"/>
+                        <segue destination="uoc-nU-c4a" kind="show" identifier="backToRobotWorkspace" id="cfB-AU-Heg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLF-rh-Lei" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2097,7 +2095,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="g0f-Hs-dMn"/>
         <segue reference="d7W-eK-Vpz"/>
         <segue reference="Ifr-Iv-956"/>
-        <segue reference="9yF-xM-tas"/>
+        <segue reference="cfB-AU-Heg"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="gnX-kj-isW"/>
         <segue reference="ne4-yA-8MV"/>

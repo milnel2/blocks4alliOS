@@ -25,8 +25,8 @@ class SliderModifierController: UIViewController {
       // the values are dictionaries of string : string that holds different attributes to be shown on thte screen
       // the minimum value is also the default value
     private let optionDictionary: [String:[String : String]] =
-    ["Turn Left" :  ["attributeName" : "angle", "min" : "15", "max" : "360", "unitIfSingular" : "degree", "unitIfPlural" : "degrees", "Default image" : "driveModifierBackground", "Slider Interval": "15"],
-     "Turn Right" : ["attributeName" : "angle", "min" : "15", "max" : "360", "unitIfSingular" : "degree", "unitIfPlural" : "degrees",  "Default image" : "driveModifierBackground", "Slider Interval": "15"],
+    ["Turn Left" :  ["attributeName" : "angle", "min" : "0", "max" : "360", "unitIfSingular" : "degree", "unitIfPlural" : "degrees", "Default image" : "driveModifierBackground", "Slider Interval": "15"],
+     "Turn Right" : ["attributeName" : "angle", "min" : "0", "max" : "360", "unitIfSingular" : "degree", "unitIfPlural" : "degrees",  "Default image" : "driveModifierBackground", "Slider Interval": "15"],
      "Move Up" : ["attributeName" : "movement", "min" : "1", "max" : "10", "unitIfSingular" : "", "unitIfPlural" : "",  "Default image" : "driveModifierBackground", "Slider Interval": "1"],
      "Move Down" : ["attributeName" : "movement", "min" : "1", "max" : "10", "unitIfSingular" : "", "unitIfPlural" : "", "Default image" : "driveModifierBackground", "Slider Interval": "1"],
      "Move Right" : ["attributeName" : "movement", "min" : "1", "max" : "10", "unitIfSingular" : "", "unitIfPlural" : "", "Default image" : "driveModifierBackground", "Slider Interval": "1"],
@@ -87,8 +87,10 @@ class SliderModifierController: UIViewController {
         } else {
             units = optionDictionary[optionType]?["unitIfPlural"] ?? "N/A"
         }
+        sliderValue = Double(previousValue!)
         slider.accessibilityValue = "\(previousValue!) " + units
         valueDisplayed.accessibilityValue = "Current value is \(Int(sliderValue))" + units
+        print("1 setting value to ", sliderValue)
         
         roundedSliderValue = Float(Double(previousValue!))
         
@@ -97,6 +99,15 @@ class SliderModifierController: UIViewController {
         turnView.accessibilityElements = [back!, optionModTitle!, valueDisplayed!, slider!]
         setFontStyle()
     }
+    
+    /// Called whenever angleSliderChanged() is called. Updates accessibility labels and values to match what is being displayed
+    private func updateAccessibilityTools() {
+        slider.accessibilityValue = "\(Int(roundedSliderValue)) " + units
+        print("setting value to ", roundedSliderValue)
+        valueDisplayed.accessibilityValue = "Current value is \(Int(roundedSliderValue)) " + units
+//        optionModTitle.accessibilityHint = attributeName + "Adjust slider to set amount"
+    }
+    
     @IBAction func backButtonPress(_ sender: Any) {
         if let _ = parentVC as? FreePlayWorkspaceViewController {
             performSegue(withIdentifier: "backToFreeplay", sender: nil)
@@ -105,7 +116,7 @@ class SliderModifierController: UIViewController {
         }
     }
     
-    /// When angle slider moved, get rounded value and convert to degrees 
+    /// When angle slider moved, get rounded value and convert to degrees
     @IBAction func angleSliderChanged(_ sender: UISlider) {
         // Calculate rounded value
         let roundingNumber: Float = (Float(sliderInterval) / 2.0)
@@ -114,11 +125,10 @@ class SliderModifierController: UIViewController {
         
         // Update the screen
         sender.setValue(roundedSliderValue, animated:false)
+        sliderValue = Double(roundedSliderValue)
         valueDisplayed.text = "\(Int(roundedSliderValue))"
         
-        // Accessibility
-        sender.accessibilityValue = "\(Int(roundedSliderValue)) " + units
-        valueDisplayed.accessibilityValue = "Current value is \(Int(roundedSliderValue)) " + units
+        updateAccessibilityTools()
     }
     
     /// Set all labels to custom font
