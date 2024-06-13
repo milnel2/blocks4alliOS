@@ -62,7 +62,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         stopIsOption = true
         changePlayTrashButton()
         //Calls RobotControllerViewController play function
-        play(functionsDictToPlay: functionsDict)
+        play(functionsDictToPlay: currentProject!.functionDict)
         robotRunning = true
         // disable modifier blocks while the robot is running
         for modifierBlock in allModifierBlocks {

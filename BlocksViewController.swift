@@ -71,6 +71,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     
     var project: Project? = nil
+    var galleryType = String()
   
     //MARK: - View Controller Methods
     override func viewDidAppear(_ animated: Bool) {
@@ -519,6 +520,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         } else {
             if currentWorkspace != "Main Workspace" && index > endIndex {
                 currentProject!.functionDict[currentWorkspace]!.insert(blocks[0], at: endIndex)
+
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             } else if currentWorkspace != "Main Workspace" && index <= startIndex {
@@ -527,12 +529,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 blocksProgram.reloadData()
             } else {
                 currentProject!.functionDict[currentWorkspace]!.insert(blocks[0], at: index)
+                print("inserted block")
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             }
         }
+//        updateAllProjects()
     }
-
+//
+//    func updateAllProjects() {
+//        print("gallery type = ", galleryType)
+//        for proj in allProjects[galleryType]! {
+//            if (proj == currentProject) {
+//                let index = allProjects[galleryType]!.firstIndex(of: proj)
+//                allProjects[galleryType]![index!] = currentProject!
+//            }
+//        }
+//        
+//    }
     private func createBlock(_ block: Block, withFrame frame: CGRect) -> UILabel {
         let myLabel = UILabel.init(frame: frame)
         myLabel.text = block.name

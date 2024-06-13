@@ -199,6 +199,7 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             performSegue(withIdentifier: "openFreeplayFromGallery", sender: selectedProject)
         } else if galleryType == "Robot Projects"{
             performSegue(withIdentifier: "openRobotWorkspaceFromGallery", sender: selectedProject)
+           
         }
        
     }
@@ -207,11 +208,13 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
        if (segue.identifier == "openFreeplayFromGallery") {
           let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
            freeplayWorkspaceVC.project = sender as? Project
+           freeplayWorkspaceVC.galleryType = galleryType
         
        }
         if (segue.identifier == "openRobotWorkspaceFromGallery") {
             let robotWorkspaceVC = segue.destination as! BlocksViewController
             robotWorkspaceVC.project = sender as? Project
+            robotWorkspaceVC.galleryType = galleryType
         }
     }
 

@@ -11,7 +11,11 @@ import UIKit
 
 var allProjects: [String : [Project]] = ["Freeplay Projects":[], "Robot Projects": []] //["Freeplay Projects" : [Project(name: "hi", imageName: "drive_backwards", functionDict: ["Main Workspace" : []])], "Robot Projects" : [Project(name: "hello", imageName: "drive_backwards", functionDict: ["Main Workspace": []])]]
 
-class Project {
+class Project : Equatable{
+    static func == (lhs: Project, rhs: Project) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
     var name = ""
     var imageName : String
     var functionDict: [String : [Block]]
