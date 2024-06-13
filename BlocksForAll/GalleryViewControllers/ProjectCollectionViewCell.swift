@@ -18,6 +18,8 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     
     var parentViewController: UIViewController?
     
+    var cellGalleryType: String = "Robot Projects"
+    
     
     var project : Project! {
        didSet {
@@ -56,7 +58,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
             let textField = alert.textFields![0] as UITextField
             if self.validateFunctionName(name: textField.text!, currentAlert: alert) {
                 // name is valid, rename the project
-                for proj in allProjects {
+                for proj in allProjects[self.cellGalleryType]! {
                     if proj.name == self.project.name {
                         proj.name = textField.text!
                         continue

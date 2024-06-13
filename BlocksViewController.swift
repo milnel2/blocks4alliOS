@@ -70,6 +70,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     private var modifierBlockIndex: Int?  // An integer used to identify which modifier block was clicked when going to other screens.
     
     
+    var project: Project? = nil
   
     //MARK: - View Controller Methods
     override func viewDidAppear(_ animated: Bool) {
@@ -85,7 +86,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        currentProject = project
         endIndex = currentProject!.functionDict[currentWorkspace]!.count - 1
         
        
@@ -438,6 +439,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: announcement)
             print("No robots")
             performSegue(withIdentifier: "AddRobotSegue", sender: nil)
+            
         } else if(currentProject!.functionDict[currentWorkspace]!.isEmpty) {
             changePlayTrashButton()
             let announcement = "Your robot has nothing to do! Add some blocks to your workspace."
@@ -1186,6 +1188,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if let destinationViewController = segue.destination as? StepperModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
+            destinationViewController.currentProject = currentProject
+        }
+        
+        // Segue to Add Robot Screen
+        if  let destinationViewController = segue.destination as? AddRobotViewController {
             destinationViewController.currentProject = currentProject
         }
     }

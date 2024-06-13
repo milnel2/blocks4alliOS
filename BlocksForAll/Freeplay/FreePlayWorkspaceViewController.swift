@@ -23,7 +23,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     @IBOutlet weak var outputActorViewTemp: UIImageView!
     
-    var project: Project? = nil
     
     override func viewDidLoad() {
         if (project == nil) {

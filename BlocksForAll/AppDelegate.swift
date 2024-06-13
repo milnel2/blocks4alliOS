@@ -81,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
         print("load save called")
+        var galleryTypePart = true
         var functionNamePart = true
         
         var projectNamePart = true
@@ -92,91 +93,109 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave2.json"))
            //  creates a string type of the entire json file
             
-            let projectStrings = jsonString.components(separatedBy: "New Project \n")
-            
-            for projectString in projectStrings {
-                if projectString == "" {
+            let galleryTypeStrings = jsonString.components(separatedBy: "New Gallery Type \n")
+            for galleryTypeString in galleryTypeStrings {
+                if galleryTypeString == "" {
                     continue
                 }
+                galleryTypePart = true
+                var galleryType = String()
                 
-                //for every new project set these to true again so that the new project will be named and an image name will be saved
-                projectNamePart = true
-                projectImageNamePart = true
+                let projectStrings = galleryTypeString.components(separatedBy: "New Project \n")
                 
-                var projectName = String()
-                var projectImageName = String()
-                var projectFunctionDict: [String : [Block] ] = [:]
-                
-                let functionStrings = projectString.components(separatedBy: "New Function \n")
-                
-                // the first element of functionStrings will have the project image and name data
-                for line in functionStrings[0].components(separatedBy: "\n") {
-                    if !projectNamePart && projectImageNamePart {
-                        projectImageNamePart = false
-                        projectImageName = line
-                    } else if projectNamePart && projectImageNamePart {
-                        projectNamePart = false
-                        projectName = line
-                    } else {
-                        continue
+                for line in projectStrings[0].components(separatedBy: "\n") {
+                    if galleryTypePart {
+                        galleryTypePart = false
+                        galleryType = line
                     }
                 }
-                
-                for functionString in functionStrings[1...] {
-                    if functionString == "" {
+                for projectString in projectStrings[1...] {
+                    if projectString == "" {
                         continue
                     }
                     
-                    //for every new function set this to true again so that the new function will be named
-                    functionNamePart = true
                     
-                    var functionBlockStack = [Block]() // temporary function blockStack
-                    var functionName = String()
-                    let jsonObjs = functionString.components(separatedBy: "\n Next Object \n")
-                    for object in jsonObjs{
-                       
-                        if object == "" {
-                           // this covers empty strings at beginings and ends
-                           continue
-                           // same as i++
-                       }
-                        
-                        if functionNamePart {
-                            // if the current object is supposed to be the name then
-                            functionName = object
-                            // set the function name to the current object
-                            functionNamePart = false
-                            // set function name to false until next function is being decoded/parsed
+                    
+                    //for every new project set these to true again so that the new project will be named and an image name will be saved
+                    projectNamePart = true
+                    projectImageNamePart = true
+                    
+                    var projectName = String()
+                    var projectImageName = String()
+                    var projectFunctionDict: [String : [Block] ] = [:]
+                    
+                    let functionStrings = projectString.components(separatedBy: "New Function \n")
+                    print("project string = ", projectString)
+                    print("functio strings = ", functionStrings)
+                    // the first element of functionStrings will have the project image and name data
+                    for line in functionStrings[0].components(separatedBy: "\n") {
+                        if !projectNamePart && projectImageNamePart {
+                            projectImageNamePart = false
+                            projectImageName = line
+                        } else if projectNamePart && projectImageNamePart {
+                            projectNamePart = false
+                            projectName = line
                         } else {
-                            let jsonObject = object.data(using: .utf8)  // this takes the object as a string and turns it into a data object named jsonPart
-                            let blockBeingCreated = try? JSONDecoder().decode(Block.self, from: jsonObject!)  // this is the block being made
-                            
-                            if blockBeingCreated != nil {
-                                // adds the created block to the array of blocks that will later be set to the array of blocks for the current function
-                                functionBlockStack.append(blockBeingCreated!)
-                            }
+                            continue
                         }
-                        //adds current function to the functionsDict from save includes name and [Block]
-                        functionsDictFromSave[functionName] = functionBlockStack
-                         
                     }
+                    
+                    for functionString in functionStrings[1...] {
+                        if functionString == "" {
+                            continue
+                        }
+                        
+                        //for every new function set this to true again so that the new function will be named
+                        functionNamePart = true
+                        
+                        var functionBlockStack = [Block]() // temporary function blockStack
+                        var functionName = String()
+                        let jsonObjs = functionString.components(separatedBy: "\n Next Object \n")
+                        for object in jsonObjs{
+                           
+                            if object == "" {
+                               // this covers empty strings at beginings and ends
+                               continue
+                               // same as i++
+                           }
+                            
+                            if functionNamePart {
+                                // if the current object is supposed to be the name then
+                                functionName = object
+                                // set the function name to the current object
+                                functionNamePart = false
+                                // set function name to false until next function is being decoded/parsed
+                            } else {
+                                let jsonObject = object.data(using: .utf8)  // this takes the object as a string and turns it into a data object named jsonPart
+                                let blockBeingCreated = try? JSONDecoder().decode(Block.self, from: jsonObject!)  // this is the block being made
+                                
+                                if blockBeingCreated != nil {
+                                    // adds the created block to the array of blocks that will later be set to the array of blocks for the current function
+                                    functionBlockStack.append(blockBeingCreated!)
+                                }
+                            }
+                            //adds current function to the functionsDict from save includes name and [Block]
+                            functionsDictFromSave[functionName] = functionBlockStack
+                             
+                        }
+                    }
+                    //adds proper counterparts
+                    ifAndRepeatCounterparts(functionBlocksDictCounter: functionsDictFromSave)
+                    
+                    if functionsDictFromSave["Main Workspace"] == nil{
+                        functionsDictFromSave["Main Workspace"] = []
+                    }
+                    
+                   
+                    // saves a project to the global var allProjects
+                    allProjects[galleryType]!.append(Project(name: projectName, imageName: projectImageName, functionDict: functionsDictFromSave))
                 }
-                //adds proper counterparts
-                ifAndRepeatCounterparts(functionBlocksDictCounter: functionsDictFromSave)
-                
-                if functionsDictFromSave["Main Workspace"] == nil{
-                    functionsDictFromSave["Main Workspace"] = []
-                }
-                
-               
-                // saves a project to the global var allProjects
-                allProjects.append(Project(name: projectName, imageName: projectImageName, functionDict: functionsDictFromSave))
             }
             
             print("load completed")
         }catch{
             print("load failed")
-            allProjects = [Project(name: "Empty Project", imageName: "", functionDict:["Main Workspace": []])]
+            allProjects["Robot Projects"] = [Project(name: "Empty Project", imageName: "", functionDict:["Main Workspace": []])] // TODO: handle if there are no projects
         }
         // sets current workspace to main workspace so you don't load and wind up on a random function screen
         currentWorkspace = "Main Workspace"
@@ -243,49 +262,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // string that json text is appended to
         var writeText = String()
       
-        
-        for project in allProjects {
-            writeText.append("New Project \n")
-            writeText.append(project.name)
+        for galleryType in allProjects.keys {
+            writeText.append("New Gallery Type \n")
+            writeText.append(galleryType)
             writeText.append("\n")
-            writeText.append(project.imageName)
-            writeText.append("\n")
-            let funcNames = project.functionDict.keys
-            //gets all the function names in functionsDict as an array of strings
+            for project in allProjects[galleryType]! {
+                writeText.append("New Project \n")
+                writeText.append(project.name)
+                writeText.append("\n")
+                writeText.append(project.imageName)
+                writeText.append("\n")
+                let funcNames = project.functionDict.keys
+                //gets all the function names in functionsDict as an array of strings
 
-            for name in funcNames{
-            // for all functions
-                writeText.append("New Function \n")
-                writeText.append(name)
-                //adds name of function immediately after the new function and prior to the next object so that it can be parsed same way as blocks
-                writeText.append("\n Next Object \n")
-                // allows name to be handled in load at the same time as blocks
-                for block in project.functionDict[name]!{
-                    // for block in the current fuctionsDict function's array of blocks
-                    if let jsonText = block.jsonVar{
-                        // sets jsonText to block.jsonVar which removes counterparts so it doesn't wind up with an infite amount of counterparts
-                        writeText.append(String(data: jsonText, encoding: .utf8)!)
-                        //adds the jsonText as .utf8 as a string to the writeText string
-                        writeText.append("\n Next Object \n")
-                        //marks next object
+                for name in funcNames{
+                // for all functions
+                    writeText.append("New Function \n")
+                    writeText.append(name)
+                    //adds name of function immediately after the new function and prior to the next object so that it can be parsed same way as blocks
+                    writeText.append("\n Next Object \n")
+                    // allows name to be handled in load at the same time as blocks
+                    for block in project.functionDict[name]!{
+                        // for block in the current fuctionsDict function's array of blocks
+                        if let jsonText = block.jsonVar{
+                            // sets jsonText to block.jsonVar which removes counterparts so it doesn't wind up with an infite amount of counterparts
+                            writeText.append(String(data: jsonText, encoding: .utf8)!)
+                            //adds the jsonText as .utf8 as a string to the writeText string
+                            writeText.append("\n Next Object \n")
+                            //marks next object
+                        }
+                        do{
+                            try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+                            // writes the accumlated string of json objects to a single file
+                        }catch{
+                            print("couldn't create json for", block)
+                        }
                     }
-                    do{
-                        try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-                        // writes the accumlated string of json objects to a single file
-                    }catch{
-                        print("couldn't create json for", block)
-                    }
+            }
+            
+                do{
+                    // do a final write to the file. Needs to happen one last time just in case the workspace was empty
+                    try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
+                    // writes the accumlated string of json objects to a single file
+                }catch{
+                    print("couldn't write save to file. Error = ", error)
                 }
-        }
-        
-            do{
-                // do a final write to the file. Needs to happen one last time just in case the workspace was empty
-                try writeText.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
-                // writes the accumlated string of json objects to a single file
-            }catch{
-                print("couldn't write save to file. Error = ", error)
             }
         }
+        
     }
 }
 

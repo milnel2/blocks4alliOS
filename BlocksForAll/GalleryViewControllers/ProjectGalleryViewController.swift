@@ -19,7 +19,7 @@ class ProjectGalleryViewController: UIViewController {
     @IBOutlet weak var leftScrollButton: UIButton!
     
     @IBOutlet weak var displayedCellIndexLabel: UILabel!
-    var projects = Project.FetchProjects()
+    var projects: [Project] = []
     var cellScale : CGFloat = 0.7
     
     private var cellWidth: CGFloat = 100
@@ -28,8 +28,13 @@ class ProjectGalleryViewController: UIViewController {
     let cellSpacing: CGFloat = 50
     var displayedCellIndex = 0
     
+    var galleryType: String = "Robot Projects"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        projects = Project.FetchProjects()[galleryType]!
+        
         projectGalleryCollectionView.dataSource = self
         projectGalleryCollectionView.delegate = self
         
@@ -89,6 +94,7 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
         let project = projects[indexPath.item]
         cell.project = project
         cell.parentViewController = self
+        cell.cellGalleryType = galleryType
         //cell.backgroundColor = UIColor.black
         cell.layer.borderWidth = 1
        
@@ -128,16 +134,25 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
         }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
-        let selectedProject = allProjects[indexPath.item]
-        performSegue(withIdentifier: "openFreeplayFromGallery", sender: selectedProject)
+        let selectedProject = allProjects[galleryType]![indexPath.item]
+        if galleryType == "Freeplay Projects" { // TODO: change the "freeplay projects from a string to an enumerated value like in unity?
+            performSegue(withIdentifier: "openFreeplayFromGallery", sender: selectedProject)
+        } else if galleryType == "Robot Projects"{
+            performSegue(withIdentifier: "openRobotWorkspaceFromGallery", sender: selectedProject)
+        }
+       
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if (segue.identifier == "openFreeplayFromGallery") {
           let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
-          freeplayWorkspaceVC.project = sender as? Project
+           freeplayWorkspaceVC.project = sender as? Project
         
        }
+        if (segue.identifier == "openRobotWorkspaceFromGallery") {
+            let robotWorkspaceVC = segue.destination as! BlocksViewController
+            robotWorkspaceVC.project = sender as? Project
+        }
     }
 
     

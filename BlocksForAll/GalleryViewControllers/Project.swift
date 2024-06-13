@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-var allProjects: [Project] = []
+var allProjects: [String : [Project]] = ["Freeplay Projects":[], "Robot Projects": []] //["Freeplay Projects" : [Project(name: "hi", imageName: "drive_backwards", functionDict: ["Main Workspace" : []])], "Robot Projects" : [Project(name: "hello", imageName: "drive_backwards", functionDict: ["Main Workspace": []])]]
 
 class Project {
     var name = ""
@@ -22,7 +22,7 @@ class Project {
         self.functionDict = functionDict
     }
     
-    static func FetchProjects () -> [Project]{
+    static func FetchProjects () -> [String:[Project]]{
            
     return allProjects
 //           [ Project(name: "Project 1", image: UIImage(named: "drive_backward")!, functionDict: [:]),

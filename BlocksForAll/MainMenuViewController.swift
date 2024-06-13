@@ -115,5 +115,14 @@ class MainMenuViewController: UIViewController {
                 print("block size 2 " , blockSize)
             }
         }
+        
+        if segue.identifier == "mainToFreeplayGallery" {
+            let destinationViewController = segue.destination as? ProjectGalleryViewController
+            destinationViewController?.galleryType = "Freeplay Projects"
+        }
+        if segue.identifier == "mainToRobotGallery" {
+            let destinationViewController = segue.destination as? ProjectGalleryViewController
+            destinationViewController?.galleryType = "Robot Projects"
+        }
     }
 }
