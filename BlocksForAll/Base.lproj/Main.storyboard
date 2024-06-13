@@ -122,9 +122,18 @@
                                     <segue destination="YEE-PZ-SjD" kind="show" id="2fL-ta-11H"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="siY-lg-GAV">
+                                <rect key="frame" x="846" y="705" width="113" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add Project"/>
+                                <connections>
+                                    <action selector="addProjectPressed:" destination="cPr-av-dP5" eventType="touchUpInside" id="N2E-wN-crk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                         <constraints>
+                            <constraint firstItem="siY-lg-GAV" firstAttribute="bottom" secondItem="DEB-Tm-fzp" secondAttribute="bottom" id="62q-0y-bTs"/>
                             <constraint firstItem="DEB-Tm-fzp" firstAttribute="centerX" secondItem="Upg-AY-Tqn" secondAttribute="centerX" id="9DP-pj-hVf"/>
                             <constraint firstItem="xUy-6j-lyY" firstAttribute="centerY" secondItem="Upg-AY-Tqn" secondAttribute="centerY" id="J45-TU-6nz"/>
                             <constraint firstItem="DEB-Tm-fzp" firstAttribute="centerX" secondItem="xUy-6j-lyY" secondAttribute="centerX" id="TZC-OO-r5Q"/>
@@ -134,12 +143,14 @@
                             <constraint firstItem="xUy-6j-lyY" firstAttribute="centerX" secondItem="Upg-AY-Tqn" secondAttribute="centerX" id="pIn-QN-LSO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3za-Xs-SXT" secondAttribute="trailing" constant="-20" id="rpu-KP-E4U"/>
                             <constraint firstItem="qtu-1o-0mS" firstAttribute="leading" secondItem="DEB-Tm-fzp" secondAttribute="trailing" constant="50" id="tXN-1p-r6d"/>
+                            <constraint firstAttribute="trailing" secondItem="siY-lg-GAV" secondAttribute="trailing" constant="121" id="xrM-6b-EeN"/>
                             <constraint firstItem="8SP-Ww-TNd" firstAttribute="top" secondItem="xUy-6j-lyY" secondAttribute="bottom" constant="8" id="yen-vw-1CA"/>
                             <constraint firstItem="3za-Xs-SXT" firstAttribute="top" secondItem="Upg-AY-Tqn" secondAttribute="topMargin" id="zSy-Yt-vzg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ze8-ys-MBX"/>
                     <connections>
+                        <outlet property="addProjectButton" destination="siY-lg-GAV" id="7X5-Kh-BAo"/>
                         <outlet property="displayedCellIndexLabel" destination="DEB-Tm-fzp" id="Jzk-3Y-aFU"/>
                         <outlet property="leftScrollButton" destination="8SP-Ww-TNd" id="KNv-le-rSF"/>
                         <outlet property="projectGalleryCollectionView" destination="xUy-6j-lyY" id="fYu-6F-hiG"/>
@@ -187,10 +198,10 @@
                                                 <rect key="frame" x="517" y="0.0" width="403" height="450"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Kc-2pq">
-                                                        <rect key="frame" x="42.5" y="0.0" width="318" height="34"/>
+                                                        <rect key="frame" x="139" y="0.0" width="125" height="34"/>
                                                         <accessibility key="accessibilityConfiguration" label="Get Started"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="Play with Robot (Not working right now)">
+                                                        <state key="normal" title="Play with Robot">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -2236,7 +2247,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="Ifr-Iv-956"/>
         <segue reference="sX9-WY-IIJ"/>
         <segue reference="PIe-sL-Fqa"/>
-        <segue reference="pX0-ao-Z6G"/>
+        <segue reference="gnX-kj-isW"/>
         <segue reference="a9q-34-jse"/>
         <segue reference="2fL-ta-11H"/>
         <segue reference="wUA-vU-JW1"/>
