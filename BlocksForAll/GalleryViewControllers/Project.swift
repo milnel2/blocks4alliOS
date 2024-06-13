@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-var allProjects: [Project] = [Project(name: "hi", imageName: "drive_backward", functionDict: ["Main Workspace":[]]),Project(name: "second", imageName:  "drive_backward", functionDict: functionsDict)]
+var allProjects: [Project] = []
 
 class Project {
     var name = ""
