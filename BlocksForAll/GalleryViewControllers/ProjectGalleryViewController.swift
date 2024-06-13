@@ -88,6 +88,7 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectsCell", for: indexPath) as! ProjectCollectionViewCell
         let project = projects[indexPath.item]
         cell.project = project
+        cell.parentViewController = self
         //cell.backgroundColor = UIColor.black
         cell.layer.borderWidth = 1
        

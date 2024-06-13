@@ -16,7 +16,8 @@ class ProjectCollectionViewCell: UICollectionViewCell {
    
     @IBOutlet weak var renameButton: UIButton!
     
-    @IBOutlet weak var openButton: UIButton!
+    var parentViewController: UIViewController?
+    
     
     var project : Project! {
        didSet {
@@ -40,13 +41,81 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 10.0
         imageView.layer.masksToBounds = true
        
-           openButton.layer.cornerRadius = 10
+           
        }
        
-    @IBAction func openButtonPressed(_ sender: Any) {
-        //print("superView", self.superview?.)
-    }
+   
     @IBAction func renameButtonPressed(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Enter project name", message: "", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "New Project Name"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
+            let textField = alert.textFields![0] as UITextField
+            if self.validateFunctionName(name: textField.text!, currentAlert: alert) {
+                // name is valid, rename the project
+                for proj in allProjects {
+                    if proj.name == self.project.name {
+                        proj.name = textField.text!
+                        continue
+                    }
+                }
+                self.project.name = textField.text!
+                self.updateUI()
+            }
+            
+        }))
+
+        parentViewController!.present(alert, animated: true)
     }
+    
+    func validateFunctionName(name: String, currentAlert: UIAlertController) -> Bool{
+        let dictionary = self.getModifierDictionary()!
+        if (dictionary[name] != nil) {
+            // Name is protected, show an alert do not rename the function
+            currentAlert.dismiss(animated: true) {
+                let invalidNameAlert = UIAlertController(title: "Name is protected", message: "Choose a different name", preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.parentViewController!.present(invalidNameAlert, animated: true)
+            }
+            return false
+        } else if (name == "") {
+            // Name is empty string
+            currentAlert.dismiss(animated: true) {
+                let invalidNameAlert = UIAlertController(title: "Name cannot be empty", message: "Choose a different name", preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.parentViewController!.present(invalidNameAlert, animated: true)
+            }
+            return false
+        } else if (self.project.functionDict.keys.contains(name))  {
+            // Duplicate custom function name
+            currentAlert.dismiss(animated: true) {
+                let invalidNameAlert = UIAlertController(title: "Name already exists", message: "Choose a different name", preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.parentViewController!.present(invalidNameAlert, animated: true)
+            }
+            return false
+        }
+           
+        return true
+        
+    }
+    
+    //TODO: make this a public static helper function
+    /// Converts ModifierProperties plost to a NSDictionary
+    private func getModifierDictionary () -> NSDictionary?{
+        // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
+        let dict: NSDictionary?
+         if let path = Bundle.main.path(forResource: "ModifierProperties", ofType: "plist") {
+            dict = NSDictionary(contentsOfFile: path)
+         } else {
+             print("could not access ModifierProperties plist")
+             return nil
+         }
+        return dict!
+    }
+    
     
 }

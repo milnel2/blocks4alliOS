@@ -53,14 +53,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2r0-CP-9SR">
-                                                    <rect key="frame" x="446.5" y="412" width="66" height="35"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Open"/>
-                                                    <connections>
-                                                        <action selector="openButtonPressed:" destination="dDB-N5-2lZ" eventType="touchUpInside" id="m1X-In-MP7"/>
-                                                    </connections>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MxJ-js-rtv">
                                                     <rect key="frame" x="436.5" y="358" width="86" height="35"/>
                                                     <state key="normal" title="Button"/>
@@ -75,18 +67,15 @@
                                                 <constraint firstItem="MxJ-js-rtv" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="8gr-De-Rvn"/>
                                                 <constraint firstItem="eaA-uL-9qc" firstAttribute="top" secondItem="2mk-aQ-E3a" secondAttribute="top" constant="35" id="KFD-CD-GCY"/>
                                                 <constraint firstItem="EaU-Xr-WL0" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="h0f-li-y0F"/>
-                                                <constraint firstAttribute="bottom" secondItem="2r0-CP-9SR" secondAttribute="bottom" constant="30" id="hXt-4B-kHi"/>
                                                 <constraint firstItem="MxJ-js-rtv" firstAttribute="top" secondItem="EaU-Xr-WL0" secondAttribute="bottom" constant="3" id="jpp-Wv-jOk"/>
                                                 <constraint firstItem="EaU-Xr-WL0" firstAttribute="top" secondItem="eaA-uL-9qc" secondAttribute="bottom" constant="8" symbolic="YES" id="lf1-8F-JPC"/>
                                                 <constraint firstItem="eaA-uL-9qc" firstAttribute="leading" secondItem="2mk-aQ-E3a" secondAttribute="leading" constant="99" id="lr8-Th-WtQ"/>
-                                                <constraint firstItem="2r0-CP-9SR" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="qga-e6-cuf"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" name="eyeLightColor"/>
                                         <size key="customSize" width="959" height="477"/>
                                         <connections>
                                             <outlet property="imageView" destination="eaA-uL-9qc" id="jDJ-1k-fAe"/>
-                                            <outlet property="openButton" destination="2r0-CP-9SR" id="agG-nT-d8C"/>
                                             <outlet property="projectNameLabel" destination="EaU-Xr-WL0" id="uYA-XY-iBj"/>
                                             <outlet property="renameButton" destination="MxJ-js-rtv" id="KSQ-xC-5QT"/>
                                         </connections>
@@ -178,10 +167,10 @@
                                                 <rect key="frame" x="517" y="0.0" width="403" height="450"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Kc-2pq">
-                                                        <rect key="frame" x="139" y="0.0" width="125" height="34"/>
+                                                        <rect key="frame" x="42.5" y="0.0" width="318" height="34"/>
                                                         <accessibility key="accessibilityConfiguration" label="Get Started"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="Play with Robot">
+                                                        <state key="normal" title="Play with Robot (Not working right now)">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -190,23 +179,15 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyM-Bb-zzW">
-                                                        <rect key="frame" x="104" y="95.5" width="195" height="34.5"/>
+                                                        <rect key="frame" x="104" y="127.5" width="195" height="34.5"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Play with Virtual Robot"/>
                                                         <connections>
-                                                            <segue destination="48V-Ne-C7Q" kind="show" id="G3r-s1-Nmn"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ION-0T-0zG">
-                                                        <rect key="frame" x="163" y="191.5" width="77.5" height="34.5"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Gallery"/>
-                                                        <connections>
-                                                            <segue destination="cPr-av-dP5" kind="show" id="OZ6-eB-oUv"/>
+                                                            <segue destination="cPr-av-dP5" kind="show" id="xhU-ml-xep"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTX-6k-pMV">
-                                                        <rect key="frame" x="137.5" y="278.5" width="128.5" height="51.5"/>
+                                                        <rect key="frame" x="137.5" y="246.5" width="128.5" height="51.5"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Mazes" subtitle="Not Implemented"/>
                                                     </button>
