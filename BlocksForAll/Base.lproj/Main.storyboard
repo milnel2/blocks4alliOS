@@ -105,6 +105,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3za-Xs-SXT" userLabel="Home Button">
+                                <rect key="frame" x="890" y="0.0" width="190" height="162"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" label="Main Menu"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="3On-Ve-lTr"/>
+                                    <constraint firstAttribute="width" constant="190" id="rMO-Zc-GqE"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
+                                <state key="normal" image="Main_menuButton">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToMainMenu:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="nWX-RX-YxT"/>
+                                    <segue destination="YEE-PZ-SjD" kind="show" id="2fL-ta-11H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                         <constraints>
@@ -115,8 +132,10 @@
                             <constraint firstItem="qtu-1o-0mS" firstAttribute="centerY" secondItem="DEB-Tm-fzp" secondAttribute="centerY" id="ZLg-Bw-ckQ"/>
                             <constraint firstItem="DEB-Tm-fzp" firstAttribute="leading" secondItem="8SP-Ww-TNd" secondAttribute="trailing" constant="50" id="e1R-4L-AO4"/>
                             <constraint firstItem="xUy-6j-lyY" firstAttribute="centerX" secondItem="Upg-AY-Tqn" secondAttribute="centerX" id="pIn-QN-LSO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3za-Xs-SXT" secondAttribute="trailing" constant="-20" id="rpu-KP-E4U"/>
                             <constraint firstItem="qtu-1o-0mS" firstAttribute="leading" secondItem="DEB-Tm-fzp" secondAttribute="trailing" constant="50" id="tXN-1p-r6d"/>
                             <constraint firstItem="8SP-Ww-TNd" firstAttribute="top" secondItem="xUy-6j-lyY" secondAttribute="bottom" constant="8" id="yen-vw-1CA"/>
+                            <constraint firstItem="3za-Xs-SXT" firstAttribute="top" secondItem="Upg-AY-Tqn" secondAttribute="topMargin" id="zSy-Yt-vzg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ze8-ys-MBX"/>
@@ -1096,22 +1115,22 @@ For further information on Blocks4All, please visit our website. For further det
             <objects>
                 <tableViewController id="qsn-gg-TPc" customClass="BlockTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" id="u2M-AO-l53">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="735"/>
+                        <rect key="frame" x="0.0" y="0.0" width="289" height="335"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BlockTableViewCell" rowHeight="150" id="LoD-Y1-Y1Y" customClass="BlockTableViewCell" customModule="BlocksForAll" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="235" height="150"/>
+                                <rect key="frame" x="0.0" y="50" width="289" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" tableViewCell="LoD-Y1-Y1Y" id="pIh-s5-DHa">
-                                    <rect key="frame" x="0.0" y="0.0" width="235" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="289" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFZ-xN-h8Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="154" height="100"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move Forward" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nml-mO-L4d">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="84"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="154" height="84"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -1165,11 +1184,11 @@ For further information on Blocks4All, please visit our website. For further det
                         <viewControllerLayoutGuide type="bottom" id="M8X-LY-ONh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gng-WS-M5w">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="735"/>
+                        <rect key="frame" x="0.0" y="0.0" width="289" height="335"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap workspace to add block " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TgX-Fj-FVm">
-                                <rect key="frame" x="0.0" y="20" width="235" height="18"/>
+                                <rect key="frame" x="27" y="20" width="235" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="235" id="VmR-yU-fWu"/>
                                 </constraints>
@@ -1195,19 +1214,19 @@ For further information on Blocks4All, please visit our website. For further det
             <objects>
                 <tableViewController id="2Tn-yf-DgT" customClass="BlocksTypeTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6cp-t1-mWw">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="735"/>
+                        <rect key="frame" x="0.0" y="0.0" width="289" height="335"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlockTypeTableViewCell" textLabel="4FW-BL-NbK" style="IBUITableViewCellStyleDefault" id="TPR-VH-FnZ">
-                                <rect key="frame" x="0.0" y="50" width="235" height="44"/>
+                                <rect key="frame" x="0.0" y="50" width="289" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TPR-VH-FnZ" id="Kx7-b8-S84">
-                                    <rect key="frame" x="0.0" y="0.0" width="235" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="289" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Drive" textAlignment="natural" lineBreakMode="wordWrap" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="4FW-BL-NbK">
-                                            <rect key="frame" x="16" y="0.0" width="203" height="44"/>
+                                            <rect key="frame" x="16" y="0.0" width="257" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
@@ -1382,7 +1401,7 @@ For further information on Blocks4All, please visit our website. For further det
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zor-jh-2cz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translucent="NO" id="3of-s2-3mf">
-                        <rect key="frame" x="0.0" y="20" width="235" height="50"/>
+                        <rect key="frame" x="0.0" y="20" width="289" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1829,15 +1848,15 @@ For further information on Blocks4All, please visit our website. For further det
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="hNp-po-htE" userLabel="Function Table View Controller" customClass="FunctionTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QmC-VP-0hq">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="805"/>
+                        <rect key="frame" x="0.0" y="0.0" width="289" height="405"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="functionTableCell" id="aOU-ox-hHe" userLabel="FunctionTableViewCell" customClass="FunctionTableViewCell" customModule="BlocksForAll" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="235" height="44"/>
+                                <rect key="frame" x="0.0" y="50" width="289" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aOU-ox-hHe" id="PV9-Gx-WXQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="235" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="289" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dI6-Ao-OWl" customClass="FunctionView" customModule="BlocksForAll" customModuleProvider="target">
@@ -1902,7 +1921,7 @@ For further information on Blocks4All, please visit our website. For further det
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Ejb-05-1N7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bP9-Ui-112">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="289" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2207,19 +2226,19 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WZK-Na-4fL"/>
-        <segue reference="bga-bw-aqG"/>
-        <segue reference="u8d-ef-tNg"/>
-        <segue reference="ZVu-V8-d1q"/>
-        <segue reference="DJw-3M-vha"/>
-        <segue reference="cqe-hd-fim"/>
-        <segue reference="Mdl-ke-gN7"/>
-        <segue reference="CWQ-aM-vhy"/>
-        <segue reference="36F-bB-1lV"/>
+        <segue reference="yHo-Ic-oSY"/>
+        <segue reference="rJ0-q9-MJC"/>
+        <segue reference="lP2-dK-nFu"/>
+        <segue reference="ilo-gl-Ojn"/>
+        <segue reference="urv-T1-OGz"/>
+        <segue reference="g0f-Hs-dMn"/>
+        <segue reference="d7W-eK-Vpz"/>
+        <segue reference="Ifr-Iv-956"/>
+        <segue reference="sX9-WY-IIJ"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="49V-DB-b5U"/>
-        <segue reference="XsQ-5G-ZnB"/>
+        <segue reference="a9q-34-jse"/>
+        <segue reference="2fL-ta-11H"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>
