@@ -125,8 +125,20 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             return UIEdgeInsets(top: cellSpacing / 2, left: cellSpacing / 2, bottom: cellSpacing / 2, right: cellSpacing / 2)
         
         }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
+        let selectedProject = allProjects[indexPath.item]
+        performSegue(withIdentifier: "openFreeplayFromGallery", sender: selectedProject)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if (segue.identifier == "openFreeplayFromGallery") {
+          let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
+          freeplayWorkspaceVC.project = sender as? Project
+        
+       }
+    }
+
     
     
 }

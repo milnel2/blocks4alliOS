@@ -23,11 +23,28 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     @IBOutlet weak var outputActorViewTemp: UIImageView!
     
+    var project: Project? = nil
+    
     override func viewDidLoad() {
+        if (project == nil) {
+            print("ERROR: current project is nil")
+        }
         isInFreeplay = true
+        currentProject = project
+        functionsDict = project!.functionDict
+        currentWorkspace = project!.functionDict.keys.first ?? "Main Workspace"
+        print("current workspace = ", currentWorkspace)
+        
         super.viewDidLoad()
+        
         executingProgram?.actorImage = outputActorViewTemp
                 currentActorImageView.alpha = 0.3
+        workspaceTitle.text = project!.name
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        isInFreeplay = false
     }
     //this function allows the blocks in the workspace to be sent to the robot
     override func play(functionsDictToPlay: [String : [Block]]){

@@ -158,7 +158,7 @@ class BlockTableViewController: UITableViewController {
         if let blockType = blockTypesDict.object(at: typeIndex) as? NSDictionary{
             // blockTypes is a nsArray object with the contents of the ReleaseBlocksMenu.plist file, type index is an Int Var starts at 0, so it takes the contents of ReleaseBlocksMenu.plist and sets it to blockType as an NSDictionary
             
-            if (blockType.object(forKey: "type") as? String == "Functions"){
+            if (blockType.object(forKey: "type") as? String == "Functions"){ //TODO: 
                 var functionsDictToUse = functionsDict
                 functionsDictToUse.removeValue(forKey: "Main Workspace")
                 let functionBlocks = Array(functionsDictToUse.keys)

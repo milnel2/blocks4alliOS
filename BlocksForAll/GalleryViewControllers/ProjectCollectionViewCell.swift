@@ -26,7 +26,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     func updateUI() {
             
         if let project = project {
-           imageView.image = project.image
+           imageView.image = UIImage(named:project.imageName)
            projectNameLabel.text = project.name
            //details.text = course.details
            //colorView.backgroundColor = course.color
@@ -39,10 +39,14 @@ class ProjectCollectionViewCell: UICollectionViewCell {
       
         imageView.layer.cornerRadius = 10.0
         imageView.layer.masksToBounds = true
-        //imageView.heightAnchor.constraint(equalToConstant: CGFloat(8)).isActive = true
-           
+       
            openButton.layer.cornerRadius = 10
        }
        
+    @IBAction func openButtonPressed(_ sender: Any) {
+        //print("superView", self.superview?.)
+    }
+    @IBAction func renameButtonPressed(_ sender: Any) {
+    }
     
 }

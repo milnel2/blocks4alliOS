@@ -57,11 +57,17 @@
                                                     <rect key="frame" x="446.5" y="412" width="66" height="35"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Open"/>
+                                                    <connections>
+                                                        <action selector="openButtonPressed:" destination="dDB-N5-2lZ" eventType="touchUpInside" id="m1X-In-MP7"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MxJ-js-rtv">
                                                     <rect key="frame" x="436.5" y="358" width="86" height="35"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Rename"/>
+                                                    <connections>
+                                                        <action selector="renameButtonPressed:" destination="dDB-N5-2lZ" eventType="touchUpInside" id="pou-2V-IsT"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -82,6 +88,7 @@
                                             <outlet property="imageView" destination="eaA-uL-9qc" id="jDJ-1k-fAe"/>
                                             <outlet property="openButton" destination="2r0-CP-9SR" id="agG-nT-d8C"/>
                                             <outlet property="projectNameLabel" destination="EaU-Xr-WL0" id="uYA-XY-iBj"/>
+                                            <outlet property="renameButton" destination="MxJ-js-rtv" id="KSQ-xC-5QT"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -129,6 +136,7 @@
                         <outlet property="leftScrollButton" destination="8SP-Ww-TNd" id="KNv-le-rSF"/>
                         <outlet property="projectGalleryCollectionView" destination="xUy-6j-lyY" id="fYu-6F-hiG"/>
                         <outlet property="rightScrollButton" destination="qtu-1o-0mS" id="rUD-68-U8R"/>
+                        <segue destination="48V-Ne-C7Q" kind="show" identifier="openFreeplayFromGallery" id="a9q-34-jse"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2w-3x-CXY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -571,8 +579,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="JPt-7e-AZh"/>
                     <connections>
-                        <outlet property="CurrentActorImageView" destination="5xA-lS-fn9" id="JC1-a4-H2m"/>
                         <outlet property="blocksProgram" destination="ei4-9x-SF4" id="TWu-jB-6iq"/>
+                        <outlet property="currentActorImageView" destination="5xA-lS-fn9" id="uWr-sE-lwf"/>
                         <outlet property="freeplayOutputView" destination="kKQ-2P-KlV" id="7Yf-AU-3Q9"/>
                         <outlet property="mainMenuButton" destination="9YL-5Y-1hw" id="McB-ea-ozc"/>
                         <outlet property="mainView" destination="jWr-ZO-kXm" id="deS-DP-VoI"/>
@@ -2231,7 +2239,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="Tjn-hR-3fo"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="gnX-kj-isW"/>
-        <segue reference="G3r-s1-Nmn"/>
+        <segue reference="a9q-34-jse"/>
         <segue reference="OfV-so-xeL"/>
     </inferredMetricsTieBreakers>
     <resources>

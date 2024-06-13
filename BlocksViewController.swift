@@ -26,6 +26,8 @@ protocol BlockSelectionDelegate{
 /* Used to display the Main Workspace */
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
+    var currentProject: Project? = nil
+    
     //MARK: Variables
     // Views
     @IBOutlet var mainView: UIView!
@@ -58,7 +60,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     var blockSize = 150
     private let blockSpacing = 1
     private let startIndex = 0
-    private var endIndex: Int { return functionsDict[currentWorkspace]!.count - 1 }
+    //private var endIndex: Int { return functionsDict[currentWorkspace]!.count - 1 } //TODO: add back in functions?
+    private var endIndex: Int = 0
     
     // Modifier block variables
     private var startingHeight = 0  // A value for calculating the y position of BlockViews
@@ -82,6 +85,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        endIndex = currentProject!.functionDict[currentWorkspace]!.count - 1
         
        
         // Change to custom font
@@ -91,7 +96,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // set block size based on block size from settings or 150 by default
         blockSize = defaults.value(forKey: "blockSize") as? Int ?? 150
        
-        
+       // print("CURRNT PROJECT = ", currentProject?.functionDict)
         // If working on a function
         if currentWorkspace != "Main Workspace" {
             mainWorkspaceButton.isHidden = false  // Show Back to Main Workspace arrow button
@@ -102,7 +107,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
             workspaceTitle.text = "Return to Main Workspace"
             
-            if functionsDict[currentWorkspace]!.isEmpty{
+            if currentProject!.functionDict[currentWorkspace]!.isEmpty{
                 let startBlock = Block.init(
                     name: "\(currentWorkspace) Function Start",
                     colorName: "light_purple_block",
@@ -115,8 +120,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     isModifiable: false)
                 startBlock!.counterpart = [endBlock!]
                 endBlock!.counterpart = [startBlock!]
-                functionsDict[currentWorkspace]?.append(startBlock!)
-                functionsDict[currentWorkspace]?.append(endBlock!)
+                currentProject!.functionDict[currentWorkspace]?.append(startBlock!)
+                currentProject!.functionDict[currentWorkspace]?.append(endBlock!)
             }
         } else {
             mainWorkspaceButton.isHidden = true // Hide Back to Main Workspace arrow button. Already in Main Workspace.
@@ -205,7 +210,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if let indexPath = blocksProgram?.indexPath(for: focusedCell) {
             // perform the custom action here using the indexPath information
             print(indexPath.row)
-            selectBlock(block: functionsDict[currentWorkspace]![indexPath.row], location: indexPath.row)
+            selectBlock(block: currentProject!.functionDict[currentWorkspace]![indexPath.row], location: indexPath.row)
         }
         print("put in trash")
         return true
@@ -232,7 +237,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         
         var accessibilityLabel = ""
-        let blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(functionsDict[currentWorkspace]!.count)
+        let blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(currentProject!.functionDict[currentWorkspace]!.count)
         var accessibilityHint = ""
         var movementInfo = ". Double tap to move block."
         
@@ -367,7 +372,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksProgram.reloadData()
         changePlayTrashButton()
         // If there are no blocks in the workspace, show the arrow of where the first block will go
-        if functionsDict[currentWorkspace]!.count == 0 {
+        if currentProject!.functionDict[currentWorkspace]!.count == 0 {
             showArrowToPlaceFirstBlock()
         }
     }
@@ -433,7 +438,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: announcement)
             print("No robots")
             performSegue(withIdentifier: "AddRobotSegue", sender: nil)
-        } else if(functionsDict[currentWorkspace]!.isEmpty) {
+        } else if(currentProject!.functionDict[currentWorkspace]!.isEmpty) {
             changePlayTrashButton()
             let announcement = "Your robot has nothing to do! Add some blocks to your workspace."
             playTrashToggleButton.accessibilityLabel = announcement
@@ -441,7 +446,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             stopIsOption = true
             changePlayTrashButton()
             //Calls RobotControllerViewController play function
-            play(functionsDictToPlay: functionsDict)
+            play(functionsDictToPlay: currentProject!.functionDict)
             robotRunning = true
             // disable modifier blocks while the robot is running
             for modifierBlock in allModifierBlocks {
@@ -471,8 +476,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             modifierBlock.isAccessibilityElement = true
         }
         
-        if functionsDict[currentWorkspace] != nil {
-            for block in functionsDict[currentWorkspace]! {
+        if currentProject!.functionDict[currentWorkspace] != nil {
+            for block in currentProject!.functionDict[currentWorkspace]! {
                 block.isRunning = false
             }
         }
@@ -486,7 +491,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //change for beginning
         var announcement = ""
         if (index != 0) {
-            let myBlock = functionsDict[currentWorkspace]![index-1]
+            let myBlock = currentProject!.functionDict[currentWorkspace]![index-1]
             announcement = blocks[0].name + " placed after " + myBlock.name
         } else {
             announcement = blocks[0].name + " placed at beginning"
@@ -497,29 +502,29 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //add a completion block here
         if blocks[0].double {
             if currentWorkspace != "Main Workspace" && index > endIndex {
-                functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: endIndex)
+                currentProject!.functionDict[currentWorkspace]!.insert(contentsOf: blocks, at: endIndex)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             } else if currentWorkspace != "Main Workspace" && index <= startIndex {
-                functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: startIndex+1)
+                currentProject!.functionDict[currentWorkspace]!.insert(contentsOf: blocks, at: startIndex+1)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             } else {
-            functionsDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
+                currentProject!.functionDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
             blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
             }
         } else {
             if currentWorkspace != "Main Workspace" && index > endIndex {
-                functionsDict[currentWorkspace]!.insert(blocks[0], at: endIndex)
+                currentProject!.functionDict[currentWorkspace]!.insert(blocks[0], at: endIndex)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             } else if currentWorkspace != "Main Workspace" && index <= startIndex {
-                functionsDict[currentWorkspace]!.insert(blocks[0], at: startIndex+1)
+                currentProject!.functionDict[currentWorkspace]!.insert(blocks[0], at: startIndex+1)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             } else {
-                functionsDict[currentWorkspace]!.insert(blocks[0], at: index)
+                currentProject!.functionDict[currentWorkspace]!.insert(blocks[0], at: index)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             }
@@ -542,16 +547,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         collectionView.remembersLastFocusedIndexPath = true
-        return functionsDict[currentWorkspace]!.count + 1
+        return currentProject!.functionDict[currentWorkspace]!.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: CGFloat(blockSize), height: collectionView.frame.height)
         collectionView.remembersLastFocusedIndexPath = true
-        if indexPath.row == functionsDict[currentWorkspace]!.count {
+        if indexPath.row == currentProject!.functionDict[currentWorkspace]!.count {
             // expands the size of the last cell in the collectionView, so it's easier to add a block at the end
             // with VoiceOver on
-            if functionsDict[currentWorkspace]!.count < 8 {
+            if currentProject!.functionDict[currentWorkspace]!.count < 8 {
                 // TODO: eventually simplify this section without blocksStack.count < 8
                 // blocksStack.count < 8 means that the orignal editor only fit up to 8 blocks of a fixed size horizontally, but we may want to change that too
                 let myWidth = collectionView.frame.width
@@ -574,10 +579,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         
         cell.isAccessibilityElement = false
-        if indexPath.row == functionsDict[currentWorkspace]!.count {  // The last cell in the collectionView is an empty cell so you can place blocks at the end
+        if indexPath.row == currentProject!.functionDict[currentWorkspace]!.count {  // The last cell in the collectionView is an empty cell so you can place blocks at the end
             if !blocksBeingMoved.isEmpty{
                 cell.isAccessibilityElement = true
-                if functionsDict[currentWorkspace]!.count == 0 {
+                if currentProject!.functionDict[currentWorkspace]!.count == 0 {
                     cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at Beginning"
                     if #available (iOS 13.0, *) { cell.accessibilityUserInputLabels = ["Workspace"] }
                 } else {
@@ -592,15 +597,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         } else {
             startingHeight = Int(cell.frame.height)-blockSize
-            let block = functionsDict[currentWorkspace]![indexPath.row]
+            let block = currentProject!.functionDict[currentWorkspace]![indexPath.row]
             var blocksToAdd = [Block]()
             
             //check if block is nested (or nested multiple times) and adds in "inside" repeat/if blocks
             for i in 0...indexPath.row {
-                if functionsDict[currentWorkspace]![i].double {
-                    if !functionsDict[currentWorkspace]![i].name.contains("End") {
+                if currentProject!.functionDict[currentWorkspace]![i].double {
+                    if !currentProject!.functionDict[currentWorkspace]![i].name.contains("End") {
                         if i != indexPath.row {
-                            blocksToAdd.append(functionsDict[currentWorkspace]![i])
+                            blocksToAdd.append(currentProject!.functionDict[currentWorkspace]![i])
                         }
                     } else {
                         if !blocksToAdd.isEmpty {
@@ -657,7 +662,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
                 default:
                     // the block is a custom function
-                    let functions: [String] = Array(functionsDict.keys) // All the names of the functions a user creates placed in an array
+                    let functions: [String] = Array(currentProject!.functionDict.keys) // All the names of the functions a user creates placed in an array
                     if (functions.contains(block.name) || block.name.contains("Function Start") || block.name.contains("Function End")) {
                         let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
                         addAccessibilityLabel(blockView: blockView, block: block, blockModifier: "function", blockLocation: indexPath.row+1, blockIndex: indexPath.row)
@@ -695,9 +700,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if myBlock.double == true {
             var indexOfCounterpart = -1
             var blockcounterparts = [Block]()
-            for i in 0..<functionsDict[currentWorkspace]!.count {
+            for i in 0..<currentProject!.functionDict[currentWorkspace]!.count {
                 for block in myBlock.counterpart{
-                    if block === functionsDict[currentWorkspace]![i]{
+                    if block === currentProject!.functionDict[currentWorkspace]![i]{
                         indexOfCounterpart = i
                         blockcounterparts.append(block)
                     }
@@ -707,13 +712,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             var tempBlockStack = [Block]()
             for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
                 indexPathArray += [IndexPath.init(row: i, section: 0)]
-                tempBlockStack += [functionsDict[currentWorkspace]![i]]
+                tempBlockStack += [currentProject!.functionDict[currentWorkspace]![i]]
             }
             blocksBeingMoved = tempBlockStack
-            functionsDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
+            currentProject!.functionDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
         } else { //only a single block to be removed
-            blocksBeingMoved = [functionsDict[currentWorkspace]![blocksStackIndex]]
-            functionsDict[currentWorkspace]!.remove(at: blocksStackIndex)
+            blocksBeingMoved = [currentProject!.functionDict[currentWorkspace]![blocksStackIndex]]
+            currentProject!.functionDict[currentWorkspace]!.remove(at: blocksStackIndex)
         }
         blocksProgram.reloadData()
     }
@@ -731,10 +736,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 
             } else {
-                if indexPath.row < functionsDict[currentWorkspace]!.count {  // otherwise empty block at end
+                if indexPath.row < currentProject!.functionDict[currentWorkspace]!.count {  // otherwise empty block at end
                     movingBlocks = true
                     let blocksStackIndex = indexPath.row
-                    let myBlock = functionsDict[currentWorkspace]![blocksStackIndex]
+                    let myBlock = currentProject!.functionDict[currentWorkspace]![blocksStackIndex]
                     guard !myBlock.name.contains("Function Start") else {
                         movingBlocks = false
                         return
@@ -1139,42 +1144,49 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if let destinationViewController = segue.destination as? DistanceSpeedModViewController {
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
+            destinationViewController.currentProject = currentProject
         }
         
         // Segue to SliderModifieViewController
         if let destinationViewController = segue.destination as? SliderModifierController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
+            destinationViewController.currentProject = currentProject
         }
         
         // Segue to SetVariableModViewController
         if let destinationViewController = segue.destination as? SetVariableModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
+            destinationViewController.currentProject = currentProject
         }
         
         // Segue to DriveVariables
         if let destinationViewController = segue.destination as? DriveVariables{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
+            destinationViewController.currentProject = currentProject
         }
 
         // Segue to EyeLightModifierViewController
         if let destinationViewController = segue.destination as? TwoOptionModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
+            destinationViewController.currentProject = currentProject
         }
         
         // Segue to MultipleChoiceModifierViewController
         if let destinationViewController = segue.destination as? MultipleChoiceModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
+            destinationViewController.currentProject = currentProject
         }
         
         // Segue to StepperModifierViewController
         if let destinationViewController = segue.destination as? StepperModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
+            destinationViewController.currentProject = currentProject
         }
     }
 }

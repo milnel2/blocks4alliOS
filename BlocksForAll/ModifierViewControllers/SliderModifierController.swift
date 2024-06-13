@@ -47,10 +47,11 @@ class SliderModifierController: UIViewController {
     
     
     var parentVC: UIViewController?
+    var currentProject: Project?
    
     override func viewDidLoad() {
         // get the optionType from the button that caused this screen to open, this will be displayed at the top of the screen
-        optionType = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name
+        optionType = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name
         
         // get values from optionDictionary
         attributeName = optionDictionary[optionType]?["attributeName"] ?? "N/A"
@@ -71,7 +72,7 @@ class SliderModifierController: UIViewController {
         optionModTitle.text = optionType // Set title of the screen
        
         // default value: minimum value or preserve last selection
-        let previousValueString: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? min
+        let previousValueString: String = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? min
           
         let previousValue = Int(previousValueString)  // convert to an integer
         
@@ -110,8 +111,10 @@ class SliderModifierController: UIViewController {
     
     @IBAction func backButtonPress(_ sender: Any) {
         if let _ = parentVC as? FreePlayWorkspaceViewController {
+            print("preform back to freeplay")
             performSegue(withIdentifier: "backToFreeplay", sender: nil)
         } else if let _ = parentVC as? BlocksViewController {
+            print( "back to robot")
             performSegue(withIdentifier: "backToRobotWorkspace", sender: nil)
         }
     }
@@ -141,10 +144,18 @@ class SliderModifierController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is BlocksViewController {
+        if let destination = segue.destination as? FreePlayWorkspaceViewController {
             
             print("Set slider value to \(roundedSliderValue) " + units)
-            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"
+            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"
+            destination.project = currentProject
+            
+        }
+        if let destination = segue.destination as? BlocksViewController {
+            print("Set slider value to \(roundedSliderValue) " + units)
+            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"
+            destination.currentProject = currentProject
+            
         }
     }
     /// Given a variable name and its value, prints out an error statement if the value is "N/A"

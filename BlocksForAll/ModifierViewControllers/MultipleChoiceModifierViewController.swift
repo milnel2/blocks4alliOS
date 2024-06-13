@@ -55,9 +55,10 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     private let screenSize: CGRect = UIScreen.main.bounds // size of the screen that the app is being run on. Used to build button layout
      
     var parentVC: UIViewController?
+    var currentProject: Project?
     override func viewDidLoad() {
         
-        optionType = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name  // get the optionType from the button that caused this screen to open
+        optionType = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name  // get the optionType from the button that caused this screen to open
           
         items = optionDictionary[optionType] ?? [] // get the array of options for the optionType
           
@@ -85,7 +86,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         optionModTitle.text = optionType  // Set title of the screen
           
         // Default option or preserve last selection
-        let previousOption = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? items[0]
+        let previousOption = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? items[0]
 
         optionSelectedIndex = items.firstIndex(of: previousOption) ?? 0  // get the index of the previousOption
         
@@ -258,14 +259,25 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     }
       
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.destination is BlocksViewController {
+        if let destination = segue.destination as? FreePlayWorkspaceViewController {
             // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
-            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = items[optionSelectedIndex] // Tell BlocksViewController which sound was selected
+            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = items[optionSelectedIndex] // Tell BlocksViewController which sound was selected
               
             // TODO: make this come from the modifierProperties dictionary
             if attributeName == "lightColor" {
-                  functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] = items[optionSelectedIndex]
+                currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] = items[optionSelectedIndex]
             }
+            destination.project = currentProject
+        }
+        if let destination = segue.destination as? BlocksViewController {
+            // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
+            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = items[optionSelectedIndex] // Tell BlocksViewController which sound was selected
+              
+            // TODO: make this come from the modifierProperties dictionary
+            if attributeName == "lightColor" {
+                currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] = items[optionSelectedIndex]
+            }
+            destination.currentProject = currentProject
         }
     }
 }

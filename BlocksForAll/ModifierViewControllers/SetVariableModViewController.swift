@@ -30,6 +30,7 @@ class SetVariableModViewController: UIViewController {
     var activeField: UITextField?
     
     var parentVC: UIViewController?
+    var currentProject: Project?
     
     @IBAction func backButtonPress(_ sender: Any) {
         if let _ = parentVC as? FreePlayWorkspaceViewController {
@@ -55,11 +56,11 @@ class SetVariableModViewController: UIViewController {
     @objc override func viewDidLoad() {
         super.viewDidLoad()
         // Preserves previously selected variable or default variable (orange)
-        let previousSetVariable: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        let previousSetVariable: String = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
         variableSelected = previousSetVariable
         
         // Preserves previously selected variable value or default value (0.0)
-        let previousVariableValue: String = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] ?? "0.0"
+        let previousVariableValue: String = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] ?? "0.0"
         variableValue = Double(previousVariableValue) ?? 0.0
         
         variableValueInput!.delegate = self
@@ -133,9 +134,15 @@ class SetVariableModViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is BlocksViewController {
-            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Double(variableValue))"
+        if let destination = segue.destination as? FreePlayWorkspaceViewController {
+            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
+            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Double(variableValue))"
+            destination.project = currentProject
+        }
+        if let destination = segue.destination as? BlocksViewController {
+            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
+            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Double(variableValue))"
+            destination.currentProject = currentProject
         }
     }
 }

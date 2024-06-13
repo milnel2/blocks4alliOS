@@ -31,14 +31,15 @@ class DriveVariables: UIViewController {
     @IBOutlet var driveVariablesView: UIView!
     
     var parentVC: UIViewController?
+    var currentProject: Project?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // preserves previously selected distance variable and speed value
-        speed = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+        speed = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
         
-        variableSelected = functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
+        variableSelected = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] ?? "orange"
         
         // Update screen
         updateScreen()
@@ -176,9 +177,15 @@ class DriveVariables: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.destination is BlocksViewController{
-            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
-            functionsDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
+        if let destination = segue.destination as? FreePlayWorkspaceViewController{
+            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
+            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
+            destination.project = currentProject
+        }
+        if let destination = segue.destination as? BlocksViewController{
+            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
+            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
+            destination.currentProject = currentProject
         }
     }
 }
