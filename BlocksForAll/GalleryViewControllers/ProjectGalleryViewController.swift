@@ -49,8 +49,8 @@ class ProjectGalleryViewController: UIViewController {
         projectGalleryCollectionView.translatesAutoresizingMaskIntoConstraints = false
     
         // Adding constraints code is from Imanou Petit's answer on https://stackoverflow.com/questions/26180822/how-to-add-constraints-programmatically-using-swift
-        let widthConstraint = NSLayoutConstraint(item: projectGalleryCollectionView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellWidth + cellSpacing)
-        let heightConstraint = NSLayoutConstraint(item: projectGalleryCollectionView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellHeight + cellSpacing)
+        let widthConstraint = NSLayoutConstraint(item: projectGalleryCollectionView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellWidth + cellSpacing) // Width of collection view = cell width + cell spacing
+        let heightConstraint = NSLayoutConstraint(item: projectGalleryCollectionView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellHeight + cellSpacing) // Height of collection view = cell height + cell spacing
         NSLayoutConstraint.activate([widthConstraint, heightConstraint])
         
         updateUI()
@@ -86,15 +86,20 @@ class ProjectGalleryViewController: UIViewController {
             let textField = alert.textFields![0] as UITextField
             if self.validateFunctionName(name: textField.text!, currentAlert: alert) {
                 // name is valid, rename the project
-                allProjects[self.galleryType]!.insert(Project(name: textField.text!, imageName: "", functionDict: ["Main Workspace" : []]), at: 0)
+                allProjects[self.galleryType]!.insert(Project(name: textField.text!, imageName: "drive_backward", functionDict: ["Main Workspace" : []]), at: 0)
                 self.projects = allProjects[self.galleryType]!
-                self.projectGalleryCollectionView.reloadData()
-                self.updateUI()
+                self.reloadGallery()
             }
             
         }))
 
         present(alert, animated: true)
+    }
+    
+    func reloadGallery() {
+        self.projects = allProjects[self.galleryType]!
+        projectGalleryCollectionView.reloadData()
+        updateUI()
     }
     
     func updateUI() {
@@ -155,17 +160,24 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
         cell.project = project
         cell.parentViewController = self
         cell.cellGalleryType = galleryType
-        //cell.backgroundColor = UIColor.black
-        cell.layer.borderWidth = 1
-       
+        
+        cell.layer.borderWidth = 5
+
         cell.layer.shadowColor = UIColor.gray.cgColor
         cell.layer.shadowRadius = 2.0
         cell.layer.cornerRadius = 10
-        cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
         cell.layer.shadowRadius = 2.0
         let screenSize: CGRect = UIScreen.main.bounds
         cell.imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width * cellScale, height: screenSize.height * cellScale)
+        
+        let imageSizeScale = 0.75
+        
+        let heightConstraint = NSLayoutConstraint(item: cell.imageView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellHeight * imageSizeScale) // Height of image view = cell height * imageSizeScale
+        let widthConstraint = NSLayoutConstraint(item: cell.imageView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellWidth * imageSizeScale) // Height of image view = cell width * imageSizeScale
+        NSLayoutConstraint.activate([widthConstraint, heightConstraint])
+        
 
         return cell
     }
@@ -176,8 +188,6 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-       
         return CGSize(width: cellWidth, height: cellHeight)
     }
     

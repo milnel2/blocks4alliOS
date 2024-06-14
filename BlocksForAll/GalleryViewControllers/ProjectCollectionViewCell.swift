@@ -16,7 +16,9 @@ class ProjectCollectionViewCell: UICollectionViewCell {
    
     @IBOutlet weak var renameButton: UIButton!
     
-    var parentViewController: UIViewController?
+    var parentViewController: ProjectGalleryViewController?
+    
+    @IBOutlet weak var deleteButton: UIButton!
     
     var cellGalleryType: String = "Robot Projects"
     
@@ -42,6 +44,9 @@ class ProjectCollectionViewCell: UICollectionViewCell {
       
         imageView.layer.cornerRadius = 10.0
         imageView.layer.masksToBounds = true
+        
+        projectNameLabel.adjustsFontForContentSizeCategory = true
+        projectNameLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
        
            
        }
@@ -73,6 +78,23 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         parentViewController!.present(alert, animated: true)
     }
     
+    
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Are you sure you want to delete this project?", message: "This action cannot be undone.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
+            // delete project
+            let index = allProjects[self.cellGalleryType]!.firstIndex(of: self.project)!
+            allProjects[self.cellGalleryType]!.remove(at: index)
+            // reload gallery
+            self.parentViewController!.reloadGallery()
+            print("deleted")
+        }))
+        parentViewController!.present(alert, animated: true)
+        
+    }
+    
     func validateFunctionName(name: String, currentAlert: UIAlertController) -> Bool{
         let dictionary = self.getModifierDictionary()!
         if (dictionary[name] != nil) {
@@ -99,6 +121,17 @@ class ProjectCollectionViewCell: UICollectionViewCell {
                 self.parentViewController!.present(invalidNameAlert, animated: true)
             }
             return false
+        } else {
+            for proj in allProjects[cellGalleryType]! {
+                if proj.name == name {
+                    currentAlert.dismiss(animated: true) {
+                        let invalidNameAlert = UIAlertController(title: "Name already exists", message: "Choose a different name", preferredStyle: .alert)
+                        invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                        self.parentViewController!.present(invalidNameAlert, animated: true)
+                    }
+                    return false
+                }
+            }
         }
            
         return true
