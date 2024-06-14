@@ -8,7 +8,7 @@
 
 import Foundation
 
-let movementAnimationSpeed: CGFloat = 50
+let movementAnimationSpeed: CGFloat = 50 // The bigger the number, the faster the animation
 class VirtualRobot {
     var imageView: UIImageView
     
@@ -19,10 +19,28 @@ class VirtualRobot {
         self.freeplayWorkspaceVC = freeplayWorkspaceVC
     }
     
+    func moveToOrigin(executingProgram: ExecutingProgram) {
+        let currentX = imageView.center.x
+        let currentY = imageView.center.y
+        
+        let backgroundCenterX =  freeplayWorkspaceVC.freeplayOutputView.frame.width / 2
+        let backgroundCenterY =  freeplayWorkspaceVC.freeplayOutputView.frame.height / 2
+        
+        let animationDuration = sqrt(pow((backgroundCenterX - currentX),2) + pow( (backgroundCenterY - currentY),2)) / (movementAnimationSpeed * 2)
+        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveLinear, animations: {
+               // this will change Y position of your imageView center
+               // by 1 every time you press button
+            self.imageView.center.y += backgroundCenterY - currentY
+            self.imageView.center.x += backgroundCenterX - currentX
+           }, completion: nil)
+        executingProgram.finishCommand(withDuration: animationDuration)
+        
+    }
+    
     func playMove(distance: Double, xDirection: Int, yDirection: Int, executingProgram: ExecutingProgram) {
         
         if (!checkWillCollide(distance: distance, xDirection: xDirection, yDirection: yDirection, executingProgram: executingProgram)) {
-            let animationDuration = distance / 50
+            let animationDuration = distance / movementAnimationSpeed
             // Code to animate UIImage is from Dharmesh Kheni's answer on:  https://stackoverflow.com/questions/32133056/how-can-i-move-an-image-in-swift
             UIView.animate(withDuration: animationDuration, delay: 0, options: .curveLinear, animations: {
                    // this will change Y position of your imageView center

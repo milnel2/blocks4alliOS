@@ -646,6 +646,9 @@ class ExecutingProgram {
             print("move right")
             playMove(moveBlock: blockToExec, xDirection: 1, yDirection: 0)
         // not best way but using default for Functions
+        case "Move to Origin":
+            print("Move to origin")
+            moveToOrigin()
         default:
             if blockToExec.name.contains("Function Start") || blockToExec.name.contains("Function End") {
                 finishCommand(withDuration: 0.5)
@@ -878,6 +881,10 @@ class ExecutingProgram {
         print("actors 2 = ", actors)
         actors[0].playMove(distance: distance, xDirection: xDirection, yDirection: yDirection, executingProgram: self)
        
+    }
+    
+    func moveToOrigin() {
+        actors[0].moveToOrigin(executingProgram: self)
     }
     
     

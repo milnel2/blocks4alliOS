@@ -660,7 +660,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             } else {
                 switch name {
                     // block exists but is a non-modifier block
-                case "End If", "End Repeat", "End Repeat Forever", "Repeat Forever", "Look Forward", "Look Toward Voice", "Look Right", "Look Left", "Look Straight", "Look Down", "Look Up", "Wiggle", "Nod", "Spiral Light":
+                case "End If", "End Repeat", "End Repeat Forever", "Repeat Forever", "Look Forward", "Look Toward Voice", "Look Right", "Look Left", "Look Straight", "Look Down", "Look Up", "Wiggle", "Nod", "Spiral Light", "Move to Origin":
        
                     let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
                     
