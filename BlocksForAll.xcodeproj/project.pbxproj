@@ -221,6 +221,7 @@
 		F18FFFB11E65B0FB0090C4B6 /* BlocksForAll */ = {
 			isa = PBXGroup;
 			children = (
+				8D822CDD2C138B4400A8A20D /* Freeplay */,
 				8DE37AFF2C1A3C24006DB159 /* GalleryViewControllers */,
 				F7CAF42923EE103400901E99 /* ModifierViewControllers */,
 				701A43861EC26EFD00314599 /* BlocksViewController.swift */,
@@ -234,7 +235,6 @@
 				FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */,
 				FDEB68B42A4F347500E522D0 /* RobotViewControllers */,
 				F18FEEDB1EB115AF007C15B8 /* Helper */,
-				8D822CDD2C138B4400A8A20D /* Freeplay */,
 			);
 			path = BlocksForAll;
 			sourceTree = "<group>";

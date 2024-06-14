@@ -114,7 +114,6 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
 
 class ExecutingProgram {
     
-    var actors: [VirtualRobot] = []
     
     var actorImage: UIImageView? = nil
     
@@ -876,16 +875,12 @@ class ExecutingProgram {
 
     func playMove(moveBlock: Block, xDirection: Int, yDirection: Int) {
         let distance = (Double(moveBlock.addedBlocks[0].attributes["movement"] ?? "1") ?? 1 ) * 10
-        let animationDuration = distance / 50
-        // Code to animate UIImage is from Dharmesh Kheni's answer on:  https://stackoverflow.com/questions/32133056/how-can-i-move-an-image-in-swift
-        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveLinear, animations: {
-               // this will change Y position of your imageView center
-               // by 1 every time you press button
-            self.actorImage!.center.y += (distance * CGFloat(yDirection)) // TODO: can't go past the walls
-            self.actorImage!.center.x += (distance * CGFloat(xDirection))
-           }, completion: nil)
-        finishCommand(withDuration: animationDuration)
+        print("actors 2 = ", actors)
+        actors[0].playMove(distance: distance, xDirection: xDirection, yDirection: yDirection, executingProgram: self)
+       
     }
+    
+    
     //decomposition of drive functions
     func playDrive (driveBlock: Block, driveConstant: Double){
         if isInFreeplay {

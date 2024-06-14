@@ -11,13 +11,16 @@ import UIKit
 import AVFoundation
 
 var isInFreeplay: Bool = false // global variable for if the freeplay workspace is open
+
+var actors: [VirtualRobot] = []
+
 class FreePlayWorkspaceViewController: BlocksViewController {
     
     @IBOutlet weak var freeplayOutputView: FreeplayOutputView!
     
     @IBOutlet weak var currentActorImageView: UIImageView!
     
-    var actors: [VirtualRobot] = []
+   
     
     @IBOutlet weak var outputBackgroundImageView: UIImageView!
     
@@ -40,6 +43,11 @@ class FreePlayWorkspaceViewController: BlocksViewController {
                 currentActorImageView.alpha = 0.3
         workspaceTitle.text = project!.name
         
+        //TODO: update this
+        actors = []
+        let tempNewActor = VirtualRobot(imageView: outputActorViewTemp, freeplayWorkspaceVC: self)
+        actors.append(tempNewActor)
+        print("actors = ", actors)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,16 +79,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         }
         refreshScreen()
     }
-//    /// Play the passed sound file name
-//    override func playNoise (sound: String){
-//        print("new noise = ", sound)
-//    }
-//    
-    
-//    @objc override func distanceSpeedModifier(sender: UIButton!) {
-//
-//        performSegue(withIdentifier: "DistanceSpeedModifier", sender: nil)
-//    }
-//    
+
    
 }
+
+

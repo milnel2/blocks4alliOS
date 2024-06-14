@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class FreeplayOutputView: UIView {
+    
 //    @IBOutlet var backgroundImageView: UIImageView!
 //    @IBOutlet var actorImageView: UIImageView!
     

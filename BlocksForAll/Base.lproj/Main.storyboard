@@ -400,10 +400,10 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="613" height="405"/>
                                                             </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B4A_Robot_outline" translatesAutoresizingMaskIntoConstraints="NO" id="bLB-X1-ktl" userLabel="Actor">
-                                                                <rect key="frame" x="186.5" y="138.5" width="240" height="128"/>
+                                                                <rect key="frame" x="246.5" y="142.5" width="120" height="120"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="240" id="Cbs-Ef-XvZ"/>
-                                                                    <constraint firstAttribute="height" constant="128" id="LeQ-PC-sr7"/>
+                                                                    <constraint firstAttribute="width" constant="120" id="Cbs-Ef-XvZ"/>
+                                                                    <constraint firstAttribute="height" constant="120" id="LeQ-PC-sr7"/>
                                                                 </constraints>
                                                             </imageView>
                                                         </subviews>
@@ -2261,13 +2261,13 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="gnX-kj-isW"/>
         <segue reference="a9q-34-jse"/>
-        <segue reference="2fL-ta-11H"/>
+        <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AddRobotButton" width="576" height="576"/>
         <image name="Apple" width="133" height="133"/>
-        <image name="B4A_Robot_outline" width="2048" height="2048"/>
+        <image name="B4A_Robot_outline" width="1917" height="1865"/>
         <image name="Back" width="2048" height="2048"/>
         <image name="Background" width="1308" height="949"/>
         <image name="Banana" width="133" height="133"/>
