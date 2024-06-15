@@ -138,8 +138,8 @@ class VirtualRobot {
         
         // Check if it will hit the top or bottom of the screen
         if (yDirection != 0) {
-            if (actorTopY - distance <= backgroundTopY + 5 // top side
-                || actorBottomY + distance >= backgroundBottomY - 5 // bottom side
+            if (actorTopY + (distance * Double(yDirection)) <= backgroundTopY + 5 // top side
+                || actorBottomY + (distance * Double(yDirection)) >= backgroundBottomY - 5 // bottom side
                     ) {
                 
                 var amountCanMove: CGFloat = 0
@@ -171,8 +171,8 @@ class VirtualRobot {
         
          //Check if it will hit the left or right side of the screen
         if (xDirection != 0) {
-            if (actorLeftX - distance <= backgroundLeftX + 5 // left side
-                || actorRightX + distance >= backgroundRightX - 5 // right side
+            if (actorLeftX + (distance * Double(xDirection)) <= backgroundLeftX + 5 // left side
+                || actorRightX + (distance * Double(xDirection)) >= backgroundRightX - 5 // right side
                     ) {
                 
                 var amountCanMove: CGFloat = 0
