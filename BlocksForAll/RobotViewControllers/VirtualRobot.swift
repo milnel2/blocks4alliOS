@@ -10,13 +10,72 @@ import Foundation
 
 let movementAnimationSpeed: CGFloat = 50 // The bigger the number, the faster the animation
 class VirtualRobot {
+    
+    var imagePath: String
     var imageView: UIImageView
-    
     var freeplayWorkspaceVC: FreePlayWorkspaceViewController
+    let robotSize: CGFloat = 120
     
-    init(imageView: UIImageView, freeplayWorkspaceVC: FreePlayWorkspaceViewController) {
-        self.imageView = imageView
+    init(imagePath: String, freeplayWorkspaceVC: FreePlayWorkspaceViewController) {
+        print("adding new actor = ", imagePath)
+        self.imagePath = imagePath
         self.freeplayWorkspaceVC = freeplayWorkspaceVC
+        let image = UIImage(named: imagePath)
+        if (image == nil) {
+            print("Error: Couldn't create image in VirtualRobot class from image path: ", imagePath)
+        }
+        imageView = UIImageView(image: UIImage(named: imagePath))
+        
+        freeplayWorkspaceVC.freeplayOutputView.addSubview(imageView)
+        
+        imageView.frame = CGRect(x: 0, y: 0, width: robotSize, height: robotSize)
+        
+        imageView.center.x = CGFloat.random(in: 50..<700)
+        imageView.center.y =  CGFloat.random(in: 50..<300)
+        
+        // Tap Gesture code from https://agrawalsuneet.medium.com/uiview-clicklistener-swift-88ab5dec64b5
+        let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(clickOnActor(sender:)))
+        
+        let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(dragActor(sender:)))
+        
+      
+        
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGesture)
+        imageView.addGestureRecognizer(dragGesture)
+
+        actors.append(self)
+    }
+    
+    @objc func clickOnActor(sender : UITapGestureRecognizer) {
+        print("click on", imagePath)
+        freeplayWorkspaceVC.updateCurrentActor(newActor: self)
+    }
+    
+    @objc func dragActor(sender: UIPanGestureRecognizer) {
+        let dragLocation = sender.location(in: freeplayWorkspaceVC.freeplayOutputView)
+        
+        let actorHeight = imageView.frame.height
+        let actorWidth = imageView.layer.frame.width
+        
+        let backgroundTopY: CGFloat = 0
+        let backgroundBottomY = freeplayWorkspaceVC.freeplayOutputView.frame.height
+        let backgroundLeftX: CGFloat = 0
+        let backgroundRightX = freeplayWorkspaceVC.freeplayOutputView.frame.width
+        
+        // don't drag if out of bounds
+        if !(dragLocation.x - actorWidth / 2 <= backgroundLeftX || dragLocation.x + actorWidth / 2 >= backgroundRightX) {
+            // within x bounds
+            imageView.center.x = dragLocation.x
+        }
+        
+        if !(dragLocation.y - actorHeight / 2 <= backgroundTopY || dragLocation.y + actorHeight / 2 >= backgroundBottomY ) {
+            // within y bounds
+            imageView.center.y = dragLocation.y
+        }
+        
+        
+        
     }
     
     func moveToOrigin(executingProgram: ExecutingProgram) {
@@ -51,11 +110,6 @@ class VirtualRobot {
             executingProgram.finishCommand(withDuration: animationDuration)
             
         }
-        
-       
-        
-        
-        
         
     }
     

@@ -348,6 +348,9 @@
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Add Actor"/>
+                                                        <connections>
+                                                            <action selector="addActorClicked:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="FMJ-qR-fIY"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="R10-4x-ECs" userLabel="Main Workspace Button">
                                                         <rect key="frame" x="14" y="347" width="150" height="35"/>
@@ -399,18 +402,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="sz8-Xi-Sni">
                                                                 <rect key="frame" x="0.0" y="0.0" width="613" height="405"/>
                                                             </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B4A_Robot_outline" translatesAutoresizingMaskIntoConstraints="NO" id="bLB-X1-ktl" userLabel="Actor">
-                                                                <rect key="frame" x="246.5" y="142.5" width="120" height="120"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="120" id="Cbs-Ef-XvZ"/>
-                                                                    <constraint firstAttribute="height" constant="120" id="LeQ-PC-sr7"/>
-                                                                </constraints>
-                                                            </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstItem="bLB-X1-ktl" firstAttribute="centerX" secondItem="sz8-Xi-Sni" secondAttribute="centerX" id="1gg-G3-Cc8"/>
-                                                            <constraint firstItem="bLB-X1-ktl" firstAttribute="centerY" secondItem="sz8-Xi-Sni" secondAttribute="centerY" id="4LK-W6-MZT"/>
                                                             <constraint firstItem="sz8-Xi-Sni" firstAttribute="leading" secondItem="kKQ-2P-KlV" secondAttribute="leading" id="6Gz-nE-XcX"/>
                                                             <constraint firstAttribute="bottom" secondItem="sz8-Xi-Sni" secondAttribute="bottom" id="Iza-st-oom"/>
                                                             <constraint firstAttribute="trailing" secondItem="sz8-Xi-Sni" secondAttribute="trailing" id="TPF-Ln-bwC"/>
@@ -609,7 +603,6 @@
                         <outlet property="mainMenuButton" destination="9YL-5Y-1hw" id="McB-ea-ozc"/>
                         <outlet property="mainView" destination="jWr-ZO-kXm" id="deS-DP-VoI"/>
                         <outlet property="mainWorkspaceButton" destination="R10-4x-ECs" id="Hx9-Ps-yHS"/>
-                        <outlet property="outputActorViewTemp" destination="bLB-X1-ktl" id="ebT-Pc-CWf"/>
                         <outlet property="outputBackgroundImageView" destination="sz8-Xi-Sni" id="Ssu-09-1gv"/>
                         <outlet property="playTrashToggleButton" destination="N8m-L7-Ufr" id="3ux-a2-cIE"/>
                         <outlet property="toolboxView" destination="xWd-TO-AEv" id="K2L-Ws-Olt"/>
