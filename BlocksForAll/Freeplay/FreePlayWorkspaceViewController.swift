@@ -33,10 +33,17 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             print("ERROR: current project is nil")
         }
         
+        print("LOAD")
         for actor in project!.actors {
             if (actor.freeplayWorkspaceVC == nil) {
+                print("adding view controller")
                 actor.addFreeplayWorkspaceVC(freeplayWorkspaceVC: self)
             }
+            freeplayOutputView.addSubview(actor.imageView)
+            print("saved coords = ", actor.coordinates)
+            actor.setToSavedCoordinates()
+            let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(dragActor(sender:)))
+            actor.imageView.addGestureRecognizer(dragGesture)
         }
         
         isInFreeplay = true
@@ -53,6 +60,48 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
     }
     
+    @objc func dragActor(sender: UIPanGestureRecognizer) {
+
+        let dragLocation = sender.location(in: freeplayOutputView)
+        
+        let actorHeight = sender.view!.layer.frame.height
+        let actorWidth = sender.view!.layer.frame.width
+      
+        let backgroundTopY: CGFloat = 0
+        let backgroundBottomY = freeplayOutputView.frame.height
+        let backgroundLeftX: CGFloat = 0
+        let backgroundRightX = freeplayOutputView.frame.width
+        
+        
+        
+               
+       switch sender.state {
+       case .began, .changed: // Implementation to recognize seleccted actor from ChatGPT by OpenAI. Source: https://www.openai.com
+           for actor in project!.actors {
+               if actor.imageView.frame.contains(dragLocation) && actor.imageView == sender.view { // TODO: handle when images overlap
+                   if !(dragLocation.x - actorWidth / 2 <= backgroundLeftX || dragLocation.x + actorWidth / 2 >= backgroundRightX) {
+                       // within x bounds
+                       actor.setCoordinates(x: dragLocation.x, y: actor.coordinates.y)
+                       
+                   }
+                   
+                   if !(dragLocation.y - actorHeight / 2 <= backgroundTopY || dragLocation.y + actorHeight / 2 >= backgroundBottomY ) {
+                       // within y bounds
+                       actor.setCoordinates(x: actor.coordinates.x, y: dragLocation.y)
+                       
+                   }
+                   print(dragLocation)
+                   updateCurrentActor(newActor: actor)
+                   
+               }
+           }
+       default:
+           break
+       }
+      
+        
+    }
+   
     
     override func viewWillDisappear(_ animated: Bool) {
         isInFreeplay = false
