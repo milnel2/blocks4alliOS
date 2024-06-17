@@ -72,6 +72,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     var project: Project? = nil
     var galleryType = String()
+    
+   
   
     //MARK: - View Controller Methods
     override func viewDidAppear(_ animated: Bool) {
@@ -88,7 +90,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         currentProject = project
-        endIndex = currentProject!.functionDict[currentWorkspace]!.count - 1
+        endIndex = currentProject!.currentActor!.functionDict[currentWorkspace]!.count - 1
         
        
         // Change to custom font
@@ -100,7 +102,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
        
        // print("CURRNT PROJECT = ", currentProject?.functionDict)
         // If working on a function
-        if currentWorkspace != "Main Workspace" {
+        if isWorkspaceCustomFunction(name: currentWorkspace) {
             mainWorkspaceButton.isHidden = false  // Show Back to Main Workspace arrow button
             if #available(iOS 13.0, *) {
                 workspaceTitle.textColor = .label
@@ -109,7 +111,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
             workspaceTitle.text = "Return to Main Workspace"
             
-            if currentProject!.functionDict[currentWorkspace]!.isEmpty{
+            if currentProject!.currentActor!.functionDict[currentWorkspace]!.isEmpty{
                 let startBlock = Block.init(
                     name: "\(currentWorkspace) Function Start",
                     colorName: "light_purple_block",
@@ -122,8 +124,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     isModifiable: false)
                 startBlock!.counterpart = [endBlock!]
                 endBlock!.counterpart = [startBlock!]
-                currentProject!.functionDict[currentWorkspace]?.append(startBlock!)
-                currentProject!.functionDict[currentWorkspace]?.append(endBlock!)
+                currentProject!.currentActor!.functionDict[currentWorkspace]?.append(startBlock!)
+                currentProject!.currentActor!.functionDict[currentWorkspace]?.append(endBlock!)
             }
         } else {
             mainWorkspaceButton.isHidden = true // Hide Back to Main Workspace arrow button. Already in Main Workspace.
@@ -212,7 +214,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if let indexPath = blocksProgram?.indexPath(for: focusedCell) {
             // perform the custom action here using the indexPath information
             print(indexPath.row)
-            selectBlock(block: currentProject!.functionDict[currentWorkspace]![indexPath.row], location: indexPath.row)
+            selectBlock(block: currentProject!.currentActor!.functionDict[currentWorkspace]![indexPath.row], location: indexPath.row)
         }
         print("put in trash")
         return true
@@ -239,15 +241,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         
         var accessibilityLabel = ""
-        let blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(currentProject!.functionDict[currentWorkspace]!.count)
+        let blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(currentProject!.currentActor!.functionDict[currentWorkspace]!.count)
         var accessibilityHint = ""
         var movementInfo = ". Double tap to move block."
         
         if(!blocksBeingMoved.isEmpty){
             // Moving blocks, so switch labels to indicated where blocks can be placed
-            if (currentWorkspace != "Main Workspace" && blockIndex == 0){
+            if (isWorkspaceCustomFunction(name: currentWorkspace) && blockIndex == 0){
                 accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning of " + currentWorkspace + " function."
-            } else if (currentWorkspace == "Main Workspace" && blockIndex == 0){
+            } else if (!isWorkspaceCustomFunction(name: currentWorkspace) && blockIndex == 0){
                 // in main workspace and setting 1st block accessibility info
                 accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning, before "
                 accessibilityLabel +=  block.name + " " + blockModifier + " " + blockPlacementInfo
@@ -374,7 +376,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksProgram.reloadData()
         changePlayTrashButton()
         // If there are no blocks in the workspace, show the arrow of where the first block will go
-        if currentProject!.functionDict[currentWorkspace]!.count == 0 {
+        if currentProject!.currentActor!.functionDict[currentWorkspace]!.count == 0 {
             showArrowToPlaceFirstBlock()
         }
     }
@@ -441,7 +443,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             print("No robots")
             performSegue(withIdentifier: "AddRobotSegue", sender: nil)
             
-        } else if(currentProject!.functionDict[currentWorkspace]!.isEmpty) {
+        } else if(currentProject!.currentActor!.functionDict[currentWorkspace]!.isEmpty) {
             changePlayTrashButton()
             let announcement = "Your robot has nothing to do! Add some blocks to your workspace."
             playTrashToggleButton.accessibilityLabel = announcement
@@ -449,7 +451,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             stopIsOption = true
             changePlayTrashButton()
             //Calls RobotControllerViewController play function
-            play(functionsDictToPlay: currentProject!.functionDict)
+            play(functionsDictToPlay: currentProject!.currentActor!.functionDict)
             robotRunning = true
             // disable modifier blocks while the robot is running
             for modifierBlock in allModifierBlocks {
@@ -479,12 +481,28 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             modifierBlock.isAccessibilityElement = true
         }
         
-        if currentProject!.functionDict[currentWorkspace] != nil {
-            for block in currentProject!.functionDict[currentWorkspace]! {
+        if currentProject!.currentActor!.functionDict[currentWorkspace] != nil {
+            for block in currentProject!.currentActor!.functionDict[currentWorkspace]! {
                 block.isRunning = false
             }
         }
         refreshScreen()
+    }
+    
+    func updateCurrentWorkspace (name: String) {
+        currentWorkspace = name
+        print("Updated workspace to", currentWorkspace)
+        refreshScreen()
+    }
+    
+    /// Returns true if the given workspace name is a custom function and false if it is a premade workspace like "Main Workspace" or "On Run"
+    func isWorkspaceCustomFunction(name: String) -> Bool {
+        if (PREMADE_FUNCTION_NAMES.contains(name)) {
+            print(name, "is a premade function")
+            return false
+        }
+        print(name, "is a custom function")
+        return true
     }
     
     // MARK: - Blocks Methods
@@ -494,7 +512,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         //change for beginning
         var announcement = ""
         if (index != 0) {
-            let myBlock = currentProject!.functionDict[currentWorkspace]![index-1]
+            let myBlock = currentProject!.currentActor!.functionDict[currentWorkspace]![index-1]
             announcement = blocks[0].name + " placed after " + myBlock.name
         } else {
             announcement = blocks[0].name + " placed at beginning"
@@ -504,31 +522,31 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         //add a completion block here
         if blocks[0].double {
-            if currentWorkspace != "Main Workspace" && index > endIndex {
-                currentProject!.functionDict[currentWorkspace]!.insert(contentsOf: blocks, at: endIndex)
+            if isWorkspaceCustomFunction(name: currentWorkspace) && index > endIndex {
+                currentProject!.currentActor!.functionDict[currentWorkspace]!.insert(contentsOf: blocks, at: endIndex)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
-            } else if currentWorkspace != "Main Workspace" && index <= startIndex {
-                currentProject!.functionDict[currentWorkspace]!.insert(contentsOf: blocks, at: startIndex+1)
+            } else if isWorkspaceCustomFunction(name: currentWorkspace) && index <= startIndex {
+                currentProject!.currentActor!.functionDict[currentWorkspace]!.insert(contentsOf: blocks, at: startIndex+1)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             } else {
-                currentProject!.functionDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
+                currentProject!.currentActor!.functionDict[currentWorkspace]!.insert(contentsOf: blocks, at: index)
             blocksBeingMoved.removeAll()
             blocksProgram.reloadData()
             }
         } else {
-            if currentWorkspace != "Main Workspace" && index > endIndex {
-                currentProject!.functionDict[currentWorkspace]!.insert(blocks[0], at: endIndex)
+            if isWorkspaceCustomFunction(name: currentWorkspace) && index > endIndex {
+                currentProject!.currentActor!.functionDict[currentWorkspace]!.insert(blocks[0], at: endIndex)
 
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
-            } else if currentWorkspace != "Main Workspace" && index <= startIndex {
-                currentProject!.functionDict[currentWorkspace]!.insert(blocks[0], at: startIndex+1)
+            } else if isWorkspaceCustomFunction(name: currentWorkspace) && index <= startIndex {
+                currentProject!.currentActor!.functionDict[currentWorkspace]!.insert(blocks[0], at: startIndex+1)
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             } else {
-                currentProject!.functionDict[currentWorkspace]!.insert(blocks[0], at: index)
+                currentProject!.currentActor!.functionDict[currentWorkspace]!.insert(blocks[0], at: index)
                 print("inserted block")
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
@@ -563,16 +581,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         collectionView.remembersLastFocusedIndexPath = true
-        return currentProject!.functionDict[currentWorkspace]!.count + 1
+        return currentProject!.currentActor!.functionDict[currentWorkspace]!.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: CGFloat(blockSize), height: collectionView.frame.height)
         collectionView.remembersLastFocusedIndexPath = true
-        if indexPath.row == currentProject!.functionDict[currentWorkspace]!.count {
+        if indexPath.row == currentProject!.currentActor!.functionDict[currentWorkspace]!.count {
             // expands the size of the last cell in the collectionView, so it's easier to add a block at the end
             // with VoiceOver on
-            if currentProject!.functionDict[currentWorkspace]!.count < 8 {
+            if currentProject!.currentActor!.functionDict[currentWorkspace]!.count < 8 {
                 // TODO: eventually simplify this section without blocksStack.count < 8
                 // blocksStack.count < 8 means that the orignal editor only fit up to 8 blocks of a fixed size horizontally, but we may want to change that too
                 let myWidth = collectionView.frame.width
@@ -595,14 +613,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         
         cell.isAccessibilityElement = false
-        if indexPath.row == currentProject!.functionDict[currentWorkspace]!.count {  // The last cell in the collectionView is an empty cell so you can place blocks at the end
+        if indexPath.row == currentProject!.currentActor!.functionDict[currentWorkspace]!.count {  // The last cell in the collectionView is an empty cell so you can place blocks at the end
             if !blocksBeingMoved.isEmpty{
                 cell.isAccessibilityElement = true
-                if currentProject!.functionDict[currentWorkspace]!.count == 0 {
+                if currentProject!.currentActor!.functionDict[currentWorkspace]!.count == 0 {
                     cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at Beginning"
                     if #available (iOS 13.0, *) { cell.accessibilityUserInputLabels = ["Workspace"] }
                 } else {
-                    if currentWorkspace == "Main Workspace" {
+                    if !isWorkspaceCustomFunction(name: currentWorkspace) {
                         cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End"
                         if #available (iOS 13.0, *) { cell.accessibilityUserInputLabels = ["End of workspace"] }
                     } else {
@@ -613,15 +631,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
         } else {
             startingHeight = Int(cell.frame.height)-blockSize
-            let block = currentProject!.functionDict[currentWorkspace]![indexPath.row]
+            let block = currentProject!.currentActor!.functionDict[currentWorkspace]![indexPath.row]
             var blocksToAdd = [Block]()
             
             //check if block is nested (or nested multiple times) and adds in "inside" repeat/if blocks
             for i in 0...indexPath.row {
-                if currentProject!.functionDict[currentWorkspace]![i].double {
-                    if !currentProject!.functionDict[currentWorkspace]![i].name.contains("End") {
+                if currentProject!.currentActor!.functionDict[currentWorkspace]![i].double {
+                    if !currentProject!.currentActor!.functionDict[currentWorkspace]![i].name.contains("End") {
                         if i != indexPath.row {
-                            blocksToAdd.append(currentProject!.functionDict[currentWorkspace]![i])
+                            blocksToAdd.append(currentProject!.currentActor!.functionDict[currentWorkspace]![i])
                         }
                     } else {
                         if !blocksToAdd.isEmpty {
@@ -678,7 +696,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
                 default:
                     // the block is a custom function
-                    let functions: [String] = Array(currentProject!.functionDict.keys) // All the names of the functions a user creates placed in an array
+                    let functions: [String] = Array(currentProject!.currentActor!.functionDict.keys) // All the names of the functions a user creates placed in an array
                     if (functions.contains(block.name) || block.name.contains("Function Start") || block.name.contains("Function End")) {
                         let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
                         addAccessibilityLabel(blockView: blockView, block: block, blockModifier: "function", blockLocation: indexPath.row+1, blockIndex: indexPath.row)
@@ -716,9 +734,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if myBlock.double == true {
             var indexOfCounterpart = -1
             var blockcounterparts = [Block]()
-            for i in 0..<currentProject!.functionDict[currentWorkspace]!.count {
+            for i in 0..<currentProject!.currentActor!.functionDict[currentWorkspace]!.count {
                 for block in myBlock.counterpart{
-                    if block === currentProject!.functionDict[currentWorkspace]![i]{
+                    if block === currentProject!.currentActor!.functionDict[currentWorkspace]![i]{
                         indexOfCounterpart = i
                         blockcounterparts.append(block)
                     }
@@ -728,13 +746,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             var tempBlockStack = [Block]()
             for i in min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex){
                 indexPathArray += [IndexPath.init(row: i, section: 0)]
-                tempBlockStack += [currentProject!.functionDict[currentWorkspace]![i]]
+                tempBlockStack += [currentProject!.currentActor!.functionDict[currentWorkspace]![i]]
             }
             blocksBeingMoved = tempBlockStack
-            currentProject!.functionDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
+            currentProject!.currentActor!.functionDict[currentWorkspace]!.removeSubrange(min(indexOfCounterpart, blocksStackIndex)...max(indexOfCounterpart, blocksStackIndex))
         } else { //only a single block to be removed
-            blocksBeingMoved = [currentProject!.functionDict[currentWorkspace]![blocksStackIndex]]
-            currentProject!.functionDict[currentWorkspace]!.remove(at: blocksStackIndex)
+            blocksBeingMoved = [currentProject!.currentActor!.functionDict[currentWorkspace]![blocksStackIndex]]
+            currentProject!.currentActor!.functionDict[currentWorkspace]!.remove(at: blocksStackIndex)
         }
         blocksProgram.reloadData()
     }
@@ -752,10 +770,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 
             } else {
-                if indexPath.row < currentProject!.functionDict[currentWorkspace]!.count {  // otherwise empty block at end
+                if indexPath.row < currentProject!.currentActor!.functionDict[currentWorkspace]!.count {  // otherwise empty block at end
                     movingBlocks = true
                     let blocksStackIndex = indexPath.row
-                    let myBlock = currentProject!.functionDict[currentWorkspace]![blocksStackIndex]
+                    let myBlock = currentProject!.currentActor!.functionDict[currentWorkspace]![blocksStackIndex]
                     guard !myBlock.name.contains("Function Start") else {
                         movingBlocks = false
                         return

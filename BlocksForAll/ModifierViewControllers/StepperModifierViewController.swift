@@ -42,7 +42,7 @@ class StepperModifierViewController: UIViewController {
     var currentProject: Project?
     override func viewDidLoad() {
         // get the optionType from the button that caused this screen to open, this will be displayed at the top of the screen
-        optionType = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name
+        optionType = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name
           
         // get values from optionDictionary
         attributeName = optionDictionary[optionType]?["attributeName"] ?? "N/A"
@@ -65,7 +65,7 @@ class StepperModifierViewController: UIViewController {
         optionModTitle.text = optionType // Set title of the screen
        
         // default value: minimum value or preserve last selection
-        let previousWaitString: String = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? min
+        let previousWaitString: String = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? min
           
         let previousWait = Int(previousWaitString)  // convert to an integer
           
@@ -224,12 +224,12 @@ class StepperModifierViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? FreePlayWorkspaceViewController{
             // Tell BlocksViewController which sound was selected
-            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)"
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)"
             destination.project = currentProject
         }
         if let destination = segue.destination as? BlocksViewController{
             // Tell BlocksViewController which sound was selected
-            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)"
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)"
             destination.currentProject = currentProject
         }
     }

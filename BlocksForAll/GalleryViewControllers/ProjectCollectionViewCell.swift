@@ -113,7 +113,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
                 self.parentViewController!.present(invalidNameAlert, animated: true)
             }
             return false
-        } else if (self.project.functionDict.keys.contains(name))  {
+        } else if (self.project.currentActor!.functionDict.keys.contains(name))  {
             // Duplicate custom function name
             currentAlert.dismiss(animated: true) {
                 let invalidNameAlert = UIAlertController(title: "Name already exists", message: "Choose a different name", preferredStyle: .alert)

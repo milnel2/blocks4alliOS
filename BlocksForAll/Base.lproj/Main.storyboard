@@ -524,11 +524,17 @@
                                                         <rect key="frame" x="187.5" y="16" width="31.5" height="34.5"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="1"/>
+                                                        <connections>
+                                                            <action selector="firstCodeLinePressed:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="pDF-yt-QzG"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEN-wX-dnt" userLabel="2">
                                                         <rect key="frame" x="186" y="77" width="34.5" height="35"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="2"/>
+                                                        <connections>
+                                                            <action selector="secondCodeLinePressed:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="Nsi-oc-K9j"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLG-Jt-TWo">
                                                         <rect key="frame" x="186" y="143.5" width="34.5" height="34"/>
@@ -537,6 +543,9 @@
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="3"/>
+                                                        <connections>
+                                                            <action selector="thirdCodeLinePressed:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="oaU-mv-ZoF"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8m-L7-Ufr" userLabel="Play Button">
                                                         <rect key="frame" x="34.5" y="218" width="150" height="150"/>
@@ -597,6 +606,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="JPt-7e-AZh"/>
                     <connections>
+                        <outlet property="FirstCodeLineButton" destination="wdR-Mn-wHu" id="cXD-7S-ib6"/>
+                        <outlet property="SecondCodeLineButton" destination="SEN-wX-dnt" id="P05-zd-3yu"/>
                         <outlet property="blocksProgram" destination="ei4-9x-SF4" id="TWu-jB-6iq"/>
                         <outlet property="currentActorImageView" destination="5xA-lS-fn9" id="uWr-sE-lwf"/>
                         <outlet property="freeplayOutputView" destination="kKQ-2P-KlV" id="7Yf-AU-3Q9"/>
@@ -605,6 +616,7 @@
                         <outlet property="mainWorkspaceButton" destination="R10-4x-ECs" id="Hx9-Ps-yHS"/>
                         <outlet property="outputBackgroundImageView" destination="sz8-Xi-Sni" id="Ssu-09-1gv"/>
                         <outlet property="playTrashToggleButton" destination="N8m-L7-Ufr" id="3ux-a2-cIE"/>
+                        <outlet property="thirdCodeLineButton" destination="jLG-Jt-TWo" id="rBy-Yk-bMY"/>
                         <outlet property="toolboxView" destination="xWd-TO-AEv" id="K2L-Ws-Olt"/>
                         <outlet property="workspaceContainerView" destination="aV3-yC-Sxx" id="rAT-Gb-aCG"/>
                         <outlet property="workspaceTitle" destination="KI8-EN-GKe" id="bIL-fd-Omn"/>

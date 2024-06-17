@@ -115,7 +115,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
 class ExecutingProgram {
     
     
-    var actorImage: UIImageView? = nil
+    var currentActor: VirtualRobot? = nil
     
     var positions: [(funcName: String, position: Int)]
     // position used to find index of block in blocksToExec
@@ -156,7 +156,7 @@ class ExecutingProgram {
         
         
         self.robotControlViewController = robotControlViewController
-        print("actor image 1 = ", actorImage)
+        print("actor image 1 = ", currentActor)
     }
     
     var funcIsComplete: Bool {
@@ -878,13 +878,14 @@ class ExecutingProgram {
 
     func playMove(moveBlock: Block, xDirection: Int, yDirection: Int) {
         let distance = (Double(moveBlock.addedBlocks[0].attributes["movement"] ?? "1") ?? 1 ) * 10
-        print("actors 2 = ", actors)
-        actors[0].playMove(distance: distance, xDirection: xDirection, yDirection: yDirection, executingProgram: self)
+        print("actors 2 = ", currentActor)
+        //TODO: update this to be current actor
+        currentActor!.playMove(distance: distance, xDirection: xDirection, yDirection: yDirection, executingProgram: self)
        
     }
     
     func moveToOrigin() {
-        actors[0].moveToOrigin(executingProgram: self)
+        currentActor!.moveToOrigin(executingProgram: self)
     }
     
     

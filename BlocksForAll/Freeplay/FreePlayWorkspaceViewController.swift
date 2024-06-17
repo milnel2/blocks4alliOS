@@ -12,7 +12,7 @@ import AVFoundation
 
 var isInFreeplay: Bool = false // global variable for if the freeplay workspace is open
 
-var actors: [VirtualRobot] = []
+//var actors: [VirtualRobot] = []
 
 class FreePlayWorkspaceViewController: BlocksViewController {
     
@@ -22,31 +22,37 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     @IBOutlet weak var outputBackgroundImageView: UIImageView!
     
-   
+    @IBOutlet weak var FirstCodeLineButton: UIButton!
+    
+    @IBOutlet weak var SecondCodeLineButton: UIButton!
+    
+    
+    @IBOutlet weak var thirdCodeLineButton: UIButton!
     override func viewDidLoad() {
         if (project == nil) {
             print("ERROR: current project is nil")
         }
+        
+        for actor in project!.actors {
+            if (actor.freeplayWorkspaceVC == nil) {
+                actor.addFreeplayWorkspaceVC(freeplayWorkspaceVC: self)
+            }
+        }
+        
         isInFreeplay = true
         currentProject = project
-        functionsDict = project!.functionDict
-        currentWorkspace = project!.functionDict.keys.first ?? "Main Workspace"
-        print("current workspace = ", currentWorkspace)
+        functionsDict = project!.currentActor!.functionDict
+        currentWorkspace = ON_RUN_STRING
         
         super.viewDidLoad()
         
-       
         currentActorImageView.alpha = 0.3
         workspaceTitle.text = project!.name
         
-        //TODO: update this
-        actors = []
-        let tempNewActor = VirtualRobot(imagePath: "B4A_Robot_outline", freeplayWorkspaceVC: self)
-//        actors.append(tempNewActor)
-        executingProgram?.actorImage = tempNewActor.imageView
-        print("actors = ", actors)
+        updateUI()
         
     }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         isInFreeplay = false
@@ -56,8 +62,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: self)
         
         // TODO: update this
-        executingProgram?.actorImage = actors[0].imageView
-        //creates executing program
+        executingProgram?.currentActor = currentProject!.currentActor //creates executing program
         executeNextCommandRobotControllVC()
         //makes initial executeNextCommandRobotControllVC call
       
@@ -69,7 +74,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         stopIsOption = true
         changePlayTrashButton()
         //Calls RobotControllerViewController play function
-        play(functionsDictToPlay: currentProject!.functionDict)
+        play(functionsDictToPlay: currentProject!.currentActor!.functionDict)
         robotRunning = true
         // disable modifier blocks while the robot is running
         for modifierBlock in allModifierBlocks {
@@ -78,16 +83,55 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         }
         refreshScreen()
     }
+    
+    func updateUI() {
+        // Update current actor image
+        currentActorImageView.image = UIImage(named: (currentProject?.currentActor!.imagePath)!)
+        
+        // reset button colors
+        FirstCodeLineButton.backgroundColor = .clear
+        SecondCodeLineButton.backgroundColor = .clear
+        thirdCodeLineButton.backgroundColor = .clear
+        
+        // highlight the active code line button
+        switch currentWorkspace {
+        case ON_RUN_STRING:
+            FirstCodeLineButton.backgroundColor = .lightGray
+        case ON_BUMP_STRING:
+            SecondCodeLineButton.backgroundColor = .lightGray
+        case THIRD_LINE_STRING:
+            thirdCodeLineButton.backgroundColor = .lightGray
+        default:
+            break
+        }
+    }
 
     @IBAction func addActorClicked(_ sender: Any) {
-        let tempNewActor = VirtualRobot(imagePath: "dog", freeplayWorkspaceVC: self)
-       // actors.append(tempNewActor)
-        print("actors = ", actors)
+        let newRobot = VirtualRobot(imagePath: "cat", freeplayWorkspaceVC: self, name: "Cat")
+        currentProject!.addActor(actor: newRobot)
+        updateCurrentActor(newActor: newRobot)
+        print("project actors = ", currentProject!.actors)
+        
     }
     
     func updateCurrentActor(newActor: VirtualRobot) {
-        currentActorImageView.image = UIImage(named: newActor.imagePath)
+        project?.currentActor = newActor
+        refreshScreen()
+        updateUI()
         //executingProgram?.actorImage =
+    }
+    
+    @IBAction func firstCodeLinePressed(_ sender: Any) {
+        updateCurrentWorkspace(name: ON_RUN_STRING)
+        updateUI()
+    }
+    @IBAction func secondCodeLinePressed(_ sender: Any) {
+        updateCurrentWorkspace(name: ON_BUMP_STRING)
+        updateUI()
+    }
+    @IBAction func thirdCodeLinePressed(_ sender: Any) {
+        updateCurrentWorkspace(name: THIRD_LINE_STRING)
+        updateUI()
     }
     
 }

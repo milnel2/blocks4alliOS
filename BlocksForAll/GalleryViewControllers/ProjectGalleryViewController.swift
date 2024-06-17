@@ -86,7 +86,7 @@ class ProjectGalleryViewController: UIViewController {
             let textField = alert.textFields![0] as UITextField
             if self.validateFunctionName(name: textField.text!, currentAlert: alert) {
                 // name is valid, rename the project
-                allProjects[self.galleryType]!.insert(Project(name: textField.text!, imageName: "drive_backward", functionDict: ["Main Workspace" : []]), at: 0)
+                allProjects[self.galleryType]!.insert(Project(name: textField.text!, imageName: "drive_backward"), at: 0)
                 self.projects = allProjects[self.galleryType]!
                 self.reloadGallery()
             }

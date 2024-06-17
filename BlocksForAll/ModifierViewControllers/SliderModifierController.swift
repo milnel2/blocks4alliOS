@@ -51,7 +51,7 @@ class SliderModifierController: UIViewController {
    
     override func viewDidLoad() {
         // get the optionType from the button that caused this screen to open, this will be displayed at the top of the screen
-        optionType = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name
+        optionType = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name
         
         // get values from optionDictionary
         attributeName = optionDictionary[optionType]?["attributeName"] ?? "N/A"
@@ -72,7 +72,7 @@ class SliderModifierController: UIViewController {
         optionModTitle.text = optionType // Set title of the screen
        
         // default value: minimum value or preserve last selection
-        let previousValueString: String = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? min
+        let previousValueString: String = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? min
           
         let previousValue = Int(previousValueString)  // convert to an integer
         
@@ -147,13 +147,13 @@ class SliderModifierController: UIViewController {
         if let destination = segue.destination as? FreePlayWorkspaceViewController {
             
             print("Set slider value to \(roundedSliderValue) " + units)
-            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"
             destination.project = currentProject
             
         }
         if let destination = segue.destination as? BlocksViewController {
             print("Set slider value to \(roundedSliderValue) " + units)
-            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"
             destination.currentProject = currentProject
             
         }

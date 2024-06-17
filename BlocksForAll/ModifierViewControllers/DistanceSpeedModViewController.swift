@@ -39,14 +39,14 @@ class DistanceSpeedModViewController: UIViewController{
     override func viewDidLoad() {
         // Get Speed and Distance values
         // Default Distance: 30 or preserve last selection
-        let previousDistanceString: String = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
+        let previousDistanceString: String = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] ?? "30"
         let previousDistance = Int(previousDistanceString)
         
         // preserve previously selected value
         distance = Double(previousDistance!)
         
         // Default Speed: Normal or preserve last selection
-        let previousSpeedString: String = currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
+        let previousSpeedString: String = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] ?? "Normal"
         
         // preserves previously selected value
         speed = previousSpeedString
@@ -198,13 +198,13 @@ class DistanceSpeedModViewController: UIViewController{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let destination = segue.destination as? FreePlayWorkspaceViewController{
-            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
-            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
             destination.project = currentProject
         }
         if let destination = segue.destination as? BlocksViewController{
-            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
-            currentProject!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
             destination.currentProject = currentProject
         }
     }
