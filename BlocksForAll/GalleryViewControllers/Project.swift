@@ -56,8 +56,12 @@ class Project : Equatable{
 //    }
 //    
     func addActor(actor: VirtualRobot) {
-        print("appending new actor")
-        actors.append(actor)
+        
+        if !actors.contains(actor) {
+            print("appending new actor")
+            actors.append(actor)
+        }
+        
     }
     
     static func FetchProjects () -> [String:[Project]]{

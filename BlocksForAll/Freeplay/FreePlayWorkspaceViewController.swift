@@ -36,6 +36,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         currentProject = project
         
         print("LOAD")
+        print("ACtORS = ", project!.actors)
         for actor in project!.actors {
             if (actor.freeplayWorkspaceVC == nil) {
                 print("adding view controller")

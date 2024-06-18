@@ -10,7 +10,11 @@ import Foundation
 
 let movementAnimationSpeed: CGFloat = 50 // The bigger the number, the faster the animation
 
-class VirtualRobot {
+class VirtualRobot: Equatable {
+    static func == (lhs: VirtualRobot, rhs: VirtualRobot) -> Bool {
+        return lhs.UUID == rhs.UUID
+    }
+    
 
     
     var imagePath: String
@@ -23,6 +27,10 @@ class VirtualRobot {
     
     var executingProgram: ExecutingProgram? = nil
     
+    let UUID: String // Universally Unique Identifier used to compare Virtual Robots
+    
+   
+    
     init(imagePath: String, freeplayWorkspaceVC: FreePlayWorkspaceViewController, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10)) {
         
         
@@ -31,6 +39,8 @@ class VirtualRobot {
         self.functionDict = [ON_RUN_STRING : [], ON_BUMP_STRING: [], THIRD_LINE_STRING: []]
         self.name = name
         self.coordinates = coordinates
+        
+        self.UUID = Foundation.UUID().uuidString
         
         let image = UIImage(named: imagePath)
         if (image == nil) {
@@ -52,6 +62,8 @@ class VirtualRobot {
         self.functionDict = [ON_RUN_STRING : [], ON_BUMP_STRING: [], THIRD_LINE_STRING: []]
         self.name = name
         self.coordinates = coordinates
+        
+        self.UUID = Foundation.UUID().uuidString
         
         let image = UIImage(named: imagePath)
         if (image == nil) {
@@ -121,7 +133,7 @@ class VirtualRobot {
        
         animatedMoveToCoordinates(x: backgroundCenterX, y: backgroundCenterY, duration: animationDuration)
        
-        executingProgram.finishCommand(withDuration: animationDuration)
+        executingProgram.finishCommand(withDuration: animationDuration) //TODO: block highlight is going away before movement is finished
         
     }
     
