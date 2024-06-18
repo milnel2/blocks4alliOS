@@ -33,21 +33,19 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             print("ERROR: current project is nil")
         }
         
+        currentProject = project
+        
         print("LOAD")
         for actor in project!.actors {
             if (actor.freeplayWorkspaceVC == nil) {
                 print("adding view controller")
                 actor.addFreeplayWorkspaceVC(freeplayWorkspaceVC: self)
             }
-            freeplayOutputView.addSubview(actor.imageView)
-            print("saved coords = ", actor.coordinates)
-            actor.setToSavedCoordinates()
-            let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(dragActor(sender:)))
-            actor.imageView.addGestureRecognizer(dragGesture)
+           addActor(actor: actor)
         }
         
         isInFreeplay = true
-        currentProject = project
+       
         functionsDict = project!.currentActor!.functionDict
         currentWorkspace = ON_RUN_STRING
         
@@ -107,12 +105,13 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         isInFreeplay = false
     }
     //this function allows the blocks in the workspace to be sent to the robot
-    override func play(functionsDictToPlay: [String : [Block]]){
-        executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: self)
+    override func play(functionsDictToPlay: [String : [Block]], functionNameToExecute: String? = nil, actor: VirtualRobot? = nil){
+        let newRobotControlVC = RobotControlViewController()
         
-        // TODO: update this
-        executingProgram?.currentActor = currentProject!.currentActor //creates executing program
-        executeNextCommandRobotControllVC()
+        executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: newRobotControlVC, functionNameToExecute: functionNameToExecute, actor: actor)
+        newRobotControlVC.executingProgram = executingProgram
+        
+        executingProgram?.robotControlViewController.executeNextCommandRobotControllVC()
         //makes initial executeNextCommandRobotControllVC call
       
         
@@ -123,7 +122,10 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         stopIsOption = true
         changePlayTrashButton()
         //Calls RobotControllerViewController play function
-        play(functionsDictToPlay: currentProject!.currentActor!.functionDict)
+        for actor in currentProject!.actors {
+            print("playing program for actor = ", actor.name)
+            play(functionsDictToPlay: actor.functionDict, functionNameToExecute: ON_RUN_STRING, actor: actor)
+        }
         robotRunning = true
         // disable modifier blocks while the robot is running
         for modifierBlock in allModifierBlocks {
@@ -157,10 +159,25 @@ class FreePlayWorkspaceViewController: BlocksViewController {
 
     @IBAction func addActorClicked(_ sender: Any) {
         let newRobot = VirtualRobot(imagePath: "cat", freeplayWorkspaceVC: self, name: "Cat")
-        currentProject!.addActor(actor: newRobot)
+        addActor(actor: newRobot)
         updateCurrentActor(newActor: newRobot)
         print("project actors = ", currentProject!.actors)
         
+    }
+    
+    func addActor(actor: VirtualRobot) {
+        // Add actor to screen
+        freeplayOutputView.addSubview(actor.imageView)
+        
+        // Move actor to saved location
+        actor.setToSavedCoordinates()
+        
+        // Add dragging interaction to actor
+        let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(dragActor(sender:)))
+        actor.imageView.addGestureRecognizer(dragGesture)
+        
+        // Add actor to the Project object
+        currentProject!.addActor(actor: actor)
     }
     
     func updateCurrentActor(newActor: VirtualRobot) {
@@ -169,6 +186,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         updateUI()
         //executingProgram?.actorImage =
     }
+    
     
     @IBAction func firstCodeLinePressed(_ sender: Any) {
         updateCurrentWorkspace(name: ON_RUN_STRING)

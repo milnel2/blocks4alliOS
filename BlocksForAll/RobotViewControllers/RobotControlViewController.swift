@@ -50,7 +50,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     }
     
     //this function allows the blocks in the workspace to be sent to the robot
-    func play(functionsDictToPlay: [String : [Block]]){
+    func play(functionsDictToPlay: [String : [Block]], functionNameToExecute: String? = nil, actor: VirtualRobot? = nil){
         print("in play")
        
         if areRobotsConnected() {
@@ -60,7 +60,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
                 robot.peripheral.setNotifyValue(true, for: robot.dashInfoCharacteristic!)
             }
             
-
+            
             executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: self)
             //creates executing program
             executeNextCommandRobotControllVC()
@@ -72,6 +72,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     
     func executeNextCommandRobotControllVC() {
         print("in poll for next commnad")
+        print("current actor = ", executingProgram?.currentActor)
         guard let executingProgram = executingProgram else {
             print ("Error in executing command: executing program does not exist")
             return  // not running
@@ -139,7 +140,7 @@ class ExecutingProgram {
     //variablesDict is used to keep track of the variables and their values, string is the name of the variable, double is the value of the variable
     var ifCondition: Bool = false
     
-    init(functionsDictToExecute: [String:[Block]], robotControlViewController: RobotControlViewController) {
+    init(functionsDictToExecute: [String:[Block]], robotControlViewController: RobotControlViewController, functionNameToExecute: String? = nil, actor: VirtualRobot? = nil) {
         self.functionsDictToExec = functionsDictToExecute
         // we can latter change this for functions so it takes a dictionary of names and blocksstacks to execute yada yada
         self.variablesDict["apple"] = 0.0
@@ -148,7 +149,7 @@ class ExecutingProgram {
         self.variablesDict["melon"] = 0.0
         self.variablesDict["orange"] = 0.0
         // initializes the variablesDictionary with the five variables we currently have in place and sets them to 0
-        self.currentFunction = currentWorkspace
+        self.currentFunction = functionNameToExecute ?? currentWorkspace
         //Either main workspace or a user-created function
         
         //self.blocksToExec = functionsDictToExec[currentFunction]!
@@ -156,6 +157,7 @@ class ExecutingProgram {
         
         
         self.robotControlViewController = robotControlViewController
+        self.currentActor = actor
         print("actor image 1 = ", currentActor)
     }
     

@@ -151,12 +151,13 @@ class VirtualRobot {
     }
     
     func playMove(distance: Double, xDirection: Int, yDirection: Int, executingProgram: ExecutingProgram) {
+        print("move distance = ", distance, "x direction = ", xDirection, " y direction = ", yDirection)
         
         if (!checkWillCollide(distance: distance, xDirection: xDirection, yDirection: yDirection, executingProgram: executingProgram)) {
             let animationDuration = distance / movementAnimationSpeed
             // Code to animate UIImage is from Dharmesh Kheni's answer on:  https://stackoverflow.com/questions/32133056/how-can-i-move-an-image-in-swift
-            let newX = coordinates.x + (distance * CGFloat(yDirection))
-            let newY = coordinates.y + (distance * CGFloat(xDirection))
+            let newX = coordinates.x + (distance * CGFloat(xDirection))
+            let newY = coordinates.y + (distance * CGFloat(yDirection))
             
             animatedMoveToCoordinates(x: newX, y: newY, duration: animationDuration)
             
