@@ -193,6 +193,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
         // Add actor to the Project object
         currentProject!.addActor(actor: actor)
+        
+        addEventIndicatorBlocks()
     }
     
     func updateCurrentActor(newActor: VirtualRobot) {

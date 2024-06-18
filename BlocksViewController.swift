@@ -90,6 +90,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         currentProject = project
+        // TODO: next line fails in physical robot opening a new function
         endIndex = currentProject!.currentActor!.functionDict[currentWorkspace]!.count - 1
         
        
@@ -128,6 +129,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 currentProject!.currentActor!.functionDict[currentWorkspace]?.append(endBlock!)
             }
         } else {
+            
+            addEventIndicatorBlocks()
+            
+            
+           
             mainWorkspaceButton.isHidden = true // Hide Back to Main Workspace arrow button. Already in Main Workspace.
             workspaceTitle.textColor = UIColor(named: "navy_text")
             workspaceTitle.text = "Main Workspace"
@@ -137,6 +143,25 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         blocksProgram.dataSource = self
         
         allModifierBlocks.removeAll()
+    }
+    
+    func addEventIndicatorBlocks() {
+        for actor in currentProject!.actors {
+            for function in actor.functionDict.keys {
+                if function == ON_RUN_STRING || function == ON_BUMP_STRING || function == THIRD_LINE_STRING {
+
+                    if actor.functionDict[function]!.isEmpty{
+                        print("Adding blocks")
+                        let startBlock = Block.init(
+                            name: "\(function) Start",
+                            colorName: "light_purple_block",
+                            double: false,
+                            isModifiable: false)
+                        actor.functionDict[function]?.append(startBlock!)
+                    }
+                }
+            }
+        }
     }
     
     /// Main Menu Segue
@@ -169,8 +194,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     override func refreshScreen() {
         print("REFRESH")
         blocksProgram.reloadData()
+       
     }
     
+    //TODO: add to virtual robot
     private func showArrowToPlaceFirstBlock() {
         let img = UIImage(named: "Back")
         let resizedImage = resizeImage(image: img!, scaledToSize: CGSize(width: blockSize, height: blockSize))  // resize the image to scale correctly
@@ -685,7 +712,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             } else {
                 switch name {
                     // block exists but is a non-modifier block
-                case "End If", "End Repeat", "End Repeat Forever", "Repeat Forever", "Look Forward", "Look Toward Voice", "Look Right", "Look Left", "Look Straight", "Look Down", "Look Up", "Wiggle", "Nod", "Spiral Light", "Move to Origin":
+                case "End If", "End Repeat", "End Repeat Forever", "Repeat Forever", "Look Forward", "Look Toward Voice", "Look Right", "Look Left", "Look Straight", "Look Down", "Look Up", "Wiggle", "Nod", "Spiral Light", "Move to Origin", "\(ON_RUN_STRING) Start", "\(ON_BUMP_STRING) Start", "\(THIRD_LINE_STRING) Start":
        
                     let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
                     
@@ -771,6 +798,21 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if !robotRunning {  // disable editing while robot is running
             if movingBlocks {
                 
+                if indexPath.row < currentProject!.currentActor!.functionDict[currentWorkspace]!.count {  // clicked somewhere before the empty space at the end
+                    let blocksStackIndex = indexPath.row
+                    let myBlock = currentProject!.currentActor!.functionDict[currentWorkspace]![blocksStackIndex]
+                    guard !myBlock.name.contains("\(ON_RUN_STRING) Start")  else { // Don't allow placing blocks before event indicators
+                        return
+                    }
+                    guard !myBlock.name.contains("\(ON_BUMP_STRING) Start")  else { // Don't allow placing blocks before event indicators
+                        return
+                    }
+                    guard !myBlock.name.contains("\(THIRD_LINE_STRING) Start")  else { // Don't allow placing blocks before event indicators
+                        return
+                    }
+                }
+                    
+               
                 addBlocks(blocksBeingMoved, at: indexPath.row)
                 containerViewController?.popViewController(animated: false)
                 finishMovingBlocks()
@@ -781,11 +823,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     movingBlocks = true
                     let blocksStackIndex = indexPath.row
                     let myBlock = currentProject!.currentActor!.functionDict[currentWorkspace]![blocksStackIndex]
-                    guard !myBlock.name.contains("Function Start") else {
+                    guard !myBlock.name.contains("Function Start")  else {
                         movingBlocks = false
                         return
                     }
+                    
                     guard !myBlock.name.contains("Function End") else {
+                        movingBlocks = false
+                        return
+                    }
+                    guard !myBlock.name.contains("\(ON_RUN_STRING) Start")  else {
+                        print("cant move it")
+                        movingBlocks = false
+                        return
+                    }
+                    guard !myBlock.name.contains("\(ON_BUMP_STRING) Start")  else {
+                        print("cant move it")
+                        movingBlocks = false
+                        return
+                    }
+                    guard !myBlock.name.contains("\(THIRD_LINE_STRING) Start")  else {
+                        print("cant move it")
                         movingBlocks = false
                         return
                     }

@@ -679,6 +679,15 @@ class ExecutingProgram {
         case "Move to Origin":
             print("Move to origin")
             moveToOrigin()
+        case "\(ON_RUN_STRING) Start":
+            print("OnRun Start")
+            finishCommand()
+        case "\(ON_BUMP_STRING) Start":
+            print("ON bump Start")
+            finishCommand()
+        case "\(THIRD_LINE_STRING) Start":
+            print("THIrd line Start")
+            finishCommand()
         default:
             if blockToExec.name.contains("Function Start") || blockToExec.name.contains("Function End") {
                 finishCommand(withDuration: 0.5)
