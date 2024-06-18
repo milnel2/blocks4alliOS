@@ -267,7 +267,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
             if attributeName == "lightColor" {
                 currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] = items[optionSelectedIndex]
             }
-            destination.project = currentProject
+            destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController {
             // TODO: update so that just an array is used for images, so that soundSelected can be passed instead

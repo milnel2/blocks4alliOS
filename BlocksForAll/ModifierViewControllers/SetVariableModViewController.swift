@@ -137,7 +137,7 @@ class SetVariableModViewController: UIViewController {
         if let destination = segue.destination as? FreePlayWorkspaceViewController {
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Double(variableValue))"
-            destination.project = currentProject
+            destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController {
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected

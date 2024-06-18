@@ -91,7 +91,6 @@ class SliderModifierController: UIViewController {
         sliderValue = Double(previousValue!)
         slider.accessibilityValue = "\(previousValue!) " + units
         valueDisplayed.accessibilityValue = "Current value is \(Int(sliderValue))" + units
-        print("1 setting value to ", sliderValue)
         
         roundedSliderValue = Float(Double(previousValue!))
         
@@ -104,17 +103,14 @@ class SliderModifierController: UIViewController {
     /// Called whenever angleSliderChanged() is called. Updates accessibility labels and values to match what is being displayed
     private func updateAccessibilityTools() {
         slider.accessibilityValue = "\(Int(roundedSliderValue)) " + units
-        print("setting value to ", roundedSliderValue)
         valueDisplayed.accessibilityValue = "Current value is \(Int(roundedSliderValue)) " + units
 //        optionModTitle.accessibilityHint = attributeName + "Adjust slider to set amount"
     }
     
     @IBAction func backButtonPress(_ sender: Any) {
         if let _ = parentVC as? FreePlayWorkspaceViewController {
-            print("preform back to freeplay")
             performSegue(withIdentifier: "backToFreeplay", sender: nil)
         } else if let _ = parentVC as? BlocksViewController {
-            print( "back to robot")
             performSegue(withIdentifier: "backToRobotWorkspace", sender: nil)
         }
     }
@@ -148,7 +144,7 @@ class SliderModifierController: UIViewController {
             
             print("Set slider value to \(roundedSliderValue) " + units)
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"
-            destination.project = currentProject
+            destination.currentProject = currentProject
             
         }
         if let destination = segue.destination as? BlocksViewController {

@@ -125,6 +125,7 @@ class TwoOptionModifierViewController: UIViewController {
     }
     
     /// Takes an image and returns a resized version of it
+    /// 
     private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
         image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
@@ -210,7 +211,7 @@ class TwoOptionModifierViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let destination = segue.destination as? FreePlayWorkspaceViewController{
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)" // Tell BlocksViewController which sound was selected
-            destination.project = currentProject
+            destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController{
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)" // Tell BlocksViewController which sound was selected

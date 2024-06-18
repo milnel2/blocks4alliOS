@@ -107,39 +107,8 @@ class VirtualRobot: Equatable {
     }
     
     @objc func clickOnActor(sender : UITapGestureRecognizer) {
+        print("clicked on ", name)
         freeplayWorkspaceVC!.updateCurrentActor(newActor: self)
-    }
-    
-    @objc func dragActor(sender: UIPanGestureRecognizer) {
-//        if let actorView = sender.view, let freeplayOutputView = freeplayWorkspaceVC?.freeplayOutputView {
-//                let point = sender.location(in: freeplayOutputView)
-//                
-//              
-//          
-//                    
-//                imageView.center = CGPoint(x: point.x, y: point.y)
-//                sender.setTranslation(CGPoint.zero, in: freeplayWorkspaceVC!.freeplayOutputView)
-//            }
-        let dragLocation = sender.translation(in: freeplayWorkspaceVC!.freeplayOutputView)
-        let actorHeight = sender.view!.layer.frame.height
-        let actorWidth = sender.view!.layer.frame.width
-        
-        let backgroundTopY: CGFloat = 0
-        let backgroundBottomY = freeplayWorkspaceVC!.freeplayOutputView.frame.height
-        let backgroundLeftX: CGFloat = 0
-        let backgroundRightX = freeplayWorkspaceVC!.freeplayOutputView.frame.width
-        
-        // don't drag if out of bounds
-        if !(dragLocation.x - actorWidth / 2 <= backgroundLeftX || dragLocation.x + actorWidth / 2 >= backgroundRightX) {
-            // within x bounds
-            setCoordinates(x: dragLocation.x, y: coordinates.y)
-            
-        }
-        
-        if !(dragLocation.y - actorHeight / 2 <= backgroundTopY || dragLocation.y + actorHeight / 2 >= backgroundBottomY ) {
-            // within y bounds
-            setCoordinates(x: coordinates.x, y: dragLocation.y)
-        }
     }
     
     func moveToOrigin(executingProgram: ExecutingProgram) {

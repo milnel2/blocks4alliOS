@@ -58,7 +58,6 @@ class ProjectGalleryViewController: UIViewController {
     }
    
     @IBAction func leftScrollPressed(_ sender: Any) {
-        print("left pressed")
        let currentIndexPath =  projectGalleryCollectionView.indexPathsForVisibleItems
         if displayedCellIndex > 0 {
             displayedCellIndex -= 1
@@ -222,13 +221,13 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if (segue.identifier == "openFreeplayFromGallery") {
           let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
-           freeplayWorkspaceVC.project = sender as? Project
+           freeplayWorkspaceVC.currentProject = sender as? Project
            freeplayWorkspaceVC.galleryType = galleryType
         
        }
         if (segue.identifier == "openRobotWorkspaceFromGallery") {
             let robotWorkspaceVC = segue.destination as! BlocksViewController
-            robotWorkspaceVC.project = sender as? Project
+            robotWorkspaceVC.currentProject = sender as? Project
             robotWorkspaceVC.galleryType = galleryType
             
         }

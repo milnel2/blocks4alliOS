@@ -225,7 +225,7 @@ class StepperModifierViewController: UIViewController {
         if let destination = segue.destination as? FreePlayWorkspaceViewController{
             // Tell BlocksViewController which sound was selected
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)"
-            destination.project = currentProject
+            destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController{
             // Tell BlocksViewController which sound was selected

@@ -70,7 +70,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     private var modifierBlockIndex: Int?  // An integer used to identify which modifier block was clicked when going to other screens.
     
     
-    var project: Project? = nil
+   
     var galleryType = String()
     
    
@@ -89,7 +89,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentProject = project
+        
        
        
        
@@ -109,7 +109,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // set block size based on block size from settings or 150 by default
         blockSize = defaults.value(forKey: "blockSize") as? Int ?? 150
        
-       // print("CURRNT PROJECT = ", currentProject?.functionDict)
         // If working on a function
         if isWorkspaceCustomFunction(name: currentWorkspace) {
             mainWorkspaceButton.isHidden = false  // Show Back to Main Workspace arrow button
@@ -158,9 +157,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if function == ON_RUN_STRING || function == ON_BUMP_STRING || function == THIRD_LINE_STRING {
 
                     if actor.functionDict[function]!.isEmpty{
-                        print("Adding blocks")
                         let startBlock = Block.init(
-                            name: "\(function) Start",
+                            name: "\(function) Start", //TODO: update block name
                             colorName: "light_purple_block",
                             double: false,
                             isModifiable: false)
@@ -174,7 +172,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// Main Menu Segue
     @IBAction func goToMainMenu(_ sender: UIButton) {
         finishMovingBlocks()
-        print("freeplay = false")
         isInFreeplay = false
         performSegue(withIdentifier: "toMainMenu", sender: self)
     }
@@ -199,7 +196,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// This function gets called from the RobotControllerViewController so that the block that is currently running gets highlighted
     override func refreshScreen() {
-        print("REFRESH")
         blocksProgram.reloadData()
        
     }
@@ -233,6 +229,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         })
     }
     
+    //TODO: make funciton static
     /// Takes an image and returns a resized version of it. Used by showArrowToPlaceFirstBlock()
     private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
@@ -387,7 +384,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             addBlocks(blocksBeingMoved, at: indexOfMovingBlock!)
             
         }
-       
         movingBlocks = false
         blocksBeingMoved.removeAll()
         changePlayTrashButton()  // Toggling the play/trash button
@@ -405,7 +401,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// Called when blocks have been selected to be moved, saves them to blocksBeingMoved
     /// - Parameter blocks: blocks selected to be moved
     func beginMovingBlocks(_ blocks: [Block]) {
-        print("moving block")
+        
         movingBlocks = true
         blocksBeingMoved = blocks
         blocksProgram.reloadData()
@@ -494,7 +490,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierBlock.isAccessibilityElement = false
             }
         }
-        print("calling refresh from blocksVC playClickeD()")
         refreshScreen()
     }
     
@@ -520,19 +515,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         for actor in currentProject!.actors {
             if actor.functionDict[currentWorkspace] != nil {
                 for block in actor.functionDict[currentWorkspace]! {
-                    print("setting", block.name, "running to false because program completed" )
                     block.isRunning = false
                 }
             }
         }
-        print("calling refresh from BlocksVS programHasCompleted()")
         refreshScreen()
     }
     
     func updateCurrentWorkspace (name: String) {
         currentWorkspace = name
         print("Updated workspace to", currentWorkspace)
-        print("calling refresh from BlocksVS updateCurrentWorkspace()")
         refreshScreen()
     }
     
@@ -804,7 +796,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         collectionView.remembersLastFocusedIndexPath = true
         if !robotRunning {  // disable editing while robot is running
             if movingBlocks {
-                
                 if indexPath.row < currentProject!.currentActor!.functionDict[currentWorkspace]!.count {  // clicked somewhere before the empty space at the end
                     let blocksStackIndex = indexPath.row
                     let myBlock = currentProject!.currentActor!.functionDict[currentWorkspace]![blocksStackIndex]
@@ -826,16 +817,19 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 
                 
             } else {
+               
                 if indexPath.row < currentProject!.currentActor!.functionDict[currentWorkspace]!.count {  // otherwise empty block at end
                     movingBlocks = true
                     let blocksStackIndex = indexPath.row
                     let myBlock = currentProject!.currentActor!.functionDict[currentWorkspace]![blocksStackIndex]
                     guard !myBlock.name.contains("Function Start")  else {
                         movingBlocks = false
+                        print("function start, can't move")
                         return
                     }
                     
                     guard !myBlock.name.contains("Function End") else {
+                        print("function end, can't move")
                         movingBlocks = false
                         return
                     }
@@ -863,6 +857,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
                     mySelectedBlockVC.blocks = blocksBeingMoved
                     changePlayTrashButton()
+                } else {
+                    // clicked empty block at end
+                    movingBlocks = true
+                    let blocksStackIndex = indexPath.row
                 }
             }
         }

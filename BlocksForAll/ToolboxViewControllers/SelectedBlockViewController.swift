@@ -63,7 +63,6 @@ class SelectedBlockViewController: UIViewController {
         }
     
         UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: self.view)
-        
         delegate?.beginMovingBlocks(blocks!)
         delegate?.setParentViewController(self.parent!)
     }

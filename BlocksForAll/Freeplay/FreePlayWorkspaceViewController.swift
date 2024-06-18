@@ -28,18 +28,19 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     
     @IBOutlet weak var thirdCodeLineButton: UIButton!
+    
+    var newActorToAdd: (name:String, imagePath: String)? // to be used when adding to actors
+    
     override func viewDidLoad() {
-        if (project == nil) {
+        if (currentProject == nil) {
             print("ERROR: current project is nil")
         }
         
-        currentProject = project
+       
         
-        print("LOAD")
-        print("ACtORS = ", project!.actors)
-        for actor in project!.actors {
+       
+        for actor in currentProject!.actors {
             if (actor.freeplayWorkspaceVC == nil) {
-                print("adding view controller")
                 actor.addFreeplayWorkspaceVC(freeplayWorkspaceVC: self)
             }
            addActor(actor: actor)
@@ -47,15 +48,19 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
         isInFreeplay = true
        
-        functionsDict = project!.currentActor!.functionDict
+        functionsDict = currentProject!.currentActor!.functionDict
         currentWorkspace = ON_RUN_STRING
         
         super.viewDidLoad()
         
         currentActorImageView.alpha = 0.3
-        workspaceTitle.text = project!.name
+        workspaceTitle.text = currentProject!.name
         
         updateUI()
+        
+        if newActorToAdd != nil {
+            afterNewActorSelected(name: newActorToAdd!.name, imagePath: newActorToAdd!.imagePath)
+        }
         
     }
     
@@ -76,7 +81,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
                
        switch sender.state {
        case .began, .changed: // Implementation to recognize seleccted actor from ChatGPT by OpenAI. Source: https://www.openai.com
-           for actor in project!.actors {
+           for actor in currentProject!.actors {
                if actor.imageView.frame.contains(dragLocation) && actor.imageView == sender.view { // TODO: handle when images overlap
                    if !(dragLocation.x - actorWidth / 2 <= backgroundLeftX || dragLocation.x + actorWidth / 2 >= backgroundRightX) {
                        // within x bounds
@@ -89,7 +94,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
                        actor.setCoordinates(x: actor.coordinates.x, y: dragLocation.y)
                        
                    }
-                   print(dragLocation)
                    updateCurrentActor(newActor: actor)
                    
                }
@@ -129,7 +133,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         changePlayTrashButton()
         //Calls RobotControllerViewController play function
         for actor in currentProject!.actors {
-            print("playing program for actor = ", actor.name)
             play(functionsDictToPlay: actor.functionDict, functionNameToExecute: ON_RUN_STRING, actor: actor)
         }
         robotRunning = true
@@ -138,14 +141,17 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             modifierBlock.isEnabled = false
             modifierBlock.isAccessibilityElement = false
         }
-        print("calling refresh from freeplay PlayClicked()")
         refreshScreen()
     }
     
     func updateUI() {
         // Update current actor image
-        currentActorImageView.image = UIImage(named: (currentProject?.currentActor!.imagePath)!)
-        
+        let newImage = UIImage(named: (currentProject?.currentActor!.imagePath)!)
+        self.currentActorImageView.image = nil
+        self.currentActorImageView.image = newImage
+        print(currentActorImageView)
+        print("setting current actor image to ", currentProject?.currentActor!.imagePath)
+        print("image = ", currentActorImageView.image)
         // reset button colors
         FirstCodeLineButton.backgroundColor = .clear
         SecondCodeLineButton.backgroundColor = .clear
@@ -165,11 +171,29 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     }
 
     @IBAction func addActorClicked(_ sender: Any) {
-        let newRobot = VirtualRobot(imagePath: "cat", freeplayWorkspaceVC: self, name: "Cat", project: currentProject!)
+        performSegue(withIdentifier: "toChooseActor", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if (segue.identifier == "toChooseActor") {
+          let chooseActorVC = segue.destination as! ChooseActorViewController
+           chooseActorVC.currentProject = currentProject
+           chooseActorVC.currentActorImageView = currentActorImageView
+           chooseActorVC.freeplayOutputView = freeplayOutputView
+        
+       }
+        
+        super.prepare(for: segue, sender: sender)
+       
+    }
+    
+    func afterNewActorSelected(name: String, imagePath: String) {
+        let newRobot = VirtualRobot(imagePath: imagePath, freeplayWorkspaceVC: self, name: name, project: currentProject!)
         addActor(actor: newRobot)
         updateCurrentActor(newActor: newRobot)
         print("project actors = ", currentProject!.actors)
-        
+        newActorToAdd = nil
+
     }
     
     func addActor(actor: VirtualRobot) {
@@ -198,9 +222,11 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         addEventIndicatorBlocks()
     }
     
-    func updateCurrentActor(newActor: VirtualRobot) {
-        project?.currentActor = newActor
-        print("calling refresh from freeplay updateCurrentActor()")
+    func updateCurrentActor(newActor: VirtualRobot) { // TODO: after adding a new actor, tapping on actors to switch doesn't always work
+        print("updating current actor to ", newActor.name)
+        currentProject!.currentActor = newActor
+        
+        
         refreshScreen()
         updateUI()
         //executingProgram?.actorImage =

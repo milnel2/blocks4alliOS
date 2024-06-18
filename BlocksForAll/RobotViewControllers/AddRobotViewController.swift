@@ -31,7 +31,7 @@ class AddRobotViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BlocksViewController {
             destination.currentProject = currentProject
-            destination.project = currentProject
+            destination.currentProject = currentProject
         }
     }
 }

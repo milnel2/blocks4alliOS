@@ -200,7 +200,7 @@ class DistanceSpeedModViewController: UIViewController{
         if let destination = segue.destination as? FreePlayWorkspaceViewController{
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
-            destination.project = currentProject
+            destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController{
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
