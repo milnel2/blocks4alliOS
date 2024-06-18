@@ -225,6 +225,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     func updateCurrentActor(newActor: VirtualRobot) { // TODO: after adding a new actor, tapping on actors to switch doesn't always work
         print("updating current actor to ", newActor.name)
         currentProject!.currentActor = newActor
+        functionsDict = currentProject!.currentActor!.functionDict
         
         
         refreshScreen()

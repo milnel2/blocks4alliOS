@@ -32,7 +32,7 @@ class ProjectGalleryViewController: UIViewController {
     
     var galleryType: String = "Robot Projects"
     
-    override func viewDidLoad() {
+    override func viewDidLoad() { // TODO: put most recently used project at the front of the list of projects
         super.viewDidLoad()
         
         projects = Project.FetchProjects()[galleryType]!

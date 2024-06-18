@@ -171,7 +171,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             if !actorNamePart && actorImageNamePart && actorXPart && actorYPart{
                                 actorImageNamePart = false
                                 actorImageName = line
-                                print("actor image name = ", actorImageName)
                             } else if !actorNamePart && !actorImageNamePart && actorXPart && actorYPart{
                                 actorXPart = false
                                 
@@ -196,7 +195,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             } else if actorNamePart && actorImageNamePart && actorXPart && actorYPart {
                                 actorNamePart = false
                                 actorName = line
-                                print("actor name = ", actorName)
                             } else {
                                 continue
                             }
@@ -232,7 +230,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 } else {
                                     let jsonObject = object.data(using: .utf8)  // this takes the object as a string and turns it into a data object named jsonPart
                                     let blockBeingCreated = try? JSONDecoder().decode(Block.self, from: jsonObject!)  // this is the block being made
-                                    
                                     if blockBeingCreated != nil {
                                         // adds the created block to the array of blocks that will later be set to the array of blocks for the current function
                                         functionBlockStack.append(blockBeingCreated!)
@@ -242,7 +239,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 // TODO: update this comment
                                 //adds current function to the functionsDict from save includes name and [Block]
                                
-                                
                                 functionsDictFromSave[functionName] = functionBlockStack
                                 
                                  
@@ -250,7 +246,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             robot.functionDict[functionName] = functionBlockStack
                             
                         }
-                        
                         
                         actorsFromSave.append(robot)
                     }
@@ -271,7 +266,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                     
                     for actor in actorsFromSave {
+                        
                         actor.setProject(project: project)
+                        
                     }
                     
                     
@@ -417,7 +414,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        print(writeText)
     }
 }
 

@@ -90,7 +90,10 @@ class VirtualRobot: Equatable {
     
     func setProject(project: Project) {
         self.project = project
-        functionDict = createFunctionDict()
+        if functionDict.isEmpty {
+            functionDict = createFunctionDict()
+        }
+        
     }
     
     func addFreeplayWorkspaceVC(freeplayWorkspaceVC: FreePlayWorkspaceViewController) {
