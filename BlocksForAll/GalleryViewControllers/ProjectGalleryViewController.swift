@@ -86,7 +86,12 @@ class ProjectGalleryViewController: UIViewController {
             let textField = alert.textFields![0] as UITextField
             if self.validateFunctionName(name: textField.text!, currentAlert: alert) {
                 // name is valid, rename the project
-                allProjects[self.galleryType]!.insert(Project(name: textField.text!, imageName: "drive_backward"), at: 0)
+                if self.galleryType == "Freeplay Projects" {
+                    allProjects[self.galleryType]!.insert(Project(name: textField.text!, imageName: "drive_backward", projectType: ProjectType.Freeplay), at: 0)
+                } else {
+                    allProjects[self.galleryType]!.insert(Project(name: textField.text!, imageName: "drive_backward", projectType: ProjectType.Robot), at: 0)
+                }
+                
                 self.projects = allProjects[self.galleryType]!
                 self.reloadGallery()
             }
@@ -225,6 +230,7 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             let robotWorkspaceVC = segue.destination as! BlocksViewController
             robotWorkspaceVC.project = sender as? Project
             robotWorkspaceVC.galleryType = galleryType
+            
         }
     }
 

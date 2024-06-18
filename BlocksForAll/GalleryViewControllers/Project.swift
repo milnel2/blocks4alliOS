@@ -14,7 +14,7 @@ let ON_RUN_STRING = "OnRun"
 let ON_BUMP_STRING = "OnBump"
 let THIRD_LINE_STRING = "thirdLine"
 
-let PREMADE_FUNCTION_NAMES = [ON_RUN_STRING, ON_BUMP_STRING, THIRD_LINE_STRING]
+let PREMADE_FUNCTION_NAMES = [ON_RUN_STRING, ON_BUMP_STRING, THIRD_LINE_STRING, "Main Workspace"]
 
 class Project : Equatable{
     static func == (lhs: Project, rhs: Project) -> Bool {
@@ -26,22 +26,26 @@ class Project : Equatable{
    // var functionDict: [String : [Block]]
     var actors: [VirtualRobot] = []
     var currentActor: VirtualRobot? = nil
+    var projectType: ProjectType
     
-    init(name: String = "", imageName: String) {
+    init(name: String = "", imageName: String, projectType: ProjectType) {
         self.name = name
         self.imageName = imageName
-        let defaultActor = VirtualRobot(imagePath: "dog", name: "Dog")
+        self.projectType = projectType
+        let defaultActor = VirtualRobot(imagePath: "dog", name: "Dog", project: self) // TODO: update adding default actor
         addActor(actor: defaultActor)
         currentActor = defaultActor
        // self.functionDict = [ON_RUN_STRING : [], ON_BUMP_STRING: [], THIRD_LINE_STRING: []]
     }
     
-    init(name: String = "", imageName: String, actors: [VirtualRobot]) {
+    init(name: String = "", imageName: String, actors: [VirtualRobot], projectType: ProjectType) {
         self.name = name
         self.imageName = imageName
         self.actors = actors
+        self.projectType = projectType
+        
         if actors.count < 1 {
-            let defaultActor = VirtualRobot(imagePath: "dog", name: "Dog")
+            let defaultActor = VirtualRobot(imagePath: "dog", name: "Dog", project: self)
             addActor(actor: defaultActor)
             currentActor = defaultActor
         }
@@ -88,5 +92,10 @@ enum CodeLineType {
     case OnRun
     case OnBump
     case Other
+}
+
+enum ProjectType {
+    case Freeplay
+    case Robot
 }
 

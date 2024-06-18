@@ -24,23 +24,26 @@ class VirtualRobot: Equatable {
     var functionDict: [String : [Block]]
     var name: String
     var coordinates: (x: CGFloat, y: CGFloat) = (-10, -10) // center coordinates of robot image
-    
+    var project: Project?
     var executingProgram: ExecutingProgram? = nil
     
     let UUID: String // Universally Unique Identifier used to compare Virtual Robots
     
    
     
-    init(imagePath: String, freeplayWorkspaceVC: FreePlayWorkspaceViewController, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10)) {
+    init(imagePath: String, freeplayWorkspaceVC: FreePlayWorkspaceViewController, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?) {
         
         
         self.imagePath = imagePath
         self.freeplayWorkspaceVC = freeplayWorkspaceVC
-        self.functionDict = [ON_RUN_STRING : [], ON_BUMP_STRING: [], THIRD_LINE_STRING: []]
+    
+        self.project = project
         self.name = name
         self.coordinates = coordinates
-        
+        self.functionDict = [:]
         self.UUID = Foundation.UUID().uuidString
+        
+        
         
         let image = UIImage(named: imagePath)
         if (image == nil) {
@@ -53,25 +56,42 @@ class VirtualRobot: Equatable {
         
         setCoordinates(x: self.coordinates.x, y: self.coordinates.y)
         
+        functionDict = createFunctionDict()
+        
     }
     
-    init(imagePath: String, name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10)) {
+    init(imagePath: String, name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?) {
         
         self.imagePath = imagePath
         self.freeplayWorkspaceVC = nil
-        self.functionDict = [ON_RUN_STRING : [], ON_BUMP_STRING: [], THIRD_LINE_STRING: []]
+        self.project = project
         self.name = name
         self.coordinates = coordinates
         
         self.UUID = Foundation.UUID().uuidString
+        
+        self.functionDict = [:]
         
         let image = UIImage(named: imagePath)
         if (image == nil) {
             print("Error: Couldn't create image in VirtualRobot class from image path: ", imagePath)
         }
         imageView = UIImageView(image: UIImage(named: imagePath))
+        functionDict = createFunctionDict()
     }
     
+    func createFunctionDict() -> [String: [Block]] {
+        if project?.projectType == ProjectType.Freeplay {
+            return [ON_RUN_STRING : [], ON_BUMP_STRING: [], THIRD_LINE_STRING: []]
+        } else {
+            return ["Main Workspace": []]
+        }
+    }
+    
+    func setProject(project: Project) {
+        self.project = project
+        functionDict = createFunctionDict()
+    }
     
     func addFreeplayWorkspaceVC(freeplayWorkspaceVC: FreePlayWorkspaceViewController) {
         self.freeplayWorkspaceVC = freeplayWorkspaceVC

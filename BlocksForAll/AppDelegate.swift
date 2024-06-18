@@ -202,7 +202,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                         
-                        let robot = VirtualRobot(imagePath: actorImageName, name: actorName, coordinates: (x: actorX, y: actorY))
+                        let robot = VirtualRobot(imagePath: actorImageName, name: actorName, coordinates: (x: actorX, y: actorY), project: nil)
                         
                         for functionString in functionStrings[1...] {
                             if functionString == "" {
@@ -263,7 +263,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         functionsDictFromSave["Main Workspace"] = []
                     }
                     
-                    let project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave)
+                    var project: Project
+                    if galleryType == "Freeplay Projects" {
+                        project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave, projectType: ProjectType.Freeplay)
+                    } else {
+                        project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave, projectType: ProjectType.Robot)
+                    }
+                    
+                    for actor in actorsFromSave {
+                        actor.setProject(project: project)
+                    }
+                    
                     
                     // saves a project to the global var allProjects
                     allProjects[galleryType]!.append(project)
@@ -275,7 +285,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }catch{
             print("load failed")
             /*allProjects["Robot Projects"] = [Project(name: "Empty Project", imageName: "", functionDict:["Main Workspace": []])]*/ // TODO: handle if there are no projects
-            allProjects["Robot Projects"] = [Project(name: "Empty Project", imageName: "")]
+            allProjects["Robot Projects"] = [Project(name: "Empty Project", imageName: "", projectType: ProjectType.Robot)]
+            allProjects["Freeplay Projects"] = [Project(name: "Empty Project", imageName: "", projectType: ProjectType.Freeplay)]
         }
         // sets current workspace to main workspace so you don't load and wind up on a random function screen
         currentWorkspace = "Main Workspace"

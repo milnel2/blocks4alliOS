@@ -165,7 +165,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     }
 
     @IBAction func addActorClicked(_ sender: Any) {
-        let newRobot = VirtualRobot(imagePath: "cat", freeplayWorkspaceVC: self, name: "Cat")
+        let newRobot = VirtualRobot(imagePath: "cat", freeplayWorkspaceVC: self, name: "Cat", project: currentProject!)
         addActor(actor: newRobot)
         updateCurrentActor(newActor: newRobot)
         print("project actors = ", currentProject!.actors)

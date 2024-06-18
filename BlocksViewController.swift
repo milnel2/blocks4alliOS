@@ -90,6 +90,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         currentProject = project
+       
+       
+       
+        
+        if currentProject?.projectType == ProjectType.Robot {
+            currentWorkspace = "Main Workspace"
+        }
+       
         // TODO: next line fails in physical robot opening a new function
         endIndex = currentProject!.currentActor!.functionDict[currentWorkspace]!.count - 1
         
@@ -129,11 +137,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 currentProject!.currentActor!.functionDict[currentWorkspace]?.append(endBlock!)
             }
         } else {
-            
             addEventIndicatorBlocks()
-            
-            
-           
             mainWorkspaceButton.isHidden = true // Hide Back to Main Workspace arrow button. Already in Main Workspace.
             workspaceTitle.textColor = UIColor(named: "navy_text")
             workspaceTitle.text = "Main Workspace"
@@ -146,6 +150,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     func addEventIndicatorBlocks() {
+        if currentProject?.projectType == ProjectType.Robot { // Don't add the blocks if currently in a Robot Workspace
+            return
+        }
         for actor in currentProject!.actors {
             for function in actor.functionDict.keys {
                 if function == ON_RUN_STRING || function == ON_BUMP_STRING || function == THIRD_LINE_STRING {

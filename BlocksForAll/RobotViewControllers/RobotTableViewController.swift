@@ -47,7 +47,7 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+        print("loading robot tableNKJSFLAHSL")
         // Make table background transparent
                tableView.backgroundColor = UIColor.clear
       
