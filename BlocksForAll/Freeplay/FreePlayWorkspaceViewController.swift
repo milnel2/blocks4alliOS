@@ -99,6 +99,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
       
         
     }
+    
+    
    
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -110,6 +112,9 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
         executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: newRobotControlVC, functionNameToExecute: functionNameToExecute, actor: actor)
         newRobotControlVC.executingProgram = executingProgram
+        newRobotControlVC.blocksViewController = self
+        actor?.executingProgram = executingProgram
+        executingProgram?.currentProject = currentProject
         
         executingProgram?.robotControlViewController.executeNextCommandRobotControllVC()
         //makes initial executeNextCommandRobotControllVC call
@@ -132,6 +137,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             modifierBlock.isEnabled = false
             modifierBlock.isAccessibilityElement = false
         }
+        print("calling refresh from freeplay PlayClicked()")
         refreshScreen()
     }
     
@@ -172,9 +178,18 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         // Move actor to saved location
         actor.setToSavedCoordinates()
         
+        actor.imageView.isUserInteractionEnabled = true
+        
+        
         // Add dragging interaction to actor
         let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(dragActor(sender:)))
         actor.imageView.addGestureRecognizer(dragGesture)
+        
+        // Tap Gesture code from https://agrawalsuneet.medium.com/uiview-clicklistener-swift-88ab5dec64b5
+        let tapGesture = UITapGestureRecognizer(target: actor, action:  #selector(actor.clickOnActor(sender:)))
+      
+        actor.imageView.addGestureRecognizer(tapGesture)
+        
         
         // Add actor to the Project object
         currentProject!.addActor(actor: actor)
@@ -182,6 +197,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     func updateCurrentActor(newActor: VirtualRobot) {
         project?.currentActor = newActor
+        print("calling refresh from freeplay updateCurrentActor()")
         refreshScreen()
         updateUI()
         //executingProgram?.actorImage =

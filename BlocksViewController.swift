@@ -167,6 +167,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// This function gets called from the RobotControllerViewController so that the block that is currently running gets highlighted
     override func refreshScreen() {
+        print("REFRESH")
         blocksProgram.reloadData()
     }
     
@@ -459,6 +460,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 modifierBlock.isAccessibilityElement = false
             }
         }
+        print("calling refresh from blocksVC playClickeD()")
         refreshScreen()
     }
     
@@ -481,17 +483,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             modifierBlock.isAccessibilityElement = true
         }
         
-        if currentProject!.currentActor!.functionDict[currentWorkspace] != nil {
-            for block in currentProject!.currentActor!.functionDict[currentWorkspace]! {
-                block.isRunning = false
+        for actor in currentProject!.actors {
+            if actor.functionDict[currentWorkspace] != nil {
+                for block in actor.functionDict[currentWorkspace]! {
+                    print("setting", block.name, "running to false because program completed" )
+                    block.isRunning = false
+                }
             }
         }
+        print("calling refresh from BlocksVS programHasCompleted()")
         refreshScreen()
     }
     
     func updateCurrentWorkspace (name: String) {
         currentWorkspace = name
         print("Updated workspace to", currentWorkspace)
+        print("calling refresh from BlocksVS updateCurrentWorkspace()")
         refreshScreen()
     }
     

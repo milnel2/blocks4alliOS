@@ -14,6 +14,8 @@ import CoreBluetooth
 
 class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     var executingProgram: ExecutingProgram?
+    
+    var blocksViewController: BlocksViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,14 +82,18 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
         guard !executingProgram.funcIsComplete else {
         //if command is running
             print("in if iscomplete")
-            self.executingProgram = nil
+            
+            
+            
             programHasCompleted()
+            print("calling refresh from RobotControlVC executeNextCommandRobotControlVC() #1")
             refreshScreen() // This unhighlights the final block in the workspace
             return  // no more commands left
         }
        
         // initial call of executeNextCommand on an executingProgram
         executingProgram.executeNextCommandExecProgram()
+        print("calling refresh from RobotControlVC executeNextCommandRobotControlVC() #2")
         refreshScreen() // refreshes any highlights on the blocks
         
     }
@@ -95,6 +101,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     func finishedCommand() {
         // if there was a block that was just run, set its isRunning to false
         if executingProgram?.blockCurrentlyRunning != nil {
+            print("setting", executingProgram?.blockCurrentlyRunning!.name, "running to false" )
             executingProgram?.blockCurrentlyRunning!.isRunning = false
         }
         executeNextCommandRobotControllVC()
@@ -106,10 +113,26 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     
     func programHasCompleted() {
         // subclasses may override
+        var allActorsComplete = true
+        for actor in executingProgram!.currentProject!.actors {
+            if !actor.executingProgram!.funcIsComplete {
+                allActorsComplete = false
+            }
+        }
+        if allActorsComplete {
+            self.executingProgram = nil
+            blocksViewController?.programHasCompleted()
+        }
+       
+        
     }
     
     func refreshScreen() {
         // subclasses may override
+        if blocksViewController != nil {
+            blocksViewController?.refreshScreen()
+        }
+       
     }
 }
 
@@ -117,6 +140,8 @@ class ExecutingProgram {
     
     
     var currentActor: VirtualRobot? = nil
+    
+    var currentProject: Project? = nil
     
     var positions: [(funcName: String, position: Int)]
     // position used to find index of block in blocksToExec
@@ -187,8 +212,11 @@ class ExecutingProgram {
         
         print(blockToExec)
         // set the block that is being run .isRunning to true so that it gets highlighted
+        print("setting ", blockToExec.name, " to running")
         blockToExec.isRunning = true
         blockCurrentlyRunning = blockToExec
+        print("calling refresh from ExecutingProgram executeNextCommandExecProgram()")
+        robotControlViewController.refreshScreen() // refresh screen to highlight the button
         // Announce on VoiceOver that a block is being run
         UIAccessibility.post(notification: .announcement, argument: "\(blockToExec.name)")
         

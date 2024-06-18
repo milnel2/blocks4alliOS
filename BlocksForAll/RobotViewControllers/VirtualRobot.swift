@@ -21,7 +21,7 @@ class VirtualRobot {
     var name: String
     var coordinates: (x: CGFloat, y: CGFloat) = (-10, -10) // center coordinates of robot image
     
- 
+    var executingProgram: ExecutingProgram? = nil
     
     init(imagePath: String, freeplayWorkspaceVC: FreePlayWorkspaceViewController, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10)) {
         
@@ -42,19 +42,6 @@ class VirtualRobot {
         imageView.frame = CGRect(x: 0, y: 0, width: robotSize, height: robotSize)
         
         setCoordinates(x: self.coordinates.x, y: self.coordinates.y)
-        
-        
-        // Tap Gesture code from https://agrawalsuneet.medium.com/uiview-clicklistener-swift-88ab5dec64b5
-        let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(clickOnActor(sender:)))
-//        let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(dragActor(sender:)))
-//       
-//       
-        
-      
-        
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(tapGesture)
-//        imageView.addGestureRecognizer(dragGesture)
         
     }
     
@@ -83,23 +70,12 @@ class VirtualRobot {
        
         setCoordinates(x: coordinates.x, y: coordinates.y)
        
-        
-        // Tap Gesture code from https://agrawalsuneet.medium.com/uiview-clicklistener-swift-88ab5dec64b5
-        let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(clickOnActor(sender:)))
-        
-       // let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(dragActor(sender:)))
-     
-        
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(tapGesture)
-        //imageView.addGestureRecognizer(dragGesture)
+      
 
     }
     
     @objc func clickOnActor(sender : UITapGestureRecognizer) {
-        print("click on", imagePath)
         freeplayWorkspaceVC!.updateCurrentActor(newActor: self)
-        print(imageView.center)
     }
     
     @objc func dragActor(sender: UIPanGestureRecognizer) {
@@ -113,7 +89,6 @@ class VirtualRobot {
 //                sender.setTranslation(CGPoint.zero, in: freeplayWorkspaceVC!.freeplayOutputView)
 //            }
         let dragLocation = sender.translation(in: freeplayWorkspaceVC!.freeplayOutputView)
-        print("drag location = ", dragLocation)
         let actorHeight = sender.view!.layer.frame.height
         let actorWidth = sender.view!.layer.frame.width
         
@@ -151,7 +126,6 @@ class VirtualRobot {
     }
     
     func playMove(distance: Double, xDirection: Int, yDirection: Int, executingProgram: ExecutingProgram) {
-        print("move distance = ", distance, "x direction = ", xDirection, " y direction = ", yDirection)
         
         if (!checkWillCollide(distance: distance, xDirection: xDirection, yDirection: yDirection, executingProgram: executingProgram)) {
             let animationDuration = distance / movementAnimationSpeed
@@ -247,7 +221,6 @@ class VirtualRobot {
                
         
                 executingProgram.finishCommand(withDuration: animationDuration + 2 * bounceDuration)
-                print(" X HIt")
                 return true
             }
         }
