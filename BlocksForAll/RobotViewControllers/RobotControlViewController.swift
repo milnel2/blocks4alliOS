@@ -74,26 +74,22 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     
     func executeNextCommandRobotControllVC() {
         print("in poll for next commnad")
-        print("current actor = ", executingProgram?.currentActor)
         guard let executingProgram = executingProgram else {
             print ("Error in executing command: executing program does not exist")
             return  // not running
         }
         guard !executingProgram.funcIsComplete else {
         //if command is running
-            print("in if iscomplete")
             
             
             
             programHasCompleted()
-            print("calling refresh from RobotControlVC executeNextCommandRobotControlVC() #1")
             refreshScreen() // This unhighlights the final block in the workspace
             return  // no more commands left
         }
        
         // initial call of executeNextCommand on an executingProgram
         executingProgram.executeNextCommandExecProgram()
-        print("calling refresh from RobotControlVC executeNextCommandRobotControlVC() #2")
         refreshScreen() // refreshes any highlights on the blocks
         
     }
@@ -101,7 +97,6 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     func finishedCommand() {
         // if there was a block that was just run, set its isRunning to false
         if executingProgram?.blockCurrentlyRunning != nil {
-            print("setting", executingProgram?.blockCurrentlyRunning!.name, "running to false" )
             executingProgram?.blockCurrentlyRunning!.isRunning = false
         }
         executeNextCommandRobotControllVC()
@@ -183,7 +178,6 @@ class ExecutingProgram {
         
         self.robotControlViewController = robotControlViewController
         self.currentActor = actor
-        print("actor image 1 = ", currentActor)
     }
     
     var funcIsComplete: Bool {
@@ -212,10 +206,8 @@ class ExecutingProgram {
         
         print(blockToExec)
         // set the block that is being run .isRunning to true so that it gets highlighted
-        print("setting ", blockToExec.name, " to running")
         blockToExec.isRunning = true
         blockCurrentlyRunning = blockToExec
-        print("calling refresh from ExecutingProgram executeNextCommandExecProgram()")
         robotControlViewController.refreshScreen() // refresh screen to highlight the button
         // Announce on VoiceOver that a block is being run
         UIAccessibility.post(notification: .announcement, argument: "\(blockToExec.name)")
@@ -231,139 +223,54 @@ class ExecutingProgram {
             let animal = blockToExec.addedBlocks[0].attributes["animalNoise"]
             
             switch animal {
-            case "bee":
-                playNoise(sound: "SYSTUS_LIPBUZZ")
-            case "cat":
-                playNoise(sound: "SYSTFX_CAT_01")
-            case "crocodile":
-                playNoise(sound: "SYSTCROCODILE")
-            case "dinosaur":
-                playNoise(sound: "SYSTDINOSAUR_3")
-            case "dog":
-                playNoise(sound: "SYSTFX_DOG_02")
-            case "elephant":
-                playNoise(sound: "SYSTELEPHANT_0")
-            case "goat":
-                playNoise(sound: "SYSTFX_03_GOAT")
-            case "horse":
-                playNoise(sound: "SYSTHORSEWHIN3")
-            case "lion":
-                playNoise(sound: "SYSTFX_LION_01")
-            case "turkey":
-                playNoise(sound: "SYSTGOBBLE_001")
             case "random animal":
                 playNoise(sound: animalSoundFiles[.random(in: animalSoundFiles.indices)])
             default:
-                playNoise(sound: "SYSTFX_CAT_01")
+                playNoise(sound: animal ?? "cat")
             }
             
         case "Vehicle Noise":
             let vehicle = blockToExec.addedBlocks[0].attributes["vehicleNoise"]
 
             switch vehicle {
-            case "airplane":
-                playNoise(sound: "SYSTAIRPORTJET")
-            case "beep":
-                playNoise(sound: "SYSTHAPPY_HONK")
-            case "boat":
-                playNoise(sound: "SYSTTUGBOAT_01")
-            case "helicopter":
-                playNoise(sound: "SYSTHELICOPTER")
-            case "siren":
-                playNoise(sound: "SYSTX_SIREN_02")
-            case "speed boost":
-                playNoise(sound: "SYSTSPEEDBOOST")
-            case "start engine":
-                playNoise(sound: "SYSTENGINE_REV")
-            case "tire squeal":
-                playNoise(sound: "SYSTTIRESQUEAL")
-            case "train":
-                playNoise(sound: "SYSTTRAIN_WHIS")
+            
             case "random vehicle":
                 playNoise(sound: vehicleSoundFiles[.random(in: vehicleSoundFiles.indices)])
             default:
-                playNoise(sound: "SYSTAIRPORTJET")
+                playNoise(sound: vehicle ?? "airplane")
             }
             
         case "Object Noise":
             let object = blockToExec.addedBlocks[0].attributes["objectNoise"]
             
             switch object {
-            case "laser":
-                playNoise(sound: "SYSTBOT_CUTE_0")
-            case "trumpet":
-                playNoise(sound: "SYSTTRUMPET_01")
-            case "squeak":
-                playNoise(sound: "SYSTOT_CUTE_04")
             case "random object":
                 playNoise(sound: objectSoundFiles[.random(in: objectSoundFiles.indices)])
             default:
-                playNoise(sound: "SYSTTRUMPET_01")
+                playNoise(sound: object ?? "trumpet")
             }
             
         case "Emotion Noise":
             let emotion = blockToExec.addedBlocks[0].attributes["emotionNoise"]
             // TODO: all emotion sounds do not work on Dot
             switch emotion {
-            case "bragging":
-                playNoise(sound: "SYSTBRAGGING1A")
-            case "confused":
-                playNoise(sound: "SYSTCONFUSED_1")
-                playNoise(sound: "SYSTGIGGLE_03") // TODO: giggle sound on dot is: "SYSTGIGGLE"
-            case "grunt":
-                playNoise(sound: "SYSTHUMPH")
-            case "sigh":
-                playNoise(sound: "SYSTSIGH_DASH")
-            case "surprised":
-                playNoise(sound: "SYSTDASH_WHAA1")
-            case "yawn":
-                playNoise(sound: "SYSTTIRED_YAWN")
+             // TODO: giggle sound on dot is: "SYSTGIGGLE"
+           
             case "random emotion":
                 playNoise(sound: emotionSoundFiles[.random(in: emotionSoundFiles.indices)])
-            case "snore":
-                playNoise(sound: "SYSTSNORING")
             default:
-                playNoise(sound: "SYSTBRAGGING1A")
+                playNoise(sound: emotion ?? "bragging")
             }
             
         case "Speak":
             let word = blockToExec.addedBlocks[0].attributes["speak"]
             // TODO: all speak sounds do not work on Dot
             switch word {
-            case "hi":
-                playNoise(sound: "SYSTDASH_HI_VO")
-            case "bye":
-                playNoise(sound: "SYSTGOODBYE")
-            case "cool":
-                playNoise(sound: "SYSTCOOL")
-            case "haha":
-                playNoise(sound: "SYSTHAPPYLAUGH")
-            case "let's go":
-                playNoise(sound: "SYSTLETS_GO")
-            case "huh":
-                playNoise(sound: "SYSTHUH_06")
-            case "oh":
-                playNoise(sound: "SYSTOHH_06")
-            case "wow":
-                playNoise(sound: "SYSTDASH_WOW_3")
-            case "tah dah!":
-                playNoise(sound: "SYSTTAH_DAH_01")
-            case "uh huh":
-                playNoise(sound: "SYSTYAUHHUH")
-            case "uh oh":
-                playNoise(sound: "SYSTWHUH_OH_20")
-            case "wah":
-                playNoise(sound: "SYSTBWAHH")
-            case "wee hee!":
-                playNoise(sound: "SYSTWHEEYEEYEE")
-            case "yippe!":
-                playNoise(sound: "SYSTYIPPEE")
-            case "wee": // TODO: wee sound does not work
-                playNoise(sound: "SYSTEXCITED_01")
+            
             case "random word":
                 playNoise(sound: speakSoundFiles[.random(in: speakSoundFiles.indices)])
             default:
-                playNoise(sound: "SYSTDASH_HI_VO")
+                playNoise(sound: word ?? "hi")
             }
             
         //CONTROL CATEGORY
@@ -863,12 +770,26 @@ class ExecutingProgram {
         if (isInFreeplay) {
             print("Play noise", sound)
             // TODO: implement playing noise
-           
-            finishCommand(withDuration: 2.0)
+            currentActor!.playSound(soundName: sound, executingProgram: self)
+            
         } else {
-            var data = [UInt8](repeating: 0, count: 1 + sound.count)
+            // access robot sound file name from plist
+            let dict: NSDictionary?
+             if let path = Bundle.main.path(forResource: "SoundFileDict", ofType: "plist") {
+                dict = NSDictionary(contentsOfFile: path)
+             } else {
+                 print("could not access SoundFileDict plist")
+                 return
+             }
+            if !(dict!.allKeys as! [String]).contains(sound) {
+                print("Error:", sound, " audio file name could not be found in SoundFileDict plist")
+                return
+            }
+            let soundFileName = dict![sound] as! String
+            
+            var data = [UInt8](repeating: 0, count: 1 + soundFileName.count)
             data[0] = 24
-            for (i, char) in sound.enumerated() {
+            for (i, char) in soundFileName.enumerated() {
                 data[i + 1] = UInt8(char.asciiValue!)
             }
             
@@ -917,8 +838,6 @@ class ExecutingProgram {
 
     func playMove(moveBlock: Block, xDirection: Int, yDirection: Int) {
         let distance = (Double(moveBlock.addedBlocks[0].attributes["movement"] ?? "1") ?? 1 ) * 10
-        print("actors 2 = ", currentActor)
-        //TODO: update this to be current actor
         currentActor!.playMove(distance: distance, xDirection: xDirection, yDirection: yDirection, executingProgram: self)
        
     }
@@ -1214,6 +1133,7 @@ class ExecutingProgram {
     
     
     //TODO: test sounds on Dot
+    // TODO: put sound file names into a plist
     let animalSoundFiles =
         ["SYSTUS_LIPBUZZ",
          "SYSTFX_CAT_01",

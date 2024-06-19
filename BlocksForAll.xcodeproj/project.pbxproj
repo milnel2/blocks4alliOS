@@ -22,6 +22,9 @@
 		8D54890A2C221CEB002617BE /* ChooseActorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5489092C221CEB002617BE /* ChooseActorViewController.swift */; };
 		8D54890C2C221DE3002617BE /* ActorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D54890B2C221DE3002617BE /* ActorCell.swift */; };
 		8D54890E2C221F07002617BE /* ActorsMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D54890D2C221F07002617BE /* ActorsMenu.plist */; };
+		8D5489122C233C98002617BE /* cat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D5489112C233C98002617BE /* cat.mp3 */; };
+		8D5489142C233FE0002617BE /* SoundFileDict.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D5489132C233FE0002617BE /* SoundFileDict.plist */; };
+		8D5489162C2344AB002617BE /* dog.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D5489152C2344AB002617BE /* dog.mp3 */; };
 		8D655A7A2C18BB2B00B86BB1 /* VirtualRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D655A792C18BB2B00B86BB1 /* VirtualRobot.swift */; };
 		8D822CDA2C137B3300A8A20D /* FreePlayWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */; };
 		8D822CDC2C138B3100A8A20D /* FreeplayOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */; };
@@ -91,6 +94,10 @@
 		8D5489092C221CEB002617BE /* ChooseActorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseActorViewController.swift; sourceTree = "<group>"; };
 		8D54890B2C221DE3002617BE /* ActorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCell.swift; sourceTree = "<group>"; };
 		8D54890D2C221F07002617BE /* ActorsMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ActorsMenu.plist; sourceTree = "<group>"; };
+		8D54890F2C233BE8002617BE /* AudioFileCredits.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AudioFileCredits.md; sourceTree = "<group>"; };
+		8D5489112C233C98002617BE /* cat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cat.mp3; path = ../../../../Downloads/cat.mp3; sourceTree = "<group>"; };
+		8D5489132C233FE0002617BE /* SoundFileDict.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SoundFileDict.plist; sourceTree = "<group>"; };
+		8D5489152C2344AB002617BE /* dog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = dog.mp3; path = ../../../../Downloads/dog.mp3; sourceTree = "<group>"; };
 		8D655A792C18BB2B00B86BB1 /* VirtualRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualRobot.swift; sourceTree = "<group>"; };
 		8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreePlayWorkspaceViewController.swift; sourceTree = "<group>"; };
 		8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeplayOutputView.swift; sourceTree = "<group>"; };
@@ -157,6 +164,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D5489102C233C76002617BE /* Audio Files */ = {
+			isa = PBXGroup;
+			children = (
+				8D5489112C233C98002617BE /* cat.mp3 */,
+				8D5489152C2344AB002617BE /* dog.mp3 */,
+			);
+			path = "Audio Files";
+			sourceTree = "<group>";
+		};
 		8D822CDD2C138B4400A8A20D /* Freeplay */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +208,7 @@
 		F18FEEDB1EB115AF007C15B8 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				8D5489102C233C76002617BE /* Audio Files */,
 				8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */,
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
 				F18FFFBB1E65B0FC0090C4B6 /* LaunchScreen.storyboard */,
@@ -243,6 +260,7 @@
 				FD3A59552A3B639E00122BEF /* InstructionsViewController.swift */,
 				FDEB68B42A4F347500E522D0 /* RobotViewControllers */,
 				F18FEEDB1EB115AF007C15B8 /* Helper */,
+				8D54890F2C233BE8002617BE /* AudioFileCredits.md */,
 			);
 			path = BlocksForAll;
 			sourceTree = "<group>";
@@ -264,6 +282,7 @@
 				8D8D66032A3A43330086E14A /* ModifierProperties.plist */,
 				8D412CA92C13915E005B736F /* FreeplayBlocksMenu.plist */,
 				8D54890D2C221F07002617BE /* ActorsMenu.plist */,
+				8D5489132C233FE0002617BE /* SoundFileDict.plist */,
 			);
 			path = BlocksMenus;
 			sourceTree = "<group>";
@@ -413,6 +432,7 @@
 				8D412CAA2C13915E005B736F /* FreeplayBlocksMenu.plist in Resources */,
 				8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */,
 				F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */,
+				8D5489162C2344AB002617BE /* dog.mp3 in Resources */,
 				FD6388372A31036B005F49F7 /* AphontBoldItalic.ttf in Resources */,
 				FD6388312A310311005F49F7 /* Aphont.ttf in Resources */,
 				8D54890E2C221F07002617BE /* ActorsMenu.plist in Resources */,
@@ -420,8 +440,10 @@
 				F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */,
 				8D0D88202C0A51EA00AC9620 /* PrivacyInfo.xcprivacy in Resources */,
 				FD63883A2A310374005F49F7 /* AphontItalic.ttf in Resources */,
+				8D5489142C233FE0002617BE /* SoundFileDict.plist in Resources */,
 				8DBF4A7F2A5DB5D20075429C /* DashMainMenuSound.mp3 in Resources */,
 				FD6388342A310363005F49F7 /* AphontBold.ttf in Resources */,
+				8D5489122C233C98002617BE /* cat.mp3 in Resources */,
 				F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */,
 				F16BA3BE1F59103A00A94FBA /* BlocksMenu.plist in Resources */,
 			);

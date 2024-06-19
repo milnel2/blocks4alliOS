@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFAudio
 
 let movementAnimationSpeed: CGFloat = 50 // The bigger the number, the faster the animation
 
@@ -28,6 +29,8 @@ class VirtualRobot: Equatable {
     var executingProgram: ExecutingProgram? = nil
     
     let UUID: String // Universally Unique Identifier used to compare Virtual Robots
+    
+    var audioPlayer: AVAudioPlayer?  // Used to play sound effects
     
    
     
@@ -271,6 +274,26 @@ class VirtualRobot: Equatable {
         return coordinates.y
     }
     
+    func playSound(soundName: String, executingProgram: ExecutingProgram) {
+        // Play sound
+        // Code to play audio is from https://www.tutorialspoint.com/how-to-play-a-sound-using-swift
+        guard let path = Bundle.main.path(forResource: soundName, ofType:"mp3") else {
+            print("Couldn't find sound file for ", soundName)
+                 return }
+        let url = URL(fileURLWithPath: path)
+        do {
+            
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            
+           
+            audioPlayer?.play()
+            print("PLAYING AUDIO from", audioPlayer)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        executingProgram.finishCommand(withDuration: 1.5)
+    }
    
 }
 

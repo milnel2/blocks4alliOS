@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bee</key>
+	<string>SYSTUS_LIPBUZZ</string>
+	<key>cat</key>
+	<string>SYSTFX_CAT_01</string>
+	<key>crocodile</key>
+	<string>SYSTCROCODILE</string>
+	<key>dinosaur</key>
+	<string>SYSTDINOSAUR_3</string>
+	<key>dog</key>
+	<string>SYSTFX_DOG_02</string>
+	<key>elephant</key>
+	<string>SYSTELEPHANT_0</string>
+	<key>goat</key>
+	<string>SYSTFX_03_GOAT</string>
+	<key>horse</key>
+	<string>SYSTHORSEWHIN3</string>
+	<key>lion</key>
+	<string>SYSTFX_LION_01</string>
+	<key>turkey</key>
+	<string>SYSTGOBBLE_001</string>
+	<key>airplane</key>
+	<string>SYSTAIRPORTJET</string>
+	<key>beep</key>
+	<string>SYSTHAPPY_HONK</string>
+	<key>boat</key>
+	<string>SYSTTUGBOAT_01</string>
+	<key>helicopter</key>
+	<string>SYSTHELICOPTER</string>
+	<key>siren</key>
+	<string>SYSTX_SIREN_02</string>
+	<key>speed boost</key>
+	<string>SYSTSPEEDBOOST</string>
+	<key>start engine</key>
+	<string>SYSTENGINE_REV</string>
+	<key>tire squeal</key>
+	<string>SYSTTIRESQUEAL</string>
+	<key>train</key>
+	<string>SYSTTRAIN_WHIS</string>
+	<key>laser</key>
+	<string>SYSTBOT_CUTE_0</string>
+	<key>trumpet</key>
+	<string>SYSTTRUMPET_01</string>
+	<key>squeak</key>
+	<string>SYSTOT_CUTE_04</string>
+	<key>bragging</key>
+	<string>SYSTBRAGGING1A</string>
+	<key>confused</key>
+	<string>SYSTCONFUSED_1</string>
+	<key>giggle</key>
+	<string>SYSTGIGGLE_03</string>
+	<key>grunt</key>
+	<string>SYSTHUMPH</string>
+	<key>sigh</key>
+	<string>SYSTSIGH_DASH</string>
+	<key>surprised</key>
+	<string>SYSTDASH_WHAA1</string>
+	<key>yawn</key>
+	<string>SYSTTIRED_YAWN</string>
+	<key>snore</key>
+	<string>SYSTSNORING</string>
+	<key>hi</key>
+	<string>SYSTDASH_HI_VO</string>
+	<key>bye</key>
+	<string>SYSTGOODBYE</string>
+	<key>cool</key>
+	<string>SYSTCOOL</string>
+	<key>haha</key>
+	<string>SYSTHAPPYLAUGH</string>
+	<key>let&apos;s go</key>
+	<string>SYSTLETS_GO</string>
+	<key>huh</key>
+	<string>SYSTHUH_06</string>
+	<key>oh</key>
+	<string>SYSTOHH_06</string>
+	<key>wow</key>
+	<string>SYSTDASH_WOW_3</string>
+	<key>tah dah!</key>
+	<string>SYSTTAH_DAH_01</string>
+	<key>uh huh</key>
+	<string>SYSTYAUHHUH</string>
+	<key>uh oh</key>
+	<string>SYSTWHUH_OH_20</string>
+	<key>wah</key>
+	<string>SYSTBWAHH</string>
+	<key>wee hee!</key>
+	<string>SYSTWHEEYEEYEE</string>
+	<key>yippe!</key>
+	<string>SYSTYIPPEE</string>
+	<key>wee</key>
+	<string>SYSTEXCITED_01</string>
+</dict>
+</plist>

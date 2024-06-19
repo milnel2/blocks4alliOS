@@ -149,9 +149,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         let newImage = UIImage(named: (currentProject?.currentActor!.imagePath)!)
         self.currentActorImageView.image = nil
         self.currentActorImageView.image = newImage
-        print(currentActorImageView)
-        print("setting current actor image to ", currentProject?.currentActor!.imagePath)
-        print("image = ", currentActorImageView.image)
         // reset button colors
         FirstCodeLineButton.backgroundColor = .clear
         SecondCodeLineButton.backgroundColor = .clear
@@ -191,7 +188,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         let newRobot = VirtualRobot(imagePath: imagePath, freeplayWorkspaceVC: self, name: name, project: currentProject!)
         addActor(actor: newRobot)
         updateCurrentActor(newActor: newRobot)
-        print("project actors = ", currentProject!.actors)
         newActorToAdd = nil
 
     }
