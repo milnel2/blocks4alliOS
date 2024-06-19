@@ -25,6 +25,7 @@
 		8D5489122C233C98002617BE /* cat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D5489112C233C98002617BE /* cat.mp3 */; };
 		8D5489142C233FE0002617BE /* SoundFileDict.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D5489132C233FE0002617BE /* SoundFileDict.plist */; };
 		8D5489162C2344AB002617BE /* dog.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D5489152C2344AB002617BE /* dog.mp3 */; };
+		8D5489182C2350F9002617BE /* bounceOffWall.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D5489172C2350F8002617BE /* bounceOffWall.mp3 */; };
 		8D655A7A2C18BB2B00B86BB1 /* VirtualRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D655A792C18BB2B00B86BB1 /* VirtualRobot.swift */; };
 		8D822CDA2C137B3300A8A20D /* FreePlayWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */; };
 		8D822CDC2C138B3100A8A20D /* FreeplayOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */; };
@@ -98,6 +99,7 @@
 		8D5489112C233C98002617BE /* cat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cat.mp3; path = ../../../../Downloads/cat.mp3; sourceTree = "<group>"; };
 		8D5489132C233FE0002617BE /* SoundFileDict.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SoundFileDict.plist; sourceTree = "<group>"; };
 		8D5489152C2344AB002617BE /* dog.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = dog.mp3; path = ../../../../Downloads/dog.mp3; sourceTree = "<group>"; };
+		8D5489172C2350F8002617BE /* bounceOffWall.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bounceOffWall.mp3; path = ../../../../Downloads/bounceOffWall.mp3; sourceTree = "<group>"; };
 		8D655A792C18BB2B00B86BB1 /* VirtualRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualRobot.swift; sourceTree = "<group>"; };
 		8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreePlayWorkspaceViewController.swift; sourceTree = "<group>"; };
 		8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeplayOutputView.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		8D5489102C233C76002617BE /* Audio Files */ = {
 			isa = PBXGroup;
 			children = (
+				8D5489172C2350F8002617BE /* bounceOffWall.mp3 */,
 				8D5489112C233C98002617BE /* cat.mp3 */,
 				8D5489152C2344AB002617BE /* dog.mp3 */,
 			);
@@ -440,6 +443,7 @@
 				F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */,
 				8D0D88202C0A51EA00AC9620 /* PrivacyInfo.xcprivacy in Resources */,
 				FD63883A2A310374005F49F7 /* AphontItalic.ttf in Resources */,
+				8D5489182C2350F9002617BE /* bounceOffWall.mp3 in Resources */,
 				8D5489142C233FE0002617BE /* SoundFileDict.plist in Resources */,
 				8DBF4A7F2A5DB5D20075429C /* DashMainMenuSound.mp3 in Resources */,
 				FD6388342A310363005F49F7 /* AphontBold.ttf in Resources */,

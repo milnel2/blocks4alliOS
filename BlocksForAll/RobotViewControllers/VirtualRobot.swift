@@ -30,7 +30,8 @@ class VirtualRobot: Equatable {
     
     let UUID: String // Universally Unique Identifier used to compare Virtual Robots
     
-    var audioPlayer: AVAudioPlayer?  // Used to play sound effects
+    var audioPlayer: AVAudioPlayer?  // Used to play sound blocks
+    var soundEffectAudioPlayer: AVAudioPlayer?  // Used to play sound effects like hitting walls
     
    
     
@@ -184,6 +185,11 @@ class VirtualRobot: Equatable {
                 
                 animatedMoveToCoordinates(x: coordinates.x, y: newY, duration: animationDuration)
                 
+                // play hit sound when getting to wall
+                Timer.scheduledTimer(withTimeInterval: animationDuration, repeats: false) { timer in
+                    self.playHitWallSound()
+                }
+                
                 let bounceAmount = 10.0
                 let bounceDuration = bounceAmount / movementAnimationSpeed
                 
@@ -217,6 +223,11 @@ class VirtualRobot: Equatable {
                 let newX = coordinates.x + (amountCanMove * CGFloat(xDirection))
                 animatedMoveToCoordinates(x: newX, y: coordinates.y, duration: animationDuration)
                 
+                // play hit sound when getting to wall
+                Timer.scheduledTimer(withTimeInterval: animationDuration, repeats: false) { timer in
+                    self.playHitWallSound()
+                }
+                
                 let bounceAmount = 10.0
                 let bounceDuration = bounceAmount / movementAnimationSpeed
                 
@@ -232,6 +243,23 @@ class VirtualRobot: Equatable {
             }
         }
         return false
+    }
+    
+    func playHitWallSound() {
+        // Code to play audio is from https://www.tutorialspoint.com/how-to-play-a-sound-using-swift
+        guard let path = Bundle.main.path(forResource: "bounceOffWall", ofType:"mp3") else {
+            print("Couldn't find sound file for ", "bounceOffWall")
+                 return }
+        let url = URL(fileURLWithPath: path)
+        do {
+            
+            soundEffectAudioPlayer = try AVAudioPlayer(contentsOf: url)
+            
+           
+            soundEffectAudioPlayer?.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
     func setToSavedCoordinates() {
