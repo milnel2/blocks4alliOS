@@ -701,6 +701,14 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2G-gD-W3C">
+                                <rect key="frame" x="512.5" y="730" width="55" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add"/>
+                                <connections>
+                                    <action selector="addActorPressed:" destination="jJr-Hm-QsK" eventType="touchUpInside" id="ggQ-hg-VRY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -708,25 +716,29 @@
                             <constraint firstItem="pkj-pJ-Yar" firstAttribute="centerX" secondItem="BQa-Jc-yB1" secondAttribute="centerX" id="3se-ao-LAS"/>
                             <constraint firstItem="qLY-mS-WF5" firstAttribute="leading" secondItem="BQa-Jc-yB1" secondAttribute="leading" constant="10" id="6td-iW-2RN"/>
                             <constraint firstItem="VPt-Ft-1HX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qLY-mS-WF5" secondAttribute="trailing" constant="10" id="CM1-OS-IsG"/>
+                            <constraint firstItem="y2G-gD-W3C" firstAttribute="centerX" secondItem="BQa-Jc-yB1" secondAttribute="centerX" id="DNk-34-6bg"/>
                             <constraint firstAttribute="trailing" secondItem="pkj-pJ-Yar" secondAttribute="trailing" constant="100" id="GEY-WL-5MC"/>
                             <constraint firstItem="pkj-pJ-Yar" firstAttribute="top" secondItem="VPt-Ft-1HX" secondAttribute="bottom" constant="50" id="JXL-0P-1Ef"/>
                             <constraint firstItem="pkj-pJ-Yar" firstAttribute="leading" secondItem="BQa-Jc-yB1" secondAttribute="leading" constant="100" id="KWw-b8-bKC"/>
                             <constraint firstItem="VPt-Ft-1HX" firstAttribute="centerY" secondItem="qLY-mS-WF5" secondAttribute="centerY" id="ZBi-H0-gVJ"/>
                             <constraint firstItem="qLY-mS-WF5" firstAttribute="top" secondItem="XbT-y7-ekB" secondAttribute="bottom" constant="30" id="kdF-sE-yE9"/>
+                            <constraint firstItem="y2G-gD-W3C" firstAttribute="top" secondItem="pkj-pJ-Yar" secondAttribute="bottom" constant="20" id="kf8-DP-WOh"/>
                             <constraint firstItem="VPt-Ft-1HX" firstAttribute="centerX" secondItem="BQa-Jc-yB1" secondAttribute="centerX" id="qpN-Y8-r7Q"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TuY-Xj-tZa"/>
                     <connections>
                         <outlet property="actorsCollectionView" destination="pkj-pJ-Yar" id="VoX-Zt-cXp"/>
+                        <outlet property="addActorButton" destination="y2G-gD-W3C" id="2ey-oQ-F7U"/>
                         <outlet property="backButton" destination="qLY-mS-WF5" id="hEE-54-gzW"/>
                         <outlet property="chooseActorTitleLabel" destination="VPt-Ft-1HX" id="mcI-C8-FEe"/>
                         <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplay" id="iKN-NV-GLh"/>
+                        <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplayWithNewActor" id="Fty-ws-mLd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ivP-xX-hPv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1245" y="-1879"/>
+            <point key="canvasLocation" x="-1163" y="-1879"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="bmI-G2-blB">
@@ -2351,7 +2363,6 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5Xz-1I-HDS"/>
         <segue reference="yHo-Ic-oSY"/>
         <segue reference="rJ0-q9-MJC"/>
         <segue reference="lP2-dK-nFu"/>
@@ -2363,7 +2374,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="lD7-sr-2Jm"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="iKN-NV-GLh"/>
+        <segue reference="Fty-ws-mLd"/>
         <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>

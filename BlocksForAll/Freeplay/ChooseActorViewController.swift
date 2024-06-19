@@ -16,6 +16,8 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
     
     @IBOutlet weak var actorsCollectionView: UICollectionView!
     
+    @IBOutlet weak var addActorButton: UIButton!
+    
     private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each button that is showed in the collection view
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -32,10 +34,24 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
            
            freeplayWorkspaceVC.currentActorImageView = currentActorImageView
           
-           freeplayWorkspaceVC.newActorToAdd = (name: selectedActor.name, imagePath: selectedActor.imagePath)
+           freeplayWorkspaceVC.newActorToAdd = nil // don't add a new actor
         
        }
+        if segue.identifier == "backToFreeplayWithNewActor" {
+            let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
        
+             freeplayWorkspaceVC.currentProject = currentProject // pass the current project back to the workspaceVC
+             
+             freeplayWorkspaceVC.currentActorImageView = currentActorImageView
+            
+             freeplayWorkspaceVC.newActorToAdd = (name: selectedActor.name, imagePath: selectedActor.imagePath) // add a new actor
+        }
+       
+    }
+    
+    
+    @IBAction func addActorPressed(_ sender: Any) {
+        performSegue(withIdentifier: "backToFreeplayWithNewActor", sender: nil)
     }
     
     private var optionSelectedIndex = 0 // index of the option in the ActorsMenu array
