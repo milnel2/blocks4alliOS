@@ -111,7 +111,7 @@ class VirtualRobot: Equatable {
       
 
     }
-    
+    // TODO: make actor bigger/smaller and rotate with fingers
     @objc func clickOnActor(sender : UITapGestureRecognizer) {
         print("clicked on ", name)
         freeplayWorkspaceVC!.updateCurrentActor(newActor: self)
@@ -272,6 +272,31 @@ class VirtualRobot: Equatable {
     
     func getCurrentY() -> CGFloat {
         return coordinates.y
+    }
+    
+    // left turn is a negative angle and right turn is a positive angle
+    func playTurn(angle: Double, executingProgram: ExecutingProgram) {
+        let angleInRadians = angle * .pi / 180
+       
+        let animationDuration = abs(angleInRadians) / (movementAnimationSpeed / 10)
+        if abs(angleInRadians) <= .pi {
+            UIView.animate(withDuration: animationDuration, delay: 0, options: .curveLinear, animations: {
+                self.imageView.transform = self.imageView.transform.rotated(by: angleInRadians)
+               }, completion: nil)
+        } else {
+            // if the angle is greater than 180 degrees, the turn has to be split up into two turns
+            UIView.animate(withDuration: animationDuration / 2, delay: 0, options: .curveLinear, animations: {
+                self.imageView.transform = self.imageView.transform.rotated(by: angleInRadians / 2)
+               }, completion: nil)
+            UIView.animate(withDuration: animationDuration / 2, delay: animationDuration / 2, options: .curveLinear, animations: {
+                self.imageView.transform = self.imageView.transform.rotated(by: angleInRadians / 2)
+               }, completion: nil)
+        }
+        
+        // TODO: retain rotation amounts between sessions
+        executingProgram.finishCommand(withDuration: animationDuration)
+        
+       
     }
     
     func playSound(soundName: String, executingProgram: ExecutingProgram) {

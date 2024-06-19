@@ -582,7 +582,6 @@ class ExecutingProgram {
         case "Move Right":
             print("move right")
             playMove(moveBlock: blockToExec, xDirection: 1, yDirection: 0)
-        // not best way but using default for Functions
         case "Move to Origin":
             print("Move to origin")
             moveToOrigin()
@@ -595,6 +594,7 @@ class ExecutingProgram {
         case "\(THIRD_LINE_STRING) Start":
             print("THIrd line Start")
             finishCommand()
+            // not best way but using default for Functions
         default:
             if blockToExec.name.contains("Function Start") || blockToExec.name.contains("Function End") {
                 finishCommand(withDuration: 0.5)
@@ -841,6 +841,7 @@ class ExecutingProgram {
         currentActor!.playMove(distance: distance, xDirection: xDirection, yDirection: yDirection, executingProgram: self)
        
     }
+  
     
     func moveToOrigin() {
         currentActor!.moveToOrigin(executingProgram: self)
@@ -998,9 +999,18 @@ class ExecutingProgram {
     // MARK: decomposition of turn functions
     func playTurn (turnBlock: Block){
         if isInFreeplay {
-            print("turn")
-            //TODO: implement for freeplay
-            finishCommand(withDuration: 1.5)
+           
+            var angleToTurn: Double = 90
+            
+            if turnBlock.name.contains("Turn Left") {
+                angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90 // go through added block to find the attribute angle
+                angleToTurn *= -1 // make angle negative because turning left
+                
+            } else if turnBlock.name.contains("Turn Right") {
+                angleToTurn = Double(turnBlock.addedBlocks[0].attributes["angle"] ?? "90") ?? 90
+                
+            }
+            currentActor!.playTurn(angle: angleToTurn, executingProgram: self)
         } else {
             var angleToTurn: Double = 90
             var angularVelocity = 0
