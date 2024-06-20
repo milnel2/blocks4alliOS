@@ -482,6 +482,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             stopIsOption = true
             changePlayTrashButton()
             //Calls RobotControllerViewController play function
+            for actor in currentProject!.actors { // reset all actors stopWasPressed value
+                actor.executingProgram?.stopWasPressed = false
+            }
             play(functionsDictToPlay: currentProject!.currentActor!.functionDict)
             robotRunning = true
             // disable modifier blocks while the robot is running
@@ -495,6 +498,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Stop the program
     private func stopClicked() {
+        print("----stop clicked----")
+        
         self.executingProgram = nil
         programHasCompleted()
     }
@@ -513,6 +518,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         
         for actor in currentProject!.actors {
+            actor.executingProgram?.stopWasPressed = true
             if actor.functionDict[currentWorkspace] != nil {
                 for block in actor.functionDict[currentWorkspace]! {
                     block.isRunning = false

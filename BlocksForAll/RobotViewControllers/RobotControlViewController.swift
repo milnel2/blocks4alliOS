@@ -80,9 +80,6 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
         }
         guard !executingProgram.funcIsComplete else {
         //if command is running
-            
-            
-            
             programHasCompleted()
             refreshScreen() // This unhighlights the final block in the workspace
             return  // no more commands left
@@ -179,9 +176,13 @@ class ExecutingProgram {
         self.robotControlViewController = robotControlViewController
         self.currentActor = actor
     }
+    var stopWasPressed: Bool = false
     
     var funcIsComplete: Bool {
         if positions.count != 0{
+            if stopWasPressed { // if stop was pressed, force a stop
+                return true
+            }
             return positions[positions.count - 1].position >= blocksToExec.count
            
         } else {
@@ -190,11 +191,14 @@ class ExecutingProgram {
         //checks if position in blocksToExec is at end marks as complete used for preventing crashing out of index
     }
     
+   
+    
     var programIsComplete: Bool {
         return positions[0].position >= functionsDictToExec["Main Workspace"]!.count
     }
     
     func executeNextCommandExecProgram() {
+        print("func is complete = ", funcIsComplete)
         guard !funcIsComplete else {
             return
         }

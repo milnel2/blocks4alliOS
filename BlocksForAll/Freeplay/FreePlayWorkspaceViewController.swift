@@ -30,7 +30,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     @IBOutlet weak var thirdCodeLineButton: UIButton!
     
     var newActorToAdd: (name:String, imagePath: String)? // to be used when adding to actors
-    
+    // TODO: add custom backgrounds from camera roll
     override func viewDidLoad() {
         if (currentProject == nil) {
             print("ERROR: current project is nil")
