@@ -154,7 +154,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         for actor in currentProject!.actors {
             for function in actor.functionDict.keys {
-                if function == ON_RUN_STRING || function == ON_BUMP_STRING || function == THIRD_LINE_STRING {
+                if function == ON_RUN_STRING || function == ON_BUMP_STRING || function == ON_TAP_STRING {
 
                     if actor.functionDict[function]!.isEmpty{
                         let startBlock = Block.init(
@@ -524,6 +524,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     block.isRunning = false
                 }
             }
+            
+            
         }
         refreshScreen()
     }
@@ -717,7 +719,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             } else {
                 switch name {
                     // block exists but is a non-modifier block
-                case "End If", "End Repeat", "End Repeat Forever", "Repeat Forever", "Look Forward", "Look Toward Voice", "Look Right", "Look Left", "Look Straight", "Look Down", "Look Up", "Wiggle", "Nod", "Spiral Light", "Move to Origin", "\(ON_RUN_STRING) Start", "\(ON_BUMP_STRING) Start", "\(THIRD_LINE_STRING) Start":
+                case "End If", "End Repeat", "End Repeat Forever", "Repeat Forever", "Look Forward", "Look Toward Voice", "Look Right", "Look Left", "Look Straight", "Look Down", "Look Up", "Wiggle", "Nod", "Spiral Light", "Move to Origin", "\(ON_RUN_STRING) Start", "\(ON_BUMP_STRING) Start", "\(ON_TAP_STRING) Start":
        
                     let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
                     
@@ -811,7 +813,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     guard !myBlock.name.contains("\(ON_BUMP_STRING) Start")  else { // Don't allow placing blocks before event indicators
                         return
                     }
-                    guard !myBlock.name.contains("\(THIRD_LINE_STRING) Start")  else { // Don't allow placing blocks before event indicators
+                    guard !myBlock.name.contains("\(ON_TAP_STRING) Start")  else { // Don't allow placing blocks before event indicators
                         return
                     }
                 }
@@ -849,7 +851,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         movingBlocks = false
                         return
                     }
-                    guard !myBlock.name.contains("\(THIRD_LINE_STRING) Start")  else {
+                    guard !myBlock.name.contains("\(ON_TAP_STRING) Start")  else {
                         print("cant move it")
                         movingBlocks = false
                         return

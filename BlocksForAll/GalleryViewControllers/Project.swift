@@ -12,9 +12,9 @@ import UIKit
 var allProjects: [String : [Project]] = ["Freeplay Projects":[], "Robot Projects": []] //["Freeplay Projects" : [Project(name: "hi", imageName: "drive_backwards", functionDict: ["Main Workspace" : []])], "Robot Projects" : [Project(name: "hello", imageName: "drive_backwards", functionDict: ["Main Workspace": []])]]
 let ON_RUN_STRING = "OnRun"
 let ON_BUMP_STRING = "OnBump"
-let THIRD_LINE_STRING = "thirdLine"
+let ON_TAP_STRING = "OnTap"
 
-let PREMADE_FUNCTION_NAMES = [ON_RUN_STRING, ON_BUMP_STRING, THIRD_LINE_STRING, "Main Workspace"]
+let PREMADE_FUNCTION_NAMES = [ON_RUN_STRING, ON_BUMP_STRING, ON_TAP_STRING, "Main Workspace"]
 
 class Project : Equatable{
     static func == (lhs: Project, rhs: Project) -> Bool {

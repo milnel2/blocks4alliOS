@@ -86,7 +86,7 @@ class VirtualRobot: Equatable {
     
     func createFunctionDict() -> [String: [Block]] {
         if project?.projectType == ProjectType.Freeplay {
-            return [ON_RUN_STRING : [], ON_BUMP_STRING: [], THIRD_LINE_STRING: []]
+            return [ON_RUN_STRING : [], ON_BUMP_STRING: [], ON_TAP_STRING: []]
         } else {
             return ["Main Workspace": []]
         }

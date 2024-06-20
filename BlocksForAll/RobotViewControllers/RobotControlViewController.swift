@@ -112,8 +112,14 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
             }
         }
         if allActorsComplete {
-            self.executingProgram = nil
+            print("setting executing program stop was pressed to true because all actors are complete")
+            self.executingProgram?.stopWasPressed = true
+            //self.executingProgram = nil
             blocksViewController?.programHasCompleted()
+            
+            print("all actors are done")
+        } else {
+            print("not all actors are done")
         }
        
         
@@ -175,8 +181,10 @@ class ExecutingProgram {
         
         self.robotControlViewController = robotControlViewController
         self.currentActor = actor
+        
+        self.stopWasPressed = false
     }
-    var stopWasPressed: Bool = false
+    var stopWasPressed: Bool
     
     var funcIsComplete: Bool {
         if positions.count != 0{
@@ -595,7 +603,7 @@ class ExecutingProgram {
         case "\(ON_BUMP_STRING) Start":
             print("ON bump Start")
             finishCommand()
-        case "\(THIRD_LINE_STRING) Start":
+        case "\(ON_TAP_STRING) Start":
             print("THIrd line Start")
             finishCommand()
             // not best way but using default for Functions

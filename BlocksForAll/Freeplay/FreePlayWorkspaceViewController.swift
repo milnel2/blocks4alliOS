@@ -160,7 +160,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             FirstCodeLineButton.backgroundColor = .lightGray
         case ON_BUMP_STRING:
             SecondCodeLineButton.backgroundColor = .lightGray
-        case THIRD_LINE_STRING:
+        case ON_TAP_STRING:
             thirdCodeLineButton.backgroundColor = .lightGray
         default:
             break
@@ -250,7 +250,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         updateUI()
     }
     @IBAction func thirdCodeLinePressed(_ sender: Any) {
-        updateCurrentWorkspace(name: THIRD_LINE_STRING)
+        updateCurrentWorkspace(name: ON_TAP_STRING)
         updateUI()
     }
     
