@@ -207,7 +207,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         actor.imageView.addGestureRecognizer(dragGesture)
         
         // Tap Gesture code from https://agrawalsuneet.medium.com/uiview-clicklistener-swift-88ab5dec64b5
-        let tapGesture = UITapGestureRecognizer(target: actor, action:  #selector(actor.clickOnActor(sender:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(clickOnActor(sender:)))
       
         actor.imageView.addGestureRecognizer(tapGesture)
         
@@ -216,6 +216,17 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         currentProject!.addActor(actor: actor)
         
         addEventIndicatorBlocks()
+    }
+    
+    // TODO: make actor bigger/smaller and rotate with fingers
+    @objc func clickOnActor(sender : UITapGestureRecognizer) {
+        let tapLocation = sender.location(in: freeplayOutputView)
+        for actor in currentProject!.actors {
+            if actor.imageView.frame.contains(tapLocation) && actor.imageView == sender.view {
+                print("clicked on ", actor.name)
+                updateCurrentActor(newActor: actor)
+            }
+        }
     }
     
     func updateCurrentActor(newActor: VirtualRobot) { // TODO: after adding a new actor, tapping on actors to switch doesn't always work

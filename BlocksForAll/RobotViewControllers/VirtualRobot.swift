@@ -112,11 +112,7 @@ class VirtualRobot: Equatable {
       
 
     }
-    // TODO: make actor bigger/smaller and rotate with fingers
-    @objc func clickOnActor(sender : UITapGestureRecognizer) {
-        print("clicked on ", name)
-        freeplayWorkspaceVC!.updateCurrentActor(newActor: self)
-    }
+   
     
     func moveToOrigin(executingProgram: ExecutingProgram) {
         let currentX = coordinates.x
