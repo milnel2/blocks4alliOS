@@ -122,6 +122,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! MultipleChoiceButtonCell
         let index = indexPath.item  // numerical index of cell
           
+       
         // Reset labels and images in cells
         // Below code is from https://stackoverflow.com/questions/23647833/uicollectionviewcell-is-overlapped-when-scrolling
         for view in cell.subviews {

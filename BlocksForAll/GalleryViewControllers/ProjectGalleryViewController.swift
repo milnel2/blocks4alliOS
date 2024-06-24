@@ -15,14 +15,10 @@ class ProjectGalleryViewController: UIViewController {
     
     @IBOutlet weak var projectGalleryCollectionView: UICollectionView!
     
-    @IBOutlet weak var rightScrollButton: UIButton!
-    @IBOutlet weak var leftScrollButton: UIButton!
-    
-    @IBOutlet weak var addProjectButton: UIButton!
-    @IBOutlet weak var displayedCellIndexLabel: UILabel!
+    @IBOutlet weak var homeButton: UIButton!
     
     var projects: [Project] = []
-    var cellScale : CGFloat = 0.7
+    var cellScale : CGFloat = 0.28
     
     private var cellWidth: CGFloat = 100
     private var cellHeight: CGFloat = 100
@@ -48,57 +44,14 @@ class ProjectGalleryViewController: UIViewController {
         
         projectGalleryCollectionView.translatesAutoresizingMaskIntoConstraints = false
     
-        // Adding constraints code is from Imanou Petit's answer on https://stackoverflow.com/questions/26180822/how-to-add-constraints-programmatically-using-swift
-        let widthConstraint = NSLayoutConstraint(item: projectGalleryCollectionView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellWidth + cellSpacing) // Width of collection view = cell width + cell spacing
-        let heightConstraint = NSLayoutConstraint(item: projectGalleryCollectionView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellHeight + cellSpacing) // Height of collection view = cell height + cell spacing
-        NSLayoutConstraint.activate([widthConstraint, heightConstraint])
         
         updateUI()
         
+        
+       
     }
    
-    @IBAction func leftScrollPressed(_ sender: Any) {
-       let currentIndexPath =  projectGalleryCollectionView.indexPathsForVisibleItems
-        if displayedCellIndex > 0 {
-            displayedCellIndex -= 1
-            let index = IndexPath.init(item: displayedCellIndex, section: 0)
-            projectGalleryCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-        }
-        
-    }
-        
-    @IBAction func rightScrollPressed(_ sender: Any) {
-        if displayedCellIndex < projects.count - 1 {
-            displayedCellIndex += 1
-            let index = IndexPath.init(item: displayedCellIndex, section: 0)
-            projectGalleryCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-        }
-    }
-    
-    @IBAction func addProjectPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Enter project name", message: "", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.placeholder = "New Project Name"
-        }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
-            let textField = alert.textFields![0] as UITextField
-            if self.validateFunctionName(name: textField.text!, currentAlert: alert) {
-                // name is valid, rename the project
-                if self.galleryType == "Freeplay Projects" {
-                    allProjects[self.galleryType]!.insert(Project(name: textField.text!, imageName: "drive_backward", projectType: ProjectType.Freeplay), at: 0)
-                } else {
-                    allProjects[self.galleryType]!.insert(Project(name: textField.text!, imageName: "drive_backward", projectType: ProjectType.Robot), at: 0)
-                }
-                
-                self.projects = allProjects[self.galleryType]!
-                self.reloadGallery()
-            }
-            
-        }))
-
-        present(alert, animated: true)
-    }
+   
     
     func reloadGallery() {
         self.projects = allProjects[self.galleryType]!
@@ -107,13 +60,18 @@ class ProjectGalleryViewController: UIViewController {
     }
     
     func updateUI() {
-        displayedCellIndexLabel.text = String(displayedCellIndex + 1) + "/" + String(projects.count)
+       
         updateAccessibilityTools()
     }
     func updateAccessibilityTools() {
+    
+        // TODO: home buttons is being focused instead of the first cell
+        accessibilityElements = [homeButton!, projectGalleryCollectionView!]
         
+       
     }
     
+   
     func validateFunctionName(name: String, currentAlert: UIAlertController) -> Bool{
         let dictionary = self.getModifierDictionary()!
         if (dictionary[name] != nil) {
@@ -132,6 +90,16 @@ class ProjectGalleryViewController: UIViewController {
                 self.present(invalidNameAlert, animated: true)
             }
             return false
+        } else {
+            for proj in allProjects[galleryType]! {
+                if proj.name == name {
+                        let invalidNameAlert = UIAlertController(title: "Name already exists", message: "Choose a different name", preferredStyle: .alert)
+                        invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                        self.present(invalidNameAlert, animated: true)
+                    
+                    return false
+                }
+            }
         }
         return true
         
@@ -149,41 +117,106 @@ class ProjectGalleryViewController: UIViewController {
          }
         return dict!
     }
-    
-    
+   
 }
 
 extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return projects.count
+        return projects.count + 1 // add one to allow for the add project cell
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectsCell", for: indexPath) as! ProjectCollectionViewCell
-        let project = projects[indexPath.item]
-        cell.project = project
-        cell.parentViewController = self
-        cell.cellGalleryType = galleryType
+       
+        let index = indexPath.item
+       
         
-        cell.layer.borderWidth = 5
-
-        cell.layer.shadowColor = UIColor.gray.cgColor
-        cell.layer.shadowRadius = 2.0
-        cell.layer.cornerRadius = 10
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
-        cell.layer.shadowRadius = 2.0
-        let screenSize: CGRect = UIScreen.main.bounds
-        cell.imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width * cellScale, height: screenSize.height * cellScale)
+        if index == 0 {
+            // Add Project Cell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addProjectCell", for: indexPath) as! AddProjectCollectionViewCell
+            cell.backgroundColor = .red
+            cell.updateAccessibilityTools()
+            return cell
+        } else {
+            // Project Cell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectsCell", for: indexPath) as! ProjectCollectionViewCell
+            
+            
+            
+            print("new index = ", index, " projects.count = ", projects.count)
+            let project = projects[index - 1] // shift index over 1 because index 0 is the add project cell
+            cell.project = project
+            cell.parentViewController = self
+            cell.cellGalleryType = galleryType
+            
+            cell.layer.borderWidth = 5
+            
+            cell.layer.shadowColor = UIColor.gray.cgColor
+            cell.layer.shadowRadius = 2.0
+            cell.layer.cornerRadius = 10
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
+            cell.layer.shadowRadius = 2.0
+            let screenSize: CGRect = UIScreen.main.bounds
+            cell.imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width * cellScale, height: screenSize.height * cellScale)
+            
+            let imageSizeScale = 0.75
+            
+            let heightConstraint = NSLayoutConstraint(item: cell.imageView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellHeight * imageSizeScale) // Height of image view = cell height * imageSizeScale
+            let widthConstraint = NSLayoutConstraint(item: cell.imageView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellWidth * imageSizeScale) // Height of image view = cell width * imageSizeScale
+            //NSLayoutConstraint.activate([widthConstraint, heightConstraint])
+            
+            updateAccessibilityTools()
+            return cell
+        }
+    }
+    
+    // TODO: have cells fill left to right instead of top to bottom
+    func calculateAdjustedCellIndex(index: Int) -> Int {
+        /*
+         [0][2][4]
+         [1][3][5]
+         
+         Turns into:
+         
+         [0][1][2]
+         [3][4][5]
+         
+         
+         0 -> 0
+         1 -> 2
+         2 -> 4
+         3 -> 1
+         4 -> 3
+         5 -> 5
+         
+         
+         */
         
-        let imageSizeScale = 0.75
+      return index
+//        switch index {
+//        case 0:
+//            print(0)
+//            return 0
+//        case 1:
+//            print(2)
+//            return 2
+//        case 2:
+//            print(4)
+//            return 4
+//        case 3:
+//            print(1)
+//            return 1
+//        case 4:
+//            print(3)
+//            return 3
+//        case 5:
+//            print(5)
+//            return 5
+//        default:
+//            print("default 0")
+//            return 0
+//        }
         
-        let heightConstraint = NSLayoutConstraint(item: cell.imageView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellHeight * imageSizeScale) // Height of image view = cell height * imageSizeScale
-        let widthConstraint = NSLayoutConstraint(item: cell.imageView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellWidth * imageSizeScale) // Height of image view = cell width * imageSizeScale
-        NSLayoutConstraint.activate([widthConstraint, heightConstraint])
-        
-
-        return cell
     }
     
     
@@ -206,17 +239,84 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             return UIEdgeInsets(top: cellSpacing / 2, left: cellSpacing / 2, bottom: cellSpacing / 2, right: cellSpacing / 2)
         
         }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
-        let selectedProject = allProjects[galleryType]![indexPath.item]
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.item
+        
+        
+        if index == 0 {
+            // Clicked on Add Project Cell
+            addProjectPressed()
+        } else {
+            // Open new project
+            openProjectAtIndex(index: index - 1)  // shift index over 1 because index 0 is the add project cell
+            
+            // Move project to the front of the allProjects array so that it shows up first in the gallery
+            let selectedProject = allProjects[galleryType]!.remove(at: index - 1)
+            allProjects[galleryType]!.insert(selectedProject, at: 0)
+        }
+        
+       
+    }
+    
+    // Opens project located at given index in the allProjects[galleryType] array
+    func openProjectAtIndex(index: Int) {
+        let selectedProject = allProjects[galleryType]![index]
         if galleryType == "Freeplay Projects" { // TODO: change the "freeplay projects from a string to an enumerated value like in unity?
             performSegue(withIdentifier: "openFreeplayFromGallery", sender: selectedProject)
         } else if galleryType == "Robot Projects"{
             performSegue(withIdentifier: "openRobotWorkspaceFromGallery", sender: selectedProject)
-           
         }
-       
     }
+    
+    func addProjectPressed() {
+        let projectName = generateNewProjectName()
+        // Create new project and insert it at the beginning
+        if self.galleryType == "Freeplay Projects" {
+            allProjects[self.galleryType]!.insert(Project(name: projectName, imageName: "drive_backward", projectType: ProjectType.Freeplay), at: 0)
+        } else {
+            allProjects[self.galleryType]!.insert(Project(name: projectName, imageName: "drive_backward", projectType: ProjectType.Robot), at: 0)
+        }
+        
+        // Add project
+        self.projects = allProjects[self.galleryType]!
+        self.reloadGallery()
+        
+        // Open Project
+        openProjectAtIndex(index: 0)
+    }
+    
+    func generateNewProjectName() -> String {
+        
+        let newProjectNumber = projects.count + 1
+        let defaultProjectName = "Project " + String(newProjectNumber)
+        
+        if !doesProjectNameAlreadyExist(name: defaultProjectName) {
+            return defaultProjectName
+        }
+        
+        // If project name already exists, keep increasing the number until something works
+        var projectName = defaultProjectName
+        var projectNumber = newProjectNumber
+        while doesProjectNameAlreadyExist(name: projectName) {
+            projectNumber += 1
+            projectName = "Project " + String(projectNumber)
+        }
+        return projectName
+        
+    }
+    
+    func doesProjectNameAlreadyExist(name: String) -> Bool {
+        for proj in allProjects[galleryType]! {
+            if proj.name == name {
+                   return true
+            }
+        }
+        return false
+    }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if (segue.identifier == "openFreeplayFromGallery") {

@@ -12,9 +12,8 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var projectNameLabel: UILabel!
-   
-    @IBOutlet weak var renameButton: UIButton!
+    @IBOutlet weak var projectNameLabel: UITextField!
+    
     
     var parentViewController: ProjectGalleryViewController?
     
@@ -45,39 +44,55 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 10.0
         imageView.layer.masksToBounds = true
         
+
+        
         projectNameLabel.adjustsFontForContentSizeCategory = true
         projectNameLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
-       
+        projectNameLabel.borderStyle = .none
            
+        updateAccessibilityTools()
        }
-       
-   
-    @IBAction func renameButtonPressed(_ sender: Any) {
+    // TODO: automatically name projects
+    func updateAccessibilityTools() {
+        isAccessibilityElement = false
         
-        let alert = UIAlertController(title: "Enter project name", message: "", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.placeholder = "New Project Name"
-        }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
-            let textField = alert.textFields![0] as UITextField
-            if self.validateFunctionName(name: textField.text!, currentAlert: alert) {
-                // name is valid, rename the project
-                for proj in allProjects[self.cellGalleryType]! {
-                    if proj.name == self.project.name {
-                        proj.name = textField.text!
-                        continue
-                    }
-                }
-                self.project.name = textField.text!
-                self.updateUI()
-            }
-            
-        }))
-
-        parentViewController!.present(alert, animated: true)
+        contentView.isAccessibilityElement = true
+        accessibilityTraits = .allowsDirectInteraction
+        
+        
+        
+        projectNameLabel.isAccessibilityElement = true
+       
+        
+        deleteButton.isAccessibilityElement = true
+        
+        
+        contentView.accessibilityHint = "Open " + project.name + " Project" // TODO: add image description
+        projectNameLabel.accessibilityHint = "Double tap to rename " + project.name + " Project"
+        deleteButton.accessibilityHint = "Delete " + project.name + " Project"
+        
+        accessibilityElements = [contentView, projectNameLabel!, deleteButton!]
+        
+        
     }
     
+   // TODO: text field gets covered by keyboard
+    @IBAction func projectNameEdited(_ sender: Any) {
+        let newName = projectNameLabel.text
+        if validateFunctionName(name: newName ?? "") {
+            // name is valid, rename the project
+            for proj in allProjects[cellGalleryType]! {
+                if proj.name == project.name {
+                    proj.name = newName!
+                    continue
+                }
+            }
+            project.name = newName!
+            
+        }
+        // if the name isn't valid, the textfield will go back to whatever the name previously was
+        updateUI()
+    }
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
         
@@ -95,40 +110,40 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func validateFunctionName(name: String, currentAlert: UIAlertController) -> Bool{
+    func validateFunctionName(name: String) -> Bool{
         let dictionary = self.getModifierDictionary()!
         if (dictionary[name] != nil) {
             // Name is protected, show an alert do not rename the function
-            currentAlert.dismiss(animated: true) {
+            
                 let invalidNameAlert = UIAlertController(title: "Name is protected", message: "Choose a different name", preferredStyle: .alert)
                 invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-                self.parentViewController!.present(invalidNameAlert, animated: true)
-            }
+               parentViewController!.present(invalidNameAlert, animated: true)
+            
             return false
         } else if (name == "") {
             // Name is empty string
-            currentAlert.dismiss(animated: true) {
+           
                 let invalidNameAlert = UIAlertController(title: "Name cannot be empty", message: "Choose a different name", preferredStyle: .alert)
                 invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-                self.parentViewController!.present(invalidNameAlert, animated: true)
-            }
+                parentViewController!.present(invalidNameAlert, animated: true)
+            
             return false
         } else if (self.project.currentActor!.functionDict.keys.contains(name))  {
             // Duplicate custom function name
-            currentAlert.dismiss(animated: true) {
+           
                 let invalidNameAlert = UIAlertController(title: "Name already exists", message: "Choose a different name", preferredStyle: .alert)
                 invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-                self.parentViewController!.present(invalidNameAlert, animated: true)
-            }
+               parentViewController!.present(invalidNameAlert, animated: true)
+            
             return false
         } else {
             for proj in allProjects[cellGalleryType]! {
                 if proj.name == name {
-                    currentAlert.dismiss(animated: true) {
+                    
                         let invalidNameAlert = UIAlertController(title: "Name already exists", message: "Choose a different name", preferredStyle: .alert)
                         invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-                        self.parentViewController!.present(invalidNameAlert, animated: true)
-                    }
+                        parentViewController!.present(invalidNameAlert, animated: true)
+                    
                     return false
                 }
             }
