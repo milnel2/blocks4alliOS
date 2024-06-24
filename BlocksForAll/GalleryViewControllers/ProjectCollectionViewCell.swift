@@ -30,7 +30,16 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     func updateUI() {
             
         if let project = project {
-           imageView.image = UIImage(named:project.imageName)
+            
+           
+            
+            if project.image != nil {
+                let resizedImage = resizeImage(image: project.image!, scaledToSize: imageView.frame.size)
+                imageView.image = resizedImage
+            } 
+          
+        
+            
            projectNameLabel.text = project.name
            //details.text = course.details
            //colorView.backgroundColor = course.color
@@ -52,6 +61,15 @@ class ProjectCollectionViewCell: UICollectionViewCell {
            
         updateAccessibilityTools()
        }
+    
+    private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
     // TODO: automatically name projects
     func updateAccessibilityTools() {
         isAccessibilityElement = false

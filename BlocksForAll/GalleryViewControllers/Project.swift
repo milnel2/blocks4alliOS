@@ -23,6 +23,7 @@ class Project : Equatable{
     
     var name = ""
     var imageName : String
+    var image: UIImage? = nil
    // var functionDict: [String : [Block]]
     var actors: [VirtualRobot] = []
     var currentActor: VirtualRobot? = nil

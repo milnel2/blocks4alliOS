@@ -181,7 +181,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         
     }
     
-    
+    //TODO: make into public static function
     private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
         image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))

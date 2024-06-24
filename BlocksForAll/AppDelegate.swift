@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            print("couldn't delete save")
 //        }
 // THE CODE ABOVE IS TO DELETE PREVIOUS SAVE
-
+        
 
         print("load save called")
         var galleryTypePart = true
@@ -264,6 +264,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     } else {
                         project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave, projectType: ProjectType.Robot)
                     }
+                   
+                    let imageFullPath = getDocumentsDirectory().appendingPathComponent(projectImageName).relativePath
+                    let fileManager = FileManager.default
+                    if fileManager.fileExists(atPath: imageFullPath) {
+                        project.image = UIImage(contentsOfFile: imageFullPath)
+                    } else{
+
+
+                    }
+                    
+                    
                     
                     for actor in actorsFromSave {
                         
@@ -339,6 +350,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let fileManager = FileManager.default
 
         let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave2.json")
+        
+      
        
         do{
             //Deletes previous save in order to rewrite for each save action
@@ -361,6 +374,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 writeText.append("\n")
                 writeText.append(project.imageName)
                 writeText.append("\n")
+                
+                // Save image to directory as well
+                let imageURL = getDocumentsDirectory().appendingPathComponent(project.imageName)
+                
+                // Convert to Data
+                if project.image != nil {
+                    if let data = project.image!.pngData() {
+                        do {
+                                try data.write(to: imageURL)
+                            } catch {
+                                print("Unable to Write Image Data to Disk")
+                            }
+                    }
+                }
+               
                
                 //TODO: fix this to work with physical robot and custom functions
                 for actor in project.actors {

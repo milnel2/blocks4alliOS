@@ -72,7 +72,7 @@
                                                         <action selector="deleteButtonPressed:" destination="dDB-N5-2lZ" eventType="touchUpInside" id="ALd-yc-Ybq"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="755" placeholderIntrinsicHeight="291" translatesAutoresizingMaskIntoConstraints="NO" id="eaA-uL-9qc">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="755" placeholderIntrinsicHeight="291" translatesAutoresizingMaskIntoConstraints="NO" id="eaA-uL-9qc">
                                                     <rect key="frame" x="37" y="27" width="206" height="134"/>
                                                     <color key="backgroundColor" red="0.94081050157546997" green="0.74590134620666504" blue="0.74175041913986206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
@@ -352,7 +352,7 @@
                                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="goToMainMenu:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="Ccj-wb-4WS"/>
+                                                            <action selector="homeButtonPressed:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="Juj-If-ScI"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gMF-Vw-CjH" userLabel="Change Background">
@@ -591,7 +591,8 @@
                         <outlet property="blocksProgram" destination="ei4-9x-SF4" id="TWu-jB-6iq"/>
                         <outlet property="currentActorImageView" destination="5xA-lS-fn9" id="uWr-sE-lwf"/>
                         <outlet property="freeplayOutputView" destination="kKQ-2P-KlV" id="7Yf-AU-3Q9"/>
-                        <outlet property="mainMenuButton" destination="9YL-5Y-1hw" id="McB-ea-ozc"/>
+                        <outlet property="homeButton" destination="9YL-5Y-1hw" id="alx-Zs-Fhm"/>
+                        <outlet property="mainMenuButton" destination="9YL-5Y-1hw" id="IQg-ik-o4w"/>
                         <outlet property="mainView" destination="jWr-ZO-kXm" id="deS-DP-VoI"/>
                         <outlet property="mainWorkspaceButton" destination="R10-4x-ECs" id="Hx9-Ps-yHS"/>
                         <outlet property="outputBackgroundImageView" destination="sz8-Xi-Sni" id="Ssu-09-1gv"/>
