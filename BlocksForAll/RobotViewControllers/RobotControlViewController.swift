@@ -116,8 +116,16 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
             self.executingProgram?.stopWasPressed = true
             //self.executingProgram = nil
             blocksViewController?.programHasCompleted()
+    
+            for workspace in executingProgram!.functionsDictToExec.keys { // remove highlight from all blocks
+                for block in executingProgram!.functionsDictToExec[workspace]! {
+                    block.isRunning = false
+                }
+            }
             
-            print("all actors are done")
+            
+            refreshScreen() //TODO: if moving from full screen to regular while program is running, block highlight doesn't go away
+            
         } else {
             print("not all actors are done")
         }
@@ -127,8 +135,9 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     
     func refreshScreen() {
         // subclasses may override
+        
         if blocksViewController != nil {
-            blocksViewController?.refreshScreen()
+            blocksViewController!.refreshScreen()
         }
        
     }
@@ -219,6 +228,7 @@ class ExecutingProgram {
     func executeNextCommandExecProgram() {
         print("func is complete = ", funcIsComplete)
         guard !funcIsComplete else {
+            robotControlViewController.programHasCompleted()
             return
         }
         // stops if completed
@@ -226,14 +236,12 @@ class ExecutingProgram {
         
         let blockToExec = functionsDictToExec[positions[positions.count - 1].funcName]![(positions[positions.count - 1].position)]
         //the current block being check for executing it's from the [] of blocks that are being executed at the position value that we increment with this function (and repeat and if functions)
-        
         // set the block that is being run .isRunning to true so that it gets highlighted
         blockToExec.isRunning = true
         blockCurrentlyRunning = blockToExec
         robotControlViewController.refreshScreen() // refresh screen to highlight the button
         // Announce on VoiceOver that a block is being run
         UIAccessibility.post(notification: .announcement, argument: "\(blockToExec.name)")
-        
         if connectedRobots.count == 0 && !isInFreeplay{
             return
         }

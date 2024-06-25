@@ -23,6 +23,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     @IBOutlet weak var outputBackgroundImageView: UIImageView!
     
+    @IBOutlet weak var enterFullScreenButton: UIButton!
     @IBOutlet weak var FirstCodeLineButton: UIButton!
     
     @IBOutlet weak var SecondCodeLineButton: UIButton!
@@ -36,14 +37,12 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         if (currentProject == nil) {
             print("ERROR: current project is nil")
         }
+        freeplayOutputView.freeplayWorkspaceVC = self
         
-       
-        
-       
         for actor in currentProject!.actors {
-            if (actor.freeplayWorkspaceVC == nil) {
-                actor.addFreeplayWorkspaceVC(freeplayWorkspaceVC: self)
-            }
+            
+            actor.addFreeplayOutputView(freeplayOutputView: freeplayOutputView)
+            
            addActor(actor: actor)
         }
         
@@ -66,6 +65,9 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
     }
     
+    @IBAction func enterFullScreenPressed(_ sender: Any) {
+        performSegue(withIdentifier: "enterFullScreen", sender: nil)
+    }
     // save snapshot of the output view
     override func saveProjectSnapshot() {
         
@@ -80,53 +82,10 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     }
     
    
-    @objc func dragActor(sender: UIPanGestureRecognizer) {
-
-        let dragLocation = sender.location(in: freeplayOutputView)
-        
-        let actorHeight = sender.view!.layer.frame.height
-        let actorWidth = sender.view!.layer.frame.width
-      
-        let backgroundTopY: CGFloat = 0
-        let backgroundBottomY = freeplayOutputView.frame.height
-        let backgroundLeftX: CGFloat = 0
-        let backgroundRightX = freeplayOutputView.frame.width
-        
-        
-        
-               
-       switch sender.state {
-       case .began, .changed: // Implementation to recognize seleccted actor from ChatGPT by OpenAI. Source: https://www.openai.com
-           for actor in currentProject!.actors {
-               if actor.imageView.frame.contains(dragLocation) && actor.imageView == sender.view { // TODO: handle when images overlap
-                   if !(dragLocation.x - actorWidth / 2 <= backgroundLeftX || dragLocation.x + actorWidth / 2 >= backgroundRightX) {
-                       // within x bounds
-                       actor.setCoordinates(x: dragLocation.x, y: actor.coordinates.y)
-                       
-                   }
-                   
-                   if !(dragLocation.y - actorHeight / 2 <= backgroundTopY || dragLocation.y + actorHeight / 2 >= backgroundBottomY ) {
-                       // within y bounds
-                       actor.setCoordinates(x: actor.coordinates.x, y: dragLocation.y)
-                       
-                   }
-                   updateCurrentActor(newActor: actor)
-                   
-               }
-           }
-       default:
-           break
-       }
-      
-        
-    }
-    
-    
+   
    
     
-    override func viewWillDisappear(_ animated: Bool) {
-        isInFreeplay = false
-    }
+    
     //this function allows the blocks in the workspace to be sent to the robot
     override func play(functionsDictToPlay: [String : [Block]], functionNameToExecute: String? = nil, actor: VirtualRobot? = nil){
         let newRobotControlVC = RobotControlViewController()
@@ -144,7 +103,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     }
     
     override func playClicked() {
-    
+        
         stopIsOption = true
         changePlayTrashButton()
         //Calls RobotControllerViewController play function
@@ -194,15 +153,28 @@ class FreePlayWorkspaceViewController: BlocksViewController {
            chooseActorVC.currentProject = currentProject
            chooseActorVC.currentActorImageView = currentActorImageView
            chooseActorVC.freeplayOutputView = freeplayOutputView
+          
         
        }
+        if (segue.identifier == "enterFullScreen") {
+            let fullscreenVC = segue.destination as! FullScreenFreeplayViewController
+            
+            fullscreenVC.currentProject = currentProject
+            fullscreenVC.freeplayWorkspaceVC = self
+            fullscreenVC.smallViewSize = freeplayOutputView.frame.size
+            fullscreenVC.freeplayWorkspaceOriginalPlayButton = playTrashToggleButton
+            
+            for actor in currentProject!.actors {
+                actor.executingProgram?.stopWasPressed = true
+            }
+        }
         
         super.prepare(for: segue, sender: sender)
        
     }
     
     func afterNewActorSelected(name: String, imagePath: String) {
-        let newRobot = VirtualRobot(imagePath: imagePath, freeplayWorkspaceVC: self, name: name, project: currentProject!)
+        let newRobot = VirtualRobot(imagePath: imagePath, freeplayOutputView: freeplayOutputView, name: name, project: currentProject!)
         addActor(actor: newRobot)
         updateCurrentActor(newActor: newRobot)
         newActorToAdd = nil
@@ -210,51 +182,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     }
     
     func addActor(actor: VirtualRobot) {
-        // Add actor to screen
-        freeplayOutputView.addSubview(actor.imageView)
-        
-        // Move actor to saved location
-        actor.setToSavedCoordinates()
-        
-        actor.imageView.isUserInteractionEnabled = true
-        
-        
-        // Add dragging interaction to actor
-        let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(dragActor(sender:)))
-        actor.imageView.addGestureRecognizer(dragGesture)
-        
-        // Tap Gesture code from https://agrawalsuneet.medium.com/uiview-clicklistener-swift-88ab5dec64b5
-        let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(clickOnActor(sender:)))
-      
-        actor.imageView.addGestureRecognizer(tapGesture)
-        
-        
-        // Add actor to the Project object
-        currentProject!.addActor(actor: actor)
-        
-        addEventIndicatorBlocks()
-    }
-    
-    // TODO: disable editing code when program is running
-    // TODO: make actor bigger/smaller and rotate with fingers
-    //TODO: ontap doesn't work if the actor is already moving
-    @objc func clickOnActor(sender : UITapGestureRecognizer) {
-        let tapLocation = sender.location(in: freeplayOutputView)
-        for actor in currentProject!.actors {
-            if actor.imageView.frame.contains(tapLocation) && actor.imageView == sender.view {
-                updateCurrentActor(newActor: actor)
-                if actor.isRunning {
-                    actor.executingProgram?.insertBlock(blockToExecName: ON_TAP_STRING)
-                    stopIsOption = true
-                    changePlayTrashButton()
-                } else {
-                    play(functionsDictToPlay: actor.functionDict, functionNameToExecute: ON_TAP_STRING, actor: actor)
-                    stopIsOption = true
-                    changePlayTrashButton()
-                    
-                }
-            }
-        }
+        freeplayOutputView.addActor(actor: actor)
+
     }
     
     func updateCurrentActor(newActor: VirtualRobot) { // TODO: after adding a new actor, tapping on actors to switch doesn't always work

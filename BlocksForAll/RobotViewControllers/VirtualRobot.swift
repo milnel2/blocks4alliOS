@@ -20,8 +20,8 @@ class VirtualRobot: Equatable {
     
     var imagePath: String
     var imageView: UIImageView
-    var freeplayWorkspaceVC: FreePlayWorkspaceViewController?
-    let robotSize: CGFloat = 120
+    var freeplayOutputView: FreeplayOutputView?
+    var robotSize: CGFloat = 120
     var functionDict: [String : [Block]]
     var name: String
     var coordinates: (x: CGFloat, y: CGFloat) = (-10, -10) // center coordinates of robot image
@@ -34,13 +34,16 @@ class VirtualRobot: Equatable {
     var audioPlayer: AVAudioPlayer?  // Used to play sound blocks
     var soundEffectAudioPlayer: AVAudioPlayer?  // Used to play sound effects like hitting walls
     
+    // used during full screen
+    var verticalDistanceMultiplier = 1.0
+    var horizontalDistanceMultiplier = 1.0
    
     
-    init(imagePath: String, freeplayWorkspaceVC: FreePlayWorkspaceViewController, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?) {
+    init(imagePath: String, freeplayOutputView: FreeplayOutputView, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?) {
         
         
         self.imagePath = imagePath
-        self.freeplayWorkspaceVC = freeplayWorkspaceVC
+        self.freeplayOutputView = freeplayOutputView
     
         self.project = project
         self.name = name
@@ -68,7 +71,7 @@ class VirtualRobot: Equatable {
     init(imagePath: String, name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?) {
         
         self.imagePath = imagePath
-        self.freeplayWorkspaceVC = nil
+        self.freeplayOutputView = nil
         self.project = project
         self.name = name
         self.coordinates = coordinates
@@ -84,6 +87,15 @@ class VirtualRobot: Equatable {
         imageView = UIImageView(image: UIImage(named: imagePath))
         functionDict = createFunctionDict()
     }
+    
+    public func setActorSize(size: CGFloat) {
+        robotSize = size
+        let x = imageView.frame.minX
+        let y = imageView.frame.minY
+        imageView.frame = CGRect(x: x, y: y, width: size, height: size)
+    }
+    
+   
     
     func createFunctionDict() -> [String: [Block]] {
         if project?.projectType == ProjectType.Freeplay {
@@ -101,8 +113,8 @@ class VirtualRobot: Equatable {
         
     }
     
-    func addFreeplayWorkspaceVC(freeplayWorkspaceVC: FreePlayWorkspaceViewController) {
-        self.freeplayWorkspaceVC = freeplayWorkspaceVC
+    func addFreeplayOutputView(freeplayOutputView: FreeplayOutputView) {
+        self.freeplayOutputView = freeplayOutputView
        
         
         imageView.frame = CGRect(x: 0, y: 0, width: robotSize, height: robotSize)
@@ -119,8 +131,8 @@ class VirtualRobot: Equatable {
         let currentX = coordinates.x
         let currentY = coordinates.y
         
-        let backgroundCenterX =  freeplayWorkspaceVC!.freeplayOutputView.frame.width / 2
-        let backgroundCenterY =  freeplayWorkspaceVC!.freeplayOutputView.frame.height / 2
+        let backgroundCenterX =  freeplayOutputView!.frame.width / 2
+        let backgroundCenterY =  freeplayOutputView!.frame.height / 2
         
         let animationDuration = sqrt(pow((backgroundCenterX - currentX),2) + pow( (backgroundCenterY - currentY),2)) / (movementAnimationSpeed * 2)
        
@@ -131,12 +143,18 @@ class VirtualRobot: Equatable {
     }
     
     func playMove(distance: Double, xDirection: Int, yDirection: Int, executingProgram: ExecutingProgram) {
-        
-        if (!checkWillCollide(distance: distance, xDirection: xDirection, yDirection: yDirection, executingProgram: executingProgram)) {
-            let animationDuration = distance / movementAnimationSpeed
+        var adjustedDistance = 0.0
+        if xDirection != 0 {
+            adjustedDistance = distance  * horizontalDistanceMultiplier
+        }
+        if yDirection != 0 {
+            adjustedDistance = distance * verticalDistanceMultiplier
+        }
+        if (!checkWillCollide(distance: adjustedDistance, xDirection: xDirection, yDirection: yDirection, executingProgram: executingProgram)) {
+            let animationDuration = adjustedDistance / movementAnimationSpeed
             // Code to animate UIImage is from Dharmesh Kheni's answer on:  https://stackoverflow.com/questions/32133056/how-can-i-move-an-image-in-swift
-            let newX = coordinates.x + (distance * CGFloat(xDirection))
-            let newY = coordinates.y + (distance * CGFloat(yDirection))
+            let newX = coordinates.x + (adjustedDistance * CGFloat(xDirection))
+            let newY = coordinates.y + (adjustedDistance * CGFloat(yDirection))
             
             animatedMoveToCoordinates(x: newX, y: newY, duration: animationDuration)
             
@@ -159,9 +177,9 @@ class VirtualRobot: Equatable {
         
         
         let backgroundTopY: CGFloat = 0
-        let backgroundBottomY = freeplayWorkspaceVC!.freeplayOutputView.frame.height
+        let backgroundBottomY = freeplayOutputView!.frame.height
         let backgroundLeftX: CGFloat = 0
-        let backgroundRightX = freeplayWorkspaceVC!.freeplayOutputView.frame.width
+        let backgroundRightX = freeplayOutputView!.frame.width
         
         
         // Check if it will hit the top or bottom of the screen
@@ -264,11 +282,11 @@ class VirtualRobot: Equatable {
     }
     
     
-    func setCoordinates(x: CGFloat, y: CGFloat) {
+    public func setCoordinates(x: CGFloat, y: CGFloat) {
         //print("setting coords to x = ", x, " y = ", y)
         if x == -10 && y == -10 {
-            let outputWidth = freeplayWorkspaceVC!.freeplayOutputView.frame.width
-            let outputHeight = freeplayWorkspaceVC!.freeplayOutputView.frame.height
+            let outputWidth = freeplayOutputView!.frame.width
+            let outputHeight = freeplayOutputView!.frame.height
             let imageWidth = imageView.frame.width
             let imageHeight = imageView.frame.height
             coordinates = (CGFloat.random(in: imageWidth..<outputWidth - imageWidth), CGFloat.random(in: imageHeight..<outputHeight - imageHeight))
@@ -278,7 +296,7 @@ class VirtualRobot: Equatable {
         imageView.center.x = coordinates.x
         imageView.center.y =  coordinates.y
         
-        freeplayWorkspaceVC!.freeplayOutputView.bringSubviewToFront(imageView)
+        freeplayOutputView!.bringSubviewToFront(imageView)
         
     }
     
@@ -342,7 +360,6 @@ class VirtualRobot: Equatable {
             
            
             audioPlayer?.play()
-            print("PLAYING AUDIO from", audioPlayer)
         } catch let error {
             print(error.localizedDescription)
         }

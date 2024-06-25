@@ -300,6 +300,82 @@
             </objects>
             <point key="canvasLocation" x="-1994.4444444444443" y="-489.62962962962962"/>
         </scene>
+        <!--Full Screen Freeplay View Controller-->
+        <scene sceneID="gee-tq-R6e">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="9IQ-B3-7v1" customClass="FullScreenFreeplayViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XSp-2b-IHJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lew-ap-jbE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="D1t-dL-aFf">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K98-93-S6m" userLabel="OutputView" customClass="FreeplayOutputView" customModule="BlocksForAll" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="eDy-oZ-sc5">
+                                        <rect key="frame" x="0.0" y="-24" width="1080" height="834"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="eDy-oZ-sc5" secondAttribute="bottom" id="SFT-D0-q8a"/>
+                                    <constraint firstItem="eDy-oZ-sc5" firstAttribute="leading" secondItem="K98-93-S6m" secondAttribute="leading" id="Vd4-WQ-jqZ"/>
+                                    <constraint firstItem="eDy-oZ-sc5" firstAttribute="top" secondItem="K98-93-S6m" secondAttribute="top" constant="-24" id="VvP-DZ-QoO"/>
+                                    <constraint firstAttribute="trailing" secondItem="eDy-oZ-sc5" secondAttribute="trailing" id="iL9-vM-8f7"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qvx-Ab-7LC">
+                                <rect key="frame" x="899" y="755" width="141" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Exit Full Screen"/>
+                                <connections>
+                                    <action selector="exitFullScreenPressed:" destination="9IQ-B3-7v1" eventType="touchUpInside" id="NnL-5I-hXL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sC9-aO-BO4" userLabel="Play Button">
+                                <rect key="frame" x="894.5" y="555" width="150" height="150"/>
+                                <accessibility key="accessibilityConfiguration" hint="Make your robot go!" label="Play"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="bza-6N-6hQ"/>
+                                    <constraint firstAttribute="width" constant="150" id="cBq-Vq-jcS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" backgroundImage="GreenArrow">
+                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="fullScreenPlayPressed:" destination="9IQ-B3-7v1" eventType="touchUpInside" id="ssH-O4-zpp"/>
+                                    <action selector="playButtonClicked:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="EqW-iq-cUE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="K98-93-S6m" firstAttribute="leading" secondItem="D1t-dL-aFf" secondAttribute="leading" id="0ez-Dx-17u"/>
+                            <constraint firstItem="sC9-aO-BO4" firstAttribute="centerX" secondItem="Qvx-Ab-7LC" secondAttribute="centerX" id="4MR-Rc-kKd"/>
+                            <constraint firstItem="Qvx-Ab-7LC" firstAttribute="top" secondItem="sC9-aO-BO4" secondAttribute="bottom" constant="50" id="959-eW-4qg"/>
+                            <constraint firstItem="K98-93-S6m" firstAttribute="top" secondItem="XSp-2b-IHJ" secondAttribute="bottom" id="HBK-xJ-mMz"/>
+                            <constraint firstAttribute="trailing" secondItem="K98-93-S6m" secondAttribute="trailing" id="Joc-me-v8s"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Qvx-Ab-7LC" secondAttribute="trailing" constant="20" id="n4S-8V-JuY"/>
+                            <constraint firstItem="Lew-ap-jbE" firstAttribute="top" secondItem="K98-93-S6m" secondAttribute="bottom" id="r36-I6-7IL"/>
+                            <constraint firstItem="Lew-ap-jbE" firstAttribute="top" secondItem="Qvx-Ab-7LC" secondAttribute="bottom" constant="20" id="s5j-ZS-4F6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="CZw-1t-IfW"/>
+                    <connections>
+                        <outlet property="exitFullScreenButton" destination="Qvx-Ab-7LC" id="eAT-ww-J6E"/>
+                        <outlet property="fullScreenPlayButton" destination="sC9-aO-BO4" id="V6J-vX-jDN"/>
+                        <outlet property="outputView" destination="K98-93-S6m" id="ac8-LQ-iic"/>
+                        <segue destination="48V-Ne-C7Q" kind="show" identifier="exitFullScreen" id="Cau-JZ-Dok"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fUx-Q6-EY0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1979.4444444444443" y="-2733.333333333333"/>
+        </scene>
         <!--Free Play Workspace View Controller-->
         <scene sceneID="BDu-le-fRn">
             <objects>
@@ -393,13 +469,23 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xas-Fz-0Ml">
+                                                        <rect key="frame" x="504.5" y="370.5" width="108.5" height="34.5"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Full Screen"/>
+                                                        <connections>
+                                                            <action selector="enterFullScreenPressed:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="BCG-Gl-H24"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemGray3Color"/>
                                                 <constraints>
                                                     <constraint firstItem="KI8-EN-GKe" firstAttribute="top" secondItem="8qF-Y7-eCZ" secondAttribute="topMargin" id="6pH-fP-mHe"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Xas-Fz-0Ml" secondAttribute="bottom" id="8Td-Lw-Xwq"/>
                                                     <constraint firstItem="KI8-EN-GKe" firstAttribute="centerX" secondItem="8qF-Y7-eCZ" secondAttribute="centerX" id="Gjn-Nj-ygM"/>
                                                     <constraint firstItem="kKQ-2P-KlV" firstAttribute="top" secondItem="8qF-Y7-eCZ" secondAttribute="top" id="IYI-Iv-gcd"/>
                                                     <constraint firstItem="kKQ-2P-KlV" firstAttribute="leading" secondItem="8qF-Y7-eCZ" secondAttribute="leading" id="O9d-kF-XVj"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Xas-Fz-0Ml" secondAttribute="trailing" id="RpD-np-AKY"/>
                                                     <constraint firstItem="kKQ-2P-KlV" firstAttribute="centerX" secondItem="KI8-EN-GKe" secondAttribute="centerX" id="dex-DP-ZVX"/>
                                                     <constraint firstItem="kKQ-2P-KlV" firstAttribute="centerY" secondItem="8qF-Y7-eCZ" secondAttribute="centerY" id="lGw-hM-YJB"/>
                                                 </constraints>
@@ -583,6 +669,7 @@
                         <outlet property="SecondCodeLineButton" destination="SEN-wX-dnt" id="P05-zd-3yu"/>
                         <outlet property="blocksProgram" destination="ei4-9x-SF4" id="TWu-jB-6iq"/>
                         <outlet property="currentActorImageView" destination="5xA-lS-fn9" id="uWr-sE-lwf"/>
+                        <outlet property="enterFullScreenButton" destination="Xas-Fz-0Ml" id="tmb-hD-QS4"/>
                         <outlet property="freeplayOutputView" destination="kKQ-2P-KlV" id="7Yf-AU-3Q9"/>
                         <outlet property="homeButton" destination="9YL-5Y-1hw" id="alx-Zs-Fhm"/>
                         <outlet property="mainMenuButton" destination="9YL-5Y-1hw" id="IQg-ik-o4w"/>
@@ -603,6 +690,7 @@
                         <segue destination="I6l-mr-M6V" kind="show" identifier="MultipleChoiceModifier" id="lP2-dK-nFu"/>
                         <segue destination="YEE-PZ-SjD" kind="show" identifier="toMainMenu" id="OfV-so-xeL"/>
                         <segue destination="jJr-Hm-QsK" kind="show" identifier="toChooseActor" id="5Xz-1I-HDS"/>
+                        <segue destination="9IQ-B3-7v1" kind="show" identifier="enterFullScreen" id="i4h-7s-vWn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zMf-n1-Jxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2348,7 +2436,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="sX9-WY-IIJ"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="a9q-34-jse"/>
+        <segue reference="Cau-JZ-Dok"/>
         <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>

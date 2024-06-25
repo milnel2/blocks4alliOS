@@ -10,13 +10,100 @@ import Foundation
 import UIKit
 
 class FreeplayOutputView: UIView {
+    var freeplayWorkspaceVC: FreePlayWorkspaceViewController? = nil
     
-//    @IBOutlet var backgroundImageView: UIImageView!
-//    @IBOutlet var actorImageView: UIImageView!
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        executingProgram?.actorImage = actorImageView
-//    }
+    func addActor(actor: VirtualRobot) {
+        // Add actor to screen
+        addSubview(actor.imageView)
+        // Move actor to saved location
+        //actor.setToSavedCoordinates()
+        
+        actor.imageView.isUserInteractionEnabled = true
+        
+        
+       //  Add dragging interaction to actor
+        let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(dragActor(sender:)))
+        actor.imageView.addGestureRecognizer(dragGesture)
+        
+        // Tap Gesture code from https://agrawalsuneet.medium.com/uiview-clicklistener-swift-88ab5dec64b5
+        let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(clickOnActor(sender:)))
+      
+        actor.imageView.addGestureRecognizer(tapGesture)
+        
+        
+        // Add actor to the Project object
+        let currentProject = freeplayWorkspaceVC!.currentProject
+        currentProject!.addActor(actor: actor)
+        
+        freeplayWorkspaceVC!.addEventIndicatorBlocks()
+    }
+    
+    // TODO: disable editing code when program is running
+    // TODO: make actor bigger/smaller and rotate with fingers
+    //TODO: ontap doesn't work if the actor is already moving
+    @objc func clickOnActor(sender : UITapGestureRecognizer) {
+        let currentProject = freeplayWorkspaceVC!.currentProject
+        
+        let tapLocation = sender.location(in: self)
+        for actor in currentProject!.actors {
+            if actor.imageView.frame.contains(tapLocation) && actor.imageView == sender.view {
+                freeplayWorkspaceVC!.updateCurrentActor(newActor: actor)
+                if actor.isRunning {
+                    actor.executingProgram?.insertBlock(blockToExecName: ON_TAP_STRING)
+                    freeplayWorkspaceVC!.stopIsOption = true
+                    freeplayWorkspaceVC!.changePlayTrashButton()
+                } else {
+                    freeplayWorkspaceVC!.play(functionsDictToPlay: actor.functionDict, functionNameToExecute: ON_TAP_STRING, actor: actor)
+                    freeplayWorkspaceVC!.stopIsOption = true
+                    freeplayWorkspaceVC!.changePlayTrashButton()
+                    
+                }
+            }
+        }
+    }
+    
+    @objc func dragActor(sender: UIPanGestureRecognizer) {
+
+        let dragLocation = sender.location(in: self)
+        
+        let actorHeight = sender.view!.layer.frame.height
+        let actorWidth = sender.view!.layer.frame.width
+      
+        let backgroundTopY: CGFloat = 0
+        let backgroundBottomY = self.frame.height
+        let backgroundLeftX: CGFloat = 0
+        let backgroundRightX = self.frame.width
+        
+        
+        
+               
+       switch sender.state {
+       case .began, .changed: // Implementation to recognize seleccted actor from ChatGPT by OpenAI. Source: https://www.openai.com
+           let currentProject = freeplayWorkspaceVC!.currentProject
+           for actor in currentProject!.actors {
+               if actor.imageView.frame.contains(dragLocation) && actor.imageView == sender.view { // TODO: handle when images overlap
+                   if !(dragLocation.x - actorWidth / 2 <= backgroundLeftX || dragLocation.x + actorWidth / 2 >= backgroundRightX) {
+                       // within x bounds
+                       actor.setCoordinates(x: dragLocation.x, y: actor.coordinates.y)
+                       
+                   }
+                   
+                   if !(dragLocation.y - actorHeight / 2 <= backgroundTopY || dragLocation.y + actorHeight / 2 >= backgroundBottomY ) {
+                       // within y bounds
+                       actor.setCoordinates(x: actor.coordinates.x, y: dragLocation.y)
+                       
+                   }
+                   freeplayWorkspaceVC!.updateCurrentActor(newActor: actor)
+                   
+               }
+           }
+       default:
+           break
+       }
+      
+        
+    }
+    
+    
 }
