@@ -106,6 +106,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         workspaceTitle.adjustsFontForContentSizeCategory = true
         workspaceTitle.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
         
+        
         // set block size based on block size from settings or 150 by default
         blockSize = defaults.value(forKey: "blockSize") as? Int ?? 150
        

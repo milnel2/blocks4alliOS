@@ -56,6 +56,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
         currentActorImageView.alpha = 0.3
         workspaceTitle.text = currentProject!.name
+        workspaceTitle.layer.cornerRadius = 10.0 // TODO: corner radius isn't showing up
         
         updateUI()
         
