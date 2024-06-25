@@ -283,10 +283,15 @@ class VirtualRobot: Equatable {
     }
     
     func animatedMoveToCoordinates(x: CGFloat, y: CGFloat, duration: TimeInterval, delay: TimeInterval = 0) {
-        UIView.animate(withDuration: duration, delay: delay, options: .curveLinear, animations: {
-            self.imageView.center.x = x
-            self.imageView.center.y = y
-           }, completion: nil)
+        // Animating while still being able to recognize being tapped is from Matt's answer on https://stackoverflow.com/questions/57032194/tapping-a-uiimage-while-its-being-animated
+        let anim = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .easeInOut))
+           anim.addAnimations {
+               self.imageView.center.x = x
+               self.imageView.center.y = y
+           }
+       
+        anim.startAnimation()
+
         
         coordinates = (x,y)
     }

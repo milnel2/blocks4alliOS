@@ -242,7 +242,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         for actor in currentProject!.actors {
             if actor.imageView.frame.contains(tapLocation) && actor.imageView == sender.view {
                 updateCurrentActor(newActor: actor)
-                print(actor.functionDict)
                 if actor.isRunning {
                     actor.executingProgram?.insertBlock(blockToExecName: ON_TAP_STRING)
                     stopIsOption = true
