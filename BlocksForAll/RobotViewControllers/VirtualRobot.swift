@@ -27,6 +27,7 @@ class VirtualRobot: Equatable {
     var coordinates: (x: CGFloat, y: CGFloat) = (-10, -10) // center coordinates of robot image
     var project: Project?
     var executingProgram: ExecutingProgram? = nil
+    var isRunning: Bool = false
     
     let UUID: String // Universally Unique Identifier used to compare Virtual Robots
     

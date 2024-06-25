@@ -539,6 +539,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         for actor in currentProject!.actors {
             actor.executingProgram?.stopWasPressed = true
+            actor.isRunning = false
             if actor.functionDict[currentWorkspace] != nil {
                 for block in actor.functionDict[currentWorkspace]! {
                     block.isRunning = false

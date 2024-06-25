@@ -333,7 +333,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="R10-4x-ECs" userLabel="Main Workspace Button">
-                                                        <rect key="frame" x="14" y="347" width="150" height="35"/>
+                                                        <rect key="frame" x="14" y="304" width="150" height="78"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Main Workspace (temp)"/>
@@ -355,19 +355,11 @@
                                                             <action selector="goToMainMenu:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="zbs-dO-oR3"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="gMF-Vw-CjH" userLabel="Change Background">
-                                                        <rect key="frame" x="14" y="235" width="150" height="103.5"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Change Background" subtitle="Maybe remove this and put it in the toolbox"/>
-                                                    </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="gMF-Vw-CjH" firstAttribute="width" secondItem="NnO-p6-y4b" secondAttribute="width" multiplier="1.90333" constant="-135.5" id="3EM-dV-0xE"/>
                                                     <constraint firstItem="9YL-5Y-1hw" firstAttribute="centerX" secondItem="NnO-p6-y4b" secondAttribute="centerX" id="7SL-m5-91C"/>
-                                                    <constraint firstItem="gMF-Vw-CjH" firstAttribute="top" secondItem="NnO-p6-y4b" secondAttribute="bottom" constant="15" id="Px7-Re-JLU"/>
                                                     <constraint firstItem="NnO-p6-y4b" firstAttribute="centerY" secondItem="Tgk-Zz-B30" secondAttribute="centerY" id="VkW-lI-VCh"/>
                                                     <constraint firstAttribute="width" secondItem="9YL-5Y-1hw" secondAttribute="width" multiplier="0.936842" id="bwp-ez-pSn"/>
-                                                    <constraint firstItem="NnO-p6-y4b" firstAttribute="centerX" secondItem="gMF-Vw-CjH" secondAttribute="centerX" id="gle-Gl-mis"/>
                                                     <constraint firstItem="9YL-5Y-1hw" firstAttribute="top" secondItem="Tgk-Zz-B30" secondAttribute="topMargin" id="hW1-J2-sF9"/>
                                                     <constraint firstItem="R10-4x-ECs" firstAttribute="width" secondItem="NnO-p6-y4b" secondAttribute="width" multiplier="1.37333" constant="-56" id="l6D-3S-8vP"/>
                                                     <constraint firstItem="9YL-5Y-1hw" firstAttribute="centerX" secondItem="Tgk-Zz-B30" secondAttribute="centerX" id="yPR-KQ-9aN"/>

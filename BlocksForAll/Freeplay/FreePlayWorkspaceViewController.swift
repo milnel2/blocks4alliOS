@@ -149,6 +149,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         //Calls RobotControllerViewController play function
         for actor in currentProject!.actors {
             play(functionsDictToPlay: actor.functionDict, functionNameToExecute: ON_RUN_STRING, actor: actor)
+            actor.isRunning = true
         }
         robotRunning = true
         // disable modifier blocks while the robot is running
@@ -233,19 +234,30 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         addEventIndicatorBlocks()
     }
     
+    // TODO: disable editing code when program is running
     // TODO: make actor bigger/smaller and rotate with fingers
+    //TODO: ontap doesn't work if the actor is already moving
     @objc func clickOnActor(sender : UITapGestureRecognizer) {
         let tapLocation = sender.location(in: freeplayOutputView)
         for actor in currentProject!.actors {
             if actor.imageView.frame.contains(tapLocation) && actor.imageView == sender.view {
-                print("clicked on ", actor.name)
                 updateCurrentActor(newActor: actor)
+                print(actor.functionDict)
+                if actor.isRunning {
+                    actor.executingProgram?.insertBlock(blockToExecName: ON_TAP_STRING)
+                    stopIsOption = true
+                    changePlayTrashButton()
+                } else {
+                    play(functionsDictToPlay: actor.functionDict, functionNameToExecute: ON_TAP_STRING, actor: actor)
+                    stopIsOption = true
+                    changePlayTrashButton()
+                    
+                }
             }
         }
     }
     
     func updateCurrentActor(newActor: VirtualRobot) { // TODO: after adding a new actor, tapping on actors to switch doesn't always work
-        print("updating current actor to ", newActor.name)
         currentProject!.currentActor = newActor
         functionsDict = currentProject!.currentActor!.functionDict
         

@@ -107,7 +107,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
         // subclasses may override
         var allActorsComplete = true
         for actor in executingProgram!.currentProject!.actors {
-            if !actor.executingProgram!.funcIsComplete {
+            if !(actor.executingProgram?.funcIsComplete ?? true) {
                 allActorsComplete = false
             }
         }
@@ -205,6 +205,17 @@ class ExecutingProgram {
         return positions[0].position >= functionsDictToExec["Main Workspace"]!.count
     }
     
+    func insertBlock(blockToExec: Block? = nil, blockToExecName: String) {
+        
+        positions[positions.count - 1].position -= 1 // back up the current function position by one so that it doesn't skip over anything
+        
+        currentFunction = blockToExec?.name ?? blockToExecName
+        // changes current function to the function being called
+        positions.append((funcName: currentFunction, position: 0))
+        
+        
+    }
+    
     func executeNextCommandExecProgram() {
         print("func is complete = ", funcIsComplete)
         guard !funcIsComplete else {
@@ -216,7 +227,6 @@ class ExecutingProgram {
         let blockToExec = functionsDictToExec[positions[positions.count - 1].funcName]![(positions[positions.count - 1].position)]
         //the current block being check for executing it's from the [] of blocks that are being executed at the position value that we increment with this function (and repeat and if functions)
         
-        print(blockToExec)
         // set the block that is being run .isRunning to true so that it gets highlighted
         blockToExec.isRunning = true
         blockCurrentlyRunning = blockToExec
@@ -604,7 +614,8 @@ class ExecutingProgram {
             print("ON bump Start")
             finishCommand()
         case "\(ON_TAP_STRING) Start":
-            print("THIrd line Start")
+            print("On tap line Start")
+            
             finishCommand()
             // not best way but using default for Functions
         default:
