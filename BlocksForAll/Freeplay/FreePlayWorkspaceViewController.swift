@@ -65,22 +65,20 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
     }
     
-    @IBAction func homeButtonPressed(_ sender: Any) {
+    // save snapshot of the output view
+    override func saveProjectSnapshot() {
+        
         // rendering view as image is from: https://www.hackingwithswift.com/example-code/media/how-to-render-a-uiview-to-a-uiimage
         let renderer = UIGraphicsImageRenderer(size: freeplayOutputView.bounds.size)
         let image = renderer.image { ctx in
             freeplayOutputView.drawHierarchy(in: freeplayOutputView.bounds, afterScreenUpdates: true)
         }
+       
         currentProject!.image = image
         currentProject!.imageName = generateImageName()
-        
-        performSegue(withIdentifier: "toMainMenu", sender: nil)
     }
     
-    //TODO: make sure image names are unique and get deleted when projects are deleted
-    func generateImageName() -> String {
-        return String("Freeplay" + currentProject!.name + ".png")
-    }
+   
     @objc func dragActor(sender: UIPanGestureRecognizer) {
 
         let dragLocation = sender.location(in: freeplayOutputView)

@@ -173,7 +173,27 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBAction func goToMainMenu(_ sender: UIButton) {
         finishMovingBlocks()
         isInFreeplay = false
+        saveProjectSnapshot()
         performSegue(withIdentifier: "toMainMenu", sender: self)
+    }
+    
+    // save snapshot of the blocksProgram
+    func saveProjectSnapshot() {
+        // scroll to the beginning to take the snapshot
+        blocksProgram.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: false)
+        // rendering view as image is from: https://www.hackingwithswift.com/example-code/media/how-to-render-a-uiview-to-a-uiimage
+        let renderer = UIGraphicsImageRenderer(size: blocksProgram.bounds.size)
+        let image = renderer.image { ctx in
+            blocksProgram.drawHierarchy(in: blocksProgram.bounds, afterScreenUpdates: true)
+        }
+       
+        currentProject!.image = image
+        currentProject!.imageName = generateImageName()
+    }
+    
+    //TODO: make sure image names are unique and get deleted when projects are deleted
+    func generateImageName() -> String {
+        return String("Freeplay" + currentProject!.name + ".png")
     }
     
     /// Main Workspace Segue
