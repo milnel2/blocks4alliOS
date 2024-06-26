@@ -22,7 +22,9 @@ class StepperModifierViewController: UIViewController {
       // the minimum value is also the default value
     private let optionDictionary: [String:[String : String]] =
     ["Wait for Time" :  ["attributeName" : "wait", "min" : "1", "max" : "10", "unitIfSingular" : "second", "unitIfPlural" : "seconds", "increaseImage" : "orange_plus", "decreaseImage" : "orange_minus", "Default image" : "controlModifierBackground"],
-     "Repeat" : ["attributeName" : "timesToRepeat", "min" : "2", "max" : "20", "unitIfSingular" : "time", "unitIfPlural" : "times", "increaseImage" : "orange_plus", "decreaseImage" : "orange_minus", "Default image" : "controlModifierBackground"]]
+     "Repeat" : ["attributeName" : "timesToRepeat", "min" : "2", "max" : "20", "unitIfSingular" : "time", "unitIfPlural" : "times", "increaseImage" : "orange_plus", "decreaseImage" : "orange_minus", "Default image" : "controlModifierBackground"],
+     "Grow Actor" : ["attributeName" : "sizeChangeAmount", "min" : "1", "max" : "5", "unitIfSingular" : "growth", "unitIfPlural" : "growth", "increaseImage" : "orange_plus", "decreaseImage" : "orange_minus", "Default image" : "controlModifierBackground"],
+     "Shrink Actor" : ["attributeName" : "sizeChangeAmount", "min" : "1", "max" : "5", "unitIfSingular" : "growth", "unitIfPlural" : "growth", "increaseImage" : "orange_plus", "decreaseImage" : "orange_minus", "Default image" : "controlModifierBackground"]]
     private var modifierValue = 2  // current value of the stepper
     private var attributeName = ""  // Used for accessing and saving data, taken from optionDictionary (ex. if optionType = "Wait for Time", attributeName is "wait"
     private var min = "0"  // minimum value of the stepper, taken from optionDictionary

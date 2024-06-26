@@ -627,6 +627,12 @@ class ExecutingProgram {
         case "Set Speed":
             print("Set speed")
             setSpeed(speedBlock: blockToExec)
+        case "Grow Actor":
+            print("grow actor")
+            changeSize(sizeBlock: blockToExec, growOrShrink: 1)
+        case "Shrink Actor":
+            print("Shrink actor")
+            changeSize(sizeBlock: blockToExec, growOrShrink: -1)
         case "\(ON_RUN_STRING) Start":
             print("OnRun Start")
             finishCommand()
@@ -908,6 +914,11 @@ class ExecutingProgram {
         finishCommand(withDuration: 0.5)
     }
     
+    func changeSize(sizeBlock: Block, growOrShrink: Int) {
+        let sizeChangeAmount = Int(sizeBlock.addedBlocks[0].attributes["sizeChangeAmount"] ?? "1") ?? 1
+        
+        currentActor!.changeActorSize(amount: sizeChangeAmount, growOrShrink: growOrShrink, executingProgram: self)
+    }
     
     //decomposition of drive functions
     func playDrive (driveBlock: Block, driveConstant: Double){

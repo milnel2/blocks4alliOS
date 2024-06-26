@@ -22,6 +22,7 @@ class VirtualRobot: Equatable {
     var imageView: UIImageView
     var freeplayOutputView: FreeplayOutputView?
     var robotSize: CGFloat = 120
+    let defaultRobotSize: CGFloat = 120
     var functionDict: [String : [Block]]
     var name: String
     var coordinates: (x: CGFloat, y: CGFloat) = (-10, -10) // center coordinates of robot image
@@ -46,7 +47,7 @@ class VirtualRobot: Equatable {
     var movementAnimationSpeed: CGFloat = 50 // The bigger the number, the faster the animation
     
     
-    init(imagePath: String, freeplayOutputView: FreeplayOutputView, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil) {
+    init(imagePath: String, freeplayOutputView: FreeplayOutputView, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
         
         
         self.imagePath = imagePath
@@ -57,7 +58,7 @@ class VirtualRobot: Equatable {
         self.coordinates = coordinates
         self.functionDict = [:]
         self.UUID = uuid ?? Foundation.UUID().uuidString
-        
+        self.robotSize = robotSize
         
         
         let image = UIImage(named: imagePath)
@@ -75,7 +76,7 @@ class VirtualRobot: Equatable {
         
     }
     
-    init(imagePath: String, name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil) {
+    init(imagePath: String, name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
         
         self.imagePath = imagePath
         self.freeplayOutputView = nil
@@ -84,6 +85,7 @@ class VirtualRobot: Equatable {
         self.coordinates = coordinates
         
         self.UUID = uuid ?? Foundation.UUID().uuidString
+        self.robotSize = robotSize
         
         self.functionDict = [:]
         
@@ -92,6 +94,8 @@ class VirtualRobot: Equatable {
             print("Error: Couldn't create image in VirtualRobot class from image path: ", imagePath)
         }
         imageView = UIImageView(image: UIImage(named: imagePath))
+        
+        
         functionDict = createFunctionDict()
     }
     
@@ -241,6 +245,42 @@ class VirtualRobot: Equatable {
         }
        
     }
+    
+    func changeActorSize(amount: Int, growOrShrink: Int, executingProgram: ExecutingProgram) {
+        
+        
+        let sizeInterval: CGFloat = 10
+        let amountToChange = CGFloat(amount) * sizeInterval * CGFloat(growOrShrink)
+        
+        if robotSize + amountToChange > 0 && robotSize + amountToChange < (freeplayOutputView!.frame.height * 0.75) { //TODO: get as much bigger as possible, and do an indication that you can't go any bigger
+            robotSize += amountToChange
+            
+            let animationDuration = CGFloat(amount) / movementAnimationSpeed * 10.0
+            animatedSetSize(size: robotSize, duration: TimeInterval(animationDuration) )
+            
+            executingProgram.finishCommand(withDuration: animationDuration)
+        } else {
+            executingProgram.finishCommand() // don't shrink or grow if it will get too big or too small
+        }
+        
+        
+        
+        
+    }
+    
+    func animatedSetSize(size: CGFloat, duration: TimeInterval, delay: TimeInterval = 0) {
+        // Animating while still being able to recognize being tapped is from Matt's answer on https://stackoverflow.com/questions/57032194/tapping-a-uiimage-while-its-being-animated
+        let anim = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .linear))
+           anim.addAnimations {
+               self.setActorSize(size: size)
+               self.setToSavedCoordinates()
+           }
+        
+        anim.startAnimation()
+        
+        
+    }
+    
     
     func playMove(distance: Double, xDirection: Int, yDirection: Int, executingProgram: ExecutingProgram) {
         var adjustedDistance = 0.0
@@ -415,6 +455,7 @@ class VirtualRobot: Equatable {
         
         coordinates = (x,y)
     }
+    
     
     func getCurrentX() -> CGFloat {
         return coordinates.x

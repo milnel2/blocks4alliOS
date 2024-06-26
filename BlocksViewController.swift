@@ -1185,7 +1185,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         switch name {
         case "Animal Noise", "Vehicle Noise", "Object Noise", "Emotion Noise", "Speak", "Set Right Ear Light Color", "Set Left Ear Light Color", "Set Front Light Color", "Set All Lights Color", "Look Left or Right", "Look Up or Down", "Turn":
             return #selector(multipleChoiceModifier(sender:))
-        case "Wait for Time", "Repeat":
+        case "Wait for Time", "Repeat", "Grow Actor", "Shrink Actor":
             return #selector(stepperModifier(sender:))
         case "If", "Set Eye Light":
             return #selector(twoOptionModifier(sender:))
