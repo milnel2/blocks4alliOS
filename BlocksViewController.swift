@@ -972,8 +972,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         let uuid = placeHolderBlock.attributes[attributeName] ?? ""
                        
                         let actor = VirtualRobot.getActorFromUUIDOrDefault(actorUUID: uuid, inProject: currentProject!)
-                        
                         image = UIImage(named: actor!.imagePath)
+                        placeHolderBlock.attributes[attributeName] = actor!.UUID
                     } else {
                         image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
                     }

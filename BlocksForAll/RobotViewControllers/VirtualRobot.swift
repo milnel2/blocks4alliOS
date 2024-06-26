@@ -185,8 +185,7 @@ class VirtualRobot: Equatable {
         } else {
             return getActorFromUUID(actorUUID: actorUUID, inProject: inProject)
         }
-        
-        return nil
+       
     }
     
     func playMove(distance: Double, xDirection: Int, yDirection: Int, executingProgram: ExecutingProgram) {
