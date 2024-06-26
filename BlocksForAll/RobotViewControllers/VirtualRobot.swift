@@ -134,12 +134,59 @@ class VirtualRobot: Equatable {
         let backgroundCenterX =  freeplayOutputView!.frame.width / 2
         let backgroundCenterY =  freeplayOutputView!.frame.height / 2
         
-        let animationDuration = sqrt(pow((backgroundCenterX - currentX),2) + pow( (backgroundCenterY - currentY),2)) / (movementAnimationSpeed * 2)
+        let animationDuration = VirtualRobot.calculateMovementDistance(startX: currentX, startY: currentY, endX: backgroundCenterX, endY: backgroundCenterY) / (movementAnimationSpeed * 2)
        
         animatedMoveToCoordinates(x: backgroundCenterX, y: backgroundCenterY, duration: animationDuration)
        
         executingProgram.finishCommand(withDuration: animationDuration) //TODO: block highlight is going away before movement is finished
         
+    }
+    
+    public static func calculateMovementDistance(startX: CGFloat, startY: CGFloat, endX: CGFloat, endY: CGFloat) -> Double {
+        return sqrt(pow((endX - startX),2) + pow( (endY - startY),2))
+    }
+    
+    func moveToActor(actorUUID: String, executingProgram: ExecutingProgram) {
+        if actorUUID == "" {
+            fatalError("Error: move to actor failed. actorUUID was empty")
+        }
+        let actor = VirtualRobot.getActorFromUUID(actorUUID: actorUUID, inProject: project!)
+        if actor != nil {
+            let currentCoords = self.coordinates
+            let newCoords = actor!.coordinates
+            let distanceToMove = VirtualRobot.calculateMovementDistance(startX: currentCoords.x, startY: currentCoords.y, endX: newCoords.x, endY: newCoords.y)
+            let animationDuration = distanceToMove / movementAnimationSpeed
+            animatedMoveToCoordinates(x: newCoords.x, y: newCoords.y, duration: animationDuration)
+            
+            executingProgram.finishCommand(withDuration: animationDuration)
+        }
+       
+    }
+
+
+    public static func getActorFromUUID(actorUUID: String, inProject: Project) -> VirtualRobot?{
+        for actor in inProject.actors {
+            if actor.UUID == actorUUID {
+                return actor
+            }
+        }
+        return nil
+    }
+    
+    /// if actorUUID string is empty, return either the second actor or the current actor
+    public static func getActorFromUUIDOrDefault(actorUUID: String, inProject: Project) -> VirtualRobot?{
+        if actorUUID == "" {
+            for actor in inProject.actors {
+                if actor != inProject.currentActor {
+                    return actor // return any other actor than the current one
+                }
+            }
+            return inProject.currentActor // if there are no other actors, just return the current one
+        } else {
+            return getActorFromUUID(actorUUID: actorUUID, inProject: inProject)
+        }
+        
+        return nil
     }
     
     func playMove(distance: Double, xDirection: Int, yDirection: Int, executingProgram: ExecutingProgram) {

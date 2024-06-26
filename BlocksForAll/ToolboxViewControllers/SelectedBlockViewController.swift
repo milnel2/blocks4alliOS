@@ -16,6 +16,8 @@ class SelectedBlockViewController: UIViewController {
     let blockSpacing = 1
     var delegate: BlockSelectionDelegate?
     
+    var currentProject: Project? = nil
+    
     //MARK: - viewDidLoad function
     override func viewDidLoad() {
         
@@ -78,6 +80,7 @@ class SelectedBlockViewController: UIViewController {
         if blocks?[0].addedBlocks.count ?? 0 > 0 {
             // renamed block.addedBlocks[0] for simplicity
             placeHolderBlock = blocks![0].addedBlocks[0]
+            
         }
         // the current state of the block modifier - used for voiceOver
         //TODO: should this be added back in?
@@ -97,7 +100,15 @@ class SelectedBlockViewController: UIViewController {
             } else {
                 // blocks that don't have an imagePath in the dictionary have an image based on their attribute (ex. cat and bragging sounds)
                 if secondAttributeName != "variableValue" {
-                    image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                    if attributeName == "moveToActor" { // images for moveToActor modifier
+                        let uuid = placeHolderBlock.attributes[attributeName] ?? ""
+                       
+                        let actor = VirtualRobot.getActorFromUUIDOrDefault(actorUUID: uuid, inProject: currentProject!)
+                        // TODO: create a default value for moveToActor blocks to move nowhere. right now if you just place the block it doesn't work. blocks![0].addedBlocks[0].attributes["moveToActor"] = actor!.UUID
+                        image = UIImage(named: actor!.imagePath)
+                    } else {
+                        image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                    }
                     if secondAttributeName != nil && secondDefault != nil
                     { image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)") }
                     

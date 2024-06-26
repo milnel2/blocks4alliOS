@@ -22,6 +22,7 @@ class BlockTableViewController: UITableViewController {
     // update these as collection view changes
     var blockSize = 150
     let blockSpacing = 0
+    var currentProject: Project? = nil
     
  
     //MARK: - viewDidLoad function
@@ -146,6 +147,7 @@ class BlockTableViewController: UITableViewController {
                     myDestination.blocks = [block]
                 }
                 myDestination.delegate = self.delegate
+                myDestination.currentProject = currentProject
             }
         }
     }

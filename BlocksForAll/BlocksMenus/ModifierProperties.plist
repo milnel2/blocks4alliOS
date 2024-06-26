@@ -308,5 +308,14 @@
 		<key>imagePath</key>
 		<string>driveModifierBackground</string>
 	</dict>
+	<key>Move to Actor</key>
+	<dict>
+		<key>attributeName</key>
+		<string>moveToActor</string>
+		<key>default</key>
+		<string></string>
+		<key>accessibilityHint</key>
+		<string>Double tap to choose actor to move to</string>
+	</dict>
 </dict>
 </plist>

@@ -741,7 +741,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             } else {
                 switch name {
                     // block exists but is a non-modifier block
-                case "End If", "End Repeat", "End Repeat Forever", "Repeat Forever", "Look Forward", "Look Toward Voice", "Look Right", "Look Left", "Look Straight", "Look Down", "Look Up", "Wiggle", "Nod", "Spiral Light", "Move to Origin", "\(ON_RUN_STRING) Start", "\(ON_BUMP_STRING) Start", "\(ON_TAP_STRING) Start":
+                case "End If", "End Repeat", "End Repeat Forever", "Repeat Forever", "Look Forward", "Look Toward Voice", "Look Right", "Look Left", "Look Straight", "Look Down", "Look Up", "Wiggle", "Nod", "Spiral Light", "Move to Origin", "Move to Actor", "\(ON_RUN_STRING) Start", "\(ON_BUMP_STRING) Start", "\(ON_TAP_STRING) Start":
        
                     let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
                     
@@ -797,7 +797,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if myBlock.double == true {
             var indexOfCounterpart = -1
             var blockcounterparts = [Block]()
+
             for i in 0..<currentProject!.currentActor!.functionDict[currentWorkspace]!.count {
+              
                 for block in myBlock.counterpart{
                     if block === currentProject!.currentActor!.functionDict[currentWorkspace]![i]{
                         indexOfCounterpart = i
@@ -883,6 +885,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     
                     let mySelectedBlockVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectedBlockViewController") as! SelectedBlockViewController
+                    mySelectedBlockVC.currentProject = currentProject
                     mySelectedBlockVC.delegate = self
                     containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
                     mySelectedBlockVC.blocks = blocksBeingMoved
@@ -965,7 +968,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             } else {
                 // blocks that don't have an imagePath in the dictionary have an image based on their attribute (ex. cat and bragging sounds)
                 if secondAttributeName != "variableValue" {
-                    image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                    if attributeName == "moveToActor" { // images for moveToActor modifier
+                        let uuid = placeHolderBlock.attributes[attributeName] ?? ""
+                       
+                        let actor = VirtualRobot.getActorFromUUIDOrDefault(actorUUID: uuid, inProject: currentProject!)
+                        
+                        image = UIImage(named: actor!.imagePath)
+                    } else {
+                        image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
+                    }
+                    
                     if secondAttributeName != nil && secondDefault != nil
                     { image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)") }
                     // handle show icon or show text for modifiers that change depending on the settings
@@ -1195,6 +1207,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             return #selector(angleModifier(sender:))
         case "Move Right":
             return #selector(angleModifier(sender:))
+        case "Move to Actor":
+            return #selector(multipleChoiceModifier(sender:))
         default:
             print("Modifier Selector for \(name) could not be found. Check switch statement in getModifierSelector() method.")
             return nil
@@ -1271,6 +1285,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             if let myTopViewController = destinationViewController.topViewController as? BlocksTypeTableViewController{
                 myTopViewController.delegate = self
                 myTopViewController.blockSize = 150
+                myTopViewController.currentProject = currentProject
             }
         }
         

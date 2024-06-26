@@ -202,6 +202,20 @@
 				<key>imageName</key>
 				<string>green_plus.pdf</string>
 			</dict>
+			<dict>
+				<key>isModifiable</key>
+				<true/>
+				<key>type</key>
+				<string>Statement</string>
+				<key>name</key>
+				<string>Move to Actor</string>
+				<key>color</key>
+				<string>green_block</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>green_minus.pdf</string>
+			</dict>
 		</array>
 	</dict>
 	<dict>

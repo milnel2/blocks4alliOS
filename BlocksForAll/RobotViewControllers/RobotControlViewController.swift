@@ -615,6 +615,9 @@ class ExecutingProgram {
         case "Move to Origin":
             print("Move to origin")
             moveToOrigin()
+        case "Move to Actor":
+            print("Move to Actor")
+            moveToActor(moveBlock: blockToExec)
         case "\(ON_RUN_STRING) Start":
             print("OnRun Start")
             finishCommand()
@@ -876,6 +879,13 @@ class ExecutingProgram {
     
     func moveToOrigin() {
         currentActor!.moveToOrigin(executingProgram: self)
+    }
+    
+    func moveToActor(moveBlock: Block) {
+        let actorUUID = moveBlock.addedBlocks[0].attributes["moveToActor"] ?? ""
+        
+        
+        currentActor!.moveToActor(actorUUID: actorUUID, executingProgram: self)
     }
     
     

@@ -60,19 +60,30 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         
         optionType = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name  // get the optionType from the button that caused this screen to open
           
-        items = optionDictionary[optionType] ?? [] // get the array of options for the optionType
-          
-        if items.count == 2 {  // if this is a variable selection screen
-              // the first element in items is the attribute name, and the second element is the extra label text
-            items = variableArray
-            attributeName = optionDictionary[optionType]?[0] ?? ""
-            optionalExtraLabel.text = optionDictionary[optionType]?[1] ?? ""
-            
-        } else {
-            // not a variable selection screen
+        if optionType == "Move to Actor" {
+            items = []
+            for actor in currentProject!.actors {
+                items.append(actor.UUID)
+            }
+           
             attributeName = getAttributeName()
             optionalExtraLabel.text = ""  // set the extra label to empty by default
+        } else {
+            items = optionDictionary[optionType] ?? [] // get the array of options for the optionType
+              
+            if items.count == 2 {  // if this is a variable selection screen
+                  // the first element in items is the attribute name, and the second element is the extra label text
+                items = variableArray
+                attributeName = optionDictionary[optionType]?[0] ?? ""
+                optionalExtraLabel.text = optionDictionary[optionType]?[1] ?? ""
+                
+            } else {
+                // not a variable selection screen
+                attributeName = getAttributeName()
+                optionalExtraLabel.text = ""  // set the extra label to empty by default
+            }
         }
+        
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -131,7 +142,17 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         // Above code is from https://stackoverflow.com/questions/23647833/uicollectionviewcell-is-overlapped-when-scrolling
        
         // Create an image for the cell
-        let image = UIImage(named: items[index])
+        let image: UIImage?
+        if optionType == "Move to Actor" {
+            let actor = VirtualRobot.getActorFromUUID(actorUUID: items[index], inProject: currentProject!)
+            if actor == nil {
+                fatalError("Could not find match for actorUUID in project")
+                
+            }
+            image = UIImage(named: actor!.imagePath) ?? nil
+        } else {
+            image = UIImage(named: items[index]) ?? nil
+        }
         if image != nil && defaults.value(forKey: "showText") as! Int == 0 {
             // Show Icons is on and the image was found
             let resizedImage = resizeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize))  // resize the image to fit the button
@@ -263,6 +284,8 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         if let destination = segue.destination as? FreePlayWorkspaceViewController {
             // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = items[optionSelectedIndex] // Tell BlocksViewController which sound was selected
+            
+            print("set ", attributeName, " =", items[optionSelectedIndex])
               
             // TODO: make this come from the modifierProperties dictionary
             if attributeName == "lightColor" {
