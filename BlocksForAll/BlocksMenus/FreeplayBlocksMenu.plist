@@ -108,6 +108,20 @@
 				<key>isModifiable</key>
 				<true/>
 				<key>name</key>
+				<string>Move to Location</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>green_block</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>Slow.pdf</string>
+			</dict>
+			<dict>
+				<key>isModifiable</key>
+				<true/>
+				<key>name</key>
 				<string>Move Up</string>
 				<key>type</key>
 				<string>Statement</string>

@@ -317,5 +317,14 @@
 		<key>accessibilityHint</key>
 		<string>Double tap to choose actor to move to</string>
 	</dict>
+	<key>Move to Location</key>
+	<dict>
+		<key>attributeName</key>
+		<string>moveToLocation</string>
+		<key>default</key>
+		<string>50,50</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to choose location to move to</string>
+	</dict>
 </dict>
 </plist>

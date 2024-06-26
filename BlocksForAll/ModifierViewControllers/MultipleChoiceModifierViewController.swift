@@ -285,7 +285,6 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
             // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = items[optionSelectedIndex] // Tell BlocksViewController which sound was selected
             
-            print("set ", attributeName, " =", items[optionSelectedIndex])
               
             // TODO: make this come from the modifierProperties dictionary
             if attributeName == "lightColor" {

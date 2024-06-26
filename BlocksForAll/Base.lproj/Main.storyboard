@@ -691,11 +691,93 @@
                         <segue destination="YEE-PZ-SjD" kind="show" identifier="toMainMenu" id="OfV-so-xeL"/>
                         <segue destination="jJr-Hm-QsK" kind="show" identifier="toChooseActor" id="5Xz-1I-HDS"/>
                         <segue destination="9IQ-B3-7v1" kind="show" identifier="enterFullScreen" id="i4h-7s-vWn"/>
+                        <segue destination="mAr-FX-Q3Q" kind="show" identifier="SelectLocationModifier" id="jhw-iu-lck"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zMf-n1-Jxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1994.4444444444443" y="-1879.2592592592591"/>
+        </scene>
+        <!--Select Location Modifier View Controller-->
+        <scene sceneID="Yv6-AV-Q78">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="mAr-FX-Q3Q" customClass="SelectLocationModifierViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Zy-XP-l7v"/>
+                        <viewControllerLayoutGuide type="bottom" id="VDW-l3-eD0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pEF-rI-ep5">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTH-92-Kwk">
+                                <rect key="frame" x="20" y="28" width="220" height="195"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="T4N-XU-ibc"/>
+                                    <constraint firstAttribute="height" constant="195" id="ufI-uA-EbS"/>
+                                    <constraint firstAttribute="width" secondItem="lTH-92-Kwk" secondAttribute="height" multiplier="220:195" id="vvd-7R-mDm"/>
+                                </constraints>
+                                <state key="normal" title="Back" image="Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonPress:" destination="I6l-mr-M6V" eventType="touchUpInside" id="I0K-6s-GSN"/>
+                                    <action selector="backButtonPressed:" destination="mAr-FX-Q3Q" eventType="touchUpInside" id="pa0-Vz-NLw"/>
+                                    <action selector="backButtonPressed:" destination="jJr-Hm-QsK" eventType="touchUpInside" id="xo9-9E-RyW"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Move To Location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svw-UV-kJh">
+                                <rect key="frame" x="363" y="107" width="354" height="41"/>
+                                <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="880" placeholderIntrinsicHeight="512" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xlO-yQ-9YD">
+                                <rect key="frame" x="100" y="198" width="880" height="512"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="2" minimumInteritemSpacing="2" id="wlo-fc-irC">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="selectLocationCell" id="pDh-AA-QXU" customClass="LocationCollectionViewCell" customModule="BlocksForAll" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="5" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="S7s-pr-zTe">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xlO-yQ-9YD" firstAttribute="top" secondItem="svw-UV-kJh" secondAttribute="bottom" constant="50" id="KAL-Bp-c1q"/>
+                            <constraint firstItem="svw-UV-kJh" firstAttribute="centerY" secondItem="lTH-92-Kwk" secondAttribute="centerY" id="Ob5-IG-SOG"/>
+                            <constraint firstItem="xlO-yQ-9YD" firstAttribute="centerX" secondItem="pEF-rI-ep5" secondAttribute="centerX" id="QLZ-tZ-3MX"/>
+                            <constraint firstItem="svw-UV-kJh" firstAttribute="centerX" secondItem="pEF-rI-ep5" secondAttribute="centerX" id="TYK-uc-hWt"/>
+                            <constraint firstItem="lTH-92-Kwk" firstAttribute="top" secondItem="5Zy-XP-l7v" secondAttribute="bottom" constant="30" id="aYE-Op-27a"/>
+                            <constraint firstItem="svw-UV-kJh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lTH-92-Kwk" secondAttribute="trailing" constant="10" id="goJ-6q-8I1"/>
+                            <constraint firstItem="VDW-l3-eD0" firstAttribute="top" secondItem="xlO-yQ-9YD" secondAttribute="bottom" constant="100" id="mS7-ul-giF"/>
+                            <constraint firstItem="lTH-92-Kwk" firstAttribute="leading" secondItem="pEF-rI-ep5" secondAttribute="leading" constant="10" id="tM7-aL-fQI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="vgV-SW-jvh"/>
+                    <connections>
+                        <outlet property="backButton" destination="lTH-92-Kwk" id="Fhe-DK-VPw"/>
+                        <outlet property="collectionView" destination="xlO-yQ-9YD" id="A0T-0x-Me1"/>
+                        <outlet property="modifierTitleLabel" destination="svw-UV-kJh" id="YaN-d0-xY3"/>
+                        <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplay" id="pHs-aG-YCC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mfp-sX-LNq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1165" y="-2610"/>
         </scene>
         <!--Choose Actor View Controller-->
         <scene sceneID="2xw-sY-TZf">
@@ -2425,7 +2507,6 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="i4h-7s-vWn"/>
         <segue reference="yHo-Ic-oSY"/>
         <segue reference="rJ0-q9-MJC"/>
         <segue reference="lP2-dK-nFu"/>
@@ -2435,9 +2516,9 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="d7W-eK-Vpz"/>
         <segue reference="Ifr-Iv-956"/>
         <segue reference="sX9-WY-IIJ"/>
-        <segue reference="PIe-sL-Fqa"/>
+        <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="Cau-JZ-Dok"/>
+        <segue reference="pHs-aG-YCC"/>
         <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>

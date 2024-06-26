@@ -142,7 +142,6 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             
             
             
-            print("new index = ", index, " projects.count = ", projects.count)
             let project = projects[index - 1] // shift index over 1 because index 0 is the add project cell
             cell.project = project
             cell.parentViewController = self

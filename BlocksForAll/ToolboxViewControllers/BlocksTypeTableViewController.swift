@@ -88,7 +88,6 @@ class BlocksTypeTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       print("will appear")
         if isInFreeplay {
             self.navigationController?.isNavigationBarHidden = true
         } else {

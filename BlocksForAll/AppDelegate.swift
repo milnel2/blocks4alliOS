@@ -88,6 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var actorNamePart = true
         var actorImageNamePart = true
+        var actorUUIDPart = true
         var actorXPart = true
         var actorYPart = true
         
@@ -154,11 +155,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         //for every new actor set these to true again so that the new actor will be named
                         actorNamePart = true
                         actorImageNamePart = true
+                        actorUUIDPart = true
                         actorXPart = true
                         actorYPart = true
                         
                         var actorName = String()
                         var actorImageName = String()
+                        var actorUUID = String()
                         var actorX = CGFloat()
                         var actorY = CGFloat()
                         
@@ -168,12 +171,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         // the first element of functionStrings will have the project image and name data
                         for line in functionStrings[0].components(separatedBy: "\n") {
-                            if !actorNamePart && actorImageNamePart && actorXPart && actorYPart{
+                            if !actorNamePart && actorImageNamePart && actorUUIDPart && actorXPart && actorYPart{
                                 actorImageNamePart = false
                                 actorImageName = line
-                            } else if !actorNamePart && !actorImageNamePart && actorXPart && actorYPart{
+                            } else if !actorNamePart && !actorImageNamePart && actorUUIDPart && actorXPart && actorYPart {
+                                actorUUIDPart = false
+                                actorUUID = line
+                            } else if !actorNamePart && !actorImageNamePart && !actorUUIDPart && actorXPart && actorYPart{
                                 actorXPart = false
-                                
                                 // Converting string to CGFloat is from Michael McGuire's answer on https://stackoverflow.com/questions/27595799/convert-string-to-cgfloat-in-swift
                                 if let doubleValue = Double(line) {
                                     actorX = CGFloat(doubleValue)
@@ -182,7 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     actorX = 100
                                 }
                     
-                            } else if !actorNamePart && !actorImageNamePart && !actorXPart && actorYPart{
+                            } else if !actorNamePart && !actorImageNamePart && !actorUUIDPart && !actorXPart && actorYPart{
                                 actorYPart = false
                                 
                                 // Converting string to CGFloat is from Michael McGuire's answer on https://stackoverflow.com/questions/27595799/convert-string-to-cgfloat-in-swift
@@ -192,7 +197,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     print("Error: couldn't parse actorY coordinate when loading")
                                     actorY = 100
                                 }
-                            } else if actorNamePart && actorImageNamePart && actorXPart && actorYPart {
+                            } else if actorNamePart && actorImageNamePart && actorUUIDPart && actorXPart && actorYPart {
                                 actorNamePart = false
                                 actorName = line
                             } else {
@@ -200,7 +205,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                         
-                        let robot = VirtualRobot(imagePath: actorImageName, name: actorName, coordinates: (x: actorX, y: actorY), project: nil)
+                        
+                        let robot = VirtualRobot(imagePath: actorImageName, name: actorName, coordinates: (x: actorX, y: actorY), project: nil, uuid: actorUUID)
                         
                         for functionString in functionStrings[1...] {
                             if functionString == "" {
@@ -396,6 +402,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     writeText.append(actor.name)
                     writeText.append("\n")
                     writeText.append(actor.imagePath)
+                    writeText.append("\n")
+                    writeText.append(actor.UUID)
                     writeText.append("\n")
                     writeText.append("\(actor.coordinates.x)")
                     writeText.append("\n")

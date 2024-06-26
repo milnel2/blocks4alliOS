@@ -194,7 +194,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     //TODO: make sure image names are unique and get deleted when projects are deleted
     func generateImageName() -> String {
-        return String("Freeplay" + currentProject!.name + ".png")
+        return String(galleryType + currentProject!.name + ".png")
     }
     
     /// Main Workspace Segue
@@ -561,10 +561,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// Returns true if the given workspace name is a custom function and false if it is a premade workspace like "Main Workspace" or "On Run"
     func isWorkspaceCustomFunction(name: String) -> Bool {
         if (PREMADE_FUNCTION_NAMES.contains(name)) {
-            print(name, "is a premade function")
             return false
         }
-        print(name, "is a custom function")
         return true
     }
     
@@ -741,7 +739,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             } else {
                 switch name {
                     // block exists but is a non-modifier block
-                case "End If", "End Repeat", "End Repeat Forever", "Repeat Forever", "Look Forward", "Look Toward Voice", "Look Right", "Look Left", "Look Straight", "Look Down", "Look Up", "Wiggle", "Nod", "Spiral Light", "Move to Origin", "Move to Actor", "\(ON_RUN_STRING) Start", "\(ON_BUMP_STRING) Start", "\(ON_TAP_STRING) Start":
+                case "End If", "End Repeat", "End Repeat Forever", "Repeat Forever", "Look Forward", "Look Toward Voice", "Look Right", "Look Left", "Look Straight", "Look Down", "Look Up", "Wiggle", "Nod", "Spiral Light", "Move to Origin", "\(ON_RUN_STRING) Start", "\(ON_BUMP_STRING) Start", "\(ON_TAP_STRING) Start":
        
                     let blockView = BlockView(frame: CGRect(x: 0, y: startingHeight-count*(blockSize/2+blockSpacing), width: blockSize, height: blockSize),  block: [block],  myBlockSize: blockSize)
                     
@@ -1209,6 +1207,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             return #selector(angleModifier(sender:))
         case "Move to Actor":
             return #selector(multipleChoiceModifier(sender:))
+        case "Move to Location":
+            return #selector(selectLocationModifier(sender:))
+        case "Set Location":
+            return #selector(selectLocationModifier(sender:))
         default:
             print("Modifier Selector for \(name) could not be found. Check switch statement in getModifierSelector() method.")
             return nil
@@ -1251,6 +1253,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @objc func multipleChoiceModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "MultipleChoiceModifier", sender: nil)
+    }
+    
+    @objc func selectLocationModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "SelectLocationModifier", sender: nil)
     }
     
     @objc func distanceSpeedModifier(sender: UIButton!) {
@@ -1341,6 +1348,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         // Segue to Add Robot Screen
         if  let destinationViewController = segue.destination as? AddRobotViewController {
             destinationViewController.currentProject = currentProject
+        }
+        
+        // Segue to Location Selection Screen
+        if let destinationViewController = segue.destination as? SelectLocationModifierViewController {
+            destinationViewController.currentProject = currentProject
+            destinationViewController.outputView = currentProject!.currentActor!.freeplayOutputView
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }
 }

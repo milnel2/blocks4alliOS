@@ -618,6 +618,12 @@ class ExecutingProgram {
         case "Move to Actor":
             print("Move to Actor")
             moveToActor(moveBlock: blockToExec)
+        case "Move to Location":
+            print("Move to Location")
+            moveToLocation(moveBlock: blockToExec)
+        case "Set Location":
+            print("Set Location")
+            moveToLocation(moveBlock: blockToExec)
         case "\(ON_RUN_STRING) Start":
             print("OnRun Start")
             finishCommand()
@@ -886,6 +892,11 @@ class ExecutingProgram {
         
         
         currentActor!.moveToActor(actorUUID: actorUUID, executingProgram: self)
+    }
+    
+    func moveToLocation(moveBlock: Block) {
+        let coordinateString = moveBlock.addedBlocks[0].attributes["moveToLocation"] ?? ""
+        currentActor!.moveToLocation(coordinateString: coordinateString, executingProgram: self)
     }
     
     
