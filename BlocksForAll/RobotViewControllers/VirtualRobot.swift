@@ -39,7 +39,7 @@ class VirtualRobot: Equatable {
     var horizontalDistanceMultiplier = 1.0
    
     
-    init(imagePath: String, freeplayOutputView: FreeplayOutputView, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?) {
+    init(imagePath: String, freeplayOutputView: FreeplayOutputView, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil) {
         
         
         self.imagePath = imagePath
@@ -49,7 +49,7 @@ class VirtualRobot: Equatable {
         self.name = name
         self.coordinates = coordinates
         self.functionDict = [:]
-        self.UUID = Foundation.UUID().uuidString
+        self.UUID = uuid ?? Foundation.UUID().uuidString
         
         
         
@@ -68,7 +68,7 @@ class VirtualRobot: Equatable {
         
     }
     
-    init(imagePath: String, name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?) {
+    init(imagePath: String, name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil) {
         
         self.imagePath = imagePath
         self.freeplayOutputView = nil
@@ -76,7 +76,7 @@ class VirtualRobot: Equatable {
         self.name = name
         self.coordinates = coordinates
         
-        self.UUID = Foundation.UUID().uuidString
+        self.UUID = uuid ?? Foundation.UUID().uuidString
         
         self.functionDict = [:]
         
@@ -161,6 +161,33 @@ class VirtualRobot: Equatable {
             executingProgram.finishCommand(withDuration: animationDuration)
         }
        
+    }
+    
+    func moveToLocation(coordinateString: String, executingProgram: ExecutingProgram) {
+        let (x, y) = parseCoordinateString(coordinateString: coordinateString)
+        
+        print("(\(x),\(y))")
+        print(horizontalDistanceMultiplier)
+        let horizontalDistance = abs(coordinates.x - x) * horizontalDistanceMultiplier
+        let verticalDistance = abs(coordinates.y - y) * verticalDistanceMultiplier
+        
+        let distance = sqrt(pow(horizontalDistance, 2) + pow(verticalDistance, 2)) // pythagorean theorem
+        
+        let animationDuration = distance / movementAnimationSpeed
+         
+        animatedMoveToCoordinates(x: x, y: y, duration: animationDuration)
+            
+        executingProgram.finishCommand(withDuration: animationDuration)
+        
+        
+    }
+    
+    func parseCoordinateString(coordinateString: String) -> (x: CGFloat, y: CGFloat) {
+        let values = coordinateString.split(separator: ",")
+       
+        let x = Int(values[0]) ?? 0
+        let y = Int(values[1]) ?? 0
+        return (x: CGFloat(x), y: CGFloat(y))
     }
 
 
