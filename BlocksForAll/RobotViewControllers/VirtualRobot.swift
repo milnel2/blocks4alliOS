@@ -166,16 +166,18 @@ class VirtualRobot: Equatable {
     func moveToLocation(coordinateString: String, executingProgram: ExecutingProgram) {
         let (x, y) = parseCoordinateString(coordinateString: coordinateString)
         
-        print("(\(x),\(y))")
-        print(horizontalDistanceMultiplier)
-        let horizontalDistance = abs(coordinates.x - x) * horizontalDistanceMultiplier
-        let verticalDistance = abs(coordinates.y - y) * verticalDistanceMultiplier
+        // adjust coordinates for full screen if needed
+        let adjustedX = x * horizontalDistanceMultiplier
+        let adjustedY = y * verticalDistanceMultiplier
+
+        let horizontalDistance = coordinates.x - adjustedX
+        let verticalDistance = coordinates.y - adjustedY
         
         let distance = sqrt(pow(horizontalDistance, 2) + pow(verticalDistance, 2)) // pythagorean theorem
         
         let animationDuration = distance / movementAnimationSpeed
          
-        animatedMoveToCoordinates(x: x, y: y, duration: animationDuration)
+        animatedMoveToCoordinates(x: adjustedX, y: adjustedY, duration: animationDuration)
             
         executingProgram.finishCommand(withDuration: animationDuration)
         
@@ -355,6 +357,8 @@ class VirtualRobot: Equatable {
     }
     
     
+    
+    
     public func setCoordinates(x: CGFloat, y: CGFloat) {
         //print("setting coords to x = ", x, " y = ", y)
         if x == -10 && y == -10 {
@@ -375,7 +379,7 @@ class VirtualRobot: Equatable {
     
     func animatedMoveToCoordinates(x: CGFloat, y: CGFloat, duration: TimeInterval, delay: TimeInterval = 0) {
         // Animating while still being able to recognize being tapped is from Matt's answer on https://stackoverflow.com/questions/57032194/tapping-a-uiimage-while-its-being-animated
-        let anim = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .easeInOut))
+        let anim = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .linear))
            anim.addAnimations {
                self.imageView.center.x = x
                self.imageView.center.y = y
