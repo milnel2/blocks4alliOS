@@ -9,7 +9,7 @@
 import Foundation
 import AVFAudio
 
-let movementAnimationSpeed: CGFloat = 50 // The bigger the number, the faster the animation
+
 
 class VirtualRobot: Equatable {
     static func == (lhs: VirtualRobot, rhs: VirtualRobot) -> Bool {
@@ -37,7 +37,14 @@ class VirtualRobot: Equatable {
     // used during full screen
     var verticalDistanceMultiplier = 1.0
     var horizontalDistanceMultiplier = 1.0
-   
+    
+    let reallySlowAnimSpeed: CGFloat = 15
+    let slowAnimSpeed: CGFloat = 30
+    let normalAnimationSpeed: CGFloat = 60
+    let fastAnimSpeed: CGFloat = 100
+    let reallyFastAnimSpeed: CGFloat = 170
+    var movementAnimationSpeed: CGFloat = 50 // The bigger the number, the faster the animation
+    
     
     init(imagePath: String, freeplayOutputView: FreeplayOutputView, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil) {
         
@@ -86,6 +93,24 @@ class VirtualRobot: Equatable {
         }
         imageView = UIImageView(image: UIImage(named: imagePath))
         functionDict = createFunctionDict()
+    }
+    
+    public func setActorSpeedByName(speedName: String) {
+        print("setting \(name) speed to \(speedName)")
+        switch speedName {
+        case "Really Slow":
+            movementAnimationSpeed = reallySlowAnimSpeed
+        case "Slow":
+            movementAnimationSpeed = slowAnimSpeed
+        case "Normal":
+            movementAnimationSpeed = normalAnimationSpeed
+        case "Fast":
+            movementAnimationSpeed = fastAnimSpeed
+        case "Really Fast":
+            movementAnimationSpeed = reallyFastAnimSpeed
+        default:
+            movementAnimationSpeed = normalAnimationSpeed
+        }
     }
     
     public func setActorSize(size: CGFloat) {

@@ -1211,6 +1211,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             return #selector(selectLocationModifier(sender:))
         case "Set Location":
             return #selector(selectLocationModifier(sender:))
+        case "Set Speed":
+            return #selector(selectSpeedModifier(sender:))
         default:
             print("Modifier Selector for \(name) could not be found. Check switch statement in getModifierSelector() method.")
             return nil
@@ -1258,6 +1260,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @objc func selectLocationModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "SelectLocationModifier", sender: nil)
+    }
+    
+    @objc func selectSpeedModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "SelectSpeedModifier", sender: nil)
     }
     
     @objc func distanceSpeedModifier(sender: UIButton!) {
@@ -1355,6 +1362,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             destinationViewController.currentProject = currentProject
             destinationViewController.outputView = currentProject!.currentActor!.freeplayOutputView
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to Speed Modifier Screen
+        if let destinationViewController = segue.destination as? SpeedModViewController {
+            destinationViewController.currentProject = currentProject
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+            destinationViewController.parentVC = segue.source
         }
     }
 }

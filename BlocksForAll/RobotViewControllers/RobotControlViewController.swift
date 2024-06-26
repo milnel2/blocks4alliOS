@@ -624,6 +624,9 @@ class ExecutingProgram {
         case "Set Location":
             print("Set Location")
             moveToLocation(moveBlock: blockToExec)
+        case "Set Speed":
+            print("Set speed")
+            setSpeed(speedBlock: blockToExec)
         case "\(ON_RUN_STRING) Start":
             print("OnRun Start")
             finishCommand()
@@ -897,6 +900,12 @@ class ExecutingProgram {
     func moveToLocation(moveBlock: Block) {
         let coordinateString = moveBlock.addedBlocks[0].attributes["moveToLocation"] ?? ""
         currentActor!.moveToLocation(coordinateString: coordinateString, executingProgram: self)
+    }
+    
+    func setSpeed(speedBlock: Block) {
+        let speed = speedBlock.addedBlocks[0].attributes["speed"] ?? "Normal"
+        currentActor!.setActorSpeedByName(speedName: speed)
+        finishCommand(withDuration: 0.5)
     }
     
     

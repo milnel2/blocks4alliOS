@@ -692,6 +692,7 @@
                         <segue destination="jJr-Hm-QsK" kind="show" identifier="toChooseActor" id="5Xz-1I-HDS"/>
                         <segue destination="9IQ-B3-7v1" kind="show" identifier="enterFullScreen" id="i4h-7s-vWn"/>
                         <segue destination="mAr-FX-Q3Q" kind="show" identifier="SelectLocationModifier" id="jhw-iu-lck"/>
+                        <segue destination="iOv-sF-LFv" kind="show" identifier="SelectSpeedModifier" id="fj4-yM-bnK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zMf-n1-Jxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2505,6 +2506,113 @@ For further information on Blocks4All, please visit our website. For further det
             </objects>
             <point key="canvasLocation" x="1017" y="247"/>
         </scene>
+        <!--Speed-->
+        <scene sceneID="cUI-xq-toa">
+            <objects>
+                <viewController title="Distance and Speed" modalPresentationStyle="fullScreen" id="iOv-sF-LFv" userLabel="Speed" customClass="SpeedModViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CrP-V7-FwN"/>
+                        <viewControllerLayoutGuide type="bottom" id="EfQ-UZ-WDd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wa5-3K-FK1">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77V-bf-zCH">
+                                <rect key="frame" x="40" y="30" width="220" height="195"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="fto-KT-Tlg"/>
+                                    <constraint firstAttribute="height" constant="195" id="mS8-iD-Zf6"/>
+                                </constraints>
+                                <state key="normal" image="Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonPress:" destination="iOv-sF-LFv" eventType="touchUpInside" id="YSi-fm-ZgM"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQq-rR-mYL">
+                                <rect key="frame" x="490" y="71" width="100" height="113"/>
+                                <accessibility key="accessibilityConfiguration" hint="How fast should the robot travel " label="Speed"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="5J7-5y-XYk"/>
+                                    <constraint firstAttribute="height" constant="113" id="HUQ-gZ-zV2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="hPL-99-rbM">
+                                <rect key="frame" x="285.5" y="308" width="509" height="194"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Normal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzV-C7-TQy">
+                                        <rect key="frame" x="0.0" y="0.0" width="509" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="5kc-mT-u5l"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="yVg-zI-cLk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Xpm-qe-ziF">
+                                        <rect key="frame" x="0.0" y="61" width="509" height="133"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHF-Ua-0iH">
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="133"/>
+                                                <accessibility key="accessibilityConfiguration" label="Slower"/>
+                                                <state key="normal" title=" " image="green_minus"/>
+                                                <connections>
+                                                    <action selector="slowButtonPressed:" destination="iOv-sF-LFv" eventType="touchUpInside" id="ue9-pJ-kYh"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Normal Icon" translatesAutoresizingMaskIntoConstraints="NO" id="alX-Sr-Zjd">
+                                                <rect key="frame" x="188" y="31.5" width="133" height="70"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moY-KE-bSO">
+                                                <rect key="frame" x="371" y="0.0" width="138" height="133"/>
+                                                <accessibility key="accessibilityConfiguration" label="Faster"/>
+                                                <state key="normal" title=" " image="green_plus"/>
+                                                <connections>
+                                                    <action selector="fastButtonPressed:" destination="iOv-sF-LFv" eventType="touchUpInside" id="yLo-XG-rQi"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Xpm-qe-ziF" firstAttribute="top" secondItem="lzV-C7-TQy" secondAttribute="bottom" constant="20" id="EVW-HF-jTo"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="77V-bf-zCH" firstAttribute="top" secondItem="CrP-V7-FwN" secondAttribute="bottom" constant="30" id="1ku-cV-7G3"/>
+                            <constraint firstItem="hPL-99-rbM" firstAttribute="centerY" secondItem="Wa5-3K-FK1" secondAttribute="centerY" id="1xu-mr-FhX"/>
+                            <constraint firstItem="bQq-rR-mYL" firstAttribute="centerX" secondItem="Wa5-3K-FK1" secondAttribute="centerX" id="8GP-ru-9mZ"/>
+                            <constraint firstItem="hPL-99-rbM" firstAttribute="centerX" secondItem="Wa5-3K-FK1" secondAttribute="centerX" id="SHl-8N-tq5"/>
+                            <constraint firstItem="Xpm-qe-ziF" firstAttribute="centerX" secondItem="Wa5-3K-FK1" secondAttribute="centerX" id="ksw-VP-5rH"/>
+                            <constraint firstItem="77V-bf-zCH" firstAttribute="leading" secondItem="Wa5-3K-FK1" secondAttribute="leadingMargin" constant="20" id="wIe-PI-c7Q"/>
+                            <constraint firstItem="bQq-rR-mYL" firstAttribute="centerY" secondItem="77V-bf-zCH" secondAttribute="centerY" id="zna-K4-Sd0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="wDA-dV-nTX"/>
+                    <connections>
+                        <outlet property="back" destination="77V-bf-zCH" id="lay-ar-N22"/>
+                        <outlet property="fastButton" destination="moY-KE-bSO" id="ul2-lX-k5l"/>
+                        <outlet property="slowButton" destination="QHF-Ua-0iH" id="dJq-hn-xlt"/>
+                        <outlet property="speedImage" destination="alX-Sr-Zjd" id="0ti-5M-HQT"/>
+                        <outlet property="speedLabel" destination="lzV-C7-TQy" id="WEW-yn-8Rd"/>
+                        <outlet property="speedTitle" destination="bQq-rR-mYL" id="nZ1-6F-gWG"/>
+                        <outlet property="speedView" destination="Wa5-3K-FK1" id="6lg-1k-GIC"/>
+                        <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplay" id="9V0-0V-AdS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xSP-zu-sVj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1017" y="1781"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="yHo-Ic-oSY"/>
@@ -2515,10 +2623,10 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="g0f-Hs-dMn"/>
         <segue reference="d7W-eK-Vpz"/>
         <segue reference="Ifr-Iv-956"/>
-        <segue reference="sX9-WY-IIJ"/>
+        <segue reference="PeY-2D-SzX"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="pHs-aG-YCC"/>
+        <segue reference="9V0-0V-AdS"/>
         <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>

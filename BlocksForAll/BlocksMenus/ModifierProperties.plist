@@ -326,5 +326,14 @@
 		<key>accessibilityHint</key>
 		<string>Double tap to choose location to move to</string>
 	</dict>
+	<key>Set Speed</key>
+	<dict>
+		<key>attributeName</key>
+		<string>speed</string>
+		<key>default</key>
+		<string>Normal</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to adjust speed</string>
+	</dict>
 </dict>
 </plist>
