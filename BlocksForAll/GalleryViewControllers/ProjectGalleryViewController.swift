@@ -160,9 +160,7 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             
             let imageSizeScale = 0.75
             
-            let heightConstraint = NSLayoutConstraint(item: cell.imageView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellHeight * imageSizeScale) // Height of image view = cell height * imageSizeScale
-            let widthConstraint = NSLayoutConstraint(item: cell.imageView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: cellWidth * imageSizeScale) // Height of image view = cell width * imageSizeScale
-            //NSLayoutConstraint.activate([widthConstraint, heightConstraint])
+           
             
             updateAccessibilityTools()
             return cell

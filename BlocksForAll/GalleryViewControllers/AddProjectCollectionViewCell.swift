@@ -13,6 +13,7 @@ class AddProjectCollectionViewCell: UICollectionViewCell {
         isAccessibilityElement = false
         
         contentView.isAccessibilityElement = true
+        contentView.accessibilityTraits = .button
         accessibilityTraits = .allowsDirectInteraction
         
         // TODO: do we need to say double tap in our accessibility hints? Wouldn't VoiceOver users know to do that?

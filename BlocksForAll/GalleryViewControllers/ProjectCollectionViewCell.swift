@@ -75,6 +75,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         isAccessibilityElement = false
         
         contentView.isAccessibilityElement = true
+        contentView.accessibilityTraits = .button
         accessibilityTraits = .allowsDirectInteraction
         
         
@@ -85,9 +86,8 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         deleteButton.isAccessibilityElement = true
         
         
-        contentView.accessibilityHint = "Open " + project.name + " Project" // TODO: add image description
-        projectNameLabel.accessibilityHint = "Double tap to rename " + project.name + " Project"
-        deleteButton.accessibilityHint = "Delete " + project.name + " Project"
+        contentView.accessibilityHint = "Open " + project.name  // TODO: add image description
+        deleteButton.accessibilityHint = "Delete " + project.name
         
         accessibilityElements = [contentView, projectNameLabel!, deleteButton!]
         
