@@ -29,6 +29,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     @IBOutlet weak var secondCodeLineButton: UIButton!
     
+    @IBOutlet weak var buttonsView: UIView! // view that has play button, code lines, and customize acotor button
     var newActorToAdd: (name:String, imagePath: String)? // to be used when adding to actors
     // TODO: add custom backgrounds from camera roll
     override func viewDidLoad() {
@@ -54,6 +55,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         currentActorImageView.alpha = 0.3
         workspaceTitle.text = currentProject!.name
         workspaceTitle.layer.cornerRadius = 10.0 // TODO: corner radius isn't showing up
+        
         
         updateUI()
         

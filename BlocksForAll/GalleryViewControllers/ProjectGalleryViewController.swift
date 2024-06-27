@@ -133,8 +133,16 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
         if index == 0 {
             // Add Project Cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addProjectCell", for: indexPath) as! AddProjectCollectionViewCell
-            cell.backgroundColor = .red
+           
             cell.updateAccessibilityTools()
+            cell.layer.borderWidth = 5
+            
+            cell.layer.shadowColor = UIColor.gray.cgColor
+            cell.layer.shadowRadius = 2.0
+            cell.layer.cornerRadius = 10
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
+            cell.layer.shadowRadius = 2.0
             return cell
         } else {
             // Project Cell

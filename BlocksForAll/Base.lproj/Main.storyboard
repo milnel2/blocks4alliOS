@@ -43,7 +43,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="272" height="198"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="green_plus" translatesAutoresizingMaskIntoConstraints="NO" id="qbX-Dd-uV2">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addProjectButton" translatesAutoresizingMaskIntoConstraints="NO" id="qbX-Dd-uV2">
                                                     <rect key="frame" x="0.0" y="0.0" width="272" height="198"/>
                                                 </imageView>
                                             </subviews>
@@ -54,8 +54,11 @@
                                                 <constraint firstAttribute="trailing" secondItem="qbX-Dd-uV2" secondAttribute="trailing" id="nNl-aU-E4Z"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="underPageBackgroundColor"/>
                                         <size key="customSize" width="272" height="198"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="qbX-Dd-uV2" id="pBw-Ff-owH"/>
+                                        </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProjectsCell" id="dDB-N5-2lZ" customClass="ProjectCollectionViewCell" customModule="BlocksForAll" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="208" width="280" height="244"/>
@@ -64,10 +67,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="244"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKa-lW-FQf">
-                                                    <rect key="frame" x="198" y="0.0" width="73.5" height="34.5"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Delete"/>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKa-lW-FQf">
+                                                    <rect key="frame" x="245" y="5" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="ALP-hh-2Zc"/>
+                                                        <constraint firstAttribute="height" constant="30" id="zHk-Go-7Kq"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" backgroundImage="deleteProjectButton"/>
                                                     <connections>
                                                         <action selector="deleteButtonPressed:" destination="dDB-N5-2lZ" eventType="touchUpInside" id="ALd-yc-Ybq"/>
                                                     </connections>
@@ -93,8 +100,8 @@
                                                 <constraint firstItem="eaA-uL-9qc" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="03P-uX-pgj"/>
                                                 <constraint firstItem="1Ej-7V-1uz" firstAttribute="top" secondItem="eaA-uL-9qc" secondAttribute="bottom" constant="8" id="GDS-Kh-v73"/>
                                                 <constraint firstItem="1Ej-7V-1uz" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="GLg-LD-48C"/>
-                                                <constraint firstItem="tKa-lW-FQf" firstAttribute="top" secondItem="2mk-aQ-E3a" secondAttribute="top" id="JK6-wM-zHO"/>
-                                                <constraint firstAttribute="trailing" secondItem="tKa-lW-FQf" secondAttribute="trailing" constant="8.5" id="KB2-KL-xlB"/>
+                                                <constraint firstItem="tKa-lW-FQf" firstAttribute="top" secondItem="2mk-aQ-E3a" secondAttribute="top" constant="5" id="JK6-wM-zHO"/>
+                                                <constraint firstAttribute="trailing" secondItem="tKa-lW-FQf" secondAttribute="trailing" constant="5" id="KB2-KL-xlB"/>
                                                 <constraint firstItem="1Ej-7V-1uz" firstAttribute="leading" secondItem="2mk-aQ-E3a" secondAttribute="leading" constant="73" id="dA9-P3-5FN"/>
                                                 <constraint firstAttribute="bottom" secondItem="1Ej-7V-1uz" secondAttribute="bottom" constant="42" id="sqN-FR-bo0"/>
                                                 <constraint firstItem="eaA-uL-9qc" firstAttribute="top" secondItem="2mk-aQ-E3a" secondAttribute="top" constant="27" id="xZB-Lv-F3S"/>
@@ -655,6 +662,7 @@
                     <connections>
                         <outlet property="FirstCodeLineButton" destination="wdR-Mn-wHu" id="cXD-7S-ib6"/>
                         <outlet property="blocksProgram" destination="ei4-9x-SF4" id="TWu-jB-6iq"/>
+                        <outlet property="buttonsView" destination="7eY-hu-5K5" id="08Z-Fy-fgb"/>
                         <outlet property="currentActorImageView" destination="5xA-lS-fn9" id="uWr-sE-lwf"/>
                         <outlet property="enterFullScreenButton" destination="Xas-Fz-0Ml" id="tmb-hD-QS4"/>
                         <outlet property="freeplayOutputView" destination="kKQ-2P-KlV" id="7Yf-AU-3Q9"/>
@@ -2610,11 +2618,11 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="g0f-Hs-dMn"/>
         <segue reference="d7W-eK-Vpz"/>
         <segue reference="Ifr-Iv-956"/>
-        <segue reference="PeY-2D-SzX"/>
+        <segue reference="sX9-WY-IIJ"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="9V0-0V-AdS"/>
-        <segue reference="OfV-so-xeL"/>
+        <segue reference="a9q-34-jse"/>
+        <segue reference="2fL-ta-11H"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -2639,6 +2647,8 @@ For further information on Blocks4All, please visit our website. For further det
         <image name="Show_Text" width="1200" height="1200"/>
         <image name="Watermelon" width="133" height="133"/>
         <image name="WelcomeTitle" width="1627" height="139"/>
+        <image name="addProjectButton" width="133" height="133"/>
+        <image name="deleteProjectButton" width="116" height="116"/>
         <image name="green_minus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="green_plus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="orange_minus" width="133.44094848632812" height="133.44094848632812"/>
@@ -2664,13 +2674,16 @@ For further information on Blocks4All, please visit our website. For further det
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="underPageBackgroundColor">
+            <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -9,6 +9,7 @@
 import Foundation
 
 class AddProjectCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var imageView: UIImageView!
     func updateAccessibilityTools() {
         isAccessibilityElement = false
         
@@ -20,5 +21,9 @@ class AddProjectCollectionViewCell: UICollectionViewCell {
         contentView.accessibilityHint = "Add New Project"
         
         accessibilityElements = [contentView]
+        
+        imageView.layer.cornerRadius = 10.0
+        imageView.layer.masksToBounds = true
+        
     }
 }
