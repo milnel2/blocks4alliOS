@@ -57,6 +57,26 @@ class SelectLocationModifierViewController: UIViewController  {
         collectionView.addConstraint(NSLayoutConstraint(item: collectionView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: outputHeight))
         
         calculateCellSize()
+        
+        let centerCellIndex: Int
+        if numRows.truncatingRemainder(dividingBy: 2) != 0 {
+            centerCellIndex = Int((numRows * numCols - 1) / 2) // if there are an odd number of rows, just put it in the center
+        } else {
+            let rowToGoIn = Int(numRows / 2) - 1// go in the upper middle row
+            let colToGoIn = Int(ceil(numCols / 2)) - 1 // go in the middle column
+            centerCellIndex = (rowToGoIn * Int(numCols)) + colToGoIn
+        }
+        // Default option or preserve last selection
+        var previousOption = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["cellIndex"] ?? String(centerCellIndex)
+        
+        if previousOption == "-1" { // if value is -1, that means that it is doing the default, so set it to center cell index
+            optionSelectedIndex = centerCellIndex
+        } else {
+            optionSelectedIndex = Int(previousOption) ?? centerCellIndex
+        }
+       
+
+        
     }
     
     func calculateCellSize() {
@@ -74,6 +94,8 @@ class SelectLocationModifierViewController: UIViewController  {
         return String("\(x),\(y)")
     }
     
+   
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         // Going back to freeplay workspace
         if let destination = segue.destination as? FreePlayWorkspaceViewController {
@@ -82,7 +104,7 @@ class SelectLocationModifierViewController: UIViewController  {
             let coords = getCoordinatesFromCellIndex(index: optionSelectedIndex)
             print("setting coords: ", coords)
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["moveToLocation"] = coords
-          
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["cellIndex"] = String(optionSelectedIndex)
         }
     }
     
@@ -110,24 +132,40 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
             cell.backgroundColor = .lightGray
         }
         
+        if indexPath.item == optionSelectedIndex {
+            setCellHighlight(cell: cell, value: true)
+        } else {
+            setCellHighlight(cell: cell, value: false)
+        }
+        
         
         return cell
     }
     
+
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         for cell in collectionView.visibleCells{ // deselect all visible buttons
-            cell.isSelected = false
-            cell.layer.borderWidth = 0
+            setCellHighlight(cell: cell, value: false)
         }
         
         let selectedCell = collectionView.cellForItem(at: indexPath) // highlight the one selected button
-        selectedCell?.layer.borderWidth = 10
-        selectedCell?.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
-        selectedCell?.isSelected = true
+        setCellHighlight(cell: selectedCell!, value: true)
         
         optionSelectedIndex = indexPath.item
     }
     
+    func setCellHighlight(cell: UICollectionViewCell, value: Bool) {
+        if value == true{
+            cell.layer.borderWidth = 10
+            cell.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+            cell.isSelected = true
+        } else {
+            cell.isSelected = false
+            cell.layer.borderWidth = 0
+        }
+       
+    }
     
 }
 

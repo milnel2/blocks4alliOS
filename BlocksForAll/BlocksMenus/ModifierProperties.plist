@@ -322,9 +322,13 @@
 		<key>attributeName</key>
 		<string>moveToLocation</string>
 		<key>default</key>
-		<string>50,50</string>
+		<string>0,0</string>
 		<key>accessibilityHint</key>
 		<string>Double tap to choose location to move to</string>
+		<key>secondAttributeName</key>
+		<string>cellIndex</string>
+		<key>secondDefault</key>
+		<string>-1</string>
 	</dict>
 	<key>Set Speed</key>
 	<dict>
