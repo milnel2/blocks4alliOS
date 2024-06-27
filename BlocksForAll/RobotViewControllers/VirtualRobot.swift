@@ -193,7 +193,7 @@ class VirtualRobot: Equatable {
     }
     
     func moveToLocation(coordinateString: String, executingProgram: ExecutingProgram) {
-        let (x, y) = parseCoordinateString(coordinateString: coordinateString)
+        let (x, y) = VirtualRobot.parseCoordinateString(coordinateString: coordinateString)
         
         // adjust coordinates for full screen if needed
         let adjustedX = x * horizontalDistanceMultiplier
@@ -213,9 +213,8 @@ class VirtualRobot: Equatable {
         
     }
     
-    func parseCoordinateString(coordinateString: String) -> (x: CGFloat, y: CGFloat) {
+    public static func parseCoordinateString(coordinateString: String) -> (x: CGFloat, y: CGFloat) {
         let values = coordinateString.split(separator: ",")
-       
         let x = Int(values[0]) ?? 0
         let y = Int(values[1]) ?? 0
         return (x: CGFloat(x), y: CGFloat(y))

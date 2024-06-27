@@ -899,13 +899,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     //MARK: - Modifier Button Methods
     /// Use for modifier buttons. Calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values
-    func createModifierCustomButton() -> UIButton {
-        let tempButton = UIButton(frame: CGRect(
+    func createModifierCustomButton() -> ModifierButton {
+        let tempButton = ModifierButton(frame: CGRect(
             x: (blockSize / 11),
             y:startingHeight - ((blockSize / 5) * 4) - count * (blockSize  / 2 + blockSpacing),
             width: (blockSize / 7) * 6,
             height: (blockSize / 7) * 6))
         tempButton.layer.zPosition = 1
+        
         allModifierBlocks.append(tempButton)
         return tempButton
     }
@@ -935,6 +936,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
        
         var modifierInformation = placeHolderBlock.attributes[attributeName] ?? ""  // the current state of the block modifier - used for voiceOver
         let button = createModifierCustomButton() // set up button sizing and layering
+        button.block = placeHolderBlock
+        button.currentProject = currentProject
+        
         
         // modifiers for if and repeat blocks are a bit different than other blocks
 //        if name == "If" {
@@ -984,7 +988,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                     if image != nil {  // make sure that the image actually exists
                         button.setBackgroundImage(image, for: .normal)
-                    } else {
+                    } else if secondAttributeName != "cellIndex"{
                         print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
                         button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                     }
@@ -993,7 +997,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     image = UIImage(named: "\(placeHolderBlock.attributes[attributeName] ?? defaultValue)Icon") // these special images are called (fruitName)Icon (ex. AppleIcon)
                     if image != nil {  // make sure that the image actually exists
                         button.setBackgroundImage(image, for: .normal)
-                    } else {
+                    } else if secondAttributeName != "cellIndex"{
                         print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
                         button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                     }

@@ -32,6 +32,7 @@
 		8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8D66032A3A43330086E14A /* ModifierProperties.plist */; };
 		8D954F592A4B2E9800F10A26 /* TwoOptionModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */; };
 		8DBF4A7F2A5DB5D20075429C /* DashMainMenuSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */; };
+		8DC0F0552C2DF6A10008F224 /* ModifierButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0F0542C2DF6A00008F224 /* ModifierButton.swift */; };
 		8DCBEA552A49F8A500A26043 /* StepperModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */; };
 		8DD0F84A2BFE7DD0005021EB /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD0F8492BFE7DD0005021EB /* Robot.swift */; };
 		8DE37B012C1A3C39006DB159 /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37B002C1A3C39006DB159 /* ProjectCollectionViewCell.swift */; };
@@ -110,6 +111,7 @@
 		8D8D66032A3A43330086E14A /* ModifierProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
 		8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoOptionModifierViewController.swift; sourceTree = "<group>"; };
 		8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DashMainMenuSound.mp3; sourceTree = "<group>"; };
+		8DC0F0542C2DF6A00008F224 /* ModifierButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierButton.swift; sourceTree = "<group>"; };
 		8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperModifierViewController.swift; sourceTree = "<group>"; };
 		8DD0F8492BFE7DD0005021EB /* Robot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
 		8DE37B002C1A3C39006DB159 /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				8DE37AFF2C1A3C24006DB159 /* GalleryViewControllers */,
 				F7CAF42923EE103400901E99 /* ModifierViewControllers */,
 				701A43861EC26EFD00314599 /* BlocksViewController.swift */,
+				8DC0F0542C2DF6A00008F224 /* ModifierButton.swift */,
 				F10F71681E65BFF50049F3AA /* Block.swift */,
 				F186EB871EE0D8B100C2FA4B /* BlockView.swift */,
 				F18FFFD21E65B4900090C4B6 /* BlockTableViewCell.swift */,
@@ -488,6 +491,7 @@
 				025AEB3E22BA9AEF004EB6AC /* SliderModifierController.swift in Sources */,
 				8DCBEA552A49F8A500A26043 /* StepperModifierViewController.swift in Sources */,
 				F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */,
+				8DC0F0552C2DF6A10008F224 /* ModifierButton.swift in Sources */,
 				8D412CA82C138E51005B736F /* FreeplayToolboxBlockType.swift in Sources */,
 				F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */,
 				8DE97FD52C29CFE4008661BB /* AddProjectCollectionViewCell.swift in Sources */,

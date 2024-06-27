@@ -71,7 +71,8 @@ class SelectedBlockViewController: UIViewController {
     
     //MARK: - Show modifier in moving block
     func createModifierButton() -> UIButton {
-        let modifierButton = UIButton(frame: CGRect(x: (blockSize / 7), y:(-blockSize * 8) / 9, width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+        let modifierButton = ModifierButton(frame: CGRect(x: (blockSize / 7), y:(-blockSize * 8) / 9, width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
+        
         
         let dict = getModifierDictionary() // holds properties of all modifier blocks
         let name = blocks![0].name
@@ -81,7 +82,13 @@ class SelectedBlockViewController: UIViewController {
             // renamed block.addedBlocks[0] for simplicity
             placeHolderBlock = blocks![0].addedBlocks[0]
             
+            modifierButton.block = placeHolderBlock
+            modifierButton.currentProject = currentProject
+            
+            
         }
+        
+       
         // the current state of the block modifier - used for voiceOver
         //TODO: should this be added back in?
         //        var modifierInformation = placeHolderBlock.attributes[attributeName] ?? nil
@@ -119,7 +126,7 @@ class SelectedBlockViewController: UIViewController {
                     }
                     if image != nil {  // make sure that the image actually exists
                         modifierButton.setBackgroundImage(image, for: .normal)
-                    } else {
+                    } else if secondAttributeName != "cellIndex"{
                         print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
                         modifierButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                     }

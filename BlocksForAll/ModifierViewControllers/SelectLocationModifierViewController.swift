@@ -8,6 +8,10 @@
 
 import Foundation
 
+public struct LocationConstants {
+    static let numRows = 4.0
+    static let numCols = 7.0
+}
 class SelectLocationModifierViewController: UIViewController  {
     
     let cellReuseIdentifier = "selectLocationCell"
@@ -33,11 +37,15 @@ class SelectLocationModifierViewController: UIViewController  {
     var cellWidth = 0.0
     var cellHeight = 0.0
     
-    let numRows = 4.0
-    var numCols = 7.0
+   
+    let numRows = LocationConstants.numRows
+    let numCols = LocationConstants.numCols
     
     var optionSelectedIndex = 0
     public var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
+    
+    
+    var visual = CGRect()
     
     override func viewDidLoad() {
         collectionView.delegate = self
@@ -58,14 +66,9 @@ class SelectLocationModifierViewController: UIViewController  {
         
         calculateCellSize()
         
-        let centerCellIndex: Int
-        if numRows.truncatingRemainder(dividingBy: 2) != 0 {
-            centerCellIndex = Int((numRows * numCols - 1) / 2) // if there are an odd number of rows, just put it in the center
-        } else {
-            let rowToGoIn = Int(numRows / 2) - 1// go in the upper middle row
-            let colToGoIn = Int(ceil(numCols / 2)) - 1 // go in the middle column
-            centerCellIndex = (rowToGoIn * Int(numCols)) + colToGoIn
-        }
+        
+        
+        let centerCellIndex = SelectLocationModifierViewController.calculateCenterCellIndex()
         // Default option or preserve last selection
         var previousOption = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["cellIndex"] ?? String(centerCellIndex)
         
@@ -74,9 +77,21 @@ class SelectLocationModifierViewController: UIViewController  {
         } else {
             optionSelectedIndex = Int(previousOption) ?? centerCellIndex
         }
-       
-
-        
+               
+    }
+    
+    public static func calculateCenterCellIndex() -> Int{
+        let centerCellIndex: Int
+        let numRows = LocationConstants.numRows
+        let numCols = LocationConstants.numCols
+        if numRows.truncatingRemainder(dividingBy: 2) != 0 {
+            centerCellIndex = Int((numRows * numCols - 1) / 2) // if there are an odd number of rows, just put it in the center
+        } else {
+            let rowToGoIn = Int(numRows / 2) - 1// go in the upper middle row
+            let colToGoIn = Int(ceil(numCols / 2)) - 1 // go in the middle column
+            centerCellIndex = (rowToGoIn * Int(numCols)) + colToGoIn
+        }
+        return centerCellIndex
     }
     
     func calculateCellSize() {
@@ -108,6 +123,7 @@ class SelectLocationModifierViewController: UIViewController  {
         }
     }
     
+   
 }
 
 extension SelectLocationModifierViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
@@ -153,6 +169,7 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
         setCellHighlight(cell: selectedCell!, value: true)
         
         optionSelectedIndex = indexPath.item
+        
     }
     
     func setCellHighlight(cell: UICollectionViewCell, value: Bool) {
@@ -160,6 +177,7 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
             cell.layer.borderWidth = 10
             cell.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
             cell.isSelected = true
+            // TODO: add red X in the middle of the cell
         } else {
             cell.isSelected = false
             cell.layer.borderWidth = 0
