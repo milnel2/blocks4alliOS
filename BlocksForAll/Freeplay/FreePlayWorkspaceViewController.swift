@@ -26,10 +26,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     @IBOutlet weak var enterFullScreenButton: UIButton!
     @IBOutlet weak var FirstCodeLineButton: UIButton!
     
-    @IBOutlet weak var SecondCodeLineButton: UIButton!
     
-    
-    @IBOutlet weak var thirdCodeLineButton: UIButton!
+    @IBOutlet weak var secondCodeLineButton: UIButton!
     
     var newActorToAdd: (name:String, imagePath: String)? // to be used when adding to actors
     // TODO: add custom backgrounds from camera roll
@@ -127,17 +125,14 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         self.currentActorImageView.image = newImage
         // reset button colors
         FirstCodeLineButton.backgroundColor = .clear
-        SecondCodeLineButton.backgroundColor = .clear
-        thirdCodeLineButton.backgroundColor = .clear
+        secondCodeLineButton.backgroundColor = .clear
         
         // highlight the active code line button
         switch currentWorkspace {
         case ON_RUN_STRING:
             FirstCodeLineButton.backgroundColor = .lightGray
-        case ON_BUMP_STRING:
-            SecondCodeLineButton.backgroundColor = .lightGray
         case ON_TAP_STRING:
-            thirdCodeLineButton.backgroundColor = .lightGray
+            secondCodeLineButton.backgroundColor = .lightGray
         default:
             break
         }
@@ -202,11 +197,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         updateCurrentWorkspace(name: ON_RUN_STRING)
         updateUI()
     }
+
     @IBAction func secondCodeLinePressed(_ sender: Any) {
-        updateCurrentWorkspace(name: ON_BUMP_STRING)
-        updateUI()
-    }
-    @IBAction func thirdCodeLinePressed(_ sender: Any) {
         updateCurrentWorkspace(name: ON_TAP_STRING)
         updateUI()
     }

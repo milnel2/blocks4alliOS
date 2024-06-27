@@ -587,23 +587,15 @@
                                                             <action selector="firstCodeLinePressed:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="pDF-yt-QzG"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEN-wX-dnt" userLabel="2">
-                                                        <rect key="frame" x="186" y="77" width="34.5" height="35"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="2"/>
-                                                        <connections>
-                                                            <action selector="secondCodeLinePressed:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="Nsi-oc-K9j"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLG-Jt-TWo">
-                                                        <rect key="frame" x="186" y="143.5" width="34.5" height="34"/>
+                                                        <rect key="frame" x="186" y="100.5" width="34.5" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="34" id="YDx-64-kFi"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="3"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="2"/>
                                                         <connections>
-                                                            <action selector="thirdCodeLinePressed:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="oaU-mv-ZoF"/>
+                                                            <action selector="secondCodeLinePressed:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="oaU-mv-ZoF"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8m-L7-Ufr" userLabel="Play Button">
@@ -624,19 +616,15 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="5xA-lS-fn9" firstAttribute="top" secondItem="7eY-hu-5K5" secondAttribute="top" constant="32" id="240-tZ-s0G"/>
-                                                    <constraint firstItem="jLG-Jt-TWo" firstAttribute="trailing" secondItem="SEN-wX-dnt" secondAttribute="trailing" id="A0m-jF-LUK"/>
+                                                    <constraint firstItem="jLG-Jt-TWo" firstAttribute="centerX" secondItem="wdR-Mn-wHu" secondAttribute="centerX" id="3Ap-0f-bKb"/>
                                                     <constraint firstItem="5xA-lS-fn9" firstAttribute="centerX" secondItem="72F-Pt-5Tc" secondAttribute="centerX" id="C8z-xr-IUT"/>
                                                     <constraint firstItem="5xA-lS-fn9" firstAttribute="centerX" secondItem="7eY-hu-5K5" secondAttribute="centerX" id="MDd-b1-I6Z"/>
-                                                    <constraint firstItem="wdR-Mn-wHu" firstAttribute="centerX" secondItem="SEN-wX-dnt" secondAttribute="centerX" id="Pi7-bF-bxI"/>
-                                                    <constraint firstItem="jLG-Jt-TWo" firstAttribute="top" secondItem="SEN-wX-dnt" secondAttribute="bottom" constant="31.5" id="Qrj-kI-eOu"/>
-                                                    <constraint firstItem="N8m-L7-Ufr" firstAttribute="top" secondItem="jLG-Jt-TWo" secondAttribute="bottom" constant="40.5" id="Sn2-by-dMQ"/>
+                                                    <constraint firstItem="jLG-Jt-TWo" firstAttribute="top" secondItem="wdR-Mn-wHu" secondAttribute="bottom" constant="50" id="QGo-5O-mpw"/>
                                                     <constraint firstItem="N8m-L7-Ufr" firstAttribute="centerX" secondItem="72F-Pt-5Tc" secondAttribute="centerX" id="W25-rP-y7I"/>
                                                     <constraint firstAttribute="width" secondItem="5xA-lS-fn9" secondAttribute="width" priority="900" id="ZKt-Jy-m55"/>
-                                                    <constraint firstItem="SEN-wX-dnt" firstAttribute="centerY" secondItem="5xA-lS-fn9" secondAttribute="centerY" id="a8P-wV-l2M"/>
-                                                    <constraint firstItem="SEN-wX-dnt" firstAttribute="top" secondItem="wdR-Mn-wHu" secondAttribute="bottom" constant="26.5" id="b5b-iz-3pa"/>
                                                     <constraint firstAttribute="trailing" secondItem="wdR-Mn-wHu" secondAttribute="trailing" id="c5J-w1-5fb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jLG-Jt-TWo" secondAttribute="trailing" constant="-1.5" id="dM5-Au-TpN"/>
                                                     <constraint firstItem="N8m-L7-Ufr" firstAttribute="top" secondItem="5xA-lS-fn9" secondAttribute="bottom" constant="61" id="f1S-Zj-S6x"/>
-                                                    <constraint firstItem="jLG-Jt-TWo" firstAttribute="centerX" secondItem="SEN-wX-dnt" secondAttribute="centerX" id="gjf-zQ-Nbs"/>
                                                     <constraint firstItem="wdR-Mn-wHu" firstAttribute="top" secondItem="7eY-hu-5K5" secondAttribute="top" constant="16" id="kKK-9y-Szi"/>
                                                     <constraint firstItem="N8m-L7-Ufr" firstAttribute="top" secondItem="72F-Pt-5Tc" secondAttribute="bottom" constant="30.5" id="war-jt-Tbg"/>
                                                 </constraints>
@@ -666,7 +654,6 @@
                     <navigationItem key="navigationItem" id="JPt-7e-AZh"/>
                     <connections>
                         <outlet property="FirstCodeLineButton" destination="wdR-Mn-wHu" id="cXD-7S-ib6"/>
-                        <outlet property="SecondCodeLineButton" destination="SEN-wX-dnt" id="P05-zd-3yu"/>
                         <outlet property="blocksProgram" destination="ei4-9x-SF4" id="TWu-jB-6iq"/>
                         <outlet property="currentActorImageView" destination="5xA-lS-fn9" id="uWr-sE-lwf"/>
                         <outlet property="enterFullScreenButton" destination="Xas-Fz-0Ml" id="tmb-hD-QS4"/>
@@ -677,7 +664,7 @@
                         <outlet property="mainWorkspaceButton" destination="R10-4x-ECs" id="Hx9-Ps-yHS"/>
                         <outlet property="outputBackgroundImageView" destination="sz8-Xi-Sni" id="Ssu-09-1gv"/>
                         <outlet property="playTrashToggleButton" destination="N8m-L7-Ufr" id="3ux-a2-cIE"/>
-                        <outlet property="thirdCodeLineButton" destination="jLG-Jt-TWo" id="rBy-Yk-bMY"/>
+                        <outlet property="secondCodeLineButton" destination="jLG-Jt-TWo" id="rBy-Yk-bMY"/>
                         <outlet property="toolboxView" destination="xWd-TO-AEv" id="K2L-Ws-Olt"/>
                         <outlet property="workspaceContainerView" destination="aV3-yC-Sxx" id="rAT-Gb-aCG"/>
                         <outlet property="workspaceTitle" destination="KI8-EN-GKe" id="bIL-fd-Omn"/>
