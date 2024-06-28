@@ -319,11 +319,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K98-93-S6m" userLabel="OutputView" customClass="FreeplayOutputView" customModule="BlocksForAll" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="eDy-oZ-sc5">
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="eDy-oZ-sc5">
                                         <rect key="frame" x="0.0" y="-24" width="1080" height="834"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="animalNoiseColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="eDy-oZ-sc5" secondAttribute="bottom" id="SFT-D0-q8a"/>
                                     <constraint firstItem="eDy-oZ-sc5" firstAttribute="leading" secondItem="K98-93-S6m" secondAttribute="leading" id="Vd4-WQ-jqZ"/>
@@ -451,11 +451,11 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kKQ-2P-KlV" userLabel="OutputView" customClass="FreeplayOutputView" customModule="BlocksForAll" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="613" height="405"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="sz8-Xi-Sni">
+                                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="sz8-Xi-Sni">
                                                                 <rect key="frame" x="0.0" y="0.0" width="613" height="405"/>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" name="animalNoiseColor"/>
                                                         <constraints>
                                                             <constraint firstItem="sz8-Xi-Sni" firstAttribute="leading" secondItem="kKQ-2P-KlV" secondAttribute="leading" id="6Gz-nE-XcX"/>
                                                             <constraint firstAttribute="bottom" secondItem="sz8-Xi-Sni" secondAttribute="bottom" id="Iza-st-oom"/>
@@ -2618,8 +2618,8 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="sX9-WY-IIJ"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="a9q-34-jse"/>
-        <segue reference="2fL-ta-11H"/>
+        <segue reference="Cau-JZ-Dok"/>
+        <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -2652,6 +2652,9 @@ For further information on Blocks4All, please visit our website. For further det
         <image name="orange_plus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="purple_minus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="purple_plus" width="133.44094848632812" height="133.44094848632812"/>
+        <namedColor name="animalNoiseColor">
+            <color red="0.85900002717971802" green="0.94900000095367432" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="blue_block">
             <color red="0.56499999761581421" green="0.84299999475479126" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
