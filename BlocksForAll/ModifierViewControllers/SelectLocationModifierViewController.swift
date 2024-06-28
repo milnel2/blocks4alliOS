@@ -144,10 +144,12 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
         
         if index % 2 == 0 { // make a checkered pattern of cells
             cell.backgroundColor = .white
+           
         } else {
             cell.backgroundColor = .lightGray
         }
         
+        cell.backgroundColor = cell.backgroundColor!.withAlphaComponent(0.7) // make cell slightly transparent so you can see the background behind it
         if indexPath.item == optionSelectedIndex {
             setCellHighlight(cell: cell, value: true)
         } else {
