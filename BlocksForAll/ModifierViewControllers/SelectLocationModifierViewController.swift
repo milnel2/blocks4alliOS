@@ -149,7 +149,7 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
             cell.backgroundColor = .lightGray
         }
         
-        cell.backgroundColor = cell.backgroundColor!.withAlphaComponent(0.7) // make cell slightly transparent so you can see the background behind it
+        cell.backgroundColor = cell.backgroundColor!.withAlphaComponent(0.7) // make cell slightly transparent so you can see the background behind it // TODO: change so that the collectionView has a background image instead of just background color
         if indexPath.item == optionSelectedIndex {
             setCellHighlight(cell: cell, value: true)
         } else {
