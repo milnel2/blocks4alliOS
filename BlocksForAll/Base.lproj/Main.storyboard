@@ -1712,7 +1712,7 @@ For further information on Blocks4All, please visit our website. For further det
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52s-Ei-stU">
-                                <rect key="frame" x="857.5" y="332" width="145.5" height="146"/>
+                                <rect key="frame" x="857.5" y="354" width="145.5" height="124"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1754,8 +1754,8 @@ For further information on Blocks4All, please visit our website. For further det
                             <constraint firstItem="52s-Ei-stU" firstAttribute="leading" secondItem="HuR-8Y-sXT" secondAttribute="trailing" constant="8" symbolic="YES" id="Wf5-3O-N28"/>
                             <constraint firstItem="HuR-8Y-sXT" firstAttribute="centerX" secondItem="0me-MT-hwN" secondAttribute="centerX" id="WuE-FK-ZY1"/>
                             <constraint firstItem="vPI-lo-vAq" firstAttribute="top" secondItem="pSJ-xI-sbp" secondAttribute="bottom" constant="203" id="Zj2-sd-Xx8"/>
+                            <constraint firstItem="52s-Ei-stU" firstAttribute="centerY" secondItem="HuR-8Y-sXT" secondAttribute="centerY" id="qgl-MB-3cr"/>
                             <constraint firstItem="hik-92-oYa" firstAttribute="top" secondItem="HuR-8Y-sXT" secondAttribute="bottom" constant="379" id="uur-hL-C2L"/>
-                            <constraint firstItem="52s-Ei-stU" firstAttribute="centerY" secondItem="0me-MT-hwN" secondAttribute="centerY" id="x3E-y4-kcc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0Y8-Xp-wUV"/>
@@ -2618,10 +2618,10 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="g0f-Hs-dMn"/>
         <segue reference="d7W-eK-Vpz"/>
         <segue reference="Ifr-Iv-956"/>
-        <segue reference="sX9-WY-IIJ"/>
+        <segue reference="cfB-AU-Heg"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="a9q-34-jse"/>
+        <segue reference="ne4-yA-8MV"/>
         <segue reference="2fL-ta-11H"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
@@ -2674,13 +2674,13 @@ For further information on Blocks4All, please visit our website. For further det
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="underPageBackgroundColor">
             <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
