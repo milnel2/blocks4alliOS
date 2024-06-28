@@ -108,62 +108,6 @@
 				<key>isModifiable</key>
 				<true/>
 				<key>name</key>
-				<string>Set Speed</string>
-				<key>type</key>
-				<string>Statement</string>
-				<key>color</key>
-				<string>green_block</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>Fast.pdf</string>
-			</dict>
-			<dict>
-				<key>isModifiable</key>
-				<true/>
-				<key>name</key>
-				<string>Grow Actor</string>
-				<key>type</key>
-				<string>Statement</string>
-				<key>color</key>
-				<string>orange_block</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>orange_plus.pdf</string>
-			</dict>
-			<dict>
-				<key>isModifiable</key>
-				<true/>
-				<key>name</key>
-				<string>Shrink Actor</string>
-				<key>type</key>
-				<string>Statement</string>
-				<key>color</key>
-				<string>orange_block</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>orange_minus.pdf</string>
-			</dict>
-			<dict>
-				<key>isModifiable</key>
-				<true/>
-				<key>name</key>
-				<string>Move to Location</string>
-				<key>type</key>
-				<string>Statement</string>
-				<key>color</key>
-				<string>green_block</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>Slow.pdf</string>
-			</dict>
-			<dict>
-				<key>isModifiable</key>
-				<true/>
-				<key>name</key>
 				<string>Move Up</string>
 				<key>type</key>
 				<string>Statement</string>
@@ -246,17 +190,31 @@
 			</dict>
 			<dict>
 				<key>isModifiable</key>
-				<false/>
+				<true/>
+				<key>name</key>
+				<string>Grow Actor</string>
 				<key>type</key>
 				<string>Statement</string>
-				<key>name</key>
-				<string>Move to Origin</string>
 				<key>color</key>
 				<string>green_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>green_plus.pdf</string>
+				<string>grow_actor</string>
+			</dict>
+			<dict>
+				<key>isModifiable</key>
+				<true/>
+				<key>name</key>
+				<string>Shrink Actor</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>green_block</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>shrink_actor</string>
 			</dict>
 			<dict>
 				<key>isModifiable</key>
@@ -270,7 +228,35 @@
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>green_minus.pdf</string>
+				<string>move_to_actor</string>
+			</dict>
+			<dict>
+				<key>isModifiable</key>
+				<true/>
+				<key>name</key>
+				<string>Move to Location</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>green_block</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>move_to_location</string>
+			</dict>
+			<dict>
+				<key>isModifiable</key>
+				<false/>
+				<key>type</key>
+				<string>Statement</string>
+				<key>name</key>
+				<string>Move to Center</string>
+				<key>color</key>
+				<string>green_block</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>move_to_origin</string>
 			</dict>
 		</array>
 	</dict>
@@ -397,18 +383,18 @@
 		<key>Blocks</key>
 		<array>
 			<dict>
+				<key>isModifiable</key>
+				<true/>
+				<key>name</key>
+				<string>Set Speed</string>
 				<key>type</key>
 				<string>Statement</string>
-				<key>isModifiable</key>
-				<false/>
-				<key>name</key>
-				<string>Wiggle</string>
 				<key>color</key>
 				<string>red_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>wiggle.pdf</string>
+				<string>set_speed</string>
 			</dict>
 		</array>
 	</dict>

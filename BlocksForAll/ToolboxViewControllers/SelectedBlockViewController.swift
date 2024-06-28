@@ -82,13 +82,14 @@ class SelectedBlockViewController: UIViewController {
             // renamed block.addedBlocks[0] for simplicity
             placeHolderBlock = blocks![0].addedBlocks[0]
             
-            modifierButton.block = placeHolderBlock
-            modifierButton.currentProject = currentProject
             
+           
             
         }
         
-       
+        modifierButton.block = placeHolderBlock
+        modifierButton.currentProject = currentProject
+        
         // the current state of the block modifier - used for voiceOver
         //TODO: should this be added back in?
         //        var modifierInformation = placeHolderBlock.attributes[attributeName] ?? nil

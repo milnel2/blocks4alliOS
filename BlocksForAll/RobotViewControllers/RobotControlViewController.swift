@@ -612,8 +612,8 @@ class ExecutingProgram {
         case "Move Right":
             print("move right")
             playMove(moveBlock: blockToExec, xDirection: 1, yDirection: 0)
-        case "Move to Origin":
-            print("Move to origin")
+        case "Move to Center":
+            print("Move to center")
             moveToOrigin()
         case "Move to Actor":
             print("Move to Actor")

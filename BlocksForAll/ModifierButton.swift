@@ -19,7 +19,10 @@ class ModifierButton: UIButton {
     var rectWidth = 0.0
     override func draw(_ rect: CGRect) {
         if block != nil && currentProject != nil {
+            print(block!.name)
             if block!.name == "Move to Location" {
+                // TODO: text description of button
+                
                 let buttonHeight = frame.height
                 let buttonWidth = frame.width
                 
@@ -27,13 +30,23 @@ class ModifierButton: UIButton {
                 outputWidth = outputView.frame.width
                 outputHeight = outputView.frame.height
                 
+                let backgroundRect = CGRect(x: 0,y: 0, width: buttonWidth, height: buttonHeight)
+                let backgroundPath = UIBezierPath(roundedRect: backgroundRect, cornerRadius: 10)
+                
+                
+                let myUIColor = UIColor(named: "drive_modifier_color") ?? .gray
+                myUIColor.setFill()
+                backgroundPath.fill()
+                
                 let heightToWidthRatio: Double = outputHeight / outputWidth
                 
-                rectWidth = buttonWidth
+                rectWidth = buttonWidth - 10 // adds a tiny bit of padding so that the rectangle doesn't go right up to the edges
                 rectHeight = rectWidth * heightToWidthRatio
+                
+                let xCoord = (buttonWidth - rectWidth) / 2
                 let yCoord = (buttonHeight - rectHeight) / 2
                 
-                let rect = CGRect(x: 0, y: yCoord, width: rectWidth, height: rectHeight)
+                let rect = CGRect(x: xCoord, y: yCoord, width: rectWidth, height: rectHeight)
                 let path = UIBezierPath(rect: rect)
                 
                
@@ -66,15 +79,17 @@ class ModifierButton: UIButton {
                
                 
                 let adjustedCenterY = centerY + yCoord// have to push the y value down a bit because the image doesn't take up the entire height of the button
+                let adjustedCenterX = centerX + xCoord
+                
                 let xPath = UIBezierPath()
                 xPath.lineWidth = xLineWidth
                 
                 // Draw X
-                xPath.move(to: CGPoint(x: centerX - halfWidth, y: adjustedCenterY - halfHeight)) // move to upper left
-                xPath.addLine(to: CGPoint(x: centerX + halfWidth, y: adjustedCenterY + halfHeight)) // draw to bottom right
+                xPath.move(to: CGPoint(x: adjustedCenterX - halfWidth, y: adjustedCenterY - halfHeight)) // move to upper left
+                xPath.addLine(to: CGPoint(x: adjustedCenterX + halfWidth, y: adjustedCenterY + halfHeight)) // draw to bottom right
                 
-                xPath.move(to: CGPoint(x: centerX + halfWidth, y: adjustedCenterY - halfHeight)) // move to top left
-                xPath.addLine(to: CGPoint(x: centerX - halfWidth, y: adjustedCenterY + halfHeight)) // draw to bottom left
+                xPath.move(to: CGPoint(x: adjustedCenterX + halfWidth, y: adjustedCenterY - halfHeight)) // move to top left
+                xPath.addLine(to: CGPoint(x: adjustedCenterX - halfWidth, y: adjustedCenterY + halfHeight)) // draw to bottom left
                 
                 UIColor.red.setStroke()
                 xPath.stroke()
