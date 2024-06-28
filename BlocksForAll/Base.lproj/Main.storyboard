@@ -80,30 +80,27 @@
                                                     </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="755" placeholderIntrinsicHeight="291" translatesAutoresizingMaskIntoConstraints="NO" id="eaA-uL-9qc">
-                                                    <rect key="frame" x="37" y="27" width="206" height="134"/>
+                                                    <rect key="frame" x="37" y="27" width="206" height="139"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Ej-7V-1uz" userLabel="Project Label">
-                                                    <rect key="frame" x="73" y="169" width="134" height="33"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3O-ki-wxr">
+                                                    <rect key="frame" x="73" y="191" width="134" height="33"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="33" id="UEe-Cy-gYn"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="cjU-PL-rQZ"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="projectNameEdited:" destination="dDB-N5-2lZ" eventType="editingDidEnd" id="SVA-uR-Yr7"/>
-                                                    </connections>
-                                                </textField>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="eaA-uL-9qc" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="03P-uX-pgj"/>
-                                                <constraint firstItem="1Ej-7V-1uz" firstAttribute="top" secondItem="eaA-uL-9qc" secondAttribute="bottom" constant="8" id="GDS-Kh-v73"/>
-                                                <constraint firstItem="1Ej-7V-1uz" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="GLg-LD-48C"/>
+                                                <constraint firstItem="b3O-ki-wxr" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="Bwz-Us-16C"/>
                                                 <constraint firstItem="tKa-lW-FQf" firstAttribute="top" secondItem="2mk-aQ-E3a" secondAttribute="top" constant="5" id="JK6-wM-zHO"/>
                                                 <constraint firstAttribute="trailing" secondItem="tKa-lW-FQf" secondAttribute="trailing" constant="5" id="KB2-KL-xlB"/>
-                                                <constraint firstItem="1Ej-7V-1uz" firstAttribute="leading" secondItem="2mk-aQ-E3a" secondAttribute="leading" constant="73" id="dA9-P3-5FN"/>
-                                                <constraint firstAttribute="bottom" secondItem="1Ej-7V-1uz" secondAttribute="bottom" constant="42" id="sqN-FR-bo0"/>
+                                                <constraint firstItem="b3O-ki-wxr" firstAttribute="top" secondItem="eaA-uL-9qc" secondAttribute="bottom" constant="25" id="YDl-bb-VZe"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="b3O-ki-wxr" secondAttribute="bottom" constant="20" id="nYR-h6-9c8"/>
+                                                <constraint firstItem="b3O-ki-wxr" firstAttribute="leading" secondItem="2mk-aQ-E3a" secondAttribute="leading" constant="73" id="rgo-HP-tft"/>
                                                 <constraint firstItem="eaA-uL-9qc" firstAttribute="top" secondItem="2mk-aQ-E3a" secondAttribute="top" constant="27" id="xZB-Lv-F3S"/>
                                                 <constraint firstItem="eaA-uL-9qc" firstAttribute="leading" secondItem="2mk-aQ-E3a" secondAttribute="leading" constant="37" id="xj8-Yd-o1b"/>
                                             </constraints>
@@ -113,7 +110,7 @@
                                         <connections>
                                             <outlet property="deleteButton" destination="tKa-lW-FQf" id="CQY-j0-dBk"/>
                                             <outlet property="imageView" destination="eaA-uL-9qc" id="jDJ-1k-fAe"/>
-                                            <outlet property="projectNameLabel" destination="1Ej-7V-1uz" id="RIC-xb-IrB"/>
+                                            <outlet property="projectNameLabel" destination="b3O-ki-wxr" id="JPt-v5-dHg"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -2618,10 +2615,10 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="g0f-Hs-dMn"/>
         <segue reference="d7W-eK-Vpz"/>
         <segue reference="Ifr-Iv-956"/>
-        <segue reference="cfB-AU-Heg"/>
+        <segue reference="sX9-WY-IIJ"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="ne4-yA-8MV"/>
+        <segue reference="a9q-34-jse"/>
         <segue reference="2fL-ta-11H"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>

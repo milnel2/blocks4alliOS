@@ -12,7 +12,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var projectNameLabel: UITextField!
+    @IBOutlet weak var projectNameLabel: UILabel!
     
     
     var parentViewController: ProjectGalleryViewController?
@@ -25,6 +25,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     var project : Project! {
        didSet {
            self.updateUI()
+           self.setUpProjectLabelTap()
        }
    }
     func updateUI() {
@@ -34,9 +35,11 @@ class ProjectCollectionViewCell: UICollectionViewCell {
            
             
             if project.image != nil {
+                print("RESIZINF IMAGE to size =", imageView.frame.size)
                 let resizedImage = resizeImage(image: project.image!, scaledToSize: imageView.frame.size)
                 imageView.image = resizedImage
-            } 
+                imageView.contentMode = .scaleToFill
+            }
           
         
             
@@ -57,10 +60,47 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         
         projectNameLabel.adjustsFontForContentSizeCategory = true
         projectNameLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
-        projectNameLabel.borderStyle = .none
+        
            
         updateAccessibilityTools()
+        
        }
+    
+    @objc func projectLabelTapped(_ sender: UITapGestureRecognizer) {
+        let alert = UIAlertController(title: "Enter project name", message: "", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Your project name"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
+            let textField = alert.textFields![0] as UITextField
+            if self.validateFunctionName(name: textField.text ?? "") {
+                let newName = textField.text!
+                // name is valid, rename the project
+                for proj in allProjects[self.cellGalleryType]! {
+                    if proj.name == self.project.name {
+                        proj.name = newName
+                        continue
+                    }
+                }
+                self.project.name = newName
+                self.updateUI()
+            }
+            
+        }))
+
+            parentViewController!.present(alert, animated: true)
+        
+            // if the name isn't valid, the textfield will go back to whatever the name previously was
+        updateUI()
+        }
+        
+    func setUpProjectLabelTap() {
+        // adding tap gesture to UILabel is from https://medium.com/app-makers/how-to-add-a-tap-gesture-to-uilabel-in-xcode-swift-7ada58f1664
+        let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.projectLabelTapped(_:)))
+        self.projectNameLabel.isUserInteractionEnabled = true
+        self.projectNameLabel.addGestureRecognizer(labelTap)
+        }
     
     private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
@@ -81,13 +121,15 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         
         
         projectNameLabel.isAccessibilityElement = true
-       
+        projectNameLabel.accessibilityTraits = .button
+        projectNameLabel.accessibilityLabel = "Rename " + project.name
         
         deleteButton.isAccessibilityElement = true
         
         
         contentView.accessibilityHint = "Open " + project.name  // TODO: add image description
-        deleteButton.accessibilityHint = "Delete " + project.name
+        deleteButton.accessibilityLabel = "Delete " + project.name
+        
         
         accessibilityElements = [contentView, projectNameLabel!, deleteButton!]
         
@@ -139,16 +181,14 @@ class ProjectCollectionViewCell: UICollectionViewCell {
             
             return false
         } else if (name == "") {
-            // Name is empty string
-           
-                let invalidNameAlert = UIAlertController(title: "Name cannot be empty", message: "Choose a different name", preferredStyle: .alert)
-                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-                parentViewController!.present(invalidNameAlert, animated: true)
-            
+            // Empty name. Do nothing
             return false
         } else if (self.project.currentActor!.functionDict.keys.contains(name))  {
             // Duplicate custom function name
-           
+            if (self.project.name == name) {
+                // is the same name as before. Do nothing
+                return false
+            }
                 let invalidNameAlert = UIAlertController(title: "Name already exists", message: "Choose a different name", preferredStyle: .alert)
                 invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
                parentViewController!.present(invalidNameAlert, animated: true)
@@ -157,11 +197,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         } else {
             for proj in allProjects[cellGalleryType]! {
                 if proj.name == name {
-                    
-                        let invalidNameAlert = UIAlertController(title: "Name already exists", message: "Choose a different name", preferredStyle: .alert)
-                        invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-                        parentViewController!.present(invalidNameAlert, animated: true)
-                    
+                    // is the same name as before. Do nothing
                     return false
                 }
             }

@@ -151,12 +151,10 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             
             
             let project = projects[index - 1] // shift index over 1 because index 0 is the add project cell
-            cell.project = project
-            cell.parentViewController = self
-            cell.cellGalleryType = galleryType
+            
             
             cell.layer.borderWidth = 5
-            
+            cell.imageView.backgroundColor = .red
             cell.layer.shadowColor = UIColor.gray.cgColor
             cell.layer.shadowRadius = 2.0
             cell.layer.cornerRadius = 10
@@ -166,10 +164,10 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             let screenSize: CGRect = UIScreen.main.bounds
             cell.imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width * cellScale, height: screenSize.height * cellScale)
             
-            let imageSizeScale = 0.75
             
-           
-            
+            cell.project = project
+            cell.parentViewController = self
+            cell.cellGalleryType = galleryType
             updateAccessibilityTools()
             return cell
         }
