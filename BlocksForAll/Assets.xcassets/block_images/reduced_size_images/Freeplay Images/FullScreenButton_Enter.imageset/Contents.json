@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "FullScreenButton_Enter.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

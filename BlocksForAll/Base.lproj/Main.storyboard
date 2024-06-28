@@ -332,15 +332,20 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qvx-Ab-7LC">
-                                <rect key="frame" x="899" y="755" width="141" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Exit Full Screen"/>
+                                <rect key="frame" x="990" y="740" width="50" height="50"/>
+                                <accessibility key="accessibilityConfiguration" label="Exit Full Screen"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Nzo-M8-HXV"/>
+                                    <constraint firstAttribute="width" constant="50" id="mFy-16-ENZ"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="FullScreenButton_Exit"/>
                                 <connections>
                                     <action selector="exitFullScreenPressed:" destination="9IQ-B3-7v1" eventType="touchUpInside" id="NnL-5I-hXL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sC9-aO-BO4" userLabel="Play Button">
-                                <rect key="frame" x="894.5" y="555" width="150" height="150"/>
+                                <rect key="frame" x="940" y="540" width="150" height="150"/>
                                 <accessibility key="accessibilityConfiguration" hint="Make your robot go!" label="Play"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="bza-6N-6hQ"/>
@@ -474,9 +479,14 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xas-Fz-0Ml">
-                                                        <rect key="frame" x="504.5" y="370.5" width="108.5" height="34.5"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Full Screen"/>
+                                                        <rect key="frame" x="553" y="345" width="50" height="50"/>
+                                                        <accessibility key="accessibilityConfiguration" label="Enter Full Screen"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="6Ll-YR-Gzn"/>
+                                                            <constraint firstAttribute="width" constant="50" id="Luc-WF-bOw"/>
+                                                        </constraints>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" backgroundImage="FullScreenButton_Enter"/>
                                                         <connections>
                                                             <action selector="enterFullScreenPressed:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="BCG-Gl-H24"/>
                                                         </connections>
@@ -485,11 +495,11 @@
                                                 <color key="backgroundColor" systemColor="systemGray3Color"/>
                                                 <constraints>
                                                     <constraint firstItem="KI8-EN-GKe" firstAttribute="top" secondItem="8qF-Y7-eCZ" secondAttribute="topMargin" id="6pH-fP-mHe"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Xas-Fz-0Ml" secondAttribute="bottom" id="8Td-Lw-Xwq"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Xas-Fz-0Ml" secondAttribute="bottom" constant="10" id="8Td-Lw-Xwq"/>
                                                     <constraint firstItem="KI8-EN-GKe" firstAttribute="centerX" secondItem="8qF-Y7-eCZ" secondAttribute="centerX" id="Gjn-Nj-ygM"/>
                                                     <constraint firstItem="kKQ-2P-KlV" firstAttribute="top" secondItem="8qF-Y7-eCZ" secondAttribute="top" id="IYI-Iv-gcd"/>
                                                     <constraint firstItem="kKQ-2P-KlV" firstAttribute="leading" secondItem="8qF-Y7-eCZ" secondAttribute="leading" id="O9d-kF-XVj"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Xas-Fz-0Ml" secondAttribute="trailing" id="RpD-np-AKY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Xas-Fz-0Ml" secondAttribute="trailing" constant="10" id="RpD-np-AKY"/>
                                                     <constraint firstItem="kKQ-2P-KlV" firstAttribute="centerX" secondItem="KI8-EN-GKe" secondAttribute="centerX" id="dex-DP-ZVX"/>
                                                     <constraint firstItem="kKQ-2P-KlV" firstAttribute="centerY" secondItem="8qF-Y7-eCZ" secondAttribute="centerY" id="lGw-hM-YJB"/>
                                                 </constraints>
@@ -617,18 +627,27 @@
                                                             <action selector="playButtonClicked:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="dLE-dz-KHi"/>
                                                         </connections>
                                                     </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightSideBorder" translatesAutoresizingMaskIntoConstraints="NO" id="wkG-oq-tto" userLabel="Right Side Border Image">
+                                                        <rect key="frame" x="218" y="0.0" width="1" height="423"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="1" id="Aut-yW-RzK"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="wkG-oq-tto" secondAttribute="trailing" id="1KM-XN-ycS"/>
                                                     <constraint firstItem="5xA-lS-fn9" firstAttribute="top" secondItem="7eY-hu-5K5" secondAttribute="top" constant="32" id="240-tZ-s0G"/>
                                                     <constraint firstItem="jLG-Jt-TWo" firstAttribute="centerX" secondItem="wdR-Mn-wHu" secondAttribute="centerX" id="3Ap-0f-bKb"/>
                                                     <constraint firstItem="5xA-lS-fn9" firstAttribute="centerX" secondItem="72F-Pt-5Tc" secondAttribute="centerX" id="C8z-xr-IUT"/>
                                                     <constraint firstItem="5xA-lS-fn9" firstAttribute="centerX" secondItem="7eY-hu-5K5" secondAttribute="centerX" id="MDd-b1-I6Z"/>
                                                     <constraint firstItem="jLG-Jt-TWo" firstAttribute="top" secondItem="wdR-Mn-wHu" secondAttribute="bottom" constant="50" id="QGo-5O-mpw"/>
+                                                    <constraint firstItem="wkG-oq-tto" firstAttribute="top" secondItem="7eY-hu-5K5" secondAttribute="top" id="S0f-hW-1VQ"/>
                                                     <constraint firstItem="N8m-L7-Ufr" firstAttribute="centerX" secondItem="72F-Pt-5Tc" secondAttribute="centerX" id="W25-rP-y7I"/>
                                                     <constraint firstAttribute="width" secondItem="5xA-lS-fn9" secondAttribute="width" priority="900" id="ZKt-Jy-m55"/>
                                                     <constraint firstAttribute="trailing" secondItem="wdR-Mn-wHu" secondAttribute="trailing" id="c5J-w1-5fb"/>
                                                     <constraint firstAttribute="trailing" secondItem="jLG-Jt-TWo" secondAttribute="trailing" constant="-1.5" id="dM5-Au-TpN"/>
                                                     <constraint firstItem="N8m-L7-Ufr" firstAttribute="top" secondItem="5xA-lS-fn9" secondAttribute="bottom" constant="61" id="f1S-Zj-S6x"/>
+                                                    <constraint firstAttribute="bottom" secondItem="wkG-oq-tto" secondAttribute="bottom" id="j1U-Bf-nxm"/>
                                                     <constraint firstItem="wdR-Mn-wHu" firstAttribute="top" secondItem="7eY-hu-5K5" secondAttribute="top" constant="16" id="kKK-9y-Szi"/>
                                                     <constraint firstItem="N8m-L7-Ufr" firstAttribute="top" secondItem="72F-Pt-5Tc" secondAttribute="bottom" constant="30.5" id="war-jt-Tbg"/>
                                                 </constraints>
@@ -2607,6 +2626,7 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="i4h-7s-vWn"/>
         <segue reference="yHo-Ic-oSY"/>
         <segue reference="rJ0-q9-MJC"/>
         <segue reference="lP2-dK-nFu"/>
@@ -2618,7 +2638,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="sX9-WY-IIJ"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="pHs-aG-YCC"/>
+        <segue reference="Cau-JZ-Dok"/>
         <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
@@ -2630,6 +2650,8 @@ For further information on Blocks4All, please visit our website. For further det
         <image name="Background" width="1308" height="949"/>
         <image name="Banana" width="133" height="133"/>
         <image name="Cherry" width="133" height="133"/>
+        <image name="FullScreenButton_Enter" width="133" height="133"/>
+        <image name="FullScreenButton_Exit" width="133" height="133"/>
         <image name="GreenArrow" width="649" height="586"/>
         <image name="Main Workspace Button" width="792" height="151"/>
         <image name="Main_menuButton" width="1155" height="1146"/>
@@ -2638,6 +2660,7 @@ For further information on Blocks4All, please visit our website. For further det
         <image name="On" width="133.44094848632812" height="133.44094848632812"/>
         <image name="Orange" width="133" height="133"/>
         <image name="Question_Mark" width="677" height="917"/>
+        <image name="RightSideBorder" width="138" height="138"/>
         <image name="Settings" width="1148" height="1088"/>
         <image name="SettingsTitle" width="582" height="166"/>
         <image name="Show_Icons" width="2048" height="2048"/>
