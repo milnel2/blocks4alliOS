@@ -63,6 +63,10 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             afterNewActorSelected(name: newActorToAdd!.name, imagePath: newActorToAdd!.imagePath)
         }
         
+        
+        
+        
+        
     }
     
     @IBAction func enterFullScreenPressed(_ sender: Any) {
@@ -125,16 +129,28 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         let newImage = UIImage(named: (currentProject?.currentActor!.imagePath)!)
         self.currentActorImageView.image = nil
         self.currentActorImageView.image = newImage
-        // reset button colors
-        FirstCodeLineButton.backgroundColor = .clear
-        secondCodeLineButton.backgroundColor = .clear
         
+        FirstCodeLineButton.titleLabel?.font =  UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 24.0)
+        
+        FirstCodeLineButton.titleLabel?.textColor = .black
+        secondCodeLineButton.titleLabel?.textColor = .black
+        
+        secondCodeLineButton.titleLabel?.font =  UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 24.0)
+        
+        // reset button images
+        FirstCodeLineButton.setBackgroundImage(UIImage(named: "CodeLineButton_Blue"), for: .normal)
+        secondCodeLineButton.setBackgroundImage(UIImage(named: "CodeLineButton_Orange"), for: .normal)
+       
+       
         // highlight the active code line button
         switch currentWorkspace {
         case ON_RUN_STRING:
-            FirstCodeLineButton.backgroundColor = .lightGray
+            print("set background image")
+            
+            FirstCodeLineButton.setBackgroundImage(UIImage(named: "CodeLineButton_Blue-Highlighted"), for: .normal)
         case ON_TAP_STRING:
-            secondCodeLineButton.backgroundColor = .lightGray
+           
+            secondCodeLineButton.setBackgroundImage(UIImage(named: "CodeLineButton_Orange-Highlighted"), for: .normal)
         default:
             break
         }
