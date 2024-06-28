@@ -440,13 +440,23 @@
                                                             <action selector="goToMainMenu:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="zbs-dO-oR3"/>
                                                         </connections>
                                                     </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightSideBorder" translatesAutoresizingMaskIntoConstraints="NO" id="EZi-5f-HlN" userLabel="Left Border">
+                                                        <rect key="frame" x="0.0" y="0.0" width="1" height="405"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="1" id="n5o-ub-lK5"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
+                                                <color key="backgroundColor" systemColor="quaternaryLabelColor"/>
                                                 <constraints>
                                                     <constraint firstItem="9YL-5Y-1hw" firstAttribute="centerX" secondItem="NnO-p6-y4b" secondAttribute="centerX" id="7SL-m5-91C"/>
+                                                    <constraint firstItem="EZi-5f-HlN" firstAttribute="top" secondItem="Tgk-Zz-B30" secondAttribute="top" id="B1B-J2-FPV"/>
                                                     <constraint firstItem="NnO-p6-y4b" firstAttribute="centerY" secondItem="Tgk-Zz-B30" secondAttribute="centerY" id="VkW-lI-VCh"/>
                                                     <constraint firstAttribute="width" secondItem="9YL-5Y-1hw" secondAttribute="width" multiplier="0.936842" id="bwp-ez-pSn"/>
+                                                    <constraint firstItem="EZi-5f-HlN" firstAttribute="leading" secondItem="Tgk-Zz-B30" secondAttribute="leading" id="eGu-5C-QGk"/>
                                                     <constraint firstItem="9YL-5Y-1hw" firstAttribute="top" secondItem="Tgk-Zz-B30" secondAttribute="topMargin" id="hW1-J2-sF9"/>
                                                     <constraint firstItem="R10-4x-ECs" firstAttribute="width" secondItem="NnO-p6-y4b" secondAttribute="width" multiplier="1.37333" constant="-56" id="l6D-3S-8vP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="EZi-5f-HlN" secondAttribute="bottom" id="oUN-wB-pNq"/>
                                                     <constraint firstItem="9YL-5Y-1hw" firstAttribute="centerX" secondItem="Tgk-Zz-B30" secondAttribute="centerX" id="yPR-KQ-9aN"/>
                                                 </constraints>
                                             </view>
@@ -504,6 +514,12 @@
                                                     <constraint firstItem="kKQ-2P-KlV" firstAttribute="centerY" secondItem="8qF-Y7-eCZ" secondAttribute="centerY" id="lGw-hM-YJB"/>
                                                 </constraints>
                                             </view>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightSideBorder" translatesAutoresizingMaskIntoConstraints="NO" id="zqa-PN-mxG" userLabel="Left Border">
+                                                <rect key="frame" x="289" y="0.0" width="1" height="405"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="1" id="WsO-Pq-kFv"/>
+                                                </constraints>
+                                            </imageView>
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="WkD-Ee-gPm" userLabel="Left View">
                                                 <rect key="frame" x="0.0" y="0.0" width="289" height="405"/>
                                                 <subviews>
@@ -524,11 +540,14 @@
                                             </view>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="zqa-PN-mxG" firstAttribute="top" secondItem="63C-JX-LQq" secondAttribute="top" id="1RZ-wo-KJN"/>
                                             <constraint firstItem="Tgk-Zz-B30" firstAttribute="bottom" secondItem="8qF-Y7-eCZ" secondAttribute="bottom" id="2y3-CD-LYR"/>
                                             <constraint firstAttribute="trailing" secondItem="Tgk-Zz-B30" secondAttribute="trailing" id="8rI-jF-IPF"/>
                                             <constraint firstItem="Tgk-Zz-B30" firstAttribute="leading" secondItem="8qF-Y7-eCZ" secondAttribute="trailing" id="AQM-kJ-YaF"/>
                                             <constraint firstItem="WkD-Ee-gPm" firstAttribute="bottom" secondItem="63C-JX-LQq" secondAttribute="bottomMargin" constant="8" id="Kny-pe-d2B"/>
+                                            <constraint firstItem="zqa-PN-mxG" firstAttribute="leading" secondItem="WkD-Ee-gPm" secondAttribute="trailing" id="PJ9-pF-ZAs"/>
                                             <constraint firstItem="WkD-Ee-gPm" firstAttribute="top" secondItem="63C-JX-LQq" secondAttribute="top" id="Tep-da-IZa"/>
+                                            <constraint firstAttribute="bottom" secondItem="zqa-PN-mxG" secondAttribute="bottom" id="aZ8-4M-eFJ"/>
                                             <constraint firstItem="8qF-Y7-eCZ" firstAttribute="leading" secondItem="WkD-Ee-gPm" secondAttribute="trailing" id="eFY-SN-zb7"/>
                                             <constraint firstAttribute="bottom" secondItem="8qF-Y7-eCZ" secondAttribute="bottom" id="jP9-li-kWN"/>
                                             <constraint firstItem="8qF-Y7-eCZ" firstAttribute="top" secondItem="WkD-Ee-gPm" secondAttribute="top" id="mzM-fx-MW3"/>
@@ -664,11 +683,20 @@
                                                     <constraint firstItem="wdR-Mn-wHu" firstAttribute="leading" secondItem="jLG-Jt-TWo" secondAttribute="leading" id="zfX-J4-Oit"/>
                                                 </constraints>
                                             </view>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightSideBorder" translatesAutoresizingMaskIntoConstraints="NO" id="DUB-ju-VKe" userLabel="Top Border">
+                                                <rect key="frame" x="0.0" y="0.0" width="1080" height="1"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="oX0-06-2b6"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="DUB-ju-VKe" firstAttribute="top" secondItem="HZq-lR-htx" secondAttribute="top" id="8dP-HC-sOm"/>
                                             <constraint firstItem="7eY-hu-5K5" firstAttribute="top" secondItem="HZq-lR-htx" secondAttribute="top" id="BGU-yc-mvF"/>
                                             <constraint firstAttribute="bottom" secondItem="aV3-yC-Sxx" secondAttribute="bottom" id="J5H-LM-ntO"/>
+                                            <constraint firstAttribute="trailing" secondItem="DUB-ju-VKe" secondAttribute="trailing" id="KFB-uc-T3D"/>
                                             <constraint firstItem="aV3-yC-Sxx" firstAttribute="leading" secondItem="7eY-hu-5K5" secondAttribute="trailing" id="Vca-LG-43i"/>
+                                            <constraint firstItem="DUB-ju-VKe" firstAttribute="leading" secondItem="HZq-lR-htx" secondAttribute="leading" id="Wjw-Vn-VLF"/>
                                             <constraint firstAttribute="bottom" secondItem="7eY-hu-5K5" secondAttribute="bottom" constant="-18" id="XXQ-pF-8N7"/>
                                             <constraint firstItem="aV3-yC-Sxx" firstAttribute="top" secondItem="7eY-hu-5K5" secondAttribute="top" id="eLJ-sZ-JRl"/>
                                             <constraint firstItem="7eY-hu-5K5" firstAttribute="leading" secondItem="HZq-lR-htx" secondAttribute="leading" id="gTz-9i-aez"/>
@@ -2704,6 +2732,9 @@ For further information on Blocks4All, please visit our website. For further det
         </systemColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="quaternaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17647058823529413" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
