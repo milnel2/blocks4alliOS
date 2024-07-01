@@ -30,6 +30,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     @IBOutlet weak var secondCodeLineButton: UIButton!
     
     @IBOutlet weak var buttonsView: UIView! // view that has play button, code lines, and customize acotor button
+    @IBOutlet weak var addActorButton: UIButton!
     var newActorToAdd: (name:String, imagePath: String)? // to be used when adding to actors
     // TODO: add custom backgrounds from camera roll
     override func viewDidLoad() {
@@ -37,6 +38,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             print("ERROR: current project is nil")
         }
         freeplayOutputView.freeplayWorkspaceVC = self
+        freeplayOutputView.resetActorSubviews()
         
         for actor in currentProject!.actors {
             
@@ -68,14 +70,53 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         // Tap Gesture code from https://agrawalsuneet.medium.com/uiview-clicklistener-swift-88ab5dec64b5
         let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(clickOnCurrentActorImageView(sender:)))
         
+       
+        currentActorImageView.addGestureRecognizer(tapGesture)
+       
+        // TODO: corner radius not working
+        addActorButton.layer.cornerRadius = 10
+        
+        setUpAccessibility()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setUpAccessibility()
+    }
+    
+    func setUpAccessibility() {
+        freeplayOutputView.isAccessibilityElement = false
+        
+        freeplayOutputView.accessibilityElements = []
+        
+        for actor in currentProject!.actors {
+            actor.setUpAccessibility()
+            freeplayOutputView.accessibilityElements!.append(actor.imageView)
+        }
+
+        freeplayOutputView.accessibilityElements!.append(enterFullScreenButton!)
+       
+        
         currentActorImageView.isUserInteractionEnabled = true
         currentActorImageView.isAccessibilityElement = true
-        currentActorImageView.addGestureRecognizer(tapGesture)
         
+        addActorButton.isUserInteractionEnabled = true
+        addActorButton.isAccessibilityElement = true
         
+        FirstCodeLineButton.isUserInteractionEnabled = true
+        FirstCodeLineButton.isAccessibilityElement = true
         
+        secondCodeLineButton.isUserInteractionEnabled = true
+        secondCodeLineButton.isAccessibilityElement = true
         
+        accessibilityElements = [toolboxView!, freeplayOutputView!, mainMenuButton!, addActorButton!, currentActorImageView!, playTrashToggleButton!, FirstCodeLineButton!, secondCodeLineButton!, blocksProgram!] // toolbox, output, home, add actor, customize, play, line 1 line 2, blocks program
         
+        addActorButton.accessibilityLabel = "Add actor to project"
+        currentActorImageView.accessibilityLabel = "Current actor is " + currentProject!.currentActor!.name + ". Tap to customize or delete"
+        FirstCodeLineButton.accessibilityLabel = "On Run code line"
+        FirstCodeLineButton.accessibilityHint = "Press the play button to run this code line."
+        secondCodeLineButton.accessibilityLabel = "On Actor Tap code line"
+        secondCodeLineButton.accessibilityHint = "Tap on " + currentProject!.currentActor!.name + " actor to run this code line."
     }
     
     @objc func clickOnCurrentActorImageView(sender : UITapGestureRecognizer) {
@@ -166,6 +207,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         default:
             break
         }
+        
+        setUpAccessibility()
     }
 
     @IBAction func addActorClicked(_ sender: Any) {

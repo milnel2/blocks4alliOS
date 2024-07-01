@@ -116,7 +116,57 @@ class VirtualRobot: Equatable {
             movementAnimationSpeed = normalAnimationSpeed
         }
     }
+    func setUpAccessibility() {
+        imageView.isUserInteractionEnabled = true
+        imageView.isAccessibilityElement = true
+        imageView.accessibilityLabel = name + calculateActorLocationStringForAccessibility()
+        imageView.accessibilityHint = "Double tap and hold to drag."
+    }
     
+    func calculateActorLocationStringForAccessibility() -> String {
+        if freeplayOutputView != nil {
+            let outputWidth = freeplayOutputView!.frame.width
+            let outputHeight = freeplayOutputView!.frame.height
+            
+            let x = coordinates.x
+            let y = coordinates.y
+            
+            
+            var accessibilityString = "Location is at"
+            // horizontal position
+            if x <= outputWidth / 3 {
+                // left third of screen
+                accessibilityString.append(" left")
+            } else if x <= outputWidth * 2 / 3 {
+                // middle third of screen (horizontally)
+                accessibilityString.append(" middle")
+            } else {
+                // right third of screen
+                accessibilityString.append(" right")
+            }
+            
+            // vertical position
+            if y <= outputHeight / 3 {
+                // top third of screen
+                accessibilityString.append(" top")
+            } else if y <= outputHeight * 2 / 3 {
+                // middle third of screen (vertically)
+                if !accessibilityString.contains("middle") {
+                    // don't add middle to the string twice
+                    accessibilityString.append(" middle")
+                }
+                
+            } else {
+                // bottom third of screen
+                accessibilityString.append(" bottom")
+            }
+            
+            accessibilityString.append(" of screen.")
+            return accessibilityString
+        }
+        
+        return ""
+    }
     public func setActorSize(size: CGFloat) {
         robotSize = size
         let x = imageView.frame.minX

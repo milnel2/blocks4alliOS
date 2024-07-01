@@ -26,8 +26,6 @@ class FullScreenFreeplayViewController : UIViewController {
     
     let ACTOR_SHRINK_MULITPLIER = 0.9 // number to make the full screen actors a tiny bit smaller
     
-    
-    
     var freeplayWorkspaceVC: FreePlayWorkspaceViewController? = nil
     
     var freeplayWorkspaceOriginalPlayButton: UIButton?
@@ -67,7 +65,9 @@ class FullScreenFreeplayViewController : UIViewController {
         functionsDict = currentProject!.currentActor!.functionDict
         currentWorkspace = ON_RUN_STRING
         
-       
+        exitFullScreenButton.isUserInteractionEnabled = true
+        exitFullScreenButton.isAccessibilityElement = true
+        accessibilityElements = [outputView!, exitFullScreenButton!] // TODO: exit full screen button isn't showing up in voice over
         
 //        workspaceTitle.text = currentProject!.name
 //        workspaceTitle.layer.cornerRadius = 10.0 // TODO: corner radius isn't showing up

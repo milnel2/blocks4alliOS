@@ -12,10 +12,15 @@ import UIKit
 class FreeplayOutputView: UIView {
     var freeplayWorkspaceVC: FreePlayWorkspaceViewController? = nil
     
+    var actorSubviews = [UIImageView]()
     
+    func resetActorSubviews() {
+        actorSubviews = []
+    }
     func addActor(actor: VirtualRobot) {
         // Add actor to screen
         addSubview(actor.imageView)
+        actorSubviews.append(actor.imageView)
         // Move actor to saved location
         //actor.setToSavedCoordinates()
         
@@ -37,7 +42,9 @@ class FreeplayOutputView: UIView {
         currentProject!.addActor(actor: actor)
         
         freeplayWorkspaceVC!.addEventIndicatorBlocks()
+        freeplayWorkspaceVC!.setUpAccessibility()
     }
+    
     
     // TODO: disable editing code when program is running
     // TODO: make actor bigger/smaller and rotate with fingers
@@ -86,12 +93,14 @@ class FreeplayOutputView: UIView {
                    if !(dragLocation.x - actorWidth / 2 <= backgroundLeftX || dragLocation.x + actorWidth / 2 >= backgroundRightX) {
                        // within x bounds
                        actor.setCoordinates(x: dragLocation.x, y: actor.coordinates.y)
+                       actor.setUpAccessibility()
                        
                    }
                    
                    if !(dragLocation.y - actorHeight / 2 <= backgroundTopY || dragLocation.y + actorHeight / 2 >= backgroundBottomY ) {
                        // within y bounds
                        actor.setCoordinates(x: actor.coordinates.x, y: dragLocation.y)
+                       actor.setUpAccessibility()
                        
                    }
                    freeplayWorkspaceVC!.updateCurrentActor(newActor: actor)

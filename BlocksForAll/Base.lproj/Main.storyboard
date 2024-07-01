@@ -487,7 +487,7 @@
                                                             <constraint firstAttribute="width" constant="1" id="n5o-ub-lK5"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnO-p6-y4b" userLabel="Add Actor Button">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnO-p6-y4b" userLabel="Add Actor Button">
                                                         <rect key="frame" x="44" y="184" width="90" height="91"/>
                                                         <accessibility key="accessibilityConfiguration" label="Add Actor"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -762,6 +762,7 @@
                     <navigationItem key="navigationItem" id="JPt-7e-AZh"/>
                     <connections>
                         <outlet property="FirstCodeLineButton" destination="wdR-Mn-wHu" id="cXD-7S-ib6"/>
+                        <outlet property="addActorButton" destination="NnO-p6-y4b" id="YcT-3g-pFz"/>
                         <outlet property="blocksProgram" destination="ei4-9x-SF4" id="TWu-jB-6iq"/>
                         <outlet property="buttonsView" destination="7eY-hu-5K5" id="08Z-Fy-fgb"/>
                         <outlet property="currentActorImageView" destination="5xA-lS-fn9" id="uWr-sE-lwf"/>
@@ -2723,7 +2724,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="lD7-sr-2Jm"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="M3F-P2-Uak"/>
+        <segue reference="Cau-JZ-Dok"/>
         <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
