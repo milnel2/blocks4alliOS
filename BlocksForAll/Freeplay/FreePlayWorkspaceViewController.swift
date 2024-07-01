@@ -64,9 +64,23 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         }
         
         
+        // Add tap gesture recognizer to current actor image
+        // Tap Gesture code from https://agrawalsuneet.medium.com/uiview-clicklistener-swift-88ab5dec64b5
+        let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(clickOnCurrentActorImageView(sender:)))
+        
+        currentActorImageView.isUserInteractionEnabled = true
+        currentActorImageView.isAccessibilityElement = true
+        currentActorImageView.addGestureRecognizer(tapGesture)
         
         
         
+        
+        
+    }
+    
+    @objc func clickOnCurrentActorImageView(sender : UITapGestureRecognizer) {
+        print("click")
+        performSegue(withIdentifier: "toCustomizeActor", sender: nil)
     }
     
     @IBAction func enterFullScreenPressed(_ sender: Any) {
@@ -145,8 +159,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         // highlight the active code line button
         switch currentWorkspace {
         case ON_RUN_STRING:
-            print("set background image")
-            
             FirstCodeLineButton.setBackgroundImage(UIImage(named: "CodeLineButton_Blue-Highlighted"), for: .normal)
         case ON_TAP_STRING:
            
@@ -158,6 +170,11 @@ class FreePlayWorkspaceViewController: BlocksViewController {
 
     @IBAction func addActorClicked(_ sender: Any) {
         performSegue(withIdentifier: "toChooseActor", sender: nil)
+    }
+    
+    func deleteActor(actor: VirtualRobot) {
+        currentProject!.deleteActor(actor: actor)
+        // TODO: reload the view controller?
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -180,6 +197,13 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             for actor in currentProject!.actors {
                 actor.executingProgram?.stopWasPressed = true
             }
+        }
+        
+        if (segue.identifier == "toCustomizeActor") {
+            let customizeVC = segue.destination as! CustomizeActorViewController
+            customizeVC.currentActor = currentProject!.currentActor
+            customizeVC.currentProject = currentProject!
+            customizeVC.freeplayWorkspace = self
         }
         
         

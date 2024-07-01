@@ -17,6 +17,7 @@
 		8D0D881E2C09068300AC9620 /* DotBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D0D881D2C09068300AC9620 /* DotBlocksMenu.plist */; };
 		8D0D88202C0A51EA00AC9620 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8D0D881F2C0A51EA00AC9620 /* PrivacyInfo.xcprivacy */; };
 		8D27A4522A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */; };
+		8D3DDA2D2C3347E500AF16EC /* CustomizeActorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3DDA2C2C3347E500AF16EC /* CustomizeActorViewController.swift */; };
 		8D412CA82C138E51005B736F /* FreeplayToolboxBlockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D412CA72C138E51005B736F /* FreeplayToolboxBlockType.swift */; };
 		8D412CAA2C13915E005B736F /* FreeplayBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D412CA92C13915E005B736F /* FreeplayBlocksMenu.plist */; };
 		8D54890A2C221CEB002617BE /* ChooseActorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5489092C221CEB002617BE /* ChooseActorViewController.swift */; };
@@ -95,6 +96,7 @@
 		8D0D881D2C09068300AC9620 /* DotBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DotBlocksMenu.plist; sourceTree = "<group>"; };
 		8D0D881F2C0A51EA00AC9620 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
 		8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceModifierViewController.swift; sourceTree = "<group>"; };
+		8D3DDA2C2C3347E500AF16EC /* CustomizeActorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeActorViewController.swift; sourceTree = "<group>"; };
 		8D412CA72C138E51005B736F /* FreeplayToolboxBlockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeplayToolboxBlockType.swift; sourceTree = "<group>"; };
 		8D412CA92C13915E005B736F /* FreeplayBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FreeplayBlocksMenu.plist; sourceTree = "<group>"; };
 		8D5489092C221CEB002617BE /* ChooseActorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseActorViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				8D5489092C221CEB002617BE /* ChooseActorViewController.swift */,
 				8D54890B2C221DE3002617BE /* ActorCell.swift */,
 				8DFEBABF2C2B40AC00491CAD /* FullScreenFreeplayViewController.swift */,
+				8D3DDA2C2C3347E500AF16EC /* CustomizeActorViewController.swift */,
 			);
 			path = Freeplay;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D3DDA2D2C3347E500AF16EC /* CustomizeActorViewController.swift in Sources */,
 				8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */,
 				02FE3BC922DCE4F7000C7C66 /* DriveVariables.swift in Sources */,
 				025AEB3E22BA9AEF004EB6AC /* SliderModifierController.swift in Sources */,

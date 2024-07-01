@@ -35,7 +35,6 @@ class ProjectCollectionViewCell: UICollectionViewCell {
            
             
             if project.image != nil {
-                print("RESIZINF IMAGE to size =", imageView.frame.size)
                 let resizedImage = resizeImage(image: project.image!, scaledToSize: imageView.frame.size)
                 imageView.image = resizedImage
                 imageView.contentMode = .scaleToFill

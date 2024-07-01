@@ -69,6 +69,22 @@ class Project : Equatable{
         
     }
     
+    // attempt to delete actor from project
+    func deleteActor(actor: VirtualRobot) {
+        let index = actors.firstIndex(of: actor)
+        if index != nil {
+            actors.remove(at: index!)
+            if actors.count > 0 { // TODO: handle when there are no actors
+                currentActor = actors[0]
+            }
+           
+        } else {
+            print("Failed to delete actor:", actor.name)
+        }
+        
+        
+    }
+    
     static func FetchProjects () -> [String:[Project]]{
         return allProjects
        }
