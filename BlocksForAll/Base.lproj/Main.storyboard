@@ -458,17 +458,6 @@
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Tgk-Zz-B30" userLabel="Right View">
                                                 <rect key="frame" x="902" y="0.0" width="178" height="405"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnO-p6-y4b" userLabel="Add Actor Button">
-                                                        <rect key="frame" x="14" y="185.5" width="150" height="34.5"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="wrz-ju-4Yn"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Add Actor"/>
-                                                        <connections>
-                                                            <action selector="addActorClicked:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="FMJ-qR-fIY"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="R10-4x-ECs" userLabel="Main Workspace Button">
                                                         <rect key="frame" x="14" y="304" width="150" height="78"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -498,17 +487,27 @@
                                                             <constraint firstAttribute="width" constant="1" id="n5o-ub-lK5"/>
                                                         </constraints>
                                                     </imageView>
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnO-p6-y4b" userLabel="Add Actor Button">
+                                                        <rect key="frame" x="44" y="184" width="90" height="91"/>
+                                                        <accessibility key="accessibilityConfiguration" label="Add Actor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" image="Add Actor"/>
+                                                        <connections>
+                                                            <action selector="addActorClicked:" destination="48V-Ne-C7Q" eventType="touchUpInside" id="FMJ-qR-fIY"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="quaternaryLabelColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="9YL-5Y-1hw" firstAttribute="centerX" secondItem="NnO-p6-y4b" secondAttribute="centerX" id="7SL-m5-91C"/>
+                                                    <constraint firstItem="NnO-p6-y4b" firstAttribute="centerX" secondItem="R10-4x-ECs" secondAttribute="centerX" id="0JN-dw-jJL"/>
+                                                    <constraint firstItem="R10-4x-ECs" firstAttribute="top" secondItem="NnO-p6-y4b" secondAttribute="bottom" constant="29" id="1FG-mc-oPR"/>
                                                     <constraint firstItem="EZi-5f-HlN" firstAttribute="top" secondItem="Tgk-Zz-B30" secondAttribute="top" id="B1B-J2-FPV"/>
-                                                    <constraint firstItem="NnO-p6-y4b" firstAttribute="centerY" secondItem="Tgk-Zz-B30" secondAttribute="centerY" id="VkW-lI-VCh"/>
+                                                    <constraint firstItem="NnO-p6-y4b" firstAttribute="top" secondItem="9YL-5Y-1hw" secondAttribute="bottom" constant="14" id="Fp4-p8-Pve"/>
                                                     <constraint firstAttribute="width" secondItem="9YL-5Y-1hw" secondAttribute="width" multiplier="0.936842" id="bwp-ez-pSn"/>
                                                     <constraint firstItem="EZi-5f-HlN" firstAttribute="leading" secondItem="Tgk-Zz-B30" secondAttribute="leading" id="eGu-5C-QGk"/>
                                                     <constraint firstItem="9YL-5Y-1hw" firstAttribute="top" secondItem="Tgk-Zz-B30" secondAttribute="topMargin" id="hW1-J2-sF9"/>
-                                                    <constraint firstItem="R10-4x-ECs" firstAttribute="width" secondItem="NnO-p6-y4b" secondAttribute="width" multiplier="1.37333" constant="-56" id="l6D-3S-8vP"/>
                                                     <constraint firstAttribute="bottom" secondItem="EZi-5f-HlN" secondAttribute="bottom" id="oUN-wB-pNq"/>
+                                                    <constraint firstItem="NnO-p6-y4b" firstAttribute="leading" secondItem="EZi-5f-HlN" secondAttribute="trailing" constant="43" id="t8H-D4-dI8"/>
                                                     <constraint firstItem="9YL-5Y-1hw" firstAttribute="centerX" secondItem="Tgk-Zz-B30" secondAttribute="centerX" id="yPR-KQ-9aN"/>
                                                 </constraints>
                                             </view>
@@ -660,6 +659,7 @@
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B4A_Robot_outline" translatesAutoresizingMaskIntoConstraints="NO" id="5xA-lS-fn9">
                                                         <rect key="frame" x="0.0" y="32" width="219" height="125"/>
+                                                        <accessibility key="accessibilityConfiguration" label="Customize Actor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="125" id="1He-hh-Mp2"/>
                                                             <constraint firstAttribute="width" constant="219" id="pE3-CH-mm8"/>
@@ -2728,6 +2728,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="Add Actor" width="133" height="133"/>
         <image name="AddRobotButton" width="576" height="576"/>
         <image name="Apple" width="133" height="133"/>
         <image name="B4A_Robot_outline" width="1917" height="1865"/>

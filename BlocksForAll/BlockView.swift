@@ -74,9 +74,16 @@ class BlockView: UIView, UITextFieldDelegate {
 
         }
         
+        // add images for event indicator block
+        if block.name == "\(ON_RUN_STRING) Start"{
+            block.imageName = "OnRun"
+        } else if block.name == "\(ON_TAP_STRING) Start" {
+            block.imageName = "OnTap"
+        }
         let myView = UIView(frame: myFrame)
         myView.backgroundColor = UIColor(named: "\(block.colorName)")
         if(block.imageName != nil && defaults.integer(forKey: "showText") == 0){
+            print("HI")
             let imageName = block.imageName!
             var image = UIImage(named: imageName)
             let imv: UIImageView
@@ -89,6 +96,7 @@ class BlockView: UIView, UITextFieldDelegate {
                     imv.layer.position.x = CGFloat((myViewWidth) - ((blockSize * 4) / 5))
                 }
             } else {
+                print(image)
                 image = imageWithImage(image: image!, scaledToSize: CGSize(width: blockSize, height: myViewHeight))
                 imv = UIImageView.init(image: image)
                 imv.image = UIImage(named: imageName)
