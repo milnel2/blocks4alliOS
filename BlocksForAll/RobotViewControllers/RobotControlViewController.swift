@@ -254,7 +254,12 @@ class ExecutingProgram {
             
             switch animal {
             case "random animal":
-                playNoise(sound: animalSoundFiles[.random(in: animalSoundFiles.indices)])
+                if isInFreeplay {
+                    playNoise(sound: freeplayAnimalSoundFiles[.random(in: freeplayAnimalSoundFiles.indices)])
+                } else {
+                    playNoise(sound: animalSoundFiles[.random(in: animalSoundFiles.indices)])
+                }
+                
             default:
                 playNoise(sound: animal ?? "cat")
             }
@@ -275,7 +280,12 @@ class ExecutingProgram {
             
             switch object {
             case "random object":
-                playNoise(sound: objectSoundFiles[.random(in: objectSoundFiles.indices)])
+                if isInFreeplay {
+                    playNoise(sound: freeplayObjectSoundFiles[.random(in: freeplayObjectSoundFiles.indices)])
+                } else {
+                    playNoise(sound: objectSoundFiles[.random(in: objectSoundFiles.indices)])
+                }
+                
             default:
                 playNoise(sound: object ?? "trumpet")
             }
@@ -627,7 +637,7 @@ class ExecutingProgram {
         case "Set Speed":
             print("Set speed")
             setSpeed(speedBlock: blockToExec)
-        case "Grow Actor":
+        case "Grow Actor": // TODO: switch to just "Grow"
             print("grow actor")
             changeSize(sizeBlock: blockToExec, growOrShrink: 1)
         case "Shrink Actor":
@@ -1227,6 +1237,15 @@ class ExecutingProgram {
          "SYSTHORSEWHIN3",
          "SYSTFX_LION_01",
          "SYSTGOBBLE_001"]
+    
+    let freeplayAnimalSoundFiles =
+        ["dog",
+        "cat",
+        "dinosaur",
+        "goat",
+        "bee",
+        "horse",
+        "turkey"]
        
     let vehicleSoundFiles =
         ["SYSTAIRPORTJET",
@@ -1243,6 +1262,11 @@ class ExecutingProgram {
         ["SYSTBOT_CUTE_0",
          "SYSTTRUMPET_01",
          "SYSTOT_CUTE_04"]
+    
+    let freeplayObjectSoundFiles =
+        ["laser",
+        "squeak",
+        "trumpet"]
     
     let emotionSoundFiles =
         ["SYSTBRAGGING1A",

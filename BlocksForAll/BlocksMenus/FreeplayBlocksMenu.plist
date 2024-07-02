@@ -29,20 +29,6 @@
 				<key>type</key>
 				<string>Statement</string>
 				<key>name</key>
-				<string>Emotion Noise</string>
-				<key>color</key>
-				<string>emotionNoiseColor</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>emotionNoise.pdf</string>
-			</dict>
-			<dict>
-				<key>isModifiable</key>
-				<true/>
-				<key>type</key>
-				<string>Statement</string>
-				<key>name</key>
 				<string>Object Noise</string>
 				<key>color</key>
 				<string>objectNoiseColor</string>
@@ -50,34 +36,6 @@
 				<false/>
 				<key>imageName</key>
 				<string>objectNoise.pdf</string>
-			</dict>
-			<dict>
-				<key>type</key>
-				<string>Statement</string>
-				<key>isModifiable</key>
-				<true/>
-				<key>name</key>
-				<string>Vehicle Noise</string>
-				<key>color</key>
-				<string>vehicleNoiseColor</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>vehicleNoise.pdf</string>
-			</dict>
-			<dict>
-				<key>isModifiable</key>
-				<true/>
-				<key>type</key>
-				<string>Statement</string>
-				<key>name</key>
-				<string>Speak</string>
-				<key>color</key>
-				<string>speakColor</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>speakNoise.pdf</string>
 			</dict>
 		</array>
 	</dict>

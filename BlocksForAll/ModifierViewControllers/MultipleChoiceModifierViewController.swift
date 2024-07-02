@@ -26,7 +26,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     // variable modifiers use the optionalExtraLabel that is below the optionModTitle. For modifiers that use this label, there is a seperate array (variableArray) for the option names, and there are only two elements in the array in optionDictionary
     // the first element of the array is the attributeName and the second element is the text to put in the optionalExtraLabel
     // these are the only types of modifiers that will have only two items in the array, because any modifiers that have two options should be put in the TwoOptionModifierViewController class
-      private let optionDictionary: [String:[String]] =
+      private var optionDictionary: [String:[String]] =
           ["Animal Noise" :  ["cat", "crocodile", "dinosaur", "goat", "bee", "elephant", "dog", "horse", "lion", "turkey", "random animal"],
            "Emotion Noise" : ["bragging", "confused", "giggle", "grunt", "sigh", "snore", "surprised", "yawn" ,"random emotion"],
            "Object Noise": ["laser", "squeak", "trumpet", "random object"],
@@ -39,6 +39,10 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
            "Look Left or Right" : ["variableSelected", "Select Look Left or Right Variable\nLeft = -120, Right = 120"],
            "Look Up or Down" : ["variableSelected", "Select Look Up or Down Variable\nUp = -20, Down = 7.5"],
            "Turn" : ["variableSelected",  "Select turn variable"]]
+    
+    private let freeplayOptionDictionary: [String:[String]] =
+    ["Animal Noise" :  ["cat", "dinosaur", "goat", "bee", "dog", "horse", "turkey", "random animal"],
+     "Object Noise": ["laser", "squeak", "trumpet", "random object"]]
     private let variableArray =  ["Orange", "Banana", "Apple", "Cherry", "Watermelon"] // the different variable choices for variable modifier screens
     private var items: [String] = [] // holds the specific array of modifier type strings accessed from the optionDictionary
     private var attributeName = "" // a reformatted version of optionType. Used for accessing and saving data (ex. if soundType = "Animal Noise", attributeName is "animalNoise"
@@ -57,7 +61,9 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     var parentVC: UIViewController?
     var currentProject: Project?
     override func viewDidLoad() {
-        
+        if currentProject!.projectType == ProjectType.Freeplay {
+            optionDictionary = freeplayOptionDictionary // reduced multiple choice options when in freeplay
+        }
         optionType = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name  // get the optionType from the button that caused this screen to open
           
         if optionType == "Move to Actor" {
