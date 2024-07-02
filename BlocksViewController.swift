@@ -294,9 +294,24 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         
         var accessibilityLabel = ""
-        let blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(currentProject!.currentActor!.functionDict[currentWorkspace]!.count)
+        var blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(currentProject!.currentActor!.functionDict[currentWorkspace]!.count)
         var accessibilityHint = ""
         var movementInfo = ". Double tap to move block."
+        if isInFreeplay {
+            // slightly change when in freeplay because of event indicator blocks
+            
+            if !block.name.contains(ON_RUN_STRING) && !block.name.contains(ON_TAP_STRING) { // not the event indicator block
+                accessibilityLabel = ""
+                blockPlacementInfo = ". Workspace block " + String(blockLocation - 1) + " of " + String(currentProject!.currentActor!.functionDict[currentWorkspace]!.count - 1) // must shift to one less due to event indicator block
+                accessibilityHint = ""
+                
+                movementInfo = ". Double tap to move block."
+            } else {
+                blockPlacementInfo = ""
+                movementInfo = ""
+            }
+           
+        }
         
         if(!blocksBeingMoved.isEmpty){
             // Moving blocks, so switch labels to indicated where blocks can be placed

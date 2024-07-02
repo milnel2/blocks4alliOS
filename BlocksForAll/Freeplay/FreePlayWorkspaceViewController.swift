@@ -113,6 +113,18 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
         addActorButton.accessibilityLabel = "Add actor to project"
         currentActorImageView.accessibilityLabel = "Current actor is " + currentProject!.currentActor!.name + ". Tap to customize or delete"
+        
+        // highlight the active code line button
+        switch currentWorkspace {
+        case ON_RUN_STRING:
+            secondCodeLineButton.isSelected = false
+            FirstCodeLineButton.isSelected = true
+        case ON_TAP_STRING:
+            secondCodeLineButton.isSelected = true
+            FirstCodeLineButton.isSelected = false
+        default:
+            break
+        }
         FirstCodeLineButton.accessibilityLabel = "On Run code line"
         FirstCodeLineButton.accessibilityHint = "Press the play button to run this code line."
         secondCodeLineButton.accessibilityLabel = "On Actor Tap code line"
@@ -281,6 +293,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     @IBAction func firstCodeLinePressed(_ sender: Any) {
         updateCurrentWorkspace(name: ON_RUN_STRING)
         updateUI()
+        
     }
 
     @IBAction func secondCodeLinePressed(_ sender: Any) {
