@@ -46,6 +46,7 @@ class FullScreenFreeplayViewController : UIViewController {
         
         outputView.freeplayWorkspaceVC = freeplayWorkspaceVC
         
+        outputView.accessibilityElements = []
         for actor in currentProject!.actors {
             
             actor.addFreeplayOutputView(freeplayOutputView: outputView)
@@ -59,6 +60,9 @@ class FullScreenFreeplayViewController : UIViewController {
             
             actor.verticalDistanceMultiplier = verticalSizeFactor
             actor.horizontalDistanceMultiplier = horizontalSizeFactor
+            
+            actor.setUpAccessibility()
+            outputView.accessibilityElements!.append(actor.imageView)
         }
         isInFreeplay = true
        
@@ -67,14 +71,8 @@ class FullScreenFreeplayViewController : UIViewController {
         
         exitFullScreenButton.isUserInteractionEnabled = true
         exitFullScreenButton.isAccessibilityElement = true
-        accessibilityElements = [outputView!, exitFullScreenButton!] // TODO: exit full screen button isn't showing up in voice over
         
-//        workspaceTitle.text = currentProject!.name
-//        workspaceTitle.layer.cornerRadius = 10.0 // TODO: corner radius isn't showing up
-//        
-//        updateUI()
-        
-       
+        accessibilityElements = [outputView!, fullScreenPlayButton!, exitFullScreenButton!] 
     }
     
     func calculateVerticalSizeFactor() {
