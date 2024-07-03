@@ -73,7 +73,7 @@ class ProjectGalleryViewController: UIViewController {
     
    
     func validateFunctionName(name: String, currentAlert: UIAlertController) -> Bool{
-        let dictionary = self.getModifierDictionary()!
+        let dictionary = HelperFunctions.getPListDictionary(resourceName: "ModifierProperties")!
         if (dictionary[name] != nil) {
             // Name is protected, show an alert do not rename the function
             currentAlert.dismiss(animated: true) {
@@ -103,19 +103,6 @@ class ProjectGalleryViewController: UIViewController {
         }
         return true
         
-    }
-    
-    /// Converts ModifierProperties plost to a NSDictionary
-    private func getModifierDictionary () -> NSDictionary?{
-        // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
-        let dict: NSDictionary?
-         if let path = Bundle.main.path(forResource: "ModifierProperties", ofType: "plist") {
-            dict = NSDictionary(contentsOfFile: path)
-         } else {
-             print("could not access ModifierProperties plist")
-             return nil
-         }
-        return dict!
     }
    
 }

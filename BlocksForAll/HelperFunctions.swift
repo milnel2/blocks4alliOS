@@ -18,5 +18,18 @@ class HelperFunctions {
         UIGraphicsEndImageContext()
         return newImage
     }
+    
+    /// Takes the name of a PList and returns it as an NSDictionary
+    public static func getPListDictionary (resourceName: String) -> NSDictionary?{
+        // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
+        let dict: NSDictionary?
+         if let path = Bundle.main.path(forResource: resourceName, ofType: "plist") {
+            dict = NSDictionary(contentsOfFile: path)
+         } else {
+             print("could not access \(resourceName) plist")
+             return nil
+         }
+        return dict!
+    }
 }
 

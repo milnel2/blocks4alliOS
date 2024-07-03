@@ -74,7 +74,7 @@ class SelectedBlockViewController: UIViewController {
         let modifierButton = ModifierButton(frame: CGRect(x: (blockSize / 7), y:(-blockSize * 8) / 9, width: (blockSize / 4) * 3, height: (blockSize / 4) * 3))
         
         
-        let dict = getModifierDictionary() // holds properties of all modifier blocks
+        let dict = HelperFunctions.getPListDictionary(resourceName: "ModifierProperties") // holds properties of all modifier blocks
         let name = blocks![0].name
         let (defaultValue, attributeName, imagePath, displaysText, secondAttributeName, secondDefault, showTextImage) = getModifierData(name: name, dict: dict!) // constants taken from dict based on name
         var placeHolderBlock = blocks![0]
@@ -324,19 +324,6 @@ class SelectedBlockViewController: UIViewController {
         }
     }
     
-    /// Converts ModifierProperties plist to a NSDictionary.
-    private func getModifierDictionary () -> NSDictionary?{
-        // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
-        
-        let dict: NSDictionary?
-         if let path = Bundle.main.path(forResource: "ModifierProperties", ofType: "plist") {
-            dict = NSDictionary(contentsOfFile: path)
-         } else {
-             print("could not access ModifierProperties plist")
-             return nil
-         }
-        return dict!
-    }
     
     /// Gets values for modifier blocks from a dictionary and returns them as a tuple. Prints errors if properties cannot be found.
     private func getModifierData (name : String, dict : NSDictionary) -> (String, String, String?, String, String?, String?, String?) {

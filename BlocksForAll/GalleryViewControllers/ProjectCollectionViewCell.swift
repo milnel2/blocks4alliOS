@@ -102,15 +102,12 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         }
   
     
-    // TODO: automatically name projects
     func updateAccessibilityTools() {
         isAccessibilityElement = false
         
         contentView.isAccessibilityElement = true
         contentView.accessibilityTraits = .button
         accessibilityTraits = .allowsDirectInteraction
-        
-        
         
         projectNameLabel.isAccessibilityElement = true
         projectNameLabel.accessibilityTraits = .button
@@ -128,7 +125,6 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         
     }
     
-   // TODO: text field gets covered by keyboard
     @IBAction func projectNameEdited(_ sender: Any) {
         let newName = projectNameLabel.text
         if validateFunctionName(name: newName ?? "") {
@@ -162,7 +158,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     }
     
     func validateFunctionName(name: String) -> Bool{
-        let dictionary = self.getModifierDictionary()!
+        let dictionary = HelperFunctions.getPListDictionary(resourceName: "ModifierProperties")!
         if (dictionary[name] != nil) {
             // Name is protected, show an alert do not rename the function
             
@@ -198,19 +194,8 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         
     }
     
-    //TODO: make this a public static helper function
-    /// Converts ModifierProperties plost to a NSDictionary
-    private func getModifierDictionary () -> NSDictionary?{
-        // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
-        let dict: NSDictionary?
-         if let path = Bundle.main.path(forResource: "ModifierProperties", ofType: "plist") {
-            dict = NSDictionary(contentsOfFile: path)
-         } else {
-             print("could not access ModifierProperties plist")
-             return nil
-         }
-        return dict!
-    }
+    
+    
     
     
 }

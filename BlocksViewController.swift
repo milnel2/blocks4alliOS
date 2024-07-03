@@ -903,7 +903,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     /// Sets up a modifier button based on the name inputted
     private func setUpModifierButton(block : Block, blockName name : String, indexPath : IndexPath, cell : UICollectionViewCell) {
-        let dict = getModifierDictionary()  // holds properties of all modifier blocks
+        let dict = HelperFunctions.getPListDictionary(resourceName: "ModifierProperties")  // holds properties of all modifier blocks
         
         let (selector, defaultValue, attributeName, accessibilityHint, imagePath, displaysText, secondAttributeName, secondDefault, showTextImage) = getModifierData(name: name, dict: dict!)  // constants taken from dict based on name
         
@@ -1215,21 +1215,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Returns true if the given name correlates to a modifiable block
     private func isModifierBlock(name : String) -> Bool {
-        let dict = getModifierDictionary()
+        let dict = HelperFunctions.getPListDictionary(resourceName: "ModifierProperties")
         return dict?[name] != nil
-    }
-    
-    /// Converts ModifierProperties plost to a NSDictionary
-    private func getModifierDictionary () -> NSDictionary?{
-        // this code to access a plist as a dictionary is from https://stackoverflow.com/questions/24045570/how-do-i-get-a-plist-as-a-dictionary-in-swift
-        let dict: NSDictionary?
-         if let path = Bundle.main.path(forResource: "ModifierProperties", ofType: "plist") {
-            dict = NSDictionary(contentsOfFile: path)
-         } else {
-             print("could not access ModifierProperties plist")
-             return nil
-         }
-        return dict!
     }
   
     // MARK: - - Navigation
