@@ -129,7 +129,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
             
             if image != nil  {
                 // Show Icons is on
-                let resizedImage = resizeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize))  // resize the image to fit the button
+                let resizedImage = HelperFunctions.resizeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize))  // resize the image to fit the button
                 let imv = UIImageView(image: resizedImage)
                 cell.addSubview(imv)
             }
@@ -179,12 +179,5 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         
     }
     
-    //TODO: make into public static function
-    private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
-    }
+   
 }

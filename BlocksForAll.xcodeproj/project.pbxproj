@@ -25,6 +25,7 @@
 		8D364AA82C349D19006D42F5 /* laser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D364AA72C349D19006D42F5 /* laser.mp3 */; };
 		8D364AAA2C349D4E006D42F5 /* squeak.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D364AA92C349D4E006D42F5 /* squeak.mp3 */; };
 		8D364AAC2C349DA7006D42F5 /* trumpet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D364AAB2C349DA7006D42F5 /* trumpet.mp3 */; };
+		8D364AAE2C35CD44006D42F5 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D364AAD2C35CD44006D42F5 /* HelperFunctions.swift */; };
 		8D3DDA2D2C3347E500AF16EC /* CustomizeActorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3DDA2C2C3347E500AF16EC /* CustomizeActorViewController.swift */; };
 		8D412CA82C138E51005B736F /* FreeplayToolboxBlockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D412CA72C138E51005B736F /* FreeplayToolboxBlockType.swift */; };
 		8D412CAA2C13915E005B736F /* FreeplayBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D412CA92C13915E005B736F /* FreeplayBlocksMenu.plist */; };
@@ -112,6 +113,7 @@
 		8D364AA72C349D19006D42F5 /* laser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = laser.mp3; path = ../../../../Downloads/laser.mp3; sourceTree = "<group>"; };
 		8D364AA92C349D4E006D42F5 /* squeak.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = squeak.mp3; path = ../../../../Downloads/squeak.mp3; sourceTree = "<group>"; };
 		8D364AAB2C349DA7006D42F5 /* trumpet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = trumpet.mp3; path = ../../../../Downloads/trumpet.mp3; sourceTree = "<group>"; };
+		8D364AAD2C35CD44006D42F5 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		8D3DDA2C2C3347E500AF16EC /* CustomizeActorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeActorViewController.swift; sourceTree = "<group>"; };
 		8D412CA72C138E51005B736F /* FreeplayToolboxBlockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeplayToolboxBlockType.swift; sourceTree = "<group>"; };
 		8D412CA92C13915E005B736F /* FreeplayBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FreeplayBlocksMenu.plist; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				F18FFFBE1E65B0FC0090C4B6 /* Info.plist */,
 				F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */,
 				F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */,
+				8D364AAD2C35CD44006D42F5 /* HelperFunctions.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				8D822CDA2C137B3300A8A20D /* FreePlayWorkspaceViewController.swift in Sources */,
 				F73D31762A5DFA0F00008126 /* AddRobotViewController.swift in Sources */,
 				8D822CDC2C138B3100A8A20D /* FreeplayOutputView.swift in Sources */,
+				8D364AAE2C35CD44006D42F5 /* HelperFunctions.swift in Sources */,
 				8DE37B012C1A3C39006DB159 /* ProjectCollectionViewCell.swift in Sources */,
 				8D27A4522A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift in Sources */,
 				F16BA3BC1F57919600A94FBA /* MainMenuViewController.swift in Sources */,

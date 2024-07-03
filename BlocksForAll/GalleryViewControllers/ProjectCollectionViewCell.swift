@@ -35,7 +35,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
            
             
             if project.image != nil {
-                let resizedImage = resizeImage(image: project.image!, scaledToSize: imageView.frame.size)
+                let resizedImage = HelperFunctions.resizeImage(image: project.image!, scaledToSize: imageView.frame.size)
                 imageView.image = resizedImage
                 imageView.contentMode = .scaleToFill
             }
@@ -100,14 +100,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         self.projectNameLabel.isUserInteractionEnabled = true
         self.projectNameLabel.addGestureRecognizer(labelTap)
         }
-    
-    private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
-    }
+  
     
     // TODO: automatically name projects
     func updateAccessibilityTools() {

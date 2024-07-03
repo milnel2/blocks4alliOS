@@ -224,7 +224,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     //TODO: add to virtual robot
     private func showArrowToPlaceFirstBlock() {
         let img = UIImage(named: "Back")
-        let resizedImage = resizeImage(image: img!, scaledToSize: CGSize(width: blockSize, height: blockSize))  // resize the image to scale correctly
+        let resizedImage = HelperFunctions.resizeImage(image: img!, scaledToSize: CGSize(width: blockSize, height: blockSize))  // resize the image to scale correctly
         let imv = UIImageView(image: resizedImage)
         // Turn arrow to point down
         imv.transform = imv.transform.rotated(by: -(.pi / 2))
@@ -249,16 +249,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             imv.transform = imv.transform.translatedBy(x: amountToMove, y: 0)
         })
     }
-    
-    //TODO: make funciton static
-    /// Takes an image and returns a resized version of it. Used by showArrowToPlaceFirstBlock()
-    private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
-    }
+   
     
     //MARK: - Accessibility Methods
     /// Creates the custom rotor action for SwitchControl to delete blocks

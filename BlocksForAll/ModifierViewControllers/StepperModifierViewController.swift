@@ -102,7 +102,7 @@ class StepperModifierViewController: UIViewController {
         let image = UIImage(named: optionName)
         if image != nil && defaults.value(forKey: "showText") as! Int == 0 {
            // Show Icons is on and the image was found
-          let resizedImage = resizeImage(
+            let resizedImage = HelperFunctions.resizeImage(
             image: image!,
             scaledToSize: CGSize(
                 width: buttonSize,
@@ -114,7 +114,7 @@ class StepperModifierViewController: UIViewController {
             // ex. animalNoiseColor, emotionNoiseColor
             let backgroundImagePath = optionDictionary[optionType]?["Default image"] ?? "N/A"
             checkIfValueExists(variableName: "backgroundImagePath", value: backgroundImagePath)
-            let resizedImage = resizeImage(
+            let resizedImage = HelperFunctions.resizeImage(
                 image: UIImage(named: backgroundImagePath)!,
                 scaledToSize: CGSize(
                 width: buttonSize,
@@ -130,15 +130,6 @@ class StepperModifierViewController: UIViewController {
                 print("Image \(optionName) not found in StepperModifierViewController")
             }
         }
-    }
-    
-    /// Takes an image and returns a resized version of it
-    private func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-        image.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: newSize.width, height: newSize.height)))
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
     }
     
     /// Increase the modifierValue if possible and update visuals and accessibillity tools
