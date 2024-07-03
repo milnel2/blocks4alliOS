@@ -132,10 +132,10 @@
                         <outlet property="deleteButton" destination="no5-bE-bCF" id="zIJ-28-3ei"/>
                         <outlet property="redButton" destination="pdO-Kx-8l0" id="hY8-3o-i9c"/>
                         <outlet property="yellowButton" destination="bzW-2E-fa3" id="wMF-4E-vRC"/>
-                        <outletCollection property="colorButtons" destination="pdO-Kx-8l0" collectionClass="NSMutableArray" id="PHA-fN-jft"/>
-                        <outletCollection property="colorButtons" destination="bzW-2E-fa3" collectionClass="NSMutableArray" id="gT5-eQ-S9I"/>
-                        <outletCollection property="colorButtons" destination="iWR-DZ-TX1" collectionClass="NSMutableArray" id="myG-gh-XAc"/>
                         <outletCollection property="colorButtons" destination="tX8-T6-hL4" collectionClass="NSMutableArray" id="gnh-Sy-MhV"/>
+                        <outletCollection property="colorButtons" destination="pdO-Kx-8l0" collectionClass="NSMutableArray" id="s1S-VV-bhB"/>
+                        <outletCollection property="colorButtons" destination="bzW-2E-fa3" collectionClass="NSMutableArray" id="2GJ-qL-lm9"/>
+                        <outletCollection property="colorButtons" destination="iWR-DZ-TX1" collectionClass="NSMutableArray" id="AZy-5S-Rjd"/>
                         <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplay" id="M3F-P2-Uak"/>
                     </connections>
                 </viewController>
@@ -2806,7 +2806,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="lD7-sr-2Jm"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="Cau-JZ-Dok"/>
+        <segue reference="M3F-P2-Uak"/>
         <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>

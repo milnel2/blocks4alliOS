@@ -73,18 +73,24 @@ class CustomizeActorViewController: UIViewController {
         
     }
     
+    
+    
     func setUpAccessibility() {
-        accessibilityElements = [actorImageDisplayView!, defaultButton!, redButton!, yellowButton!, blueButton!, backButton!, deleteButton!]
-        actorImageDisplayView.accessibilityLabel = "\(currentActor!.name) \(currentActor!.color) Color."
-        // TODO: for some reason focus is being set on the back button first
+        
+        actorImageDisplayView.accessibilityLabel = "\(currentActor!.name) \(selectedColor) Color."
         for button in colorButtons {
             button.accessibilityHint = "Double tap to set color"
         }
+        
+        view.accessibilityElements = [actorImageDisplayView!, colorButtons!, deleteButton!, backButton!]
+        
+        deleteButton.accessibilityHint = "Delete \(currentActor!.name) actor."
     }
     
     func setActorDisplayColor(color: String) {
         let imagePath = VirtualRobot.calculateImagePath(baseImagePath: currentActor!.baseImagePath, color: color)
         actorImageDisplayView.image = UIImage(named: imagePath)
+        setUpAccessibility()
     }
     
     func resetColorHighlights() {
