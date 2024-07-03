@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Turn Left</key>
+	<dict>
+		<key>attributeName</key>
+		<string>angle</string>
+		<key>min</key>
+		<string>0</string>
+		<key>max</key>
+		<string>360</string>
+		<key>unitIfSingular</key>
+		<string>degree</string>
+		<key>unitIfPlural</key>
+		<string>degrees</string>
+		<key>Default image</key>
+		<string>driveModifierBackground</string>
+		<key>Slider Interval</key>
+		<string>15</string>
+	</dict>
+	<key>Turn Right</key>
+	<dict>
+		<key>attributeName</key>
+		<string>angle</string>
+		<key>min</key>
+		<string>0</string>
+		<key>max</key>
+		<string>360</string>
+		<key>unitIfSingular</key>
+		<string>degree</string>
+		<key>unitIfPlural</key>
+		<string>degrees</string>
+		<key>Default image</key>
+		<string>driveModifierBackground</string>
+		<key>Slider Interval</key>
+		<string>15</string>
+	</dict>
+	<key>Move Up</key>
+	<dict>
+		<key>attributeName</key>
+		<string>movement</string>
+		<key>min</key>
+		<string>1</string>
+		<key>max</key>
+		<string>10</string>
+		<key>unitIfSingular</key>
+		<string></string>
+		<key>unitIfPlural</key>
+		<string></string>
+		<key>Default image</key>
+		<string>driveModifierBackground</string>
+		<key>Slider Interval</key>
+		<string>1</string>
+	</dict>
+	<key>Move Down</key>
+	<dict>
+		<key>attributeName</key>
+		<string>movement</string>
+		<key>min</key>
+		<string>1</string>
+		<key>max</key>
+		<string>10</string>
+		<key>unitIfSingular</key>
+		<string></string>
+		<key>unitIfPlural</key>
+		<string></string>
+		<key>Default image</key>
+		<string>driveModifierBackground</string>
+		<key>Slider Interval</key>
+		<string>1</string>
+	</dict>
+	<key>Move Right</key>
+	<dict>
+		<key>attributeName</key>
+		<string>movement</string>
+		<key>min</key>
+		<string>1</string>
+		<key>max</key>
+		<string>10</string>
+		<key>unitIfSingular</key>
+		<string></string>
+		<key>unitIfPlural</key>
+		<string></string>
+		<key>Default image</key>
+		<string>driveModifierBackground</string>
+		<key>Slider Interval</key>
+		<string>1</string>
+	</dict>
+	<key>Move Left</key>
+	<dict>
+		<key>attributeName</key>
+		<string>movement</string>
+		<key>min</key>
+		<string>1</string>
+		<key>max</key>
+		<string>10</string>
+		<key>unitIfSingular</key>
+		<string></string>
+		<key>unitIfPlural</key>
+		<string></string>
+		<key>Default image</key>
+		<string>driveModifierBackground</string>
+		<key>Slider Interval</key>
+		<string>1</string>
+	</dict>
+</dict>
+</plist>

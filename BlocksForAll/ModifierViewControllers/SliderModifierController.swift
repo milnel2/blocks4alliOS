@@ -19,18 +19,14 @@ class SliderModifierController: UIViewController {
     var sliderInterval: Int = 1
     
     private var optionType = ""  // Name of options that gets used for accessing data and displaying information
-    //TODO: get this dictionary from a plist
+   
+    
       // holds the different options for each slider modifier type
       // the keys are the same as what gets put in the optionModTitle and are accessed by using optionType
       // the values are dictionaries of string : string that holds different attributes to be shown on thte screen
       // the minimum value is also the default value
-    private let optionDictionary: [String:[String : String]] =
-    ["Turn Left" :  ["attributeName" : "angle", "min" : "0", "max" : "360", "unitIfSingular" : "degree", "unitIfPlural" : "degrees", "Default image" : "driveModifierBackground", "Slider Interval": "15"],
-     "Turn Right" : ["attributeName" : "angle", "min" : "0", "max" : "360", "unitIfSingular" : "degree", "unitIfPlural" : "degrees",  "Default image" : "driveModifierBackground", "Slider Interval": "15"],
-     "Move Up" : ["attributeName" : "movement", "min" : "1", "max" : "10", "unitIfSingular" : "", "unitIfPlural" : "",  "Default image" : "driveModifierBackground", "Slider Interval": "1"],
-     "Move Down" : ["attributeName" : "movement", "min" : "1", "max" : "10", "unitIfSingular" : "", "unitIfPlural" : "", "Default image" : "driveModifierBackground", "Slider Interval": "1"],
-     "Move Right" : ["attributeName" : "movement", "min" : "1", "max" : "10", "unitIfSingular" : "", "unitIfPlural" : "", "Default image" : "driveModifierBackground", "Slider Interval": "1"],
-     "Move Left" : ["attributeName" : "movement", "min" : "1", "max" : "10", "unitIfSingular" : "", "unitIfPlural" : "", "Default image" : "driveModifierBackground", "Slider Interval": "1"]]
+    private let dict = HelperFunctions.getPListDictionary(resourceName: "SliderModifierOptionDictionary")!
+
     
     private var attributeName = ""  // Used for accessing and saving data, taken from optionDictionary (ex. if optionType = "Wait for Time", attributeName is "wait"
     private var min = "0"  // minimum value of the stepper, taken from optionDictionary
@@ -48,17 +44,21 @@ class SliderModifierController: UIViewController {
     
     var parentVC: UIViewController?
     var currentProject: Project?
+    
+    var optionDict = NSDictionary() // the specific dictionary for the chosen modifier (ex. Move Up)
    
     override func viewDidLoad() {
         // get the optionType from the button that caused this screen to open, this will be displayed at the top of the screen
         optionType = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name
         
-        // get values from optionDictionary
-        attributeName = optionDictionary[optionType]?["attributeName"] ?? "N/A"
-        min = optionDictionary[optionType]?["min"] ?? "N/A"
-        max = optionDictionary[optionType]?["max"] ?? "N/A"
-        let sliderIntervalString = optionDictionary[optionType]?["Slider Interval"] ?? "N/A"
+        // get values from dict
         
+        optionDict = dict.value(forKey: optionType) as! NSDictionary
+        
+        attributeName = optionDict.value(forKey: "attributeName") as? String ?? "N/A"
+        min = optionDict.value(forKey: "min") as? String ?? "N/A"
+        max = optionDict.value(forKey: "max") as? String ?? "N/A"
+        let sliderIntervalString = optionDict.value(forKey: "Slider Interval") as? String ?? "N/A"
         
         // check if these values actually exist. If they don't, print error messages
         checkIfValueExists(variableName: "attributeName", value: attributeName)
@@ -84,9 +84,9 @@ class SliderModifierController: UIViewController {
         
 
         if previousValue! == 1 {
-            units = optionDictionary[optionType]?["unitIfSingular"] ?? "N/A"
+            units = optionDict.value(forKey: "unitIfSingular") as? String ?? "N/A"
         } else {
-            units = optionDictionary[optionType]?["unitIfPlural"] ?? "N/A"
+            units = optionDict.value(forKey: "unitIfPlural") as? String ?? "N/A"
         }
         sliderValue = Double(previousValue!)
         slider.accessibilityValue = "\(previousValue!) " + units
