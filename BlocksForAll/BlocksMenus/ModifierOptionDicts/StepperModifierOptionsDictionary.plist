@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Wait for Time</key>
+	<dict>
+		<key>attributeName</key>
+		<string>wait</string>
+		<key>min</key>
+		<string>1</string>
+		<key>max</key>
+		<string>10</string>
+		<key>unitIfSingular</key>
+		<string>second</string>
+		<key>unitIfPlural</key>
+		<string>seconds</string>
+		<key>increaseImage</key>
+		<string>orange_plus</string>
+		<key>decreaseImage</key>
+		<string>orange_minus</string>
+		<key>Default image</key>
+		<string>controlModifierBackground</string>
+	</dict>
+	<key>Repeat</key>
+	<dict>
+		<key>attributeName</key>
+		<string>timesToRepeat</string>
+		<key>min</key>
+		<string>2</string>
+		<key>max</key>
+		<string>20</string>
+		<key>unitIfSingular</key>
+		<string>time</string>
+		<key>unitIfPlural</key>
+		<string>times</string>
+		<key>increaseImage</key>
+		<string>orange_plus</string>
+		<key>decreaseImage</key>
+		<string>orange_minus</string>
+		<key>Default image</key>
+		<string>controlModifierBackground</string>
+	</dict>
+	<key>Grow Actor</key>
+	<dict>
+		<key>attributeName</key>
+		<string>sizeChangeAmount</string>
+		<key>min</key>
+		<string>1</string>
+		<key>max</key>
+		<string>5</string>
+		<key>unitIfSingular</key>
+		<string></string>
+		<key>unitIfPlural</key>
+		<string></string>
+		<key>increaseImage</key>
+		<string>green_plus</string>
+		<key>decreaseImage</key>
+		<string>green_minus</string>
+		<key>Default image</key>
+		<string>driveModifierBackground</string>
+	</dict>
+	<key>Shrink Actor</key>
+	<dict>
+		<key>attributeName</key>
+		<string>sizeChangeAmount</string>
+		<key>min</key>
+		<string>1</string>
+		<key>max</key>
+		<string>5</string>
+		<key>unitIfSingular</key>
+		<string></string>
+		<key>unitIfPlural</key>
+		<string></string>
+		<key>increaseImage</key>
+		<string>green_plus</string>
+		<key>decreaseImage</key>
+		<string>green_minus</string>
+		<key>Default image</key>
+		<string>driveModifierBackground</string>
+	</dict>
+</dict>
+</plist>

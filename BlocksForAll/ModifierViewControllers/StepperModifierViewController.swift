@@ -20,11 +20,10 @@ class StepperModifierViewController: UIViewController {
       // the keys are the same as what gets put in the optionModTitle and are accessed by using optionType
       // the values are dictionaries of string : string that holds different attributes to be shown on thte screen
       // the minimum value is also the default value
-    private let optionDictionary: [String:[String : String]] =
-    ["Wait for Time" :  ["attributeName" : "wait", "min" : "1", "max" : "10", "unitIfSingular" : "second", "unitIfPlural" : "seconds", "increaseImage" : "orange_plus", "decreaseImage" : "orange_minus", "Default image" : "controlModifierBackground"],
-     "Repeat" : ["attributeName" : "timesToRepeat", "min" : "2", "max" : "20", "unitIfSingular" : "time", "unitIfPlural" : "times", "increaseImage" : "orange_plus", "decreaseImage" : "orange_minus", "Default image" : "controlModifierBackground"],
-     "Grow Actor" : ["attributeName" : "sizeChangeAmount", "min" : "1", "max" : "5", "unitIfSingular" : "", "unitIfPlural" : "", "increaseImage" : "green_plus", "decreaseImage" : "green_minus", "Default image" : "driveModifierBackground"],
-     "Shrink Actor" : ["attributeName" : "sizeChangeAmount", "min" : "1", "max" : "5", "unitIfSingular" : "", "unitIfPlural" : "", "increaseImage" : "green_plus", "decreaseImage" : "green_minus", "Default image" : "driveModifierBackground"]]
+    private let dict = HelperFunctions.getPListDictionary(resourceName: "StepperModifierOptionsDictionary")!
+    
+    var optionDict = NSDictionary() // the specific dictionary for the chosen modifier (ex. Grow Actorp)
+    
     private var modifierValue = 2  // current value of the stepper
     private var attributeName = ""  // Used for accessing and saving data, taken from optionDictionary (ex. if optionType = "Wait for Time", attributeName is "wait"
     private var min = "0"  // minimum value of the stepper, taken from optionDictionary
@@ -47,11 +46,11 @@ class StepperModifierViewController: UIViewController {
         optionType = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name
           
         // get values from optionDictionary
-        attributeName = optionDictionary[optionType]?["attributeName"] ?? "N/A"
-        min = optionDictionary[optionType]?["min"] ?? "N/A"
-        max = optionDictionary[optionType]?["max"] ?? "N/A"
-        let increaseImagePath = optionDictionary[optionType]?["increaseImage"] ?? "N/A"
-        let decreaseImagePath = optionDictionary[optionType]?["decreaseImage"] ?? "N/A"
+        attributeName = optionDict.value(forKey: "attributeName") as? String ?? "N/A"
+        min = optionDict.value(forKey: "min") as? String ?? "N/A"
+        max = optionDict.value(forKey: "max") as? String ?? "N/A"
+        let increaseImagePath = optionDict.value(forKey: "increaseImage") as? String ?? "N/A"
+        let decreaseImagePath = optionDict.value(forKey: "decreaseImage") as? String ?? "N/A"
           
         // check if these values actually exist. If they don't, print error messages
         checkIfValueExists(variableName: "attributeName", value: attributeName)
@@ -112,7 +111,7 @@ class StepperModifierViewController: UIViewController {
             // No image was found and/or Show Text is on
             // Naming convention for color assets is (attributeName)Color
             // ex. animalNoiseColor, emotionNoiseColor
-            let backgroundImagePath = optionDictionary[optionType]?["Default image"] ?? "N/A"
+            let backgroundImagePath = optionDict.value(forKey: "Default image") as? String ?? "N/A"
             checkIfValueExists(variableName: "backgroundImagePath", value: backgroundImagePath)
             let resizedImage = HelperFunctions.resizeImage(
                 image: UIImage(named: backgroundImagePath)!,
@@ -156,8 +155,8 @@ class StepperModifierViewController: UIViewController {
     
     /// Set text value of modifierValueLabel which is between the two stepper buttons
     private func updateModifierValueLabel () {
-        let unitIfSingular = optionDictionary[optionType]?["unitIfSingular"] ?? "N/A"
-        let unitIfPlural = optionDictionary[optionType]?["unitIfPlural"] ?? "N/A"
+        let unitIfSingular = optionDict.value(forKey: "unitIfSingular") as? String ?? "N/A"
+        let unitIfPlural = optionDict.value(forKey: "unitIfPlural") as? String ?? "N/A"
         
         checkIfValueExists(variableName: "unitIfSingular", value: unitIfSingular)
         checkIfValueExists(variableName: "unitIfPlural", value: unitIfPlural)

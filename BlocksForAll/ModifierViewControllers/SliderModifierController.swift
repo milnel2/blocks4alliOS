@@ -25,8 +25,10 @@ class SliderModifierController: UIViewController {
       // the keys are the same as what gets put in the optionModTitle and are accessed by using optionType
       // the values are dictionaries of string : string that holds different attributes to be shown on thte screen
       // the minimum value is also the default value
-    private let dict = HelperFunctions.getPListDictionary(resourceName: "SliderModifierOptionDictionary")!
+    private let dict = HelperFunctions.getPListDictionary(resourceName: "SliderModifierOptionsDictionary")!
 
+    
+    var optionDict = NSDictionary() // the specific dictionary for the chosen modifier (ex. Move Up)
     
     private var attributeName = ""  // Used for accessing and saving data, taken from optionDictionary (ex. if optionType = "Wait for Time", attributeName is "wait"
     private var min = "0"  // minimum value of the stepper, taken from optionDictionary
@@ -45,7 +47,7 @@ class SliderModifierController: UIViewController {
     var parentVC: UIViewController?
     var currentProject: Project?
     
-    var optionDict = NSDictionary() // the specific dictionary for the chosen modifier (ex. Move Up)
+   
    
     override func viewDidLoad() {
         // get the optionType from the button that caused this screen to open, this will be displayed at the top of the screen
