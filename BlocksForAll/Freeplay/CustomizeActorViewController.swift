@@ -11,6 +11,8 @@ import Foundation
 class CustomizeActorViewController: UIViewController {
     
     
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var actorImageDisplayView: UIImageView!
     
     @IBOutlet weak var defaultButton: UIButton!
@@ -65,6 +67,18 @@ class CustomizeActorViewController: UIViewController {
             highlightButton(button: blueButton)
         default:
             highlightButton(button: defaultButton)
+        }
+        
+        setUpAccessibility()
+        
+    }
+    
+    func setUpAccessibility() {
+        accessibilityElements = [actorImageDisplayView!, defaultButton!, redButton!, yellowButton!, blueButton!, backButton!, deleteButton!]
+        actorImageDisplayView.accessibilityLabel = "\(currentActor!.name) \(currentActor!.color) Color."
+        // TODO: for some reason focus is being set on the back button first
+        for button in colorButtons {
+            button.accessibilityHint = "Double tap to set color"
         }
     }
     

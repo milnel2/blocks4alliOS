@@ -224,7 +224,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                         
-                        print("new actor 4")
                         let robot = VirtualRobot(baseImagePath: actorBaseImageName, color: actorImageColor, name: actorName, coordinates: (x: actorX, y: actorY), project: nil, uuid: actorUUID, robotSize: actorRobotSize)
                         
                         for functionString in functionStrings[1...] {

@@ -48,6 +48,10 @@
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zUF-4k-85e">
                                 <rect key="frame" x="355" y="220" width="370" height="370"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zUF-4k-85e" secondAttribute="height" multiplier="1:1" id="bS0-2G-xgt"/>
                                 </constraints>
@@ -122,8 +126,10 @@
                     <navigationItem key="navigationItem" id="Pqu-7m-H61"/>
                     <connections>
                         <outlet property="actorImageDisplayView" destination="zUF-4k-85e" id="NyE-KR-wvG"/>
+                        <outlet property="backButton" destination="cSw-Dm-i97" id="u51-Fe-8E1"/>
                         <outlet property="blueButton" destination="iWR-DZ-TX1" id="PoD-M8-Y6C"/>
                         <outlet property="defaultButton" destination="tX8-T6-hL4" id="sWn-rU-Ezl"/>
+                        <outlet property="deleteButton" destination="no5-bE-bCF" id="zIJ-28-3ei"/>
                         <outlet property="redButton" destination="pdO-Kx-8l0" id="hY8-3o-i9c"/>
                         <outlet property="yellowButton" destination="bzW-2E-fa3" id="wMF-4E-vRC"/>
                         <outletCollection property="colorButtons" destination="pdO-Kx-8l0" collectionClass="NSMutableArray" id="PHA-fN-jft"/>
