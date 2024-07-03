@@ -266,10 +266,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         let focusedCell = UIAccessibility.focusedElement(using: UIAccessibility.AssistiveTechnologyIdentifier.notificationVoiceOver) as! UICollectionViewCell
         if let indexPath = blocksProgram?.indexPath(for: focusedCell) {
             // perform the custom action here using the indexPath information
-            print(indexPath.row)
             selectBlock(block: currentProject!.currentActor!.functionDict[currentWorkspace]![indexPath.row], location: indexPath.row)
         }
-        print("put in trash")
         return true
     }
     
@@ -416,7 +414,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// Called when blocks are placed in workspace, so clears blocksBeingMoved
     func finishMovingBlocks() {
         if indexOfMovingBlock != nil {  // Replaces the block in the Workspace if it is from the workspace
-            print("moving stopped, place blocks at " , indexOfMovingBlock!)
             addBlocks(blocksBeingMoved, at: indexOfMovingBlock!)
             
         }
@@ -480,7 +477,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Determine what to do based on the state of the play button when it was clicked. Delete blocks if moving blocks, stop blocks if stopIsOption, or play program.
     @IBAction func playButtonClicked(_ sender: Any) {
-        print("Moving blocks = ", movingBlocks, " stop is Option = ", stopIsOption)
         if (movingBlocks)
             { trashClicked() }
         else if stopIsOption
@@ -496,7 +492,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         let announcement = blocksBeingMoved[0].name + " placed in trash."
         playTrashToggleButton.accessibilityLabel = announcement
         self.containerViewController?.popViewController(animated: false)
-        print("put in trash")
         blocksProgram.reloadData()
         finishMovingBlocks()
     }
@@ -507,7 +502,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             //no robots
             let announcement = "Connect to the dash robot. "
             UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: announcement)
-            print("No robots")
             performSegue(withIdentifier: "AddRobotSegue", sender: nil)
             
         } else if(currentProject!.currentActor!.functionDict[currentWorkspace]!.isEmpty) {
@@ -534,7 +528,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Stop the program
     private func stopClicked() {
-        print("----stop clicked----")
         
         self.executingProgram = nil
         programHasCompleted()
@@ -569,7 +562,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     func updateCurrentWorkspace (name: String) {
         currentWorkspace = name
-        print("Updated workspace to", currentWorkspace)
         refreshScreen()
     }
     
@@ -623,7 +615,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 blocksProgram.reloadData()
             } else {
                 currentProject!.currentActor!.functionDict[currentWorkspace]!.insert(blocks[0], at: index)
-                print("inserted block")
                 blocksBeingMoved.removeAll()
                 blocksProgram.reloadData()
             }
@@ -632,7 +623,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
 //
 //    func updateAllProjects() {
-//        print("gallery type = ", galleryType)
 //        for proj in allProjects[galleryType]! {
 //            if (proj == currentProject) {
 //                let index = allProjects[galleryType]!.firstIndex(of: proj)
@@ -731,7 +721,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     y: startingHeight + blockSize / 2 - count * (blockSize / 2 + blockSpacing),
                     width: blockSize + 2 * blockSpacing,
                     height: blockSize / 2))
-                print(b.name)
                 if b.name.contains("Function Start") {
                     myView.accessibilityLabel = "Inside \(currentWorkspace) function"
                     myView.text = "Inside \(currentWorkspace) function"
@@ -869,27 +858,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     let myBlock = currentProject!.currentActor!.functionDict[currentWorkspace]![blocksStackIndex]
                     guard !myBlock.name.contains("Function Start")  else {
                         movingBlocks = false
-                        print("function start, can't move")
                         return
                     }
                     
                     guard !myBlock.name.contains("Function End") else {
-                        print("function end, can't move")
                         movingBlocks = false
                         return
                     }
                     guard !myBlock.name.contains("\(ON_RUN_STRING) Start")  else {
-                        print("cant move it")
                         movingBlocks = false
                         return
                     }
                     guard !myBlock.name.contains("\(ON_BUMP_STRING) Start")  else {
-                        print("cant move it")
                         movingBlocks = false
                         return
                     }
                     guard !myBlock.name.contains("\(ON_TAP_STRING) Start")  else {
-                        print("cant move it")
                         movingBlocks = false
                         return
                     }
@@ -1293,7 +1277,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     }
     
     @objc func angleModifier(sender: UIButton!) {
-        print("angle modifier")
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "SliderModifier", sender: nil)
     }

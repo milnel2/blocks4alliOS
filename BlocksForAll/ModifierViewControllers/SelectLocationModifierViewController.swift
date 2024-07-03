@@ -117,7 +117,6 @@ class SelectLocationModifierViewController: UIViewController  {
             destination.currentProject = currentProject
             
             let coords = getCoordinatesFromCellIndex(index: optionSelectedIndex)
-            print("setting coords: ", coords)
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["moveToLocation"] = coords
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["cellIndex"] = String(optionSelectedIndex)
         }

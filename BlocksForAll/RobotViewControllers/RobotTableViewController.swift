@@ -47,7 +47,6 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        print("loading robot tableNKJSFLAHSL")
         // Make table background transparent
                tableView.backgroundColor = UIColor.clear
       
@@ -58,10 +57,7 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         } else {
             localCentralManager = globalCentralManager
         }
-        print("robots: ", robots)
-        if(!robots.isEmpty) {
-            print(robots[0])
-        }
+       
         // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
        
@@ -96,7 +92,6 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
             if (peripheral.identifier ==  robot.peripheral.identifier) {
                 // Robot is already in the list
                 alreadyInList = true
-                print("Already in list")
             }
         }
 
@@ -152,7 +147,6 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
        //        for connectedRobot in robots where connectedRobot.isConnected() {
        //            connectedRobotTypes.append(connectedRobot.robotType.description)
        //        }
-       //        print("HELLO", connectedRobotTypes)
        //        if connectedRobotTypes.contains("1002") && !connectedRobotTypes.contains("1001") {
        //            dotRobotIsConnected = true
        //        } else {
@@ -180,7 +174,6 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
 //        for connectedRobot in robots where connectedRobot.state == .connected {
 //            connectedRobotTypes.append(connectedRobot.robotType.description)
 //        }
-//        print("HELLO", connectedRobotTypes)
 //        if connectedRobotTypes.contains("1002") && !connectedRobotTypes.contains("1001") {
 //            dotRobotIsConnected = true
 //        } else {
@@ -219,13 +212,10 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
             }
             
             let dataString = characteristic.value!.hexEncodedString()
-            //print("first hex:", dataString)
             var dataList = [Int]()
-            //print(Array(dataString))
             
             //let dataList = [int(dataString[i:i + 2], 16) for i in range(0, len(dataString), 2)]
         }
-        //print("-----")
         
     }
     
@@ -340,7 +330,6 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         //Add highlight to cell when robot is connected
         //TODO: different indicators for connecting and connected
         if(robot.peripheral.state == .connected) {
-            print("it's connected still")
             cell.layer.borderWidth = 9
             cell.layer.borderColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
             cell.accessibilityLabel =  (robot.peripheral.name ?? "Unnamed Robot") + "Connected"
@@ -354,10 +343,8 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     /// Called when a cell in the table is pressed
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let robotPeripheral = robots[indexPath.row].peripheral
-//        print(robot.state.rawValue)
         // Disconnect for robot if already connected
         if (robotPeripheral.state == .connected || robotPeripheral.state == .connecting) {
-            print("already connected")
             localCentralManager.cancelPeripheralConnection(robotPeripheral)
             
         } else {

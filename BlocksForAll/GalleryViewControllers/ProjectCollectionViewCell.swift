@@ -163,7 +163,6 @@ class ProjectCollectionViewCell: UICollectionViewCell {
             allProjects[self.cellGalleryType]!.remove(at: index)
             // reload gallery
             self.parentViewController!.reloadGallery()
-            print("deleted")
         }))
         parentViewController!.present(alert, animated: true)
         

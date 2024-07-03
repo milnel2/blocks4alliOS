@@ -142,13 +142,11 @@ class SliderModifierController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? FreePlayWorkspaceViewController {
             
-            print("Set slider value to \(roundedSliderValue) " + units)
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"
             destination.currentProject = currentProject
             
         }
         if let destination = segue.destination as? BlocksViewController {
-            print("Set slider value to \(roundedSliderValue) " + units)
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"
             destination.currentProject = currentProject
             

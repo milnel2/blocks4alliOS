@@ -19,7 +19,6 @@ class ModifierButton: UIButton {
     var rectWidth = 0.0
     override func draw(_ rect: CGRect) {
         if block != nil && currentProject != nil {
-            print(block!.name)
             if block!.name == "Move to Location" {
                 // TODO: text description of button
                 

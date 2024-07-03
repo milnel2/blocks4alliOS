@@ -63,7 +63,6 @@ class Project : Equatable{
     func addActor(actor: VirtualRobot) {
         
         if !actors.contains(actor) {
-            print("appending new actor")
             actors.append(actor)
         }
         

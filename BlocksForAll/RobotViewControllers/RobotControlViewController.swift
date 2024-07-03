@@ -68,7 +68,6 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
             executeNextCommandRobotControllVC()
             //makes initial executeNextCommandRobotControllVC call
             } else {
-            print("no connected robots")
         }
     }
     
@@ -226,7 +225,6 @@ class ExecutingProgram {
     }
     
     func executeNextCommandExecProgram() {
-        print("func is complete = ", funcIsComplete)
         guard !funcIsComplete else {
             robotControlViewController.programHasCompleted()
             return
@@ -339,7 +337,6 @@ class ExecutingProgram {
             } else if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "Obstacle sensed"{
             // check if the if statement is evaluating for a obstacle_sensed
                 
-                print("checking for obstacle")
                 // TODO: if we allow multiple robots to each evaluate the if condition, will that mess up the sequence of the rest of the blocks? Maybe we should disable the aility to connect to more than one robot
                 var numTrue = 0
                 for _ in 0..<20 { // Check multiple times if the robot detectsObject in order to reduce error
@@ -358,7 +355,6 @@ class ExecutingProgram {
            }
 
             if(ifCondition){
-                print("TRUE")
                 //if it's true, just keep going
                 finishCommand(withDuration: 1)
             
@@ -549,7 +545,6 @@ class ExecutingProgram {
 
             let averageSoundDirection = Int(soundDirectionSum / numSamples)
             let xAngle = -averageSoundDirection // angle signs are swapped from soundDirection data to sending data to robot
-            print("sound direction: ", xAngle)
             let data = setHeadXandYPostion(x: xAngle, y: 0)
             sendDataToDashNoDuration(data: Data(data.xData))  // send first command without a duration so that the second command is the only one that has a time on it (otherwise it acts as if this block is two blocks)
             sendDataToDash(data: Data(data.yData), withDuration: 2)
@@ -558,7 +553,6 @@ class ExecutingProgram {
         case "Set Variable":
             variablesDict[ blockToExec.addedBlocks[0].attributes["variableSelected"] ?? "orange"] = Double(blockToExec.addedBlocks[0].attributes["variableValue"] ?? "0.0") ?? 0.0
             //assigns the variable value from current block attributes to the variables dict in executing program
-            print("set variable, variablesDict:", variablesDict)
             
             finishCommand(withDuration: 1)
             
@@ -891,7 +885,6 @@ class ExecutingProgram {
     func playWait(waitBlock: Block) {
         // TODO: implement for freeplay
         let wait = Double(waitBlock.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
-        print("waiting: ", wait)
         finishCommand(withDuration: wait)
     }
 
@@ -933,7 +926,6 @@ class ExecutingProgram {
     //decomposition of drive functions
     func playDrive (driveBlock: Block, driveConstant: Double){
         if isInFreeplay {
-            print("drive block")
             // TODO: implement for freeplay
            
             finishCommand(withDuration: 1.5)

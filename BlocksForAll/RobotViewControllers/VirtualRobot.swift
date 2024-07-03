@@ -492,7 +492,6 @@ class VirtualRobot: Equatable {
     
     
     public func setCoordinates(x: CGFloat, y: CGFloat) {
-        //print("setting coords to x = ", x, " y = ", y)
         if x == -10 && y == -10 {
             let outputWidth = freeplayOutputView!.frame.width
             let outputHeight = freeplayOutputView!.frame.height

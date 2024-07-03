@@ -104,19 +104,16 @@ class FunctionTableViewCell: UITableViewCell {
     
     /// Called when delete button pressed
     @objc func deleteAction(sender: UIButton){
-        print("delete action tapped")
         functionTableViewController?.deleteCell(cell: self)
     }
     
     /// Called when name function button pressed
     @objc func nameFunction(sender: UIButton){
-        print("name function tapped")
         functionTableViewController?.blockModifier(cell: self, sender: nil)
     }
 
     /// Called when rename function button pressed
     @objc func renameFunction(sender: UIButton){
-        print("rename function tapped")
         functionTableViewController?.renameCell(cell: self)
     }
     

@@ -132,7 +132,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     }
     
     @objc func clickOnCurrentActorImageView(sender : UITapGestureRecognizer) {
-        print("click")
         performSegue(withIdentifier: "toCustomizeActor", sender: nil)
     }
     

@@ -29,7 +29,6 @@ class BlockView: UIView, UITextFieldDelegate {
     //MARK: - Element Focus
     override func accessibilityElementDidBecomeFocused() {
         
-        print(blocks[0].name + " is focused")
     }
     
     required init?(coder aDecoder: NSCoder) {

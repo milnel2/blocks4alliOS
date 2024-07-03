@@ -189,7 +189,7 @@ class BlocksTypeTableViewController: UITableViewController {
                   // Makes the categories that Dot cannot use deactivate
                 if numDotsConnected > 0 && numDotsConnected == connectedRobots.count && (block.name == "Drive" || block.name == "Motion") { // all connected robots are Dots
                       // TODO make this a property of the block instead
-                    print("Not allowed on Dash: ", block.name)
+                    print("Not allowed on Dot: ", block.name)
                      
                     
                     // don't add the category
