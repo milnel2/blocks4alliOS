@@ -46,9 +46,6 @@ class FreeplayOutputView: UIView {
     }
     
     
-    // TODO: disable editing code when program is running
-    // TODO: make actor bigger/smaller and rotate with fingers
-    //TODO: ontap doesn't work if the actor is already moving
     @objc func clickOnActor(sender : UITapGestureRecognizer) {
         let currentProject = freeplayWorkspaceVC!.currentProject
         
@@ -89,7 +86,7 @@ class FreeplayOutputView: UIView {
        case .began, .changed: // Implementation to recognize seleccted actor from ChatGPT by OpenAI. Source: https://www.openai.com
            let currentProject = freeplayWorkspaceVC!.currentProject
            for actor in currentProject!.actors {
-               if actor.imageView.frame.contains(dragLocation) && actor.imageView == sender.view { // TODO: handle when images overlap
+               if actor.imageView.frame.contains(dragLocation) && actor.imageView == sender.view {
                    if !(dragLocation.x - actorWidth / 2 <= backgroundLeftX || dragLocation.x + actorWidth / 2 >= backgroundRightX) {
                        // within x bounds
                        actor.setCoordinates(x: dragLocation.x, y: actor.coordinates.y)

@@ -32,7 +32,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     @IBOutlet weak var buttonsView: UIView! // view that has play button, code lines, and customize acotor button
     @IBOutlet weak var addActorButton: UIButton!
     var newActorToAdd: (name:String, baseImagePath: String, color: String)? // to be used when adding to actors
-    // TODO: add custom backgrounds from camera roll
     override func viewDidLoad() {
         if (currentProject == nil) {
             print("ERROR: current project is nil")
@@ -228,7 +227,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     func deleteActor(actor: VirtualRobot) {
         currentProject!.deleteActor(actor: actor)
-        // TODO: reload the view controller?
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -278,7 +276,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
 
     }
     
-    func updateCurrentActor(newActor: VirtualRobot) { // TODO: after adding a new actor, tapping on actors to switch doesn't always work
+    func updateCurrentActor(newActor: VirtualRobot) {
         currentProject!.currentActor = newActor
         functionsDict = currentProject!.currentActor!.functionDict
         
