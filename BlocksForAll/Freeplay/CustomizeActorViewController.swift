@@ -71,6 +71,11 @@ class CustomizeActorViewController: UIViewController {
         
         setUpAccessibility()
         
+        if currentProject!.actors.count > 1 { // don't allow deleting when there is only one actor left
+            deleteButton.isEnabled = true
+        } else {
+            deleteButton.isEnabled = false // can't delete the only actor
+        }
     }
     
     

@@ -11,7 +11,7 @@ import UIKit
 
 var allProjects: [String : [Project]] = ["Freeplay Projects":[], "Robot Projects": []] //["Freeplay Projects" : [Project(name: "hi", imageName: "drive_backwards", functionDict: ["Main Workspace" : []])], "Robot Projects" : [Project(name: "hello", imageName: "drive_backwards", functionDict: ["Main Workspace": []])]]
 let ON_RUN_STRING = "OnRun"
-let ON_BUMP_STRING = "OnBump" // TODO: add ON_BUMP implementation. 
+let ON_BUMP_STRING = "OnBump" // Need to add implementation for On Bump
 let ON_TAP_STRING = "OnTap"
 
 let PREMADE_FUNCTION_NAMES = [ON_RUN_STRING, ON_BUMP_STRING, ON_TAP_STRING, "Main Workspace"]
@@ -33,10 +33,10 @@ class Project : Equatable{
         self.name = name
         self.imageName = imageName
         self.projectType = projectType
-        let defaultActor = VirtualRobot(baseImagePath: "CatActor", name: "Cat", project: self) // TODO: update adding default actor
+        // By default adds one actor to the project if it is an empty project
+        let defaultActor = VirtualRobot(baseImagePath: "CatActor", name: "Cat", project: self)
         addActor(actor: defaultActor)
         currentActor = defaultActor
-       // self.functionDict = [ON_RUN_STRING : [], ON_BUMP_STRING: [], THIRD_LINE_STRING: []]
     }
     
     init(name: String = "", imageName: String, actors: [VirtualRobot], projectType: ProjectType) {
@@ -51,15 +51,8 @@ class Project : Equatable{
             currentActor = defaultActor
         }
         currentActor = actors[0]
-       // self.functionDict = [ON_RUN_STRING : [], ON_BUMP_STRING: [], THIRD_LINE_STRING: []]
     }
     
-//    init(name: String = "", imageName: String, functionDict: [String : [Block]]) {
-//        self.name = name
-//        self.imageName = imageName
-//        self.functionDict = functionDict
-//    }
-//    
     func addActor(actor: VirtualRobot) {
         
         if !actors.contains(actor) {
@@ -70,10 +63,11 @@ class Project : Equatable{
     
     // attempt to delete actor from project
     func deleteActor(actor: VirtualRobot) {
+        print(actors.count)
         let index = actors.firstIndex(of: actor)
         if index != nil {
             actors.remove(at: index!)
-            if actors.count > 0 { // TODO: handle when there are no actors
+            if actors.count > 0 { 
                 currentActor = actors[0]
             }
            
