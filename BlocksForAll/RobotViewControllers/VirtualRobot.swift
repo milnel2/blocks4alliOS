@@ -17,7 +17,8 @@ class VirtualRobot: Equatable {
     }
     
 
-    
+    let baseImagePath: String
+    var color: String
     var imagePath: String
     var imageView: UIImageView
     var freeplayOutputView: FreeplayOutputView?
@@ -29,6 +30,7 @@ class VirtualRobot: Equatable {
     var project: Project?
     var executingProgram: ExecutingProgram? = nil
     var isRunning: Bool = false
+    
     
     let UUID: String // Universally Unique Identifier used to compare Virtual Robots
     
@@ -47,10 +49,13 @@ class VirtualRobot: Equatable {
     var movementAnimationSpeed: CGFloat = 50 // The bigger the number, the faster the animation
     
     
-    init(imagePath: String, freeplayOutputView: FreeplayOutputView, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
+    init(baseImagePath: String, color: String = "Default", freeplayOutputView: FreeplayOutputView, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
         
         
-        self.imagePath = imagePath
+        self.baseImagePath = baseImagePath
+        self.color = color
+        self.imagePath = "\(baseImagePath)_\(color)"
+        
         self.freeplayOutputView = freeplayOutputView
     
         self.project = project
@@ -76,9 +81,13 @@ class VirtualRobot: Equatable {
         
     }
     
-    init(imagePath: String, name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
+    
+    init(baseImagePath: String, color: String = "Default", name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
         
-        self.imagePath = imagePath
+        self.baseImagePath = baseImagePath
+        self.color = color
+        self.imagePath = "\(baseImagePath)_\(color)"
+        
         self.freeplayOutputView = nil
         self.project = project
         self.name = name
@@ -97,6 +106,15 @@ class VirtualRobot: Equatable {
         
         
         functionDict = createFunctionDict()
+    }
+    
+    // update the imageView to match the current imagePath
+    public func updateImageView() {
+        imageView = UIImageView(image: UIImage(named: imagePath))
+    }
+    
+    public static func calculateImagePath(baseImagePath: String, color: String) -> String{
+        return "\(baseImagePath)_\(color)"
     }
     
     public func setActorSpeedByName(speedName: String) {
@@ -119,7 +137,7 @@ class VirtualRobot: Equatable {
     func setUpAccessibility() {
         imageView.isUserInteractionEnabled = true
         imageView.isAccessibilityElement = true
-        imageView.accessibilityLabel = name + calculateActorLocationStringForAccessibility()
+        imageView.accessibilityLabel = "\(name). \(color) Color. \(calculateActorLocationStringForAccessibility())"
         imageView.accessibilityHint = "Double tap and hold to drag."
     }
     

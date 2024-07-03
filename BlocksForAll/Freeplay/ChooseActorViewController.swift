@@ -44,7 +44,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
              
              freeplayWorkspaceVC.currentActorImageView = currentActorImageView
             
-             freeplayWorkspaceVC.newActorToAdd = (name: selectedActor.name, imagePath: selectedActor.imagePath) // add a new actor
+            freeplayWorkspaceVC.newActorToAdd = (name: selectedActor.name, baseImagePath: selectedActor.baseImagePath, color: "Default") // add a new actor
         }
        
     }
@@ -58,7 +58,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
     
     var items: NSArray = []
     
-    var selectedActor = (name: "", imagePath: "")
+    var selectedActor = (name: "", baseImagePath: "", color: "")
     
     var currentProject: Project?
     
@@ -118,11 +118,12 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         // Above code is from https://stackoverflow.com/questions/23647833/uicollectionviewcell-is-overlapped-when-scrolling
        
         // Create an image for the cell
-        var imagePath = ""
+        var baseImagePath = ""
         var name = ""
     
         if let actorType = items[index] as? NSDictionary{
-            imagePath = actorType.value(forKey: "imagePath") as! String
+            baseImagePath = actorType.value(forKey: "imagePath") as! String
+            var imagePath = VirtualRobot.calculateImagePath(baseImagePath: baseImagePath, color: "Default")
             name = actorType.value(forKey: "name") as! String
             let image = UIImage(named: imagePath)
             
@@ -133,9 +134,6 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
                 cell.addSubview(imv)
             }
         }
-        
-       
-        
           
         // Accessibility
         cell.isAccessibilityElement = true
@@ -149,7 +147,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
             cell.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
             cell.isSelected = true
             cell.accessibilityHint = "Selected"
-            selectedActor = (name: name, imagePath: imagePath)
+            selectedActor = (name: name, baseImagePath: baseImagePath, color: "Default")
         } else {
             cell.isSelected = false
             cell.layer.borderWidth = 0
@@ -176,7 +174,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         if let actorType = items[optionSelectedIndex] as? NSDictionary{
             imagePath = actorType.value(forKey: "imagePath") as! String
             name = actorType.value(forKey: "name") as! String
-            selectedActor = (name: name, imagePath: imagePath)
+            selectedActor = (name: name, baseImagePath: imagePath, color: "Default")
         }
         
     }

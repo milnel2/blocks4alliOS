@@ -31,7 +31,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     @IBOutlet weak var buttonsView: UIView! // view that has play button, code lines, and customize acotor button
     @IBOutlet weak var addActorButton: UIButton!
-    var newActorToAdd: (name:String, imagePath: String)? // to be used when adding to actors
+    var newActorToAdd: (name:String, baseImagePath: String, color: String)? // to be used when adding to actors
     // TODO: add custom backgrounds from camera roll
     override func viewDidLoad() {
         if (currentProject == nil) {
@@ -62,7 +62,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         updateUI()
         
         if newActorToAdd != nil {
-            afterNewActorSelected(name: newActorToAdd!.name, imagePath: newActorToAdd!.imagePath)
+            afterNewActorSelected(name: newActorToAdd!.name, baseImagePath: newActorToAdd!.baseImagePath)
         }
         
         
@@ -266,8 +266,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
        
     }
     
-    func afterNewActorSelected(name: String, imagePath: String) {
-        let newRobot = VirtualRobot(imagePath: imagePath, freeplayOutputView: freeplayOutputView, name: name, project: currentProject!)
+    func afterNewActorSelected(name: String, baseImagePath: String) {
+        let newRobot = VirtualRobot(baseImagePath: baseImagePath, freeplayOutputView: freeplayOutputView, name: name, project: currentProject!)
         addActor(actor: newRobot)
         updateCurrentActor(newActor: newRobot)
         newActorToAdd = nil

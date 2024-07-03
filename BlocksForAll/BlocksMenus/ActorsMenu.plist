@@ -4,33 +4,19 @@
 <array>
 	<dict>
 		<key>name</key>
-		<string>Kitty</string>
+		<string>Cat</string>
 		<key>imagePath</key>
-		<string>cat</string>
+		<string>CatActor</string>
+		<key>description</key>
+		<string></string>
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>Puppy</string>
+		<string>Dog</string>
 		<key>imagePath</key>
-		<string>dog</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>Bee</string>
-		<key>imagePath</key>
-		<string>bee</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>Goat</string>
-		<key>imagePath</key>
-		<string>goat</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>Horse</string>
-		<key>imagePath</key>
-		<string>horse</string>
+		<string>DogActor</string>
+		<key>description</key>
+		<string></string>
 	</dict>
 </array>
 </plist>

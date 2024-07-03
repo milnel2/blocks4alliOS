@@ -33,7 +33,7 @@ class Project : Equatable{
         self.name = name
         self.imageName = imageName
         self.projectType = projectType
-        let defaultActor = VirtualRobot(imagePath: "dog", name: "Dog", project: self) // TODO: update adding default actor
+        let defaultActor = VirtualRobot(baseImagePath: "CatActor", name: "Cat", project: self) // TODO: update adding default actor
         addActor(actor: defaultActor)
         currentActor = defaultActor
        // self.functionDict = [ON_RUN_STRING : [], ON_BUMP_STRING: [], THIRD_LINE_STRING: []]
@@ -46,7 +46,7 @@ class Project : Equatable{
         self.projectType = projectType
         
         if actors.count < 1 {
-            let defaultActor = VirtualRobot(imagePath: "dog", name: "Dog", project: self)
+            let defaultActor = VirtualRobot(baseImagePath: "CatActor", name: "Cat", project: self)
             addActor(actor: defaultActor)
             currentActor = defaultActor
         }

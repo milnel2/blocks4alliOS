@@ -87,7 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var projectImageNamePart = true
         
         var actorNamePart = true
-        var actorImageNamePart = true
+        var actorBaseImageNamePart = true
+        var actorImageColorPart = true
         var actorUUIDPart = true
         var actorRobotSizePart = true
         var actorXPart = true
@@ -155,14 +156,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         //for every new actor set these to true again so that the new actor will be named
                         actorNamePart = true
-                        actorImageNamePart = true
+                        actorBaseImageNamePart = true
+                        actorImageColorPart = true
                         actorUUIDPart = true
                         actorRobotSizePart = true
                         actorXPart = true
                         actorYPart = true
                         
                         var actorName = String()
-                        var actorImageName = String()
+                        var actorBaseImageName = String()
+                        var actorImageColor = String()
                         var actorUUID = String()
                         var actorRobotSize = CGFloat()
                         var actorX = CGFloat()
@@ -173,13 +176,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         // the first element of functionStrings will have the project image and name data
                         for line in functionStrings[0].components(separatedBy: "\n") {
-                            if !actorNamePart && actorImageNamePart && actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart{
-                                actorImageNamePart = false
-                                actorImageName = line
-                            } else if !actorNamePart && !actorImageNamePart && actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart {
+                            if !actorNamePart && actorBaseImageNamePart && actorImageColorPart && actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart{
+                                actorBaseImageNamePart = false
+                                actorBaseImageName = line
+                            } else if !actorNamePart && !actorBaseImageNamePart && actorImageColorPart && actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart{
+                                actorImageColorPart = false
+                                actorImageColor = line
+                            } else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart {
                                 actorUUIDPart = false
                                 actorUUID = line
-                            } else if !actorNamePart && !actorImageNamePart && !actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart{
+                            } else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && !actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart{
                                 actorRobotSizePart = false
                                 
                                 // Converting string to CGFloat is from Michael McGuire's answer on https://stackoverflow.com/questions/27595799/convert-string-to-cgfloat-in-swift
@@ -190,7 +196,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     actorRobotSize = 120
                                 }
                     
-                            } else if !actorNamePart && !actorImageNamePart && !actorUUIDPart && !actorRobotSizePart && actorXPart && actorYPart{
+                            } else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && !actorUUIDPart && !actorRobotSizePart && actorXPart && actorYPart{
                                 actorXPart = false
                                 // Converting string to CGFloat is from Michael McGuire's answer on https://stackoverflow.com/questions/27595799/convert-string-to-cgfloat-in-swift
                                 if let doubleValue = Double(line) {
@@ -200,7 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     actorX = 100
                                 }
                     
-                            } else if !actorNamePart && !actorImageNamePart && !actorUUIDPart && !actorRobotSizePart && !actorXPart && actorYPart{
+                            } else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && !actorUUIDPart && !actorRobotSizePart && !actorXPart && actorYPart{
                                 actorYPart = false
                                 
                                 // Converting string to CGFloat is from Michael McGuire's answer on https://stackoverflow.com/questions/27595799/convert-string-to-cgfloat-in-swift
@@ -210,7 +216,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     print("Error: couldn't parse actorY coordinate when loading")
                                     actorY = 100
                                 }
-                            } else if actorNamePart && actorImageNamePart && actorUUIDPart && actorXPart && actorYPart {
+                            } else if actorNamePart && actorBaseImageNamePart && actorImageColorPart && actorUUIDPart && actorXPart && actorYPart {
                                 actorNamePart = false
                                 actorName = line
                             } else {
@@ -218,8 +224,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                         
-                        
-                        let robot = VirtualRobot(imagePath: actorImageName, name: actorName, coordinates: (x: actorX, y: actorY), project: nil, uuid: actorUUID, robotSize: actorRobotSize)
+                        print("new actor 4")
+                        let robot = VirtualRobot(baseImagePath: actorBaseImageName, color: actorImageColor, name: actorName, coordinates: (x: actorX, y: actorY), project: nil, uuid: actorUUID, robotSize: actorRobotSize)
                         
                         for functionString in functionStrings[1...] {
                             if functionString == "" {
@@ -379,10 +385,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("couldn't delete previous Blocks4AllSave2. Error = ", error)
         }
         
-        
         // string that json text is appended to
         var writeText = String()
-      
         for galleryType in allProjects.keys {
             writeText.append("New Gallery Type \n")
             writeText.append(galleryType)
@@ -414,7 +418,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     writeText.append("New Actor \n")
                     writeText.append(actor.name)
                     writeText.append("\n")
-                    writeText.append(actor.imagePath)
+                    writeText.append(actor.baseImagePath)
+                    writeText.append("\n")
+                    writeText.append(actor.color)
                     writeText.append("\n")
                     writeText.append(actor.UUID)
                     writeText.append("\n")
