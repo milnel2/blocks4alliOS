@@ -28,7 +28,7 @@ class ProjectGalleryViewController: UIViewController {
     
     var galleryType: String = "Robot Projects"
     
-    override func viewDidLoad() { // TODO: put most recently used project at the front of the list of projects
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         projects = Project.FetchProjects()[galleryType]!
@@ -65,8 +65,7 @@ class ProjectGalleryViewController: UIViewController {
     }
     func updateAccessibilityTools() {
     
-        // TODO: home buttons is being focused instead of the first cell
-        accessibilityElements = [homeButton!, projectGalleryCollectionView!]
+        view.accessibilityElements = [projectGalleryCollectionView!, homeButton!]
         
        
     }

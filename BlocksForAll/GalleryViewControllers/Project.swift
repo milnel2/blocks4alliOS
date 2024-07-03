@@ -63,7 +63,6 @@ class Project : Equatable{
     
     // attempt to delete actor from project
     func deleteActor(actor: VirtualRobot) {
-        print(actors.count)
         let index = actors.firstIndex(of: actor)
         if index != nil {
             actors.remove(at: index!)
