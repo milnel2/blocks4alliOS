@@ -10,6 +10,7 @@ import Foundation
 
 class HelperFunctions {
     
+   
     /// Takes an image and a new CGSize and returns a resized version of it
     public static func resizeImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);

@@ -19,7 +19,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var deleteButton: UIButton!
     
-    var cellGalleryType: String = "Robot Projects"
+    var cellGalleryType: String = ROBOT_GALLERY_TYPE
     
     
     var project : Project! {

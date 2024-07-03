@@ -26,7 +26,7 @@ class ProjectGalleryViewController: UIViewController {
     let cellSpacing: CGFloat = 50
     var displayedCellIndex = 0
     
-    var galleryType: String = "Robot Projects"
+    var galleryType: String = ROBOT_GALLERY_TYPE
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,10 +64,7 @@ class ProjectGalleryViewController: UIViewController {
         updateAccessibilityTools()
     }
     func updateAccessibilityTools() {
-    
         view.accessibilityElements = [projectGalleryCollectionView!, homeButton!]
-        
-       
     }
     
    
@@ -252,9 +249,9 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
     // Opens project located at given index in the allProjects[galleryType] array
     func openProjectAtIndex(index: Int) {
         let selectedProject = allProjects[galleryType]![index]
-        if galleryType == "Freeplay Projects" { // TODO: change the "freeplay projects from a string to an enumerated value like in unity?
+        if galleryType == FREEPLAY_GALLERY_TYPE {
             performSegue(withIdentifier: "openFreeplayFromGallery", sender: selectedProject)
-        } else if galleryType == "Robot Projects"{
+        } else if galleryType == ROBOT_GALLERY_TYPE{
             performSegue(withIdentifier: "openRobotWorkspaceFromGallery", sender: selectedProject)
         }
     }
@@ -262,7 +259,7 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
     func addProjectPressed() {
         let projectName = generateNewProjectName()
         // Create new project and insert it at the beginning
-        if self.galleryType == "Freeplay Projects" {
+        if self.galleryType == FREEPLAY_GALLERY_TYPE {
             allProjects[self.galleryType]!.insert(Project(name: projectName, imageName: "drive_backward", projectType: ProjectType.Freeplay), at: 0)
         } else {
             allProjects[self.galleryType]!.insert(Project(name: projectName, imageName: "drive_backward", projectType: ProjectType.Robot), at: 0)

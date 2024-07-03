@@ -283,7 +283,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                     
                     var project: Project
-                    if galleryType == "Freeplay Projects" {
+                    if galleryType == FREEPLAY_GALLERY_TYPE {
                         project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave, projectType: ProjectType.Freeplay)
                     } else {
                         project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave, projectType: ProjectType.Robot)
@@ -316,9 +316,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("load completed")
         }catch{
             print("load failed")
-            /*allProjects["Robot Projects"] = [Project(name: "Empty Project", imageName: "", functionDict:["Main Workspace": []])]*/ // TODO: handle if there are no projects
-            allProjects["Robot Projects"] = [Project(name: "Empty Project", imageName: "", projectType: ProjectType.Robot)]
-            allProjects["Freeplay Projects"] = [Project(name: "Empty Project", imageName: "", projectType: ProjectType.Freeplay)]
+            // TODO: handle if there are no projects
+            allProjects[ROBOT_GALLERY_TYPE] = [Project(name: "Empty Project", imageName: "", projectType: ProjectType.Robot)]
+            allProjects[FREEPLAY_GALLERY_TYPE] = [Project(name: "Empty Project", imageName: "", projectType: ProjectType.Freeplay)]
         }
         // sets current workspace to main workspace so you don't load and wind up on a random function screen
         currentWorkspace = "Main Workspace"

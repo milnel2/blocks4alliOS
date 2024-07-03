@@ -9,7 +9,13 @@
 import Foundation
 import UIKit
 
-var allProjects: [String : [Project]] = ["Freeplay Projects":[], "Robot Projects": []] //["Freeplay Projects" : [Project(name: "hi", imageName: "drive_backwards", functionDict: ["Main Workspace" : []])], "Robot Projects" : [Project(name: "hello", imageName: "drive_backwards", functionDict: ["Main Workspace": []])]]
+// strings used as names for different gallery types
+public let FREEPLAY_GALLERY_TYPE = "Freeplay Projects"
+public let ROBOT_GALLERY_TYPE = "Robot Projects"
+
+
+var allProjects: [String : [Project]] = [FREEPLAY_GALLERY_TYPE:[], ROBOT_GALLERY_TYPE: []]
+
 let ON_RUN_STRING = "OnRun"
 let ON_BUMP_STRING = "OnBump" // Need to add implementation for On Bump
 let ON_TAP_STRING = "OnTap"
