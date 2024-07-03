@@ -615,7 +615,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="46" id="x1J-1I-aWe"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -2793,6 +2793,7 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="k4Q-bN-qpZ"/>
         <segue reference="yHo-Ic-oSY"/>
         <segue reference="rJ0-q9-MJC"/>
         <segue reference="lP2-dK-nFu"/>
