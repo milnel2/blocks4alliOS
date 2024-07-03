@@ -538,7 +538,7 @@
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Tgk-Zz-B30" userLabel="Right View">
                                                 <rect key="frame" x="902" y="0.0" width="178" height="405"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="R10-4x-ECs" userLabel="Main Workspace Button">
+                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="R10-4x-ECs" userLabel="Main Workspace Button">
                                                         <rect key="frame" x="14" y="304" width="150" height="78"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" title="Button"/>
@@ -568,8 +568,11 @@
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnO-p6-y4b" userLabel="Add Actor Button">
-                                                        <rect key="frame" x="44" y="184" width="90" height="91"/>
+                                                        <rect key="frame" x="44" y="207.5" width="90" height="90"/>
                                                         <accessibility key="accessibilityConfiguration" label="Add Actor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="NnO-p6-y4b" secondAttribute="height" multiplier="1:1" id="OFl-UI-wUy"/>
+                                                        </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="Add Actor"/>
                                                         <connections>
@@ -580,9 +583,8 @@
                                                 <color key="backgroundColor" systemColor="quaternaryLabelColor"/>
                                                 <constraints>
                                                     <constraint firstItem="NnO-p6-y4b" firstAttribute="centerX" secondItem="R10-4x-ECs" secondAttribute="centerX" id="0JN-dw-jJL"/>
-                                                    <constraint firstItem="R10-4x-ECs" firstAttribute="top" secondItem="NnO-p6-y4b" secondAttribute="bottom" constant="29" id="1FG-mc-oPR"/>
+                                                    <constraint firstItem="NnO-p6-y4b" firstAttribute="centerY" secondItem="Tgk-Zz-B30" secondAttribute="centerY" constant="50" id="1aR-eE-bq0"/>
                                                     <constraint firstItem="EZi-5f-HlN" firstAttribute="top" secondItem="Tgk-Zz-B30" secondAttribute="top" id="B1B-J2-FPV"/>
-                                                    <constraint firstItem="NnO-p6-y4b" firstAttribute="top" secondItem="9YL-5Y-1hw" secondAttribute="bottom" constant="14" id="Fp4-p8-Pve"/>
                                                     <constraint firstAttribute="width" secondItem="9YL-5Y-1hw" secondAttribute="width" multiplier="0.936842" id="bwp-ez-pSn"/>
                                                     <constraint firstItem="EZi-5f-HlN" firstAttribute="leading" secondItem="Tgk-Zz-B30" secondAttribute="leading" id="eGu-5C-QGk"/>
                                                     <constraint firstItem="9YL-5Y-1hw" firstAttribute="top" secondItem="Tgk-Zz-B30" secondAttribute="topMargin" id="hW1-J2-sF9"/>

@@ -73,7 +73,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
        
         currentActorImageView.addGestureRecognizer(tapGesture)
        
-        // TODO: corner radius not working
+        addActorButton.layer.masksToBounds = true // allows for corner radius to work
         addActorButton.layer.cornerRadius = 10
         
         setUpAccessibility()
