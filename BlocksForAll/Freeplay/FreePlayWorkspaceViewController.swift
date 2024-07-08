@@ -134,7 +134,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     // update accessibility elements to make navigation easier
     override func beginMovingBlocks(_ blocks: [Block]) {
         super.beginMovingBlocks(blocks)
-        accessibilityElements = [toolboxView!, FirstCodeLineButton!, secondCodeLineButton!, blocksProgram!, mainMenuButton!]
+        accessibilityElements = [toolboxView!, playTrashToggleButton!, FirstCodeLineButton!, secondCodeLineButton!, blocksProgram!, mainMenuButton!]
     }
     
     override func finishMovingBlocks() {

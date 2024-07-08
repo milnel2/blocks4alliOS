@@ -304,7 +304,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         if(!blocksBeingMoved.isEmpty){
             // Moving blocks, so switch labels to indicated where blocks can be placed
-            if (isWorkspaceCustomFunction(name: currentWorkspace) && blockIndex == 0){
+            if ((isWorkspaceCustomFunction(name: currentWorkspace) || isPremadeFunction(name: currentWorkspace)) && blockIndex == 1){
                 accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning of " + currentWorkspace + " function."
             } else if (!isWorkspaceCustomFunction(name: currentWorkspace) && blockIndex == 0){
                 // in main workspace and setting 1st block accessibility info
@@ -314,7 +314,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before "
                 accessibilityLabel +=  block.name + " " + blockModifier + " " + blockPlacementInfo
             }
-            movementInfo = ". Double tap to add " + blocksBeingMoved[0].name + " block here"
+            
+            if ((isWorkspaceCustomFunction(name: currentWorkspace) || isPremadeFunction(name: currentWorkspace)) && blockIndex == 0){
+                accessibilityLabel = "Start of " + currentWorkspace + " function."
+                movementInfo = ""
+            } else {
+                movementInfo = ". Double tap to add " + blocksBeingMoved[0].name + " block here"
+            }
+           
         } else {
             accessibilityLabel =  block.name + " " + blockModifier + " " + blockPlacementInfo
         }
@@ -564,6 +571,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         return true
     }
     
+    func isPremadeFunction(name: String) -> Bool {
+        return PREMADE_FUNCTION_NAMES.contains(name)
+    }
     // MARK: - Blocks Methods
     
     /// Called after selecting a place to add a block to the workspace, makes accessibility announcements and place blocks in the blockProgram stack, etc...
@@ -637,13 +647,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func numberOfSections(in collectionView: UICollectionView) -> Int { return 1 }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectionView.remembersLastFocusedIndexPath = true
+        collectionView.remembersLastFocusedIndexPath = false
         return currentProject!.currentActor!.functionDict[currentWorkspace]!.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = CGSize(width: CGFloat(blockSize), height: collectionView.frame.height)
-        collectionView.remembersLastFocusedIndexPath = true
+        collectionView.remembersLastFocusedIndexPath = false
         if indexPath.row == currentProject!.currentActor!.functionDict[currentWorkspace]!.count {
             // expands the size of the last cell in the collectionView, so it's easier to add a block at the end
             // with VoiceOver on
@@ -661,7 +671,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// CollectionView contains the actual collection of blocks (i.e. the program that is being created with the blocks) This method creates and returns the cell at a given index
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        collectionView.remembersLastFocusedIndexPath = true
+        collectionView.remembersLastFocusedIndexPath = false
         let collectionReuseIdentifier = "BlockCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath)
         // Configure the cell
@@ -818,7 +828,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Called when a block is selected in the collectionView, so either selects block to move or places blocks
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.remembersLastFocusedIndexPath = true
+        collectionView.remembersLastFocusedIndexPath = false
         if !robotRunning {  // disable editing while robot is running
             if movingBlocks {
                 if indexPath.row < currentProject!.currentActor!.functionDict[currentWorkspace]!.count {  // clicked somewhere before the empty space at the end
