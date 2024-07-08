@@ -108,7 +108,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         secondCodeLineButton.isUserInteractionEnabled = true
         secondCodeLineButton.isAccessibilityElement = true
         
-        accessibilityElements = [toolboxView!, freeplayOutputView!, mainMenuButton!, addActorButton!, currentActorImageView!, playTrashToggleButton!, FirstCodeLineButton!, secondCodeLineButton!, blocksProgram!] // toolbox, output, home, add actor, customize, play, line 1 line 2, blocks program
+        resetAccessibilityElements()
         
         addActorButton.accessibilityLabel = "Add actor to project"
         currentActorImageView.accessibilityLabel = "Current actor is " + currentProject!.currentActor!.name + ". Tap to customize or delete"
@@ -128,6 +128,22 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         FirstCodeLineButton.accessibilityHint = "Press the play button to run this code line."
         secondCodeLineButton.accessibilityLabel = "On Actor Tap code line"
         secondCodeLineButton.accessibilityHint = "Tap on " + currentProject!.currentActor!.name + " actor to run this code line."
+    }
+    
+    
+    // update accessibility elements to make navigation easier
+    override func beginMovingBlocks(_ blocks: [Block]) {
+        super.beginMovingBlocks(blocks)
+        accessibilityElements = [toolboxView!, FirstCodeLineButton!, secondCodeLineButton!, blocksProgram!, mainMenuButton!]
+    }
+    
+    override func finishMovingBlocks() {
+        super.finishMovingBlocks()
+        resetAccessibilityElements()
+    }
+    
+    func resetAccessibilityElements() {
+        accessibilityElements = [toolboxView!, freeplayOutputView!, mainMenuButton!, addActorButton!, currentActorImageView!, playTrashToggleButton!, FirstCodeLineButton!, secondCodeLineButton!, blocksProgram!] // toolbox, output, home, add actor, customize, play, line 1 line 2, blocks program
     }
     
     @objc func clickOnCurrentActorImageView(sender : UITapGestureRecognizer) {
