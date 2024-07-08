@@ -77,7 +77,8 @@ class SelectLocationModifierViewController: UIViewController  {
         } else {
             optionSelectedIndex = Int(previousOption) ?? centerCellIndex
         }
-               
+       
+        accessibilityElements = [backButton!, modifierTitleLabel!, collectionView!]
     }
     
     public static func calculateCenterCellIndex() -> Int{
@@ -100,13 +101,21 @@ class SelectLocationModifierViewController: UIViewController  {
     }
     
     func getCoordinatesFromCellIndex(index: Int) -> String{
-        let row = index / Int(numCols)
-        let col = index % Int(numCols)
+        let row = getRowFromCellIndex(index: index)
+        let col = getColumnFromCellIndex(index: index)
         
         let x = col * Int(cellWidth) + (Int(cellWidth) / 2)
         let y = row * Int(cellWidth) + (Int(cellHeight) / 2)
         
         return String("\(x),\(y)")
+    }
+    
+    func getRowFromCellIndex(index: Int) -> Int {
+        return index / Int(numCols)
+    }
+    
+    func getColumnFromCellIndex(index: Int) -> Int {
+        return index % Int(numCols)
     }
     
    
@@ -119,6 +128,8 @@ class SelectLocationModifierViewController: UIViewController  {
             let coords = getCoordinatesFromCellIndex(index: optionSelectedIndex)
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["moveToLocation"] = coords
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["cellIndex"] = String(optionSelectedIndex)
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["row"] = String(getRowFromCellIndex(index: optionSelectedIndex) + 1)
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["column"] = String(getColumnFromCellIndex(index: optionSelectedIndex) + 1)
         }
     }
     
@@ -149,12 +160,18 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
         }
         
         cell.backgroundColor = cell.backgroundColor!.withAlphaComponent(0.7) // make cell slightly transparent so you can see the background behind it // TODO: change so that the collectionView has a background image instead of just background color
+        
+        let cellRow = getRowFromCellIndex(index: indexPath.item) + 1
+        let cellColumn = getColumnFromCellIndex(index: indexPath.item) + 1
         if indexPath.item == optionSelectedIndex {
             setCellHighlight(cell: cell, value: true)
+            cell.accessibilityLabel = "Selected. Row \(cellRow) Column \(cellColumn)"
         } else {
             setCellHighlight(cell: cell, value: false)
+            cell.accessibilityLabel = "Row \(cellRow) Column \(cellColumn)"
         }
         
+        cell.isAccessibilityElement = true
         
         return cell
     }

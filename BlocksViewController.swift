@@ -950,6 +950,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             // choose image path
             var image: UIImage?
             if imagePath != nil && secondAttributeName != "variableValue"{ // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
+                
                 image = UIImage(named: imagePath!)
                 if image != nil { // make sure that the image actually exists
                     button.setBackgroundImage(image, for: .normal)
@@ -1123,6 +1124,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             button.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(modifierInformation)"]
         }
         
+        if block.name == "Move to Location" {
+            let row = placeHolderBlock.attributes["row"] ?? "Not available"
+            let col = placeHolderBlock.attributes["column"] ?? "Not available"
+            modifierInformation = "Row \(row) Column \(col)"
+           
+        }
         addAccessibilityLabel(blockView: blockView, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
         
         // the main part of the block is focused first, then the modifier button

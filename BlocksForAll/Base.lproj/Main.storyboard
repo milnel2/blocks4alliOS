@@ -910,7 +910,6 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Move To Location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svw-UV-kJh">
                                 <rect key="frame" x="363" y="107" width="354" height="41"/>
-                                <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2806,7 +2805,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="lD7-sr-2Jm"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="M3F-P2-Uak"/>
+        <segue reference="7uU-VO-OLq"/>
         <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>

@@ -93,7 +93,9 @@ class ModifierButton: UIButton {
                 UIColor.red.setStroke()
                 xPath.stroke()
                 
-                
+                let row = block!.attributes["row"] ?? "Not available"
+                let col = block!.attributes["column"] ?? "Not available"
+                accessibilityLabel = "Row \(row) Column \(col)"
             }
         }
         
