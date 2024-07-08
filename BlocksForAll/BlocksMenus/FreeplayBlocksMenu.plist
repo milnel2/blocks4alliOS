@@ -200,6 +200,20 @@
 				<key>imageName</key>
 				<string>move_to_origin</string>
 			</dict>
+			<dict>
+				<key>isModifiable</key>
+				<true/>
+				<key>name</key>
+				<string>Set Speed</string>
+				<key>type</key>
+				<string>Statement</string>
+				<key>color</key>
+				<string>green_block</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>set_speed</string>
+			</dict>
 		</array>
 	</dict>
 	<dict>
@@ -254,29 +268,6 @@
 				<false/>
 				<key>imageName</key>
 				<string>wait.pdf</string>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>color</key>
-		<string>red_block</string>
-		<key>type</key>
-		<string>Motion</string>
-		<key>Blocks</key>
-		<array>
-			<dict>
-				<key>isModifiable</key>
-				<true/>
-				<key>name</key>
-				<string>Set Speed</string>
-				<key>type</key>
-				<string>Statement</string>
-				<key>color</key>
-				<string>red_block</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>set_speed</string>
 			</dict>
 		</array>
 	</dict>
