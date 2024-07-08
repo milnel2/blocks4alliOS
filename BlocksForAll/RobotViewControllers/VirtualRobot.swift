@@ -233,7 +233,7 @@ class VirtualRobot: Equatable {
         
         let animationDuration = VirtualRobot.calculateMovementDistance(startX: currentX, startY: currentY, endX: backgroundCenterX, endY: backgroundCenterY) / (movementAnimationSpeed * 2)
        
-        animatedMoveToCoordinates(x: backgroundCenterX, y: backgroundCenterY, duration: animationDuration)
+        animatedMoveToCoordinatesWithSound(x: backgroundCenterX, y: backgroundCenterY, duration: animationDuration)
        
         executingProgram.finishCommand(withDuration: animationDuration) //TODO: block highlight is going away before movement is finished
         
@@ -253,7 +253,7 @@ class VirtualRobot: Equatable {
             let newCoords = actor!.coordinates
             let distanceToMove = VirtualRobot.calculateMovementDistance(startX: currentCoords.x, startY: currentCoords.y, endX: newCoords.x, endY: newCoords.y)
             let animationDuration = distanceToMove / movementAnimationSpeed
-            animatedMoveToCoordinates(x: newCoords.x, y: newCoords.y, duration: animationDuration)
+            animatedMoveToCoordinatesWithSound(x: newCoords.x, y: newCoords.y, duration: animationDuration)
             
             executingProgram.finishCommand(withDuration: animationDuration)
         }
@@ -274,7 +274,7 @@ class VirtualRobot: Equatable {
         
         let animationDuration = distance / movementAnimationSpeed
          
-        animatedMoveToCoordinates(x: adjustedX, y: adjustedY, duration: animationDuration)
+        animatedMoveToCoordinatesWithSound(x: adjustedX, y: adjustedY, duration: animationDuration)
             
         executingProgram.finishCommand(withDuration: animationDuration)
         
@@ -547,78 +547,83 @@ class VirtualRobot: Equatable {
     let engine = AVAudioEngine()
     let speedControl = AVAudioUnitVarispeed()
     let pitchControl = AVAudioUnitTimePitch()
+    var movementSoundAudioPlayer = AVAudioPlayerNode()
     
     func playMovementSound(duration: TimeInterval, startX: CGFloat, startY: CGFloat, endX: CGFloat, endY: CGFloat) throws {
-        // code for adjusting audio speed and pitch is from https://www.hackingwithswift.com/example-code/media/how-to-control-the-pitch-and-speed-of-audio-using-avaudioengine
-        engine.stop()
+       
+        
         let fileURL = URL(fileReferenceLiteralResourceName: "Movement1BeatLoop.mp3")
         let file = try AVAudioFile(forReading: fileURL) // load in the audio file
         
-        let audioPlayer = AVAudioPlayerNode()
-        
-        // connect audio player, pitch control, and speed control to the audio engine
-        engine.attach(audioPlayer)
-        engine.attach(pitchControl)
-        engine.attach(speedControl)
-        
-        // arrange so the audio player feeds into speed control, which feeds into pitch control, which feeds into main mixer output, which plays aloud
-        engine.connect(audioPlayer, to: speedControl, format: nil)
-        engine.connect(speedControl, to: pitchControl, format: nil)
-        engine.connect(pitchControl, to: engine.mainMixerNode, format: nil)
-        
-        // prepare to start reading the file
-        audioPlayer.scheduleFile(file, at: nil)
-        
-        
-        // start engine and audio player
-        try engine.start()
-        
-        
-        let movementDistance = VirtualRobot.calculateMovementDistance(startX: startX, startY: startY, endX: endX, endY: endY)
-    
-       
-        
-        
         // calculating the length of an audio file is from https://forums.developer.apple.com/forums/thread/722272
-        let timeInBetween = 1 / file.processingFormat.sampleRate * Double(file.length)
-        
+        let timeInBetween = (1 / file.processingFormat.sampleRate * Double(file.length)) + 0.05
+        //print("time in between = ", timeInBetween)
         let numTimesToPlay = Int(Double(duration) / timeInBetween)
         
-        
+        let movementDistance = VirtualRobot.calculateMovementDistance(startX: startX, startY: startY, endX: endX, endY: endY)
        
         //speedControl.rate = 1.1
         if numTimesToPlay >= 1 {
             let currentYPosition = Float(self.imageView.center.y)
-            let distanceFromCenter = Float(self.freeplayOutputView!.frame.height / 2) - currentYPosition
-            self.pitchControl.pitch = distanceFromCenter * 2
-            audioPlayer.play()
-            var timesPlayed = 1
+            let yDistanceFromCenter = Float(self.freeplayOutputView!.frame.height / 2) - currentYPosition
+            let currentXPosition = Float(self.imageView.center.x)
+            let xDistanceFromCenter = Float(self.freeplayOutputView!.frame.width / 2) - currentXPosition
+            
+            
+            var timesPlayed = 0
             let amountYChangedEachFrame = CGFloat(Int(endY - startY) / (numTimesToPlay))
-            print(amountYChangedEachFrame)
+            let amountXChangedEachFrame = CGFloat(Int(endX - startX) / (numTimesToPlay))
+            
+          
             Timer.scheduledTimer(withTimeInterval: TimeInterval(timeInBetween), repeats: true, block: { timer in
                 if timesPlayed < numTimesToPlay {
-                    let currentYPosition = Float(self.imageView.center.y + amountYChangedEachFrame * CGFloat(timesPlayed))
-                    let distanceFromCenter = Float(self.freeplayOutputView!.frame.height / 2) - currentYPosition
-                    self.pitchControl.pitch = distanceFromCenter//Float(self.freeplayOutputView!.frame.height * 6) / Float(self.imageView.center.y + amountYChangedEachFrame * CGFloat(timesPlayed))
+                   
+                    let currentYPosition = Float(startY + (amountYChangedEachFrame * CGFloat(timesPlayed)))
+                    let yDistanceFromCenter = Float(self.freeplayOutputView!.frame.height / 2) - currentYPosition
+                    self.pitchControl.pitch = yDistanceFromCenter * 3
                     
-                    print("pitch = ", self.pitchControl.pitch)
-                    audioPlayer.scheduleFile(file, at: nil)
-                    audioPlayer.play()
+                    let currentXPosition = Float(startX + (amountXChangedEachFrame * CGFloat(timesPlayed)))
+                    let xDistanceFromCenter = Float(self.freeplayOutputView!.frame.width / 2) - currentXPosition
+                    let volume = (1 - xDistanceFromCenter / Float(self.freeplayOutputView!.frame.width / 2)) * 0.5
+                    
+                    self.movementSoundAudioPlayer.volume = volume
+                    
+                    do {
+                        try self.playMovementOneBeat(file: file)
+                    } catch let error {
+                        print("Error playing movement sound:", error)
+                    }
                     timesPlayed += 1
                 } else {
                     timer.invalidate()
                 }
-                
-                
             })
-            
-           
         }
+    }
+    
+    func playMovementOneBeat(file: AVAudioFile) throws {
+        // code for adjusting audio speed and pitch is from https://www.hackingwithswift.com/example-code/media/how-to-control-the-pitch-and-speed-of-audio-using-avaudioengine
+        engine.stop()
+        engine.reset()
+      
+        
+        // connect audio player, pitch control, and speed control to the audio engine
+        engine.attach(movementSoundAudioPlayer)
+        engine.attach(pitchControl)
+        engine.attach(speedControl)
+        
+        // arrange so the audio player feeds into speed control, which feeds into pitch control, which feeds into main mixer output, which plays aloud
+        engine.connect(movementSoundAudioPlayer, to: speedControl, format: nil)
+        engine.connect(speedControl, to: pitchControl, format: nil)
+        engine.connect(pitchControl, to: engine.mainMixerNode, format: nil)
+        
+        // prepare to start reading the file
+        movementSoundAudioPlayer.scheduleFile(file, at: nil)
         
         
-        
-        
-        
+        // start engine and audio player
+        try engine.start()
+        movementSoundAudioPlayer.play()
     }
     
     
