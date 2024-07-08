@@ -363,7 +363,8 @@ class VirtualRobot: Equatable {
             let newX = coordinates.x + (adjustedDistance * CGFloat(xDirection))
             let newY = coordinates.y + (adjustedDistance * CGFloat(yDirection))
             
-            animatedMoveToCoordinates(x: newX, y: newY, duration: animationDuration)
+            animatedMoveToCoordinatesWithSound(x: newX, y: newY, duration: animationDuration)
+            
             
             executingProgram.finishCommand(withDuration: animationDuration)
             
@@ -405,7 +406,8 @@ class VirtualRobot: Equatable {
                 
                 let newY = coordinates.y + (amountCanMove * CGFloat(yDirection))
                 
-                animatedMoveToCoordinates(x: coordinates.x, y: newY, duration: animationDuration)
+                animatedMoveToCoordinatesWithSound(x: coordinates.x, y: newY, duration: animationDuration)
+                
                 
                 // play hit sound when getting to wall
                 Timer.scheduledTimer(withTimeInterval: animationDuration, repeats: false) { timer in
@@ -443,7 +445,7 @@ class VirtualRobot: Equatable {
                 let animationDuration = amountCanMove / movementAnimationSpeed
                 
                 let newX = coordinates.x + (amountCanMove * CGFloat(xDirection))
-                animatedMoveToCoordinates(x: newX, y: coordinates.y, duration: animationDuration)
+                animatedMoveToCoordinatesWithSound(x: newX, y: coordinates.y, duration: animationDuration)
                 
                 // play hit sound when getting to wall
                 Timer.scheduledTimer(withTimeInterval: animationDuration, repeats: false) { timer in
@@ -508,7 +510,12 @@ class VirtualRobot: Equatable {
         
     }
     
-    func animatedMoveToCoordinates(x: CGFloat, y: CGFloat, duration: TimeInterval, delay: TimeInterval = 0) {
+    func animatedMoveToCoordinatesWithSound(x: CGFloat, y: CGFloat, duration: TimeInterval, delay: TimeInterval = 0) {
+        do {
+            try playMovementSound(duration: duration, startX: coordinates.x, startY: coordinates.y, endX: x, endY: y)
+        } catch let error {
+            print("Error playing movement sound: \(error)")
+        }
         // Animating while still being able to recognize being tapped is from Matt's answer on https://stackoverflow.com/questions/57032194/tapping-a-uiimage-while-its-being-animated
         let anim = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .linear))
            anim.addAnimations {
@@ -520,6 +527,98 @@ class VirtualRobot: Equatable {
 
         
         coordinates = (x,y)
+    }
+    
+    func animatedMoveToCoordinates(x: CGFloat, y: CGFloat, duration: TimeInterval, delay: TimeInterval = 0) {
+        
+        // Animating while still being able to recognize being tapped is from Matt's answer on https://stackoverflow.com/questions/57032194/tapping-a-uiimage-while-its-being-animated
+        let anim = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .linear))
+           anim.addAnimations {
+               self.imageView.center.x = x
+               self.imageView.center.y = y
+           }
+       
+        anim.startAnimation()
+
+        
+        coordinates = (x,y)
+    }
+    
+    let engine = AVAudioEngine()
+    let speedControl = AVAudioUnitVarispeed()
+    let pitchControl = AVAudioUnitTimePitch()
+    
+    func playMovementSound(duration: TimeInterval, startX: CGFloat, startY: CGFloat, endX: CGFloat, endY: CGFloat) throws {
+        // code for adjusting audio speed and pitch is from https://www.hackingwithswift.com/example-code/media/how-to-control-the-pitch-and-speed-of-audio-using-avaudioengine
+        engine.stop()
+        let fileURL = URL(fileReferenceLiteralResourceName: "Movement1BeatLoop.mp3")
+        let file = try AVAudioFile(forReading: fileURL) // load in the audio file
+        
+        let audioPlayer = AVAudioPlayerNode()
+        
+        // connect audio player, pitch control, and speed control to the audio engine
+        engine.attach(audioPlayer)
+        engine.attach(pitchControl)
+        engine.attach(speedControl)
+        
+        // arrange so the audio player feeds into speed control, which feeds into pitch control, which feeds into main mixer output, which plays aloud
+        engine.connect(audioPlayer, to: speedControl, format: nil)
+        engine.connect(speedControl, to: pitchControl, format: nil)
+        engine.connect(pitchControl, to: engine.mainMixerNode, format: nil)
+        
+        // prepare to start reading the file
+        audioPlayer.scheduleFile(file, at: nil)
+        
+        
+        // start engine and audio player
+        try engine.start()
+        
+        
+        let movementDistance = VirtualRobot.calculateMovementDistance(startX: startX, startY: startY, endX: endX, endY: endY)
+    
+       
+        
+        
+        // calculating the length of an audio file is from https://forums.developer.apple.com/forums/thread/722272
+        let timeInBetween = 1 / file.processingFormat.sampleRate * Double(file.length)
+        
+        let numTimesToPlay = Int(Double(duration) / timeInBetween)
+        
+        
+       
+        //speedControl.rate = 1.1
+        if numTimesToPlay >= 1 {
+            let currentYPosition = Float(self.imageView.center.y)
+            let distanceFromCenter = Float(self.freeplayOutputView!.frame.height / 2) - currentYPosition
+            self.pitchControl.pitch = distanceFromCenter * 2
+            audioPlayer.play()
+            var timesPlayed = 1
+            let amountYChangedEachFrame = CGFloat(Int(endY - startY) / (numTimesToPlay))
+            print(amountYChangedEachFrame)
+            Timer.scheduledTimer(withTimeInterval: TimeInterval(timeInBetween), repeats: true, block: { timer in
+                if timesPlayed < numTimesToPlay {
+                    let currentYPosition = Float(self.imageView.center.y + amountYChangedEachFrame * CGFloat(timesPlayed))
+                    let distanceFromCenter = Float(self.freeplayOutputView!.frame.height / 2) - currentYPosition
+                    self.pitchControl.pitch = distanceFromCenter//Float(self.freeplayOutputView!.frame.height * 6) / Float(self.imageView.center.y + amountYChangedEachFrame * CGFloat(timesPlayed))
+                    
+                    print("pitch = ", self.pitchControl.pitch)
+                    audioPlayer.scheduleFile(file, at: nil)
+                    audioPlayer.play()
+                    timesPlayed += 1
+                } else {
+                    timer.invalidate()
+                }
+                
+                
+            })
+            
+           
+        }
+        
+        
+        
+        
+        
     }
     
     
@@ -560,7 +659,8 @@ class VirtualRobot: Equatable {
         // Play sound
         // Code to play audio is from https://www.tutorialspoint.com/how-to-play-a-sound-using-swift
         guard let path = Bundle.main.path(forResource: soundName, ofType:"mp3") else {
-            print("Couldn't find sound file for ", soundName)
+            print("Couldn't find sound file for", soundName)
+            executingProgram.finishCommand(withDuration: 1.5)
                  return }
         let url = URL(fileURLWithPath: path)
         do {

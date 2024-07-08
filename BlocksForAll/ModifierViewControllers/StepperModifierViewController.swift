@@ -15,8 +15,8 @@ class StepperModifierViewController: UIViewController {
     // Modifier variables
     public var modifierBlockIndexSender: Int?  // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
     private var optionType = ""  // Name of options that gets used for accessing data and displaying information
-    //TODO: get this dictionary from a plist
-      // holds the different options for each multiple choice modifier type
+
+    // holds the different options for each multiple choice modifier type
       // the keys are the same as what gets put in the optionModTitle and are accessed by using optionType
       // the values are dictionaries of string : string that holds different attributes to be shown on thte screen
       // the minimum value is also the default value
