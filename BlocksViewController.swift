@@ -1129,6 +1129,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             let col = placeHolderBlock.attributes["column"] ?? "Not available"
             modifierInformation = "Row \(row) Column \(col)"
            
+        } else if block.name == "Move to Actor" {
+            let actorUUID = block.attributes["moveToActor"] ?? ""
+            let actor = VirtualRobot.getActorFromUUIDOrDefault(actorUUID: actorUUID, inProject: currentProject!)!
+            modifierInformation = "\(actor.name), \(actor.color)"
         }
         addAccessibilityLabel(blockView: blockView, block: block, blockModifier: modifierInformation, blockLocation: indexPath.row+1, blockIndex: indexPath.row)
         

@@ -19,8 +19,30 @@ class ModifierButton: UIButton {
     var rectWidth = 0.0
     override func draw(_ rect: CGRect) {
         if block != nil && currentProject != nil {
-            if block!.name == "Move to Location" {
-                // TODO: text description of button
+            if block!.name == "Move to Actor" {
+                // add background
+                let buttonHeight = frame.height
+                let buttonWidth = frame.width
+                
+                let outputView = currentProject!.currentActor!.freeplayOutputView!
+                outputWidth = outputView.frame.width
+                outputHeight = outputView.frame.height
+                
+                let backgroundRect = CGRect(x: 0,y: 0, width: buttonWidth, height: buttonHeight)
+                let backgroundPath = UIBezierPath(roundedRect: backgroundRect, cornerRadius: 10)
+                
+                
+                let myUIColor = UIColor(named: "drive_modifier_color") ?? .gray
+                myUIColor.setFill()
+                backgroundPath.fill()
+                
+                let actorUUID = block!.attributes["moveToActor"] ?? ""
+               
+                let actor = VirtualRobot.getActorFromUUIDOrDefault(actorUUID: actorUUID, inProject: currentProject!)!
+                accessibilityLabel = "\(actor.name), \(actor.color)"
+                
+                
+            } else if block!.name == "Move to Location" {
                 
                 let buttonHeight = frame.height
                 let buttonWidth = frame.width
