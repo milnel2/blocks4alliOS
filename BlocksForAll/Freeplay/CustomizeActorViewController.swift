@@ -36,8 +36,14 @@ class CustomizeActorViewController: UIViewController {
     }
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
-        freeplayWorkspace!.deleteActor(actor: currentActor!)
-        performSegue(withIdentifier: "backToFreeplay", sender: nil)
+        let alert = UIAlertController(title: "Are you sure you want to delete this actor?", message: "This action cannot be undone.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
+            // delete actor
+            self.freeplayWorkspace!.deleteActor(actor: self.currentActor!)
+            self.performSegue(withIdentifier: "backToFreeplay", sender: nil)
+        }))
+        present(alert, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,6 +57,23 @@ class CustomizeActorViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        // Styling
+        for button in colorButtons {
+            button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
+            button.titleLabel?.adjustsFontForContentSizeCategory = true
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
+            button.titleLabel?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            
+            button.layer.borderWidth = 5
+            button.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+           
+            button.layer.cornerRadius = 10
+            
+            // highlight and unhighlight all buttons to get the font sizes to all be the same
+            highlightButton(button: button)
+            removeHighlightFromButton(button: button)
+        }
+        
         actorImageDisplayView.image = UIImage(named: currentActor!.imagePath)
         
         selectedColor = currentActor!.color
@@ -111,7 +134,9 @@ class CustomizeActorViewController: UIViewController {
     }
     
     func removeHighlightFromButton(button: UIButton) {
-        button.layer.borderWidth = 0
+        button.layer.borderWidth = 5
+        button.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+       
         button.isSelected = false
     }
     
