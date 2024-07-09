@@ -55,8 +55,10 @@ class Project : Equatable{
             let defaultActor = VirtualRobot(baseImagePath: "CatActor", name: "Cat", project: self)
             addActor(actor: defaultActor)
             currentActor = defaultActor
+        } else {
+            currentActor = actors[0]
         }
-        currentActor = actors[0]
+        
     }
     
     func addActor(actor: VirtualRobot) {

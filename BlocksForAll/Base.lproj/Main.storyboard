@@ -343,7 +343,7 @@
                                                 <rect key="frame" x="517" y="0.0" width="403" height="450"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Kc-2pq">
-                                                        <rect key="frame" x="60.5" y="0.0" width="282" height="135"/>
+                                                        <rect key="frame" x="70.5" y="0.0" width="262" height="135"/>
                                                         <color key="backgroundColor" name="blueColor"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="Play with Robot">
@@ -355,7 +355,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyM-Bb-zzW">
-                                                        <rect key="frame" x="60.5" y="166.5" width="282" height="135"/>
+                                                        <rect key="frame" x="70.5" y="166.5" width="262" height="135"/>
                                                         <color key="backgroundColor" name="orangeColor"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="Play with Virtual Robot"/>
@@ -401,9 +401,9 @@
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="CMD-Kc-2pq" firstAttribute="width" secondItem="NLd-Mr-RRq" secondAttribute="width" multiplier="0.7" id="4iQ-p4-DWA"/>
                                                     <constraint firstAttribute="height" constant="450" id="5Ga-ST-CQX"/>
                                                     <constraint firstItem="CMD-Kc-2pq" firstAttribute="height" secondItem="NLd-Mr-RRq" secondAttribute="height" multiplier="0.3" id="Gkk-JX-r7P"/>
+                                                    <constraint firstItem="CMD-Kc-2pq" firstAttribute="width" secondItem="f1R-XD-VvS" secondAttribute="width" id="X0r-u1-VCG"/>
                                                     <constraint firstItem="JyM-Bb-zzW" firstAttribute="width" secondItem="CMD-Kc-2pq" secondAttribute="width" id="bTx-rR-K23"/>
                                                     <constraint firstItem="CMD-Kc-2pq" firstAttribute="height" secondItem="JyM-Bb-zzW" secondAttribute="height" id="cgx-1N-ggb"/>
                                                 </constraints>
@@ -2822,7 +2822,6 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5Xz-1I-HDS"/>
         <segue reference="yHo-Ic-oSY"/>
         <segue reference="rJ0-q9-MJC"/>
         <segue reference="lP2-dK-nFu"/>

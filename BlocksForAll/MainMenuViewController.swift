@@ -33,12 +33,21 @@ class MainMenuViewController: UIViewController {
         playWithRobotButton.layer.borderColor = #colorLiteral(red: 0, green: 0.2363941169, blue: 0.2894879827, alpha: 1)
         playWithRobotButton.backgroundColor = #colorLiteral(red: 0, green: 0.7333333333, blue: 0.8980392157, alpha: 1)
         playWithRobotButton.titleLabel?.font =  UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 30.0)
+        playWithRobotButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        playWithRobotButton.titleLabel?.lineBreakMode = .byWordWrapping
+        playWithRobotButton.titleLabel?.textAlignment = .center
+        playWithRobotButton.titleLabel?.numberOfLines = 2
         
         playWithVirtualRobotButton.layer.cornerRadius = 30
         playWithVirtualRobotButton.layer.borderWidth = 10
         playWithVirtualRobotButton.layer.borderColor = #colorLiteral(red: 0.5231451956, green: 0.3179902169, blue: 0.1559177838, alpha: 1)
         playWithVirtualRobotButton.backgroundColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
         playWithVirtualRobotButton.titleLabel?.font =  UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 30.0)
+        playWithVirtualRobotButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        playWithVirtualRobotButton.titleLabel?.lineBreakMode = .byWordWrapping
+        playWithVirtualRobotButton.titleLabel?.textAlignment = .center
+        playWithRobotButton.titleLabel?.numberOfLines = 2
+        
         
         // Accessibility
         playWithRobotButton.titleLabel?.adjustsFontForContentSizeCategory = true
