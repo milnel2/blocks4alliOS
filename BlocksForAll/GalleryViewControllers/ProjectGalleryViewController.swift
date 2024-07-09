@@ -267,7 +267,6 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
         
         // Add project
         self.projects = allProjects[self.galleryType]!
-        self.reloadGallery()
         
         // Open Project
         openProjectAtIndex(index: 0)
