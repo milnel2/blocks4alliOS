@@ -57,6 +57,9 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         workspaceTitle.text = currentProject!.name
         workspaceTitle.layer.cornerRadius = 10.0
         workspaceTitle.layer.masksToBounds = true
+        workspaceTitle.textColor = .black
+        
+        freeplayOutputView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.9490196078, blue: 1, alpha: 1)
         
         updateUI()
         
@@ -76,6 +79,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         addActorButton.layer.cornerRadius = 10
         
         setUpAccessibility()
+        
+    
         
     }
     

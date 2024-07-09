@@ -638,7 +638,7 @@
                                                             <constraint firstAttribute="height" constant="46" id="x1J-1I-aWe"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xas-Fz-0Ml">
@@ -2822,6 +2822,7 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="5Xz-1I-HDS"/>
         <segue reference="yHo-Ic-oSY"/>
         <segue reference="rJ0-q9-MJC"/>
         <segue reference="lP2-dK-nFu"/>
@@ -2834,7 +2835,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="SES-Og-HDs"/>
         <segue reference="gnX-kj-isW"/>
         <segue reference="iKN-NV-GLh"/>
-        <segue reference="2fL-ta-11H"/>
+        <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>

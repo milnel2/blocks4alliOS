@@ -148,7 +148,10 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
           
         cell.accessibilityHint = "Double tap to select"
         cell.accessibilityIdentifier = String(index)
-          
+        
+        
+        cell.backgroundColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
         // Put a border around the cell if it is currently selected
         if String(optionSelectedIndex) == cell.accessibilityIdentifier {
             cell.layer.borderWidth = 10
@@ -159,6 +162,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         } else {
             cell.isSelected = false
             cell.layer.borderWidth = 0
+                       
         }
         return cell
     }
@@ -169,6 +173,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         for cell in collectionView.visibleCells{ // deselect all visible buttons
             cell.isSelected = false
             cell.layer.borderWidth = 0
+            
         }
         let selectedCell = collectionView.cellForItem(at: indexPath) // highlight the one selected button
         selectedCell?.layer.borderWidth = 10

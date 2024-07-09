@@ -73,6 +73,8 @@ class FullScreenFreeplayViewController : UIViewController {
         exitFullScreenButton.isAccessibilityElement = true
         
         accessibilityElements = [outputView!, fullScreenPlayButton!, exitFullScreenButton!] 
+        
+        outputView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.9490196078, blue: 1, alpha: 1)
     }
     
     func calculateVerticalSizeFactor() {

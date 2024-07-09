@@ -17,6 +17,8 @@ class FreeplayOutputView: UIView {
     func resetActorSubviews() {
         actorSubviews = []
     }
+    
+
     func addActor(actor: VirtualRobot) {
         // Add actor to screen
         addSubview(actor.imageView)
