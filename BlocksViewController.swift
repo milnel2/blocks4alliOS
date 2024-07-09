@@ -174,8 +174,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @IBAction func goToMainMenu(_ sender: UIButton) {
         finishMovingBlocks()
         isInFreeplay = false
-        saveProjectSnapshot()
         performSegue(withIdentifier: "toMainMenu", sender: self)
+    }
+    
+    // saving project snapshot every time the view will disappear saves an image more often than just saving it when the user goes to the main menu, since it doesn't save one when closing the app
+    // TODO: save a snapshot when closing the app
+    override func viewWillDisappear(_ animated: Bool) {
+        saveProjectSnapshot()
     }
     
     // save snapshot of the blocksProgram
