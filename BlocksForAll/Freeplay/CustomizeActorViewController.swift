@@ -62,7 +62,7 @@ class CustomizeActorViewController: UIViewController {
             button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
             button.titleLabel?.adjustsFontForContentSizeCategory = true
             button.titleLabel?.adjustsFontSizeToFitWidth = true
-            button.titleLabel?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            button.titleLabel?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) // default color button text should always be black, even in dark mode because its background color is white. This is done in the storyboard by setting the foreground color of the button
             
             button.layer.borderWidth = 5
             button.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -73,6 +73,8 @@ class CustomizeActorViewController: UIViewController {
             highlightButton(button: button)
             removeHighlightFromButton(button: button)
         }
+        
+        
         
         actorImageDisplayView.image = UIImage(named: currentActor!.imagePath)
         
@@ -99,6 +101,8 @@ class CustomizeActorViewController: UIViewController {
         } else {
             deleteButton.isEnabled = false // can't delete the only actor
         }
+        
+      
     }
     
     

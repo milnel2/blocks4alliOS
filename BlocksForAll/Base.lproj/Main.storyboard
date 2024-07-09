@@ -74,7 +74,7 @@
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Default">
-                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="defaultPressed:" destination="WtD-0w-PDj" eventType="touchUpInside" id="QcO-oM-Z4r"/>
@@ -1015,9 +1015,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pkj-pJ-Yar">
-                                <rect key="frame" x="100" y="198" width="880" height="512"/>
+                                <rect key="frame" x="100" y="248" width="880" height="462"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="z7C-js-kEE">
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="20" minimumInteritemSpacing="20" id="z7C-js-kEE">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1046,9 +1046,16 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2G-gD-W3C">
-                                <rect key="frame" x="512.5" y="730" width="55" height="35"/>
+                                <rect key="frame" x="432" y="730" width="216" height="60"/>
+                                <color key="backgroundColor" name="main_background"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="y2G-gD-W3C" secondAttribute="height" multiplier="18:5" id="gE3-gn-W65"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Add"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add">
+                                    <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="addActorPressed:" destination="jJr-Hm-QsK" eventType="touchUpInside" id="ggQ-hg-VRY"/>
                                 </connections>
@@ -1062,9 +1069,10 @@
                             <constraint firstItem="VPt-Ft-1HX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qLY-mS-WF5" secondAttribute="trailing" constant="10" id="CM1-OS-IsG"/>
                             <constraint firstItem="y2G-gD-W3C" firstAttribute="centerX" secondItem="BQa-Jc-yB1" secondAttribute="centerX" id="DNk-34-6bg"/>
                             <constraint firstAttribute="trailing" secondItem="pkj-pJ-Yar" secondAttribute="trailing" constant="100" id="GEY-WL-5MC"/>
-                            <constraint firstItem="pkj-pJ-Yar" firstAttribute="top" secondItem="VPt-Ft-1HX" secondAttribute="bottom" constant="50" id="JXL-0P-1Ef"/>
+                            <constraint firstItem="pkj-pJ-Yar" firstAttribute="top" secondItem="VPt-Ft-1HX" secondAttribute="bottom" constant="100" id="JXL-0P-1Ef"/>
                             <constraint firstItem="pkj-pJ-Yar" firstAttribute="leading" secondItem="BQa-Jc-yB1" secondAttribute="leading" constant="100" id="KWw-b8-bKC"/>
                             <constraint firstItem="VPt-Ft-1HX" firstAttribute="centerY" secondItem="qLY-mS-WF5" secondAttribute="centerY" id="ZBi-H0-gVJ"/>
+                            <constraint firstItem="y2G-gD-W3C" firstAttribute="width" secondItem="BQa-Jc-yB1" secondAttribute="width" multiplier="0.2" id="cup-0B-qVR"/>
                             <constraint firstItem="qLY-mS-WF5" firstAttribute="top" secondItem="XbT-y7-ekB" secondAttribute="bottom" constant="30" id="kdF-sE-yE9"/>
                             <constraint firstItem="y2G-gD-W3C" firstAttribute="top" secondItem="pkj-pJ-Yar" secondAttribute="bottom" constant="20" id="kf8-DP-WOh"/>
                             <constraint firstItem="VPt-Ft-1HX" firstAttribute="centerX" secondItem="BQa-Jc-yB1" secondAttribute="centerX" id="qpN-Y8-r7Q"/>
@@ -1082,7 +1090,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ivP-xX-hPv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1163" y="-1879"/>
+            <point key="canvasLocation" x="-1163.3333333333333" y="-1879.2592592592591"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="bmI-G2-blB">
@@ -2825,7 +2833,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="sX9-WY-IIJ"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="gnX-kj-isW"/>
-        <segue reference="M3F-P2-Uak"/>
+        <segue reference="iKN-NV-GLh"/>
         <segue reference="2fL-ta-11H"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>

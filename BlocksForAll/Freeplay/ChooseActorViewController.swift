@@ -67,6 +67,16 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
     var currentActorImageView: UIImageView? // used during segues
    
     override func viewDidLoad() {
+        // Styling
+        addActorButton.backgroundColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
+        addActorButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
+        addActorButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        addActorButton.titleLabel?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
+        addActorButton.layer.borderWidth = 5
+        addActorButton.layer.borderColor = #colorLiteral(red: 0.5231451956, green: 0.3179902169, blue: 0.1559177838, alpha: 1)
+       
+        addActorButton.layer.cornerRadius = 10
         
        
         
@@ -89,11 +99,9 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         
         // Accessibility
         // Voice Over
-//        optionModView.accessibilityElements = [back!, optionModTitle!, optionalExtraLabel!, collectionView!]
-//        optionModTitle.accessibilityLabel = optionType
-//        optionalExtraLabel.accessibilityLabel = optionalExtraLabel.text
-//        //Dynamic Text
-//        setFontStyle()
+        accessibilityElements = [backButton!, chooseActorTitleLabel!, actorsCollectionView!, addActorButton!]
+
+
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
