@@ -59,10 +59,11 @@ class SelectLocationModifierViewController: UIViewController  {
         outputWidth = outputViewSize.width
         outputHeight = outputViewSize.height
         
-       // collectionView.frame.size = outputViewSize
+        //collectionView.frame.size = outputViewSize
         
         collectionView.addConstraint(NSLayoutConstraint(item: collectionView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: outputWidth))
         collectionView.addConstraint(NSLayoutConstraint(item: collectionView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: outputHeight))
+        
         
         calculateCellSize()
         
@@ -96,8 +97,9 @@ class SelectLocationModifierViewController: UIViewController  {
     }
     
     func calculateCellSize() {
-        cellWidth = floor(collectionView.layer.frame.width / numCols)
-        cellHeight = floor(collectionView.layer.frame.height / numRows) * 0.925
+        
+        cellWidth = floor(outputWidth / numCols)
+        cellHeight = floor(outputHeight / numRows)
     }
     
     func getCoordinatesFromCellIndex(index: Int) -> String{
@@ -144,7 +146,7 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: cellWidth, height: cellHeight)
+        return CGSize(width: cellWidth , height: cellHeight)
     }
     
     
@@ -173,6 +175,7 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
         
         cell.isAccessibilityElement = true
         
+        cell.layer.frame.size = CGSize(width: cellWidth, height: cellHeight)
         return cell
     }
     
@@ -203,6 +206,18 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
        
     }
     
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat { 0.0 } // change value to zero if you want to remove spacing.
+    
+   func collectionView(
+       _ collectionView: UICollectionView,
+       layout collectionViewLayout: UICollectionViewLayout,
+       minimumInteritemSpacingForSectionAt section: Int
+   ) -> CGFloat { 0.0 } // change value to zero if you want to remove spacing.
+  
 }
 
 class LocationCollectionViewCell  : UICollectionViewCell {
@@ -212,4 +227,3 @@ class LocationCollectionViewCell  : UICollectionViewCell {
         fatalError("updateAccessibilityTools not implemented")
     }
 }
-
