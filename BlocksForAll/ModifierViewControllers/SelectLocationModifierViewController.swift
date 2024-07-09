@@ -80,6 +80,8 @@ class SelectLocationModifierViewController: UIViewController  {
         }
        
         accessibilityElements = [backButton!, modifierTitleLabel!, collectionView!]
+        
+        collectionView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.9490196078, blue: 1, alpha: 1)
     }
     
     public static func calculateCenterCellIndex() -> Int{
