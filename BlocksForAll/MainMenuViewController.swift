@@ -14,20 +14,38 @@ let defaults = UserDefaults.standard  // Used to know block size and if in showI
 class MainMenuViewController: UIViewController {
     
     // View Controller Elements
-    @IBOutlet weak var getStarted: UIButton!
+    @IBOutlet weak var playWithRobotButton: UIButton!
     @IBOutlet weak var instructions: UIButton!
-    @IBOutlet weak var addRobots: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var robotImageView: UIImageView!
+    @IBOutlet weak var playWithVirtualRobotButton: UIButton!
+    @IBOutlet weak var welcomeLabelImage: UIImageView!
     
     var blockSize = 150 // this controls the size of the blocks you put down in the Building Screen
     
     var audioPlayer: AVAudioPlayer?  // Used to play the sound effect the plays when you tap the robot image
     
     override func viewDidLoad() {
+        
+        // Button styling
+        playWithRobotButton.layer.cornerRadius = 30
+        playWithRobotButton.layer.borderWidth = 10
+        playWithRobotButton.layer.borderColor = #colorLiteral(red: 0, green: 0.2363941169, blue: 0.2894879827, alpha: 1)
+        playWithRobotButton.backgroundColor = #colorLiteral(red: 0, green: 0.7333333333, blue: 0.8980392157, alpha: 1)
+        playWithRobotButton.titleLabel?.font =  UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 30.0)
+        
+        playWithVirtualRobotButton.layer.cornerRadius = 30
+        playWithVirtualRobotButton.layer.borderWidth = 10
+        playWithVirtualRobotButton.layer.borderColor = #colorLiteral(red: 0.5231451956, green: 0.3179902169, blue: 0.1559177838, alpha: 1)
+        playWithVirtualRobotButton.backgroundColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
+        playWithVirtualRobotButton.titleLabel?.font =  UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 30.0)
+        
         // Accessibility
-        getStarted.titleLabel?.adjustsFontForContentSizeCategory = true
+        playWithRobotButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        playWithVirtualRobotButton.titleLabel?.adjustsFontForContentSizeCategory = true
         instructions.titleLabel?.adjustsFontForContentSizeCategory = true
-        addRobots.titleLabel?.adjustsFontForContentSizeCategory = true
+        settingsButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        
         
         // Default settings
         // if show icons/show text hasn't been set yet, set showText to showIcons by default
@@ -41,6 +59,9 @@ class MainMenuViewController: UIViewController {
         
         // adding a gesture recognizer for an image view is from https://stackoverflow.com/questions/30990902/detect-uiimageview-touch-in-swift#:~:text=You%20can%20detect%20touches%20on,explicitly%20in%20storyboard%20or%20programmatically.
         robotImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(robotImageTapped)))
+        
+        accessibilityElements = [welcomeLabelImage!, playWithRobotButton!, playWithVirtualRobotButton!, settingsButton!, instructions!, robotImageView!]
+        
     }
     
     @objc private func robotImageTapped(_ recognizer: UITapGestureRecognizer) {

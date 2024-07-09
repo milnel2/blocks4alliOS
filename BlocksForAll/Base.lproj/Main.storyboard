@@ -313,7 +313,8 @@
                                         <subviews>
                                             <imageView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B4A_Robot_outline" translatesAutoresizingMaskIntoConstraints="NO" id="bML-d3-3Tw">
                                                 <rect key="frame" x="0.0" y="0.0" width="500" height="450"/>
-                                                <accessibility key="accessibilityConfiguration" hint="Digital drawing of a blue Dash robot with a happy expression. Blocks4All requires a Dash or Dot robot from Wonder Workshop." label="Dash Robot">
+                                                <accessibility key="accessibilityConfiguration" label="Dash Robot">
+                                                    <string key="hint">Digital drawing of a blue Dash robot with a happy expression. Blocks4All requires a Dash or Dot robot from Wonder Workshop. Interactable.</string>
                                                     <accessibilityTraits key="traits" image="YES"/>
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
@@ -325,8 +326,8 @@
                                                 <rect key="frame" x="517" y="0.0" width="403" height="450"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="CMD-Kc-2pq">
-                                                        <rect key="frame" x="139" y="0.0" width="125" height="34"/>
-                                                        <accessibility key="accessibilityConfiguration" label="Get Started"/>
+                                                        <rect key="frame" x="60.5" y="0.0" width="282" height="135"/>
+                                                        <color key="backgroundColor" name="blueColor"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="Play with Robot">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -337,17 +338,13 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyM-Bb-zzW">
-                                                        <rect key="frame" x="104" y="127.5" width="195" height="34.5"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Play with Virtual Robot"/>
+                                                        <rect key="frame" x="60.5" y="166.5" width="282" height="135"/>
+                                                        <color key="backgroundColor" name="orangeColor"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Play with Virtual Robot"/>
                                                         <connections>
                                                             <segue destination="cPr-av-dP5" kind="show" identifier="mainToFreeplayGallery" id="7Lz-l6-ord"/>
                                                         </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTX-6k-pMV">
-                                                        <rect key="frame" x="137.5" y="246.5" width="128.5" height="51.5"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Mazes" subtitle="Not Implemented"/>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" alignment="center" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="f1R-XD-VvS">
                                                         <rect key="frame" x="70.5" y="350" width="262" height="100"/>
@@ -387,7 +384,11 @@
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="CMD-Kc-2pq" firstAttribute="width" secondItem="NLd-Mr-RRq" secondAttribute="width" multiplier="0.7" id="4iQ-p4-DWA"/>
                                                     <constraint firstAttribute="height" constant="450" id="5Ga-ST-CQX"/>
+                                                    <constraint firstItem="CMD-Kc-2pq" firstAttribute="height" secondItem="NLd-Mr-RRq" secondAttribute="height" multiplier="0.3" id="Gkk-JX-r7P"/>
+                                                    <constraint firstItem="JyM-Bb-zzW" firstAttribute="width" secondItem="CMD-Kc-2pq" secondAttribute="width" id="bTx-rR-K23"/>
+                                                    <constraint firstItem="CMD-Kc-2pq" firstAttribute="height" secondItem="JyM-Bb-zzW" secondAttribute="height" id="cgx-1N-ggb"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -426,10 +427,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="oay-WG-RwI"/>
                     <connections>
-                        <outlet property="addRobots" destination="RT2-NS-4g9" id="o5b-0n-fX1"/>
-                        <outlet property="getStarted" destination="CMD-Kc-2pq" id="a5L-17-cMF"/>
                         <outlet property="instructions" destination="vpe-31-2KD" id="xun-jX-VUn"/>
+                        <outlet property="playWithRobotButton" destination="CMD-Kc-2pq" id="a5L-17-cMF"/>
+                        <outlet property="playWithVirtualRobotButton" destination="JyM-Bb-zzW" id="OwE-hs-m6l"/>
                         <outlet property="robotImageView" destination="bML-d3-3Tw" id="72s-Zo-2oI"/>
+                        <outlet property="settingsButton" destination="RT2-NS-4g9" id="o5b-0n-fX1"/>
+                        <outlet property="welcomeLabelImage" destination="P8p-Kk-8W6" id="J1J-27-52j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVo-bF-iCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2804,7 +2807,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="Ifr-Iv-956"/>
         <segue reference="lD7-sr-2Jm"/>
         <segue reference="SES-Og-HDs"/>
-        <segue reference="pX0-ao-Z6G"/>
+        <segue reference="gnX-kj-isW"/>
         <segue reference="7uU-VO-OLq"/>
         <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
@@ -2846,6 +2849,9 @@ For further information on Blocks4All, please visit our website. For further det
         <namedColor name="animalNoiseColor">
             <color red="0.85900002717971802" green="0.94900000095367432" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="blueColor">
+            <color red="0.017000000923871994" green="0.5" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="blue_block">
             <color red="0.56499999761581421" green="0.84299999475479126" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -2854,6 +2860,9 @@ For further information on Blocks4All, please visit our website. For further det
         </namedColor>
         <namedColor name="navy_text">
             <color red="0.071000002324581146" green="0.23499999940395355" blue="0.37999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="orangeColor">
+            <color red="1" green="0.57599997520446777" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="redOpaqueColor">
             <color red="0.91699999570846558" green="0.5559999942779541" blue="0.48399999737739563" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
