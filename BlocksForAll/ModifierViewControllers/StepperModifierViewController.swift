@@ -46,6 +46,9 @@ class StepperModifierViewController: UIViewController {
         optionType = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name
           
         // get values from optionDictionary
+        optionDict = dict.value(forKey: optionType) as! NSDictionary
+        
+        
         attributeName = optionDict.value(forKey: "attributeName") as? String ?? "N/A"
         min = optionDict.value(forKey: "min") as? String ?? "N/A"
         max = optionDict.value(forKey: "max") as? String ?? "N/A"
