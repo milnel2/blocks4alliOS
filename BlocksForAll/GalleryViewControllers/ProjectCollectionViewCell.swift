@@ -32,8 +32,6 @@ class ProjectCollectionViewCell: UICollectionViewCell {
             
         if let project = project {
             
-           
-            
             if project.image != nil {
                 let resizedImage = HelperFunctions.resizeImage(image: project.image!, scaledToSize: imageView.frame.size)
                 imageView.image = resizedImage
@@ -115,8 +113,11 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         
         deleteButton.isAccessibilityElement = true
         
+       
+        let cellIndex = allProjects[cellGalleryType]?.firstIndex(of: project) ?? 0
+        let numProjects = allProjects[cellGalleryType]?.count ?? 0
         
-        contentView.accessibilityHint = "Open " + project.name  // TODO: add image description
+        contentView.accessibilityHint = "Open " + project.name + ". Project \(cellIndex + 1) of \(numProjects). One finger swipe for more options"  // TODO: add image description
         deleteButton.accessibilityLabel = "Delete " + project.name
         
         

@@ -47,6 +47,7 @@ class ProjectGalleryViewController: UIViewController {
         
         updateUI()
         
+        print("gallery type = \(galleryType)")
         
        
     }
@@ -147,10 +148,11 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             let screenSize: CGRect = UIScreen.main.bounds
             cell.imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width * cellScale, height: screenSize.height * cellScale)
             
-            
+            cell.cellGalleryType = galleryType
             cell.project = project
             cell.parentViewController = self
-            cell.cellGalleryType = galleryType
+           
+            
             updateAccessibilityTools()
             return cell
         }
