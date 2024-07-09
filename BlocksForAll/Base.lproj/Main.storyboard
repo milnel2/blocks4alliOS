@@ -176,7 +176,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                             </imageView>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="960" placeholderIntrinsicHeight="600" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xUy-6j-lyY">
-                                <rect key="frame" x="60" y="150" width="960" height="510"/>
+                                <rect key="frame" x="60" y="105" width="960" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bmf-ch-61o">
                                     <size key="itemSize" width="959" height="477"/>
@@ -229,11 +229,14 @@
                                                     </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="755" placeholderIntrinsicHeight="291" translatesAutoresizingMaskIntoConstraints="NO" id="eaA-uL-9qc">
-                                                    <rect key="frame" x="37" y="27" width="206" height="139"/>
+                                                    <rect key="frame" x="40" y="15" width="200" height="150"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="eaA-uL-9qc" secondAttribute="height" multiplier="4:3" id="zci-cV-dsC"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3O-ki-wxr">
-                                                    <rect key="frame" x="73" y="191" width="134" height="33"/>
+                                                    <rect key="frame" x="73" y="206" width="134" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="cjU-PL-rQZ"/>
                                                     </constraints>
@@ -244,14 +247,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="eaA-uL-9qc" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="03P-uX-pgj"/>
+                                                <constraint firstItem="tKa-lW-FQf" firstAttribute="leading" secondItem="eaA-uL-9qc" secondAttribute="trailing" constant="5" id="1bp-rR-2cs"/>
                                                 <constraint firstItem="b3O-ki-wxr" firstAttribute="centerX" secondItem="2mk-aQ-E3a" secondAttribute="centerX" id="Bwz-Us-16C"/>
                                                 <constraint firstItem="tKa-lW-FQf" firstAttribute="top" secondItem="2mk-aQ-E3a" secondAttribute="top" constant="5" id="JK6-wM-zHO"/>
                                                 <constraint firstAttribute="trailing" secondItem="tKa-lW-FQf" secondAttribute="trailing" constant="5" id="KB2-KL-xlB"/>
-                                                <constraint firstItem="b3O-ki-wxr" firstAttribute="top" secondItem="eaA-uL-9qc" secondAttribute="bottom" constant="25" id="YDl-bb-VZe"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="b3O-ki-wxr" secondAttribute="bottom" constant="20" id="nYR-h6-9c8"/>
+                                                <constraint firstAttribute="bottom" secondItem="b3O-ki-wxr" secondAttribute="bottom" constant="5" id="nYR-h6-9c8"/>
                                                 <constraint firstItem="b3O-ki-wxr" firstAttribute="leading" secondItem="2mk-aQ-E3a" secondAttribute="leading" constant="73" id="rgo-HP-tft"/>
-                                                <constraint firstItem="eaA-uL-9qc" firstAttribute="top" secondItem="2mk-aQ-E3a" secondAttribute="top" constant="27" id="xZB-Lv-F3S"/>
-                                                <constraint firstItem="eaA-uL-9qc" firstAttribute="leading" secondItem="2mk-aQ-E3a" secondAttribute="leading" constant="37" id="xj8-Yd-o1b"/>
+                                                <constraint firstItem="eaA-uL-9qc" firstAttribute="top" secondItem="2mk-aQ-E3a" secondAttribute="top" constant="15" id="xZB-Lv-F3S"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" name="blue_block"/>
@@ -286,7 +288,7 @@
                             <constraint firstItem="VVh-1v-Liv" firstAttribute="leading" secondItem="Upg-AY-Tqn" secondAttribute="leading" id="4iL-2q-O3i"/>
                             <constraint firstItem="9bj-5e-IJc" firstAttribute="top" secondItem="VVh-1v-Liv" secondAttribute="bottom" id="4s6-oL-f0M"/>
                             <constraint firstItem="xUy-6j-lyY" firstAttribute="centerY" secondItem="Upg-AY-Tqn" secondAttribute="centerY" id="J45-TU-6nz"/>
-                            <constraint firstItem="xUy-6j-lyY" firstAttribute="top" secondItem="x14-XD-4cD" secondAttribute="bottom" constant="150" id="Nbb-dd-ep2"/>
+                            <constraint firstItem="xUy-6j-lyY" firstAttribute="top" secondItem="x14-XD-4cD" secondAttribute="bottom" constant="105" id="Nbb-dd-ep2"/>
                             <constraint firstItem="xUy-6j-lyY" firstAttribute="leading" secondItem="Upg-AY-Tqn" secondAttribute="leading" constant="60" id="RNy-0z-ftv"/>
                             <constraint firstAttribute="trailing" secondItem="VVh-1v-Liv" secondAttribute="trailing" id="dAl-9Q-raJ"/>
                             <constraint firstItem="VVh-1v-Liv" firstAttribute="top" secondItem="x14-XD-4cD" secondAttribute="bottom" id="gC6-Xl-lNd"/>
@@ -2833,8 +2835,8 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="sX9-WY-IIJ"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="gnX-kj-isW"/>
-        <segue reference="iKN-NV-GLh"/>
-        <segue reference="OfV-so-xeL"/>
+        <segue reference="a9q-34-jse"/>
+        <segue reference="2fL-ta-11H"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -2843,7 +2845,7 @@ For further information on Blocks4All, please visit our website. For further det
         <image name="Apple" width="133" height="133"/>
         <image name="B4A_Robot_outline" width="1917" height="1865"/>
         <image name="Back" width="2048" height="2048"/>
-        <image name="Background" width="133" height="133"/>
+        <image name="Background" width="1024" height="768"/>
         <image name="Banana" width="133" height="133"/>
         <image name="Cherry" width="133" height="133"/>
         <image name="FullScreenButton_Enter" width="133" height="133"/>
