@@ -317,8 +317,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }catch{
             print("load failed")
             // TODO: handle if there are no projects
-            allProjects[ROBOT_GALLERY_TYPE] = [Project(name: "Empty Project", imageName: "", projectType: ProjectType.Robot)]
-            allProjects[FREEPLAY_GALLERY_TYPE] = [Project(name: "Empty Project", imageName: "", projectType: ProjectType.Freeplay)]
+            allProjects[ROBOT_GALLERY_TYPE] = []
+            allProjects[FREEPLAY_GALLERY_TYPE] = []
         }
         // sets current workspace to main workspace so you don't load and wind up on a random function screen
         currentWorkspace = "Main Workspace"
