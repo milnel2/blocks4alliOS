@@ -145,7 +145,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
           
         // Accessibility
         cell.isAccessibilityElement = true
-          
+        cell.accessibilityLabel = name + ". Default color"
         cell.accessibilityHint = "Double tap to select"
         cell.accessibilityIdentifier = String(index)
         
@@ -158,6 +158,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
             cell.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
             cell.isSelected = true
             cell.accessibilityHint = "Selected"
+            cell.accessibilityLabel = name + ". Default color"
             selectedActor = (name: name, baseImagePath: baseImagePath, color: "Default")
         } else {
             cell.isSelected = false
