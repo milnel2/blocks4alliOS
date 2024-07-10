@@ -9,16 +9,17 @@
 import Foundation
 import UIKit
 
+// View that shows the scene of a freeplay project.
 class FreeplayOutputView: UIView {
-    var freeplayWorkspaceVC: FreePlayWorkspaceViewController? = nil
+    var freeplayWorkspaceVC: FreePlayWorkspaceViewController? = nil // freeplay workspace view controller that the output view is a part of
     
-    var actorSubviews = [UIImageView]()
+    var actorSubviews = [UIImageView]() // all of the actor image views that are inside of this output view
     
     func resetActorSubviews() {
         actorSubviews = []
     }
     
-
+    // add actor as a subview and add gestures to it
     func addActor(actor: VirtualRobot) {
         // Add actor to screen
         addSubview(actor.imageView)
@@ -38,7 +39,6 @@ class FreeplayOutputView: UIView {
       
         actor.imageView.addGestureRecognizer(tapGesture)
         
-        
         // Add actor to the Project object
         let currentProject = freeplayWorkspaceVC!.currentProject
         currentProject!.addActor(actor: actor)
@@ -47,7 +47,7 @@ class FreeplayOutputView: UIView {
         freeplayWorkspaceVC!.setUpAccessibility()
     }
     
-    
+    // when an actor image view is clicked on, play its on tap code line and set it to be the current actor
     @objc func clickOnActor(sender : UITapGestureRecognizer) {
         let currentProject = freeplayWorkspaceVC!.currentProject
         
@@ -56,19 +56,21 @@ class FreeplayOutputView: UIView {
             if actor.imageView.frame.contains(tapLocation) && actor.imageView == sender.view {
                 freeplayWorkspaceVC!.updateCurrentActor(newActor: actor)
                 if actor.isRunning {
+                    // if actor is already doing something, insert the on tap blocks
                     actor.executingProgram?.insertBlock(blockToExecName: ON_TAP_STRING)
                     freeplayWorkspaceVC!.stopIsOption = true
                     freeplayWorkspaceVC!.changePlayTrashButton()
                 } else {
+                    // if actor is idle, just play the on tap blocks
                     freeplayWorkspaceVC!.play(functionsDictToPlay: actor.functionDict, functionNameToExecute: ON_TAP_STRING, actor: actor)
                     freeplayWorkspaceVC!.stopIsOption = true
                     freeplayWorkspaceVC!.changePlayTrashButton()
-                    
                 }
             }
         }
     }
     
+    // when an actor image view is tapped and dragged, move it around within the bounds of the output view
     @objc func dragActor(sender: UIPanGestureRecognizer) {
 
         let dragLocation = sender.location(in: self)
@@ -80,9 +82,6 @@ class FreeplayOutputView: UIView {
         let backgroundBottomY = self.frame.height
         let backgroundLeftX: CGFloat = 0
         let backgroundRightX = self.frame.width
-        
-        
-        
                
        switch sender.state {
        case .began, .changed: // Implementation to recognize seleccted actor from ChatGPT by OpenAI. Source: https://www.openai.com
@@ -93,25 +92,18 @@ class FreeplayOutputView: UIView {
                        // within x bounds
                        actor.setCoordinates(x: dragLocation.x, y: actor.coordinates.y)
                        actor.setUpAccessibility()
-                       
                    }
                    
                    if !(dragLocation.y - actorHeight / 2 <= backgroundTopY || dragLocation.y + actorHeight / 2 >= backgroundBottomY ) {
                        // within y bounds
                        actor.setCoordinates(x: actor.coordinates.x, y: dragLocation.y)
                        actor.setUpAccessibility()
-                       
                    }
                    freeplayWorkspaceVC!.updateCurrentActor(newActor: actor)
-                   
                }
            }
        default:
            break
        }
-      
-        
     }
-    
-    
 }
