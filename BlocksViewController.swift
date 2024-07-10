@@ -1012,7 +1012,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                 } 
             }
-        } else if displaysText != "true" {  // show text is on
+        } else if displaysText != "true" && name != "Move to Location" {  // show text is on
             // No image was found and/or Show Text is on
             // set up fonts before setting the text
             button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
@@ -1045,8 +1045,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             
             button.layer.cornerRadius = 20 // add button rounded border
 
+            if name == "Move to Actor" { // move to actor modifiers are a bit different because their value is a UUID
             
-            button.setTitle(modifierInformation.capitalized, for: .normal)
+                let actor = VirtualRobot.getActorFromUUIDOrDefault(actorUUID: modifierInformation, inProject: currentProject!)!
+                button.setTitle(actor.color.capitalized + " " + actor.name.capitalized, for: .normal)
+            } else {
+                button.setTitle(modifierInformation.capitalized, for: .normal)
+            }
+
+            
             button.titleLabel?.numberOfLines = 2
             button.titleLabel?.lineBreakMode = .byWordWrapping
         }

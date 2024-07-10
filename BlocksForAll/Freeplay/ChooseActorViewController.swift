@@ -82,7 +82,6 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         
          if let path = Bundle.main.path(forResource: "ActorsMenu", ofType: "plist") {
             items = NSArray(contentsOfFile: path)!
-             print(items)
          } else {
              print("could not access ActorsMenu plist")
          }

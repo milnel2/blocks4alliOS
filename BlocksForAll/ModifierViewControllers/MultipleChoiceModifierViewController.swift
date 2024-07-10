@@ -167,7 +167,17 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         } else {
             // No image was found and/or Show Text is on
             let textView = UILabel(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
-            textView.text = items[index].capitalized
+            
+            if optionType == "Move to Actor" { // move to actor is a bit different because their value is a UUID
+                let actor = VirtualRobot.getActorFromUUID(actorUUID: items[index], inProject: currentProject!)
+                if actor == nil {
+                    fatalError("Could not find match for actorUUID in project")
+                }
+                textView.text = actor!.color.capitalized + " " + actor!.name.capitalized
+            } else {
+                textView.text = items[index].capitalized
+            }
+           
               
             // Text Style
             textView.backgroundColor = .clear
