@@ -82,6 +82,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         
          if let path = Bundle.main.path(forResource: "ActorsMenu", ofType: "plist") {
             items = NSArray(contentsOfFile: path)!
+             print(items)
          } else {
              print("could not access ActorsMenu plist")
          }
@@ -131,7 +132,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
     
         if let actorType = items[index] as? NSDictionary{
             baseImagePath = actorType.value(forKey: "imagePath") as! String
-            var imagePath = VirtualRobot.calculateImagePath(baseImagePath: baseImagePath, color: "Default")
+            let imagePath = VirtualRobot.calculateImagePath(baseImagePath: baseImagePath, color: "Default")
             name = actorType.value(forKey: "name") as! String
             let image = UIImage(named: imagePath)
             
@@ -140,7 +141,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
                 let resizedImage = HelperFunctions.resizeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize))  // resize the image to fit the button
                 let imv = UIImageView(image: resizedImage)
                 cell.addSubview(imv)
-            }
+            } 
         }
           
         // Accessibility

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "HorseActor_Blue.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

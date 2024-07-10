@@ -18,5 +18,29 @@
 		<key>description</key>
 		<string></string>
 	</dict>
+	<dict>
+		<key>name</key>
+		<string>Horse</string>
+		<key>imagePath</key>
+		<string>HorseActor</string>
+		<key>description</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Bee</string>
+		<key>imagePath</key>
+		<string>BeeActor</string>
+		<key>description</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Dinosaur</string>
+		<key>imagePath</key>
+		<string>DinosaurActor</string>
+		<key>description</key>
+		<string></string>
+	</dict>
 </array>
 </plist>
