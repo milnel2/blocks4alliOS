@@ -12,33 +12,36 @@ import AVFoundation
 
 var isInFreeplay: Bool = false // global variable for if the freeplay workspace is open
 
-//var actors: [VirtualRobot] = []
-var backgroundImage: UIImage?
+// View Controller for Freeplay Mode.
 class FreePlayWorkspaceViewController: BlocksViewController {
     
-    @IBOutlet weak var freeplayOutputView: FreeplayOutputView!
+    @IBOutlet weak var freeplayOutputView: FreeplayOutputView! // View where actors are located
     
     @IBOutlet weak var homeButton: UIButton!
-    @IBOutlet weak var currentActorImageView: UIImageView!
     
-    @IBOutlet weak var outputBackgroundImageView: UIImageView!
+    @IBOutlet weak var currentActorImageView: UIImageView! // image view that shows which actor is currently selected and is being edited
     
-    @IBOutlet weak var enterFullScreenButton: UIButton!
-    @IBOutlet weak var FirstCodeLineButton: UIButton!
+    @IBOutlet weak var outputBackgroundImageView: UIImageView! // background image for output
     
+    @IBOutlet weak var enterFullScreenButton: UIButton! // button to make output be in fullscreen
+    @IBOutlet weak var FirstCodeLineButton: UIButton! // button to open the first code line of the blocksProgram
     
-    @IBOutlet weak var secondCodeLineButton: UIButton!
+    @IBOutlet weak var secondCodeLineButton: UIButton! // button to open the second code line of the blocksProgram
     
-    @IBOutlet weak var buttonsView: UIView! // view that has play button, code lines, and customize acotor button
-    @IBOutlet weak var addActorButton: UIButton!
+    @IBOutlet weak var buttonsView: UIView! // view that has play button, code lines, and customize actor button
+    @IBOutlet weak var addActorButton: UIButton! // button to add a new actor to the project
+    
     var newActorToAdd: (name:String, baseImagePath: String, color: String)? // to be used when adding to actors
+    
     override func viewDidLoad() {
         if (currentProject == nil) {
             print("ERROR: current project is nil")
         }
+        
         freeplayOutputView.freeplayWorkspaceVC = self
         freeplayOutputView.resetActorSubviews()
         
+        // add actors to the scene
         for actor in currentProject!.actors {
             
             actor.addFreeplayOutputView(freeplayOutputView: freeplayOutputView)
@@ -53,6 +56,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
         super.viewDidLoad()
         
+        // Styling
         currentActorImageView.alpha = 0.3
         workspaceTitle.text = currentProject!.name
         workspaceTitle.layer.cornerRadius = 10.0
@@ -61,12 +65,15 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
         freeplayOutputView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.9490196078, blue: 1, alpha: 1)
         
+        addActorButton.layer.masksToBounds = true // allows for corner radius to work
+        addActorButton.layer.cornerRadius = 10
+        
         updateUI()
         
+        // If there is a new actor that needs to be added to the project (coming from the add actor screen), add it.
         if newActorToAdd != nil {
             afterNewActorSelected(name: newActorToAdd!.name, baseImagePath: newActorToAdd!.baseImagePath)
         }
-        
         
         // Add tap gesture recognizer to current actor image
         // Tap Gesture code from https://agrawalsuneet.medium.com/uiview-clicklistener-swift-88ab5dec64b5
@@ -74,14 +81,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
        
         currentActorImageView.addGestureRecognizer(tapGesture)
-       
-        addActorButton.layer.masksToBounds = true // allows for corner radius to work
-        addActorButton.layer.cornerRadius = 10
         
         setUpAccessibility()
-        
-    
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -97,13 +98,15 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             actor.setUpAccessibility()
             freeplayOutputView.accessibilityElements!.append(actor.imageView)
         }
-   
-
-       
         
         currentActorImageView.isUserInteractionEnabled = true
         currentActorImageView.isAccessibilityElement = true
-
+        
+        mainMenuButton.isAccessibilityElement = true
+        mainMenuButton.isUserInteractionEnabled = true
+        mainMenuButton.accessibilityTraits = .button
+        
+        // Set the accessibility elements for the screen
         resetAccessibilityElements()
         
         addActorButton.accessibilityLabel = "Add actor to project"
@@ -127,7 +130,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     }
     
     
-    // update accessibility elements to make navigation easier
+    // Update accessibility elements to make navigation easier when moving blocks
     override func beginMovingBlocks(_ blocks: [Block]) {
         super.beginMovingBlocks(blocks)
         accessibilityElements = [toolboxView!, playTrashToggleButton!, FirstCodeLineButton!, secondCodeLineButton!, blocksProgram!, mainMenuButton!]
@@ -138,10 +141,9 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         resetAccessibilityElements()
     }
     
+    // reset accessibility elements for accessing the entire screen
     func resetAccessibilityElements() {
-        mainMenuButton.isAccessibilityElement = true
-        mainMenuButton.isUserInteractionEnabled = true
-        mainMenuButton.accessibilityTraits = .button
+       
         accessibilityElements = [toolboxView!, freeplayOutputView!, mainMenuButton!, addActorButton!, currentActorImageView!, playTrashToggleButton!, FirstCodeLineButton!, secondCodeLineButton!, blocksProgram!] // toolbox, output, home, add actor, customize, play, line 1 line 2, blocks program
     }
     
@@ -152,7 +154,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     @IBAction func enterFullScreenPressed(_ sender: Any) {
         performSegue(withIdentifier: "enterFullScreen", sender: nil)
     }
-    // save snapshot of the output view
+    // save snapshot of the output view and link it with the current project
     override func saveProjectSnapshot() {
         
         // rendering view as image is from: https://www.hackingwithswift.com/example-code/media/how-to-render-a-uiview-to-a-uiimage
@@ -165,12 +167,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         currentProject!.imageName = generateImageName()
     }
     
-   
-   
-   
-    
-    
-    //this function allows the blocks in the workspace to be sent to the robot
+    //this function allows the blocks in the workspace to be sent to the virtual robot
     override func play(functionsDictToPlay: [String : [Block]], functionNameToExecute: String? = nil, actor: VirtualRobot? = nil){
         let newRobotControlVC = RobotControlViewController()
         
@@ -181,7 +178,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         executingProgram?.currentProject = currentProject
         
         executingProgram?.robotControlViewController.executeNextCommandRobotControllVC()
-        //makes initial executeNextCommandRobotControllVC call
+      
       
         
     }
@@ -210,6 +207,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         self.currentActorImageView.image = nil
         self.currentActorImageView.image = newImage
         
+        // Styling
         FirstCodeLineButton.titleLabel?.font =  UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 24.0)
         
         FirstCodeLineButton.titleLabel?.textColor = .black
@@ -250,8 +248,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
            chooseActorVC.currentProject = currentProject
            chooseActorVC.currentActorImageView = currentActorImageView
            chooseActorVC.freeplayOutputView = freeplayOutputView
-          
-        
        }
         if (segue.identifier == "enterFullScreen") {
             let fullscreenVC = segue.destination as! FullScreenFreeplayViewController
@@ -273,46 +269,38 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             customizeVC.freeplayWorkspace = self
         }
         
-        
         super.prepare(for: segue, sender: sender)
-       
     }
     
+    // Called after returning from the add actor screen. Adds a new actor to the project.
     func afterNewActorSelected(name: String, baseImagePath: String) {
         let newRobot = VirtualRobot(baseImagePath: baseImagePath, freeplayOutputView: freeplayOutputView, name: name, project: currentProject!)
         addActor(actor: newRobot)
         updateCurrentActor(newActor: newRobot)
         newActorToAdd = nil
-
     }
     
     func addActor(actor: VirtualRobot) {
         freeplayOutputView.addActor(actor: actor)
-
     }
     
+    // Updates the actor that is currently being edited
     func updateCurrentActor(newActor: VirtualRobot) {
         currentProject!.currentActor = newActor
         functionsDict = currentProject!.currentActor!.functionDict
         
-        
         refreshScreen()
         updateUI()
-        //executingProgram?.actorImage =
     }
     
     
     @IBAction func firstCodeLinePressed(_ sender: Any) {
         updateCurrentWorkspace(name: ON_RUN_STRING)
         updateUI()
-        
     }
 
     @IBAction func secondCodeLinePressed(_ sender: Any) {
         updateCurrentWorkspace(name: ON_TAP_STRING)
         updateUI()
     }
-    
 }
-
-
