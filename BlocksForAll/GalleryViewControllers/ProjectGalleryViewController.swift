@@ -6,27 +6,25 @@
 //  Copyright © 2024 Blocks4All. All rights reserved.
 //
 
-// Code to create the carousel gallery effect is from https://medium.com/macoclock/create-a-horizontal-collection-view-with-carousel-effect-swift-5-xcode-10-1cd41395c387
-
 import Foundation
 import UIKit
 
+/// View Controller for a gallery of projects. Either robot projects or freeplay projects. Can view projects, delete projects, rename projects, or add new projects from this screen.
 class ProjectGalleryViewController: UIViewController {
     
-    @IBOutlet weak var projectGalleryCollectionView: UICollectionView!
+    @IBOutlet weak var projectGalleryCollectionView: UICollectionView! // collection view to hold project cells
     
-    @IBOutlet weak var homeButton: UIButton!
+    @IBOutlet weak var homeButton: UIButton! // button to return to main menu
     
-    var projects: [Project] = []
-    var cellScale : CGFloat = 0.28
+    var projects: [Project] = [] // projects associated with this gallery
+    let cellScale : CGFloat = 0.28 // how big cells should be in relation to the screen size
     
-    private var cellWidth: CGFloat = 100
-    private var cellHeight: CGFloat = 100
+    private var cellWidth: CGFloat = 100 // width of all cells
+    private var cellHeight: CGFloat = 100 // height of all cells
     
-    let cellSpacing: CGFloat = 50
-    var displayedCellIndex = 0
+    let cellSpacing: CGFloat = 50 // space between cells
     
-    var galleryType: String = ROBOT_GALLERY_TYPE
+    var galleryType: String = ROBOT_GALLERY_TYPE // either freeplay or robot gallery type. Determines the set of projects to display
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,23 +34,16 @@ class ProjectGalleryViewController: UIViewController {
         projectGalleryCollectionView.dataSource = self
         projectGalleryCollectionView.delegate = self
         
+        // calculate cell size
         let screenSize = UIScreen.main.bounds.size
         cellWidth = floor(screenSize.width * cellScale)
         cellHeight = floor(screenSize.height * cellScale)
         
-       
-        
         projectGalleryCollectionView.translatesAutoresizingMaskIntoConstraints = false
     
-        
         updateUI()
-        
-        
-       
     }
    
-   
-    
     func reloadGallery() {
         self.projects = allProjects[self.galleryType]!
         projectGalleryCollectionView.reloadData()
@@ -60,14 +51,12 @@ class ProjectGalleryViewController: UIViewController {
     }
     
     func updateUI() {
-       
         updateAccessibilityTools()
     }
     func updateAccessibilityTools() {
         view.accessibilityElements = [projectGalleryCollectionView!, homeButton!]
     }
     
-   
     func validateFunctionName(name: String, currentAlert: UIAlertController) -> Bool{
         let dictionary = HelperFunctions.getPListDictionary(resourceName: "ModifierProperties")!
         if (dictionary[name] != nil) {
@@ -119,7 +108,7 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
            
             cell.updateAccessibilityTools()
             cell.layer.borderWidth = 5
-            
+            // Styling
             cell.layer.shadowColor = UIColor.gray.cgColor
             cell.layer.shadowRadius = 2.0
             cell.layer.cornerRadius = 10
@@ -130,12 +119,10 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
         } else {
             // Project Cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectsCell", for: indexPath) as! ProjectCollectionViewCell
-            
-            
-            
+        
             let project = projects[index - 1] // shift index over 1 because index 0 is the add project cell
-            
-            
+                
+            // Styling
             cell.layer.borderWidth = 5
             cell.imageView.backgroundColor = .red
             cell.layer.shadowColor = UIColor.gray.cgColor
@@ -144,6 +131,7 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             cell.layer.borderColor = UIColor.black.cgColor
             cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
             cell.layer.shadowRadius = 2.0
+            
             let screenSize: CGRect = UIScreen.main.bounds
             cell.imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width * cellScale, height: screenSize.height * cellScale)
             
@@ -151,62 +139,13 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             cell.project = project
             cell.parentViewController = self
            
-            
             updateAccessibilityTools()
             return cell
         }
     }
     
     // TODO: have cells fill left to right instead of top to bottom
-    func calculateAdjustedCellIndex(index: Int) -> Int {
-        /*
-         [0][2][4]
-         [1][3][5]
-         
-         Turns into:
-         
-         [0][1][2]
-         [3][4][5]
-         
-         
-         0 -> 0
-         1 -> 2
-         2 -> 4
-         3 -> 1
-         4 -> 3
-         5 -> 5
-         
-         
-         */
-        
-      return index
-//        switch index {
-//        case 0:
-//            print(0)
-//            return 0
-//        case 1:
-//            print(2)
-//            return 2
-//        case 2:
-//            print(4)
-//            return 4
-//        case 3:
-//            print(1)
-//            return 1
-//        case 4:
-//            print(3)
-//            return 3
-//        case 5:
-//            print(5)
-//            return 5
-//        default:
-//            print("default 0")
-//            return 0
-//        }
-        
-    }
-    
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -216,7 +155,6 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        displayedCellIndex = indexPath.item
         updateUI()
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -224,13 +162,11 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             return UIEdgeInsets(top: cellSpacing / 2, left: cellSpacing / 2, bottom: cellSpacing / 2, right: cellSpacing / 2)
-        
         }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let index = indexPath.item
-        
         
         if index == 0 {
             // Clicked on Add Project Cell
@@ -243,8 +179,6 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             let selectedProject = allProjects[galleryType]!.remove(at: index - 1)
             allProjects[galleryType]!.insert(selectedProject, at: 0)
         }
-        
-       
     }
     
     // Opens project located at given index in the allProjects[galleryType] array
@@ -273,6 +207,7 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
         openProjectAtIndex(index: 0)
     }
     
+    /// Returns a placeholder project name like "Project 1"
     func generateNewProjectName() -> String {
         
         let newProjectNumber = projects.count + 1
@@ -302,8 +237,6 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
         return false
     }
     
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if (segue.identifier == "openFreeplayFromGallery") {
           let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
@@ -318,7 +251,4 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             
         }
     }
-
-    
-    
 }
