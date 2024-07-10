@@ -97,22 +97,13 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             actor.setUpAccessibility()
             freeplayOutputView.accessibilityElements!.append(actor.imageView)
         }
+   
 
-        freeplayOutputView.accessibilityElements!.append(enterFullScreenButton!)
        
         
         currentActorImageView.isUserInteractionEnabled = true
         currentActorImageView.isAccessibilityElement = true
-        
-        addActorButton.isUserInteractionEnabled = true
-        addActorButton.isAccessibilityElement = true
-        
-        FirstCodeLineButton.isUserInteractionEnabled = true
-        FirstCodeLineButton.isAccessibilityElement = true
-        
-        secondCodeLineButton.isUserInteractionEnabled = true
-        secondCodeLineButton.isAccessibilityElement = true
-        
+
         resetAccessibilityElements()
         
         addActorButton.accessibilityLabel = "Add actor to project"
@@ -148,6 +139,9 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     }
     
     func resetAccessibilityElements() {
+        mainMenuButton.isAccessibilityElement = true
+        mainMenuButton.isUserInteractionEnabled = true
+        mainMenuButton.accessibilityTraits = .button
         accessibilityElements = [toolboxView!, freeplayOutputView!, mainMenuButton!, addActorButton!, currentActorImageView!, playTrashToggleButton!, FirstCodeLineButton!, secondCodeLineButton!, blocksProgram!] // toolbox, output, home, add actor, customize, play, line 1 line 2, blocks program
     }
     

@@ -47,7 +47,6 @@ class ProjectGalleryViewController: UIViewController {
         
         updateUI()
         
-        print("gallery type = \(galleryType)")
         
        
     }
