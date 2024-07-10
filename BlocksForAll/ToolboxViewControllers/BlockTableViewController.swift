@@ -96,7 +96,6 @@ class BlockTableViewController: UITableViewController {
         else {
             cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
         }
-        
        
         
         return cell

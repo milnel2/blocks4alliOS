@@ -585,6 +585,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     private func addBlocks(_ blocks: [Block], at index: Int) {
         //change for beginning
         var announcement = ""
+        if blocks.count == 0 { // for some reason the app is crashing from this method with an index out of range error when accessing blocks[0]. Not sure why but this should fix it for now
+            return
+        }
         if (index != 0) {
             let myBlock = currentProject!.currentActor!.functionDict[currentWorkspace]![index-1]
             announcement = blocks[0].name + " placed after " + myBlock.name
