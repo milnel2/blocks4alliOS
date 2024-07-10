@@ -8,62 +8,55 @@
 
 import Foundation
 
+// UICollectionViewCell used in gallery to represent a project. Has an image, name, and delete button
 class ProjectCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageView: UIImageView! // Displays screenshot of the project
     
-    @IBOutlet weak var projectNameLabel: UILabel!
+    @IBOutlet weak var projectNameLabel: UILabel! // Displays the name of the project. Can be edited
+    
+    var parentViewController: ProjectGalleryViewController? // View Controller that the cell is a part of
+    
+    @IBOutlet weak var deleteButton: UIButton! // Button to delete project
+    
+    var cellGalleryType: String = ROBOT_GALLERY_TYPE // Type of project that the cell is for: either robot or freeplay
     
     
-    var parentViewController: ProjectGalleryViewController?
-    
-    @IBOutlet weak var deleteButton: UIButton!
-    
-    var cellGalleryType: String = ROBOT_GALLERY_TYPE
-    
-    
-    var project : Project! {
+    var project : Project! { // associated Project object
        didSet {
            self.updateUI()
            self.setUpProjectLabelTap()
        }
    }
     func updateUI() {
-            
+       
         if let project = project {
-            
             if project.image != nil {
+                // Set up and add project image
                 let resizedImage = HelperFunctions.resizeImage(image: project.image!, scaledToSize: imageView.frame.size)
                 imageView.image = resizedImage
                 imageView.contentMode = .scaleToFill
             }
-          
-        
-            
+            // Project name
            projectNameLabel.text = project.name
-           //details.text = course.details
-           //colorView.backgroundColor = course.color
         } else {
            imageView.image = nil
            projectNameLabel.text = nil
-           //details.text = nil
-           //colorView.backgroundColor = nil
         }
       
+        // Styling
         imageView.layer.cornerRadius = 10.0
         imageView.layer.masksToBounds = true
-        
-
         
         projectNameLabel.adjustsFontForContentSizeCategory = true
         projectNameLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
         
-           
+        // Accessibility
         updateAccessibilityTools()
-        
        }
     
     @objc func projectLabelTapped(_ sender: UITapGestureRecognizer) {
+        // Show rename project alert
         let alert = UIAlertController(title: "Enter project name", message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "Your project name"
@@ -85,13 +78,13 @@ class ProjectCollectionViewCell: UICollectionViewCell {
             }
             
         }))
-
             parentViewController!.present(alert, animated: true)
         
-            // if the name isn't valid, the textfield will go back to whatever the name previously was
+            // if the name isn't valid, the label will go back to whatever the name previously was
         updateUI()
         }
-        
+    
+    /// Adds tap gesture to project name label for renaming project
     func setUpProjectLabelTap() {
         // adding tap gesture to UILabel is from https://medium.com/app-makers/how-to-add-a-tap-gesture-to-uilabel-in-xcode-swift-7ada58f1664
         let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.projectLabelTapped(_:)))
@@ -99,7 +92,6 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         self.projectNameLabel.addGestureRecognizer(labelTap)
         }
   
-    
     func updateAccessibilityTools() {
         isAccessibilityElement = false
         
@@ -113,38 +105,18 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         
         deleteButton.isAccessibilityElement = true
         
-       
         let cellIndex = allProjects[cellGalleryType]?.firstIndex(of: project) ?? 0
         let numProjects = allProjects[cellGalleryType]?.count ?? 0
         
         contentView.accessibilityHint = "Open " + project.name + ". Project \(cellIndex + 1) of \(numProjects). One finger swipe for more options"  // TODO: add image description
         deleteButton.accessibilityLabel = "Delete " + project.name
         
-        
         accessibilityElements = [contentView, projectNameLabel!, deleteButton!]
-        
-        
     }
     
-    @IBAction func projectNameEdited(_ sender: Any) {
-        let newName = projectNameLabel.text
-        if validateFunctionName(name: newName ?? "") {
-            // name is valid, rename the project
-            for proj in allProjects[cellGalleryType]! {
-                if proj.name == project.name {
-                    proj.name = newName!
-                    continue
-                }
-            }
-            project.name = newName!
-            
-        }
-        // if the name isn't valid, the textfield will go back to whatever the name previously was
-        updateUI()
-    }
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
-        
+        // Verify delete action
         let alert = UIAlertController(title: "Are you sure you want to delete this project?", message: "This action cannot be undone.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
@@ -190,13 +162,6 @@ class ProjectCollectionViewCell: UICollectionViewCell {
                 }
             }
         }
-           
         return true
-        
-    }
-    
-    
-    
-    
-    
+    }   
 }
