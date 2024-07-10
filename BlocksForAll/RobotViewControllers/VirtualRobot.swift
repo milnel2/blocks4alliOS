@@ -9,28 +9,25 @@
 import Foundation
 import AVFAudio
 
-
-
+/// Class to represent an actor/virtual robot for freeplay mode
 class VirtualRobot: Equatable {
     static func == (lhs: VirtualRobot, rhs: VirtualRobot) -> Bool {
-        return lhs.UUID == rhs.UUID
+        return lhs.UUID == rhs.UUID // each virtual robot has a unique identifier. This eliminates issues with actors having the same name (ex. there might be a lot of "Red Cat" virtual robots
     }
-    
 
-    let baseImagePath: String
-    var color: String
-    var imagePath: String
-    var imageView: UIImageView
-    var freeplayOutputView: FreeplayOutputView?
-    var robotSize: CGFloat = 120
-    let defaultRobotSize: CGFloat = 120
-    var functionDict: [String : [Block]]
-    var name: String
+    let baseImagePath: String // base part of the image path for the virtual robot (ex. "Cat" for "Cat_Default"
+    var color: String // color of the virtual robot. Used to calculate the image path
+    var imagePath: String // actual image path for the robot
+    var imageView: UIImageView // image view for displaying the robot
+    var freeplayOutputView: FreeplayOutputView? // output view that the image view is a child of
+    var robotSize: CGFloat = 120 // current size of robot
+    let defaultRobotSize: CGFloat = 120 // original size of robot
+    var functionDict: [String : [Block]] // robot's blocks
+    var name: String // name of robot
     var coordinates: (x: CGFloat, y: CGFloat) = (-10, -10) // center coordinates of robot image
-    var project: Project?
-    var executingProgram: ExecutingProgram? = nil
-    var isRunning: Bool = false
-    
+    var project: Project? // project the robot is associated with
+    var executingProgram: ExecutingProgram? = nil // executing program the robot is associated with
+    var isRunning: Bool = false // whether or not this robot's blocks are running
     
     let UUID: String // Universally Unique Identifier used to compare Virtual Robots
     
@@ -41,6 +38,7 @@ class VirtualRobot: Equatable {
     var verticalDistanceMultiplier = 1.0
     var horizontalDistanceMultiplier = 1.0
     
+    // animation speed constants
     let reallySlowAnimSpeed: CGFloat = 15
     let slowAnimSpeed: CGFloat = 30
     let normalAnimationSpeed: CGFloat = 60
@@ -48,9 +46,7 @@ class VirtualRobot: Equatable {
     let reallyFastAnimSpeed: CGFloat = 170
     var movementAnimationSpeed: CGFloat = 50 // The bigger the number, the faster the animation
     
-    
     init(baseImagePath: String, color: String = "Default", freeplayOutputView: FreeplayOutputView, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
-        
         
         self.baseImagePath = baseImagePath
         self.color = color
@@ -65,22 +61,18 @@ class VirtualRobot: Equatable {
         self.UUID = uuid ?? Foundation.UUID().uuidString
         self.robotSize = robotSize
         
-        
         let image = UIImage(named: imagePath)
         if (image == nil) {
             print("Error: Couldn't create image in VirtualRobot class from image path: ", imagePath)
         }
         imageView = UIImageView(image: UIImage(named: imagePath))
         
-        
         imageView.frame = CGRect(x: 0, y: 0, width: robotSize, height: robotSize)
         
         setCoordinates(x: self.coordinates.x, y: self.coordinates.y)
         
         functionDict = createFunctionDict()
-        
     }
-    
     
     init(baseImagePath: String, color: String = "Default", name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
         
@@ -113,12 +105,13 @@ class VirtualRobot: Equatable {
         imageView = UIImageView(image: UIImage(named: imagePath))
     }
     
+    /// Calculate the image path for a Virtual Robot based on the given base image path and color
     public static func calculateImagePath(baseImagePath: String, color: String) -> String{
         return "\(baseImagePath)_\(color)"
     }
     
+    // Sets animation speed of robot. Controlled by speed blocks
     public func setActorSpeedByName(speedName: String) {
-        print("setting \(name) speed to \(speedName)")
         switch speedName {
         case "Really Slow":
             movementAnimationSpeed = reallySlowAnimSpeed
@@ -134,6 +127,7 @@ class VirtualRobot: Equatable {
             movementAnimationSpeed = normalAnimationSpeed
         }
     }
+    
     func setUpAccessibility() {
         imageView.isUserInteractionEnabled = true
         imageView.isAccessibilityElement = true
@@ -141,6 +135,7 @@ class VirtualRobot: Equatable {
         imageView.accessibilityHint = "Double tap and hold to drag."
     }
     
+    /// Calculates a descriptive string of where a robot is within the scene
     func calculateActorLocationStringForAccessibility() -> String {
         if freeplayOutputView != nil {
             let outputWidth = freeplayOutputView!.frame.width
@@ -148,7 +143,6 @@ class VirtualRobot: Equatable {
             
             let x = coordinates.x
             let y = coordinates.y
-            
             
             var accessibilityString = "Location is at"
             // horizontal position
@@ -185,6 +179,7 @@ class VirtualRobot: Equatable {
         
         return ""
     }
+    
     public func setActorSize(size: CGFloat) {
         robotSize = size
         let x = imageView.frame.minX
@@ -192,8 +187,7 @@ class VirtualRobot: Equatable {
         imageView.frame = CGRect(x: x, y: y, width: size, height: size)
     }
     
-   
-    
+    /// Returns an basic function dict
     func createFunctionDict() -> [String: [Block]] {
         if project?.projectType == ProjectType.Freeplay {
             return [ON_RUN_STRING : [], ON_BUMP_STRING: [], ON_TAP_STRING: []]
@@ -202,28 +196,24 @@ class VirtualRobot: Equatable {
         }
     }
     
+    // Assigns a project to the robot
     func setProject(project: Project) {
         self.project = project
         if functionDict.isEmpty {
             functionDict = createFunctionDict()
         }
-        
     }
     
+    // Assigns a freeplay output view to the robot and sets coordinates
     func addFreeplayOutputView(freeplayOutputView: FreeplayOutputView) {
         self.freeplayOutputView = freeplayOutputView
        
-        
         imageView.frame = CGRect(x: 0, y: 0, width: robotSize, height: robotSize)
         
-       
         setCoordinates(x: coordinates.x, y: coordinates.y)
-       
-      
-
     }
    
-    
+    /// Move to the center of the freeplay output view, animated, with sound
     func moveToOrigin(executingProgram: ExecutingProgram) {
         let currentX = coordinates.x
         let currentY = coordinates.y
@@ -236,13 +226,14 @@ class VirtualRobot: Equatable {
         animatedMoveToCoordinatesWithSound(x: backgroundCenterX, y: backgroundCenterY, duration: animationDuration)
        
         executingProgram.finishCommand(withDuration: animationDuration) //TODO: block highlight is going away before movement is finished
-        
     }
     
+    /// Distance formula
     public static func calculateMovementDistance(startX: CGFloat, startY: CGFloat, endX: CGFloat, endY: CGFloat) -> Double {
         return sqrt(pow((endX - startX),2) + pow( (endY - startY),2))
     }
     
+    /// Move this robot to the robot with the given actor UUID. Animated and with sound.
     func moveToActor(actorUUID: String, executingProgram: ExecutingProgram) {
         if actorUUID == "" {
             fatalError("Error: move to actor failed. actorUUID was empty")
@@ -257,9 +248,9 @@ class VirtualRobot: Equatable {
             
             executingProgram.finishCommand(withDuration: animationDuration)
         }
-       
     }
     
+    // Move to given coordinate string, animated, with sound
     func moveToLocation(coordinateString: String, executingProgram: ExecutingProgram) {
         let (x, y) = VirtualRobot.parseCoordinateString(coordinateString: coordinateString)
         
@@ -277,10 +268,9 @@ class VirtualRobot: Equatable {
         animatedMoveToCoordinatesWithSound(x: adjustedX, y: adjustedY, duration: animationDuration)
             
         executingProgram.finishCommand(withDuration: animationDuration)
-        
-        
     }
     
+    // Takes a coordinate string and returns a tuple of CGFloat x and y coordinates
     public static func parseCoordinateString(coordinateString: String) -> (x: CGFloat, y: CGFloat) {
         let values = coordinateString.split(separator: ",")
         let x = Int(values[0]) ?? 0
@@ -288,7 +278,7 @@ class VirtualRobot: Equatable {
         return (x: CGFloat(x), y: CGFloat(y))
     }
 
-
+    // Given an actorUUID returns an actor from that project that has the same UUID or nil
     public static func getActorFromUUID(actorUUID: String, inProject: Project) -> VirtualRobot?{
         for actor in inProject.actors {
             if actor.UUID == actorUUID {
@@ -313,9 +303,8 @@ class VirtualRobot: Equatable {
        
     }
     
+    /// Change actor size by given amount. If growOrShrink = 1 the actor will grow. If growOrShrink = -1, the actor will shrink
     func changeActorSize(amount: Int, growOrShrink: Int, executingProgram: ExecutingProgram) {
-        
-        
         let sizeInterval: CGFloat = 10
         let amountToChange = CGFloat(amount) * sizeInterval * CGFloat(growOrShrink)
         
@@ -329,12 +318,9 @@ class VirtualRobot: Equatable {
         } else {
             executingProgram.finishCommand() // don't shrink or grow if it will get too big or too small
         }
-        
-        
-        
-        
     }
     
+    // Change size of robot to new size, animated
     func animatedSetSize(size: CGFloat, duration: TimeInterval, delay: TimeInterval = 0) {
         // Animating while still being able to recognize being tapped is from Matt's answer on https://stackoverflow.com/questions/57032194/tapping-a-uiimage-while-its-being-animated
         let anim = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .linear))
@@ -344,11 +330,9 @@ class VirtualRobot: Equatable {
            }
         
         anim.startAnimation()
-        
-        
     }
     
-    
+    // Play a horizontal or vertical move. Stops if it will collide with a wall
     func playMove(distance: Double, xDirection: Int, yDirection: Int, executingProgram: ExecutingProgram) {
         var adjustedDistance = 0.0
         if xDirection != 0 {
@@ -371,7 +355,7 @@ class VirtualRobot: Equatable {
         }
         
     }
-    
+    // Returns true if a move will collide with a wall. If it is true, it will bump into the wall.
     func checkWillCollide(distance: Double, xDirection: Int, yDirection: Int, executingProgram: ExecutingProgram) -> Bool {
         let currentX = coordinates.x
         let currentY = coordinates.y
@@ -469,6 +453,7 @@ class VirtualRobot: Equatable {
         return false
     }
     
+    // Play sound of hitting a wall for movement collisions
     func playHitWallSound() {
         // Code to play audio is from https://www.tutorialspoint.com/how-to-play-a-sound-using-swift
         guard let path = Bundle.main.path(forResource: "bounceOffWall", ofType:"mp3") else {
@@ -486,13 +471,12 @@ class VirtualRobot: Equatable {
         }
     }
     
+    // Move actor to coordinates that are saved to it
     func setToSavedCoordinates() {
         setCoordinates(x: coordinates.x, y: coordinates.y)
     }
     
-    
-    
-    
+    // move (unanimated) robot to given coordinates and updates robot data. If coordinates are (-10,-10), sets it to a random position
     public func setCoordinates(x: CGFloat, y: CGFloat) {
         if x == -10 && y == -10 {
             let outputWidth = freeplayOutputView!.frame.width
@@ -507,7 +491,6 @@ class VirtualRobot: Equatable {
         imageView.center.y =  coordinates.y
         
         freeplayOutputView!.bringSubviewToFront(imageView)
-        
     }
     
     func animatedMoveToCoordinatesWithSound(x: CGFloat, y: CGFloat, duration: TimeInterval, delay: TimeInterval = 0) {
@@ -525,10 +508,10 @@ class VirtualRobot: Equatable {
        
         anim.startAnimation()
 
-        
         coordinates = (x,y)
     }
     
+    // moves to given coordinates, animated. But without sound
     func animatedMoveToCoordinates(x: CGFloat, y: CGFloat, duration: TimeInterval, delay: TimeInterval = 0) {
         
         // Animating while still being able to recognize being tapped is from Matt's answer on https://stackoverflow.com/questions/57032194/tapping-a-uiimage-while-its-being-animated
@@ -549,6 +532,7 @@ class VirtualRobot: Equatable {
     let pitchControl = AVAudioUnitTimePitch()
     var movementSoundAudioPlayer = AVAudioPlayerNode()
     
+    /// Play movement beeping sound. Moving to the left is quieter, right is louder, up is higher pitch, and down is lower pitch.
     func playMovementSound(duration: TimeInterval, startX: CGFloat, startY: CGFloat, endX: CGFloat, endY: CGFloat) throws {
        
         
