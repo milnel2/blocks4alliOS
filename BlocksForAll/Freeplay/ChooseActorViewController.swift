@@ -9,14 +9,15 @@
 import Foundation
 import UIKit
 
+// View Controller to choose an actor to add to the freeplay project
 class ChooseActorViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
-    @IBOutlet weak var chooseActorTitleLabel: UILabel!
+    @IBOutlet weak var chooseActorTitleLabel: UILabel! // title label at top of screen
     
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var backButton: UIButton! // button to go back to the freeplay workspace and cancel adding an actor
     
-    @IBOutlet weak var actorsCollectionView: UICollectionView!
+    @IBOutlet weak var actorsCollectionView: UICollectionView! // collection view that holds all of the possible actors that can be added
     
-    @IBOutlet weak var addActorButton: UIButton!
+    @IBOutlet weak var addActorButton: UIButton! // button to add the actor to the project
     
     private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each button that is showed in the collection view
     
@@ -46,9 +47,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
             
             freeplayWorkspaceVC.newActorToAdd = (name: selectedActor.name, baseImagePath: selectedActor.baseImagePath, color: "Default") // add a new actor
         }
-       
     }
-    
     
     @IBAction func addActorPressed(_ sender: Any) {
         performSegue(withIdentifier: "backToFreeplayWithNewActor", sender: nil)
@@ -78,8 +77,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
        
         addActorButton.layer.cornerRadius = 10
         
-       
-        
+        // get data for possible actors
          if let path = Bundle.main.path(forResource: "ActorsMenu", ofType: "plist") {
             items = NSArray(contentsOfFile: path)!
          } else {
@@ -90,17 +88,12 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         actorsCollectionView.dataSource = self
         actorsCollectionView.register(ActorCell.self, forCellWithReuseIdentifier: "ActorCell")
          
-        //let collectionView = configureCollectionView()
-          
 //        collectionView.isAccessibilityElement = false
 //        collectionView.shouldGroupAccessibilityChildren = true  // this and more good voiceOver tips are from https://medium.com/bpxl-craft/how-to-make-voiceover-more-friendly-in-your-ios-app-8fac34ab8c51
           
        
-        
-        // Accessibility
         // Voice Over
         accessibilityElements = [backButton!, chooseActorTitleLabel!, actorsCollectionView!, addActorButton!]
-
 
     }
     
@@ -190,8 +183,5 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
             name = actorType.value(forKey: "name") as! String
             selectedActor = (name: name, baseImagePath: imagePath, color: "Default")
         }
-        
     }
-    
-   
 }
