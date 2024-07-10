@@ -12,40 +12,40 @@ public struct LocationConstants {
     static let numRows = 4.0
     static let numCols = 7.0
 }
+
+/// View Controller for selecting a location for freeplay Move to Location Blocks. Show a grid of locations to select from
 class SelectLocationModifierViewController: UIViewController  {
     
     let cellReuseIdentifier = "selectLocationCell"
     
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var backButton: UIButton! // button to go back to the freeplay workspace
     
-    @IBOutlet weak var modifierTitleLabel: UILabel!
+    @IBOutlet weak var modifierTitleLabel: UILabel! // label for top of screen
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView! // collection view to hold the grid of locations
     
-    var currentProject: Project? = nil
+    var currentProject: Project? = nil // project currently editing
     
-    var outputView: FreeplayOutputView? = nil
+    var outputView: FreeplayOutputView? = nil // output view of the project currently editing. Its size is used to determine the size of the grid
     
     @IBAction func backButtonPressed(_ sender: Any) {
         
         performSegue(withIdentifier: "backToFreeplay", sender: nil)
     }
     
-    var outputWidth = 0.0
-    var outputHeight = 0.0
+    var outputWidth = 0.0 // width of the output view associated with this project
+    var outputHeight = 0.0 // height of the output view associated with this project
     
-    var cellWidth = 0.0
-    var cellHeight = 0.0
+    var cellWidth = 0.0 // width of each grid cell
+    var cellHeight = 0.0 // height of each grid cell
     
    
-    let numRows = LocationConstants.numRows
-    let numCols = LocationConstants.numCols
+    let numRows = LocationConstants.numRows // number of rows the grid will have
+    let numCols = LocationConstants.numCols // number of columns the grid will have
     
-    var optionSelectedIndex = 0
+    var optionSelectedIndex = 0 // index of the cell currently selected
+    
     public var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
-    
-    
-    var visual = CGRect()
     
     override func viewDidLoad() {
         collectionView.delegate = self
@@ -55,18 +55,17 @@ class SelectLocationModifierViewController: UIViewController  {
             fatalError("Output view is nil")
         }
         
+        // get the size of the output view
         let outputViewSize = outputView!.frame.size
         outputWidth = outputViewSize.width
         outputHeight = outputViewSize.height
         
-        //collectionView.frame.size = outputViewSize
-        
+        // set the collection view to be the same size as the output view from the workspace
         collectionView.addConstraint(NSLayoutConstraint(item: collectionView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: outputWidth))
         collectionView.addConstraint(NSLayoutConstraint(item: collectionView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: outputHeight))
         
         
         calculateCellSize()
-        
         
         
         let centerCellIndex = SelectLocationModifierViewController.calculateCenterCellIndex()
@@ -83,7 +82,7 @@ class SelectLocationModifierViewController: UIViewController  {
         
         collectionView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.9490196078, blue: 1, alpha: 1)
     }
-    
+    /// Find the index of the center cell based on the number of rows and number of columns in the grid
     public static func calculateCenterCellIndex() -> Int{
         let centerCellIndex: Int
         let numRows = LocationConstants.numRows
@@ -98,12 +97,13 @@ class SelectLocationModifierViewController: UIViewController  {
         return centerCellIndex
     }
     
+    /// calculate cell size based on the size of the grid and the number of rows and columns
     func calculateCellSize() {
-        
         cellWidth = floor(outputWidth / numCols)
         cellHeight = floor(outputHeight / numRows)
     }
     
+    // Given an index of a cell, returns a string of the coordinates associated with it on the output view
     func getCoordinatesFromCellIndex(index: Int) -> String{
         let row = getRowFromCellIndex(index: index)
         let col = getColumnFromCellIndex(index: index)
@@ -121,8 +121,6 @@ class SelectLocationModifierViewController: UIViewController  {
     func getColumnFromCellIndex(index: Int) -> Int {
         return index % Int(numCols)
     }
-    
-   
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         // Going back to freeplay workspace
@@ -146,11 +144,9 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
         return Int(numCols * numRows)
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: cellWidth , height: cellHeight)
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! LocationCollectionViewCell
@@ -180,8 +176,6 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
         cell.layer.frame.size = CGSize(width: cellWidth, height: cellHeight)
         return cell
     }
-    
-
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         for cell in collectionView.visibleCells{ // deselect all visible buttons
