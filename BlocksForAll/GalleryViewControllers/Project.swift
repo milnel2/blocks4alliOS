@@ -22,18 +22,18 @@ let ON_TAP_STRING = "OnTap"
 
 let PREMADE_FUNCTION_NAMES = [ON_RUN_STRING, ON_BUMP_STRING, ON_TAP_STRING, "Main Workspace"]
 
+// Represents either a robot project or a freeplay project
 class Project : Equatable{
     static func == (lhs: Project, rhs: Project) -> Bool {
-        return lhs.name == rhs.name
+        return (lhs.name == rhs.name) && (lhs.projectType == rhs.projectType)
     }
     
-    var name = ""
-    var imageName : String
-    var image: UIImage? = nil
-   // var functionDict: [String : [Block]]
-    var actors: [VirtualRobot] = []
-    var currentActor: VirtualRobot? = nil
-    var projectType: ProjectType
+    var name = "" // Name of project
+    var imageName : String // Image path for the project's image for the gallery
+    var image: UIImage? = nil // Image associated with imageName
+    var actors: [VirtualRobot] = [] // For freeplay projects. Array of all Virtual Robots associated with project
+    var currentActor: VirtualRobot? = nil // For freeplay projects. Actor that is currently being edited
+    var projectType: ProjectType // Either robot project or freeplay project
     
     init(name: String = "", imageName: String, projectType: ProjectType) {
         self.name = name
@@ -62,7 +62,6 @@ class Project : Equatable{
     }
     
     func addActor(actor: VirtualRobot) {
-        
         if !actors.contains(actor) {
             actors.append(actor)
         }
@@ -88,27 +87,6 @@ class Project : Equatable{
     static func FetchProjects () -> [String:[Project]]{
         return allProjects
        }
-}
-
-class CodeLine {
-    var line: [Block]
-    var actor: VirtualRobot
-    var lineType: CodeLineType
-    init(line: [Block], actor: VirtualRobot, lineType: CodeLineType) {
-        self.line = line
-        self.actor = actor
-        self.lineType = lineType
-    }
-    
-    static func CreateEmptyCodeLines(actor: VirtualRobot) -> [CodeLine]{
-        return [CodeLine(line: [], actor: actor, lineType: CodeLineType.OnRun), CodeLine(line: [], actor: actor, lineType: CodeLineType.OnBump), CodeLine(line: [], actor: actor, lineType: CodeLineType.Other)]
-    }
-}
-
-enum CodeLineType {
-    case OnRun
-    case OnBump
-    case Other
 }
 
 enum ProjectType {
