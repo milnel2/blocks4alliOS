@@ -8,27 +8,27 @@
 
 import Foundation
 
+// An output view for running freeplay scenes in full screen
 class FullScreenFreeplayViewController : UIViewController {
     
+    @IBOutlet weak var outputView: FreeplayOutputView! // The output view where scenes are played
     
-    @IBOutlet weak var outputView: FreeplayOutputView!
+    @IBOutlet weak var exitFullScreenButton: UIButton! // button to go back to the freeplay workspace
     
-    @IBOutlet weak var exitFullScreenButton: UIButton!
+    var currentProject: Project? = nil // project to associate with this output
     
-    var currentProject: Project? = nil
-    
-    var smallViewSize: CGSize? = nil
+    var smallViewSize: CGSize? = nil // size of the output view in the regular freeplay workspace
     
     var screenSize = UIScreen.main.bounds.size
     
-    var verticalSizeFactor = 0.0
-    var horizontalSizeFactor = 0.0
+    var verticalSizeFactor = 0.0 // ratio for sizing from small size to full screen
+    var horizontalSizeFactor = 0.0 // ratio for sizing from small size to full screen
     
     let ACTOR_SHRINK_MULITPLIER = 0.9 // number to make the full screen actors a tiny bit smaller
     
     var freeplayWorkspaceVC: FreePlayWorkspaceViewController? = nil
     
-    var freeplayWorkspaceOriginalPlayButton: UIButton?
+    var freeplayWorkspaceOriginalPlayButton: UIButton? // Used to retain the reference to the play button when going back and forth from the workspace and full screen
     
     @IBOutlet weak var fullScreenPlayButton: UIButton!
     
@@ -41,19 +41,24 @@ class FullScreenFreeplayViewController : UIViewController {
         }
        
         freeplayWorkspaceVC!.playTrashToggleButton = fullScreenPlayButton
+        
         calculateVerticalSizeFactor()
         calculateHorizontalSizeFactor()
         
         outputView.freeplayWorkspaceVC = freeplayWorkspaceVC
         
         outputView.accessibilityElements = []
+        
+        // Add each actor to the scene
         for actor in currentProject!.actors {
             
             actor.addFreeplayOutputView(freeplayOutputView: outputView)
             
             outputView.addActor(actor: actor)
+            // resize actor
             actor.setActorSize(size: actor.robotSize * verticalSizeFactor * ACTOR_SHRINK_MULITPLIER)
             
+            // put actor at adjusted coordinates
             let originalX = actor.coordinates.x
             let originalY = actor.coordinates.y
             actor.setCoordinates(x: originalX * horizontalSizeFactor, y: originalY * verticalSizeFactor)
@@ -77,10 +82,12 @@ class FullScreenFreeplayViewController : UIViewController {
         outputView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.9490196078, blue: 1, alpha: 1)
     }
     
+    // calculate vertical ratio of full screen to smaller output view
     func calculateVerticalSizeFactor() {
         verticalSizeFactor = screenSize.height /  smallViewSize!.height
     }
     
+    // calculate horizontal ratio of full screen to smaller output view
     func calculateHorizontalSizeFactor() {
         horizontalSizeFactor = screenSize.width /  smallViewSize!.width
     }
@@ -88,6 +95,7 @@ class FullScreenFreeplayViewController : UIViewController {
     @IBAction func fullScreenPlayPressed(_ sender: Any) {
         freeplayWorkspaceVC!.playClicked()
     }
+    
     @IBAction func exitFullScreenPressed(_ sender: Any) {
         
         performSegue(withIdentifier: "exitFullScreen", sender: nil)
@@ -110,11 +118,5 @@ class FullScreenFreeplayViewController : UIViewController {
             }
         }
         super.prepare(for: segue, sender: sender)
-        
-        
-       
     }
-    
-    
-    
 }

@@ -35,7 +35,6 @@
 		8D3DDA2D2C3347E500AF16EC /* CustomizeActorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3DDA2C2C3347E500AF16EC /* CustomizeActorViewController.swift */; };
 		8D412CAA2C13915E005B736F /* FreeplayBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D412CA92C13915E005B736F /* FreeplayBlocksMenu.plist */; };
 		8D54890A2C221CEB002617BE /* ChooseActorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5489092C221CEB002617BE /* ChooseActorViewController.swift */; };
-		8D54890C2C221DE3002617BE /* ActorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D54890B2C221DE3002617BE /* ActorCell.swift */; };
 		8D54890E2C221F07002617BE /* ActorsMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D54890D2C221F07002617BE /* ActorsMenu.plist */; };
 		8D5489142C233FE0002617BE /* SoundFileDict.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D5489132C233FE0002617BE /* SoundFileDict.plist */; };
 		8D5489182C2350F9002617BE /* bounceOffWall.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D5489172C2350F8002617BE /* bounceOffWall.mp3 */; };
@@ -126,7 +125,6 @@
 		8D3DDA2C2C3347E500AF16EC /* CustomizeActorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeActorViewController.swift; sourceTree = "<group>"; };
 		8D412CA92C13915E005B736F /* FreeplayBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FreeplayBlocksMenu.plist; sourceTree = "<group>"; };
 		8D5489092C221CEB002617BE /* ChooseActorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseActorViewController.swift; sourceTree = "<group>"; };
-		8D54890B2C221DE3002617BE /* ActorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCell.swift; sourceTree = "<group>"; };
 		8D54890D2C221F07002617BE /* ActorsMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ActorsMenu.plist; sourceTree = "<group>"; };
 		8D54890F2C233BE8002617BE /* AudioFileCredits.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AudioFileCredits.md; sourceTree = "<group>"; };
 		8D5489132C233FE0002617BE /* SoundFileDict.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SoundFileDict.plist; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 				8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */,
 				8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */,
 				8D5489092C221CEB002617BE /* ChooseActorViewController.swift */,
-				8D54890B2C221DE3002617BE /* ActorCell.swift */,
 				8DFEBABF2C2B40AC00491CAD /* FullScreenFreeplayViewController.swift */,
 				8D3DDA2C2C3347E500AF16EC /* CustomizeActorViewController.swift */,
 			);
@@ -566,7 +563,6 @@
 				844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */,
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
 				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,
-				8D54890C2C221DE3002617BE /* ActorCell.swift in Sources */,
 				8DD0F84A2BFE7DD0005021EB /* Robot.swift in Sources */,
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
 				8DE37B052C1A3F12006DB159 /* ProjectGalleryViewController.swift in Sources */,

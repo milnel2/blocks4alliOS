@@ -185,3 +185,9 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         }
     }
 }
+
+import Foundation
+
+class ActorCell: UICollectionViewCell {
+    
+}
