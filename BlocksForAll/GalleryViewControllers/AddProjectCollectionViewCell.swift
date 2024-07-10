@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// UICollectionViewCell used in a gallery for adding a new project
 class AddProjectCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     func updateAccessibilityTools() {
@@ -23,6 +24,5 @@ class AddProjectCollectionViewCell: UICollectionViewCell {
         
         imageView.layer.cornerRadius = 10.0
         imageView.layer.masksToBounds = true
-        
     }
 }
