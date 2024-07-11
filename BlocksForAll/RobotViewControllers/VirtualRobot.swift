@@ -133,6 +133,7 @@ class VirtualRobot: Equatable {
         imageView.isAccessibilityElement = true
         imageView.accessibilityLabel = "\(name). \(color) Color. \(calculateActorLocationStringForAccessibility())"
         imageView.accessibilityHint = "Double tap and hold to drag."
+        imageView.accessibilityTraits = .button
     }
     
     /// Calculates a descriptive string of where a robot is within the scene
