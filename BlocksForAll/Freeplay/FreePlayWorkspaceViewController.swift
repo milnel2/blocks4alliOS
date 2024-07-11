@@ -90,6 +90,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     }
     
     func setUpAccessibility() {
+        
         freeplayOutputView.isAccessibilityElement = false
         
         freeplayOutputView.accessibilityElements = []
@@ -101,6 +102,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
         currentActorImageView.isUserInteractionEnabled = true
         currentActorImageView.isAccessibilityElement = true
+        currentActorImageView.accessibilityTraits = .button
         
         mainMenuButton.isAccessibilityElement = true
         mainMenuButton.isUserInteractionEnabled = true
