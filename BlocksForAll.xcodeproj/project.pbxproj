@@ -17,8 +17,6 @@
 		8D0D881E2C09068300AC9620 /* DotBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D0D881D2C09068300AC9620 /* DotBlocksMenu.plist */; };
 		8D0D88202C0A51EA00AC9620 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8D0D881F2C0A51EA00AC9620 /* PrivacyInfo.xcprivacy */; };
 		8D27A4522A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */; };
-		8D327A172C3717F40033D52A /* Movement1BeatLoop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D327A162C3717F40033D52A /* Movement1BeatLoop.mp3 */; };
-		8D327A192C3717FA0033D52A /* Movement4BeatLoop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D327A182C3717FA0033D52A /* Movement4BeatLoop.mp3 */; };
 		8D364AAE2C35CD44006D42F5 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D364AAD2C35CD44006D42F5 /* HelperFunctions.swift */; };
 		8D364AB22C35EC9D006D42F5 /* SliderModifierOptionsDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D364AB12C35EC9D006D42F5 /* SliderModifierOptionsDictionary.plist */; };
 		8D364AB52C35F10E006D42F5 /* StepperModifierOptionsDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D364AB42C35F10E006D42F5 /* StepperModifierOptionsDictionary.plist */; };
@@ -52,6 +50,8 @@
 		8DEF21BE2C40362400E5E21F /* turkey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21B42C40362400E5E21F /* turkey.mp3 */; };
 		8DEF21BF2C40362400E5E21F /* horse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21B52C40362400E5E21F /* horse.mp3 */; };
 		8DEF21C12C40371000E5E21F /* bounceOffWall.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21C02C40371000E5E21F /* bounceOffWall.mp3 */; };
+		8DEF21C32C40379200E5E21F /* Movement1BeatLoop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21C22C40379200E5E21F /* Movement1BeatLoop.mp3 */; };
+		8DEF21C52C4037B300E5E21F /* Movement4BeatLoop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21C42C4037B300E5E21F /* Movement4BeatLoop.mp3 */; };
 		8DFEBAC02C2B40AC00491CAD /* FullScreenFreeplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFEBABF2C2B40AC00491CAD /* FullScreenFreeplayViewController.swift */; };
 		8DFEBAC22C2C6F8900491CAD /* SelectLocationModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFEBAC12C2C6F8900491CAD /* SelectLocationModifierViewController.swift */; };
 		8DFEBAC62C2C973500491CAD /* SpeedModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFEBAC52C2C973500491CAD /* SpeedModViewController.swift */; };
@@ -107,8 +107,6 @@
 		8D0D881D2C09068300AC9620 /* DotBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DotBlocksMenu.plist; sourceTree = "<group>"; };
 		8D0D881F2C0A51EA00AC9620 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
 		8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceModifierViewController.swift; sourceTree = "<group>"; };
-		8D327A162C3717F40033D52A /* Movement1BeatLoop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Movement1BeatLoop.mp3; path = ../../Downloads/Movement1BeatLoop.mp3; sourceTree = SOURCE_ROOT; };
-		8D327A182C3717FA0033D52A /* Movement4BeatLoop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Movement4BeatLoop.mp3; path = ../../Downloads/Movement4BeatLoop.mp3; sourceTree = SOURCE_ROOT; };
 		8D364AAD2C35CD44006D42F5 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		8D364AB12C35EC9D006D42F5 /* SliderModifierOptionsDictionary.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SliderModifierOptionsDictionary.plist; sourceTree = "<group>"; };
 		8D364AB42C35F10E006D42F5 /* StepperModifierOptionsDictionary.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = StepperModifierOptionsDictionary.plist; sourceTree = "<group>"; };
@@ -143,6 +141,8 @@
 		8DEF21B42C40362400E5E21F /* turkey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = turkey.mp3; path = "BlocksForAll/Audio Files/Sound Blocks/turkey.mp3"; sourceTree = SOURCE_ROOT; };
 		8DEF21B52C40362400E5E21F /* horse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = horse.mp3; path = "BlocksForAll/Audio Files/Sound Blocks/horse.mp3"; sourceTree = SOURCE_ROOT; };
 		8DEF21C02C40371000E5E21F /* bounceOffWall.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bounceOffWall.mp3; path = "BlocksForAll/Audio Files/bounceOffWall.mp3"; sourceTree = SOURCE_ROOT; };
+		8DEF21C22C40379200E5E21F /* Movement1BeatLoop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Movement1BeatLoop.mp3; path = "BlocksForAll/Audio Files/Movement1BeatLoop.mp3"; sourceTree = SOURCE_ROOT; };
+		8DEF21C42C4037B300E5E21F /* Movement4BeatLoop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Movement4BeatLoop.mp3; path = "BlocksForAll/Audio Files/Movement4BeatLoop.mp3"; sourceTree = SOURCE_ROOT; };
 		8DFEBABF2C2B40AC00491CAD /* FullScreenFreeplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenFreeplayViewController.swift; sourceTree = "<group>"; };
 		8DFEBAC12C2C6F8900491CAD /* SelectLocationModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationModifierViewController.swift; sourceTree = "<group>"; };
 		8DFEBAC52C2C973500491CAD /* SpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedModViewController.swift; sourceTree = "<group>"; };
@@ -230,9 +230,9 @@
 			isa = PBXGroup;
 			children = (
 				8D327A052C370CCE0033D52A /* Sound Blocks */,
-				8D327A162C3717F40033D52A /* Movement1BeatLoop.mp3 */,
 				8DEF21C02C40371000E5E21F /* bounceOffWall.mp3 */,
-				8D327A182C3717FA0033D52A /* Movement4BeatLoop.mp3 */,
+				8DEF21C42C4037B300E5E21F /* Movement4BeatLoop.mp3 */,
+				8DEF21C22C40379200E5E21F /* Movement1BeatLoop.mp3 */,
 			);
 			path = "Audio Files";
 			sourceTree = "<group>";
@@ -506,14 +506,13 @@
 				8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */,
 				F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */,
 				FD6388372A31036B005F49F7 /* AphontBoldItalic.ttf in Resources */,
+				8DEF21C32C40379200E5E21F /* Movement1BeatLoop.mp3 in Resources */,
 				8DEF21BD2C40362400E5E21F /* squeak.mp3 in Resources */,
-				8D327A172C3717F40033D52A /* Movement1BeatLoop.mp3 in Resources */,
 				8DEF21B72C40362400E5E21F /* bee.mp3 in Resources */,
 				8D364AB52C35F10E006D42F5 /* StepperModifierOptionsDictionary.plist in Resources */,
 				FD6388312A310311005F49F7 /* Aphont.ttf in Resources */,
 				8DEF21B62C40362400E5E21F /* trumpet.mp3 in Resources */,
 				8D364AB22C35EC9D006D42F5 /* SliderModifierOptionsDictionary.plist in Resources */,
-				8D327A192C3717FA0033D52A /* Movement4BeatLoop.mp3 in Resources */,
 				8D54890E2C221F07002617BE /* ActorsMenu.plist in Resources */,
 				8D0D881E2C09068300AC9620 /* DotBlocksMenu.plist in Resources */,
 				F18FFFBA1E65B0FC0090C4B6 /* Assets.xcassets in Resources */,
@@ -528,6 +527,7 @@
 				8DBF4A7F2A5DB5D20075429C /* DashMainMenuSound.mp3 in Resources */,
 				FD6388342A310363005F49F7 /* AphontBold.ttf in Resources */,
 				F18FFFB81E65B0FC0090C4B6 /* Main.storyboard in Resources */,
+				8DEF21C52C4037B300E5E21F /* Movement4BeatLoop.mp3 in Resources */,
 				F16BA3BE1F59103A00A94FBA /* BlocksMenu.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
