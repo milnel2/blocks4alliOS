@@ -100,6 +100,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             freeplayOutputView.accessibilityElements!.append(actor.imageView)
         }
         
+        freeplayOutputView.accessibilityElements!.append(enterFullScreenButton!)
+        
         currentActorImageView.isUserInteractionEnabled = true
         currentActorImageView.isAccessibilityElement = true
         currentActorImageView.accessibilityTraits = .button
