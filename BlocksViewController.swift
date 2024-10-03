@@ -969,7 +969,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             var image: UIImage?
             if imagePath != nil && secondAttributeName != "variableValue"{ // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
                 
-                image = UIImage(named: imagePath!)
+                image = HelperFunctions.getUIImage(named: imagePath!) //TODO: replace all UIImage with this method
+                
                 if image != nil { // make sure that the image actually exists
                     button.setBackgroundImage(image, for: .normal)
                 } else { // print error
@@ -991,12 +992,17 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     
                     if secondAttributeName != nil && secondDefault != nil
                     { image = UIImage(named: "\(placeHolderBlock.attributes[secondAttributeName!] ?? secondDefault!)") }
+                    
                     // handle show icon or show text for modifiers that change depending on the settings
                     if defaults.integer(forKey: "showText") == 1 && showTextImage != nil {
                         image = UIImage(named: showTextImage!) // show text image
                     }
+                    if attributeName == "background" {
+                        image = HelperFunctions.getUIImage(named: placeHolderBlock.attributes[attributeName] ?? defaultValue)
+                    }
                     if image != nil {  // make sure that the image actually exists
                         button.setBackgroundImage(image, for: .normal)
+                        
                     } else if secondAttributeName != "cellIndex"{
                         print("Image file not found: \(placeHolderBlock.attributes[attributeName] ?? defaultValue)")
                         button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
@@ -1243,6 +1249,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             return #selector(selectLocationModifier(sender:))
         case "Set Speed":
             return #selector(selectSpeedModifier(sender:))
+        case "Set Background":
+            return #selector(selectBackgroundModifier(sender:))
         default:
             print("Modifier Selector for \(name) could not be found. Check switch statement in getModifierSelector() method.")
             return nil
@@ -1303,6 +1311,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @objc func driveModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "driveModifier", sender: nil)
+    }
+    
+    @objc func selectBackgroundModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "SelectBackgroundModifier", sender: nil)
     }
     
     @objc func buttonClicked(sender: UIButton!) {
@@ -1385,6 +1398,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             destinationViewController.currentProject = currentProject
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
+        }
+        
+        // Segue to Background Selection Screen
+        if let destinationViewController = segue.destination as? SelectBackgroundModifierViewController {
+            destinationViewController.currentProject = currentProject
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }
 }

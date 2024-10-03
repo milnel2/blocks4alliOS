@@ -32,5 +32,62 @@ class HelperFunctions {
          }
         return dict!
     }
+    
+    /// Try to find an image of the given name in the assets folder and return image if successful.
+    /// Otherwise, try to find the image in the documents directory and return image if successful.
+    /// If both attempts fail, return a default empty image.
+    public static func getUIImage(named name: String) -> UIImage {
+        if name == "" {
+            // Don't allow empty image paths
+            print("Image file name empty string. Using default empty image asset")
+            return UIImage(named: "EmptyImage")!
+        }
+        // Try finding the image in assets
+        let regularPathImage = UIImage(named: name)
+        if regularPathImage != nil {
+            // Found, return the image
+            return regularPathImage!
+        }
+        
+        // Check for the image in the file directory
+        let fullPathImage = checkDocumentDirectoryForImage(name: name)
+        if fullPathImage != nil {
+            return fullPathImage!
+        }
+        
+        // Check for the image in the file directory, but remove any file endings
+        let nameNoEndings = name.components(separatedBy: ".")[0]
+        let fullPathNoEndingsImage = checkDocumentDirectoryForImage(name: nameNoEndings)
+        if fullPathNoEndingsImage != nil {
+            return fullPathNoEndingsImage!
+        }
+      
+
+        // Image couldn't be found, return an empty image
+        print("Image file not found: \(name). Using default empty image asset")
+        return UIImage(named: "EmptyImage")!
+    }
+    
+    /// Search in the document directory for an image of the given name
+    private static func checkDocumentDirectoryForImage(name: String) -> UIImage?{
+        let imageFullPath = HelperFunctions.getDocumentsDirectory().appendingPathComponent(name).relativePath
+        let fileManager = FileManager.default
+        
+        if fileManager.fileExists(atPath: imageFullPath) {
+            let fullPathImage = UIImage(contentsOfFile: imageFullPath)
+            if fullPathImage != nil {
+                return fullPathImage!
+            }
+            print("Failed to find \(name) image at full path: \(imageFullPath)")
+        }
+        return nil
+    }
+    
+    // from Paul Hegarty, lectures 13 and 14
+    public static func getDocumentsDirectory() -> URL{
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+
 }
 

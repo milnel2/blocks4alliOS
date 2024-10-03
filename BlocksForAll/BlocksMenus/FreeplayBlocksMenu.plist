@@ -271,5 +271,28 @@
 			</dict>
 		</array>
 	</dict>
+	<dict>
+		<key>type</key>
+		<string>Background</string>
+		<key>color</key>
+		<string>yellowColor</string>
+		<key>Blocks</key>
+		<array>
+			<dict>
+				<key>isModifiable</key>
+				<true/>
+				<key>type</key>
+				<string>Statement</string>
+				<key>name</key>
+				<string>Set Background</string>
+				<key>color</key>
+				<string>yellowColor</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>background</string>
+			</dict>
+		</array>
+	</dict>
 </array>
 </plist>

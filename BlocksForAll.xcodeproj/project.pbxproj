@@ -29,15 +29,18 @@
 		8D822CDA2C137B3300A8A20D /* FreePlayWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */; };
 		8D822CDC2C138B3100A8A20D /* FreeplayOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */; };
 		8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8D66032A3A43330086E14A /* ModifierProperties.plist */; };
+		8D92E0DB2CAB83B800F74DC7 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D92E0DA2CAB83B800F74DC7 /* UserData.swift */; };
 		8D954F592A4B2E9800F10A26 /* TwoOptionModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */; };
 		8DBF4A7F2A5DB5D20075429C /* DashMainMenuSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */; };
 		8DC0F0552C2DF6A10008F224 /* ModifierButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0F0542C2DF6A00008F224 /* ModifierButton.swift */; };
 		8DCBEA552A49F8A500A26043 /* StepperModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */; };
 		8DD0F84A2BFE7DD0005021EB /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD0F8492BFE7DD0005021EB /* Robot.swift */; };
+		8DDC31A32CA1D11600337B39 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDC31A22CA1D11600337B39 /* BackgroundImage.swift */; };
 		8DE37B012C1A3C39006DB159 /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37B002C1A3C39006DB159 /* ProjectCollectionViewCell.swift */; };
 		8DE37B032C1A3D68006DB159 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37B022C1A3D68006DB159 /* Project.swift */; };
 		8DE37B052C1A3F12006DB159 /* ProjectGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37B042C1A3F12006DB159 /* ProjectGalleryViewController.swift */; };
 		8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */; };
+		8DE83BA82CA0B34B005DF819 /* SelectBackgroundModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE83BA72CA0B34B005DF819 /* SelectBackgroundModifierViewController.swift */; };
 		8DE97FD52C29CFE4008661BB /* AddProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE97FD42C29CFE4008661BB /* AddProjectCollectionViewCell.swift */; };
 		8DEF21B62C40362400E5E21F /* trumpet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21AC2C40362400E5E21F /* trumpet.mp3 */; };
 		8DEF21B72C40362400E5E21F /* bee.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21AD2C40362400E5E21F /* bee.mp3 */; };
@@ -120,15 +123,18 @@
 		8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreePlayWorkspaceViewController.swift; sourceTree = "<group>"; };
 		8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeplayOutputView.swift; sourceTree = "<group>"; };
 		8D8D66032A3A43330086E14A /* ModifierProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
+		8D92E0DA2CAB83B800F74DC7 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoOptionModifierViewController.swift; sourceTree = "<group>"; };
 		8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DashMainMenuSound.mp3; path = BlocksForAll/DashMainMenuSound.mp3; sourceTree = SOURCE_ROOT; };
 		8DC0F0542C2DF6A00008F224 /* ModifierButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierButton.swift; sourceTree = "<group>"; };
 		8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperModifierViewController.swift; sourceTree = "<group>"; };
 		8DD0F8492BFE7DD0005021EB /* Robot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
+		8DDC31A22CA1D11600337B39 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		8DE37B002C1A3C39006DB159 /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DE37B022C1A3D68006DB159 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		8DE37B042C1A3F12006DB159 /* ProjectGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGalleryViewController.swift; sourceTree = "<group>"; };
 		8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		8DE83BA72CA0B34B005DF819 /* SelectBackgroundModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBackgroundModifierViewController.swift; sourceTree = "<group>"; };
 		8DE97FD42C29CFE4008661BB /* AddProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DEF21AC2C40362400E5E21F /* trumpet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = trumpet.mp3; path = "BlocksForAll/Audio Files/Sound Blocks/trumpet.mp3"; sourceTree = SOURCE_ROOT; };
 		8DEF21AD2C40362400E5E21F /* bee.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bee.mp3; path = "BlocksForAll/Audio Files/Sound Blocks/bee.mp3"; sourceTree = SOURCE_ROOT; };
@@ -245,6 +251,8 @@
 				8D5489092C221CEB002617BE /* ChooseActorViewController.swift */,
 				8DFEBABF2C2B40AC00491CAD /* FullScreenFreeplayViewController.swift */,
 				8D3DDA2C2C3347E500AF16EC /* CustomizeActorViewController.swift */,
+				8DDC31A22CA1D11600337B39 /* BackgroundImage.swift */,
+				8D92E0DA2CAB83B800F74DC7 /* UserData.swift */,
 			);
 			path = Freeplay;
 			sourceTree = "<group>";
@@ -367,6 +375,7 @@
 				8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */,
 				8DFEBAC12C2C6F8900491CAD /* SelectLocationModifierViewController.swift */,
 				8DFEBAC52C2C973500491CAD /* SpeedModViewController.swift */,
+				8DE83BA72CA0B34B005DF819 /* SelectBackgroundModifierViewController.swift */,
 			);
 			path = ModifierViewControllers;
 			sourceTree = "<group>";
@@ -558,6 +567,7 @@
 				F18FEEE01EB14329007C15B8 /* RobotControlViewController.swift in Sources */,
 				8DC0F0552C2DF6A10008F224 /* ModifierButton.swift in Sources */,
 				F186EB881EE0D8B100C2FA4B /* BlockView.swift in Sources */,
+				8DDC31A32CA1D11600337B39 /* BackgroundImage.swift in Sources */,
 				8DE97FD52C29CFE4008661BB /* AddProjectCollectionViewCell.swift in Sources */,
 				62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */,
 				844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */,
@@ -567,6 +577,7 @@
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
 				8DE37B052C1A3F12006DB159 /* ProjectGalleryViewController.swift in Sources */,
 				8D822CDA2C137B3300A8A20D /* FreePlayWorkspaceViewController.swift in Sources */,
+				8D92E0DB2CAB83B800F74DC7 /* UserData.swift in Sources */,
 				F73D31762A5DFA0F00008126 /* AddRobotViewController.swift in Sources */,
 				8D822CDC2C138B3100A8A20D /* FreeplayOutputView.swift in Sources */,
 				8D364AAE2C35CD44006D42F5 /* HelperFunctions.swift in Sources */,
@@ -579,6 +590,7 @@
 				F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */,
 				F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */,
 				8D655A7A2C18BB2B00B86BB1 /* VirtualRobot.swift in Sources */,
+				8DE83BA82CA0B34B005DF819 /* SelectBackgroundModifierViewController.swift in Sources */,
 				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
 				8D954F592A4B2E9800F10A26 /* TwoOptionModifierViewController.swift in Sources */,
 				701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */,

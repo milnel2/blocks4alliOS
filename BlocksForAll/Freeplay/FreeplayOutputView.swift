@@ -15,6 +15,52 @@ class FreeplayOutputView: UIView {
     
     var actorSubviews = [UIImageView]() // all of the actor image views that are inside of this output view
     
+    var backgroundImage: BackgroundImage? = nil
+    
+    var backgroundImageView: UIImageView? = nil
+    
+    
+    
+
+    // Specifies the image view to use for this output. Important because the full screen output has a different imageview
+    func setBackgroundImageView(imageView: UIImageView) {
+        backgroundImageView = imageView
+    }
+    
+    
+    
+    // Sets the background image of the view. If an imageView has not been specified previously, it will fail
+    func setBackgroundImage(newImagePath: String?) {
+        if (backgroundImageView == nil) {
+            print("background image view does not exist")
+            return
+        }
+        
+        backgroundImage = BackgroundImage(imagePath: newImagePath)
+        
+        freeplayWorkspaceVC!.currentProject!.updateCurrentBackground(background: backgroundImage)
+        
+        
+            // TODO: image resizing
+//        let outputHeight = Int(layer.frame.height)
+//        let outputWidth = Int(layer.frame.width)
+//        
+//        let resizedImage = backgroundImage!.getImage().scalePreservingAspectRatio(width: outputWidth, height: outputHeight)
+//        
+//        backgroundImageView!.image = resizedImage
+//        backgroundImageView?.contentMode = .center
+        
+       
+        
+        backgroundImageView!.image = backgroundImage!.getImage()
+        backgroundImageView?.contentMode = .scaleAspectFit
+        
+    }
+    
+    func getBackgroundImagePath() -> String? {
+        return backgroundImage?.getImagePath() ?? nil
+    }
+
     func resetActorSubviews() {
         actorSubviews = []
     }
@@ -106,4 +152,36 @@ class FreeplayOutputView: UIView {
            break
        }
     }
+}
+
+// UIImage extension is from https://www.advancedswift.com/resize-uiimage-no-stretching-swift/
+extension UIImage {
+  func scalePreservingAspectRatio(width: Int, height: Int) -> UIImage {
+    let widthRatio = CGFloat(width) / size.width
+    let heightRatio = CGFloat(height) / size.height
+    
+    let scaleFactor = min(widthRatio, heightRatio)
+    
+    let scaledImageSize = CGSize(
+      width: size.width * scaleFactor,
+      height: size.height * scaleFactor
+    )
+    
+    let format = UIGraphicsImageRendererFormat()
+    format.scale = 1
+    
+    let renderer = UIGraphicsImageRenderer(
+      size: scaledImageSize,
+      format: format
+    )
+    
+    let scaledImage = renderer.image { _ in
+      self.draw(in: CGRect(
+        origin: .zero,
+        size: scaledImageSize
+      ))
+    }
+    
+    return scaledImage
+  }
 }

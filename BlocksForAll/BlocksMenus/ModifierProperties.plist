@@ -365,5 +365,16 @@
 		<key>displaysText</key>
 		<string>true</string>
 	</dict>
+	<key>Set Background</key>
+	<dict>
+		<key>attributeName</key>
+		<string>background</string>
+		<key>default</key>
+		<string>DefaultBackground</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to set scene background</string>
+		<key>displaysText</key>
+		<string>false</string>
+	</dict>
 </dict>
 </plist>

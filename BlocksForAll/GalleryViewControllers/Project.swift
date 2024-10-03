@@ -33,21 +33,27 @@ class Project : Equatable{
     var image: UIImage? = nil // Image associated with imageName
     var actors: [VirtualRobot] = [] // For freeplay projects. Array of all Virtual Robots associated with project
     var currentActor: VirtualRobot? = nil // For freeplay projects. Actor that is currently being edited
+    var currentBackground: BackgroundImage? = nil // For freeplay projects. Background image that is currently being displayed
     var projectType: ProjectType // Either robot project or freeplay project
     
-    init(name: String = "", imageName: String, projectType: ProjectType) {
+    init(name: String = "", imageName: String, projectType: ProjectType, backgroundImagePath: String? = nil) {
         self.name = name
         self.imageName = imageName
+        print("1 made new project named ", imageName)
         self.projectType = projectType
         // By default adds one actor to the project if it is an empty project
         let defaultActor = VirtualRobot(baseImagePath: "CatActor", name: "Cat", project: self)
         addActor(actor: defaultActor)
         currentActor = defaultActor
+        
+        // Sets a default background
+        currentBackground = BackgroundImage(imagePath: backgroundImagePath)
     }
     
-    init(name: String = "", imageName: String, actors: [VirtualRobot], projectType: ProjectType) {
+    init(name: String = "", imageName: String, actors: [VirtualRobot], projectType: ProjectType, backgroundImagePath: String? = nil) {
         self.name = name
         self.imageName = imageName
+        print("2 made new project named ", imageName)
         self.actors = actors
         self.projectType = projectType
         
@@ -58,6 +64,9 @@ class Project : Equatable{
         } else {
             currentActor = actors[0]
         }
+        
+        // Sets a default background
+        currentBackground = BackgroundImage(imagePath: backgroundImagePath)
         
     }
     
@@ -87,6 +96,10 @@ class Project : Equatable{
     static func FetchProjects () -> [String:[Project]]{
         return allProjects
        }
+    
+    public func updateCurrentBackground(background: BackgroundImage?) {
+        currentBackground = background
+    }
 }
 
 enum ProjectType {

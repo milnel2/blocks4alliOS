@@ -33,13 +33,20 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     var newActorToAdd: (name:String, baseImagePath: String, color: String)? // to be used when adding to actors
     
+    var backgroundImagePath: String? = nil
+    
     override func viewDidLoad() {
         if (currentProject == nil) {
             print("ERROR: current project is nil")
         }
         
+        
+        
+        
         freeplayOutputView.freeplayWorkspaceVC = self
         freeplayOutputView.resetActorSubviews()
+        
+       
         
         // add actors to the scene
         for actor in currentProject!.actors {
@@ -63,7 +70,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         workspaceTitle.layer.masksToBounds = true
         workspaceTitle.textColor = .black
         
-        freeplayOutputView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.9490196078, blue: 1, alpha: 1)
+        //freeplayOutputView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.9490196078, blue: 1, alpha: 1)
         
         addActorButton.layer.masksToBounds = true // allows for corner radius to work
         addActorButton.layer.cornerRadius = 10
@@ -82,7 +89,16 @@ class FreePlayWorkspaceViewController: BlocksViewController {
        
         currentActorImageView.addGestureRecognizer(tapGesture)
         
+        // Set the background image to be the saved background. Also connects the image view to the output view
+        // TODO: the image size is different before play is pressed
+        backgroundImagePath = currentProject!.currentBackground?.getImagePath()
+        freeplayOutputView.setBackgroundImageView(imageView: outputBackgroundImageView)
+        freeplayOutputView.setBackgroundImage(newImagePath: backgroundImagePath)
+        
+        
         setUpAccessibility()
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -178,6 +194,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: newRobotControlVC, functionNameToExecute: functionNameToExecute, actor: actor)
         newRobotControlVC.executingProgram = executingProgram
         newRobotControlVC.blocksViewController = self
+        
         actor?.executingProgram = executingProgram
         executingProgram?.currentProject = currentProject
         
@@ -260,6 +277,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             fullscreenVC.freeplayWorkspaceVC = self
             fullscreenVC.smallViewSize = freeplayOutputView.frame.size
             fullscreenVC.freeplayWorkspaceOriginalPlayButton = playTrashToggleButton
+            //fullscreenVC.backgroundImagePath = freeplayOutputView.getBackgroundImagePath()
+            //print("set full screen background image path to: \(fullscreenVC.backgroundImagePath)")
             
             for actor in currentProject!.actors {
                 actor.executingProgram?.stopWasPressed = true

@@ -637,6 +637,9 @@ class ExecutingProgram {
         case "Shrink Actor":
             print("Shrink actor")
             changeSize(sizeBlock: blockToExec, growOrShrink: -1)
+        case "Set Background":
+            print("Set Background")
+            setBackground(backgroundBlock: blockToExec)
         case "\(ON_RUN_STRING) Start":
             print("OnRun Start")
             finishCommand()
@@ -921,6 +924,21 @@ class ExecutingProgram {
         let sizeChangeAmount = Int(sizeBlock.addedBlocks[0].attributes["sizeChangeAmount"] ?? "1") ?? 1
         
         currentActor!.changeActorSize(amount: sizeChangeAmount, growOrShrink: growOrShrink, executingProgram: self)
+    }
+    
+    func setBackground(backgroundBlock: Block) {
+        let backgroundImagePath = backgroundBlock.addedBlocks[0].attributes["background"] ?? "DefaultBackground"
+        
+        currentActor!.freeplayOutputView?.setBackgroundImage(newImagePath: backgroundImagePath)
+        
+        
+//        let blocksViewController = robotControlViewController.blocksViewController
+//        if blocksViewController is FreePlayWorkspaceViewController {
+//            let freeplayWorkspaceVC = blocksViewController as! FreePlayWorkspaceViewController
+//            freeplayWorkspaceVC.freeplayOutputView.setBackgroundImage(newImagePath: backgroundImagePath)
+//        }
+//
+        finishCommand(withDuration: 0.5)
     }
     
     //decomposition of drive functions

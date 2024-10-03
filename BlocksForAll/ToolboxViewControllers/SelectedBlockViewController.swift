@@ -97,7 +97,7 @@ class SelectedBlockViewController: UIViewController {
             // choose image path
             var image: UIImage?
             if imagePath != nil { // blocks have an imagePath in the dictionary if their image is not based on the attribute (ex. controlModifierBackground)
-                image = UIImage(named: imagePath!)
+                image = HelperFunctions.getUIImage(named: imagePath!)
                 
                 if image != nil { // make sure that the image actually exists
                     modifierButton.setBackgroundImage(image, for: .normal)
@@ -124,6 +124,10 @@ class SelectedBlockViewController: UIViewController {
                     if defaults.integer(forKey: "showText") == 1 && showTextImage != nil{
                         // show text image
                         image = UIImage(named: showTextImage!)
+                    }
+                    
+                    if attributeName == "background" {
+                        image = HelperFunctions.getUIImage(named: placeHolderBlock.attributes[attributeName] ?? defaultValue)
                     }
                     if image != nil {  // make sure that the image actually exists
                         modifierButton.setBackgroundImage(image, for: .normal)

@@ -473,11 +473,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K98-93-S6m" userLabel="OutputView" customClass="FreeplayOutputView" customModule="BlocksForAll" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                                 <subviews>
-                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="eDy-oZ-sc5">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="eDy-oZ-sc5">
                                         <rect key="frame" x="0.0" y="-24" width="1080" height="834"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" name="animalNoiseColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="eDy-oZ-sc5" secondAttribute="bottom" id="SFT-D0-q8a"/>
                                     <constraint firstItem="eDy-oZ-sc5" firstAttribute="leading" secondItem="K98-93-S6m" secondAttribute="leading" id="Vd4-WQ-jqZ"/>
@@ -531,6 +531,7 @@
                     <connections>
                         <outlet property="exitFullScreenButton" destination="Qvx-Ab-7LC" id="eAT-ww-J6E"/>
                         <outlet property="fullScreenPlayButton" destination="sC9-aO-BO4" id="V6J-vX-jDN"/>
+                        <outlet property="outputBackgroundImageView" destination="eDy-oZ-sc5" id="izJ-Oa-lJR"/>
                         <outlet property="outputView" destination="K98-93-S6m" id="ac8-LQ-iic"/>
                         <segue destination="48V-Ne-C7Q" kind="show" identifier="exitFullScreen" id="Cau-JZ-Dok"/>
                     </connections>
@@ -621,11 +622,11 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kKQ-2P-KlV" userLabel="OutputView" customClass="FreeplayOutputView" customModule="BlocksForAll" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="667" height="405"/>
                                                         <subviews>
-                                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="sz8-Xi-Sni">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="sz8-Xi-Sni">
                                                                 <rect key="frame" x="0.0" y="0.0" width="667" height="405"/>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" name="animalNoiseColor"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="sz8-Xi-Sni" firstAttribute="leading" secondItem="kKQ-2P-KlV" secondAttribute="leading" id="6Gz-nE-XcX"/>
                                                             <constraint firstAttribute="bottom" secondItem="sz8-Xi-Sni" secondAttribute="bottom" id="Iza-st-oom"/>
@@ -895,11 +896,12 @@
                         <segue destination="mAr-FX-Q3Q" kind="show" identifier="SelectLocationModifier" id="jhw-iu-lck"/>
                         <segue destination="iOv-sF-LFv" kind="show" identifier="SelectSpeedModifier" id="fj4-yM-bnK"/>
                         <segue destination="WtD-0w-PDj" kind="show" identifier="toCustomizeActor" id="k4Q-bN-qpZ"/>
+                        <segue destination="Daw-d8-AsD" kind="show" identifier="SelectBackgroundModifier" id="gMp-pW-59s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zMf-n1-Jxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1994.4444444444443" y="-1879.2592592592591"/>
+            <point key="canvasLocation" x="-1942" y="-1830"/>
         </scene>
         <!--Select Location Modifier View Controller-->
         <scene sceneID="Yv6-AV-Q78">
@@ -2797,9 +2799,9 @@ For further information on Blocks4All, please visit our website. For further det
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="77V-bf-zCH" firstAttribute="top" secondItem="CrP-V7-FwN" secondAttribute="bottom" constant="30" id="1ku-cV-7G3"/>
                             <constraint firstItem="hPL-99-rbM" firstAttribute="centerY" secondItem="Wa5-3K-FK1" secondAttribute="centerY" id="1xu-mr-FhX"/>
                             <constraint firstItem="bQq-rR-mYL" firstAttribute="centerX" secondItem="Wa5-3K-FK1" secondAttribute="centerX" id="8GP-ru-9mZ"/>
+                            <constraint firstItem="77V-bf-zCH" firstAttribute="top" secondItem="CrP-V7-FwN" secondAttribute="bottom" constant="30" id="NqX-KS-f5G"/>
                             <constraint firstItem="hPL-99-rbM" firstAttribute="centerX" secondItem="Wa5-3K-FK1" secondAttribute="centerX" id="SHl-8N-tq5"/>
                             <constraint firstItem="Xpm-qe-ziF" firstAttribute="centerX" secondItem="Wa5-3K-FK1" secondAttribute="centerX" id="ksw-VP-5rH"/>
                             <constraint firstItem="77V-bf-zCH" firstAttribute="leading" secondItem="Wa5-3K-FK1" secondAttribute="leadingMargin" constant="20" id="wIe-PI-c7Q"/>
@@ -2822,6 +2824,121 @@ For further information on Blocks4All, please visit our website. For further det
             </objects>
             <point key="canvasLocation" x="1017" y="1781"/>
         </scene>
+        <!--Choose Background-->
+        <scene sceneID="dwM-2I-IOh">
+            <objects>
+                <viewController title="Distance and Speed" modalPresentationStyle="fullScreen" id="Daw-d8-AsD" userLabel="Choose Background" customClass="SelectBackgroundModifierViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bzo-V7-gQ3"/>
+                        <viewControllerLayoutGuide type="bottom" id="hVH-fw-vgw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KgD-Fe-hPq">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQU-Mj-gRp">
+                                <rect key="frame" x="20" y="30" width="220" height="195"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="MfY-f2-mB5"/>
+                                    <constraint firstAttribute="height" constant="195" id="mKo-a7-6cJ"/>
+                                </constraints>
+                                <state key="normal" image="Back">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonPress:" destination="Daw-d8-AsD" eventType="touchUpInside" id="ngQ-za-iRj"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Background" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0I-xg-zo4">
+                                <rect key="frame" x="403" y="71" width="274.5" height="113"/>
+                                <accessibility key="accessibilityConfiguration" hint="Choose background image" label="Select Background"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="113" id="dMx-Sc-NEv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lcr-KP-6G2">
+                                <rect key="frame" x="50" y="214" width="980" height="546"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="500" placeholderIntrinsicHeight="350" translatesAutoresizingMaskIntoConstraints="NO" id="LSV-dX-nld" userLabel="Focused Background Image View">
+                                        <rect key="frame" x="240" y="0.0" width="500" height="350"/>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zdb-kU-v2p">
+                                        <rect key="frame" x="0.0" y="370" width="980" height="176"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6LU-Da-KnO">
+                                                <rect key="frame" x="0.0" y="0.0" width="133" height="176"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Double tap to open camera roll" label="Add New Background"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="addProjectButton">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addNewBackgroundButtonPressed:" destination="Daw-d8-AsD" eventType="touchUpInside" id="682-aY-bNy"/>
+                                                </connections>
+                                            </button>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="waC-JW-j0j">
+                                                <rect key="frame" x="133" y="0.0" width="847" height="176"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uoU-2D-txm">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BackgroundCell" id="mnN-Iu-tfJ">
+                                                        <rect key="frame" x="0.0" y="24" width="128" height="128"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="k1D-dO-nux">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </collectionViewCellContentView>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Zdb-kU-v2p" secondAttribute="bottom" id="08C-H6-Sz8"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zdb-kU-v2p" secondAttribute="trailing" id="8UI-th-wGw"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zdb-kU-v2p" secondAttribute="bottom" id="Abd-3g-X7i"/>
+                                    <constraint firstItem="Zdb-kU-v2p" firstAttribute="leading" secondItem="lcr-KP-6G2" secondAttribute="leading" id="Lc4-N6-Rd9"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lcr-KP-6G2" firstAttribute="top" secondItem="G0I-xg-zo4" secondAttribute="bottom" constant="30" id="18O-Zk-Y9E"/>
+                            <constraint firstItem="HQU-Mj-gRp" firstAttribute="top" secondItem="Bzo-V7-gQ3" secondAttribute="bottom" constant="30" id="9e8-iz-f5l"/>
+                            <constraint firstItem="G0I-xg-zo4" firstAttribute="centerX" secondItem="KgD-Fe-hPq" secondAttribute="centerX" id="FyS-kl-jo7"/>
+                            <constraint firstAttribute="trailing" secondItem="lcr-KP-6G2" secondAttribute="trailing" constant="50" id="Quo-uy-crs"/>
+                            <constraint firstItem="G0I-xg-zo4" firstAttribute="centerY" secondItem="HQU-Mj-gRp" secondAttribute="centerY" id="Rs7-EG-Z8a"/>
+                            <constraint firstItem="lcr-KP-6G2" firstAttribute="leading" secondItem="KgD-Fe-hPq" secondAttribute="leading" constant="50" id="T4D-Fs-HCo"/>
+                            <constraint firstItem="HQU-Mj-gRp" firstAttribute="leading" secondItem="KgD-Fe-hPq" secondAttribute="leading" constant="20" id="UDe-ry-bcK"/>
+                            <constraint firstItem="lcr-KP-6G2" firstAttribute="centerX" secondItem="KgD-Fe-hPq" secondAttribute="centerX" id="eSM-sv-xCf"/>
+                            <constraint firstItem="hVH-fw-vgw" firstAttribute="top" secondItem="lcr-KP-6G2" secondAttribute="bottom" constant="50" id="iFY-dE-TZE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="GrA-6u-sxl"/>
+                    <connections>
+                        <outlet property="AddNewBackgroundButton" destination="6LU-Da-KnO" id="9C0-QP-OnZ"/>
+                        <outlet property="BackgroundsCollectionView" destination="waC-JW-j0j" id="iwF-wX-hIU"/>
+                        <outlet property="FocusedBackgroundImageView" destination="LSV-dX-nld" id="Wtx-4t-Hdg"/>
+                        <outlet property="HorizontalStackView" destination="Zdb-kU-v2p" id="k8S-qT-xSH"/>
+                        <outlet property="SelectBackgroundTitleLabel" destination="G0I-xg-zo4" id="Zu7-rm-bQ0"/>
+                        <outlet property="back" destination="HQU-Mj-gRp" id="LRi-n0-RES"/>
+                        <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplay" id="Ziz-rn-vTi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ahp-AF-BPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="323.88888888888886" y="1780.7407407407406"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="yHo-Ic-oSY"/>
@@ -2835,8 +2952,8 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="sX9-WY-IIJ"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="gnX-kj-isW"/>
-        <segue reference="a9q-34-jse"/>
-        <segue reference="2fL-ta-11H"/>
+        <segue reference="Ziz-rn-vTi"/>
+        <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>

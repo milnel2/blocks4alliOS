@@ -85,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var projectNamePart = true
         var projectImageNamePart = true
+        var projectBackgroundImageNamePart = true
         
         var actorNamePart = true
         var actorBaseImageNamePart = true
@@ -104,7 +105,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave2.json"))
            //  creates a string type of the entire json file
             
-            let galleryTypeStrings = jsonString.components(separatedBy: "New Gallery Type \n")
+            let userDataStrings = jsonString.components(separatedBy: "End User Data \n")[0]
+            
+            // Process saved custom background paths
+            let customBackgroundStrings = userDataStrings.components(separatedBy: "Custom Background Image Paths \n")
+            
+            for customBackgroundString in customBackgroundStrings {
+                if customBackgroundString == "" {
+                    continue
+                }
+                UserData.data.addBackgroundPath(path: customBackgroundString)
+            }
+            
+            // Process all saved project data
+            let projectDataStrings = jsonString.components(separatedBy: "End User Data \n")[1]
+            
+            let galleryTypeStrings = projectDataStrings.components(separatedBy: "New Gallery Type \n")
             for galleryTypeString in galleryTypeStrings {
                 if galleryTypeString == "" {
                     continue
@@ -128,19 +144,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     //for every new project set these to true again so that the new project will be named and an image name will be saved
                     projectNamePart = true
                     projectImageNamePart = true
+                    projectBackgroundImageNamePart = true
                     
                     var projectName = String()
                     var projectImageName = String()
+                    var projectBackgroundImageName = String()
                   //  var projectFunctionDict: [String : [Block] ] = [:]
                     
                     let actorStrings = projectString.components(separatedBy: "New Actor \n")
                     
                     // the first element of actorStrings will have the project image and name data
                     for line in actorStrings[0].components(separatedBy: "\n") {
-                        if !projectNamePart && projectImageNamePart {
+                        if !projectNamePart && !projectImageNamePart && projectBackgroundImageNamePart {
+                            projectBackgroundImageNamePart = false
+                            projectBackgroundImageName = line
+                        } else if !projectNamePart && projectImageNamePart && projectBackgroundImageNamePart {
                             projectImageNamePart = false
                             projectImageName = line
-                        } else if projectNamePart && projectImageNamePart {
+                        } else if projectNamePart && projectImageNamePart && projectBackgroundImageNamePart{
                             projectNamePart = false
                             projectName = line
                         } else {
@@ -284,21 +305,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     var project: Project
                     if galleryType == FREEPLAY_GALLERY_TYPE {
-                        project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave, projectType: ProjectType.Freeplay)
+                        print("project image name = ", projectImageName)
+                        project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave, projectType: ProjectType.Freeplay, backgroundImagePath: projectBackgroundImageName)
+                    
                     } else {
+                        
                         project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave, projectType: ProjectType.Robot)
                     }
                    
-                    let imageFullPath = getDocumentsDirectory().appendingPathComponent(projectImageName).relativePath
-                    let fileManager = FileManager.default
-                    if fileManager.fileExists(atPath: imageFullPath) {
-                        project.image = UIImage(contentsOfFile: imageFullPath)
-                    } else{
-
-
-                    }
-                    
-                    
+                    project.image = HelperFunctions.getUIImage(named: projectImageName)
                     
                     for actor in actorsFromSave {
                         
@@ -386,6 +401,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // string that json text is appended to
         var writeText = String()
+        writeText.append("Custom Background Image Paths \n")
+        for path in UserData.data.getCustomBackgroundPaths() {
+            writeText.append(path)
+            writeText.append("\n")
+        }
+        writeText.append("End User Data \n")
+    
         for galleryType in allProjects.keys {
             writeText.append("New Gallery Type \n")
             writeText.append(galleryType)
@@ -410,6 +432,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                     }
                 }
+                
+                writeText.append(project.currentBackground?.getImagePath() ?? "")
+                writeText.append("\n")
                
                
                 //TODO: fix this to work with physical robot and custom functions

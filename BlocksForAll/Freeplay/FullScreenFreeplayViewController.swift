@@ -13,6 +13,7 @@ class FullScreenFreeplayViewController : UIViewController {
     
     @IBOutlet weak var outputView: FreeplayOutputView! // The output view where scenes are played
     
+    @IBOutlet weak var outputBackgroundImageView: UIImageView!
     @IBOutlet weak var exitFullScreenButton: UIButton! // button to go back to the freeplay workspace
     
     var currentProject: Project? = nil // project to associate with this output
@@ -32,6 +33,8 @@ class FullScreenFreeplayViewController : UIViewController {
     
     @IBOutlet weak var fullScreenPlayButton: UIButton!
     
+    var backgroundImagePath: String? = nil
+    
     override func viewDidLoad() {
         if (currentProject == nil) {
             print("ERROR: current project is nil")
@@ -42,12 +45,21 @@ class FullScreenFreeplayViewController : UIViewController {
        
         freeplayWorkspaceVC!.playTrashToggleButton = fullScreenPlayButton
         
+        
+        
+        
+        
         calculateVerticalSizeFactor()
         calculateHorizontalSizeFactor()
         
         outputView.freeplayWorkspaceVC = freeplayWorkspaceVC
         
         outputView.accessibilityElements = []
+        
+        // Set the background image to be the saved background. Also connects the image view to the output view
+        backgroundImagePath = currentProject!.currentBackground?.getImagePath()
+        outputView.setBackgroundImageView(imageView: outputBackgroundImageView)
+        outputView.setBackgroundImage(newImagePath: backgroundImagePath)
         
         // Add each actor to the scene
         for actor in currentProject!.actors {
@@ -79,7 +91,6 @@ class FullScreenFreeplayViewController : UIViewController {
         
         accessibilityElements = [outputView!, fullScreenPlayButton!, exitFullScreenButton!] 
         
-        outputView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.9490196078, blue: 1, alpha: 1)
     }
     
     // calculate vertical ratio of full screen to smaller output view
@@ -116,6 +127,7 @@ class FullScreenFreeplayViewController : UIViewController {
                 
                 actor.executingProgram?.stopWasPressed = true
             }
+            //freeplayWorkspaceVC.backgroundImagePath = outputView.getBackgroundImagePath()
         }
         super.prepare(for: segue, sender: sender)
     }
