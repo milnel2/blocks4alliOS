@@ -12,6 +12,7 @@ import Foundation
 class UserData {
     
     private var customBackgroundPaths: [String] = []
+    private var defaultBackgroundPaths = ["DefaultBackground", "tempBackground1", "tempBackground2", "tempBackground3"]
     
     static let data = UserData() // Static instance of UserData. Use this when needing to reference user data
     
@@ -24,9 +25,8 @@ class UserData {
     
     /// Try to remove path from customBackgroundPaths list. Return true if successful.
     func removeBackgroundPath(path: String) -> Bool {
-        
         var indexOfPath = -1
-        for i in 0...customBackgroundPaths.count {
+        for i in 0..<customBackgroundPaths.count {
             if path == customBackgroundPaths[i] {
                 indexOfPath = i // match found
             }
@@ -48,7 +48,21 @@ class UserData {
         customBackgroundPaths = newList
     }
     
+    public func hasCustomBackgroundPath(path: String) -> Bool {
+        return customBackgroundPaths.contains(path)
+    }
     
+    public func getDefaultBackgroundPaths() -> [String] {
+        return defaultBackgroundPaths
+    }
+    
+    public func hasDefaultBackgroundPath(path: String) -> Bool {
+        return defaultBackgroundPaths.contains(path)
+    }
+    
+    public func hasBackgroundPath(path: String) -> Bool {
+        return hasCustomBackgroundPath(path: path) || hasDefaultBackgroundPath(path: path)
+    }
     
     
     

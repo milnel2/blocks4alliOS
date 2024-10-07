@@ -102,7 +102,7 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
     
     func getSavedBackgroundPaths() -> [String] {
         // TODO: implement
-        let defaultBackgrounds = ["DefaultBackground", "tempBackground1", "tempBackground2", "tempBackground3"]
+        let defaultBackgrounds = UserData.data.getDefaultBackgroundPaths()
         
         
         var allBackgrounds = defaultBackgrounds
@@ -119,6 +119,14 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         
         focusedBackground = bgImage
         FocusedBackgroundImageView.image = bgImage.getImage()
+        
+        // Remove highlight on all cells
+        for cell in BackgroundsCollectionView.visibleCells {
+            if let backgroundCell = cell as? BackgroundCell {
+                backgroundCell.removeHighlight()
+            }
+        }
+        BackgroundsCollectionView.reloadData()
     }
     
     /// Add given background image to list and highlights/focuses it
@@ -136,9 +144,20 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
     }
     
     /// Delete the given background image from the backgrounds list and from user data
-    func deleteCustomBackground() {
-        // TODO: implement
+    func deleteCustomBackground(cellIndex: Int) {
+        let removedBackground = backgrounds.remove(at: cellIndex)
+        if UserData.data.removeBackgroundPath(path: removedBackground.getImagePath()) == false {
+            print("Error: Could not remove background path \(removedBackground.getImagePath()) from user data")
+        }
+        
+        focusBackground(imageIndex: 0)
+        loadBackgrounds()
+        BackgroundsCollectionView.reloadData()
+        
+        HelperFunctions.deleteImageFromDocumentDirectory(name: removedBackground.getImagePath())
     }
+    
+    
     // MARK: Image Picker
     /// Open the camera roll image picker
     private func getImage() {
@@ -166,7 +185,6 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         if let data = image.pngData() {
             do {
                     try data.write(to: imageURL)
-                print("saved image at url = \(imageURL)")
                 } catch {
                     print("Unable to Write Image Data to Disk")
                 }
@@ -179,8 +197,21 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
     
    /// Generate a unique file name for an image from the camera rolll
     func generateBackgroundImageName() -> String {
-        print("Not implemented: generateBackgroundImageName()")
-        return "custom_1.png"
+        let numCustomImages = backgrounds.count
+        var nameAlreadyTaken = true
+        
+        var tempImageName = "custom_\(numCustomImages).png"
+        var counter = 0
+        while (nameAlreadyTaken) {
+            tempImageName = "custom_\(numCustomImages + counter).png"
+            let image = HelperFunctions.getUIImage(named: tempImageName)
+            if (image == UIImage(named: "EmptyImage")) {
+                nameAlreadyTaken = false
+            }
+            counter += 1
+        }
+        let newImageName = tempImageName
+        return newImageName
     }
     
     /// Return true if user has previously given permission to access camera roll
@@ -218,6 +249,8 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         picker.dismiss(animated: true, completion: nil)
     }
     
+    //MARK: Collection View
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return backgrounds.count
     }
@@ -244,10 +277,46 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         if index == focusedBackgroundIndex {
             cell.highlight()
             cell.accessibilityLabel = "\(bgImage.getImagePath()) image. Selected. Option \(nonZeroIndex) of \(totalNumCells)."
+        } else {
+            cell.removeHighlight()
+        }
+        let savedCustomPaths = UserData.data.getCustomBackgroundPaths()
+        if savedCustomPaths.contains(backgrounds[index].getImagePath()) {
+            // Cell is a custom background
+            //TODO: styling
+            let deleteButton = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+            deleteButton.setTitle("X", for: .normal)
+            cell.addSubview(deleteButton)
+    //        button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
+    //        button.titleLabel?.adjustsFontForContentSizeCategory = true
+    //        button.sizeToFit()  // makes button wider with larger text
+    //
+            deleteButton.backgroundColor = UIColor(red: 1.0, green: CGFloat(60.0/255.0), blue: 0.0, alpha: 1.0)  // Red
+    //        button.setTitleColor(.white, for: .normal)
+    //
+            deleteButton.layer.cornerRadius = 10
+            cell.deleteButton = deleteButton
+            deleteButton.tag = index // pass the index of the cell
+            deleteButton.addTarget(self, action: #selector(deleteAction(sender:)), for: .touchUpInside)
+    //        button.translatesAutoresizingMaskIntoConstraints = false
+            
         }
         
         return cell
     }
+    
+    @objc func deleteAction(sender: UIButton){
+        // Verify delete action
+        let alert = UIAlertController(title: "Are you sure you want to delete this background image?", message: "This action cannot be undone.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
+            // delete project
+            self.deleteCustomBackground(cellIndex: sender.tag)
+        }))
+        
+        self.present(alert, animated: true)
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: cellWidth, height: cellWidth)
@@ -324,6 +393,9 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
 
 
 class BackgroundCell: UICollectionViewCell {
+    
+    var deleteButton: UIButton? = nil
+    
     func highlight() {
         layer.borderWidth = 10
         layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
@@ -333,5 +405,8 @@ class BackgroundCell: UICollectionViewCell {
         layer.borderWidth = 0
         isSelected = false
     }
+
+    
+    
 }
 

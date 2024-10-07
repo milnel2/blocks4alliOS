@@ -998,7 +998,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         image = UIImage(named: showTextImage!) // show text image
                     }
                     if attributeName == "background" {
-                        image = HelperFunctions.getUIImage(named: placeHolderBlock.attributes[attributeName] ?? defaultValue)
+                        
+                        let imageName = placeHolderBlock.attributes[attributeName] ?? defaultValue
+                        if UserData.data.hasBackgroundPath(path: imageName) {
+                            image = HelperFunctions.getUIImage(named: imageName)
+                        } else {
+                            // Reset image to default image if the custom path no longer exists in user data (it has been deleted)
+                            image = HelperFunctions.getUIImage(named: defaultValue)
+                            placeHolderBlock.attributes[attributeName] = defaultValue
+                        }
                     }
                     if image != nil {  // make sure that the image actually exists
                         button.setBackgroundImage(image, for: .normal)

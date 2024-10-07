@@ -80,6 +80,7 @@ class HelperFunctions {
             }
             print("Failed to find \(name) image at full path: \(imageFullPath)")
         }
+        print("File \(name) does not exist in document directory ")
         return nil
     }
     
@@ -87,6 +88,18 @@ class HelperFunctions {
     public static func getDocumentsDirectory() -> URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
+    }
+    
+    
+    public static func deleteImageFromDocumentDirectory(name: String) {
+        // Deleting file from document directory is from Yaroslav Dukal's answer on https://stackoverflow.com/questions/32840190/delete-files-from-directory-inside-document-directory
+        let fileManager = FileManager.default
+        let imageFullPath = HelperFunctions.getDocumentsDirectory().appendingPathComponent(name).relativePath
+        do {
+            try fileManager.removeItem(atPath: imageFullPath)
+        } catch let error as NSError {
+            print("Could not remove item: \(error.debugDescription)")
+        }
     }
 
 }

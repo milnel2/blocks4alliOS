@@ -39,7 +39,6 @@ class Project : Equatable{
     init(name: String = "", imageName: String, projectType: ProjectType, backgroundImagePath: String? = nil) {
         self.name = name
         self.imageName = imageName
-        print("1 made new project named ", imageName)
         self.projectType = projectType
         // By default adds one actor to the project if it is an empty project
         let defaultActor = VirtualRobot(baseImagePath: "CatActor", name: "Cat", project: self)
@@ -53,7 +52,6 @@ class Project : Equatable{
     init(name: String = "", imageName: String, actors: [VirtualRobot], projectType: ProjectType, backgroundImagePath: String? = nil) {
         self.name = name
         self.imageName = imageName
-        print("2 made new project named ", imageName)
         self.actors = actors
         self.projectType = projectType
         

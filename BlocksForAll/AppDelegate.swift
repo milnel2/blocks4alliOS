@@ -111,10 +111,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let customBackgroundStrings = userDataStrings.components(separatedBy: "Custom Background Image Paths \n")
             
             for customBackgroundString in customBackgroundStrings {
-                if customBackgroundString == "" {
-                    continue
+                for line in customBackgroundString.components(separatedBy: "\n") {
+                    if line == "" {
+                        continue
+                    }
+                    UserData.data.addBackgroundPath(path: line)
                 }
-                UserData.data.addBackgroundPath(path: customBackgroundString)
             }
             
             // Process all saved project data
@@ -305,7 +307,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     var project: Project
                     if galleryType == FREEPLAY_GALLERY_TYPE {
-                        print("project image name = ", projectImageName)
                         project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave, projectType: ProjectType.Freeplay, backgroundImagePath: projectBackgroundImageName)
                     
                     } else {
