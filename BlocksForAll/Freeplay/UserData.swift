@@ -62,13 +62,5 @@ class UserData {
     
     public func hasBackgroundPath(path: String) -> Bool {
         return hasCustomBackgroundPath(path: path) || hasDefaultBackgroundPath(path: path)
-    }
-    
-    
-    
-    
-    
-    
-    
-    
+    }  
 }

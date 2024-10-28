@@ -19,15 +19,12 @@ class FreeplayOutputView: UIView {
     
     var backgroundImageView: UIImageView? = nil
     
-    
-    
+    //MARK: Background
 
     // Specifies the image view to use for this output. Important because the full screen output has a different imageview
     func setBackgroundImageView(imageView: UIImageView) {
         backgroundImageView = imageView
     }
-    
-    
     
     // Sets the background image of the view. If an imageView has not been specified previously, it will fail
     func setBackgroundImage(newImagePath: String?) {
@@ -40,18 +37,6 @@ class FreeplayOutputView: UIView {
         
         freeplayWorkspaceVC!.currentProject!.updateCurrentBackground(background: backgroundImage)
         
-        
-            // TODO: image resizing
-//        let outputHeight = Int(layer.frame.height)
-//        let outputWidth = Int(layer.frame.width)
-//        
-//        let resizedImage = backgroundImage!.getImage().scalePreservingAspectRatio(width: outputWidth, height: outputHeight)
-//        
-//        backgroundImageView!.image = resizedImage
-//        backgroundImageView?.contentMode = .center
-        
-       
-        
         backgroundImageView!.image = backgroundImage!.getImage()
         backgroundImageView?.contentMode = .scaleAspectFit
         
@@ -60,6 +45,8 @@ class FreeplayOutputView: UIView {
     func getBackgroundImagePath() -> String? {
         return backgroundImage?.getImagePath() ?? nil
     }
+    
+    // MARK: Actors
 
     func resetActorSubviews() {
         actorSubviews = []
@@ -74,7 +61,6 @@ class FreeplayOutputView: UIView {
         //actor.setToSavedCoordinates()
         
         actor.imageView.isUserInteractionEnabled = true
-        
         
        //  Add dragging interaction to actor
         let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(dragActor(sender:)))
@@ -96,7 +82,6 @@ class FreeplayOutputView: UIView {
     // when an actor image view is clicked on, play its on tap code line and set it to be the current actor
     @objc func clickOnActor(sender : UITapGestureRecognizer) {
         let currentProject = freeplayWorkspaceVC!.currentProject
-        
         let tapLocation = sender.location(in: self)
         for actor in currentProject!.actors {
             if actor.imageView.frame.contains(tapLocation) && actor.imageView == sender.view {
@@ -152,36 +137,4 @@ class FreeplayOutputView: UIView {
            break
        }
     }
-}
-
-// UIImage extension is from https://www.advancedswift.com/resize-uiimage-no-stretching-swift/
-extension UIImage {
-  func scalePreservingAspectRatio(width: Int, height: Int) -> UIImage {
-    let widthRatio = CGFloat(width) / size.width
-    let heightRatio = CGFloat(height) / size.height
-    
-    let scaleFactor = min(widthRatio, heightRatio)
-    
-    let scaledImageSize = CGSize(
-      width: size.width * scaleFactor,
-      height: size.height * scaleFactor
-    )
-    
-    let format = UIGraphicsImageRendererFormat()
-    format.scale = 1
-    
-    let renderer = UIGraphicsImageRenderer(
-      size: scaledImageSize,
-      format: format
-    )
-    
-    let scaledImage = renderer.image { _ in
-      self.draw(in: CGRect(
-        origin: .zero,
-        size: scaledImageSize
-      ))
-    }
-    
-    return scaledImage
-  }
 }

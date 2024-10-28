@@ -21,38 +21,6 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
     
     private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each button that is showed in the collection view
     
-    @IBAction func backButtonPressed(_ sender: Any) {
-        
-        performSegue(withIdentifier: "backToFreeplay", sender: nil)
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if (segue.identifier == "backToFreeplay") {
-          let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
-     
-           freeplayWorkspaceVC.currentProject = currentProject // pass the current project back to the workspaceVC
-           
-           freeplayWorkspaceVC.currentActorImageView = currentActorImageView
-          
-           freeplayWorkspaceVC.newActorToAdd = nil // don't add a new actor
-        
-       }
-        if segue.identifier == "backToFreeplayWithNewActor" {
-            let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
-       
-             freeplayWorkspaceVC.currentProject = currentProject // pass the current project back to the workspaceVC
-             
-             freeplayWorkspaceVC.currentActorImageView = currentActorImageView
-            
-            freeplayWorkspaceVC.newActorToAdd = (name: selectedActor.name, baseImagePath: selectedActor.baseImagePath, color: "Default") // add a new actor
-        }
-    }
-    
-    @IBAction func addActorPressed(_ sender: Any) {
-        performSegue(withIdentifier: "backToFreeplayWithNewActor", sender: nil)
-    }
-    
     private var optionSelectedIndex = 0 // index of the option in the ActorsMenu array
     
     var items: NSArray = []
@@ -64,7 +32,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
     var freeplayOutputView: FreeplayOutputView? // used during segues
     
     var currentActorImageView: UIImageView? // used during segues
-   
+    
     override func viewDidLoad() {
         // Styling
         addActorButton.backgroundColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
@@ -90,13 +58,43 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
          
 //        collectionView.isAccessibilityElement = false
 //        collectionView.shouldGroupAccessibilityChildren = true  // this and more good voiceOver tips are from https://medium.com/bpxl-craft/how-to-make-voiceover-more-friendly-in-your-ios-app-8fac34ab8c51
-          
        
         // Voice Over
         accessibilityElements = [backButton!, chooseActorTitleLabel!, actorsCollectionView!, addActorButton!]
-
     }
     
+    // MARK: Actions
+    @IBAction func backButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "backToFreeplay", sender: nil)
+    }
+    @IBAction func addActorPressed(_ sender: Any) {
+        performSegue(withIdentifier: "backToFreeplayWithNewActor", sender: nil)
+    }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if (segue.identifier == "backToFreeplay") {
+          let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
+     
+           freeplayWorkspaceVC.currentProject = currentProject // pass the current project back to the workspaceVC
+           
+           freeplayWorkspaceVC.currentActorImageView = currentActorImageView
+          
+           freeplayWorkspaceVC.newActorToAdd = nil // don't add a new actor
+        
+       }
+        if segue.identifier == "backToFreeplayWithNewActor" {
+            let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
+       
+             freeplayWorkspaceVC.currentProject = currentProject // pass the current project back to the workspaceVC
+             
+             freeplayWorkspaceVC.currentActorImageView = currentActorImageView
+            
+            freeplayWorkspaceVC.newActorToAdd = (name: selectedActor.name, baseImagePath: selectedActor.baseImagePath, color: "Default") // add a new actor
+        }
+    }
+    
+    // MARK: Collection View
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.items.count
     }
@@ -112,12 +110,11 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         let index = indexPath.item  // numerical index of cell
           
         // Reset labels and images in cells
-        // Below code is from https://stackoverflow.com/questions/23647833/uicollectionviewcell-is-overlapped-when-scrolling
+        // ----- Below code is from https://stackoverflow.com/questions/23647833/uicollectionviewcell-is-overlapped-when-scrolling
         for view in cell.subviews {
           view.removeFromSuperview()
         }
-        // Above code is from https://stackoverflow.com/questions/23647833/uicollectionviewcell-is-overlapped-when-scrolling
-       
+        // ----- End of code citation
         // Create an image for the cell
         var baseImagePath = ""
         var name = ""
@@ -142,7 +139,6 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         cell.accessibilityHint = "Double tap to select"
         cell.accessibilityIdentifier = String(index)
         
-        
         cell.backgroundColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         // Put a border around the cell if it is currently selected
@@ -156,7 +152,6 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         } else {
             cell.isSelected = false
             cell.layer.borderWidth = 0
-                       
         }
         return cell
     }

@@ -14,7 +14,6 @@ class BackgroundImage {
     private var image: UIImage // UIImage associated with the name
     
     init (imagePath: String?) {
-        
         if imagePath == nil {
             self.imagePath = "DefaultBackground"
         } else {
@@ -23,7 +22,6 @@ class BackgroundImage {
         
         self.image = HelperFunctions.getUIImage(named: self.imagePath)
     }
-    
     
     public func getImage() -> UIImage {
         return image

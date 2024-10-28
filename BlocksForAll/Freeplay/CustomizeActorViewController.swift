@@ -170,5 +170,4 @@ class CustomizeActorViewController: UIViewController {
         selectedColor = "Blue"
         setActorDisplayColor(color: "Blue")
     }
-    
 }

@@ -128,4 +128,30 @@ class Block: Codable {
         return paths[0]
     }
     
+    public func getFirstAttrVal(data: ModifierButtonData) -> String{
+        let result = attributes[data.attributeName] ?? data.defaultValue
+        if result == "" {
+            print("ERROR: could not access block data for attribute = \(data.attributeName)")
+            return ""
+        }
+        return result
+    }
+    
+    public func getSecondAttrVal(data: ModifierButtonData) -> String {
+        if (data.secondAttributeName == nil || data.secondDefault == nil) {
+            //print ("ERROR: block data does not have adequate values for second attribute")
+            return ""
+        }
+        let result = attributes[data.secondAttributeName!] ?? data.secondDefault
+        if result == nil {
+            print("ERROR: could not access block data for second attribute = \(data.secondAttributeName!)")
+            return ""
+        }
+        return result!
+        
+        
+    }
+    
+
+    
 }

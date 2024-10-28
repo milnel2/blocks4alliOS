@@ -44,11 +44,7 @@ class FullScreenFreeplayViewController : UIViewController {
         }
        
         freeplayWorkspaceVC!.playTrashToggleButton = fullScreenPlayButton
-        
-        
-        
-        
-        
+
         calculateVerticalSizeFactor()
         calculateHorizontalSizeFactor()
         
@@ -90,7 +86,6 @@ class FullScreenFreeplayViewController : UIViewController {
         exitFullScreenButton.isAccessibilityElement = true
         
         accessibilityElements = [outputView!, fullScreenPlayButton!, exitFullScreenButton!] 
-        
     }
     
     // calculate vertical ratio of full screen to smaller output view

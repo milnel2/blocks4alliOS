@@ -89,7 +89,6 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
     // Loads all background image paths into the backgrounds list
     func loadBackgrounds() {
         backgrounds = []
-        // TODO: load in the paths automatically
         
         let backgroundPaths = getSavedBackgroundPaths()
         
@@ -101,7 +100,6 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
     
     
     func getSavedBackgroundPaths() -> [String] {
-        // TODO: implement
         let defaultBackgrounds = UserData.data.getDefaultBackgroundPaths()
         
         

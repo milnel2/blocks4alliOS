@@ -228,6 +228,8 @@
 		<string>Orange</string>
 		<key>accessibilityHint</key>
 		<string>Double tap to set Drive variable</string>
+		<key>imagePath</key>
+		<string>variableModifierBackground</string>
 	</dict>
 	<key>Turn</key>
 	<dict>
@@ -237,6 +239,8 @@
 		<string>Orange</string>
 		<key>accessibilityHint</key>
 		<string>Double tap to set Turn variable</string>
+		<key>imagePath</key>
+		<string>variableModifierBackground</string>
 	</dict>
 	<key>Look Up or Down</key>
 	<dict>
@@ -246,6 +250,8 @@
 		<string>Orange</string>
 		<key>accessibilityHint</key>
 		<string>Double tap to set Look Up or Down variable</string>
+		<key>imagePath</key>
+		<string>variableModifierBackground</string>
 	</dict>
 	<key>Look Left or Right</key>
 	<dict>
@@ -255,6 +261,8 @@
 		<string>Orange</string>
 		<key>accessibilityHint</key>
 		<string>Double tap to set Look Left or Right variable</string>
+		<key>imagePath</key>
+		<string>variableModifierBackground</string>
 	</dict>
 	<key>Move Up</key>
 	<dict>

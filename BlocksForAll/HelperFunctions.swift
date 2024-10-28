@@ -101,6 +101,18 @@ class HelperFunctions {
             print("Could not remove item: \(error.debugDescription)")
         }
     }
+    
+    
+    
+    public static func showTextIsOn() -> Bool {
+        return defaults.value(forKey: "showText") as! Int == 1
+    }
+    
+    public static func showIconsIsOn() -> Bool {
+        return defaults.value(forKey: "showText") as! Int == 0
+    }
+    
+   
 
 }
 
