@@ -910,8 +910,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         allModifierBlocks.append(tempButton)
         
-        tempButton.setUp()
-        
         return tempButton
     }
 

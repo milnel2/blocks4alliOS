@@ -8,19 +8,14 @@
 
 import Foundation
 
+// Button on the top of blocks that have modifier values (ex. play sound blocks)
 class ModifierButton: UIButton {
-    var block: Block
-    var currentProject: Project?
-    var data: ModifierButtonData
+    var block: Block // block that this modifier button is a part of
+    var currentProject: Project? // project currently being edited
+    var data: ModifierButtonData // data associated with this modifier button
     
-    var outputWidth = 0.0
-    var outputHeight = 0.0
-    
-    var rectHeight = 0.0
-    var rectWidth = 0.0
-    
-    var attrVal: String = ""
-    var secondAttrVal: String = ""
+    var attrVal: String = "" // value currently selected for the first attribute (ex. "cat", 1, "yellow")
+    var secondAttrVal: String = "" // value currently selected for the second attribute (ex. "fast")
     
     var modifierInformation: String = "" // Used for voiceOver
     
@@ -35,6 +30,8 @@ class ModifierButton: UIButton {
         
         self.attrVal = self.block.getFirstAttrVal(data: self.data)
         self.secondAttrVal = self.block.getSecondAttrVal(data: self.data)
+        
+        setUp()
     }
     
     required init?(coder: NSCoder) {
@@ -45,8 +42,8 @@ class ModifierButton: UIButton {
         return block
     }
     
+    // Set up button appearance based on modifier data
     public func setUp() {
-        
         modifierInformation = attrVal  // Default value of the current state of the block modifier - used for voiceOver
         
         setUpFonts()
@@ -91,8 +88,9 @@ class ModifierButton: UIButton {
         return
     }
     
+    // MARK: Helper methods
+    // Set up some default font/text settings for the button
     func setUpFonts() {
-        // set up fonts before setting the text
         titleLabel?.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 26.0)
         titleLabel?.adjustsFontForContentSizeCategory = true
         if #available(iOS 13.0, *) {
@@ -104,6 +102,9 @@ class ModifierButton: UIButton {
         titleLabel?.textAlignment = .center
     }
     
+    // Text mode version of a button that shows one image when show icons is on
+    // text: string to display on the button
+    // background path: image name to display in background
     func oneImageOnlyShowTextIsOn(text: String, backgroundPath: String) {
         setBackgroundImage(named: backgroundPath)
         
@@ -114,79 +115,41 @@ class ModifierButton: UIButton {
         setTitle(text.capitalized, for: .normal)
     }
     
-    // Variable blocks like Drive, Turn, Look Up or Down, etc.
-    func moveVariableButton() {
-        if HelperFunctions.showIconsIsOn() {
-            setBackgroundImage(named: "\(attrVal)")
-        } else {
-            oneImageOnlyShowTextIsOn(text: "\(attrVal)", backgroundPath: data.imagePath!)
-        }
-        modifierInformation = "\(attrVal) Variable" //TODO: do something with this
-    }
-    
+    // set the background image of the modifier button
     func setBackgroundImage(named imagePath: String) {
         let image = HelperFunctions.getUIImage(named: imagePath)
         setBackgroundImage(image, for: .normal)
     }
     
-    func setVariableButton() {
-        var text: String
-        if HelperFunctions.showIconsIsOn() {
-            setBackgroundImage(named: "\(attrVal)Icon")  // these special images are called (fruitName)Icon (ex. AppleIcon)
-            text = "\n\n= \(secondAttrVal)"
-        } else {
-            setBackgroundImage(named: data.imagePath!)
-            text = "\(attrVal) = \(secondAttrVal)"
-        }
-        setTitle(text, for: .normal)
-        modifierInformation = "\(attrVal) = \(secondAttrVal)"
-    }
-    
-    func ifButton() {
-        if HelperFunctions.showIconsIsOn() {
-            setBackgroundImage(named: attrVal)
-        } else {
-            let backgroundImagePath = "booleanSelectedBackground"
-            oneImageOnlyShowTextIsOn(text: modifierInformation.capitalized, backgroundPath: backgroundImagePath)
-        }
-        modifierInformation = attrVal
-    }
-    
-    func eyeLightButton() {
-        if HelperFunctions.showIconsIsOn() {
-            setBackgroundImage(named: attrVal)
-        } else {
-            let backgroundImagePath = "eyeLightBackground"
-            oneImageOnlyShowTextIsOn(text: modifierInformation.capitalized, backgroundPath: backgroundImagePath)
-        }
-        modifierInformation = attrVal
-    }
-    
-    func colorButton() {
-        if HelperFunctions.showIconsIsOn() {
-            setBackgroundImage(named: attrVal)
-        } else {
-            let color: String = block.attributes[data.attributeName] ?? data.secondDefault!
-            let colorPath = "\(color)OpaqueColor"
-            
-            let myUIColor = UIColor(named: colorPath)
-            backgroundColor = myUIColor ?? UIColor(named: "whiteOpaqueColor")
-            layer.cornerRadius = 20 // add button rounded border
-            titleLabel?.numberOfLines = 2
-            titleLabel?.lineBreakMode = .byWordWrapping
-            setTitle(color.capitalized, for: .normal)
-        }
+    // Button that only shows a number, both in icons or text mode. Ex. used for grow/shrink and movement blocks
+    func onlyShowNumberButton() {
+        setBackgroundImage(named: data.imagePath!)
+        setTitle(attrVal, for: .normal)
         
         modifierInformation = attrVal
     }
     
+    public func getModifierInformation() -> String{
+        return modifierInformation
+    }
+    
+    // MARK: Sound Blocks
+    
+    // Sound blocks (ex. Animal noise)
+    func noiseButton() {
+        if HelperFunctions.showIconsIsOn() {
+            setBackgroundImage(named: "\(attrVal)")
+        } else {
+            let backgroundImagePath = "\(data.attributeName)Background"
+            oneImageOnlyShowTextIsOn(text: attrVal, backgroundPath: backgroundImagePath)
+        }
+        modifierInformation = attrVal
+    }
+    
+    // MARK: Drive Blocks
+    
+    // Drive forward and drive backward blocks
     func driveForwardOrBackwardButton() {
-        let defaultValue = data.defaultValue
-        let secondAttributeName = data.secondAttributeName
-        let secondDefault = data.secondDefault
-        let showTextImage = data.showTextImage
-        let attributeName = data.attributeName
-        
         var image : UIImage
         var text = attrVal
         if HelperFunctions.showIconsIsOn() {
@@ -198,7 +161,7 @@ class ModifierButton: UIButton {
             }
             
         } else {
-            image = HelperFunctions.getUIImage(named: showTextImage!)
+            image = HelperFunctions.getUIImage(named: data.showTextImage!)
             if titleLabel?.font.pointSize ?? 26 <= 34 {
                 text = "\(attrVal) cm, \(secondAttrVal)"
             } else {
@@ -212,47 +175,7 @@ class ModifierButton: UIButton {
         modifierInformation = "\(attrVal) cm, at \(secondAttrVal) speed." // TODO: make sure all voice over labels have periods.
     }
     
-    func noiseButton() {
-        if HelperFunctions.showIconsIsOn() {
-            setBackgroundImage(named: "\(attrVal)")
-        } else {
-            let backgroundImagePath = "\(data.attributeName)Background"
-            oneImageOnlyShowTextIsOn(text: attrVal, backgroundPath: backgroundImagePath)
-        }
-        modifierInformation = attrVal
-    }
-    
-    func setBackgroundButton() {
-        if HelperFunctions.showIconsIsOn() {
-            let defaultValue = "" // TODO: default value
-            let imageName = block.attributes["background"] ?? defaultValue
-            var image: UIImage
-            if UserData.data.hasBackgroundPath(path: imageName) {
-                image = HelperFunctions.getUIImage(named: imageName)
-            } else {
-                // Reset image to default image if the custom path no longer exists in user data (it has been deleted)
-                image = HelperFunctions.getUIImage(named: defaultValue)
-                block.attributes["background"] = defaultValue
-            }
-            setBackgroundImage(image, for: .normal)
-            
-        } else {
-            let backgroundImagePath = "driveModifierBackground" // TODO: set the correct yellow background
-            oneImageOnlyShowTextIsOn(text: attrVal, backgroundPath: backgroundImagePath)
-        }
-        
-        modifierInformation = attrVal
-    }
-    
-    // Button that only shows a number, both in icons or text mode. Ex. used for grow/shrink and movement blocks
-    func onlyShowNumberButton() {
-        setBackgroundImage(named: data.imagePath!)
-        setTitle(attrVal, for: .normal)
-        
-        modifierInformation = attrVal
-    }
-    
-    
+    // Set speed block
     func setSpeedButton() {
         if HelperFunctions.showIconsIsOn() {
             setBackgroundImage(named: attrVal)
@@ -264,6 +187,7 @@ class ModifierButton: UIButton {
         modifierInformation = attrVal
     }
     
+    // Move to actor block
     func moveToActorButton() {
         let uuid = block.attributes["moveToActor"] ?? ""
         
@@ -292,42 +216,13 @@ class ModifierButton: UIButton {
         
         modifierInformation = text
     }
-
-    func repeatTimesButton() {
-        setBackgroundImage(named: data.imagePath!)
-        
-        titleLabel?.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 42.0)
-        setTitle(attrVal, for: .normal)
-        
-        modifierInformation = "\(attrVal) times"
-    }
-    
-    func waitButton() {
-        setBackgroundImage(named: data.imagePath!)
-        
-        var text = attrVal
-        
-        if block.attributes["wait"] == "1" {
-            text = "\(text) second"
-        } else {
-            text = "\(text) seconds"
-        }
-        
-        setTitle(text, for: .normal)
-        
-        modifierInformation = text
-    }
-    
-    public func getModifierInformation() -> String{
-        return modifierInformation
-    }
     
     func moveToLocationButton() {
         var coordinateString = attrVal
         if coordinateString == "-1,-1"{ // if the string is -1,-1 that means that there isn't a value, set it to the center
             let outputView = currentProject!.currentActor!.freeplayOutputView!
-            outputWidth = outputView.frame.width
-            outputHeight = outputView.frame.height
+            let outputWidth = outputView.frame.width // width of associated output view
+            let outputHeight = outputView.frame.height // height of associated output view
             coordinateString = "\(Int(outputWidth / 2)),\(Int(outputHeight / 2))"
            
             let cellIndex = Int(SelectLocationModifierViewController.calculateCenterCellIndex())
@@ -345,6 +240,128 @@ class ModifierButton: UIButton {
         modifierInformation = "Row \(row) of \(Int(LocationConstants.numRows)), Column \(col) of \(Int(LocationConstants.numCols))."
     }
     
+    // MARK: Lights Blocks
+    
+    // Eye light blocks
+    func eyeLightButton() {
+        if HelperFunctions.showIconsIsOn() {
+            setBackgroundImage(named: attrVal)
+        } else {
+            let backgroundImagePath = "eyeLightBackground"
+            oneImageOnlyShowTextIsOn(text: modifierInformation.capitalized, backgroundPath: backgroundImagePath)
+        }
+        modifierInformation = attrVal
+    }
+    
+    // Light color blocks
+    func colorButton() {
+        if HelperFunctions.showIconsIsOn() {
+            setBackgroundImage(named: attrVal)
+        } else {
+            let color: String = block.attributes[data.attributeName] ?? data.secondDefault!
+            let colorPath = "\(color)OpaqueColor"
+            
+            let myUIColor = UIColor(named: colorPath)
+            backgroundColor = myUIColor ?? UIColor(named: "whiteOpaqueColor")
+            layer.cornerRadius = 20 // add button rounded border
+            titleLabel?.numberOfLines = 2
+            titleLabel?.lineBreakMode = .byWordWrapping
+            setTitle(color.capitalized, for: .normal)
+        }
+        
+        modifierInformation = attrVal
+    }
+    
+    // MARK: Control Blocks
+    
+    // If blocks
+    func ifButton() {
+        if HelperFunctions.showIconsIsOn() {
+            setBackgroundImage(named: attrVal)
+        } else {
+            let backgroundImagePath = "booleanSelectedBackground"
+            oneImageOnlyShowTextIsOn(text: modifierInformation.capitalized, backgroundPath: backgroundImagePath)
+        }
+        modifierInformation = attrVal
+    }
+    
+    // Repeat blocks
+    func repeatTimesButton() {
+        setBackgroundImage(named: data.imagePath!)
+        
+        titleLabel?.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 42.0)
+        setTitle(attrVal, for: .normal)
+        
+        modifierInformation = "\(attrVal) times"
+    }
+    
+    // Wait for time blocks
+    func waitButton() {
+        setBackgroundImage(named: data.imagePath!)
+        
+        var text = attrVal
+        
+        if block.attributes["wait"] == "1" {
+            text = "\(text) second"
+        } else {
+            text = "\(text) seconds"
+        }
+        setTitle(text, for: .normal)
+        
+        modifierInformation = text
+    }
+    
+    // MARK: Variable Blocks
+    
+    // Variable blocks like Drive, Turn, Look Up or Down, etc.
+    func moveVariableButton() {
+        if HelperFunctions.showIconsIsOn() {
+            setBackgroundImage(named: "\(attrVal)") // In icon mode, show image (ex. apple image)
+        } else {
+            oneImageOnlyShowTextIsOn(text: "\(attrVal)", backgroundPath: data.imagePath!) // In text mode, show text representation of value (ex. "apple")
+        }
+        modifierInformation = "\(attrVal) Variable"
+    }
+    
+    // Set Variable blocks
+    func setVariableButton() {
+        var text: String
+        if HelperFunctions.showIconsIsOn() {
+            setBackgroundImage(named: "\(attrVal)Icon")  // these special images are called (fruitName)Icon (ex. AppleIcon)
+            text = "\n\n= \(secondAttrVal)"
+        } else {
+            setBackgroundImage(named: data.imagePath!)
+            text = "\(attrVal) = \(secondAttrVal)"
+        }
+        setTitle(text, for: .normal)
+        modifierInformation = "\(attrVal) = \(secondAttrVal)"
+    }
+    
+    // MARK: Background Blocks
+ 
+    // Set background block
+    func setBackgroundButton() {
+        if HelperFunctions.showIconsIsOn() {
+            let defaultValue = "" // TODO: default value
+            let imageName = block.attributes["background"] ?? defaultValue
+            var image: UIImage
+            if UserData.data.hasBackgroundPath(path: imageName) {
+                image = HelperFunctions.getUIImage(named: imageName)
+            } else {
+                // Reset image to default image if the custom path no longer exists in user data (it has been deleted)
+                image = HelperFunctions.getUIImage(named: defaultValue)
+                block.attributes["background"] = defaultValue
+            }
+            setBackgroundImage(image, for: .normal)
+            
+        } else {
+            let backgroundImagePath = "driveModifierBackground" // TODO: set the correct yellow background
+            oneImageOnlyShowTextIsOn(text: attrVal, backgroundPath: backgroundImagePath)
+        }
+        modifierInformation = attrVal
+    }
+    
+    // Handle special drawing of Move to Actor and Move to Location blocks
     override func draw(_ rect: CGRect) {
         if currentProject != nil {
             if block.name == "Move to Actor" {
@@ -353,8 +370,8 @@ class ModifierButton: UIButton {
                 let buttonWidth = frame.width
                 
                 let outputView = currentProject!.currentActor!.freeplayOutputView!
-                outputWidth = outputView.frame.width
-                outputHeight = outputView.frame.height
+                let outputWidth = outputView.frame.width
+                let outputHeight = outputView.frame.height
                 
                 let backgroundRect = CGRect(x: 0,y: 0, width: buttonWidth, height: buttonHeight)
                 let backgroundPath = UIBezierPath(roundedRect: backgroundRect, cornerRadius: 10)
@@ -369,12 +386,11 @@ class ModifierButton: UIButton {
                 let actor = VirtualRobot.getActorFromUUIDOrDefault(actorUUID: actorUUID, inProject: currentProject!)!
                 accessibilityLabel = "\(actor.name), \(actor.color)"
                 
-                
             } else if block.name == "Move to Location" {
                 
                 let outputView = currentProject!.currentActor!.freeplayOutputView!
-                outputWidth = outputView.frame.width
-                outputHeight = outputView.frame.height
+                let outputWidth = outputView.frame.width
+                let outputHeight = outputView.frame.height
                 
                 let buttonHeight = frame.height
                 let buttonWidth = frame.width
@@ -388,15 +404,14 @@ class ModifierButton: UIButton {
                 
                 let heightToWidthRatio: Double = outputHeight / outputWidth
                 
-                rectWidth = buttonWidth - 10 // adds a tiny bit of padding so that the rectangle doesn't go right up to the edges
-                rectHeight = rectWidth * heightToWidthRatio
+                let rectWidth = buttonWidth - 10 // adds a tiny bit of padding so that the rectangle doesn't go right up to the edges
+                let rectHeight = rectWidth * heightToWidthRatio
 
                 let xCoord = (buttonWidth - rectWidth) / 2
                 let yCoord = (buttonHeight - rectHeight) / 2
                 
                 let rect = CGRect(x: xCoord, y: yCoord, width: rectWidth, height: rectHeight)
                 let path = UIBezierPath(rect: rect)
-                
                
                 UIColor.white.setFill()
                 path.fill()
@@ -410,15 +425,12 @@ class ModifierButton: UIButton {
                 let halfWidth = xWidth / 2
                 let halfHeight = xHeight / 2
                 
-                
                 let coordinateString = attrVal
   
                 let originalCoords = VirtualRobot.parseCoordinateString(coordinateString: coordinateString)
                 
-                
-                let (centerX, centerY): (x: CGFloat, y: CGFloat) = convertCoordsToSmallSize(oldX: originalCoords.x, oldY: originalCoords.y)
+                let (centerX, centerY): (x: CGFloat, y: CGFloat) = convertCoordsToSmallSize(oldX: originalCoords.x, oldY: originalCoords.y, rectWidth: rectWidth, rectHeight: rectHeight)
                
-                
                 let adjustedCenterY = centerY + yCoord// have to push the y value down a bit because the image doesn't take up the entire height of the button
                 let adjustedCenterX = centerX + xCoord
 
@@ -437,7 +449,11 @@ class ModifierButton: UIButton {
             }
         }
         
-        func convertCoordsToSmallSize(oldX: CGFloat, oldY: CGFloat) -> (x: CGFloat, y: CGFloat){
+        func convertCoordsToSmallSize(oldX: CGFloat, oldY: CGFloat, rectWidth: CGFloat, rectHeight: CGFloat) -> (x: CGFloat, y: CGFloat){
+            let outputView = currentProject!.currentActor!.freeplayOutputView!
+            let outputWidth = outputView.frame.width
+            let outputHeight = outputView.frame.height
+            
             let widthRatio = rectWidth / outputWidth
             let heightRatio = rectHeight / outputHeight
             
