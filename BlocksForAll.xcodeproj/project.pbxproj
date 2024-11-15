@@ -26,6 +26,7 @@
 		8D54890E2C221F07002617BE /* ActorsMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D54890D2C221F07002617BE /* ActorsMenu.plist */; };
 		8D5489142C233FE0002617BE /* SoundFileDict.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D5489132C233FE0002617BE /* SoundFileDict.plist */; };
 		8D655A7A2C18BB2B00B86BB1 /* VirtualRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D655A792C18BB2B00B86BB1 /* VirtualRobot.swift */; };
+		8D6A4BA92CE147790074F6F1 /* SelectCustomNoiseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6A4BA82CE147790074F6F1 /* SelectCustomNoiseViewController.swift */; };
 		8D822CDA2C137B3300A8A20D /* FreePlayWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */; };
 		8D822CDC2C138B3100A8A20D /* FreeplayOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */; };
 		8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8D66032A3A43330086E14A /* ModifierProperties.plist */; };
@@ -120,6 +121,7 @@
 		8D54890F2C233BE8002617BE /* AudioFileCredits.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AudioFileCredits.md; sourceTree = "<group>"; };
 		8D5489132C233FE0002617BE /* SoundFileDict.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SoundFileDict.plist; sourceTree = "<group>"; };
 		8D655A792C18BB2B00B86BB1 /* VirtualRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualRobot.swift; sourceTree = "<group>"; };
+		8D6A4BA82CE147790074F6F1 /* SelectCustomNoiseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCustomNoiseViewController.swift; sourceTree = "<group>"; };
 		8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreePlayWorkspaceViewController.swift; sourceTree = "<group>"; };
 		8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeplayOutputView.swift; sourceTree = "<group>"; };
 		8D8D66032A3A43330086E14A /* ModifierProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				8DFEBAC12C2C6F8900491CAD /* SelectLocationModifierViewController.swift */,
 				8DFEBAC52C2C973500491CAD /* SpeedModViewController.swift */,
 				8DE83BA72CA0B34B005DF819 /* SelectBackgroundModifierViewController.swift */,
+				8D6A4BA82CE147790074F6F1 /* SelectCustomNoiseViewController.swift */,
 			);
 			path = ModifierViewControllers;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				8DDC31A32CA1D11600337B39 /* BackgroundImage.swift in Sources */,
 				8DE97FD52C29CFE4008661BB /* AddProjectCollectionViewCell.swift in Sources */,
 				62BFCBCA22C3F4C50078FA60 /* SetVariableModViewController.swift in Sources */,
+				8D6A4BA92CE147790074F6F1 /* SelectCustomNoiseViewController.swift in Sources */,
 				844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */,
 				F18FFFD31E65B4900090C4B6 /* BlockTableViewCell.swift in Sources */,
 				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,

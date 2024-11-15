@@ -47,6 +47,19 @@
 		<key>accessibilityHint</key>
 		<string>Double tap to choose word</string>
 	</dict>
+	<key>Custom Noise</key>
+	<dict>
+		<key>attributeName</key>
+		<string>shape</string>
+		<key>default</key>
+		<string>circle</string>
+		<key>secondAttributeName</key>
+		<string>customNoise</string>
+		<key>secondDefault</key>
+		<string>cat</string>
+		<key>accessibilityHint</key>
+		<string>Double tap to choose custom noise</string>
+	</dict>
 	<key>Drive Forward</key>
 	<dict>
 		<key>attributeName</key>

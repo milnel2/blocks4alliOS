@@ -310,6 +310,9 @@ class ExecutingProgram {
             default:
                 playNoise(sound: word ?? "hi")
             }
+        case "Custom Noise":
+            let noiseFile = blockToExec.addedBlocks[0].attributes["customNoise"]
+            playNoise(sound: noiseFile ?? "")
             
         //CONTROL CATEGORY
         case "If":

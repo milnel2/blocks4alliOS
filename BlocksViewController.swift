@@ -1051,6 +1051,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             return #selector(selectSpeedModifier(sender:))
         case "Set Background":
             return #selector(selectBackgroundModifier(sender:))
+        case "Custom Noise":
+            return #selector(selectCustomNoiseModifier(sender:))
         default:
             print("Modifier Selector for \(name) could not be found. Check switch statement in getModifierSelector() method.")
             return nil
@@ -1116,6 +1118,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     @objc func selectBackgroundModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "SelectBackgroundModifier", sender: nil)
+    }
+    
+    @objc func selectCustomNoiseModifier(sender: UIButton!) {
+        modifierBlockIndex = sender.tag
+        performSegue(withIdentifier: "toSelectCustomNoise", sender: nil)
     }
     
     @objc func buttonClicked(sender: UIButton!) {
@@ -1202,6 +1209,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // Segue to Background Selection Screen
         if let destinationViewController = segue.destination as? SelectBackgroundModifierViewController {
+            destinationViewController.currentProject = currentProject
+            destinationViewController.modifierBlockIndexSender = modifierBlockIndex
+        }
+        
+        // Segue to Custom Noise Selection Screen
+        if let destinationViewController = segue.destination as? SelectCustomNoiseViewController {
             destinationViewController.currentProject = currentProject
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }

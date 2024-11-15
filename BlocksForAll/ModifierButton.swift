@@ -68,7 +68,7 @@ class ModifierButton: UIButton {
             moveToLocationButton()
         case "Set Background":
             setBackgroundButton()
-        case "Animal Noise", "Emotion Noise", "Object Noise", "Vehicle Noise", "Speak":
+        case "Animal Noise", "Emotion Noise", "Object Noise", "Vehicle Noise", "Speak", "Custom Noise":
             noiseButton()
         case "Drive Forward", "Drive Backward":
             driveForwardOrBackwardButton()

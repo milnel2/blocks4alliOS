@@ -37,6 +37,20 @@
 				<key>imageName</key>
 				<string>objectNoise.pdf</string>
 			</dict>
+			<dict>
+				<key>isModifiable</key>
+				<true/>
+				<key>type</key>
+				<string>Statement</string>
+				<key>name</key>
+				<string>Custom Noise</string>
+				<key>color</key>
+				<string>gray_color</string>
+				<key>double</key>
+				<false/>
+				<key>imageName</key>
+				<string>speakNoise.pdf</string>
+			</dict>
 		</array>
 	</dict>
 	<dict>
