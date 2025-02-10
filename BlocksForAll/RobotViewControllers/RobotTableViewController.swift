@@ -332,9 +332,11 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         if(robot.peripheral.state == .connected) {
             cell.layer.borderWidth = 9
             cell.layer.borderColor = #colorLiteral(red: 1, green: 0.6078431373, blue: 0.2980392157, alpha: 1)
-            cell.accessibilityLabel =  (robot.peripheral.name ?? "Unnamed Robot") + "Connected"
+            let formattedString = NSLocalizedString("robot_name_connected", comment: "Accessibility label for a button displaying a connected robot")
+            cell.accessibilityLabel =  String.localizedStringWithFormat(formattedString, robot.peripheral.name ?? "Unnamed Robot")
         }else {
-            cell.accessibilityLabel = "Click to connect to" + (robot.peripheral.name ?? "Unnamed Robot")
+            let formattedString = NSLocalizedString("click_to_connect_to_robot_name", comment: "Accessibility label for a button displaying an unconnected robot")
+            cell.accessibilityLabel =  String.localizedStringWithFormat(formattedString, robot.peripheral.name ?? "Unnamed Robot")
         }
        
         return cell

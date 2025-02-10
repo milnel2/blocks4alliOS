@@ -131,8 +131,8 @@ class VirtualRobot: Equatable {
     func setUpAccessibility() {
         imageView.isUserInteractionEnabled = true
         imageView.isAccessibilityElement = true
-        imageView.accessibilityLabel = "\(name). \(color) Color. \(calculateActorLocationStringForAccessibility())"
-        imageView.accessibilityHint = "Double tap and hold to drag."
+        imageView.accessibilityLabel = "\(name). \(color) \(NSLocalizedString("Color", comment:"used in things like 'Red Color' or 'Default Color'")). \(calculateActorLocationStringForAccessibility())"
+        imageView.accessibilityHint = NSLocalizedString("Double tap and hold to drag.", comment: "")
         imageView.accessibilityTraits = .button
     }
     
@@ -145,36 +145,36 @@ class VirtualRobot: Equatable {
             let x = coordinates.x
             let y = coordinates.y
             
-            var accessibilityString = "Location is at"
+            var accessibilityString = NSLocalizedString("Location is at", comment: "Beginning of description of where a virtual robot is located on the screen. Ex. Location is at left bottom of screen")
             // horizontal position
             if x <= outputWidth / 3 {
                 // left third of screen
-                accessibilityString.append(" left")
+                accessibilityString.append(" " + NSLocalizedString("left", comment: "Left side of screen"))
             } else if x <= outputWidth * 2 / 3 {
                 // middle third of screen (horizontally)
-                accessibilityString.append(" middle")
+                accessibilityString.append(" " + NSLocalizedString("middle", comment: "middle of screen"))
             } else {
                 // right third of screen
-                accessibilityString.append(" right")
+                accessibilityString.append(" " + NSLocalizedString("right", comment: "right side of screen"))
             }
             
             // vertical position
             if y <= outputHeight / 3 {
                 // top third of screen
-                accessibilityString.append(" top")
+                accessibilityString.append(" " + NSLocalizedString("top", comment: "top of screen"))
             } else if y <= outputHeight * 2 / 3 {
                 // middle third of screen (vertically)
                 if !accessibilityString.contains("middle") {
                     // don't add middle to the string twice
-                    accessibilityString.append(" middle")
+                    accessibilityString.append(" " + NSLocalizedString("middle", comment: "middle of screen"))
                 }
                 
             } else {
                 // bottom third of screen
-                accessibilityString.append(" bottom")
+                accessibilityString.append(" " + NSLocalizedString("bottom", comment: "bottom of screen"))
             }
             
-            accessibilityString.append(" of screen.")
+            accessibilityString.append(" " + NSLocalizedString("of screen.", comment: "End of description of where a virtual robot is located on the screen. Ex. Location is at left bottom of screen"))
             return accessibilityString
         }
         

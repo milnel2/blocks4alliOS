@@ -111,7 +111,7 @@ class Robot: Equatable {
             // Rear Distance Sensor
         rearDistanceSensor = dataList[8]
         
-            // Head X and Y
+        // Head X and Y
         let head = (dataList[0x12] << 8) + dataList[0x13]
         headX = head & 0b0000000111111111  // select last 9 bits
         headY = (head & 0b1111111000000000) >> 9  // select first 7 bits
@@ -127,7 +127,7 @@ class Robot: Equatable {
         headX = headX * 135 / 244 // convert to degrees
         headY = headY * 22 / 49 // convert to degrees
         
-            // Wheels
+        // Wheels
         leftWheel = (dataList[0x11] << 8) + dataList[0x10]
         rightWheel = (dataList[0x0F] << 8) + dataList[0x0E]
         wheelDistance = (dataList[0x09] & 0b1111 << 12) + (dataList[0x0B] << 8) + dataList[0x0A]
@@ -135,7 +135,7 @@ class Robot: Equatable {
             wheelDistance -= 0x10000
         }
         
-            // Rotation Acceleration
+        // Rotation Acceleration
         var z = (dataList[0x0D] << 8) + dataList[0x0C]
         var deltaZ = z - zRotationAcceleration
         

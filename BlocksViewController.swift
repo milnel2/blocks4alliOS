@@ -135,7 +135,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         } else {
             workspaceTitle.textColor = .black
         }
-        workspaceTitle.text = "Return to Main Workspace"
+        
+        workspaceTitle.text = NSLocalizedString("Return to Main Workspace", comment: "")
         
         // Add start and end function blocks
         if currentProject!.currentActor!.functionDict[currentWorkspace]!.isEmpty{
@@ -161,7 +162,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         addEventIndicatorBlocks()
         mainWorkspaceButton.isHidden = true // Hide Back to Main Workspace arrow button. Already in Main Workspace.
         workspaceTitle.textColor = UIColor(named: "navy_text")
-        workspaceTitle.text = "Main Workspace"
+        workspaceTitle.text = NSLocalizedString("Main Workspace", comment: "")
     }
     
     /// Adds "Start" blocks for freeplay mode events like "On Tap"
@@ -312,17 +313,23 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 //        }
         
         var accessibilityLabel = ""
-        var blockPlacementInfo = ". Workspace block " + String(blockLocation) + " of " + String(currentProject!.currentActor!.functionDict[currentWorkspace]!.count)
+        var blockPlacementInfo: String
+        var movementInfo: String
+        
+        blockPlacementInfo = NSLocalizedString(". Workspace block \(String(blockLocation)) of  \(String(currentProject!.currentActor!.functionDict[currentWorkspace]!.count))", comment: "Block placement info")
+        movementInfo = NSLocalizedString(". Double tap to move block.", comment: "Block movement info")
+        
         var accessibilityHint = ""
-        var movementInfo = ". Double tap to move block."
+        
         if isInFreeplay {
             // slightly change when in freeplay because of event indicator blocks
             if !block.name.contains(ON_RUN_STRING) && !block.name.contains(ON_TAP_STRING) { // not the event indicator block
                 accessibilityLabel = ""
-                blockPlacementInfo = ". Workspace block " + String(blockLocation - 1) + " of " + String(currentProject!.currentActor!.functionDict[currentWorkspace]!.count - 1) // must shift to one less due to event indicator block
-                accessibilityHint = ""
                 
-                movementInfo = ". Double tap to move block."
+                blockPlacementInfo = NSLocalizedString(". Workspace block  \(String(blockLocation - 1)) of  \(String(currentProject!.currentActor!.functionDict[currentWorkspace]!.count - 1))", comment: "Block placement info") // must shift to one less due to event indicator block
+                movementInfo = NSLocalizedString(". Double tap to move block.", comment: "Block movement info")
+                
+                accessibilityHint = ""
             } else {
                 blockPlacementInfo = ""
                 movementInfo = ""
@@ -332,25 +339,28 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if(!blocksBeingMoved.isEmpty){
             // Moving blocks, so switch labels to indicated where blocks can be placed
             if ((isWorkspaceCustomFunction(name: currentWorkspace) || isPremadeFunction(name: currentWorkspace)) && blockIndex == 1){
-                accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning of " + currentWorkspace + " function."
+                
+                accessibilityLabel = NSLocalizedString("Place \(blocksBeingMoved[0].name) at beginning of \(currentWorkspace) function.", comment: "Accessibility Label. Place (block name) at beginnning of (current workspace name) function")
             } else if (!isWorkspaceCustomFunction(name: currentWorkspace) && blockIndex == 0){
                 // in main workspace and setting 1st block accessibility info
-                accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at beginning, before "
-                accessibilityLabel +=  block.name + " " + blockModifier + " " + blockPlacementInfo
+                
+                accessibilityLabel = NSLocalizedString("Place \(blocksBeingMoved[0].name) at beginning, before \(block.name) \(blockModifier) \(blockPlacementInfo)", comment: "Accessibility Label. Place (block name at beginning, before (block name) (block modifier) (block placement info)")
+               
             } else {
-                accessibilityLabel = "Place " + blocksBeingMoved[0].name  + " before "
-                accessibilityLabel +=  block.name + " " + blockModifier + " " + blockPlacementInfo
+                    accessibilityLabel = NSLocalizedString("Place \(blocksBeingMoved[0].name) before \(block.name) \(blockModifier) \(blockPlacementInfo)", comment: "Accessibility Label. Place (block name) before (another block name) (block modifier) (block placement info)")
+
             }
             
             if ((isWorkspaceCustomFunction(name: currentWorkspace) || isPremadeFunction(name: currentWorkspace)) && blockIndex == 0){
-                accessibilityLabel = "Start of " + currentWorkspace + " function."
+                accessibilityLabel = NSLocalizedString("Start of \(currentWorkspace) function.", comment: "Accessibility label. Start of (workspace name) function")
+            
                 movementInfo = ""
             } else {
-                movementInfo = ". Double tap to add " + blocksBeingMoved[0].name + " block here"
+                movementInfo = NSLocalizedString(". Double tap to add \(blocksBeingMoved[0].name) block here.", comment: "Accessibility Label. Double tap to add (block name) block here")
             }
            
         } else {
-            accessibilityLabel =  block.name + " " + blockModifier + " " + blockPlacementInfo
+            accessibilityLabel =  "\(block.name) \(blockModifier) \(blockPlacementInfo)"
         }
         
         accessibilityHint += movementInfo
@@ -359,6 +369,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         createVoiceControlLabels(for: block, in: blockView)
         blockView.accessibilityHint = accessibilityHint
     }
+    
     
     // TODO: rewrite this method
     // TODO: update for freeplay
@@ -369,10 +380,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             case "orange_block":  // Control
                 if movingBlocks {
                     if block.name == "Wait for Time" {
-                        blockView.accessibilityUserInputLabels = ["Before Wait", "Before \(block.name)"]
+                        blockView.accessibilityUserInputLabels = [
+                            NSLocalizedString("Before Wait", comment: ""), NSLocalizedString("Before \(block.name)", comment: "")]
                     }
                 } else {
-                    blockView.accessibilityUserInputLabels = ["Wait", "\(block.name)"]
+                    blockView.accessibilityUserInputLabels = [NSLocalizedString("Wait", comment: ""), "\(block.name)"]
                 }
 
             case "green_block":  // Drive
@@ -390,7 +402,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
 
                 if movingBlocks {
-                    blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
+                    blockView.accessibilityUserInputLabels = [NSLocalizedString("Before \(block.name)", comment: ""), NSLocalizedString("Before \(voiceControlLabel)", comment: "")]
                 } else {
                     blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
                 }
@@ -411,7 +423,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
 
                 if movingBlocks {
-                    blockView.accessibilityUserInputLabels = ["Before \(voiceControlLabel)", "Before \(voiceControlLabel2)", "Before \(block.name)"]
+                    blockView.accessibilityUserInputLabels = [NSLocalizedString("Before \(voiceControlLabel2)", comment: ""),NSLocalizedString("Before \(block.name)", comment: "")]
                 } else {
                     blockView.accessibilityUserInputLabels = ["\(voiceControlLabel)", "\(voiceControlLabel2)", "\(block.name)"]
                 }
@@ -424,7 +436,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 }
 
                 if movingBlocks {
-                    blockView.accessibilityUserInputLabels = ["Before \(block.name)", "Before \(voiceControlLabel)"]
+                    blockView.accessibilityUserInputLabels = [NSLocalizedString("Before \(block.name)", comment: ""), NSLocalizedString("Before \(voiceControlLabel)", comment: "")]
                 } else {
                     blockView.accessibilityUserInputLabels = ["\(block.name)", "\(voiceControlLabel)"]
                 }
@@ -477,22 +489,22 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     internal func changePlayTrashButton() {
         if movingBlocks {
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "Trashcan"), for: .normal)
-            playTrashToggleButton.accessibilityLabel = "Place in Trash"
+            playTrashToggleButton.accessibilityLabel = NSLocalizedString("Place in Trash", comment: "Accessibility label for trash button")
             if #available(iOS 13.0, *)
                 { playTrashToggleButton.accessibilityUserInputLabels = ["Trash"] }
-            playTrashToggleButton.accessibilityHint = "Delete selected blocks"
+            playTrashToggleButton.accessibilityHint = NSLocalizedString("Delete selected blocks", comment: "Accessibility hint for trash button")
         } else if stopIsOption {
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "stop"), for: .normal)
-            playTrashToggleButton.accessibilityLabel = "Stop"
+            playTrashToggleButton.accessibilityLabel = NSLocalizedString("Stop", comment: "Accessibility Label for stop button")
             if #available(iOS 13.0, *)
                 { playTrashToggleButton.accessibilityUserInputLabels = ["Stop"] }
-            playTrashToggleButton.accessibilityHint = "Stop your robot!"
+            playTrashToggleButton.accessibilityHint = NSLocalizedString("Stop your robot!", comment: "Accessibility hint for stop button")
         } else {
             playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "GreenArrow"), for: .normal)
-            playTrashToggleButton.accessibilityLabel = "Play"
+            playTrashToggleButton.accessibilityLabel = NSLocalizedString("Play", comment: "Accessibility Label for play (run code) button")
             if #available(iOS 13.0, *)
-                { playTrashToggleButton.accessibilityUserInputLabels = ["Play"] }
-            playTrashToggleButton.accessibilityHint = "Make your robot go!"
+                { playTrashToggleButton.accessibilityUserInputLabels = [NSLocalizedString("Play", comment: "Accessibility User Input Label for play (run code) button")] }
+            playTrashToggleButton.accessibilityHint = NSLocalizedString("Make your robot go!", comment: "Accessibility hint for play (run code) button")
         }
     }
     
@@ -510,7 +522,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// Run the actual program when the trash button is clicked
     private func trashClicked() {
         indexOfMovingBlock = nil
-        let announcement = blocksBeingMoved[0].name + " placed in trash."
+        let formattedString = NSLocalizedString("block_placed_in_trash", comment: "Announcement for a block placed in trash")
+        let announcement = String.localizedStringWithFormat(formattedString, blocksBeingMoved[0].name)
         playTrashToggleButton.accessibilityLabel = announcement
         self.containerViewController?.popViewController(animated: false)
         blocksProgram.reloadData()
@@ -521,14 +534,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     func playClicked() {
         if(!areRobotsConnected()) {
             //no robots
-            let announcement = "Connect to the dash robot. "
+            let announcement = NSLocalizedString("Connect to the dash robot.", comment: "Announcement when no robots are connected")
             UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: announcement)
             performSegue(withIdentifier: "AddRobotSegue", sender: nil)
             
         } else if(currentProject!.currentActor!.functionDict[currentWorkspace]!.isEmpty) {
             changePlayTrashButton()
-            let announcement = "Your robot has nothing to do! Add some blocks to your workspace."
-            playTrashToggleButton.accessibilityLabel = announcement
+            
+            playTrashToggleButton.accessibilityLabel =  NSLocalizedString("Your robot has nothing to do! Add some blocks to your workspace.", comment: "Accessibility Label for play (run code) button when there are no blocks in the workspace")
         } else {
             stopIsOption = true
             changePlayTrashButton()
@@ -605,9 +618,13 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         if (index != 0) {
             let myBlock = currentProject!.currentActor!.functionDict[currentWorkspace]![index-1]
-            announcement = blocks[0].name + " placed after " + myBlock.name
+            let formattedString = NSLocalizedString("block1_placed_after_block2", comment: "Announcement for when a block is placed after another block")
+            announcement = String.localizedStringWithFormat(formattedString, blocks[0].name, myBlock.name)
+            
         } else {
-            announcement = blocks[0].name + " placed at beginning"
+            let formattedString = NSLocalizedString("block_placed_at_beginning", comment: "Announcement for when a block is placed at the beginning of the workspace")
+            announcement = String.localizedStringWithFormat(formattedString, blocks[0].name)
+
         }
         indexOfMovingBlock = nil
         makeAnnouncement(announcement)
@@ -696,15 +713,20 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             if !blocksBeingMoved.isEmpty{
                 cell.isAccessibilityElement = true
                 if currentProject!.currentActor!.functionDict[currentWorkspace]!.count == 0 {
-                    cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at Beginning"
-                    if #available (iOS 13.0, *) { cell.accessibilityUserInputLabels = ["Workspace"] }
+                    let formattedString = NSLocalizedString("place_block_at_beginning", comment: "Accessibility Label to place a block at the beginning of the workspace")
+                    cell.accessibilityLabel = String.localizedStringWithFormat(formattedString, blocksBeingMoved[0].name)
+
+                    if #available (iOS 13.0, *) { cell.accessibilityUserInputLabels = [NSLocalizedString("Workspace", comment: "Accessibility User Input Label to place a block at the beginning of the workspace")] } // TODO: this label seems incorrect
                 } else {
                     if !isWorkspaceCustomFunction(name: currentWorkspace) {
-                        cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End"
-                        if #available (iOS 13.0, *) { cell.accessibilityUserInputLabels = ["End of workspace"] }
+                        let formattedString = NSLocalizedString("place_block_at_end", comment: "Accessibility Label to place a block at the end of the workspace")
+                        cell.accessibilityLabel = String.localizedStringWithFormat(formattedString, blocksBeingMoved[0].name)
+                        if #available (iOS 13.0, *) { cell.accessibilityUserInputLabels = [NSLocalizedString("End of workspace", comment: "Accessibility User Input Label to place a block at the end of the workspace")] }
                     } else {
-                        cell.accessibilityLabel = "Place " + blocksBeingMoved[0].name + " at End of " + currentWorkspace + " function"
-                        if #available (iOS 13.0, *) { cell.accessibilityUserInputLabels = ["End of function workspace"] }
+                        let formattedString = NSLocalizedString("place_block_at_end_of_function", comment: "Accessibility Label to place a block at the end of the current function")
+                        cell.accessibilityLabel = String.localizedStringWithFormat(formattedString, blocksBeingMoved[0].name, currentWorkspace)
+                       
+                        if #available (iOS 13.0, *) { cell.accessibilityUserInputLabels = [NSLocalizedString("End of function workspace", comment: "Accessibility User Input Label to place a block at the end of a function")] }
                     }
                 }
             }
@@ -735,11 +757,15 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     width: blockSize + 2 * blockSpacing,
                     height: blockSize / 2))
                 if b.name.contains("Function Start") {
-                    myView.accessibilityLabel = "Inside \(currentWorkspace) function"
-                    myView.text = "Inside \(currentWorkspace) function"
+                    let formattedString = NSLocalizedString("inside_function", comment: "Text for when within a function: 'Inside <function_name> function'")
+                    let resultString = String.localizedStringWithFormat(formattedString, currentWorkspace)
+                    myView.accessibilityLabel = resultString
+                    myView.text = resultString
                 } else {
-                    myView.accessibilityLabel = "Inside " + b.name
-                    myView.text = "Inside " + b.name
+                    let formattedString = NSLocalizedString("inside_block", comment: "Text for when within a nested block (like repeat or if blocks): 'Inside <block_name>'")
+                    let resultString = String.localizedStringWithFormat(formattedString, b.name)
+                    myView.accessibilityLabel = resultString
+                    myView.text = resultString
                     myView.isAccessibilityElement = true
                 }
                 cell.addSubview(myView)

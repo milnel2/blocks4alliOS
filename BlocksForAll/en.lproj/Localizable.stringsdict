@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>click_to_connect_to_robot_name</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Click to connect to %@.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>robot_name_connected</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ Connected.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>block_size_equals_access_value</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>equals %d.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>block_size_equals_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Block Size = %d</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>edit_function_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@. Double tap to edit function. </string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>num_nested_blocks</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@val@ Nested Block(s)</string>
+		<key>val</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>0 Nested Blocks</string>
+			<key>one</key>
+			<string>1 Nested Block</string>
+			<key>other</key>
+			<string>%d Nested Blocks</string>
+		</dict>
+	</dict>
+	<key>nested_block_selected_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ block with %#@val@ nested block(s) selected. Select location in workspace to place it.</string>
+		<key>val</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>%@ block with 0 nested blocks selected. Select location in workspace to place it.</string>
+			<key>one</key>
+			<string>%@ block with 1 nested block selected. Select location in workspace to place it.</string>
+			<key>other</key>
+			<string>%@ block with %d nested blocks selected. Select location in workspace to place it.</string>
+		</dict>
+	</dict>
+	<key>block_selected_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ selected. Select location in workspace to place it.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>block_type_category_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ category.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>variable_block_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ Variable.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>num_seconds</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@val@  second(s)</string>
+		<key>val</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>0 seconds</string>
+			<key>one</key>
+			<string>1 second</string>
+			<key>other</key>
+			<string>%d seconds</string>
+		</dict>
+	</dict>
+	<key>num_times</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ times</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>row_column_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Row %@ of %@, column %@ of %@.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>num_centimeters_with_speed_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ cm, at %@ speed.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>num_centimeters_with_speed</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ cm, %@</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>num_centimeters</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ cm</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>inside_block</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Inside %@.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>inside_function</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Inside %@ function.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>place_block_at_end_of_function</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>place %@ at end of %@ function.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>place_block_at_end</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>place %@ at end.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>place_block_at_beginning</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>place %@ at beginning.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>block_placed_at_beginning</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ placed at beginning.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>block1_placed_after_block2</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ placed after %@.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>block_placed_in_trash</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ placed in trash.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>current_value_is_degrees</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Current value is %#@val@ degree(s).</string>
+		<key>val</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>Current value is 0 degrees.</string>
+			<key>one</key>
+			<string>Current value is 1 degree.</string>
+			<key>other</key>
+			<string>Current value is %d degrees.</string>
+		</dict>
+	</dict>
+	<key>num_degrees</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@val@ degrees.</string>
+		<key>val</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>zero</key>
+			<string>0 degrees.</string>
+			<key>one</key>
+			<string>1 degree.</string>
+			<key>other</key>
+			<string>%d degrees.</string>
+		</dict>
+	</dict>
+	<key>current_value_is_int</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Current value is %d.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>new_project_name</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Project %d</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>delete_project_button_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Delete %@.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>project_cell_access_hint</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Open %@. Project %d of %d. One finger swipe for more options.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>project_name_label_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Rename %@.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>delete_actor_button_access_hint</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Delete %@ actor.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>actor_cell_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@. %@ color.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>second_code_line_access_hint</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Tap on %@ actor to run this code line.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>current_actor_image_view_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Current actor is %@. Tap to customize or delete.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>format</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>my name is %@ and your name is %@</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>test_one</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>This is the robot in english!</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>test_two</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>This is the virtual robot in english! :0</string>
+		<key>VARIABLE</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string></string>
+			<key>zero</key>
+			<string></string>
+			<key>one</key>
+			<string></string>
+			<key>two</key>
+			<string></string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+</dict>
+</plist>

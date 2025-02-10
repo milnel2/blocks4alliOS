@@ -135,7 +135,7 @@ class BlockView: UIView, UITextFieldDelegate {
             }
             // Don't add a label to the end of double blocks
             if (!(block.name == "End Repeat" || block.name == "End If" || block.name == "End Repeat Forever")) {
-                myLabel.text = name
+                myLabel.text = name.localized
             }
            
             myLabel.textAlignment = .center

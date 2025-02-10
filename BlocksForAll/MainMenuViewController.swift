@@ -48,13 +48,20 @@ class MainMenuViewController: UIViewController {
         playWithVirtualRobotButton.titleLabel?.textAlignment = .center
         playWithRobotButton.titleLabel?.numberOfLines = 2
         
-        
+       
         // Accessibility
         playWithRobotButton.titleLabel?.adjustsFontForContentSizeCategory = true
         playWithVirtualRobotButton.titleLabel?.adjustsFontForContentSizeCategory = true
         instructions.titleLabel?.adjustsFontForContentSizeCategory = true
         settingsButton.titleLabel?.adjustsFontForContentSizeCategory = true
         
+        welcomeLabelImage.accessibilityLabel = NSLocalizedString("Welcome to Blocks4All!", comment: "Label for main menu screen")
+        settingsButton.accessibilityLabel = NSLocalizedString("Settings", comment: "Accessibility Label for settings button on main menu screen")
+        instructions.accessibilityLabel = NSLocalizedString("Help", comment: "Accessibility Label for help button on main menu screen")
+        
+        // Text
+        playWithRobotButton.setTitle(NSLocalizedString("Play with Robot", comment: "Title for Play with Physical Robot button on main menu screen"), for: .normal)
+        playWithVirtualRobotButton.setTitle(NSLocalizedString("Play with Virtual Robot", comment: "Title for Play with Virtual Robot button on main menu screen"), for: .normal)
         
         // Default settings
         // if show icons/show text hasn't been set yet, set showText to showIcons by default
@@ -70,7 +77,6 @@ class MainMenuViewController: UIViewController {
         robotImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(robotImageTapped)))
         
         accessibilityElements = [welcomeLabelImage!, playWithRobotButton!, playWithVirtualRobotButton!, settingsButton!, instructions!, robotImageView!]
-        
     }
     
     @objc private func robotImageTapped(_ recognizer: UITapGestureRecognizer) {
@@ -138,11 +144,9 @@ class MainMenuViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if let myDestination = segue.destination as? BlocksViewController{
             myDestination.blockSize = blockSize
-            print("block size " , blockSize)
         }
         if let destinationViewController = segue.destination as? UINavigationController{
             if destinationViewController.topViewController is BlocksViewController{
-                print("block size 2 " , blockSize)
             }
         }
         

@@ -55,31 +55,51 @@ class ProjectGalleryViewController: UIViewController {
     }
     func updateAccessibilityTools() {
         view.accessibilityElements = [projectGalleryCollectionView!, homeButton!]
+        
+        homeButton.accessibilityLabel = "Main Menu".localized
     }
     
     func validateFunctionName(name: String, currentAlert: UIAlertController) -> Bool{
         let dictionary = HelperFunctions.getPListDictionary(resourceName: "ModifierProperties")!
         if (dictionary[name] != nil) {
             // Name is protected, show an alert do not rename the function
+            let titleString: String
+            let messageString: String
+            
+            titleString = NSLocalizedString("Name is protected", comment: "")
+            messageString = NSLocalizedString("Choose a different name", comment: "")
+           
             currentAlert.dismiss(animated: true) {
-                let invalidNameAlert = UIAlertController(title: "Name is protected", message: "Choose a different name", preferredStyle: .alert)
-                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                let invalidNameAlert = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
                 self.present(invalidNameAlert, animated: true)
             }
             return false
         } else if (name == "") {
             // Name is empty string
+            let titleString: String
+            let messageString: String
+            
+            titleString = NSLocalizedString("Name cannot be empty", comment: "")
+            messageString = NSLocalizedString("Choose a different name", comment: "")
+    
             currentAlert.dismiss(animated: true) {
-                let invalidNameAlert = UIAlertController(title: "Name cannot be empty", message: "Choose a different name", preferredStyle: .alert)
-                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                let invalidNameAlert = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
                 self.present(invalidNameAlert, animated: true)
             }
             return false
         } else {
             for proj in allProjects[galleryType]! {
                 if proj.name == name {
-                        let invalidNameAlert = UIAlertController(title: "Name already exists", message: "Choose a different name", preferredStyle: .alert)
-                        invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                    let titleString: String
+                    let messageString: String
+                    
+                    titleString = NSLocalizedString("Name already exists", comment: "")
+                    messageString = NSLocalizedString( "Choose a different name", comment: "")
+                    
+                    let invalidNameAlert = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
+                        invalidNameAlert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
                         self.present(invalidNameAlert, animated: true)
                     
                     return false
@@ -87,9 +107,7 @@ class ProjectGalleryViewController: UIViewController {
             }
         }
         return true
-        
     }
-   
 }
 
 extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -100,7 +118,6 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        
         let index = indexPath.item
-       
         
         if index == 0 {
             // Add Project Cell
@@ -212,7 +229,11 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
     func generateNewProjectName() -> String {
         
         let newProjectNumber = projects.count + 1
-        let defaultProjectName = "Project " + String(newProjectNumber)
+        let defaultProjectName: String
+       
+        let formattedString = NSLocalizedString("new_project_name", comment: "Default name of a project (ex: 'Project 1')")
+        let resultString = String.localizedStringWithFormat(formattedString, newProjectNumber)
+        defaultProjectName = resultString
         
         if !doesProjectNameAlreadyExist(name: defaultProjectName) {
             return defaultProjectName
@@ -223,7 +244,10 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
         var projectNumber = newProjectNumber
         while doesProjectNameAlreadyExist(name: projectName) {
             projectNumber += 1
-            projectName = "Project " + String(projectNumber)
+            
+            let formattedString = NSLocalizedString("new_project_name", comment: "Default name of a project (ex: 'Project 1')")
+            let resultString = String.localizedStringWithFormat(formattedString, projectNumber)
+            projectName = resultString
         }
         return projectName
         

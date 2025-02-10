@@ -269,12 +269,14 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         cell.isAccessibilityElement = true
         let nonZeroIndex = index + 1
         let totalNumCells = backgrounds.count
-        cell.accessibilityLabel = "\(bgImage.getImagePath()) image. Double tap to select. Option \(nonZeroIndex) of \(totalNumCells)."
+        
+        cell.accessibilityLabel = NSLocalizedString("\(bgImage.getImagePath()) image. Double tap to select. Option \(nonZeroIndex) of \(totalNumCells).", comment: "Accessibility Label for an unselected background image cell in Select Background View Controller")
         
         // Highlight the cell if needed
         if index == focusedBackgroundIndex {
             cell.highlight()
-            cell.accessibilityLabel = "\(bgImage.getImagePath()) image. Selected. Option \(nonZeroIndex) of \(totalNumCells)."
+            
+            cell.accessibilityLabel = NSLocalizedString("\(bgImage.getImagePath()) image. Selected. Option \(nonZeroIndex) of \(totalNumCells).", comment: "Accessibility Label for a selected background image cell in Select Background View Controller")
         } else {
             cell.removeHighlight()
         }
@@ -305,9 +307,12 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
     
     @objc func deleteAction(sender: UIButton){
         // Verify delete action
-        let alert = UIAlertController(title: "Are you sure you want to delete this background image?", message: "This action cannot be undone.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
+        let titleString: String
+        titleString = NSLocalizedString("Are you sure you want to delete this background image?", comment: "")
+        
+        let alert = UIAlertController(title: titleString, message: "This action cannot be undone.".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete".localized, style: .destructive, handler: {action in
             // delete project
             self.deleteCustomBackground(cellIndex: sender.tag)
         }))
@@ -370,8 +375,8 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         FocusedBackgroundImageView.isAccessibilityElement = true
         
         accessibilityElements = [back!, SelectBackgroundTitleLabel!, FocusedBackgroundImageView!, BackgroundsCollectionView!]
-        
-        FocusedBackgroundImageView.accessibilityLabel = focusedBackground!.getImagePath() + " image selected"
+    
+        FocusedBackgroundImageView.accessibilityLabel = NSLocalizedString("\(focusedBackground!.getImagePath()) image selected.", comment: "Accessibility Label for a selected Image View")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

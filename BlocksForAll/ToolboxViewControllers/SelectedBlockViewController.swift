@@ -49,7 +49,10 @@ class SelectedBlockViewController: UIViewController {
         }
         
         // Do any additional setup after loading the view.
-        let label = (blocks?[0].name)! + " selected. Select location in workspace to place it"
+        let formattedString = NSLocalizedString("block_selected_access_label", comment: "Accessibility label for when a block is selected to move")
+        let label = String.localizedStringWithFormat(formattedString, (blocks?[0].name)!)
+        
+        
         
         if #available (iOS 13.0, *){
             self.view.accessibilityUserInputLabels = [""]
@@ -113,16 +116,11 @@ class SelectedBlockViewController: UIViewController {
 
        
         let numNestedBlocks = blocks!.count - 2 // the number of blocks that are nested inside of this block (don't count the start and end blocks)
+        let formattedString = NSLocalizedString("nested_block_selected_access_label", comment: "Accessibility label for when a nested block is selected to move. Says name of block and how many blocks (int) are nested within it") // TODO: don't forget to test this one
+        var label = String.localizedStringWithFormat(formattedString, (blocks?[0].name)!, numNestedBlocks)
         
-        var label = (blocks?[0].name)! + "block with " + String(numNestedBlocks) + " nested blocks selected. Select location in workspace to place it" // Accessibility label for voiceOver
-        
-        // Set text for the label based on the number of nested blocks (singular or plural)
-        if (numNestedBlocks == 1) {
-            nestedBlockLabel.text = "1 Nested Block"
-            label = (blocks?[0].name)! + "block with 1 nested block selected. Select location in workspace to place it" // Accessibility label for voiceOver
-        } else {
-            nestedBlockLabel.text = String(numNestedBlocks) + " Nested Blocks"
-        }
+        let formattedString2 = NSLocalizedString("num_nested_blocks", comment: "Label for how many blocks are nested within a block. '<num> Nested Block(s)'")
+        nestedBlockLabel.text = String.localizedStringWithFormat(formattedString2, numNestedBlocks)
         
         // Text styling
         nestedBlockLabel.textAlignment = .center

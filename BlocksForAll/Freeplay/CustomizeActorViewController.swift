@@ -34,9 +34,11 @@ class CustomizeActorViewController: UIViewController {
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
         // Verify choice to delete actor
-        let alert = UIAlertController(title: "Are you sure you want to delete this actor?", message: "This action cannot be undone.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
+        let titleString = NSLocalizedString("Are you sure you want to delete this actor?", comment: "'Actor' refers to the virtual robot character")
+        
+        let alert = UIAlertController(title: titleString, message: "This action cannot be undone.".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete".localized, style: .destructive, handler: {action in
             // delete actor
             self.freeplayWorkspace!.deleteActor(actor: self.currentActor!)
             self.performSegue(withIdentifier: "backToFreeplay", sender: nil)
@@ -72,6 +74,11 @@ class CustomizeActorViewController: UIViewController {
             removeHighlightFromButton(button: button)
         }
         
+        defaultButton.setTitle("Default".localized, for: .normal)
+        redButton.setTitle("Red".localized, for: .normal)
+        yellowButton.setTitle("Yellow".localized, for: .normal)
+        blueButton.setTitle("Blue".localized, for: .normal)
+        
         actorImageDisplayView.image = UIImage(named: currentActor!.imagePath)
         
         selectedColor = currentActor!.color
@@ -100,14 +107,19 @@ class CustomizeActorViewController: UIViewController {
     }
     
     func setUpAccessibility() {
-        actorImageDisplayView.accessibilityLabel = "\(currentActor!.name) \(selectedColor) Color."
+        let formattedString = NSLocalizedString("actor_cell_access_label", comment: "Accessibility label for actor cell. Should say the actor's name and color.")
+        let resultString = String.localizedStringWithFormat(formattedString, currentActor!.name, selectedColor.localized)
+        actorImageDisplayView.accessibilityLabel = resultString
+        
+        let formattedString2 = NSLocalizedString("delete_actor_button_access_hint", comment: "Accessibility Hint for button to delete actor. 'Delete <actor name> actor.'")
+        let resultString2 = String.localizedStringWithFormat(formattedString, currentActor!.name)
+        deleteButton.accessibilityHint = resultString2
+   
         for button in colorButtons {
-            button.accessibilityHint = "Double tap to set color"
+            button.accessibilityHint = NSLocalizedString( "Double tap to set color.", comment: "")
         }
         
         view.accessibilityElements = [actorImageDisplayView!, colorButtons!, deleteButton!, backButton!]
-        
-        deleteButton.accessibilityHint = "Delete \(currentActor!.name) actor."
     }
     
     /// Sets actor image display to the image for the given color name

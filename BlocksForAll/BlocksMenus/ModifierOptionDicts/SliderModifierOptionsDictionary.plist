@@ -10,10 +10,6 @@
 		<string>0</string>
 		<key>max</key>
 		<string>360</string>
-		<key>unitIfSingular</key>
-		<string>degree</string>
-		<key>unitIfPlural</key>
-		<string>degrees</string>
 		<key>Default image</key>
 		<string>driveModifierBackground</string>
 		<key>Slider Interval</key>
@@ -27,10 +23,6 @@
 		<string>0</string>
 		<key>max</key>
 		<string>360</string>
-		<key>unitIfSingular</key>
-		<string>degree</string>
-		<key>unitIfPlural</key>
-		<string>degrees</string>
 		<key>Default image</key>
 		<string>driveModifierBackground</string>
 		<key>Slider Interval</key>
@@ -44,10 +36,6 @@
 		<string>1</string>
 		<key>max</key>
 		<string>10</string>
-		<key>unitIfSingular</key>
-		<string></string>
-		<key>unitIfPlural</key>
-		<string></string>
 		<key>Default image</key>
 		<string>driveModifierBackground</string>
 		<key>Slider Interval</key>
@@ -61,10 +49,6 @@
 		<string>1</string>
 		<key>max</key>
 		<string>10</string>
-		<key>unitIfSingular</key>
-		<string></string>
-		<key>unitIfPlural</key>
-		<string></string>
 		<key>Default image</key>
 		<string>driveModifierBackground</string>
 		<key>Slider Interval</key>
@@ -78,10 +62,6 @@
 		<string>1</string>
 		<key>max</key>
 		<string>10</string>
-		<key>unitIfSingular</key>
-		<string></string>
-		<key>unitIfPlural</key>
-		<string></string>
 		<key>Default image</key>
 		<string>driveModifierBackground</string>
 		<key>Slider Interval</key>
@@ -95,10 +75,6 @@
 		<string>1</string>
 		<key>max</key>
 		<string>10</string>
-		<key>unitIfSingular</key>
-		<string></string>
-		<key>unitIfPlural</key>
-		<string></string>
 		<key>Default image</key>
 		<string>driveModifierBackground</string>
 		<key>Slider Interval</key>

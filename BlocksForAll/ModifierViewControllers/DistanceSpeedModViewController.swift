@@ -61,13 +61,27 @@ class DistanceSpeedModViewController: UIViewController{
         
         //Voice Control
         if #available(iOS 13.0, *) {
-            slowButton.accessibilityUserInputLabels = ["Slower", "Decrease", "Minus", "Subtract"]
-            fastButton.accessibilityUserInputLabels = ["Faster", "Increase", "Plus", "Add"]
+            slowButton.accessibilityUserInputLabels = [
+                NSLocalizedString("Slower", comment: "Voice Control label"),
+                NSLocalizedString("Decrease", comment: "Voice Control label"),
+                NSLocalizedString("Minus", comment: "Voice Control label"),
+                NSLocalizedString("Subtract", comment: "Voice Control label"),
+                NSLocalizedString("Less", comment: "Voice Control label")]
+            fastButton.accessibilityUserInputLabels = [
+                NSLocalizedString("Faster", comment: "Voice Control label"),
+                NSLocalizedString("Increase", comment: "Voice Control label"),
+                NSLocalizedString("Plus", comment: "Voice Control label"),
+                NSLocalizedString("Add", comment: "Voice Control label"),
+                NSLocalizedString("More", comment: "Voice Control label")]
         }
        
         // Dynamic Text
         back.titleLabel?.adjustsFontForContentSizeCategory = true
         setFontStyle()
+        
+        // Localization
+        distanceTitle.text = "Distance".localized
+        speedTitle.text = "Speed".localized
         
         
     }
@@ -128,27 +142,27 @@ class DistanceSpeedModViewController: UIViewController{
     /// Called whenever updateScreen() is called. Updates accessibility labels and values to match what is being displayed
     private func updateAccessibilityTools() {
         // Distance
-        distanceDisplayed.accessibilityValue = "Current distance is \(Int(distance)) centimeters"
-        distanceSlider.accessibilityValue = "\(Int(distance)) centimeters"
-        
+        distanceDisplayed.accessibilityValue = NSLocalizedString("Current distance is \(Int(distance)) centimeter(s).", comment: "Accessibility value for a label displaying a distance")
+        distanceSlider.accessibilityValue = NSLocalizedString("\(Int(distance)) centimeter(s).", comment: "Accessibility value for a slider to choose a distance")
         // Speed
-        slowButton.accessibilityLabel = "Slower. Current speed: \(speed)"
-        fastButton.accessibilityLabel = "Faster. Current speed: \(speed)"
-        speedLabel.accessibilityLabel = "Current speed is \(speed)"
+        slowButton.accessibilityLabel = NSLocalizedString("Slower. Current speed is \(speed).", comment: "Accessibility label for a button to reduce speed")
+        fastButton.accessibilityLabel = NSLocalizedString("Faster. Current speed is \(speed).", comment: "Accessibility label for a button to increase speed")
+        speedLabel.accessibilityLabel = NSLocalizedString("Current speed is \(speed).", comment: "Accessibility label for a label that describes current speed value")
         
         if !speedImage.isHidden {
             speedImage.isAccessibilityElement = true
             switch speed {
             case "Really Slow":
-                speedImage.accessibilityLabel = "Two snails"
+            // TODO: do we need these accessibility labels?
+                speedImage.accessibilityLabel = NSLocalizedString("Two snails.", comment: "")
             case "Slow":
-                speedImage.accessibilityLabel = "One snail"
+                speedImage.accessibilityLabel = NSLocalizedString("One snail.", comment: "")
             case "Normal":
-                speedImage.accessibilityLabel = "One snail and one bunny"
+                speedImage.accessibilityLabel = NSLocalizedString("One snail and one bunny.", comment: "")
             case "Fast":
-                speedImage.accessibilityLabel = "One bunny"
+                speedImage.accessibilityLabel = NSLocalizedString("One bunny.", comment: "")
             case "Really Fast":
-                speedImage.accessibilityLabel = "Two bunnies"
+                speedImage.accessibilityLabel = NSLocalizedString("Two bunnies.", comment: "")
             default:
                 speedImage.accessibilityLabel = ""
             }
@@ -165,7 +179,7 @@ class DistanceSpeedModViewController: UIViewController{
         distanceSlider.setValue(roundedDistance, animated: false)
         
         // Speed
-        speedLabel.text = speed
+        speedLabel.text = speed.localized
         // Update speed image if showIcons is on
         if defaults.value(forKey: "showText") as! Int == 0 {
             let imagePath = "\(speed) Icon"

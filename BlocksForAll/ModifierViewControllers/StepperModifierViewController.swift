@@ -66,7 +66,7 @@ class StepperModifierViewController: UIViewController {
         configureButton(button: increaseButton, optionName: increaseImagePath)// plus button
         configureButton(button: decreaseButton, optionName: decreaseImagePath)
         // minus button
-        optionModTitle.text = optionType // Set title of the screen
+        optionModTitle.text = optionType.localized // Set title of the screen
        
         // default value: minimum value or preserve last selection
         let previousWaitString: String = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? min
@@ -80,12 +80,20 @@ class StepperModifierViewController: UIViewController {
         // Accessibility
         // VoiceOver
         optionModView.accessibilityElements = [back!, optionModTitle!, decreaseButton!, modifierValueLabel!, increaseButton!]
-        optionModTitle.accessibilityLabel = optionType
         // Voice Control
         //Makes buttons easier to select with Voice Control
+        //Voice Control
         if #available(iOS 13.0, *) {
-            increaseButton.accessibilityUserInputLabels = ["Increase", "Plus", "Add"]
-            decreaseButton.accessibilityUserInputLabels = ["Decrease", "Minus", "Subtract"]
+            decreaseButton.accessibilityUserInputLabels = [
+                NSLocalizedString("Decrease", comment: "Voice Control label"),
+                NSLocalizedString("Minus", comment: "Voice Control label"),
+                NSLocalizedString("Subtract", comment: "Voice Control label"),
+                NSLocalizedString("Less", comment: "Voice Control label")]
+            increaseButton.accessibilityUserInputLabels = [
+                NSLocalizedString("Increase", comment: "Voice Control label"),
+                NSLocalizedString("Plus", comment: "Voice Control label"),
+                NSLocalizedString("Add", comment: "Voice Control label"),
+                NSLocalizedString("More", comment: "Voice Control label")]
         }
         // Dynamic Text
         setFontStyle()
@@ -102,7 +110,7 @@ class StepperModifierViewController: UIViewController {
     private func configureButton (button : UIButton, optionName : String) {
         button.setImage(nil, for: .normal) // remove any previous image
         let image = UIImage(named: optionName)
-        if image != nil && defaults.value(forKey: "showText") as! Int == 0 {
+        if image != nil && HelperFunctions.showIconsIsOn() {
            // Show Icons is on and the image was found
             let resizedImage = HelperFunctions.resizeImage(
             image: image!,
@@ -123,9 +131,9 @@ class StepperModifierViewController: UIViewController {
                 height: buttonSize)) // resize the image to fit the button
             button.setBackgroundImage(resizedImage, for: .normal)
             if button == increaseButton {
-                button.setTitle("More", for: .normal)
+                button.setTitle("More".localized, for: .normal)
             } else {
-                button.setTitle("Less", for: .normal)
+                button.setTitle("Less".localized, for: .normal)
             }
 
             if image == nil {
@@ -141,7 +149,11 @@ class StepperModifierViewController: UIViewController {
             modifierValue = modifierValue + 1
             updateModifierValueLabel()
         } else {
-            increaseButton.accessibilityLabel = "At maximum value. Current value: \(modifierValueLabel.text ?? String(modifierValue))"
+            if #available(iOS 15, *) {
+                increaseButton.accessibilityLabel = NSLocalizedString("At maximum value. Current value: \(modifierValueLabel.text ?? String(modifierValue)).", comment: "Accessibility label for an increase button when it cannot go any higher")
+            } else {
+                increaseButton.accessibilityLabel = "At maximum value. Current value: \(modifierValueLabel.text ?? String(modifierValue))."
+            }
         }
         
     }
@@ -152,7 +164,7 @@ class StepperModifierViewController: UIViewController {
             modifierValue = modifierValue - 1
             updateModifierValueLabel()
         } else {
-            decreaseButton.accessibilityLabel = "At minimum value. Current value: \(modifierValueLabel.text ?? String(modifierValue))"
+            decreaseButton.accessibilityLabel = NSLocalizedString("At minimum value. Current value: \(modifierValueLabel.text ?? String(modifierValue)).", comment: "Accessibility label for an increase button when it cannot go any higher")
         }
     }
     
@@ -161,15 +173,15 @@ class StepperModifierViewController: UIViewController {
         let unitIfSingular = optionDict.value(forKey: "unitIfSingular") as? String ?? "N/A"
         let unitIfPlural = optionDict.value(forKey: "unitIfPlural") as? String ?? "N/A"
         
-        checkIfValueExists(variableName: "unitIfSingular", value: unitIfSingular)
+        checkIfValueExists(variableName: "unitIfSingular", value: unitIfSingular) // TODO: localize number singular/plural for languages with different number systems in the future
         checkIfValueExists(variableName: "unitIfPlural", value: unitIfPlural)
         
         if (modifierValue == 1) {
             // singular
-            modifierValueLabel.text = "\(modifierValue) \(unitIfSingular)"
+            modifierValueLabel.text = "\(modifierValue) \(unitIfSingular.localized)"
         } else {
             //plural
-            modifierValueLabel.text = "\(modifierValue) \(unitIfPlural)"
+            modifierValueLabel.text = "\(modifierValue) \(unitIfPlural.localized)"
         }
         updateAccessibilityLabel()
     }
@@ -188,8 +200,8 @@ class StepperModifierViewController: UIViewController {
     
     /// Update accessibliity tools
     private func updateAccessibilityLabel() {
-        increaseButton.accessibilityLabel = "Increase. Current value: \(modifierValueLabel.text ?? String(modifierValue))"
-        decreaseButton.accessibilityLabel = "Decrease. Current value: \(modifierValueLabel.text ?? String(modifierValue))"
+        increaseButton.accessibilityLabel = NSLocalizedString("Increase. Current value: \(modifierValueLabel.text ?? String(modifierValue)).", comment: "Accessibility label for an increase button")
+        decreaseButton.accessibilityLabel = NSLocalizedString("Decrease. Current value: \(modifierValueLabel.text ?? String(modifierValue)).", comment: "Accessibility label for a decrease button")
     }
     
     /// Set all labels to custom font

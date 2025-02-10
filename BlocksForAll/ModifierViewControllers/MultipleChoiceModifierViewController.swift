@@ -27,18 +27,18 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     // the first element of the array is the attributeName and the second element is the text to put in the optionalExtraLabel
     // these are the only types of modifiers that will have only two items in the array, because any modifiers that have two options should be put in the TwoOptionModifierViewController class
       private var optionDictionary: [String:[String]] =
-          ["Animal Noise" :  ["cat", "crocodile", "dinosaur", "goat", "bee", "elephant", "dog", "horse", "lion", "turkey", "random animal"],
-           "Emotion Noise" : ["bragging", "confused", "giggle", "grunt", "sigh", "snore", "surprised", "yawn" ,"random emotion"],
-           "Object Noise": ["laser", "squeak", "trumpet", "random object"],
-           "Vehicle Noise": ["airplane", "beep", "boat", "helicopter", "siren", "speed boost", "start engine", "tire squeal", "train" ,"random vehicle"],
-           "Speak" : ["hi", "bye", "cool", "haha", "huh", "let's go", "oh", "wow", "tah dah!", "uh huh", "uh oh", "wah", "wee hee!", "wow", "yippe!" ,"random word"],
-           "Set Right Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
-           "Set Left Ear Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
-           "Set Front Light Color" : ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
-           "Set All Lights Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
-           "Look Left or Right" : ["variableSelected", "Select Look Left or Right Variable\nLeft = -120, Right = 120"],
-           "Look Up or Down" : ["variableSelected", "Select Look Up or Down Variable\nUp = -20, Down = 7.5"],
-           "Turn" : ["variableSelected",  "Select turn variable"]]
+    ["Animal Noise":  ["cat", "crocodile", "dinosaur", "goat", "bee", "elephant", "dog", "horse", "lion", "turkey", "random animal"],
+     "Emotion Noise": ["bragging", "confused", "giggle", "grunt", "sigh", "snore", "surprised", "yawn" ,"random emotion"],
+     "Object Noise": ["laser", "squeak", "trumpet", "random object"],
+     "Vehicle Noise": ["airplane", "beep", "boat", "helicopter", "siren", "speed boost", "start engine", "tire squeal", "train" ,"random vehicle"],
+     "Speak": ["hi", "bye", "cool", "haha", "huh", "let's go", "oh", "wow", "tah dah!", "uh huh", "uh oh", "wah", "wee hee!", "wow", "yippee!" ,"random word"], //TODO: there are two wows in this lists
+     "Set Right Ear Light Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"], // TODO: for localization: colors are images, not text
+    "Set Left Ear Light Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
+     "Set Front Light Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
+    "Set All Lights Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
+     "Look Left or Right": ["variableSelected", NSLocalizedString("Select Look Left or Right Variable\nLeft = -120, Right = 120", comment: "Description text for a look left or right select variable screen")],
+     "Look Up or Down": ["variableSelected", NSLocalizedString("Select Look Up or Down Variable\nUp = -20, Down = 7.5", comment: "Description text for a look up or down select variable screen")],
+     "Turn": ["variableSelected",  NSLocalizedString("Select turn variable", comment: "Description text for a turn select variable screen")]]
     
     private let freeplayOptionDictionary: [String:[String]] =
     ["Animal Noise" :  ["cat", "dinosaur", "goat", "bee", "dog", "horse", "turkey", "random animal"],
@@ -97,11 +97,11 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
          
         //let collectionView = configureCollectionView()
           
-//        collectionView.isAccessibilityElement = false
+//        collectiNSLocalizedStringonView.isAccessibilityElement = false
 //        collectionView.shouldGroupAccessibilityChildren = true  // this and more good voiceOver tips are from https://medium.com/bpxl-craft/how-to-make-voiceover-more-friendly-in-your-ios-app-8fac34ab8c51
           
-        optionModTitle.text = optionType  // Set title of the screen
-          
+        optionModTitle.text = optionType.localized // Set title of the screen
+        
         // Default option or preserve last selection
         let previousOption = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? items[0]
 
@@ -110,8 +110,6 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         // Accessibility
         // Voice Over
         optionModView.accessibilityElements = [back!, optionModTitle!, optionalExtraLabel!, collectionView!]
-        optionModTitle.accessibilityLabel = optionType
-        optionalExtraLabel.accessibilityLabel = optionalExtraLabel.text
         //Dynamic Text
         setFontStyle()
     }
@@ -159,7 +157,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         } else {
             image = UIImage(named: items[index]) ?? nil
         }
-        if image != nil && defaults.value(forKey: "showText") as! Int == 0 {
+        if image != nil && HelperFunctions.showIconsIsOn() {
             // Show Icons is on and the image was found
             let resizedImage = HelperFunctions.resizeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize))  // resize the image to fit the button
             let imv = UIImageView(image: resizedImage)
@@ -173,9 +171,9 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
                 if actor == nil {
                     fatalError("Could not find match for actorUUID in project")
                 }
-                textView.text = actor!.color.capitalized + " " + actor!.name.capitalized
+                textView.text = actor!.color.localized.localizedCapitalized + " " + actor!.name.localizedCapitalized // TODO: does capitalizaiton affect localization?
             } else {
-                textView.text = items[index].capitalized
+                textView.text = items[index].localized // TODO: does capitalizaiton affect localization?
             }
            
               
@@ -204,16 +202,18 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
           
         // Accessibility
         cell.isAccessibilityElement = true
-          
+        
         if attributeName == "lightColor" {
-            cell.accessibilityLabel = "\(items[index]) color.Option \(index + 1) of \(items.count)"
+            cell.accessibilityLabel = NSLocalizedString("\(items[index].localized) color.Option \(index + 1) of \(items.count)", comment: "Accessibility label for a color option. Option (num) of (totalNumOptions)")
         } else if attributeName == "variableSelected" {
-            cell.accessibilityLabel = "\(items[index]). Option \(index + 1) of \(items.count)"
+            cell.accessibilityLabel = NSLocalizedString("\(items[index].localized). Option \(index + 1) of \(items.count)", comment: "Accessibility label for a multiple choice option. Option (num) of (totalNumOptions)")
 
         } else {
-            cell.accessibilityLabel = "\(items[index]) sound. Option \(index + 1) of \(items.count)"
+            cell.accessibilityLabel = NSLocalizedString("\(items[index].localized) sound. Option \(index + 1) of \(items.count)", comment: "Accessibility label for a sound option. Option (num) of (totalNumOptions)")
         }
-        cell.accessibilityHint = "Double tap to select"
+        cell.accessibilityHint = NSLocalizedString("Double tap to select", comment: "Accessibility hint for selecting a multiple choice option")
+       
+        
         cell.accessibilityIdentifier = String(index)
           
         // Put a border around the cell if it is currently selected
@@ -221,7 +221,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
             cell.layer.borderWidth = 10
             cell.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
             cell.isSelected = true
-            cell.accessibilityHint = "Selected"
+            cell.accessibilityHint = "Selected" // TODO: do we need this if cell.isSelected is true?
         } else {
             cell.isSelected = false
             cell.layer.borderWidth = 0

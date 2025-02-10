@@ -165,10 +165,11 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
         let cellColumn = SelectLocationModifierViewController.getColumnFromCellIndex(index: indexPath.item) + 1
         if indexPath.item == optionSelectedIndex {
             setCellHighlight(cell: cell, value: true)
-            cell.accessibilityLabel = "Selected. Row \(cellRow) of \(numRows), Column \(cellColumn) of \(numCols)."
+           
+            cell.accessibilityLabel = NSLocalizedString("Selected. Row \(cellRow) of \(numRows), Column \(cellColumn) of \(numCols).", comment: "Accessiblity Label for a selected cell in Select Location View Controller")
         } else {
             setCellHighlight(cell: cell, value: false)
-            cell.accessibilityLabel = "Row \(cellRow) of \(numRows), Column \(cellColumn) of \(numCols)."
+            cell.accessibilityLabel = NSLocalizedString("Row \(cellRow) of \(numRows), Column \(cellColumn) of \(numCols).", comment: "Accessiblity Label for an unselected cell in Select Location View Controller")
         }
         
         cell.isAccessibilityElement = true
@@ -199,7 +200,6 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
             cell.isSelected = false
             cell.layer.borderWidth = 0
         }
-       
     }
     
     func collectionView(

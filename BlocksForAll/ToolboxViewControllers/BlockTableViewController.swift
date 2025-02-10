@@ -48,9 +48,9 @@ class BlockTableViewController: UITableViewController {
         
        
         if let blockType = blockTypesDict.object(at: typeIndex) as? NSDictionary{
-            self.title = blockType.object(forKey: "type") as? String
+            self.title = (blockType.object(forKey: "type") as! String).localized
         }
-        self.accessibilityHint = "Double tap from toolbox to add block to workspace"
+        self.accessibilityHint = NSLocalizedString("Double tap from toolbox to add block to workspace.", comment: "Accessibility Hint for table of a certain type of block. Blocks can be moved from here into the workspace")
         
         createBlocksArray()
     }
@@ -83,7 +83,7 @@ class BlockTableViewController: UITableViewController {
         cell.block = block
         
         let myView = BlockView.init(frame: CGRect.init(x: 0, y: 0, width: blockSize, height: blockSize),  block: [block], myBlockSize: blockSize)
-        cell.accessibilityLabel = block.name
+        
         
         createVoiceControlLabels(for: block, in: cell)
         
@@ -91,10 +91,10 @@ class BlockTableViewController: UITableViewController {
         
         
         if block.name == "Create/Edit Functions" {
-            cell.accessibilityHint = "Double tap to go to functions menu."
+            cell.accessibilityHint = NSLocalizedString("Double tap to go to functions menu.", comment: "Accessibility hint for create/edit functions button")
         }
         else {
-            cell.accessibilityHint = "In Toolbox. Double tap to place block in workspace."
+            cell.accessibilityHint = NSLocalizedString("In Toolbox. Double tap to place block in workspace.", comment: "Accessibility hint for a block in a table of a certain type of block. Block can be moved from here into the workspace")
         }
        
         
@@ -148,6 +148,8 @@ class BlockTableViewController: UITableViewController {
                 myDestination.delegate = self.delegate
                 myDestination.currentProject = currentProject
             }
+        } else if let myDestination = segue.destination as? FunctionTableViewController {
+            myDestination.currentProject = currentProject
         }
     }
 
@@ -217,8 +219,6 @@ class BlockTableViewController: UITableViewController {
                                         toolBoxBlockArray += [block]
                                         // adds block to the toolbox
                                     }
-                              
-                                
                             }
                         }
                     }
@@ -229,7 +229,7 @@ class BlockTableViewController: UITableViewController {
     
     // MARK: - Voice Control Labels
     // TODO: update for freeplay
-    func createVoiceControlLabels(for block: Block, in cell: UITableViewCell) {
+    func createVoiceControlLabels(for block: Block, in cell: UITableViewCell) { //TODO: localize
         if #available (iOS 13.0, *) {
             let type = self.title
         

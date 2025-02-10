@@ -1,0 +1,317 @@
+/* Block movement info */
+". Double tap to move block." = "S";
+
+/* Voice Control label */
+"Add" = "S";
+
+/* Accessibility label for Add Actor Button */
+"Add actor to project." = "S";
+
+/* Accessibility hint for Add New Project Button */
+"Add New Project." = "s";
+
+/* No comment provided by engineer. */
+"Animal Noise" = "s (animal)";
+
+/* 'Actor' refers to the virtual robot character */
+"Are you sure you want to delete this actor?" = "s";
+
+/* No comment provided by engineer. */
+"Are you sure you want to delete this background image?" = "s";
+
+/* No comment provided by engineer. */
+"Are you sure you want to delete this project?" = "s";
+
+/* Message for a confirm action */
+"Are you sure you want to delete this?" = "s";
+
+/* No comment provided by engineer. */
+"Before Wait" = "s";
+
+/* bottom of screen */
+"bottom" = "s";
+
+/* Message for an invalid name alert */
+"Choose a different name" = "s";
+
+/* used in things like 'Red Color' or 'Default Color' */
+"Color" = "s";
+
+/* Confirm action */
+"Confirm" = "s";
+
+/* Announcement when no robots are connected */
+"Connect to the dash robot." = "s";
+
+/* Voice Control label */
+"Decrease" = "s";
+
+/* Accessibility hint for trash button */
+"Delete selected blocks" = "s";
+
+/* No comment provided by engineer. */
+"Double tap and hold to drag." = "s";
+
+/* Accessibility Hint for block type toolbox */
+"Double tap from menu to select block category." = "s";
+
+/* Accessibility Hint for table of a certain type of block. Blocks can be moved from here into the workspace */
+"Double tap from toolbox to add block to workspace." = "s";
+
+/* Accessibility hint for cell in blocks type toolbox */
+"Double tap to explore blocks in this category" = "s";
+
+/* Accessibility hint for create/edit functions button */
+"Double tap to go to functions menu." = "s";
+
+/* Accessibility hint for selecting a multiple choice option */
+"Double tap to select" = "s";
+
+/* Accessibility hint for actor cell */
+"Double tap to select." = "s";
+
+/* No comment provided by engineer. */
+"Double tap to set color." = "s";
+
+/* No comment provided by engineer. */
+"Emotion Noise" = "s (emotion)";
+
+/* Accessibility User Input Label to place a block at the end of a function */
+"End of function workspace" = "s";
+
+/* Accessibility User Input Label to place a block at the end of the workspace */
+"End of workspace" = "s";
+
+/* Accessibility Label for Enter Full Screen button */
+"Enter full screen." = "s";
+
+/* Alert title for creating a new function
+Alert title to rename a custom function */
+"Enter function name" = "s";
+
+/* Title for alert to name a new project */
+"Enter project name" = "s";
+
+/* Voice Control label */
+"Faster" = "s";
+
+/* Accessibility User Input Label for a first (1st) button */
+"First button" = "s";
+
+/* Block name for the end of a custom function (ex. block called: <funcName> Function End) */
+"Function End" = "s";
+
+/* Block name for the start of a custom function (ex. block called: <funcName> Function Start) */
+"Function Start" = "s";
+
+/* Title label for list of custom functions */
+"Functions Menu" = "s";
+
+/* Accessibility Label for help button on main menu screen */
+"Help" = "s";
+
+/* Accessibility hint for a block in a table of a certain type of block. Block can be moved from here into the workspace */
+"In Toolbox. Double tap to place block in workspace." = "s";
+
+/* Voice Control label */
+"Increase" = "s";
+
+/* Left side of screen */
+"left" = "s";
+
+/* Accessibility User Input Label for a button on the left */
+"Left" = "s";
+
+/* Voice Control label */
+"Less" = "s";
+
+/* Beginning of description of where a virtual robot is located on the screen. Ex. Location is at left bottom of screen */
+"Location is at" = "s";
+
+/* No comment provided by engineer. */
+"Look Left or Right" = "s";
+
+/* No comment provided by engineer. */
+"Look Up or Down" = "s";
+
+/* No comment provided by engineer. */
+"Main Workspace" = "s";
+
+/* Accessibility hint for play (run code) button */
+"Make your robot go!" = "s";
+
+/* middle of screen */
+"middle" = "s";
+
+/* Voice Control label */
+"Minus" = "s";
+
+/* Voice Control label */
+"More" = "s";
+
+/* Title for an invalid name alert */
+"Name already exists" = "s";
+
+/* Title for an invalid name alert */
+"Name cannot be empty" = "s";
+
+/* Title for an invalid name alert */
+"Name cannot have been used before" = "s";
+
+/* Title for an invalid name alert */
+"Name is protected" = "s";
+
+/* No comment provided by engineer. */
+"Object Noise" = "s (object)";
+
+/* End of description of where a virtual robot is located on the screen. Ex. Location is at left bottom of screen */
+"of screen." = "s";
+
+/* Okay action for an invalid name alert */
+"Okay" = "s";
+
+/* Accessibility label for On Actor Tap Code Line Button */
+"On Actor Tap code line." = "s";
+
+/* Accessibility label for On Run Code Line Button */
+"On Run code line." = "s";
+
+/* No comment provided by engineer. */
+"One bunny." = "s";
+
+/* No comment provided by engineer. */
+"One snail and one bunny." = "s";
+
+/* No comment provided by engineer. */
+"One snail." = "s";
+
+/* Accessibility label for trash button */
+"Place in Trash" = "s";
+
+/* Accessibility Label for play (run code) button
+Accessibility User Input Label for play (run code) button */
+"Play" = "s";
+
+/* Title for Play with Physical Robot button on main menu screen */
+"Play with Robot" = "s";
+
+/* Title for Play with Virtual Robot button on main menu screen */
+"Play with Virtual Robot" = "s";
+
+/* Voice Control label */
+"Plus" = "s";
+
+/* Title for a rename function button */
+"Rename" = "s";
+
+/* No comment provided by engineer. */
+"Return to Main Workspace" = "s";
+
+/* right side of screen */
+"right" = "s";
+
+/* Accessibility User Input Label for a button on the right */
+"Right" = "s";
+
+/* Title for a button for a new function */
+"Sample Function" = "s";
+
+/* Accessibility User Input Label for a second (2nd) button */
+"Second button" = "s";
+
+/* No comment provided by engineer. */
+"Set All Lights Color" = "s";
+
+/* No comment provided by engineer. */
+"Set Front Light Color" = "s";
+
+/* No comment provided by engineer. */
+"Set Left Ear Light Color" = "s";
+
+/* No comment provided by engineer. */
+"Set Right Ear Light Color" = "s";
+
+/* Accessibility Label for settings button on main menu screen */
+"Settings" = "s";
+
+/* Text for a show icons or text label when show icons is on */
+"Show Icons" = "s";
+
+/* Accessibility value for a show icons or text label when show icons is on */
+"Show icons selected." = "s";
+
+/* Accessibility label for a show icons or text switch button when show icons is on */
+"Show Icons." = "s";
+
+/* Text for a show icons or text label when show text is on */
+"Show Text" = "s";
+
+/* Accessibility value for a show icons or text label when show text is on */
+"Show text selected." = "s";
+
+/* Accessibility label for a show icons or text switch button when show text is on */
+"Show Text." = "s";
+
+/* Voice Control label */
+"Slower" = "s";
+
+/* No comment provided by engineer. */
+"Speak" = "s (speak)";
+
+/* Accessibility Label for stop button */
+"Stop" = "s";
+
+/* Accessibility hint for stop button */
+"Stop your robot!" = "s";
+
+/* Voice Control label */
+"Subtract" = "s";
+
+/* Title string for block type toolbox */
+"Toolbox" = "s";
+
+/* Accessibility Label for block type toolbox */
+"Toolbox Menu." = "s";
+
+/* top of screen */
+"top" = "s";
+
+/* No comment provided by engineer. */
+"Turn" = "s";
+
+/* No comment provided by engineer. */
+"Two bunnies." = "s";
+
+/* No comment provided by engineer. */
+"Two snails." = "s";
+
+/* Voice Control label */
+"Value" = "s";
+
+/* No comment provided by engineer. */
+"Vehicle Noise" = "s (vehicle)";
+
+/* No comment provided by engineer. */
+"Wait" = "s";
+
+/* Label for main menu screen */
+"Welcome to Blocks4All!" = "s";
+
+/* Accessibility User Input Label to place a block at the beginning of the workspace */
+"Workspace" = "s";
+
+/* No comment provided by engineer. */
+"Yes" = "s";
+
+/* Text field placeholder for creating a new function */
+"Your file name" = "s";
+
+/* Text field placeholder for custom function name */
+"Your function name" = "s";
+
+/* Placeholder text for textfield to enter project name */
+"Your project name" = "s";
+
+/* Accessibility Label for play (run code) button when there are no blocks in the workspace */
+"Your robot has nothing to do! Add some blocks to your workspace." = "s";
+

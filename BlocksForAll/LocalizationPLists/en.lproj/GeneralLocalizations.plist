@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Set Background</key>
+	<dict>
+		<key>value</key>
+		<string>Set Background</string>
+		<key>comment</key>
+		<string>Generic String for Set Background block</string>
+	</dict>
+	<key>Move Up</key>
+	<dict>
+		<key>value</key>
+		<string>Move Up</string>
+		<key>comment</key>
+		<string>Generic String for Move Up block</string>
+	</dict>
+	<key>Move Down</key>
+	<dict>
+		<key>value</key>
+		<string>Move Down</string>
+		<key>comment</key>
+		<string>Generic String for Move Down block</string>
+	</dict>
+	<key>Move Left</key>
+	<dict>
+		<key>value</key>
+		<string>Move Left</string>
+		<key>comment</key>
+		<string>Generic String for Move Left block</string>
+	</dict>
+	<key>Move Right</key>
+	<dict>
+		<key>value</key>
+		<string>Move Right</string>
+		<key>comment</key>
+		<string>Generic String for Move Right block</string>
+	</dict>
+	<key>Grow Actor</key>
+	<dict>
+		<key>value</key>
+		<string>Grow Actor</string>
+		<key>comment</key>
+		<string>Generic String for Grow Actor block</string>
+	</dict>
+	<key>Shrink Actor</key>
+	<dict>
+		<key>value</key>
+		<string>Shrink Actor</string>
+		<key>comment</key>
+		<string>Generic String for Shrink Actor block</string>
+	</dict>
+	<key>Move to Actor</key>
+	<dict>
+		<key>value</key>
+		<string>Move to Actor</string>
+		<key>comment</key>
+		<string>Generic String for Move to Actor block</string>
+	</dict>
+	<key>Move to Location</key>
+	<dict>
+		<key>value</key>
+		<string>Move to Location</string>
+		<key>comment</key>
+		<string>Generic String for Move to Location block</string>
+	</dict>
+	<key>Move to Center</key>
+	<dict>
+		<key>value</key>
+		<string>Move to Center</string>
+		<key>comment</key>
+		<string>Generic String for Move to Center block</string>
+	</dict>
+	<key>Set Speed</key>
+	<dict>
+		<key>value</key>
+		<string>Set Speed</string>
+		<key>comment</key>
+		<string>Generic String for Set Speed block</string>
+	</dict>
+	<key>On Run Start</key>
+	<dict>
+		<key>value</key>
+		<string>On Run Start</string>
+		<key>comment</key>
+		<string>Generic String for On Run event. Blocks are run when the program is run</string>
+	</dict>
+	<key>On Bump Start</key>
+	<dict>
+		<key>value</key>
+		<string>On Bump Start</string>
+		<key>comment</key>
+		<string>Generic String for On Bump event. Blocks are run when virtual robot runs into another virtual robot</string>
+	</dict>
+	<key>On Tap Start</key>
+	<dict>
+		<key>value</key>
+		<string>On Tap Start</string>
+		<key>comment</key>
+		<string>Generic String for On Tap event. Blocks are run when virtual robot is tapped</string>
+	</dict>
+	<key>Hear voice</key>
+	<dict>
+		<key>value</key>
+		<string>Hear voice</string>
+		<key>comment</key>
+		<string>Generic String for Hear Voice boolean</string>
+	</dict>
+	<key>Obstacle sensed</key>
+	<dict>
+		<key>value</key>
+		<string>Obstacle sensed</string>
+		<key>comment</key>
+		<string>Generic String for Obstacle Sensed boolean</string>
+	</dict>
+	<key>false</key>
+	<dict>
+		<key>value</key>
+		<string>false</string>
+		<key>comment</key>
+		<string>Generic String for false boolean</string>
+	</dict>
+	<key>More</key>
+	<dict>
+		<key>value</key>
+		<string>More</string>
+		<key>comment</key>
+		<string>Generic String for increasing a value</string>
+	</dict>
+	<key>Less</key>
+	<dict>
+		<key>value</key>
+		<string>Less</string>
+		<key>comment</key>
+		<string>Generic String for decreasing a value</string>
+	</dict>
+	<key>time</key>
+	<dict>
+		<key>value</key>
+		<string>time</string>
+		<key>comment</key>
+		<string>Generic String for a singular number of times (1 time)</string>
+	</dict>
+	<key>times</key>
+	<dict>
+		<key>value</key>
+		<string>times</string>
+		<key>comment</key>
+		<string>Generic String for a plural number of times (ex. 2 Times)</string>
+	</dict>
+	<key>second</key>
+	<dict>
+		<key>value</key>
+		<string>second</string>
+		<key>comment</key>
+		<string>Generic String for a singular number of seconds (1 second)</string>
+	</dict>
+	<key>seconds</key>
+	<dict>
+		<key>value</key>
+		<string>seconds</string>
+		<key>comment</key>
+		<string>Generic String for a plural number of seconds (2 seconds)</string>
+	</dict>
+	<key>Really Fast</key>
+	<dict>
+		<key>value</key>
+		<string>Really Fast</string>
+		<key>comment</key>
+		<string>Generic String for Really Fast speed</string>
+	</dict>
+	<key>Fast</key>
+	<dict>
+		<key>value</key>
+		<string>Fast</string>
+		<key>comment</key>
+		<string>Generic String for Fast speed</string>
+	</dict>
+	<key>Normal</key>
+	<dict>
+		<key>value</key>
+		<string>Normal</string>
+		<key>comment</key>
+		<string>Generic String for Normal speed</string>
+	</dict>
+	<key>Slow</key>
+	<dict>
+		<key>value</key>
+		<string>Slow</string>
+		<key>comment</key>
+		<string>Generic String for Slow speed</string>
+	</dict>
+	<key>Really Slow</key>
+	<dict>
+		<key>value</key>
+		<string>Really Slow</string>
+		<key>comment</key>
+		<string>Generic String for Really Slow speed</string>
+	</dict>
+	<key>Distance</key>
+	<dict>
+		<key>value</key>
+		<string>Distance</string>
+		<key>comment</key>
+		<string>Generic String for Distance modifier block</string>
+	</dict>
+	<key>Speed</key>
+	<dict>
+		<key>value</key>
+		<string>Speed</string>
+		<key>comment</key>
+		<string>Generic String for Speed modifier block </string>
+	</dict>
+	<key>Create/Edit Functions</key>
+	<dict>
+		<key>value</key>
+		<string>Create/Edit Functions</string>
+		<key>comment</key>
+		<string>Generic String for Create/Edit Functions button</string>
+	</dict>
+	<key>Set Variable</key>
+	<dict>
+		<key>value</key>
+		<string>Set Variable</string>
+		<key>comment</key>
+		<string>Generic String for Set Variable block</string>
+	</dict>
+	<key>Turn</key>
+	<dict>
+		<key>value</key>
+		<string>Turn</string>
+		<key>comment</key>
+		<string>Generic String for Turn block</string>
+	</dict>
+	<key>Look Up or Down</key>
+	<dict>
+		<key>value</key>
+		<string>Look Up or Down</string>
+		<key>comment</key>
+		<string>Generic String for Look Up or Down block</string>
+	</dict>
+	<key>Look Left or Right</key>
+	<dict>
+		<key>value</key>
+		<string>Look Left or Right</string>
+		<key>comment</key>
+		<string>Generic String for Look Left or Right block</string>
+	</dict>
+	<key>Look Toward Voice</key>
+	<dict>
+		<key>value</key>
+		<string>Look Toward Voice</string>
+		<key>comment</key>
+		<string>Generic String for Look Toward Voice block</string>
+	</dict>
+	<key>Look Forward</key>
+	<dict>
+		<key>value</key>
+		<string>Look Forward</string>
+		<key>comment</key>
+		<string>Generic String for Look Forward block</string>
+	</dict>
+	<key>Look Right</key>
+	<dict>
+		<key>value</key>
+		<string>Look Right</string>
+		<key>comment</key>
+		<string>Generic String for Look Right block</string>
+	</dict>
+	<key>Look Left</key>
+	<dict>
+		<key>value</key>
+		<string>Look Left</string>
+		<key>comment</key>
+		<string>Generic String for Look Left block</string>
+	</dict>
+	<key>Look Straight</key>
+	<dict>
+		<key>value</key>
+		<string>Look Straight</string>
+		<key>comment</key>
+		<string>Generic String for Look Straight block</string>
+	</dict>
+	<key>Look Down</key>
+	<dict>
+		<key>value</key>
+		<string>Look Down</string>
+		<key>comment</key>
+		<string>Generic String for Look Down block</string>
+	</dict>
+	<key>Look Up</key>
+	<dict>
+		<key>value</key>
+		<string>Look Up</string>
+		<key>comment</key>
+		<string>Generic String for Look Up block</string>
+	</dict>
+	<key>Repeat</key>
+	<dict>
+		<key>value</key>
+		<string>Repeat</string>
+		<key>comment</key>
+		<string>Generic String for Repeat block</string>
+	</dict>
+	<key>Repeat Forever</key>
+	<dict>
+		<key>value</key>
+		<string>Repeat Forever</string>
+		<key>comment</key>
+		<string>Generic String for Repeat Forever block</string>
+	</dict>
+	<key>If</key>
+	<dict>
+		<key>value</key>
+		<string>If</string>
+		<key>comment</key>
+		<string>Generic String for If block</string>
+	</dict>
+	<key>Wait for Time</key>
+	<dict>
+		<key>value</key>
+		<string>Wait for Time</string>
+		<key>comment</key>
+		<string>Generic String for Wait for Time block</string>
+	</dict>
+	<key>Set Eye Light</key>
+	<dict>
+		<key>value</key>
+		<string>Set Eye Light</string>
+		<key>comment</key>
+		<string>Generic String for Set Eye Light block</string>
+	</dict>
+	<key>Set Left Ear Light Color</key>
+	<dict>
+		<key>value</key>
+		<string>Set Left Ear Light Color</string>
+		<key>comment</key>
+		<string>Generic String for Set Left Ear Light Color block</string>
+	</dict>
+	<key>Set Right Ear Light Color</key>
+	<dict>
+		<key>value</key>
+		<string>Set Right Ear Light Color</string>
+		<key>comment</key>
+		<string>Generic String for Set Right Ear Light Color block</string>
+	</dict>
+	<key>Set Front Light Color</key>
+	<dict>
+		<key>value</key>
+		<string>Set Front Light Color</string>
+		<key>comment</key>
+		<string>Generic String for Set Front Light Color block</string>
+	</dict>
+	<key>Set All Lights Color</key>
+	<dict>
+		<key>value</key>
+		<string>Set All Lights Color</string>
+		<key>comment</key>
+		<string>Generic String for Set All Lights Color block</string>
+	</dict>
+	<key>Spiral Light</key>
+	<dict>
+		<key>value</key>
+		<string>Spiral Light</string>
+		<key>comment</key>
+		<string>Generic String for Spiral Light block</string>
+	</dict>
+	<key>Drive Forward</key>
+	<dict>
+		<key>value</key>
+		<string>Drive Forward</string>
+		<key>comment</key>
+		<string>Generic String for Drive Forward block </string>
+	</dict>
+	<key>Drive Backward</key>
+	<dict>
+		<key>value</key>
+		<string>Drive Backward</string>
+		<key>comment</key>
+		<string>Generic String for Drive Backward block</string>
+	</dict>
+	<key>Turn Left</key>
+	<dict>
+		<key>value</key>
+		<string>Turn Left</string>
+		<key>comment</key>
+		<string>Generic String for Turn Left block</string>
+	</dict>
+	<key>Turn Right</key>
+	<dict>
+		<key>value</key>
+		<string>Turn Right</string>
+		<key>comment</key>
+		<string>Generic String for Turn Right block</string>
+	</dict>
+	<key>Animal Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Animal Noise</string>
+		<key>comment</key>
+		<string>Generic String for Animal Noise blocks category</string>
+	</dict>
+	<key>Emotion Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Emotion Noise</string>
+		<key>comment</key>
+		<string>Generic String for Emotion Noise blocks category</string>
+	</dict>
+	<key>Object Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Object Noise</string>
+		<key>comment</key>
+		<string>Generic String for Object Noise blocks category</string>
+	</dict>
+	<key>Vehicle Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Vehicle Noise</string>
+		<key>comment</key>
+		<string>Generic String for Vehicle Noise blocks category</string>
+	</dict>
+	<key>Speak</key>
+	<dict>
+		<key>value</key>
+		<string>Speak</string>
+		<key>comment</key>
+		<string>Generic String for Speak blocks category</string>
+	</dict>
+	<key>Sounds</key>
+	<dict>
+		<key>value</key>
+		<string>Sounds</string>
+		<key>comment</key>
+		<string>Generic String for Sounds blocks category</string>
+	</dict>
+	<key>Drive</key>
+	<dict>
+		<key>value</key>
+		<string>Drive</string>
+		<key>comment</key>
+		<string>Generic String for Drive blocks category</string>
+	</dict>
+	<key>Lights</key>
+	<dict>
+		<key>value</key>
+		<string>Lights</string>
+		<key>comment</key>
+		<string>Generic String for Lights blocks category</string>
+	</dict>
+	<key>Control</key>
+	<dict>
+		<key>value</key>
+		<string>Control</string>
+		<key>comment</key>
+		<string>Generic String for Control blocks category</string>
+	</dict>
+	<key>Motion</key>
+	<dict>
+		<key>value</key>
+		<string>Motion</string>
+		<key>comment</key>
+		<string>Generic String for Motion blocks category</string>
+	</dict>
+	<key>Variables</key>
+	<dict>
+		<key>value</key>
+		<string>Variables</string>
+		<key>comment</key>
+		<string>Generic String for Variables blocks category</string>
+	</dict>
+	<key>Functions</key>
+	<dict>
+		<key>value</key>
+		<string>Functions</string>
+		<key>comment</key>
+		<string>Generic String for Functions blocks category</string>
+	</dict>
+	<key>Move</key>
+	<dict>
+		<key>value</key>
+		<string>Move</string>
+		<key>comment</key>
+		<string>Generic String for Move blocks category</string>
+	</dict>
+	<key>Background</key>
+	<dict>
+		<key>value</key>
+		<string>Background</string>
+		<key>comment</key>
+		<string>Generic String for Background blocks category</string>
+	</dict>
+	<key>Orange</key>
+	<dict>
+		<key>value</key>
+		<string>Orange</string>
+		<key>comment</key>
+		<string>Generic String for Orange fruit</string>
+	</dict>
+	<key>Banana</key>
+	<dict>
+		<key>value</key>
+		<string>Banana</string>
+		<key>comment</key>
+		<string>Generic String for banana fruit</string>
+	</dict>
+	<key>Apple</key>
+	<dict>
+		<key>value</key>
+		<string>Apple</string>
+		<key>comment</key>
+		<string>Generic String for apple fruit</string>
+	</dict>
+	<key>Cherry</key>
+	<dict>
+		<key>value</key>
+		<string>Cherry</string>
+		<key>comment</key>
+		<string>Generic String for cherry fruit</string>
+	</dict>
+	<key>Watermelon</key>
+	<dict>
+		<key>value</key>
+		<string>Watermelon</string>
+		<key>comment</key>
+		<string>Generic String for watermelon fruit</string>
+	</dict>
+	<key>hi</key>
+	<dict>
+		<key>value</key>
+		<string>Hi</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;hi&quot; sound</string>
+	</dict>
+	<key>bye</key>
+	<dict>
+		<key>value</key>
+		<string>Bye</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;bye&quot; sound</string>
+	</dict>
+	<key>cool</key>
+	<dict>
+		<key>value</key>
+		<string>Cool</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;cool&quot; sound</string>
+	</dict>
+	<key>haha</key>
+	<dict>
+		<key>value</key>
+		<string>Haha</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;haha&quot; sound</string>
+	</dict>
+	<key>huh</key>
+	<dict>
+		<key>value</key>
+		<string>Huh</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;huh&quot; sound</string>
+	</dict>
+	<key>let&apos;s go</key>
+	<dict>
+		<key>value</key>
+		<string>Let&apos;s go</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;let&apos;s go&quot; sound</string>
+	</dict>
+	<key>oh</key>
+	<dict>
+		<key>value</key>
+		<string>Oh</string>
+		<key>comment</key>
+		<string>Generic String for an &quot;oh&quot; sound</string>
+	</dict>
+	<key>wow</key>
+	<dict>
+		<key>value</key>
+		<string>Wow</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;wow&quot; sound</string>
+	</dict>
+	<key>tah dah!</key>
+	<dict>
+		<key>value</key>
+		<string>Tah dah!</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;tah dah!&quot; sound</string>
+	</dict>
+	<key>uh huh</key>
+	<dict>
+		<key>value</key>
+		<string>Uh huh</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;uh huh&quot; sound</string>
+	</dict>
+	<key>uh oh</key>
+	<dict>
+		<key>value</key>
+		<string>Uh oh</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;uh oh&quot; sound</string>
+	</dict>
+	<key>wah</key>
+	<dict>
+		<key>value</key>
+		<string>Wah</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;wah&quot; sound</string>
+	</dict>
+	<key>wee hee!</key>
+	<dict>
+		<key>value</key>
+		<string>Wee hee!</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;wee hee!&quot; sound</string>
+	</dict>
+	<key>yippee!</key>
+	<dict>
+		<key>value</key>
+		<string>Yippee!</string>
+		<key>comment</key>
+		<string>Generic String for a &quot;yippee!&quot; sound</string>
+	</dict>
+	<key>random word</key>
+	<dict>
+		<key>value</key>
+		<string>Random Word</string>
+		<key>comment</key>
+		<string>Generic String for a random word sound</string>
+	</dict>
+	<key>airplane</key>
+	<dict>
+		<key>value</key>
+		<string>Airplane</string>
+		<key>comment</key>
+		<string>Generic String for an airplane sound</string>
+	</dict>
+	<key>beep</key>
+	<dict>
+		<key>value</key>
+		<string>Beep</string>
+		<key>comment</key>
+		<string>Generic String for a beep sound</string>
+	</dict>
+	<key>boat</key>
+	<dict>
+		<key>value</key>
+		<string>Boat</string>
+		<key>comment</key>
+		<string>Generic String for a boat sound</string>
+	</dict>
+	<key>helicopter</key>
+	<dict>
+		<key>value</key>
+		<string>Helicopter</string>
+		<key>comment</key>
+		<string>Generic String for a helicopter sound</string>
+	</dict>
+	<key>siren</key>
+	<dict>
+		<key>value</key>
+		<string>Siren</string>
+		<key>comment</key>
+		<string>Generic String for a siren sound</string>
+	</dict>
+	<key>speed boost</key>
+	<dict>
+		<key>value</key>
+		<string>Speed Boost</string>
+		<key>comment</key>
+		<string>Generic String for a speed boost sound</string>
+	</dict>
+	<key>start engine</key>
+	<dict>
+		<key>value</key>
+		<string>Start Engine</string>
+		<key>comment</key>
+		<string>Generic String for a start engine sound</string>
+	</dict>
+	<key>tire squeal</key>
+	<dict>
+		<key>value</key>
+		<string>Tire Squeal</string>
+		<key>comment</key>
+		<string>Generic String for a tire squeal sound</string>
+	</dict>
+	<key>train</key>
+	<dict>
+		<key>value</key>
+		<string>Train</string>
+		<key>comment</key>
+		<string>Generic String for a train sound</string>
+	</dict>
+	<key>random vehicle</key>
+	<dict>
+		<key>value</key>
+		<string>Random Vehicle</string>
+		<key>comment</key>
+		<string>Generic String for a random vehicle sound</string>
+	</dict>
+	<key>laser</key>
+	<dict>
+		<key>value</key>
+		<string>Laser</string>
+		<key>comment</key>
+		<string>Generic String for a laser sound</string>
+	</dict>
+	<key>squeak</key>
+	<dict>
+		<key>value</key>
+		<string>Squeak</string>
+		<key>comment</key>
+		<string>Generic String for a squeak sound</string>
+	</dict>
+	<key>trumpet</key>
+	<dict>
+		<key>value</key>
+		<string>Trumpet</string>
+		<key>comment</key>
+		<string>Generic String for a trumpet sound</string>
+	</dict>
+	<key>random object</key>
+	<dict>
+		<key>value</key>
+		<string>Random Object</string>
+		<key>comment</key>
+		<string>Generic String for a random object sound</string>
+	</dict>
+	<key>bragging</key>
+	<dict>
+		<key>value</key>
+		<string>Bragging</string>
+		<key>comment</key>
+		<string>Generic String for a bragging sound</string>
+	</dict>
+	<key>confused</key>
+	<dict>
+		<key>value</key>
+		<string>Confused</string>
+		<key>comment</key>
+		<string>Generic String for a confused sound</string>
+	</dict>
+	<key>giggle</key>
+	<dict>
+		<key>value</key>
+		<string>Giggle</string>
+		<key>comment</key>
+		<string>Generic String for a giggle sound</string>
+	</dict>
+	<key>grunt</key>
+	<dict>
+		<key>value</key>
+		<string>Grunt</string>
+		<key>comment</key>
+		<string>Generic String for a grunt sound</string>
+	</dict>
+	<key>sigh</key>
+	<dict>
+		<key>value</key>
+		<string>Sigh</string>
+		<key>comment</key>
+		<string>Generic String for a sigh sound</string>
+	</dict>
+	<key>snore</key>
+	<dict>
+		<key>value</key>
+		<string>Snore</string>
+		<key>comment</key>
+		<string>Generic String for a snore sound</string>
+	</dict>
+	<key>surprised</key>
+	<dict>
+		<key>value</key>
+		<string>Surprised</string>
+		<key>comment</key>
+		<string>Generic String for a surprised sound</string>
+	</dict>
+	<key>yawn</key>
+	<dict>
+		<key>value</key>
+		<string>Yawn</string>
+		<key>comment</key>
+		<string>Generic String for a yawn sound</string>
+	</dict>
+	<key>random emotion</key>
+	<dict>
+		<key>value</key>
+		<string>Random Emotion</string>
+		<key>comment</key>
+		<string>Generic String for a random emotion sound</string>
+	</dict>
+	<key>cat</key>
+	<dict>
+		<key>value</key>
+		<string>Cat</string>
+		<key>comment</key>
+		<string>Generic String for a cat</string>
+	</dict>
+	<key>crocodile</key>
+	<dict>
+		<key>value</key>
+		<string>Crocodile</string>
+		<key>comment</key>
+		<string>Generic String for a crocodile</string>
+	</dict>
+	<key>dinosaur</key>
+	<dict>
+		<key>value</key>
+		<string>Dinosaur</string>
+		<key>comment</key>
+		<string>Generic String for a dinosaur</string>
+	</dict>
+	<key>goat</key>
+	<dict>
+		<key>value</key>
+		<string>Goat</string>
+		<key>comment</key>
+		<string>Generic String for a goat</string>
+	</dict>
+	<key>bee</key>
+	<dict>
+		<key>value</key>
+		<string>Bee</string>
+		<key>comment</key>
+		<string>Generic String for a bee</string>
+	</dict>
+	<key>elephant</key>
+	<dict>
+		<key>value</key>
+		<string>Elephant</string>
+		<key>comment</key>
+		<string>Generic String for an elephant</string>
+	</dict>
+	<key>dog</key>
+	<dict>
+		<key>value</key>
+		<string>Dog</string>
+		<key>comment</key>
+		<string>Generic String for a dog</string>
+	</dict>
+	<key>horse</key>
+	<dict>
+		<key>value</key>
+		<string>Horse</string>
+		<key>comment</key>
+		<string>Generic String for a horse</string>
+	</dict>
+	<key>lion</key>
+	<dict>
+		<key>value</key>
+		<string>Lion</string>
+		<key>comment</key>
+		<string>Generic String for a lion</string>
+	</dict>
+	<key>turkey</key>
+	<dict>
+		<key>value</key>
+		<string>Turkey</string>
+		<key>comment</key>
+		<string>Generic String for a turkey</string>
+	</dict>
+	<key>random animal</key>
+	<dict>
+		<key>value</key>
+		<string>Random Animal</string>
+		<key>comment</key>
+		<string>Generic String to use for a random animal sound</string>
+	</dict>
+	<key>red</key>
+	<dict>
+		<key>value</key>
+		<string>Red yas</string>
+		<key>comment</key>
+		<string>Generic String for a red color</string>
+	</dict>
+	<key>orange</key>
+	<dict>
+		<key>value</key>
+		<string>Orange</string>
+		<key>comment</key>
+		<string>Generic String for an orange color</string>
+	</dict>
+	<key>yellow</key>
+	<dict>
+		<key>value</key>
+		<string>Yellow</string>
+		<key>comment</key>
+		<string>Generic String for a yellow color</string>
+	</dict>
+	<key>green</key>
+	<dict>
+		<key>value</key>
+		<string>Green</string>
+		<key>comment</key>
+		<string>Generic String for a green color</string>
+	</dict>
+	<key>blue</key>
+	<dict>
+		<key>value</key>
+		<string>Blue</string>
+		<key>comment</key>
+		<string>Generic String for a blue color</string>
+	</dict>
+	<key>purple</key>
+	<dict>
+		<key>value</key>
+		<string>Purple</string>
+		<key>comment</key>
+		<string>Generic String for a purple color</string>
+	</dict>
+	<key>white</key>
+	<dict>
+		<key>value</key>
+		<string>White</string>
+		<key>comment</key>
+		<string>Generic String for a white color</string>
+	</dict>
+	<key>Off</key>
+	<dict>
+		<key>value</key>
+		<string>Off</string>
+		<key>comment</key>
+		<string>Generic String for lights off</string>
+	</dict>
+	<key>On</key>
+	<dict>
+		<key>value</key>
+		<string>On</string>
+		<key>comment</key>
+		<string>Generic String for lights on</string>
+	</dict>
+	<key>Main Menu</key>
+	<dict>
+		<key>value</key>
+		<string>Main Menu</string>
+		<key>comment</key>
+		<string>Generic String for a main menu button</string>
+	</dict>
+	<key>Blue</key>
+	<dict>
+		<key>value</key>
+		<string>Blue</string>
+		<key>comment</key>
+		<string>Generic String for a blue color</string>
+	</dict>
+	<key>Yellow</key>
+	<dict>
+		<key>value</key>
+		<string>Yellow</string>
+		<key>comment</key>
+		<string>Generic String for a yellow color</string>
+	</dict>
+	<key>Red</key>
+	<dict>
+		<key>value</key>
+		<string>Red okayyy</string>
+		<key>comment</key>
+		<string>Generic String for a red color</string>
+	</dict>
+	<key>Default</key>
+	<dict>
+		<key>value</key>
+		<string>Default</string>
+		<key>comment</key>
+		<string>Generic String for a default color</string>
+	</dict>
+	<key>Selected</key>
+	<dict>
+		<key>value</key>
+		<string>Selected</string>
+		<key>comment</key>
+		<string>Generic String for cell/object that is currently selected</string>
+	</dict>
+	<key>Done</key>
+	<dict>
+		<key>value</key>
+		<string>Done</string>
+		<key>comment</key>
+		<string>Generic String for done action </string>
+	</dict>
+	<key>Okay</key>
+	<dict>
+		<key>value</key>
+		<string>Okay</string>
+		<key>comment</key>
+		<string>Generic String for okay/accept action </string>
+	</dict>
+	<key>This action cannot be undone.</key>
+	<dict>
+		<key>value</key>
+		<string>This action cannot be undone.</string>
+		<key>comment</key>
+		<string>Generic String for a permanent action</string>
+	</dict>
+	<key>Delete</key>
+	<dict>
+		<key>value</key>
+		<string>Delete</string>
+		<key>comment</key>
+		<string>Generic String for delete action</string>
+	</dict>
+	<key>Cancel</key>
+	<dict>
+		<key>value</key>
+		<string>Cancel</string>
+		<key>comment</key>
+		<string>Generic String for cancel action</string>
+	</dict>
+</dict>
+</plist>

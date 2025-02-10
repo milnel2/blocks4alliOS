@@ -15,7 +15,7 @@ class SliderModifierController: UIViewController {
     // Angle variables
     var sliderValue: Double = 90
     var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
-    var roundedSliderValue: Float = 90
+    var roundedSliderValue: Int = 90
     var sliderInterval: Int = 1
     
     private var optionType = ""  // Name of options that gets used for accessing data and displaying information
@@ -71,7 +71,7 @@ class SliderModifierController: UIViewController {
         sliderInterval = Int(sliderIntervalString)!
         
         
-        optionModTitle.text = optionType // Set title of the screen
+        optionModTitle.text = optionType.localized // Set title of the screen
        
         // default value: minimum value or preserve last selection
         let previousValueString: String = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? min
@@ -84,19 +84,14 @@ class SliderModifierController: UIViewController {
         slider.maximumValue = Float(max) ?? 90
         slider.minimumValue = Float(min) ?? 1
         
-
-        if previousValue! == 1 {
-            units = optionDict.value(forKey: "unitIfSingular") as? String ?? "N/A"
-        } else {
-            units = optionDict.value(forKey: "unitIfPlural") as? String ?? "N/A"
-        }
         sliderValue = Double(previousValue!)
-        slider.accessibilityValue = "\(previousValue!) " + units
-        valueDisplayed.accessibilityValue = "Current value is \(Int(sliderValue))" + units
+        roundedSliderValue = Int(Double(previousValue!))
         
-        roundedSliderValue = Float(Double(previousValue!))
+        
+        
         
         // Accessibility
+        updateAccessibilityTools()
         back.titleLabel?.adjustsFontForContentSizeCategory = true
         turnView.accessibilityElements = [back!, optionModTitle!, valueDisplayed!, slider!]
         setFontStyle()
@@ -104,8 +99,23 @@ class SliderModifierController: UIViewController {
     
     /// Called whenever angleSliderChanged() is called. Updates accessibility labels and values to match what is being displayed
     private func updateAccessibilityTools() {
-        slider.accessibilityValue = "\(Int(roundedSliderValue)) " + units
-        valueDisplayed.accessibilityValue = "Current value is \(Int(roundedSliderValue)) " + units
+        if attributeName == "angle" {
+            
+            let formattedString = NSLocalizedString("num_degrees", comment: "Accessibility value for a slider to choose angle")
+            let resultString = String.localizedStringWithFormat(formattedString, roundedSliderValue)
+            slider.accessibilityValue = resultString
+            
+            let formattedString2 = NSLocalizedString("current_value_is_degrees", comment: "Accessibility value for a label describing the value of a slider to choose angle")
+            let resultString2 = String.localizedStringWithFormat(formattedString2, roundedSliderValue)
+            valueDisplayed.accessibilityValue = resultString2
+            
+        } else {
+            slider.accessibilityValue = NumberFormatter.localizedString(from: roundedSliderValue as NSNumber, number: .none) //TODO: test this
+            
+            let formattedString = NSLocalizedString("current_value_is_int", comment: "Accessibility value for a label describing the value of a slider")
+            let resultString = String.localizedStringWithFormat(formattedString, roundedSliderValue)
+            valueDisplayed.accessibilityValue = resultString
+        }
 //        optionModTitle.accessibilityHint = attributeName + "Adjust slider to set amount"
     }
     
@@ -122,10 +132,10 @@ class SliderModifierController: UIViewController {
         // Calculate rounded value
         let roundingNumber: Float = (Float(sliderInterval) / 2.0)
         sliderValue = Double(sender.value)
-        roundedSliderValue = (Float(sliderInterval) * floorf(((sender.value + roundingNumber) / Float(sliderInterval))))
+        roundedSliderValue = Int((Float(sliderInterval) * floorf(((sender.value + roundingNumber) / Float(sliderInterval)))))
         
         // Update the screen
-        sender.setValue(roundedSliderValue, animated:false)
+        sender.setValue(Float(roundedSliderValue), animated:false)
         sliderValue = Double(roundedSliderValue)
         valueDisplayed.text = "\(Int(roundedSliderValue))"
         

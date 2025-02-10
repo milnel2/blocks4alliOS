@@ -59,7 +59,7 @@ class BlocksTypeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Toolbox"
+        self.title = NSLocalizedString("Toolbox", comment: "Title string for block type toolbox")
         
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -69,8 +69,8 @@ class BlocksTypeTableViewController: UITableViewController {
         
         self.tableView.bounces = true
         
-        self.accessibilityLabel = "Toolbox Menu"
-        self.accessibilityHint = "Double tap from menu to select block category"
+        self.accessibilityLabel = NSLocalizedString("Toolbox Menu.", comment: "Accessibility Label for block type toolbox")
+        self.accessibilityHint = NSLocalizedString("Double tap from menu to select block category.", comment: "Accessibility Hint for block type toolbox")
        
         
         if isInFreeplay {
@@ -117,7 +117,7 @@ class BlocksTypeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         // Configure the cell...
         let blockType = blockTypes[indexPath.row]
-        cell.textLabel?.text = blockType.name
+        cell.textLabel?.text = blockType.name.localized
         if #available(iOS 13.0, *) {
             cell.textLabel?.textColor = UIColor.label
         } else {
@@ -127,8 +127,9 @@ class BlocksTypeTableViewController: UITableViewController {
         cell.textLabel?.textAlignment = .left
         cell.textLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 29.0)
         cell.backgroundColor = UIColor(named: "\(blockType.colorName)")
-        cell.accessibilityLabel = blockType.name + " category"
-        cell.accessibilityHint = "Double tap to explore blocks in this category"
+        let formattedString = NSLocalizedString("block_type_category_access_label", comment: "Accessibility label for cell in blocks type toolbox. '<block_type> category.'")
+        cell.accessibilityLabel = String.localizedStringWithFormat(formattedString, blockType.name)
+        cell.accessibilityHint = NSLocalizedString("Double tap to explore blocks in this category", comment: "Accessibility hint for cell in blocks type toolbox")
         
 
         // Option to add an icon to the toollbox blocks.
@@ -148,8 +149,6 @@ class BlocksTypeTableViewController: UITableViewController {
             }
         }
         
-    
-       
         //Makes label more intuitive for Voice Control
         if #available(iOS 13.0, *) {
             cell.accessibilityUserInputLabels = ["\(blockType.name)"]
@@ -198,9 +197,6 @@ class BlocksTypeTableViewController: UITableViewController {
                       blockTypes += [block]
                       // adds block to the array of blocks that are the different types used for automatically generating the toolbox UI components
                   }
-                
-                
-               
             }
         }
     }

@@ -25,7 +25,6 @@ class SetVariableModViewController: UIViewController {
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet var setVarView: UIView!
-    @IBOutlet var setVarTitle: UILabel!
     @IBOutlet var variableValueInput: UITextField!
     var activeField: UITextField?
     
@@ -85,10 +84,16 @@ class SetVariableModViewController: UIViewController {
         setVarView.accessibilityElements = [back!, setVariableTitle!, buttons!, valueLabel!, variableValueInput!, descriptionLabel!]
         // Voice Control
         if #available(iOS 13.0, *) {
-            variableValueInput.accessibilityUserInputLabels = ["Value"]
+            variableValueInput.accessibilityUserInputLabels = [NSLocalizedString("Value", comment: "Voice Control label")]
         }
         // Dynamic Text
         setFontStyle()
+        
+        // Text
+        setVariableTitle.text = NSLocalizedString("select and set a variable", comment: "title for set variable modifier view controller").localizedCapitalized
+        valueLabel.text = "\(NSLocalizedString("value", comment: "Generic string for a variable value").localized.localizedCapitalized):"
+        descriptionLabel.text = NSLocalizedString("Negative = backwards, upwards, or left", comment: "Description text in the set varaible modifier view controller. A negative number will have the robot move backwards, upwards, or left depending on the context")
+        
     }
     
     /// Call whenever data is changed to update the screen to match it

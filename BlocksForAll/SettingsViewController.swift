@@ -59,12 +59,12 @@ class SettingsViewController: UIViewController {
         blockSizeLabel.accessibilityValue = "= \(Int(displayValue))"
 
         if defaults.value(forKey: "showText") as! Int == 0 {
-            showIconsLabel.accessibilityValue = "Show icons selected"
-            showIconsLabel.text = "Show Icons"
+            showIconsLabel.accessibilityValue = NSLocalizedString("Show icons selected.", comment:"Accessibility value for a show icons or text label when show icons is on")
+            showIconsLabel.text = NSLocalizedString("Show Icons", comment: "Text for a show icons or text label when show icons is on")
             
         } else {
-            showIconsLabel.accessibilityValue = "Show text selected"
-            showIconsLabel.text = "Show Text"
+            showIconsLabel.accessibilityValue =  NSLocalizedString("Show text selected.", comment:"Accessibility value for a show icons or text label when show text is on")
+            showIconsLabel.text = NSLocalizedString("Show Text", comment: "Text for a show icons or text label when show text is on")
         }
         
         blockSizeLabel.adjustsFontForContentSizeCategory = true
@@ -77,13 +77,13 @@ class SettingsViewController: UIViewController {
         defaults.setValue(sender.selectedSegmentIndex, forKey: "showText")
         defaults.synchronize()
         if sender.selectedSegmentIndex == 0 {
-            sender.accessibilityLabel = "Show icons"
-            showIconsLabel.text = "Show Icons"
-            showIconsLabel.accessibilityValue = "Show icons selected"
+            sender.accessibilityLabel = NSLocalizedString("Show Icons.", comment: "Accessibility label for a show icons or text switch button when show icons is on")
+            showIconsLabel.accessibilityValue = NSLocalizedString("Show icons selected.", comment:"Accessibility value for a show icons or text label when show icons is on")
+            showIconsLabel.text = NSLocalizedString("Show Icons", comment: "Text for a show icons or text label when show icons is on")
         } else {
-            sender.accessibilityValue = "Show text"
-            showIconsLabel.accessibilityValue = "Show text selected"
-            showIconsLabel.text = "Show Text"
+            sender.accessibilityLabel = NSLocalizedString("Show Text.", comment: "Accessibility label for a show icons or text switch button when show text is on")
+            showIconsLabel.accessibilityValue = NSLocalizedString("Show text selected.", comment:"Accessibility value for a show icons or text label when show text is on")
+            showIconsLabel.text = NSLocalizedString("Show Text", comment: "Text for a show icons or text label when show text is on")
         }
     }
     
@@ -114,14 +114,16 @@ class SettingsViewController: UIViewController {
     
     /// Given a float, sets text for block size label
     private func updateBlockSizeLabel (value : Float) {
-        blockSizeLabel.text = "Block Size = \(Int(value))"
-        blockSizeLabel.accessibilityValue = "= \(Int(value))"
+        updateBlockSizeLabel(value: Int(value))
     }
     
     /// Given an int, sets text for block size label
     private func updateBlockSizeLabel (value : Int) {
-        blockSizeLabel.text = "Block Size = \(value)"
-        blockSizeLabel.accessibilityValue = "= \(Int(value))"
+        let formattedString = NSLocalizedString("block_size_equals_label", comment: "Label to display block size. 'Block Size = <int>'")
+        blockSizeLabel.text = String.localizedStringWithFormat(formattedString, value)
+        
+        let formattedString2 = NSLocalizedString("block_size_equals_access_value", comment: "Accessibility value of a block size label. 'equals <int>.'")
+        blockSizeLabel.accessibilityValue = String.localizedStringWithFormat(formattedString, value) //TODO: is this accessibility value needed?
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -16,9 +16,9 @@ public let ROBOT_GALLERY_TYPE = "Robot Projects"
 
 var allProjects: [String : [Project]] = [FREEPLAY_GALLERY_TYPE:[], ROBOT_GALLERY_TYPE: []]
 
-let ON_RUN_STRING = "OnRun"
-let ON_BUMP_STRING = "OnBump" // Need to add implementation for On Bump
-let ON_TAP_STRING = "OnTap"
+let ON_RUN_STRING = "On Run"
+let ON_BUMP_STRING = "On Bump" // Need to add implementation for On Bump
+let ON_TAP_STRING = "On Tap"
 
 let PREMADE_FUNCTION_NAMES = [ON_RUN_STRING, ON_BUMP_STRING, ON_TAP_STRING, "Main Workspace"]
 

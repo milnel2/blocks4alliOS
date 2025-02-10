@@ -61,6 +61,11 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
        
         // Voice Over
         accessibilityElements = [backButton!, chooseActorTitleLabel!, actorsCollectionView!, addActorButton!]
+        
+        // Text
+        
+        chooseActorTitleLabel.text = NSLocalizedString("Choose New Actor", comment: "Title for choose new actor view controller").localizedCapitalized
+        addActorButton.setTitle(NSLocalizedString("Add", comment: "Button text to add new actor to project"), for: .normal)
     }
     
     // MARK: Actions
@@ -90,7 +95,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
              
              freeplayWorkspaceVC.currentActorImageView = currentActorImageView
             
-            freeplayWorkspaceVC.newActorToAdd = (name: selectedActor.name, baseImagePath: selectedActor.baseImagePath, color: "Default") // add a new actor
+             freeplayWorkspaceVC.newActorToAdd = (name: selectedActor.name, baseImagePath: selectedActor.baseImagePath, color: "Default") // add a new actor
         }
     }
     
@@ -135,8 +140,13 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
           
         // Accessibility
         cell.isAccessibilityElement = true
-        cell.accessibilityLabel = name + ". Default color"
-        cell.accessibilityHint = "Double tap to select"
+        
+        let formattedString = NSLocalizedString("actor_cell_access_label", comment: "Accessibility label for actor cell. '<actor_name>. <actor_color> color.'")
+        let resultString = String.localizedStringWithFormat(formattedString, name, "Default")
+        cell.accessibilityLabel = resultString
+        
+        cell.accessibilityHint = NSLocalizedString( "Double tap to select.", comment: "Accessibility hint for actor cell")
+        
         cell.accessibilityIdentifier = String(index)
         
         cell.backgroundColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -146,9 +156,14 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
             cell.layer.borderWidth = 10
             cell.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
             cell.isSelected = true
-            cell.accessibilityHint = "Selected"
-            cell.accessibilityLabel = name + ". Default color"
-            selectedActor = (name: name, baseImagePath: baseImagePath, color: "Default")
+            
+            cell.accessibilityHint = "\("Selected".localized)."
+            
+            let formattedString = NSLocalizedString("actor_cell_access_label", comment: "Accessibility label for actor cell. Should say the actor's name and color.")
+            let resultString = String.localizedStringWithFormat(formattedString, name, "Default".localized)
+            cell.accessibilityLabel = resultString
+           
+            selectedActor = (name: name, baseImagePath: baseImagePath, color: "Default".localized)
         } else {
             cell.isSelected = false
             cell.layer.borderWidth = 0
@@ -176,7 +191,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         if let actorType = items[optionSelectedIndex] as? NSDictionary{
             imagePath = actorType.value(forKey: "imagePath") as! String
             name = actorType.value(forKey: "name") as! String
-            selectedActor = (name: name, baseImagePath: imagePath, color: "Default")
+            selectedActor = (name: name, baseImagePath: imagePath, color: "Default".localized)
         }
     }
 }

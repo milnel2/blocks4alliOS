@@ -57,12 +57,18 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     
     @objc func projectLabelTapped(_ sender: UITapGestureRecognizer) {
         // Show rename project alert
-        let alert = UIAlertController(title: "Enter project name", message: "", preferredStyle: .alert)
+        let titleString: String
+        let placeholderString: String
+        
+        titleString = NSLocalizedString("Enter project name", comment: "Title for alert to name a new project")
+        placeholderString = NSLocalizedString("Your project name", comment: "Placeholder text for textfield to enter project name")
+       
+        let alert = UIAlertController(title: titleString, message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
-            textField.placeholder = "Your project name"
+            textField.placeholder = placeholderString
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done".localized, style: .default, handler: {action in
             let textField = alert.textFields![0] as UITextField
             if self.validateFunctionName(name: textField.text ?? "") {
                 let newName = textField.text!
@@ -101,25 +107,38 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         
         projectNameLabel.isAccessibilityElement = true
         projectNameLabel.accessibilityTraits = .button
-        projectNameLabel.accessibilityLabel = "Rename " + project.name
         
         deleteButton.isAccessibilityElement = true
+        
+        accessibilityElements = [contentView, projectNameLabel!, deleteButton!]
         
         let cellIndex = allProjects[cellGalleryType]?.firstIndex(of: project) ?? 0
         let numProjects = allProjects[cellGalleryType]?.count ?? 0
         
-        contentView.accessibilityHint = "Open " + project.name + ". Project \(cellIndex + 1) of \(numProjects). One finger swipe for more options"  // TODO: add image description
-        deleteButton.accessibilityLabel = "Delete " + project.name
+        let formattedString = NSLocalizedString("project_name_label_access_label", comment: "Accessibility label for Project Name Label. Tapping the label will allow user to rename the project")
+        let resultString = String.localizedStringWithFormat(formattedString, project.name)
+        projectNameLabel.accessibilityLabel = resultString
         
-        accessibilityElements = [contentView, projectNameLabel!, deleteButton!]
+        let formattedString2 = NSLocalizedString("project_cell_access_hint", comment: "Accessibility hint for project cell in the project gallery.")
+        let resultString2 = String.localizedStringWithFormat(formattedString2, project.name, (cellIndex + 1), numProjects)
+        contentView.accessibilityHint = resultString2
+        // TODO: add image description
+        
+        let formattedString3 = NSLocalizedString("delete_project_button_access_label", comment: "Accessibility label for Delete Project Button on project cell in project gallery")
+        let resultString3 = String.localizedStringWithFormat(formattedString3, project.name)
+        deleteButton.accessibilityLabel = resultString3
     }
     
     
     @IBAction func deleteButtonPressed(_ sender: Any) {
         // Verify delete action
-        let alert = UIAlertController(title: "Are you sure you want to delete this project?", message: "This action cannot be undone.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
+        let titleString: String
+        
+        titleString = NSLocalizedString("Are you sure you want to delete this project?", comment: "")
+        
+        let alert = UIAlertController(title: titleString, message: "This action cannot be undone.".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete".localized, style: .destructive, handler: {action in
             // delete project
             let index = allProjects[self.cellGalleryType]!.firstIndex(of: self.project)!
             allProjects[self.cellGalleryType]!.remove(at: index)
@@ -134,10 +153,15 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         let dictionary = HelperFunctions.getPListDictionary(resourceName: "ModifierProperties")!
         if (dictionary[name] != nil) {
             // Name is protected, show an alert do not rename the function
+            let titleString: String
+            let messageString: String
             
-                let invalidNameAlert = UIAlertController(title: "Name is protected", message: "Choose a different name", preferredStyle: .alert)
-                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-               parentViewController!.present(invalidNameAlert, animated: true)
+            titleString = NSLocalizedString("Name is protected", comment: "")
+            messageString = NSLocalizedString("Choose a different name", comment: "")
+        
+            let invalidNameAlert = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
+            invalidNameAlert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+           parentViewController!.present(invalidNameAlert, animated: true)
             
             return false
         } else if (name == "") {
@@ -149,9 +173,15 @@ class ProjectCollectionViewCell: UICollectionViewCell {
                 // is the same name as before. Do nothing
                 return false
             }
-                let invalidNameAlert = UIAlertController(title: "Name already exists", message: "Choose a different name", preferredStyle: .alert)
-                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-               parentViewController!.present(invalidNameAlert, animated: true)
+            let titleString: String
+            let messageString: String
+            
+            titleString = NSLocalizedString("Name already exists", comment: "")
+            messageString = NSLocalizedString("Choose a different name", comment: "")
+        
+            let invalidNameAlert = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
+            invalidNameAlert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+           parentViewController!.present(invalidNameAlert, animated: true)
             
             return false
         } else {

@@ -285,13 +285,29 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         mainMenuButton.isAccessibilityElement = true
         mainMenuButton.isUserInteractionEnabled = true
         mainMenuButton.accessibilityTraits = .button
+        homeButton.accessibilityLabel = "Main Menu".localized
         
         // Set the accessibility elements for the screen
         resetAccessibilityElements()
         
-        addActorButton.accessibilityLabel = "Add actor to project"
-        currentActorImageView.accessibilityLabel = "Current actor is " + currentProject!.currentActor!.name + ". Tap to customize or delete"
+        addActorButton.accessibilityLabel = NSLocalizedString("Add actor to project.", comment: "Accessibility label for Add Actor Button")
         
+        let formattedString = NSLocalizedString("current_actor_image_view_access_label", comment: "Accessibility label for Current Actor Image")
+        let actorName = currentProject!.currentActor!.name
+        let resultString = String.localizedStringWithFormat(formattedString, actorName)
+        currentActorImageView.accessibilityLabel = resultString
+        
+        FirstCodeLineButton.accessibilityLabel = NSLocalizedString("On Run code line.", comment: "Accessibility label for On Run Code Line Button")
+       
+        secondCodeLineButton.accessibilityLabel = NSLocalizedString("On Actor Tap code line.", comment: "Accessibility label for On Actor Tap Code Line Button")
+        
+        let formattedString2 = NSLocalizedString("second_code_line_access_hint", comment: "Accessibility hint for On Actor Tap Code Line Button")
+        let resultString2 = String.localizedStringWithFormat(formattedString2, actorName)
+        secondCodeLineButton.accessibilityHint = resultString2
+        
+        enterFullScreenButton.accessibilityLabel = NSLocalizedString("Enter full screen.", comment: "Accessibility Label for Enter Full Screen button")
+           
+       
         // highlight the active code line button
         switch currentWorkspace {
         case ON_RUN_STRING:
@@ -303,10 +319,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         default:
             break
         }
-        FirstCodeLineButton.accessibilityLabel = "On Run code line"
-        FirstCodeLineButton.accessibilityHint = "Press the play button to run this code line."
-        secondCodeLineButton.accessibilityLabel = "On Actor Tap code line"
-        secondCodeLineButton.accessibilityHint = "Tap on " + currentProject!.currentActor!.name + " actor to run this code line."
+        
     }
     
     

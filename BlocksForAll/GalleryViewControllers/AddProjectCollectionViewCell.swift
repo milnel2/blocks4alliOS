@@ -18,7 +18,7 @@ class AddProjectCollectionViewCell: UICollectionViewCell {
         contentView.accessibilityTraits = .button
         accessibilityTraits = .allowsDirectInteraction
         
-        contentView.accessibilityHint = "Add New Project"
+        contentView.accessibilityHint = NSLocalizedString( "Add New Project.", comment: "Accessibility hint for Add New Project Button") // TODO: should this be an accessibility label?
         
         accessibilityElements = [contentView]
         

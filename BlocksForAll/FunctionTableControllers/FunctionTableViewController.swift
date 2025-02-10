@@ -17,6 +17,8 @@ class FunctionTableViewController: UITableViewController {
 
     var functions: [String] = Array(functionsDict.keys) // All the names of the functions a user creates placed in an array instead of dictionary so has a set order
 
+    var currentProject: Project?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,12 +39,12 @@ class FunctionTableViewController: UITableViewController {
     
     /// Adds a new row after plus button tapped, then an alert allows you to name the function
     @IBAction func insertFunction(_ sender: Any) {
-        let alert = UIAlertController(title: "Enter function name", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("Enter function name", comment: "Alert title for creating a new function"), message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
-            textField.placeholder = "Your file name"
+            textField.placeholder = NSLocalizedString("Your file name", comment: "Text field placeholder for creating a new function")
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done".localized, style: .default, handler: {action in
             let textField = alert.textFields![0] as UITextField
             if self.validateFunctionName(name: textField.text!, currentAlert: alert) {
                 // name is valid, create new function
@@ -58,7 +60,7 @@ class FunctionTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationItem.title = "Functions Menu"
+        navigationItem.title = NSLocalizedString("Functions Menu", comment: "Title label for list of custom functions")
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,7 +85,8 @@ class FunctionTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of FunctionTableViewCell.")
         }
         cell.nameButton.setTitle(functions[indexPath.row], for: .normal)
-        cell.nameButton.accessibilityLabel = "\(functions[indexPath.row]). Double tap to edit function."
+        let formattedString = NSLocalizedString("edit_function_access_label", comment: "Accessibility Label for a button to edit a custom function. '<functionName>. Double tap to edit function.'")
+        cell.nameButton.accessibilityLabel = String.localizedStringWithFormat(formattedString, functions[indexPath.row])
         cell.functionTableViewController = self
 
         return cell
@@ -108,10 +111,10 @@ class FunctionTableViewController: UITableViewController {
             oldKey.append(functions[deletionIndexPath.row])
 
             // Declare Alert message
-            let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+            let dialogMessage = UIAlertController(title: NSLocalizedString("Confirm", comment: "Confirm action"), message: NSLocalizedString("Are you sure you want to delete this?", comment: "Message for a confirm action"), preferredStyle: .alert)
             
             // Create Yes button with action handler
-            let yes = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+            let yes = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { (action) -> Void in
                 functionsDict.removeValue(forKey: self.functions[deletionIndexPath.row])
                 self.functions.remove(at: deletionIndexPath.row)
                 self.tableView.deleteRows(at: [deletionIndexPath], with: .automatic)
@@ -129,7 +132,7 @@ class FunctionTableViewController: UITableViewController {
             })
             
             // Create Cancel button with action handlder
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel) { (action) -> Void in
             }
             
             //Add OK and Cancel button to dialog message
@@ -147,12 +150,12 @@ class FunctionTableViewController: UITableViewController {
             oldKey.append(functions[renameIndexPath.row])
             let val = functionsDict[functions[renameIndexPath.row]]
         // Show alert
-        let alert = UIAlertController(title: "Enter function name", message: "", preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Enter function name", comment: "Alert title to rename a custom function"), message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
-            textField.placeholder = "Your function name"
+            textField.placeholder = NSLocalizedString("Your function name", comment: "Text field placeholder for custom function name")
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {action in
+            alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title:"Done".localized, style: .default, handler: {action in
             let textField = alert.textFields![0] as UITextField
             
             if self.validateFunctionName(name: textField.text!, currentAlert: alert) {
@@ -164,16 +167,18 @@ class FunctionTableViewController: UITableViewController {
                 self.tableView.insertRows(at: [insertionIndexPath as IndexPath], with: .automatic)
                 
                 // Below updates all blocks in the app to show the right name after a rename, it literally goes through every block and every possible old name so this is really not efficent but hopefully this fixes the crashing from a long time
+                let functionStartStr = NSLocalizedString("Function Start", comment: "Block name for the start of a custom function (ex. block called: <funcName> Function Start)")
+                let functionEndStr = NSLocalizedString("Function End", comment: "Block name for the end of a custom function (ex. block called: <funcName> Function End)")
                 for function in functionsDict.keys{
                     for block in functionsDict[function]!{
                         for oldFunctionName in self.oldKey{
                             if block.name == oldFunctionName{
                                
                                 block.name = self.newKey
-                            } else if block.name == String(oldFunctionName + " Function Start") {
-                                block.name = String(self.newKey + " Function Start")
-                            } else if block.name == String(oldFunctionName + " Function End") {
-                                block.name = String(self.newKey + " Function End")
+                            } else if block.name == "\(oldFunctionName) \(functionStartStr)" {
+                                block.name = "\(self.newKey) \(functionStartStr)"
+                            } else if block.name == "\(oldFunctionName) \(functionEndStr)" {
+                                block.name = "\(self.newKey) \(functionEndStr)"
                             }
                         }
                     }
@@ -193,32 +198,32 @@ class FunctionTableViewController: UITableViewController {
         if (dictionary[name] != nil) {
             // Name is protected, show an alert do not rename the function
             currentAlert.dismiss(animated: true) {
-                let invalidNameAlert = UIAlertController(title: "Name is protected", message: "Choose a different name", preferredStyle: .alert)
-                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                let invalidNameAlert = UIAlertController(title: NSLocalizedString("Name is protected", comment: "Title for an invalid name alert"), message: NSLocalizedString("Choose a different name", comment: "Message for an invalid name alert"), preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: NSLocalizedString("Okay", comment: "Okay action for an invalid name alert"), style: .default, handler: nil))
                 self.present(invalidNameAlert, animated: true)
             }
             return false
         } else if (name == "") {
             // Name is empty string
             currentAlert.dismiss(animated: true) {
-                let invalidNameAlert = UIAlertController(title: "Name cannot be empty", message: "Choose a different name", preferredStyle: .alert)
-                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                let invalidNameAlert = UIAlertController(title: NSLocalizedString("Name cannot be empty", comment: "Title for an invalid name alert"), message: NSLocalizedString("Choose a different name", comment: "Message for an invalid name alert"), preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: NSLocalizedString("Okay", comment: "Okay action for an invalid name alert"), style: .default, handler: nil))
                 self.present(invalidNameAlert, animated: true)
             }
             return false
         } else if (self.functions.contains(name))  {
             // Duplicate custom function name
             currentAlert.dismiss(animated: true) {
-                let invalidNameAlert = UIAlertController(title: "Name already exists", message: "Choose a different name", preferredStyle: .alert)
-                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                let invalidNameAlert = UIAlertController(title: NSLocalizedString("Name already exists", comment: "Title for an invalid name alert"), message: NSLocalizedString("Choose a different name", comment: "Message for an invalid name alert"), preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: NSLocalizedString("Okay", comment: "Okay action for an invalid name alert"), style: .default, handler: nil))
                 self.present(invalidNameAlert, animated: true)
             }
             return false
         } else if (self.oldKey.contains(name))  {
             // Function name was used previously but removed
             currentAlert.dismiss(animated: true) {
-                let invalidNameAlert = UIAlertController(title: "Name cannot have been used before", message: "Choose a different name", preferredStyle: .alert)
-                invalidNameAlert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                let invalidNameAlert = UIAlertController(title: NSLocalizedString("Name cannot have been used before", comment: "Title for an invalid name alert"), message: NSLocalizedString("Choose a different name", comment: "Message for an invalid name alert"), preferredStyle: .alert)
+                invalidNameAlert.addAction(UIAlertAction(title: NSLocalizedString("Okay", comment: "Okay action for an invalid name alert"), style: .default, handler: nil))
                 self.present(invalidNameAlert, animated: true)
             }
             return false
@@ -238,6 +243,15 @@ class FunctionTableViewController: UITableViewController {
     @IBAction func backToMainWorkspace(_ sender: Any) {
         currentWorkspace = "Main Workspace"
         performSegue(withIdentifier: "functionsToBlocks", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if let destination = segue.destination as? FreePlayWorkspaceViewController{
+            destination.currentProject = currentProject
+        }
+        if let destination = segue.destination as? BlocksViewController{
+            destination.currentProject = currentProject
+        }
     }
 }
 

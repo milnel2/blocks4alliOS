@@ -112,7 +112,7 @@ class ModifierButton: UIButton {
         titleLabel?.numberOfLines = 2
         titleLabel?.lineBreakMode = .byWordWrapping
 
-        setTitle(text.capitalized, for: .normal)
+        setTitle(text.localizedCapitalized, for: .normal)
     }
     
     // set the background image of the modifier button
@@ -138,10 +138,17 @@ class ModifierButton: UIButton {
     // Sound blocks (ex. Animal noise)
     func noiseButton() {
         if HelperFunctions.showIconsIsOn() {
-            setBackgroundImage(named: "\(attrVal)")
+            if data.blockName == "Custom Noise" {
+                if let index = Int(attrVal) {
+                    setBackgroundImage(named: UserData.data.getAudioFileName(forIndex: index))
+                }
+            } else {
+                setBackgroundImage(named: "\(attrVal)")
+            }
+           
         } else {
             let backgroundImagePath = "\(data.attributeName)Background"
-            oneImageOnlyShowTextIsOn(text: attrVal, backgroundPath: backgroundImagePath)
+            oneImageOnlyShowTextIsOn(text: attrVal.localized, backgroundPath: backgroundImagePath)
         }
         modifierInformation = attrVal
     }
@@ -154,17 +161,20 @@ class ModifierButton: UIButton {
         var text = attrVal
         if HelperFunctions.showIconsIsOn() {
             image = HelperFunctions.getUIImage(named: secondAttrVal)
-            if titleLabel?.font.pointSize ?? 26 <= 34 {
-                text = "\(attrVal) cm \n"
-            } else {
+            if titleLabel?.font.pointSize ?? 26 <= 34 { // enough room for more text
+                let formattedText = NSLocalizedString("num_centimeters", comment: "Text for a drive modifier button. Number (as a string) of centimeters. '<value> cm'")
+                text = String.localizedStringWithFormat(formattedText, attrVal) + "\n"
+            } else { // not enough room for text, just put the value
                 text = "\(attrVal)\n"
             }
             
         } else {
             image = HelperFunctions.getUIImage(named: data.showTextImage!)
-            if titleLabel?.font.pointSize ?? 26 <= 34 {
-                text = "\(attrVal) cm, \(secondAttrVal)"
-            } else {
+            if titleLabel?.font.pointSize ?? 26 <= 34 { // enough room for more text
+                let formattedText = NSLocalizedString("num_centimeters_with_speed", comment: "Text for a drive modifier button. Number (as a string) of centimeters and then the speed. '<value> cm, <speed>'")
+                text = String.localizedStringWithFormat(formattedText, attrVal, secondAttrVal) + "\n"
+                print("drive text = \(text)")
+            } else { // not enough room for text, just put the value
                 text = "\(attrVal) \(secondAttrVal)"
             }
            
@@ -172,7 +182,8 @@ class ModifierButton: UIButton {
         setBackgroundImage(image, for: .normal)
         setTitle(text, for: .normal)
         
-        modifierInformation = "\(attrVal) cm, at \(secondAttrVal) speed." // TODO: make sure all voice over labels have periods.
+        let formattedText = NSLocalizedString("num_centimeters_with_speed_access_label", comment: "Accessibility label for a drive modifier button. Number (as a string) of centimeters and then the speed. '<value> cm, at <speed>'")
+        modifierInformation = String.localizedStringWithFormat(formattedText, attrVal, secondAttrVal) // TODO: make sure all voice over labels have periods.
     }
     
     // Set speed block
@@ -181,7 +192,7 @@ class ModifierButton: UIButton {
             setBackgroundImage(named: attrVal)
         } else {
             let backgroundImagePath = "driveModifierBackground"
-            oneImageOnlyShowTextIsOn(text: modifierInformation, backgroundPath: backgroundImagePath)
+            oneImageOnlyShowTextIsOn(text: modifierInformation.localized, backgroundPath: backgroundImagePath)
         }
         
         modifierInformation = attrVal
@@ -197,11 +208,11 @@ class ModifierButton: UIButton {
             block.attributes["moveToActor"] = actor!.UUID
         } else {
             let backgroundImagePath = "driveModifierBackground"
-            let text = actor!.color.capitalized + " " + actor!.name.capitalized
+            let text = actor!.color.localizedCapitalized + " " + actor!.name.localizedCapitalized
             oneImageOnlyShowTextIsOn(text: text, backgroundPath: backgroundImagePath)
         }
         
-        modifierInformation = actor!.color.capitalized + " " + actor!.name.capitalized
+        modifierInformation = actor!.color.localizedCapitalized + " " + actor!.name.localizedCapitalized
     }
     
     
@@ -237,7 +248,8 @@ class ModifierButton: UIButton {
         let row = block.attributes["row"] ?? "Not available"
         let col = block.attributes["column"] ?? "Not available"
        
-        modifierInformation = "Row \(row) of \(Int(LocationConstants.numRows)), Column \(col) of \(Int(LocationConstants.numCols))."
+        let formattedString = NSLocalizedString("row_column_access_label", comment: "Accessibility Label for moveToLocation button with row and column information. 'Row <row> of <numRows>, Column <column> of <numColumns>.'")
+        modifierInformation = String.localizedStringWithFormat(formattedString, row, String(LocationConstants.numRows), col, String(LocationConstants.numCols))
     }
     
     // MARK: Lights Blocks
@@ -248,7 +260,7 @@ class ModifierButton: UIButton {
             setBackgroundImage(named: attrVal)
         } else {
             let backgroundImagePath = "eyeLightBackground"
-            oneImageOnlyShowTextIsOn(text: modifierInformation.capitalized, backgroundPath: backgroundImagePath)
+            oneImageOnlyShowTextIsOn(text: modifierInformation.localized.localizedCapitalized, backgroundPath: backgroundImagePath)
         }
         modifierInformation = attrVal
     }
@@ -266,7 +278,7 @@ class ModifierButton: UIButton {
             layer.cornerRadius = 20 // add button rounded border
             titleLabel?.numberOfLines = 2
             titleLabel?.lineBreakMode = .byWordWrapping
-            setTitle(color.capitalized, for: .normal)
+            setTitle(color.localized.localizedCapitalized, for: .normal)
         }
         
         modifierInformation = attrVal
@@ -280,7 +292,7 @@ class ModifierButton: UIButton {
             setBackgroundImage(named: attrVal)
         } else {
             let backgroundImagePath = "booleanSelectedBackground"
-            oneImageOnlyShowTextIsOn(text: modifierInformation.capitalized, backgroundPath: backgroundImagePath)
+            oneImageOnlyShowTextIsOn(text: modifierInformation.localized.localizedCapitalized, backgroundPath: backgroundImagePath)
         }
         modifierInformation = attrVal
     }
@@ -292,20 +304,21 @@ class ModifierButton: UIButton {
         titleLabel?.font = UIFont.accessibleBoldFont(withStyle: .title1, size: 42.0)
         setTitle(attrVal, for: .normal)
         
-        modifierInformation = "\(attrVal) times"
+        let formattedString = NSLocalizedString("num_times", comment: "Text for a repeat modifier button. Number (as a string) of times. '<value> times'")
+        modifierInformation = String.localizedStringWithFormat(formattedString, attrVal)
     }
     
     // Wait for time blocks
     func waitButton() {
         setBackgroundImage(named: data.imagePath!)
         
-        var text = attrVal
+        var text: String
         
-        if block.attributes["wait"] == "1" {
-            text = "\(text) second"
-        } else {
-            text = "\(text) seconds"
-        }
+        let value = Int(attrVal) ?? 1 // TODO: throw error if cant convert to int?
+        
+        let formattedString = NSLocalizedString("num_seconds", comment: "Text for a wait for time modifier button. Number (as an int) of seconds. '<value> second(s)'")
+        text = String.localizedStringWithFormat(formattedString, attrVal)
+        
         setTitle(text, for: .normal)
         
         modifierInformation = text
@@ -318,9 +331,10 @@ class ModifierButton: UIButton {
         if HelperFunctions.showIconsIsOn() {
             setBackgroundImage(named: "\(attrVal)") // In icon mode, show image (ex. apple image)
         } else {
-            oneImageOnlyShowTextIsOn(text: "\(attrVal)", backgroundPath: data.imagePath!) // In text mode, show text representation of value (ex. "apple")
+            oneImageOnlyShowTextIsOn(text: "\(attrVal.localized)", backgroundPath: data.imagePath!) // In text mode, show text representation of value (ex. "apple")
         }
-        modifierInformation = "\(attrVal) Variable"
+        let formattedString = NSLocalizedString("variable_block_access_label", comment: "Text for a variable modifier button like Drive, Look Up or Down, etc. '<variable_type> Variable'")
+        modifierInformation = String.localizedStringWithFormat(formattedString, attrVal)
     }
     
     // Set Variable blocks
@@ -331,7 +345,7 @@ class ModifierButton: UIButton {
             text = "\n\n= \(secondAttrVal)"
         } else {
             setBackgroundImage(named: data.imagePath!)
-            text = "\(attrVal) = \(secondAttrVal)"
+            text = "\(attrVal.localized.localizedCapitalized) = \(secondAttrVal)"
         }
         setTitle(text, for: .normal)
         modifierInformation = "\(attrVal) = \(secondAttrVal)"

@@ -21,12 +21,16 @@ class TwoOptionModifierViewController: UIViewController {
       // the values are dictionaries of string : string that holds different attributes to be shown on the screen
     private let optionDictionary: [String:[String : String]] =
         ["Set Eye Light" : ["attributeName" : "eyeLight", "Option 1" : "On", "Option 2" : "Off", "Default image" : "EyeLightModifierBackground"],
-            "If" : ["attributeName" : "booleanSelected", "Option 1" : "Hear voice", "Option 2" : "Obstacle sensed", "Default image" : "controlModifierBackground"]
+            "If" : ["attributeName" : "booleanSelected", "Option 1" : "Obstacle sensed", "Option 2" : "Hear voice", "Default image" : "controlModifierBackground"] // TODO: default if value used to be false. I removed it because it will never be used and is not an option you can choose on this screen - Lucy
         ]
     private var attributeName = ""  // Used for accessing and saving data, taken from optionDictionary (ex. if optionType = "Wait for Time", attributeName is "wait"
     private var optionOne = "N/A"  // String value of option one
     private var optionTwo = "N/A"  // String value of option two
-    private var modifierValue = ""  // current value of the modifier
+    
+    // TODO: update all modifier values to be computed properties
+    private var modifierValue: String {get {_modifierValue.localized}}  // current value of the modifier (user-facing)
+    private var _modifierValue = "" // backend version of the modifier value
+    
     private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each option button
     
     // View Controller Elements
@@ -54,12 +58,12 @@ class TwoOptionModifierViewController: UIViewController {
         checkIfValueExists(variableName: "optionTwo", value: optionTwo)
         
         // Formatting and design of screen
-        optionModTitle.text = optionType  // Set title of the screen
+        optionModTitle.text = optionType.localized  // Set title of the screen
           
         // default value: minimum value or preserve last selection
         let previousWaitString: String = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] ?? optionOne
           
-        modifierValue = previousWaitString
+        _modifierValue = previousWaitString
                 
         configureButton(button: optionOneButton, optionName: optionOne)
         configureButton(button: optionTwoButton, optionName: optionTwo)
@@ -70,14 +74,14 @@ class TwoOptionModifierViewController: UIViewController {
         // Accessibility
         // VoiceOver
         optionModView.accessibilityElements = [back!, optionModTitle!, modifierValueLabel!, optionOneButton!,  optionTwoButton!]
-        optionModTitle.accessibilityLabel = optionType
-        modifierValueLabel.accessibilityLabel = "Current selection: \(modifierValue)"
+        modifierValueLabel.accessibilityLabel = NSLocalizedString("Current selection: \(modifierValue)", comment: "Accessibility Label for a label in the two option modifier view controller")
+    
         // Voice Control
         //TODO: test voice control
           //Makes buttons easier to select with Voice Control
           if #available(iOS 13.0, *) {
-              optionTwoButton.accessibilityUserInputLabels = ["Right", "\(optionTwo)", "Second button"]
-              optionOneButton.accessibilityUserInputLabels = ["Left", "\(optionOne)", "First button"]
+              optionTwoButton.accessibilityUserInputLabels = [NSLocalizedString("Right", comment: "Accessibility User Input Label for a button on the right"), "\(optionTwo)", NSLocalizedString("Second button", comment: "Accessibility User Input Label for a second (2nd) button")]
+              optionOneButton.accessibilityUserInputLabels = [NSLocalizedString("Left", comment: "Accessibility User Input Label for a button on the left"), "\(optionOne)", NSLocalizedString("First button", comment: "Accessibility User Input Label for a first (1st) button")]
           }
         // Dynamic Text
         setFontStyle()
@@ -93,7 +97,7 @@ class TwoOptionModifierViewController: UIViewController {
     /// Sets up button and sets image or text for the button
     private func configureButton (button : UIButton, optionName : String) {
         let image = UIImage(named: optionName)
-        if image != nil && defaults.value(forKey: "showText") as! Int == 0 {
+        if image != nil && HelperFunctions.showIconsIsOn() {
            // Show Icons is on and the image was found
             let resizedImage = HelperFunctions.resizeImage(
             image: image!,
@@ -114,8 +118,8 @@ class TwoOptionModifierViewController: UIViewController {
             scaledToSize: CGSize(
                 width: buttonSize,
                 height: buttonSize)) // resize the image to fit the button
-          button.setBackgroundImage(resizedImage, for: .normal)
-          button.setTitle(optionName, for: .normal)
+            button.setBackgroundImage(resizedImage, for: .normal)
+            button.setTitle(optionName.localized, for: .normal)
 
           if image == nil {
               print("Image \(optionName) not found in TwoOptionModifierViewController")
@@ -123,7 +127,6 @@ class TwoOptionModifierViewController: UIViewController {
       }
         // Accessibility
         button.accessibilityIdentifier = optionName
-        button.accessibilityLabel = optionName
     }
     
     /// given a variable name and its value, prints out an error statement if the value is "N/A"
@@ -134,18 +137,18 @@ class TwoOptionModifierViewController: UIViewController {
     }
     
     @IBAction func optionOnePressed(_ sender: Any) {
-       modifierValue = optionOne
+       _modifierValue = optionOne
         updateScreen()
     }
     @IBAction func optionTwoPressed(_ sender: Any) {
-        modifierValue = optionTwo
+        _modifierValue = optionTwo
         updateScreen()
     }
     
     private func updateScreen() {
         for button in buttons {
             //Highlights current option when mod view is entered
-            if modifierValue == button.accessibilityIdentifier {
+            if _modifierValue == button.accessibilityIdentifier {
                 button.layer.borderWidth = 10
                 button.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
                 button.isSelected = true
@@ -170,7 +173,7 @@ class TwoOptionModifierViewController: UIViewController {
     private func updateAccessibilityLabel() {
         optionTwoButton.accessibilityLabel = "\(optionTwo)."
         optionOneButton.accessibilityLabel = "\(optionOne)."
-        modifierValueLabel.accessibilityLabel = "Current selection: \(modifierValue)"
+        modifierValueLabel.accessibilityLabel = NSLocalizedString("Current selection: \(modifierValue)", comment: "Accessibility Label for a label in the two option modifier view controller")
     }
     
     private func setFontStyle() {
@@ -202,11 +205,11 @@ class TwoOptionModifierViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let destination = segue.destination as? FreePlayWorkspaceViewController{
-            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)" // Tell BlocksViewController which sound was selected
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(_modifierValue)" // Tell BlocksViewController which sound was selected
             destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController{
-            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)" // Tell BlocksViewController which sound was selected
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(_modifierValue)" // Tell BlocksViewController which sound was selected
             destination.currentProject = currentProject
         }
     }
