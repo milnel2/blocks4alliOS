@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		8D0D881E2C09068300AC9620 /* DotBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D0D881D2C09068300AC9620 /* DotBlocksMenu.plist */; };
 		8D0D88202C0A51EA00AC9620 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8D0D881F2C0A51EA00AC9620 /* PrivacyInfo.xcprivacy */; };
 		8D27A4522A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */; };
+		8D312A0B2D0768CB00B81FEC /* Localizator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D312A0A2D0768C700B81FEC /* Localizator.swift */; };
 		8D364AAE2C35CD44006D42F5 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D364AAD2C35CD44006D42F5 /* HelperFunctions.swift */; };
 		8D364AB22C35EC9D006D42F5 /* SliderModifierOptionsDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D364AB12C35EC9D006D42F5 /* SliderModifierOptionsDictionary.plist */; };
 		8D364AB52C35F10E006D42F5 /* StepperModifierOptionsDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D364AB42C35F10E006D42F5 /* StepperModifierOptionsDictionary.plist */; };
@@ -32,6 +33,8 @@
 		8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8D66032A3A43330086E14A /* ModifierProperties.plist */; };
 		8D92E0DB2CAB83B800F74DC7 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D92E0DA2CAB83B800F74DC7 /* UserData.swift */; };
 		8D954F592A4B2E9800F10A26 /* TwoOptionModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */; };
+		8D9853502D013575009BA5AE /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 8D98534E2D013575009BA5AE /* Localizable.stringsdict */; };
+		8D9853572D013ECC009BA5AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D9853552D013ECC009BA5AE /* Localizable.strings */; };
 		8DBF4A7F2A5DB5D20075429C /* DashMainMenuSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */; };
 		8DC0F0552C2DF6A10008F224 /* ModifierButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0F0542C2DF6A00008F224 /* ModifierButton.swift */; };
 		8DCBEA552A49F8A500A26043 /* StepperModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */; };
@@ -111,6 +114,7 @@
 		8D0D881D2C09068300AC9620 /* DotBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DotBlocksMenu.plist; sourceTree = "<group>"; };
 		8D0D881F2C0A51EA00AC9620 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
 		8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceModifierViewController.swift; sourceTree = "<group>"; };
+		8D312A0A2D0768C700B81FEC /* Localizator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizator.swift; sourceTree = "<group>"; };
 		8D364AAD2C35CD44006D42F5 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		8D364AB12C35EC9D006D42F5 /* SliderModifierOptionsDictionary.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SliderModifierOptionsDictionary.plist; sourceTree = "<group>"; };
 		8D364AB42C35F10E006D42F5 /* StepperModifierOptionsDictionary.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = StepperModifierOptionsDictionary.plist; sourceTree = "<group>"; };
@@ -127,6 +131,10 @@
 		8D8D66032A3A43330086E14A /* ModifierProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
 		8D92E0DA2CAB83B800F74DC7 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoOptionModifierViewController.swift; sourceTree = "<group>"; };
+		8D98534F2D013575009BA5AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		8D9853532D013D09009BA5AE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		8D9853542D013ECC009BA5AE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		8D9853562D013ECC009BA5AE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DashMainMenuSound.mp3; path = BlocksForAll/DashMainMenuSound.mp3; sourceTree = SOURCE_ROOT; };
 		8DC0F0542C2DF6A00008F224 /* ModifierButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierButton.swift; sourceTree = "<group>"; };
 		8DCBEA542A49F8A500A26043 /* StepperModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperModifierViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +194,10 @@
 		FD6388362A31036B005F49F7 /* AphontBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AphontBoldItalic.ttf; sourceTree = "<group>"; };
 		FD6388392A310374005F49F7 /* AphontItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AphontItalic.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8D3129F82D07673E00B81FEC /* LocalizationPLists */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LocalizationPLists; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F18FFFAC1E65B0FB0090C4B6 /* Frameworks */ = {
@@ -283,6 +295,8 @@
 		F18FEEDB1EB115AF007C15B8 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				8D312A0A2D0768C700B81FEC /* Localizator.swift */,
+				8D3129F82D07673E00B81FEC /* LocalizationPLists */,
 				8D5489102C233C76002617BE /* Audio Files */,
 				8DBF4A7E2A5DB5D20075429C /* DashMainMenuSound.mp3 */,
 				F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */,
@@ -291,9 +305,11 @@
 				F18FFFB91E65B0FC0090C4B6 /* Assets.xcassets */,
 				FD63882F2A3100D3005F49F7 /* Fonts */,
 				F18FFFBE1E65B0FC0090C4B6 /* Info.plist */,
+				8D9853552D013ECC009BA5AE /* Localizable.strings */,
 				F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */,
 				F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */,
 				8D364AAD2C35CD44006D42F5 /* HelperFunctions.swift */,
+				8D98534E2D013575009BA5AE /* Localizable.stringsdict */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -441,6 +457,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				8D3129F82D07673E00B81FEC /* LocalizationPLists */,
+			);
 			name = BlocksForAll;
 			productName = BlocksForAll;
 			productReference = F18FFFAF1E65B0FB0090C4B6 /* BlocksForAll.app */;
@@ -494,6 +513,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = F18FFFA61E65B0FB0090C4B6;
 			productRefGroup = F18FFFB01E65B0FB0090C4B6 /* Products */;
@@ -524,6 +544,7 @@
 				8D364AB52C35F10E006D42F5 /* StepperModifierOptionsDictionary.plist in Resources */,
 				FD6388312A310311005F49F7 /* Aphont.ttf in Resources */,
 				8DEF21B62C40362400E5E21F /* trumpet.mp3 in Resources */,
+				8D9853572D013ECC009BA5AE /* Localizable.strings in Resources */,
 				8D364AB22C35EC9D006D42F5 /* SliderModifierOptionsDictionary.plist in Resources */,
 				8D54890E2C221F07002617BE /* ActorsMenu.plist in Resources */,
 				8D0D881E2C09068300AC9620 /* DotBlocksMenu.plist in Resources */,
@@ -531,6 +552,7 @@
 				8DEF21BB2C40362400E5E21F /* laser.mp3 in Resources */,
 				8DEF21B92C40362400E5E21F /* dog.mp3 in Resources */,
 				8DEF21C12C40371000E5E21F /* bounceOffWall.mp3 in Resources */,
+				8D9853502D013575009BA5AE /* Localizable.stringsdict in Resources */,
 				8DEF21BC2C40362400E5E21F /* cat.mp3 in Resources */,
 				8D0D88202C0A51EA00AC9620 /* PrivacyInfo.xcprivacy in Resources */,
 				8DEF21BF2C40362400E5E21F /* horse.mp3 in Resources */,
@@ -594,6 +616,7 @@
 				F121169F1EA823C8009976B1 /* RobotTableViewController.swift in Sources */,
 				F186EB861EE0D73500C2FA4B /* SelectedBlockViewController.swift in Sources */,
 				8D655A7A2C18BB2B00B86BB1 /* VirtualRobot.swift in Sources */,
+				8D312A0B2D0768CB00B81FEC /* Localizator.swift in Sources */,
 				8DE83BA82CA0B34B005DF819 /* SelectBackgroundModifierViewController.swift in Sources */,
 				F10F71671E65BAA00049F3AA /* BlockTableViewController.swift in Sources */,
 				8D954F592A4B2E9800F10A26 /* TwoOptionModifierViewController.swift in Sources */,
@@ -627,10 +650,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8D98534E2D013575009BA5AE /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D98534F2D013575009BA5AE /* en */,
+				8D9853532D013D09009BA5AE /* es */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+		8D9853552D013ECC009BA5AE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D9853562D013ECC009BA5AE /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		F18FFFB61E65B0FC0090C4B6 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F18FFFB71E65B0FC0090C4B6 /* Base */,
+				8D9853542D013ECC009BA5AE /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -650,6 +691,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -702,6 +744,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = NO;
@@ -712,6 +755,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -758,6 +802,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = NO;
@@ -772,7 +817,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5Z9DP5C8DQ;
+				DEVELOPMENT_TEAM = 29ZSRKKL73;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -786,7 +831,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 5.8;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lrubin.Blocks4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";
@@ -805,7 +850,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5Z9DP5C8DQ;
+				DEVELOPMENT_TEAM = 29ZSRKKL73;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -819,7 +864,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 5.8;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lmilne.Blocks4All;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.macalester.lrubin.Blocks4All;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BlocksForAll/BlocksForAll-Bridging-Header.h";

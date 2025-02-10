@@ -10,46 +10,69 @@ import Foundation
 import AVFAudio
 
 // Code for creating a UICollectionView programmatically is from: https://medium.com/@buttam1703/how-to-create-a-uicollectionview-programmatically-in-swift-a030da15d445
-class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet weak var NoisesCollectionView: UICollectionView! // Holds row of custom noise options
+    @IBOutlet weak var SelectedNoiseImageView: UIImageView!
+    //@IBOutlet weak var PlayNoiseButton: UIButton!
+    //@IBOutlet weak var RecordNoiseButton: UIButton!
+    
     
     var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
     var currentProject: Project? // Project user is currently working in
+    
+    
+    
+    private var noiseFiles: [String?] = [nil, nil, nil, nil, nil] // audio path associated with each index
+    
+    private var selectedNoiseIndex: Int = 0 // noise index that is currently selected
    
-    let shapes: [CustomNoiseShape] = [.circle, .square, .triangle, .star, .pentagon ] // an ordered list of all of the shapes
-    private var noiseShapeDictionary: Dictionary<CustomNoiseShape, String?> = [.circle: nil,
-        .square: nil,
-        .triangle: nil,
-        .star: nil,
-        .pentagon: nil] // TODO: should it be colors? Fruits? Shapes? // shapes and their associated audio paths
+    private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each button that is showed in the collection view // TODO: handle different block sizes
     
-    private var selectedNoise: CustomNoiseShape = CustomNoiseShape.circle // noise that is currently selected
+   
     
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        loadSavedNoiseFiles()
+        
+        NoisesCollectionView.delegate = self
+        NoisesCollectionView.dataSource = self
+        NoisesCollectionView.register(AudioCell.self, forCellWithReuseIdentifier: "AudioCell")
+        
         preserveLastSelection()
     }
     
-    // Check if the given shape has a noise saved to it
-    private func hasNoise(forShape shape : CustomNoiseShape) -> Bool{
-        return noiseShapeDictionary[shape] != nil
+    func updateSelectedNoiseImageView() {
+        let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forIndex: selectedNoiseIndex))
+        SelectedNoiseImageView.image = audioImage
     }
     
-    private func getNoiseFileName(forShape shape : CustomNoiseShape) -> String? {
-        return noiseShapeDictionary[shape] ?? nil
+    // Loads all custom audio paths into the noise files list
+    func loadSavedNoiseFiles() {
+        noiseFiles = UserData.data.getCustomAudioPaths()
     }
     
-    private func setNoiseFileName(forShape shape : CustomNoiseShape, toFileName fileName : String) {
-        noiseShapeDictionary[shape] = fileName
+    // Check if the given index has a noise saved to it
+    private func hasNoise(forIndex index : Int) -> Bool{
+        return noiseFiles[index] != nil
     }
     
-    private func eraseNoiseFile(forShape shape : CustomNoiseShape) {
-        noiseShapeDictionary[shape] = nil
+    private func getNoiseFileName(forIndex index : Int) -> String? {
+        return noiseFiles[index] ?? nil
     }
     
-    private func playNoiseFile(forShape shape : CustomNoiseShape) {
-        if !hasNoise(forShape: shape) { return }
-        let soundName = getNoiseFileName(forShape: shape)!
+    private func setNoiseFileName(forIndex index : Int, toFileName fileName : String) {
+        noiseFiles[index] = fileName
+    }
+    
+    private func eraseNoiseFile(forIndex index : Int) {
+        noiseFiles[index] = nil
+    }
+    
+    private func playNoiseFile(forIndex index : Int) {
+        if !hasNoise(forIndex: index) { return }
+        let soundName = getNoiseFileName(forIndex: index)!
         
         // Code to play audio is from https://www.tutorialspoint.com/how-to-play-a-sound-using-swift
         guard let path = Bundle.main.path(forResource: soundName, ofType:"mp3") else {
@@ -68,18 +91,18 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     
     // select the shape that was previously selected
     func preserveLastSelection() {
-        if let previousShapeString: String = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["shape"] {
-            // Look for shape that has the same name
-            for shape in shapes {
-                if shape.rawValue == previousShapeString {
-                    selectedNoise = shape
-                    return
-                }
+        if let previousIndexString: String = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["index"] {
+            if let previousIndex: Int = Int(previousIndexString) {
+                selectedNoiseIndex = previousIndex
+                updateSelectedNoiseImageView()
+                return
             }
         }
-        // By default, focus on the circle
-        selectedNoise = .circle
-   }
+        // By default, focus on the first sound
+        selectedNoiseIndex = 0
+        updateSelectedNoiseImageView()
+    }
+       
     
     
     // MARK: Collection View
@@ -87,15 +110,15 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     // Code for creating a UICollectionView programmatically is from: https://medium.com/@buttam1703/how-to-create-a-uicollectionview-programmatically-in-swift-a030da15d445
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return noiseShapeDictionary.count
+        return noiseFiles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let currentShape = shapes[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShapeCell.identifier, for: indexPath) as! ShapeCell
-        cell.configure(withShape: currentShape, withNoise: noiseShapeDictionary[currentShape]! ?? "")
+        let currentCellIndex = indexPath.row
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AudioCell.identifier, for: indexPath) as! AudioCell
+        cell.configure(withIndex: currentCellIndex, withNoise: noiseFiles[currentCellIndex] ?? "")
         
-        if selectedNoise == currentShape {
+        if selectedNoiseIndex == currentCellIndex { // This cell is selected. Highlight it
             cell.highlight()
         }
         return cell
@@ -103,52 +126,40 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         for cell in collectionView.visibleCells{
-            let selectedCell = cell as! ShapeCell
+            let selectedCell = cell as! AudioCell
             selectedCell.removeHighlight()
         }
         
-        let selectedCell = collectionView.cellForItem(at: indexPath) as! ShapeCell // highlight the one selected cell
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! AudioCell // highlight the one selected cell
         selectedCell.highlight()
-        selectedNoise = selectedCell.getShape()
+        selectedNoiseIndex = selectedCell.getIndex()
+        updateSelectedNoiseImageView()
     }
     
     // Return the size for the item at a given index path
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           let size = mainCollectionView.frame.width
-           return CGSize(width: size, height: size)
-       }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = CGSize(width: CGFloat(buttonSize), height: CGFloat(buttonSize))
+        return size
+    }
     
-    private lazy var mainCollectionView: UICollectionView = {
-            let flowLayout = UICollectionViewFlowLayout()
-            flowLayout.scrollDirection = .horizontal
-            flowLayout.minimumLineSpacing = 0
-            flowLayout.minimumInteritemSpacing = 0
-            let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-            collectionView.register(ShapeCell.self, forCellWithReuseIdentifier: ShapeCell.identifier)
-            collectionView.delegate = self
-            collectionView.dataSource = self
-            collectionView.backgroundColor = .clear
-            collectionView.showsVerticalScrollIndicator = false
-            collectionView.translatesAutoresizingMaskIntoConstraints = false
-            return collectionView
-        }()
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+       // Centering cells horizonally is from  https://stackoverflow.com/questions/34267662/how-to-center-horizontally-uicollectionview-cells#:~:text=301-,Its%20not%20a%20good,-idea%20to%20use
+        let totalCellWidth = buttonSize * noiseFiles.count
+        let totalSpacingWidth = 15 * (noiseFiles.count - 1)
+
+        let leftInset = (NoisesCollectionView.bounds.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+        let rightInset = leftInset
+
+        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+          
+    }
     
+
     // Method to reload the collection view on the main thread
        func reloadCollectionView() {
            DispatchQueue.main.async { [weak self] in
-               self?.mainCollectionView.reloadData()
+               self?.NoisesCollectionView.reloadData()
            }
-       }
-       
-       // Setup the view and add collection view with constraints
-       private func setupView() {
-           view.addSubview(mainCollectionView)
-           NSLayoutConstraint.activate([
-            mainCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 300),
-               mainCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 200),
-               mainCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 100),
-               mainCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-           ])
        }
     
     
@@ -163,24 +174,18 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             
             freeplayWorkspaceVC.currentProject = currentProject // pass the current project back to the workspaceVC
             
-            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["shape"] = selectedNoise.rawValue// Tell BlocksViewController which shape was selected
-            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["customNoise"] = getNoiseFileName(forShape: selectedNoise)// Tell BlocksViewController which noise goes with that shape
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["index"] = String(selectedNoiseIndex)// Tell BlocksViewController which index was selected
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["customNoise"] = getNoiseFileName(forIndex: selectedNoiseIndex)// Tell BlocksViewController which noise goes with that index
         }
          
     }
     
 }
 
-enum CustomNoiseShape: String {
-    case circle = "circle"
-    case square = "square"
-    case triangle = "triangle"
-    case star = "star"
-    case pentagon = "pentagon"
-}
 
-class ShapeCell: UICollectionViewCell {
-    static let identifier = "ShapeCell"
+
+class AudioCell: UICollectionViewCell {
+    static let identifier = "AudioCell"
     
     // Lazy initialization of the UIImageView
     private lazy var imageView: UIImageView = {
@@ -190,7 +195,7 @@ class ShapeCell: UICollectionViewCell {
         return imageView
     }()
     
-    private var shape: CustomNoiseShape = .circle
+    private var index: Int = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -202,14 +207,14 @@ class ShapeCell: UICollectionViewCell {
     }
     
     // Configure the cell with the image name
-    func configure(withShape shape: CustomNoiseShape, withNoise noise: String) {
-        self.shape = shape
-        let shapeImage = HelperFunctions.getUIImage(named: shape.rawValue)
-        imageView.image = shapeImage
+    func configure(withIndex index: Int, withNoise noise: String) {
+        self.index = index
+        let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forIndex: index))
+        imageView.image = audioImage
     }
     
-    func getShape() -> CustomNoiseShape {
-        return shape
+    func getIndex() -> Int {
+        return index
     }
     
     func highlight() {

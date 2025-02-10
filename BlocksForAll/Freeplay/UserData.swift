@@ -11,15 +11,20 @@ import Foundation
 /// Holds saved user data, like the custom background image paths
 class UserData {
     
+    
     private var customBackgroundPaths: [String] = []
     private var defaultBackgroundPaths = ["DefaultBackground", "tempBackground1", "tempBackground2", "tempBackground3"]
     
     static let data = UserData() // Static instance of UserData. Use this when needing to reference user data
     
+    
+    //MARK:  Custom Backgrounds
     /// Add path to the customBackgroundPaths list if it doesn't already exist in the list
     func addBackgroundPath(path: String) {
         if !customBackgroundPaths.contains(path) {
             customBackgroundPaths.append(path)
+        } else {
+            // TODO: repeated background file
         }
     }
     
@@ -62,5 +67,67 @@ class UserData {
     
     public func hasBackgroundPath(path: String) -> Bool {
         return hasCustomBackgroundPath(path: path) || hasDefaultBackgroundPath(path: path)
-    }  
+    }
+    
+    // MARK: Custom Audio Files
+    
+    private var customAudioPaths: [String?] = []
+    let numNoises: Int = 5 // number of custom sound files to allow
+    
+    /// Add path to the customAudioPaths list if it doesn't already exist in the list
+    func addCustomAudio(path: String, forIndex index: Int) {
+        if !customAudioPaths.contains(path) {
+            customAudioPaths[index] = path
+        } else {
+            // TODO: repeated audio file
+        }
+    }
+    
+    /// Try to remove path from customAudioPaths list
+    func clearAudio(forIndex index: Int) {
+        customAudioPaths.remove(at: index)
+    }
+    
+    public func getCustomAudioPaths() -> [String?] {
+        validateCustomAudioPaths()
+        return customAudioPaths
+    }
+    
+    public func setCustomAudioPaths(newList: [String?]) {
+        customAudioPaths = newList
+        validateCustomAudioPaths()
+    }
+    
+    public func hasCustomAudioPath(path: String) -> Bool {
+        return customAudioPaths.contains(path)
+    }
+    
+    public func getNumCustomAudioSaved() -> Int {
+        var count = 0
+        for str in customAudioPaths {
+            if (str != nil && str != "") { // audio path exists
+                count += 1
+            }
+        }
+        return count
+    }
+    
+    public func validateCustomAudioPaths () {
+        if (getNumCustomAudioSaved() == 0) || customAudioPaths.count < numNoises { // if that list was empty or invalid, generate a new list
+            customAudioPaths = buildNewNoiseList()
+        }
+    }
+    
+    public func buildNewNoiseList() -> [String?] {
+        var newList: [String?] = []
+        for _ in 0..<numNoises {
+            newList.append(nil)
+        }
+        return newList
+    }
+    
+    /// Compute the file name given an index of the NoiseFiles array. The result will be CustomAudio_n where n is index + 1
+    public func getAudioFileName(forIndex index: Int) -> String {
+        return "CustomAudio_\(index+1)"
+    }
 }

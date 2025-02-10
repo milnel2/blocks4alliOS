@@ -50,13 +50,11 @@
 	<key>Custom Noise</key>
 	<dict>
 		<key>attributeName</key>
-		<string>shape</string>
+		<string>index</string>
 		<key>default</key>
-		<string>circle</string>
+		<string>0</string>
 		<key>secondAttributeName</key>
 		<string>customNoise</string>
-		<key>secondDefault</key>
-		<string>cat</string>
 		<key>accessibilityHint</key>
 		<string>Double tap to choose custom noise</string>
 	</dict>
@@ -199,7 +197,7 @@
 		<key>attributeName</key>
 		<string>booleanSelected</string>
 		<key>default</key>
-		<string>false</string>
+		<string>Obstacle sensed</string>
 		<key>accessibilityHint</key>
 		<string>Double tap to set boolean condition for If</string>
 	</dict>
