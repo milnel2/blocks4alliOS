@@ -1610,7 +1610,7 @@ For further information on Blocks4All, please visit our website. For further det
             <objects>
                 <tableViewController id="qsn-gg-TPc" customClass="BlockTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" id="u2M-AO-l53">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="335"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="735"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1679,7 +1679,7 @@ For further information on Blocks4All, please visit our website. For further det
                         <viewControllerLayoutGuide type="bottom" id="M8X-LY-ONh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gng-WS-M5w">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="335"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="735"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap workspace to add block " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TgX-Fj-FVm">
@@ -1709,7 +1709,7 @@ For further information on Blocks4All, please visit our website. For further det
             <objects>
                 <tableViewController id="2Tn-yf-DgT" customClass="BlocksTypeTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6cp-t1-mWw">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="335"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="735"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -2028,28 +2028,34 @@ For further information on Blocks4All, please visit our website. For further det
                                 <rect key="frame" x="0.0" y="225" width="1080" height="580"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rNh-5A-6Wz">
-                                        <rect key="frame" x="426" y="0.0" width="228" height="228"/>
+                                        <rect key="frame" x="433" y="0.0" width="214" height="214"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="rNh-5A-6Wz" secondAttribute="height" multiplier="1:1" id="bOA-0Z-TuS"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8l9-Z9-dkH">
-                                        <rect key="frame" x="426" y="233" width="228" height="114"/>
+                                        <rect key="frame" x="397.5" y="219" width="285" height="142.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbr-3G-Sfp">
-                                                <rect key="frame" x="0.0" y="0.0" width="114" height="114"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="142.5" height="142.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="hbr-3G-Sfp" secondAttribute="height" multiplier="1:1" id="exx-mk-X57"/>
+                                                </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" backgroundImage="GreenArrow"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzx-4p-Q3T">
-                                                <rect key="frame" x="114" y="0.0" width="114" height="114"/>
+                                                <rect key="frame" x="142.5" y="0.0" width="142.5" height="142.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="qzx-4p-Q3T" secondAttribute="height" multiplier="1:1" id="l8z-20-G9u"/>
+                                                </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" backgroundImage="record"/>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="znB-hz-S42">
-                                        <rect key="frame" x="40" y="352" width="1000" height="228"/>
+                                        <rect key="frame" x="40" y="366.5" width="1000" height="213.5"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rRI-vN-S05">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2058,7 +2064,7 @@ For further information on Blocks4All, please visit our website. For further det
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Yb1-ME-pFA">
-                                                <rect key="frame" x="0.0" y="50" width="128" height="128"/>
+                                                <rect key="frame" x="0.0" y="43" width="128" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="48q-NY-sq7">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -2069,8 +2075,7 @@ For further information on Blocks4All, please visit our website. For further det
                                     </collectionView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="rNh-5A-6Wz" firstAttribute="height" secondItem="8l9-Z9-dkH" secondAttribute="height" multiplier="2" id="GEe-dR-4ju"/>
-                                    <constraint firstItem="8l9-Z9-dkH" firstAttribute="width" secondItem="rNh-5A-6Wz" secondAttribute="width" id="KbT-d5-MoL"/>
+                                    <constraint firstItem="rNh-5A-6Wz" firstAttribute="height" secondItem="8l9-Z9-dkH" secondAttribute="height" multiplier="1.5" id="GEe-dR-4ju"/>
                                     <constraint firstItem="rNh-5A-6Wz" firstAttribute="height" secondItem="znB-hz-S42" secondAttribute="height" id="XMI-uO-NGB"/>
                                     <constraint firstItem="znB-hz-S42" firstAttribute="leading" secondItem="Uvh-di-A2s" secondAttribute="leading" constant="40" id="yNs-0l-7kR"/>
                                 </constraints>
@@ -2091,6 +2096,8 @@ For further information on Blocks4All, please visit our website. For further det
                     <navigationItem key="navigationItem" id="Thg-uK-uOs"/>
                     <connections>
                         <outlet property="NoisesCollectionView" destination="znB-hz-S42" id="RW0-rT-nNK"/>
+                        <outlet property="PlayNoiseButton" destination="hbr-3G-Sfp" id="KAf-VE-u6T"/>
+                        <outlet property="RecordNoiseButton" destination="qzx-4p-Q3T" id="Afg-4d-bzM"/>
                         <outlet property="SelectedNoiseImageView" destination="rNh-5A-6Wz" id="Zoa-DY-19K"/>
                         <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplay" id="hlX-XA-zqW"/>
                     </connections>
@@ -2451,7 +2458,7 @@ For further information on Blocks4All, please visit our website. For further det
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="hNp-po-htE" userLabel="Function Table View Controller" customClass="FunctionTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QmC-VP-0hq">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="405"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="805"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -3051,20 +3058,20 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yHo-Ic-oSY"/>
-        <segue reference="rJ0-q9-MJC"/>
-        <segue reference="lP2-dK-nFu"/>
-        <segue reference="ilo-gl-Ojn"/>
-        <segue reference="urv-T1-OGz"/>
-        <segue reference="Bdm-v1-hdH"/>
-        <segue reference="g0f-Hs-dMn"/>
-        <segue reference="d7W-eK-Vpz"/>
-        <segue reference="Ifr-Iv-956"/>
-        <segue reference="lD7-sr-2Jm"/>
+        <segue reference="WZK-Na-4fL"/>
+        <segue reference="bga-bw-aqG"/>
+        <segue reference="u8d-ef-tNg"/>
+        <segue reference="ZVu-V8-d1q"/>
+        <segue reference="DJw-3M-vha"/>
+        <segue reference="qu0-RS-u2g"/>
+        <segue reference="cqe-hd-fim"/>
+        <segue reference="Mdl-ke-gN7"/>
+        <segue reference="CWQ-aM-vhy"/>
+        <segue reference="hQ1-ks-vYz"/>
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="gnX-kj-isW"/>
         <segue reference="hlX-XA-zqW"/>
-        <segue reference="OfV-so-xeL"/>
+        <segue reference="XsQ-5G-ZnB"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -3133,22 +3140,22 @@ For further information on Blocks4All, please visit our website. For further det
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="quaternaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17647058823529413" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.1764705882" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="underPageBackgroundColor">
             <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

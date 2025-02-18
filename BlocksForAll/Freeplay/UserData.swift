@@ -139,4 +139,15 @@ class UserData {
     public func getAudioFileName(forIndex index: Int) -> String {
         return "CustomAudio_\(index+1)"
     }
+    
+    public func getAudioFileURL(forIndex index: Int) -> URL {
+        let path = HelperFunctions.getDocumentsDirectory().appendingPathComponent("\(getAudioFileName(forIndex: index)).m4a")
+        return path as URL
+    }
+    
+    public func getAudioFileURL(forFileName fileName: String) -> URL {
+        let path = HelperFunctions.getDocumentsDirectory().appendingPathComponent("\(fileName).m4a")
+        return path as URL
+    }
+    
 }

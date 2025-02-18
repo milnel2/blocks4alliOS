@@ -310,7 +310,7 @@ class ExecutingProgram {
             }
         case "Custom Noise":
             let noiseFile = blockToExec.addedBlocks[0].attributes["customNoise"]
-            playNoise(sound: noiseFile ?? "")
+            playNoise(sound: noiseFile ?? "", customAudio: true)
             
         //CONTROL CATEGORY
         case "If":
@@ -823,11 +823,16 @@ class ExecutingProgram {
     }
 
     /// Play the passed sound file name
-    func playNoise (sound: String){
+    func playNoise (sound: String, customAudio: Bool = false){
         if (isInFreeplay) {
             print("Play noise", sound)
-            // TODO: implement playing noise
-            currentActor!.playSound(soundName: sound, executingProgram: self)
+            if customAudio { // Audio is a custom file saved by user
+                currentActor!.playCustomSound(soundName: sound, executingProgram: self)
+            } else { // Audio is a Blocks4All sound
+                currentActor!.playSound(soundName: sound, executingProgram: self)
+            }
+            
+          
             
         } else {
             // access robot sound file name from plist

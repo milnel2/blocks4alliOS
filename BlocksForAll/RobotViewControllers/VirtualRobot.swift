@@ -666,6 +666,24 @@ class VirtualRobot: Equatable {
         
         executingProgram.finishCommand(withDuration: 1.5)
     }
+    
+    func playCustomSound(soundName: String, executingProgram: ExecutingProgram) {
+       
+        let url = UserData.data.getAudioFileURL(forFileName: soundName)
+        do {
+            
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            
+           
+            audioPlayer?.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+            
+        }
+        
+        executingProgram.finishCommand(withDuration: audioPlayer?.duration ?? 1.5)
+    }
    
 }
 

@@ -8,20 +8,29 @@
 
 import Foundation
 import AVFAudio
+import AVFoundation
 
 // Code for creating a UICollectionView programmatically is from: https://medium.com/@buttam1703/how-to-create-a-uicollectionview-programmatically-in-swift-a030da15d445
-class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+// Code for recording audio is from https://vikaskore.medium.com/record-audio-in-ios-swift-4-2-a6a4d53e31b0#:~:text=In%20your%20.,to%20play%20recorded%20audio%20respectively.
+
+class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet weak var NoisesCollectionView: UICollectionView! // Holds row of custom noise options
     @IBOutlet weak var SelectedNoiseImageView: UIImageView!
-    //@IBOutlet weak var PlayNoiseButton: UIButton!
-    //@IBOutlet weak var RecordNoiseButton: UIButton!
+    @IBOutlet weak var PlayNoiseButton: UIButton!
+    @IBOutlet weak var RecordNoiseButton: UIButton!
+    
+    var recordingSession: AVAudioSession?
+    var audioRecorder: AVAudioRecorder?
+    var audioPlayer: AVAudioPlayer?
     
     
     var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
-    var currentProject: Project? // Project user is currently working in
-    
-    
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    }
     
     private var noiseFiles: [String?] = [nil, nil, nil, nil, nil] // audio path associated with each index
     
@@ -30,8 +39,6 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each button that is showed in the collection view // TODO: handle different block sizes
     
    
-    
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         loadSavedNoiseFiles()
@@ -41,6 +48,156 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
         NoisesCollectionView.register(AudioCell.self, forCellWithReuseIdentifier: "AudioCell")
         
         preserveLastSelection()
+        
+        // Set up audio recording
+        recordingSession = AVAudioSession.sharedInstance()
+        
+        do {
+            try recordingSession?.setCategory(.playAndRecord, mode: .default)
+            try recordingSession?.setActive(true)
+            
+            recordingSession?.requestRecordPermission() { [unowned self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        self.loadRecordingUI()
+                    } else {
+                        print("no permission to record")
+                    }
+                }
+            }
+        } catch {
+            print("failed to record")
+        }
+       
+    }
+    
+    func loadRecordingUI() {
+        RecordNoiseButton.addTarget(self, action: #selector(recordTapped), for: .touchUpInside)
+        PlayNoiseButton.addTarget(self, action: #selector(playTapped), for: .touchUpInside)
+        updateRecordPlayButtons()
+    }
+    
+    
+    let index = 0
+    var isRecording = false
+    var isAudioPlayingBack = false
+    @objc func recordTapped() {
+        if isRecording {
+            finishRecording(success: true)
+            return
+        }
+        let fileName = UserData.data.getAudioFileURL(forIndex: selectedNoiseIndex)
+        
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+        
+        do {
+            audioRecorder = try AVAudioRecorder(url: fileName, settings: settings)
+            audioRecorder?.delegate = self
+            audioRecorder?.record()
+            isRecording = true
+            updateRecordPlayButtons()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self.finishRecording(success: true)
+            }
+        } catch {
+            finishRecording(success: false)
+        }
+
+    }
+    
+    func finishRecording(success: Bool) {
+        if (isRecording) {
+            audioRecorder?.stop()
+            audioRecorder = nil
+            isRecording = false
+           
+            if success {
+                setNoiseFileName(forIndex: selectedNoiseIndex, toFileName: UserData.data.getAudioFileName(forIndex: selectedNoiseIndex))
+            } else {
+                print("record fail")
+            }
+            
+            updateRecordPlayButtons()
+        }
+       
+    }
+    
+    @objc func playTapped() {
+        if !isAudioPlayingBack {
+            RecordNoiseButton.isEnabled = false
+            prepareAudioPlayer()
+            audioPlayer?.play()
+            isAudioPlayingBack = true
+            updateRecordPlayButtons()
+        } else {
+            audioPlayer?.stop()
+            isAudioPlayingBack = false
+            updateRecordPlayButtons()
+        }
+       
+    }
+    
+    func prepareAudioPlayer() {
+        var error: NSError?
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: UserData.data.getAudioFileURL(forIndex: selectedNoiseIndex) as URL)
+        } catch let error1 as NSError {
+            error = error1
+            audioPlayer = nil
+        }
+        
+        if let err = error {
+            print("AVAudioPlayer error: \(err.localizedDescription)")
+        } else {
+            audioPlayer?.delegate = self
+            audioPlayer?.prepareToPlay()
+            audioPlayer?.volume = 5.0
+            print("prepared")
+        }
+    }
+    
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        if !flag {
+            finishRecording(success: false)
+        }
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        isAudioPlayingBack = false
+        updateRecordPlayButtons()
+    }
+    
+    func updateRecordPlayButtons() {
+        print(noiseFiles)
+        print("isRecording = \(isRecording), isPlaying = \(isAudioPlayingBack)")
+        if isRecording { // disable playback while recording
+            PlayNoiseButton.isEnabled = false
+            RecordNoiseButton.isEnabled = true // TODO: turn into stop button
+            RecordNoiseButton.setTitle("Stop", for: .normal)
+        } else {
+            RecordNoiseButton.setTitle("", for: .normal)
+            RecordNoiseButton.isEnabled = true
+            
+            if isAudioPlayingBack { // disable recording during playback
+                RecordNoiseButton.isEnabled = false
+                PlayNoiseButton.isEnabled = true // TODO: turn into stop button
+                PlayNoiseButton.setTitle("Stop", for: .normal)
+            } else {
+                PlayNoiseButton.setTitle("", for: .normal)
+                RecordNoiseButton.isEnabled = true
+                if hasNoise(forIndex: selectedNoiseIndex) { // Only enable play button if there is a sound saved
+                    PlayNoiseButton.isEnabled = true
+                } else {
+                    PlayNoiseButton.isEnabled = false
+                }
+            }
+        }
     }
     
     func updateSelectedNoiseImageView() {
@@ -134,6 +291,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
         selectedCell.highlight()
         selectedNoiseIndex = selectedCell.getIndex()
         updateSelectedNoiseImageView()
+        updateRecordPlayButtons()
     }
     
     // Return the size for the item at a given index path
@@ -171,8 +329,6 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if (segue.identifier == "backToFreeplay") {
             let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
-            
-            freeplayWorkspaceVC.currentProject = currentProject // pass the current project back to the workspaceVC
             
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["index"] = String(selectedNoiseIndex)// Tell BlocksViewController which index was selected
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["customNoise"] = getNoiseFileName(forIndex: selectedNoiseIndex)// Tell BlocksViewController which noise goes with that index
