@@ -265,13 +265,13 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if (segue.identifier == "openFreeplayFromGallery") {
           let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
-           freeplayWorkspaceVC.currentProject = sender as? Project
+           UserData.data.setCurrentProject(newProject: sender as? Project)
            freeplayWorkspaceVC.galleryType = galleryType
         
        }
         if (segue.identifier == "openRobotWorkspaceFromGallery") {
             let robotWorkspaceVC = segue.destination as! BlocksViewController
-            robotWorkspaceVC.currentProject = sender as? Project
+            UserData.data.setCurrentProject(newProject: sender as? Project)
             robotWorkspaceVC.galleryType = galleryType
             
         }

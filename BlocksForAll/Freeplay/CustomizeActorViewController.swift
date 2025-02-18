@@ -23,7 +23,6 @@ class CustomizeActorViewController: UIViewController {
     @IBOutlet var colorButtons: [UIButton]! // array of all color buttons
     
     var currentActor: VirtualRobot? = nil // actor currently customizing
-    var currentProject: Project? = nil // project the actor is in
     var freeplayWorkspace: FreePlayWorkspaceViewController? = nil // freeplay workspace that this screen came from
     
     var selectedColor = "" // color name currently selected
@@ -49,7 +48,6 @@ class CustomizeActorViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // pass back data to freeplay workspace
         if let destination = segue.destination as? FreePlayWorkspaceViewController {
-            destination.currentProject = currentProject
             currentActor!.imagePath = VirtualRobot.calculateImagePath(baseImagePath: currentActor!.baseImagePath, color: selectedColor)
             currentActor!.color = selectedColor
             currentActor!.updateImageView()
@@ -99,7 +97,7 @@ class CustomizeActorViewController: UIViewController {
         
         setUpAccessibility()
         
-        if currentProject!.actors.count > 1 { // don't allow deleting when there is only one actor left
+        if UserData.data.getCurrentProject()!.actors.count > 1 { // don't allow deleting when there is only one actor left
             deleteButton.isEnabled = true
         } else {
             deleteButton.isEnabled = false // can't delete the only actor

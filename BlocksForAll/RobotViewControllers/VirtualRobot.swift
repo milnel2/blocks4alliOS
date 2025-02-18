@@ -207,10 +207,11 @@ class VirtualRobot: Equatable {
     
     // Assigns a freeplay output view to the robot and sets coordinates
     func addFreeplayOutputView(freeplayOutputView: FreeplayOutputView) {
+        
         self.freeplayOutputView = freeplayOutputView
        
         imageView.frame = CGRect(x: 0, y: 0, width: robotSize, height: robotSize)
-        
+       
         setCoordinates(x: coordinates.x, y: coordinates.y)
     }
    

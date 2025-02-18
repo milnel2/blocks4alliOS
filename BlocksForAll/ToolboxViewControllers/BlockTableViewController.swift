@@ -22,7 +22,6 @@ class BlockTableViewController: UITableViewController {
     // update these as collection view changes
     var blockSize = 150
     let blockSpacing = 0
-    var currentProject: Project? = nil
     
  
     //MARK: - viewDidLoad function
@@ -146,11 +145,8 @@ class BlockTableViewController: UITableViewController {
                     myDestination.blocks = [block]
                 }
                 myDestination.delegate = self.delegate
-                myDestination.currentProject = currentProject
             }
-        } else if let myDestination = segue.destination as? FunctionTableViewController {
-            myDestination.currentProject = currentProject
-        }
+        } 
     }
 
     //MARK: - Create Blocks Array
@@ -175,11 +171,14 @@ class BlockTableViewController: UITableViewController {
                 toolBoxBlockArray += [createFunctionBlock]
                 
                 for function in functionBlocks {
-                    var blockBeingCreated: Block
-                        blockBeingCreated = Block(name: function, colorName: "light_purple_block", double: false, isModifiable: false, isInToolBox: true)!
-                    blockBeingCreated.type = "Function"
-                    functionToolBlockArray.append(blockBeingCreated)
-                    toolBoxBlockArray += [blockBeingCreated]
+                    if (function != ON_RUN_STRING && function != ON_TAP_STRING && function != ON_BUMP_STRING) {
+                        var blockBeingCreated: Block
+                            blockBeingCreated = Block(name: function, colorName: "light_purple_block", double: false, isModifiable: false, isInToolBox: true)!
+                        blockBeingCreated.type = "Function"
+                        functionToolBlockArray.append(blockBeingCreated)
+                        toolBoxBlockArray += [blockBeingCreated]
+                    }
+                    
                 }
             }
 

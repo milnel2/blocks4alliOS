@@ -16,8 +16,6 @@ class FunctionTableViewController: UITableViewController {
     var newKey: String = ""
 
     var functions: [String] = Array(functionsDict.keys) // All the names of the functions a user creates placed in an array instead of dictionary so has a set order
-
-    var currentProject: Project?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -246,12 +244,7 @@ class FunctionTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if let destination = segue.destination as? FreePlayWorkspaceViewController{
-            destination.currentProject = currentProject
-        }
-        if let destination = segue.destination as? BlocksViewController{
-            destination.currentProject = currentProject
-        }
+       
     }
 }
 

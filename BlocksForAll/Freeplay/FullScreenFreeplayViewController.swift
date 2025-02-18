@@ -16,8 +16,6 @@ class FullScreenFreeplayViewController : UIViewController {
     @IBOutlet weak var outputBackgroundImageView: UIImageView!
     @IBOutlet weak var exitFullScreenButton: UIButton! // button to go back to the freeplay workspace
     
-    var currentProject: Project? = nil // project to associate with this output
-    
     var smallViewSize: CGSize? = nil // size of the output view in the regular freeplay workspace
     
     var screenSize = UIScreen.main.bounds.size
@@ -34,6 +32,12 @@ class FullScreenFreeplayViewController : UIViewController {
     @IBOutlet weak var fullScreenPlayButton: UIButton!
     
     var backgroundImagePath: String? = nil
+    
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    }
     
     override func viewDidLoad() {
         if (currentProject == nil) {
@@ -110,7 +114,6 @@ class FullScreenFreeplayViewController : UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "exitFullScreen") {
             let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
-            freeplayWorkspaceVC.currentProject = currentProject
             freeplayWorkspaceVC.playTrashToggleButton = freeplayWorkspaceOriginalPlayButton!
             for actor in currentProject!.actors {
                 actor.setActorSize(size: actor.robotSize / verticalSizeFactor / ACTOR_SHRINK_MULITPLIER)

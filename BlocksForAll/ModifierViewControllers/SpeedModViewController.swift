@@ -29,8 +29,11 @@ class SpeedModViewController: UIViewController{
     
    
     var parentVC: UIViewController?
-    var currentProject: Project?
-    
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    }
     override func viewDidLoad() {
         // Get Speed values
         
@@ -181,11 +184,9 @@ class SpeedModViewController: UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let destination = segue.destination as? FreePlayWorkspaceViewController{
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
-            destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController{
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
-            destination.currentProject = currentProject
         }
     }
 }

@@ -23,8 +23,8 @@ private class Localizator { // TODO: make sure this doesn't impact performace. I
     func localize(string: String) -> String {
         guard let localizationEntry = (localizableDictionary.value(forKey: string) as? NSDictionary) else {
             print("Missing localization entry for: \(string)")
-                //assertionFailure("Missing localization entry for: \(string)") // TODO: put back once english localization is done
-                return ""
+                //assertionFailure("Missing localization entry for: \(string)") // TODO: put back once english localization is done (but it's okay if custom function names aren't localized)
+                return string
                 
             }
         guard let localizedString = localizationEntry.value(forKey: "value") as? String else {

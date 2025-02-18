@@ -22,7 +22,11 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
     @IBOutlet weak var HorizontalStackView: UIStackView! // Holds AddNewBackgroundButton and collection view
     
     var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
-    var currentProject: Project? // Project user is currently working in
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    } // Project user is currently working in
     var backgrounds: [BackgroundImage] = [] // List of all available backgrounds
     var focusedBackground: BackgroundImage? = nil // Background image currently in middle of the screen and large
     var focusedBackgroundIndex = 0 // Index of the focused background in backgrounds list
@@ -382,8 +386,6 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if (segue.identifier == "backToFreeplay") {
             let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
-            
-            freeplayWorkspaceVC.currentProject = currentProject // pass the current project back to the workspaceVC
             
             let focusedBackgroundImage = backgrounds[focusedBackgroundIndex]
             

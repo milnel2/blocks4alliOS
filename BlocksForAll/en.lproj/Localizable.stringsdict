@@ -383,7 +383,7 @@
 	<key>project_cell_access_hint</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Open %@. Project %d of %d. One finger swipe for more options.</string>
+		<string>Open %@. Project %d of %d.</string>
 		<key>Variable</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>

@@ -24,7 +24,11 @@ class SelectLocationModifierViewController: UIViewController  {
     
     @IBOutlet weak var collectionView: UICollectionView! // collection view to hold the grid of locations
     
-    var currentProject: Project? = nil // project currently editing
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    }
     
     var outputView: FreeplayOutputView? = nil // output view of the project currently editing. Its size is used to determine the size of the grid
     
@@ -125,7 +129,6 @@ class SelectLocationModifierViewController: UIViewController  {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         // Going back to freeplay workspace
         if let destination = segue.destination as? FreePlayWorkspaceViewController {
-            destination.currentProject = currentProject
             
             let coords = getCoordinatesFromCellIndex(index: optionSelectedIndex)
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["moveToLocation"] = coords

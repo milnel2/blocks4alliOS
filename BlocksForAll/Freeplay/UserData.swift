@@ -11,12 +11,21 @@ import Foundation
 /// Holds saved user data, like the custom background image paths
 class UserData {
     
+    private var currentProject: Project? = nil
     
     private var customBackgroundPaths: [String] = []
     private var defaultBackgroundPaths = ["DefaultBackground", "tempBackground1", "tempBackground2", "tempBackground3"]
     
     static let data = UserData() // Static instance of UserData. Use this when needing to reference user data
     
+    //MARK: Projects
+    func getCurrentProject() -> Project? {
+        return currentProject
+    }
+    
+    func setCurrentProject(newProject: Project?) {
+        currentProject = newProject
+    }
     
     //MARK:  Custom Backgrounds
     /// Add path to the customBackgroundPaths list if it doesn't already exist in the list

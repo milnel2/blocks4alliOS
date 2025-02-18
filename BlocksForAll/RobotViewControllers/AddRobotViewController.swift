@@ -11,8 +11,6 @@ import UIKit
 class AddRobotViewController: UIViewController {
     var sentFromWorkspace = true
     
-    var currentProject: Project?
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +28,7 @@ class AddRobotViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BlocksViewController {
-            destination.currentProject = currentProject
-            destination.currentProject = currentProject
+
         }
     }
 }

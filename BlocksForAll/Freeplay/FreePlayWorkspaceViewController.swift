@@ -126,7 +126,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         newRobotControlVC.blocksViewController = self
         
         actor?.executingProgram = executingProgram
-        executingProgram?.currentProject = currentProject
         
         executingProgram?.robotControlViewController.executeNextCommandRobotControllVC()
       
@@ -233,14 +232,12 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if (segue.identifier == "toChooseActor") {
           let chooseActorVC = segue.destination as! ChooseActorViewController
-           chooseActorVC.currentProject = currentProject
            chooseActorVC.currentActorImageView = currentActorImageView
            chooseActorVC.freeplayOutputView = freeplayOutputView
        }
         if (segue.identifier == "enterFullScreen") {
             let fullscreenVC = segue.destination as! FullScreenFreeplayViewController
             
-            fullscreenVC.currentProject = currentProject
             fullscreenVC.freeplayWorkspaceVC = self
             fullscreenVC.smallViewSize = freeplayOutputView.frame.size
             fullscreenVC.freeplayWorkspaceOriginalPlayButton = playTrashToggleButton
@@ -255,7 +252,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         if (segue.identifier == "toCustomizeActor") {
             let customizeVC = segue.destination as! CustomizeActorViewController
             customizeVC.currentActor = currentProject!.currentActor
-            customizeVC.currentProject = currentProject!
             customizeVC.freeplayWorkspace = self
         }
         

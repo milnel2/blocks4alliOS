@@ -34,7 +34,11 @@ class DistanceSpeedModViewController: UIViewController{
     
    
     var parentVC: UIViewController?
-    var currentProject: Project?
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    }
     
     override func viewDidLoad() {
         // Get Speed and Distance values
@@ -214,12 +218,10 @@ class DistanceSpeedModViewController: UIViewController{
         if let destination = segue.destination as? FreePlayWorkspaceViewController{
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
-            destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController{
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["distance"] = "\(Int(distance))"
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
-            destination.currentProject = currentProject
         }
     }
 }

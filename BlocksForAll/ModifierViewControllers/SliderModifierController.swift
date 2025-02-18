@@ -45,7 +45,11 @@ class SliderModifierController: UIViewController {
     
     
     var parentVC: UIViewController?
-    var currentProject: Project?
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    }
     
    
    
@@ -155,13 +159,10 @@ class SliderModifierController: UIViewController {
         if let destination = segue.destination as? FreePlayWorkspaceViewController {
             
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"
-            destination.currentProject = currentProject
             
         }
         if let destination = segue.destination as? BlocksViewController {
-            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"
-            destination.currentProject = currentProject
-            
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(Int(roundedSliderValue))"            
         }
     }
     /// Given a variable name and its value, prints out an error statement if the value is "N/A"

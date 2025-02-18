@@ -31,7 +31,11 @@ class DriveVariables: UIViewController {
     @IBOutlet var driveVariablesView: UIView!
     
     var parentVC: UIViewController?
-    var currentProject: Project?
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -197,12 +201,10 @@ class DriveVariables: UIViewController {
         if let destination = segue.destination as? FreePlayWorkspaceViewController{
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
-            destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController{
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["speed"] = speed
-            destination.currentProject = currentProject
         }
     }
 }

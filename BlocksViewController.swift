@@ -26,7 +26,11 @@ protocol BlockSelectionDelegate{
 /* Used to display the Main Workspace */
 class BlocksViewController:  RobotControlViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, BlockSelectionDelegate {
     
-    var currentProject: Project? = nil
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    }
     
     //MARK: Variables
     // Views
@@ -909,7 +913,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     indexOfMovingBlock = blocksStackIndex
                     
                     let mySelectedBlockVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectedBlockViewController") as! SelectedBlockViewController
-                    mySelectedBlockVC.currentProject = currentProject
                     mySelectedBlockVC.delegate = self
                     containerViewController?.pushViewController(mySelectedBlockVC, animated: false)
                     mySelectedBlockVC.blocks = blocksBeingMoved
@@ -924,14 +927,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     //MARK: - Modifier Button Methods
     /// Use for modifier buttons. Calculates the width, height, position, and z-index of the modifier button and returns a CustomButton with those values
-    func createModifierCustomButton(block: Block, currentProject: Project?, modifierData: ModifierButtonData) -> ModifierButton {
+    func createModifierCustomButton(block: Block, modifierData: ModifierButtonData) -> ModifierButton {
         let buttonFrame = CGRect(
             x: blockSize / 11,
             y: startingHeight - ((blockSize / 5) * 4) - count * (blockSize  / 2 + blockSpacing),
             width: (blockSize / 7) * 6,
             height: (blockSize / 7) * 6)
        
-        let tempButton = ModifierButton(frame: buttonFrame, block: block, currentProject: currentProject, modifierData: modifierData)
+        let tempButton = ModifierButton(frame: buttonFrame, block: block, modifierData: modifierData)
         tempButton.layer.zPosition = 1
         
         allModifierBlocks.append(tempButton)
@@ -961,7 +964,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         let placeHolderBlock = block.addedBlocks[0]
        
        
-        let button = createModifierCustomButton(block: placeHolderBlock, currentProject: currentProject, modifierData: modifierButtonData) // set up button sizing and layering
+        let button = createModifierCustomButton(block: placeHolderBlock, modifierData: modifierButtonData) // set up button sizing and layering
         
         
         button.addTarget(self, action: selector, for: .touchUpInside)  // connect what happens when the button is pressed
@@ -1161,7 +1164,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             if let myTopViewController = destinationViewController.topViewController as? BlocksTypeTableViewController{
                 myTopViewController.delegate = self
                 myTopViewController.blockSize = 150
-                myTopViewController.currentProject = currentProject
             }
         }
         
@@ -1169,79 +1171,67 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if let destinationViewController = segue.destination as? DistanceSpeedModViewController {
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
-            destinationViewController.currentProject = currentProject
         }
         
         // Segue to SliderModifieViewController
         if let destinationViewController = segue.destination as? SliderModifierController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
-            destinationViewController.currentProject = currentProject
         }
         
         // Segue to SetVariableModViewController
         if let destinationViewController = segue.destination as? SetVariableModViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
-            destinationViewController.currentProject = currentProject
         }
         
         // Segue to DriveVariables
         if let destinationViewController = segue.destination as? DriveVariables{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
-            destinationViewController.currentProject = currentProject
         }
 
         // Segue to EyeLightModifierViewController
         if let destinationViewController = segue.destination as? TwoOptionModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
-            destinationViewController.currentProject = currentProject
         }
         
         // Segue to MultipleChoiceModifierViewController
         if let destinationViewController = segue.destination as? MultipleChoiceModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
-            destinationViewController.currentProject = currentProject
         }
         
         // Segue to StepperModifierViewController
         if let destinationViewController = segue.destination as? StepperModifierViewController{
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
-            destinationViewController.currentProject = currentProject
         }
         
         // Segue to Add Robot Screen
         if  let destinationViewController = segue.destination as? AddRobotViewController {
-            destinationViewController.currentProject = currentProject
         }
         
         // Segue to Location Selection Screen
         if let destinationViewController = segue.destination as? SelectLocationModifierViewController {
-            destinationViewController.currentProject = currentProject
             destinationViewController.outputView = currentProject!.currentActor!.freeplayOutputView
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
         
         // Segue to Speed Modifier Screen
         if let destinationViewController = segue.destination as? SpeedModViewController {
-            destinationViewController.currentProject = currentProject
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
             destinationViewController.parentVC = segue.source
         }
         
         // Segue to Background Selection Screen
         if let destinationViewController = segue.destination as? SelectBackgroundModifierViewController {
-            destinationViewController.currentProject = currentProject
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
         
         // Segue to Custom Noise Selection Screen
         if let destinationViewController = segue.destination as? SelectCustomNoiseViewController {
-            destinationViewController.currentProject = currentProject
             destinationViewController.modifierBlockIndexSender = modifierBlockIndex
         }
     }

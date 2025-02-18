@@ -40,7 +40,11 @@ class StepperModifierViewController: UIViewController {
     private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each option button
       
     var parentVC: UIViewController?
-    var currentProject: Project?
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    }
     override func viewDidLoad() {
         // get the optionType from the button that caused this screen to open, this will be displayed at the top of the screen
         optionType = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name
@@ -232,12 +236,10 @@ class StepperModifierViewController: UIViewController {
         if let destination = segue.destination as? FreePlayWorkspaceViewController{
             // Tell BlocksViewController which sound was selected
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)"
-            destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController{
             // Tell BlocksViewController which sound was selected
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(modifierValue)"
-            destination.currentProject = currentProject
         }
     }
 }

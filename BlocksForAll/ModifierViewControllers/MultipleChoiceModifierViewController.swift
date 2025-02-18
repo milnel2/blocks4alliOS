@@ -59,7 +59,11 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     private let screenSize: CGRect = UIScreen.main.bounds // size of the screen that the app is being run on. Used to build button layout
      
     var parentVC: UIViewController?
-    var currentProject: Project?
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    }
     override func viewDidLoad() {
         if currentProject!.projectType == ProjectType.Freeplay {
             optionDictionary = freeplayOptionDictionary // reduced multiple choice options when in freeplay
@@ -298,7 +302,6 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
             if attributeName == "lightColor" {
                 currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] = items[optionSelectedIndex]
             }
-            destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController {
             // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
@@ -308,7 +311,6 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
             if attributeName == "lightColor" {
                 currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["modifierBlockColor"] = items[optionSelectedIndex]
             }
-            destination.currentProject = currentProject
         }
     }
 }

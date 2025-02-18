@@ -15,9 +15,7 @@ class SelectedBlockViewController: UIViewController {
     var blockSize = 200
     let blockSpacing = 1
     var delegate: BlockSelectionDelegate?
-    
-    var currentProject: Project? = nil
-    
+        
     //MARK: - viewDidLoad function
     override func viewDidLoad() {
         
@@ -93,7 +91,7 @@ class SelectedBlockViewController: UIViewController {
             placeHolderBlock = blocks![0].addedBlocks[0]
         }
         
-        let modifierButton = ModifierButton(frame: buttonFrame, block: placeHolderBlock, currentProject: currentProject, modifierData: modifierData)
+        let modifierButton = ModifierButton(frame: buttonFrame, block: placeHolderBlock, modifierData: modifierData)
         
         return modifierButton
     }

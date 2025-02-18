@@ -52,7 +52,6 @@ class BlocksTypeTableViewController: UITableViewController {
     
     // Used to pass on delegate to selectedBlockViewController
     var delegate: BlockSelectionDelegate?
-    var currentProject: Project? = nil
    
     
     //MARK: - viewDidLoad Function
@@ -212,7 +211,6 @@ class BlocksTypeTableViewController: UITableViewController {
         if let myDestination = segue.destination as? BlockTableViewController{
             myDestination.typeIndex = tableView.indexPathForSelectedRow?.row
             myDestination.delegate = self.delegate
-            myDestination.currentProject = currentProject
             
         }
     }

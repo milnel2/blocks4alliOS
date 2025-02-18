@@ -105,7 +105,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     func programHasCompleted() {
         // subclasses may override
         var allActorsComplete = true
-        for actor in executingProgram!.currentProject!.actors {
+        for actor in UserData.data.getCurrentProject()!.actors {
             if !(actor.executingProgram?.funcIsComplete ?? true) {
                 allActorsComplete = false
             }
@@ -146,8 +146,6 @@ class ExecutingProgram {
     
     
     var currentActor: VirtualRobot? = nil
-    
-    var currentProject: Project? = nil
     
     var positions: [(funcName: String, position: Int)]
     // position used to find index of block in blocksToExec

@@ -29,7 +29,11 @@ class SetVariableModViewController: UIViewController {
     var activeField: UITextField?
     
     var parentVC: UIViewController?
-    var currentProject: Project?
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    }
     
     @IBAction func backButtonPress(_ sender: Any) {
         if let _ = parentVC as? FreePlayWorkspaceViewController {
@@ -142,12 +146,10 @@ class SetVariableModViewController: UIViewController {
         if let destination = segue.destination as? FreePlayWorkspaceViewController {
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Double(variableValue))"
-            destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController {
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableSelected"] = variableSelected
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["variableValue"] = "\(Double(variableValue))"
-            destination.currentProject = currentProject
         }
     }
 }

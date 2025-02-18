@@ -163,7 +163,6 @@ class BlockView: UIView, UITextFieldDelegate {
             myView.layer.borderWidth = 0
         }
         
-        
         return myView
     }
     

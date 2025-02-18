@@ -43,7 +43,11 @@ class TwoOptionModifierViewController: UIViewController {
     @IBOutlet weak var optionTwoButton: UIButton!  // right button on screen
 
     var parentVC: UIViewController?
-    var currentProject: Project?
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    }
     override func viewDidLoad() {
         optionType = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].name  // get the optionType from the button that caused this screen to open, this will be displayed at the top of the screen
           
@@ -206,11 +210,9 @@ class TwoOptionModifierViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let destination = segue.destination as? FreePlayWorkspaceViewController{
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(_modifierValue)" // Tell BlocksViewController which sound was selected
-            destination.currentProject = currentProject
         }
         if let destination = segue.destination as? BlocksViewController{
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "\(_modifierValue)" // Tell BlocksViewController which sound was selected
-            destination.currentProject = currentProject
         }
     }
 }

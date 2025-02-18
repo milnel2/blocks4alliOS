@@ -72,8 +72,7 @@ class FreeplayOutputView: UIView {
         actor.imageView.addGestureRecognizer(tapGesture)
         
         // Add actor to the Project object
-        let currentProject = freeplayWorkspaceVC!.currentProject
-        currentProject!.addActor(actor: actor)
+        UserData.data.getCurrentProject()!.addActor(actor: actor)
         
         freeplayWorkspaceVC!.addEventIndicatorBlocks()
         freeplayWorkspaceVC!.setUpAccessibility()
@@ -81,9 +80,8 @@ class FreeplayOutputView: UIView {
     
     // when an actor image view is clicked on, play its on tap code line and set it to be the current actor
     @objc func clickOnActor(sender : UITapGestureRecognizer) {
-        let currentProject = freeplayWorkspaceVC!.currentProject
         let tapLocation = sender.location(in: self)
-        for actor in currentProject!.actors {
+        for actor in UserData.data.getCurrentProject()!.actors {
             if actor.imageView.frame.contains(tapLocation) && actor.imageView == sender.view {
                 freeplayWorkspaceVC!.updateCurrentActor(newActor: actor)
                 if actor.isRunning {
@@ -116,8 +114,7 @@ class FreeplayOutputView: UIView {
                
        switch sender.state {
        case .began, .changed: // Implementation to recognize seleccted actor from ChatGPT by OpenAI. Source: https://www.openai.com
-           let currentProject = freeplayWorkspaceVC!.currentProject
-           for actor in currentProject!.actors {
+           for actor in UserData.data.getCurrentProject()!.actors {
                if actor.imageView.frame.contains(dragLocation) && actor.imageView == sender.view {
                    if !(dragLocation.x - actorWidth / 2 <= backgroundLeftX || dragLocation.x + actorWidth / 2 >= backgroundRightX) {
                        // within x bounds

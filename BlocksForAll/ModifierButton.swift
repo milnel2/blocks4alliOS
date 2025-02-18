@@ -11,7 +11,11 @@ import Foundation
 // Button on the top of blocks that have modifier values (ex. play sound blocks)
 class ModifierButton: UIButton {
     var block: Block // block that this modifier button is a part of
-    var currentProject: Project? // project currently being edited
+    var currentProject: Project? {
+        get {
+            return UserData.data.getCurrentProject()
+        }
+    } // project currently being edited
     var data: ModifierButtonData // data associated with this modifier button
     
     var attrVal: String = "" // value currently selected for the first attribute (ex. "cat", 1, "yellow")
@@ -19,9 +23,8 @@ class ModifierButton: UIButton {
     
     var modifierInformation: String = "" // Used for voiceOver
     
-    required init(frame: CGRect, block: Block, currentProject: Project?, modifierData: ModifierButtonData) {
+    required init(frame: CGRect, block: Block, modifierData: ModifierButtonData) {
         self.block = block
-        self.currentProject = currentProject
         self.data = modifierData
         
         super.init(frame: frame)

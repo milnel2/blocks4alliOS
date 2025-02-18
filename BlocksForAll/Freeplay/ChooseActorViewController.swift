@@ -27,8 +27,6 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
     
     var selectedActor = (name: "", baseImagePath: "", color: "")
     
-    var currentProject: Project?
-    
     var freeplayOutputView: FreeplayOutputView? // used during segues
     
     var currentActorImageView: UIImageView? // used during segues
@@ -80,8 +78,6 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if (segue.identifier == "backToFreeplay") {
           let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
-     
-           freeplayWorkspaceVC.currentProject = currentProject // pass the current project back to the workspaceVC
            
            freeplayWorkspaceVC.currentActorImageView = currentActorImageView
           
@@ -91,8 +87,6 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         if segue.identifier == "backToFreeplayWithNewActor" {
             let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
        
-             freeplayWorkspaceVC.currentProject = currentProject // pass the current project back to the workspaceVC
-             
              freeplayWorkspaceVC.currentActorImageView = currentActorImageView
             
              freeplayWorkspaceVC.newActorToAdd = (name: selectedActor.name, baseImagePath: selectedActor.baseImagePath, color: "Default") // add a new actor
