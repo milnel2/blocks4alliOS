@@ -83,7 +83,7 @@
 	<key>nested_block_selected_access_label</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%@ block with %#@val@ nested block(s) selected. Select location in workspace to place it.</string>
+		<string>block with %#@val@ nested block(s) selected. Select location in workspace to place it.</string>
 		<key>val</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -91,11 +91,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>zero</key>
-			<string>%@ block with 0 nested blocks selected. Select location in workspace to place it.</string>
+			<string>block with 0 nested blocks selected. Select location in workspace to place it.</string>
 			<key>one</key>
-			<string>%@ block with 1 nested block selected. Select location in workspace to place it.</string>
+			<string>block with 1 nested block selected. Select location in workspace to place it.</string>
 			<key>other</key>
-			<string>%@ block with %d nested blocks selected. Select location in workspace to place it.</string>
+			<string>block with %d nested blocks selected. Select location in workspace to place it.</string>
 		</dict>
 	</dict>
 	<key>block_selected_access_label</key>

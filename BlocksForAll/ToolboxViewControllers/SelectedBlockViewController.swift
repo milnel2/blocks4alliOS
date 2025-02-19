@@ -115,7 +115,8 @@ class SelectedBlockViewController: UIViewController {
        
         let numNestedBlocks = blocks!.count - 2 // the number of blocks that are nested inside of this block (don't count the start and end blocks)
         let formattedString = NSLocalizedString("nested_block_selected_access_label", comment: "Accessibility label for when a nested block is selected to move. Says name of block and how many blocks (int) are nested within it") // TODO: don't forget to test this one
-        var label = String.localizedStringWithFormat(formattedString, (blocks?[0].name)!, numNestedBlocks)
+        let blockName = blocks![0].name.localized
+        var label = "\(blockName) \(String.localizedStringWithFormat(formattedString, numNestedBlocks))"
         
         let formattedString2 = NSLocalizedString("num_nested_blocks", comment: "Label for how many blocks are nested within a block. '<num> Nested Block(s)'")
         nestedBlockLabel.text = String.localizedStringWithFormat(formattedString2, numNestedBlocks)
