@@ -10,9 +10,6 @@
 import UIKit
 import AVFoundation
 
-// Global variables
-var functionsDict = [String : [Block]]()  // dictionary containing the different functions (composed as a list of Blocks) in the program
-var currentWorkspace = String()  // workspace you are currently editing on screen (i.e. the main workspace or a user-defined function)
 
 //MARK: - Block Selection Delegate Protocol
 /* Sends information about which blocks are selected to SelectedBlockViewController when moving blocks in workspace. */
@@ -177,7 +174,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         for actor in currentProject!.actors {
             for function in actor.functionDict.keys {
-                if function == ON_RUN_STRING || function == ON_BUMP_STRING || function == ON_TAP_STRING {
+                if !PREMADE_FUNCTION_NAMES.contains(function) {
                     if actor.functionDict[function]!.isEmpty{
                         let startBlock = Block.init(
                             name: "\(function) Start", //TODO: update block name

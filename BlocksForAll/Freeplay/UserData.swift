@@ -8,6 +8,10 @@
 
 import Foundation
 
+// Global variables
+
+var currentWorkspace = String()  // workspace you are currently editing on screen (i.e. the main workspace or a user-defined function)
+
 /// Holds saved user data, like the custom background image paths
 class UserData {
     
@@ -26,6 +30,7 @@ class UserData {
     func setCurrentProject(newProject: Project?) {
         currentProject = newProject
     }
+
     
     //MARK:  Custom Backgrounds
     /// Add path to the customBackgroundPaths list if it doesn't already exist in the list

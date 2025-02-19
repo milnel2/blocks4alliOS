@@ -35,6 +35,13 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     var backgroundImagePath: String? = nil
     
+    var currentFunctionDict: [String : [Block]]{
+        get { return UserData.data.getCurrentProject()!.currentActor!.functionDict}
+        set {
+            UserData.data.getCurrentProject()!.currentActor!.functionDict = newValue
+        }
+    }
+    
     override func viewDidLoad() {
         if (currentProject == nil) {
             print("ERROR: current project is nil")
@@ -50,7 +57,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
         isInFreeplay = true
        
-        functionsDict = currentProject!.currentActor!.functionDict
         currentWorkspace = ON_RUN_STRING
         
         super.viewDidLoad()
@@ -167,7 +173,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     // Updates the actor that is currently being edited
     func updateCurrentActor(newActor: VirtualRobot) {
         currentProject!.currentActor = newActor
-        functionsDict = currentProject!.currentActor!.functionDict
+//        functionsDict = currentProject!.currentActor!.functionDict
         
         refreshScreen()
         updateUI()

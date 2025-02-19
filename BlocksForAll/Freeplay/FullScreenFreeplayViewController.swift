@@ -83,7 +83,6 @@ class FullScreenFreeplayViewController : UIViewController {
         }
         isInFreeplay = true
        
-        functionsDict = currentProject!.currentActor!.functionDict
         currentWorkspace = ON_RUN_STRING
         
         exitFullScreenButton.isUserInteractionEnabled = true

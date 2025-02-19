@@ -158,8 +158,9 @@ class BlockTableViewController: UITableViewController {
             // blockTypes is a nsArray object with the contents of the ReleaseBlocksMenu.plist file, type index is an Int Var starts at 0, so it takes the contents of ReleaseBlocksMenu.plist and sets it to blockType as an NSDictionary
             
             if (blockType.object(forKey: "type") as? String == "Functions"){ //TODO: 
-                var functionsDictToUse = functionsDict
+                var functionsDictToUse = UserData.data.getCurrentProject()!.currentActor!.functionDict
                 functionsDictToUse.removeValue(forKey: "Main Workspace")
+               
                 let functionBlocks = Array(functionsDictToUse.keys)
                 var functionToolBlockArray = [Block]()
                 
@@ -171,7 +172,7 @@ class BlockTableViewController: UITableViewController {
                 toolBoxBlockArray += [createFunctionBlock]
                 
                 for function in functionBlocks {
-                    if (function != ON_RUN_STRING && function != ON_TAP_STRING && function != ON_BUMP_STRING) {
+                    if (!PREMADE_FUNCTION_NAMES.contains(function)) {
                         var blockBeingCreated: Block
                             blockBeingCreated = Block(name: function, colorName: "light_purple_block", double: false, isModifiable: false, isInToolBox: true)!
                         blockBeingCreated.type = "Function"

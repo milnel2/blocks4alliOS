@@ -438,7 +438,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 writeText.append("\n")
                
                
-                //TODO: fix this to work with physical robot and custom functions
                 for actor in project.actors {
                     writeText.append("New Actor \n")
                     writeText.append(actor.name)
