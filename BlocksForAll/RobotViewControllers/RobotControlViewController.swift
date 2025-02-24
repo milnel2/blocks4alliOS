@@ -1240,19 +1240,19 @@ class ExecutingProgram {
    
     
     
-    //TODO: test sounds on Dot
-    // TODO: put sound file names into a plist
+    
     let animalSoundFiles =
-        ["SYSTUS_LIPBUZZ",
-         "SYSTFX_CAT_01",
-         "SYSTCROCODILE",
-         "SYSTDINOSAUR_3",
-         "SYSTFX_DOG_02",
-         "SYSTELEPHANT_0",
-         "SYSTFX_03_GOAT",
-         "SYSTHORSEWHIN3",
-         "SYSTFX_LION_01",
-         "SYSTGOBBLE_001"]
+        ["bee",
+         "cat",
+         "crocodile",
+         "dinosaur",
+         "dog",
+         "elephant",
+         "goat",
+         "horse",
+         "lion",
+         "turkey"]
+       
     
     let freeplayAnimalSoundFiles =
         ["dog",
@@ -1264,20 +1264,21 @@ class ExecutingProgram {
         "turkey"]
        
     let vehicleSoundFiles =
-        ["SYSTAIRPORTJET",
-         "SYSTHAPPY_HONK",
-         "SYSTTUGBOAT_01",
-         "SYSTHELICOPTER",
-         "SYSTX_SIREN_02",
-         "SYSTSPEEDBOOST",
-         "SYSTENGINE_REV",
-         "SYSTTIRESQUEAL",
-         "SYSTTRAIN_WHIS"]
+        ["airplane",
+         "beep",
+         "boat",
+         "helicopter",
+         "siren",
+         "speed boost",
+         "start engine",
+         "tire squeal",
+         "train"]
+       
     
     let objectSoundFiles =
-        ["SYSTBOT_CUTE_0",
-         "SYSTTRUMPET_01",
-         "SYSTOT_CUTE_04"]
+        ["laser",
+         "squeak",
+         "trumpet"]
     
     let freeplayObjectSoundFiles =
         ["laser",
@@ -1285,31 +1286,31 @@ class ExecutingProgram {
         "trumpet"]
     
     let emotionSoundFiles =
-        ["SYSTBRAGGING1A",
-         "SYSTCONFUSED_1",
-         "SYSTGIGGLE_03",
-         "SYSTHUMPH",
-         "SYSTSIGH_DASH",
-         "SYSTDASH_WHAA1",
-         "SYSTTIRED_YAWN",
-         "SYSTSNORING"]
+        ["bragging",
+         "confused",
+         "giggle",
+         "grunt",
+         "sigh",
+         "snore",
+         "surprised",
+         "yawn"]
     
     let speakSoundFiles =
-        ["SYSTDASH_HI_VO",
-         "SYSTGOODBYE",
-         "SYSTCOOL",
-         "SYSTHAPPYLAUGH",
-         "SYSTLETS_GO",
-         "SYSTOHH_06",
-         "SYSTDASH_WOW_3",
-         "SYSTTAH_DAH_01",
-         "SYSTYAUHHUH",
-         "SYSTWHUH_OH_20",
-         "SYSTBWAHH",
-         "SYSTWHEEYEEYEE",
-         "SYSTYIPPEE",
-         "SYSTEXCITED_01"]
+        ["hi",
+         "bye",
+         "cool",
+         "haha",
+         "huh",
+         "let's go",
+         "oh",
+         "wow",
+         "tah dah!",
+         "uh huh",
+         "uh oh",
+         "wah",
+         "wee hee!",
+         "yippee!"]
 }
 
 
-//TODO: add music sound block with do, re, mi,... with durations to play them (on dot)
+
