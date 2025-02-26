@@ -92,7 +92,6 @@ class SelectedBlockViewController: UIViewController {
         }
         
         let modifierButton = ModifierButton(frame: buttonFrame, block: placeHolderBlock, modifierData: modifierData)
-        
         return modifierButton
     }
     

@@ -17,6 +17,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     
     @IBOutlet weak var NoisesCollectionView: UICollectionView! // Holds row of custom noise options
     @IBOutlet weak var SelectedNoiseImageView: UIImageView!
+    @IBOutlet weak var DeleteNoiseButton: UIButton!
     @IBOutlet weak var PlayNoiseButton: UIButton!
     @IBOutlet weak var RecordNoiseButton: UIButton!
     
@@ -32,8 +33,6 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
         }
     }
     
-    private var noiseFiles: [String?] = [nil, nil, nil, nil, nil] // audio path associated with each index
-    
     private var selectedNoiseIndex: Int = 0 // noise index that is currently selected
    
     private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each button that is showed in the collection view // TODO: handle different block sizes
@@ -41,13 +40,14 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSavedNoiseFiles()
         
         NoisesCollectionView.delegate = self
         NoisesCollectionView.dataSource = self
-        NoisesCollectionView.register(AudioCell.self, forCellWithReuseIdentifier: "AudioCell")
+        NoisesCollectionView.register(CustomAudioSlotCell.self, forCellWithReuseIdentifier: "customAudioSlotCell")
         
         preserveLastSelection()
+        
+        DeleteNoiseButton.addTarget(self, action: #selector(deleteNoiseTapped), for: .touchUpInside)
         
         // Set up audio recording
         recordingSession = AVAudioSession.sharedInstance()
@@ -116,16 +116,21 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             audioRecorder?.stop()
             audioRecorder = nil
             isRecording = false
-           
+            
             if success {
                 setNoiseFileName(forIndex: selectedNoiseIndex, toFileName: UserData.data.getAudioFileName(forIndex: selectedNoiseIndex))
-            } else {
-                print("record fail")
+                let selectedCell  = NoisesCollectionView.cellForItem(at: IndexPath(row: selectedNoiseIndex, section: 0)) as! CustomAudioSlotCell
+                if !selectedCell.isSlotFilled() {
+                    selectedCell.fillSlot()
+                    updateSelectedNoiseImageView()
+                    
+                } else {
+                    print("record fail")
+                }
+                
+                updateRecordPlayButtons()
             }
-            
-            updateRecordPlayButtons()
         }
-       
     }
     
     @objc func playTapped() {
@@ -141,6 +146,19 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             updateRecordPlayButtons()
         }
        
+    }
+    
+    @objc func deleteNoiseTapped() {
+        print("delete noise tapped")
+        if let selectedCell  = NoisesCollectionView.cellForItem(at: IndexPath(row: selectedNoiseIndex, section: 0)) as? CustomAudioSlotCell {
+            selectedCell.clearSlot()
+            eraseNoiseFile(forIndex: selectedNoiseIndex)
+            updateSelectedNoiseImageView()
+        }
+        
+        
+       
+        //TODO: delete actual noise file
     }
     
     func prepareAudioPlayer() {
@@ -167,6 +185,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             finishRecording(success: false)
         }
     }
+
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         isAudioPlayingBack = false
@@ -174,7 +193,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     }
     
     func updateRecordPlayButtons() {
-        print(noiseFiles)
+        print(UserData.data.getCustomAudioPaths())
         print("isRecording = \(isRecording), isPlaying = \(isAudioPlayingBack)")
         if isRecording { // disable playback while recording
             PlayNoiseButton.isEnabled = false
@@ -201,30 +220,34 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     }
     
     func updateSelectedNoiseImageView() {
-        let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forIndex: selectedNoiseIndex))
-        SelectedNoiseImageView.image = audioImage
+        if let selectedCell  = NoisesCollectionView.cellForItem(at: IndexPath(row: selectedNoiseIndex, section: 0)) as? CustomAudioSlotCell {
+            if selectedCell.isSlotFilled() { // show audio image when slot is filled
+                let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forIndex: selectedNoiseIndex))
+                SelectedNoiseImageView.image = audioImage
+                DeleteNoiseButton.isHidden = false
+            } else {
+                SelectedNoiseImageView.image = nil // show no image, only record and play buttons
+                DeleteNoiseButton.isHidden = true
+            }
+        }
     }
     
-    // Loads all custom audio paths into the noise files list
-    func loadSavedNoiseFiles() {
-        noiseFiles = UserData.data.getCustomAudioPaths()
-    }
-    
+   
     // Check if the given index has a noise saved to it
     private func hasNoise(forIndex index : Int) -> Bool{
-        return noiseFiles[index] != nil
+        return UserData.data.getCustomAudioPaths()[index] != nil
     }
     
     private func getNoiseFileName(forIndex index : Int) -> String? {
-        return noiseFiles[index] ?? nil
+        return UserData.data.getCustomAudioPaths()[index] ?? nil
     }
     
     private func setNoiseFileName(forIndex index : Int, toFileName fileName : String) {
-        noiseFiles[index] = fileName
+        UserData.data.addCustomAudio(path: fileName, forIndex: index)
     }
     
     private func eraseNoiseFile(forIndex index : Int) {
-        noiseFiles[index] = nil
+        UserData.data.clearAudio(forIndex: index)
     }
     
     private func playNoiseFile(forIndex index : Int) {
@@ -267,31 +290,42 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     // Code for creating a UICollectionView programmatically is from: https://medium.com/@buttam1703/how-to-create-a-uicollectionview-programmatically-in-swift-a030da15d445
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return noiseFiles.count
+        return UserData.data.getCustomAudioPaths().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let currentCellIndex = indexPath.row
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AudioCell.identifier, for: indexPath) as! AudioCell
-        cell.configure(withIndex: currentCellIndex, withNoise: noiseFiles[currentCellIndex] ?? "")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomAudioSlotCell.identifier, for: indexPath) as! CustomAudioSlotCell
+        cell.configure(withIndex: currentCellIndex, withNoise: UserData.data.getCustomAudioPaths()[currentCellIndex] ?? "")
         
         if selectedNoiseIndex == currentCellIndex { // This cell is selected. Highlight it
             cell.highlight()
         }
+        if hasNoise(forIndex: currentCellIndex) { // fill the slot if there is a noise file associated with the slot
+            cell.fillSlot()
+        }
+        updateSelectedNoiseImageView()
         return cell
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         for cell in collectionView.visibleCells{
-            let selectedCell = cell as! AudioCell
-            selectedCell.removeHighlight()
+            let currentCell = cell as! CustomAudioSlotCell
+            currentCell.removeHighlight()
         }
         
-        let selectedCell = collectionView.cellForItem(at: indexPath) as! AudioCell // highlight the one selected cell
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! CustomAudioSlotCell // highlight the one selected cell
         selectedCell.highlight()
         selectedNoiseIndex = selectedCell.getIndex()
         updateSelectedNoiseImageView()
         updateRecordPlayButtons()
+        
+        if isAudioPlayingBack { // stop any audio that is playing
+            audioPlayer?.stop()
+            isAudioPlayingBack = false
+            updateRecordPlayButtons()
+        }
     }
     
     // Return the size for the item at a given index path
@@ -302,8 +336,8 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
        // Centering cells horizonally is from  https://stackoverflow.com/questions/34267662/how-to-center-horizontally-uicollectionview-cells#:~:text=301-,Its%20not%20a%20good,-idea%20to%20use
-        let totalCellWidth = buttonSize * noiseFiles.count
-        let totalSpacingWidth = 15 * (noiseFiles.count - 1)
+        let totalCellWidth = buttonSize * UserData.data.getCustomAudioPaths().count
+        let totalSpacingWidth = 15 * (UserData.data.getCustomAudioPaths().count - 1)
 
         let leftInset = (NoisesCollectionView.bounds.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
         let rightInset = leftInset
@@ -340,8 +374,8 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
 
 
 
-class AudioCell: UICollectionViewCell {
-    static let identifier = "AudioCell"
+class CustomAudioSlotCell: UICollectionViewCell {
+    static let identifier = "customAudioSlotCell"
     
     // Lazy initialization of the UIImageView
     private lazy var imageView: UIImageView = {
@@ -351,7 +385,17 @@ class AudioCell: UICollectionViewCell {
         return imageView
     }()
     
+    // Lazy initialization of the add sound image view
+    private lazy var addSoundImageView: UIImageView = {
+        let addSoundImageView = UIImageView()
+        addSoundImageView.translatesAutoresizingMaskIntoConstraints = false
+        addSoundImageView.contentMode = .scaleAspectFit
+        return addSoundImageView
+    }()
+    
     private var index: Int = 0
+    
+    private var isFilled = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -365,8 +409,28 @@ class AudioCell: UICollectionViewCell {
     // Configure the cell with the image name
     func configure(withIndex index: Int, withNoise noise: String) {
         self.index = index
+        backgroundColor = UIColor(named: "gray_color")
+        addSoundImageView.image = HelperFunctions.getUIImage(named: "addProjectButton")
+        
+        if isFilled {
+            let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forIndex: index))
+            imageView.image = audioImage
+        }
+    }
+    
+    func fillSlot() {
+        isFilled = true
         let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forIndex: index))
         imageView.image = audioImage
+    }
+    
+    func clearSlot() {
+        isFilled = false
+        imageView.image = nil
+    }
+    
+    func isSlotFilled() -> Bool {
+        return isFilled
     }
     
     func getIndex() -> Int {
@@ -385,12 +449,20 @@ class AudioCell: UICollectionViewCell {
     
     // Setup the view and add imageView with constraints
     private func setupView() {
+        contentView.addSubview(addSoundImageView)
+        NSLayoutConstraint.activate([
+            addSoundImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            addSoundImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -10),
+            addSoundImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10),
+            addSoundImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+        ])
+        
         contentView.addSubview(imageView)
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -10),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
 }

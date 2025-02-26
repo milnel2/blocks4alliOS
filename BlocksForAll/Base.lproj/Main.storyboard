@@ -2063,7 +2063,7 @@ For further information on Blocks4All, please visit our website. For further det
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Yb1-ME-pFA">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="Yb1-ME-pFA">
                                                 <rect key="frame" x="0.0" y="43" width="128" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="48q-NY-sq7">
@@ -2080,10 +2080,21 @@ For further information on Blocks4All, please visit our website. For further det
                                     <constraint firstItem="znB-hz-S42" firstAttribute="leading" secondItem="Uvh-di-A2s" secondAttribute="leading" constant="40" id="yNs-0l-7kR"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJc-Qo-upw">
+                                <rect key="frame" x="622" y="200" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="OJc-Qo-upw" secondAttribute="height" multiplier="1:1" id="WfT-Kd-ylr"/>
+                                    <constraint firstAttribute="width" constant="50" id="YfJ-3M-WLD"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="deleteProjectButton"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="OJc-Qo-upw" firstAttribute="trailing" secondItem="rNh-5A-6Wz" secondAttribute="trailing" constant="25" id="0RQ-E3-7jn"/>
                             <constraint firstItem="vgJ-r9-rQW" firstAttribute="centerX" secondItem="EgG-GG-0nS" secondAttribute="centerX" id="78s-f7-xNr"/>
+                            <constraint firstItem="OJc-Qo-upw" firstAttribute="top" secondItem="rNh-5A-6Wz" secondAttribute="top" constant="-25" id="EId-ll-5of"/>
                             <constraint firstItem="Uvh-di-A2s" firstAttribute="centerX" secondItem="EgG-GG-0nS" secondAttribute="centerX" id="EKy-dp-Po0"/>
                             <constraint firstItem="XyP-aO-RxO" firstAttribute="top" secondItem="ygx-Ir-yqC" secondAttribute="bottom" constant="30" id="H5J-Ag-c6x"/>
                             <constraint firstItem="Uvh-di-A2s" firstAttribute="top" secondItem="XyP-aO-RxO" secondAttribute="bottom" id="IhT-tM-xKo"/>
@@ -2095,6 +2106,7 @@ For further information on Blocks4All, please visit our website. For further det
                     </view>
                     <navigationItem key="navigationItem" id="Thg-uK-uOs"/>
                     <connections>
+                        <outlet property="DeleteNoiseButton" destination="OJc-Qo-upw" id="dt7-hp-bMC"/>
                         <outlet property="NoisesCollectionView" destination="znB-hz-S42" id="RW0-rT-nNK"/>
                         <outlet property="PlayNoiseButton" destination="hbr-3G-Sfp" id="KAf-VE-u6T"/>
                         <outlet property="RecordNoiseButton" destination="qzx-4p-Q3T" id="Afg-4d-bzM"/>
@@ -3140,22 +3152,22 @@ For further information on Blocks4All, please visit our website. For further det
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="quaternaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.1764705882" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17647058823529413" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="underPageBackgroundColor">
             <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

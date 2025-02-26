@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Microphone required to record custom noises.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -28,6 +26,8 @@
 	<string>We use bluetooth to connect to Dash</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Uses bluetooth to connect to the Dash or Dot robot</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Microphone required to record custom noises.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AphontBold.ttf</string>

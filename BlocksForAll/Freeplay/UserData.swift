@@ -99,7 +99,7 @@ class UserData {
     
     /// Try to remove path from customAudioPaths list
     func clearAudio(forIndex index: Int) {
-        customAudioPaths.remove(at: index)
+        customAudioPaths[index] = nil
     }
     
     public func getCustomAudioPaths() -> [String?] {
