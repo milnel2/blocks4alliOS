@@ -450,7 +450,7 @@
                         <outlet property="playWithRobotButton" destination="CMD-Kc-2pq" id="a5L-17-cMF"/>
                         <outlet property="playWithVirtualRobotButton" destination="JyM-Bb-zzW" id="OwE-hs-m6l"/>
                         <outlet property="robotImageView" destination="bML-d3-3Tw" id="72s-Zo-2oI"/>
-                        <outlet property="settingsButton" destination="RT2-NS-4g9" id="o5b-0n-fX1"/>
+                        <outlet property="settingsButton" destination="RT2-NS-4g9" id="Iqn-3u-Oqf"/>
                         <outlet property="welcomeLabelImage" destination="P8p-Kk-8W6" id="J1J-27-52j"/>
                     </connections>
                 </viewController>
@@ -2019,7 +2019,6 @@ For further information on Blocks4All, please visit our website. For further det
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Custom Noise" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgJ-r9-rQW">
                                 <rect key="frame" x="387.5" y="107" width="305" height="41"/>
-                                <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2106,10 +2105,12 @@ For further information on Blocks4All, please visit our website. For further det
                     </view>
                     <navigationItem key="navigationItem" id="Thg-uK-uOs"/>
                     <connections>
+                        <outlet property="BackButton" destination="XyP-aO-RxO" id="7Uf-ZW-M7R"/>
                         <outlet property="DeleteNoiseButton" destination="OJc-Qo-upw" id="dt7-hp-bMC"/>
                         <outlet property="NoisesCollectionView" destination="znB-hz-S42" id="RW0-rT-nNK"/>
                         <outlet property="PlayNoiseButton" destination="hbr-3G-Sfp" id="KAf-VE-u6T"/>
                         <outlet property="RecordNoiseButton" destination="qzx-4p-Q3T" id="Afg-4d-bzM"/>
+                        <outlet property="SelectCustomNoiseTitleLabel" destination="vgJ-r9-rQW" id="hNS-Rp-lAw"/>
                         <outlet property="SelectedNoiseImageView" destination="rNh-5A-6Wz" id="Zoa-DY-19K"/>
                         <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplay" id="hlX-XA-zqW"/>
                     </connections>
@@ -3079,11 +3080,11 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="cqe-hd-fim"/>
         <segue reference="Mdl-ke-gN7"/>
         <segue reference="CWQ-aM-vhy"/>
-        <segue reference="hQ1-ks-vYz"/>
-        <segue reference="PIe-sL-Fqa"/>
-        <segue reference="gnX-kj-isW"/>
+        <segue reference="36F-bB-1lV"/>
+        <segue reference="SES-Og-HDs"/>
+        <segue reference="pX0-ao-Z6G"/>
         <segue reference="hlX-XA-zqW"/>
-        <segue reference="XsQ-5G-ZnB"/>
+        <segue reference="2fL-ta-11H"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -3152,22 +3153,22 @@ For further information on Blocks4All, please visit our website. For further det
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="quaternaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17647058823529413" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.1764705882" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="underPageBackgroundColor">
             <color red="0.70980392156862748" green="0.71764705882352942" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

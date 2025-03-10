@@ -172,9 +172,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         if currentProject?.projectType == ProjectType.Robot { // Don't add the blocks if currently in a Robot Workspace
             return
         }
+        
         for actor in currentProject!.actors {
             for function in actor.functionDict.keys {
-                if !PREMADE_FUNCTION_NAMES.contains(function) {
+                print(function)
+                if PREMADE_FUNCTION_NAMES.contains(function) {
                     if actor.functionDict[function]!.isEmpty{
                         let startBlock = Block.init(
                             name: "\(function) Start", //TODO: update block name
@@ -315,6 +317,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         var accessibilityLabel = ""
         var blockPlacementInfo: String
+        var modifier = blockModifier
         var movementInfo: String
         
         blockPlacementInfo = NSLocalizedString(". Workspace block \(String(blockLocation)) of  \(String(currentProject!.currentActor!.functionDict[currentWorkspace]!.count))", comment: "Block placement info")
@@ -331,6 +334,12 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 movementInfo = NSLocalizedString(". Double tap to move block.", comment: "Block movement info")
                 
                 accessibilityHint = ""
+                if block.name == "Custom Noise" {
+                    
+                    if !UserData.data.hasNoise(forSlotNumber: Int(modifier)!) {
+                       modifier = "\(modifier). Empty Noise."
+                    }
+                }
             } else {
                 blockPlacementInfo = ""
                 movementInfo = ""
@@ -345,10 +354,10 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             } else if (!isWorkspaceCustomFunction(name: currentWorkspace) && blockIndex == 0){
                 // in main workspace and setting 1st block accessibility info
                 
-                accessibilityLabel = NSLocalizedString("Place \(blocksBeingMoved[0].name) at beginning, before \(block.name) \(blockModifier) \(blockPlacementInfo)", comment: "Accessibility Label. Place (block name at beginning, before (block name) (block modifier) (block placement info)")
+                accessibilityLabel = NSLocalizedString("Place \(blocksBeingMoved[0].name) at beginning, before \(block.name) \(modifier) \(blockPlacementInfo)", comment: "Accessibility Label. Place (block name at beginning, before (block name) (block modifier) (block placement info)")
                
             } else {
-                    accessibilityLabel = NSLocalizedString("Place \(blocksBeingMoved[0].name) before \(block.name) \(blockModifier) \(blockPlacementInfo)", comment: "Accessibility Label. Place (block name) before (another block name) (block modifier) (block placement info)")
+                    accessibilityLabel = NSLocalizedString("Place \(blocksBeingMoved[0].name) before \(block.name) \(modifier) \(blockPlacementInfo)", comment: "Accessibility Label. Place (block name) before (another block name) (block modifier) (block placement info)")
 
             }
             
@@ -361,11 +370,11 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             }
            
         } else {
-            accessibilityLabel =  "\(block.name) \(blockModifier) \(blockPlacementInfo)"
+            accessibilityLabel =  "\(block.name) \(modifier) \(blockPlacementInfo)"
         }
         
         accessibilityHint += movementInfo
-        
+        print(accessibilityLabel)
         blockView.accessibilityLabel = accessibilityLabel
         createVoiceControlLabels(for: block, in: blockView)
         blockView.accessibilityHint = accessibilityHint

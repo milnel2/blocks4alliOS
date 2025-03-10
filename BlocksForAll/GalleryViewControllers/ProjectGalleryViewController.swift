@@ -13,6 +13,7 @@ import UIKit
 class ProjectGalleryViewController: UIViewController {
     
     @IBOutlet weak var projectGalleryCollectionView: UICollectionView! // collection view to hold project cells
+    @IBOutlet weak var robotButton: UIButton!
     
     @IBOutlet weak var homeButton: UIButton! // button to return to main menu
     

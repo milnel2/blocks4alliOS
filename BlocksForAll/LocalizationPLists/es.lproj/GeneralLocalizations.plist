@@ -2,6 +2,27 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Record</key>
+	<dict>
+		<key>value</key>
+		<string>s</string>
+		<key>comment</key>
+		<string>Generic String for recording a sound</string>
+	</dict>
+	<key>Play</key>
+	<dict>
+		<key>value</key>
+		<string>s</string>
+		<key>comment</key>
+		<string>Generic String for playing a sound</string>
+	</dict>
+	<key>Noise</key>
+	<dict>
+		<key>value</key>
+		<string>s</string>
+		<key>comment</key>
+		<string>Generic String for Noise block</string>
+	</dict>
 	<key>Set Background</key>
 	<dict>
 		<key>value</key>

@@ -45,11 +45,11 @@
 				<key>name</key>
 				<string>Custom Noise</string>
 				<key>color</key>
-				<string>gray_color</string>
+				<string>customNoiseColor</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>speakNoise.pdf</string>
+				<string>customNoise</string>
 			</dict>
 		</array>
 	</dict>

@@ -16,31 +16,36 @@ import AVFoundation
 class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet weak var NoisesCollectionView: UICollectionView! // Holds row of custom noise options
-    @IBOutlet weak var SelectedNoiseImageView: UIImageView!
-    @IBOutlet weak var DeleteNoiseButton: UIButton!
-    @IBOutlet weak var PlayNoiseButton: UIButton!
-    @IBOutlet weak var RecordNoiseButton: UIButton!
+    @IBOutlet weak var SelectedNoiseImageView: UIImageView! // Large imsge that displays which audio slot is currently selected
+    @IBOutlet weak var DeleteNoiseButton: UIButton! // Delete buttom that is displayed in the corner of the SelectedNoiseImageView
+    @IBOutlet weak var PlayNoiseButton: UIButton! // Green play button to play currently selected noise
+    @IBOutlet weak var RecordNoiseButton: UIButton! // Red circle button to record in currently selected slot
+    @IBOutlet weak var BackButton: UIButton! // Arrow button to return to workspace
+    @IBOutlet weak var SelectCustomNoiseTitleLabel: UILabel! // Select Custom Noise label at top of screen
     
+    // Audio variables
     var recordingSession: AVAudioSession?
     var audioRecorder: AVAudioRecorder?
     var audioPlayer: AVAudioPlayer?
+    private let MAX_AUDIO_LENGTH = 5
     
+    private var selectedNoiseSlotNum: Int = 1 // noise num that is currently selected
+  
+    // Project Info
+    var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen
     
-    var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
-    var currentProject: Project? {
+    var currentProject: Project? { // Project that is currently being edited
         get {
             return UserData.data.getCurrentProject()
         }
     }
-    
-    private var selectedNoiseIndex: Int = 0 // noise index that is currently selected
-   
     private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each button that is showed in the collection view // TODO: handle different block sizes
     
    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set up NoisesCollectionView
         NoisesCollectionView.delegate = self
         NoisesCollectionView.dataSource = self
         NoisesCollectionView.register(CustomAudioSlotCell.self, forCellWithReuseIdentifier: "customAudioSlotCell")
@@ -56,6 +61,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             try recordingSession?.setCategory(.playAndRecord, mode: .default)
             try recordingSession?.setActive(true)
             
+            // Get permission to record
             recordingSession?.requestRecordPermission() { [unowned self] allowed in
                 DispatchQueue.main.async {
                     if allowed {
@@ -68,25 +74,82 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
         } catch {
             print("failed to record")
         }
-       
+        
+        // Code to listen for when a VoiceOver announcement finishes is from: https://vikramios.medium.com/swift-notification-observers-bbc5b86a7781
+        NotificationCenter.default.addObserver(self, selector: #selector(voiceOverAnnouncementFinished), name: UIAccessibility.announcementDidFinishNotification, object: nil) // Listen for when VoiceOver announcements finish
+
+        updateAccessibility()
     }
     
+    /// Set up recording elements
     func loadRecordingUI() {
+        // Stop voice over from talking when record/play are pressed is from https://stackoverflow.com/questions/45578888/ios-voiceover-wait-on-element-to-finish-reading-before-changing-to-next-element
+        RecordNoiseButton.accessibilityTraits.formUnion(UIAccessibilityTraits.startsMediaSession)
+        PlayNoiseButton.accessibilityTraits.formUnion(UIAccessibilityTraits.startsMediaSession)
+        
         RecordNoiseButton.addTarget(self, action: #selector(recordTapped), for: .touchUpInside)
         PlayNoiseButton.addTarget(self, action: #selector(playTapped), for: .touchUpInside)
         updateRecordPlayButtons()
     }
     
+    /// Update accessibility elements based on state of screen
+    func updateAccessibility() {
+        RecordNoiseButton.accessibilityHint = "Can record up to \(MAX_AUDIO_LENGTH) seconds.".localized // TODO: localize
+        if (hasNoise(forNum: selectedNoiseSlotNum)) {
+            // Current slot has a noise, show selected noise, delete button, and play button and update record button
+            SelectedNoiseImageView!.isAccessibilityElement = true
+            SelectedNoiseImageView.accessibilityLabel = "\("Noise".localized) \(selectedNoiseSlotNum)."
+            DeleteNoiseButton.accessibilityLabel = "\("Delete".localized) \("Noise".localized) \(selectedNoiseSlotNum)."
+            
+            accessibilityElements = [BackButton!, SelectCustomNoiseTitleLabel!, SelectedNoiseImageView!, DeleteNoiseButton!, PlayNoiseButton!, RecordNoiseButton!, NoisesCollectionView!]
+            PlayNoiseButton.accessibilityLabel = "\("Play Noise".localized) \(selectedNoiseSlotNum)." // TODO: localize
+            RecordNoiseButton.accessibilityLabel = "\("Re-record Noise".localized) \(selectedNoiseSlotNum)." //TODO: localize
+        } else {
+            // Current slot does not have a noise
+            SelectedNoiseImageView!.isAccessibilityElement = false
+            accessibilityElements = [BackButton!, SelectCustomNoiseTitleLabel!, PlayNoiseButton!, RecordNoiseButton!, NoisesCollectionView!]
+            PlayNoiseButton.accessibilityLabel = "\("Play Noise".localized) \(selectedNoiseSlotNum). No noise recorded yet." // localize
+            RecordNoiseButton.accessibilityLabel = "\("Record Noise".localized) \(selectedNoiseSlotNum)." // Localize
+        }
+    }
     
-    let index = 0
+    // MARK: Record audio
     var isRecording = false
+    var isCountingDown = false
     var isAudioPlayingBack = false
+    /// When record button is tapped, either start or stop recording
     @objc func recordTapped() {
         if isRecording {
             finishRecording(success: true)
             return
         }
-        let fileName = UserData.data.getAudioFileURL(forIndex: selectedNoiseIndex)
+        
+        if UIAccessibility.isVoiceOverRunning { // Count down recording
+            isCountingDown = true
+            RecordNoiseButton.isEnabled = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                UIAccessibility.post(notification: .announcement, argument: "You will have up to \(self.MAX_AUDIO_LENGTH) seconds to record. Tap to end early. Recording will begin in 3. 2. 1.") // TODO: localize
+            }
+        } else {
+            beginRecording()
+        }
+    }
+    
+    /// Called each time a voiceOver announcement finishes. If voiceOver just finished counting down for recording, start recording
+    @objc func voiceOverAnnouncementFinished() {
+        if isCountingDown {
+            // Stop counting down and begin recording
+            isCountingDown = false
+            RecordNoiseButton.isEnabled = true
+            beginRecording()
+        }
+    }
+    
+    /// Prepare for and begin recording
+    func beginRecording() {
+        eraseNoiseFile(forSlotNumber: selectedNoiseSlotNum) // erase any previous noise data
+        
+        let fileName = UserData.data.getAudioFileURL(forSlotNumber: selectedNoiseSlotNum) // file name where this audio file will be saved
         
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
@@ -102,15 +165,15 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             isRecording = true
             updateRecordPlayButtons()
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(self.MAX_AUDIO_LENGTH)) {
                 self.finishRecording(success: true)
             }
         } catch {
             finishRecording(success: false)
         }
-
     }
     
+    // Called when a recording session is finished. Save audio file name and fill the slot
     func finishRecording(success: Bool) {
         if (isRecording) {
             audioRecorder?.stop()
@@ -118,65 +181,22 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             isRecording = false
             
             if success {
-                setNoiseFileName(forIndex: selectedNoiseIndex, toFileName: UserData.data.getAudioFileName(forIndex: selectedNoiseIndex))
-                let selectedCell  = NoisesCollectionView.cellForItem(at: IndexPath(row: selectedNoiseIndex, section: 0)) as! CustomAudioSlotCell
-                if !selectedCell.isSlotFilled() {
-                    selectedCell.fillSlot()
-                    updateSelectedNoiseImageView()
-                    
-                } else {
-                    print("record fail")
-                }
+                // Save noise file name to user data
+                setNoiseFileName(forSlotNumber: selectedNoiseSlotNum, toFileName: UserData.data.getAudioFileName(forSlotNumber: selectedNoiseSlotNum))
+                
+                // Fill the selected slot
+                let selectedCell  = NoisesCollectionView.cellForItem(at: IndexPath(row: selectedNoiseSlotNum - 1, section: 0)) as! CustomAudioSlotCell
+                
+                selectedCell.fillSlot()
+                updateSelectedNoiseImageView()
                 
                 updateRecordPlayButtons()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // need to wait a tiny bit to post the announcement so that it doesn't get muted by the button press
+                    UIAccessibility.post(notification: .announcement, argument: "Recording finished.") // TODO: localize
+                }
+            } else {
+                print("record fail")
             }
-        }
-    }
-    
-    @objc func playTapped() {
-        if !isAudioPlayingBack {
-            RecordNoiseButton.isEnabled = false
-            prepareAudioPlayer()
-            audioPlayer?.play()
-            isAudioPlayingBack = true
-            updateRecordPlayButtons()
-        } else {
-            audioPlayer?.stop()
-            isAudioPlayingBack = false
-            updateRecordPlayButtons()
-        }
-       
-    }
-    
-    @objc func deleteNoiseTapped() {
-        print("delete noise tapped")
-        if let selectedCell  = NoisesCollectionView.cellForItem(at: IndexPath(row: selectedNoiseIndex, section: 0)) as? CustomAudioSlotCell {
-            selectedCell.clearSlot()
-            eraseNoiseFile(forIndex: selectedNoiseIndex)
-            updateSelectedNoiseImageView()
-        }
-        
-        
-       
-        //TODO: delete actual noise file
-    }
-    
-    func prepareAudioPlayer() {
-        var error: NSError?
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: UserData.data.getAudioFileURL(forIndex: selectedNoiseIndex) as URL)
-        } catch let error1 as NSError {
-            error = error1
-            audioPlayer = nil
-        }
-        
-        if let err = error {
-            print("AVAudioPlayer error: \(err.localizedDescription)")
-        } else {
-            audioPlayer?.delegate = self
-            audioPlayer?.prepareToPlay()
-            audioPlayer?.volume = 5.0
-            print("prepared")
         }
     }
     
@@ -187,72 +207,27 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     }
 
     
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        isAudioPlayingBack = false
-        updateRecordPlayButtons()
-    }
-    
-    func updateRecordPlayButtons() {
-        print(UserData.data.getCustomAudioPaths())
-        print("isRecording = \(isRecording), isPlaying = \(isAudioPlayingBack)")
-        if isRecording { // disable playback while recording
-            PlayNoiseButton.isEnabled = false
-            RecordNoiseButton.isEnabled = true // TODO: turn into stop button
-            RecordNoiseButton.setTitle("Stop", for: .normal)
+    //MARK: Play audio
+    /// Called when play button is tapped. Either starts or stops audio
+    @objc func playTapped() {
+        if !isAudioPlayingBack {
+            // Start audio
+            RecordNoiseButton.isEnabled = false
+            prepareAudioPlayer()
+            audioPlayer?.play()
+            isAudioPlayingBack = true
+            updateRecordPlayButtons()
         } else {
-            RecordNoiseButton.setTitle("", for: .normal)
-            RecordNoiseButton.isEnabled = true
-            
-            if isAudioPlayingBack { // disable recording during playback
-                RecordNoiseButton.isEnabled = false
-                PlayNoiseButton.isEnabled = true // TODO: turn into stop button
-                PlayNoiseButton.setTitle("Stop", for: .normal)
-            } else {
-                PlayNoiseButton.setTitle("", for: .normal)
-                RecordNoiseButton.isEnabled = true
-                if hasNoise(forIndex: selectedNoiseIndex) { // Only enable play button if there is a sound saved
-                    PlayNoiseButton.isEnabled = true
-                } else {
-                    PlayNoiseButton.isEnabled = false
-                }
-            }
+            // Stop audio
+            audioPlayer?.stop()
+            isAudioPlayingBack = false
+            updateRecordPlayButtons()
         }
     }
     
-    func updateSelectedNoiseImageView() {
-        if let selectedCell  = NoisesCollectionView.cellForItem(at: IndexPath(row: selectedNoiseIndex, section: 0)) as? CustomAudioSlotCell {
-            if selectedCell.isSlotFilled() { // show audio image when slot is filled
-                let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forIndex: selectedNoiseIndex))
-                SelectedNoiseImageView.image = audioImage
-                DeleteNoiseButton.isHidden = false
-            } else {
-                SelectedNoiseImageView.image = nil // show no image, only record and play buttons
-                DeleteNoiseButton.isHidden = true
-            }
-        }
-    }
-    
-   
-    // Check if the given index has a noise saved to it
-    private func hasNoise(forIndex index : Int) -> Bool{
-        return UserData.data.getCustomAudioPaths()[index] != nil
-    }
-    
-    private func getNoiseFileName(forIndex index : Int) -> String? {
-        return UserData.data.getCustomAudioPaths()[index] ?? nil
-    }
-    
-    private func setNoiseFileName(forIndex index : Int, toFileName fileName : String) {
-        UserData.data.addCustomAudio(path: fileName, forIndex: index)
-    }
-    
-    private func eraseNoiseFile(forIndex index : Int) {
-        UserData.data.clearAudio(forIndex: index)
-    }
-    
-    private func playNoiseFile(forIndex index : Int) {
-        if !hasNoise(forIndex: index) { return }
-        let soundName = getNoiseFileName(forIndex: index)!
+    private func playNoiseFile(forSlotNumber slotNumber : Int) {
+        if !hasNoise(forNum: slotNumber) { return }
+        let soundName = getNoiseFileName(forSlotNumber: slotNumber)!
         
         // Code to play audio is from https://www.tutorialspoint.com/how-to-play-a-sound-using-swift
         guard let path = Bundle.main.path(forResource: soundName, ofType:"mp3") else {
@@ -269,21 +244,126 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
         }
     }
     
-    // select the shape that was previously selected
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        isAudioPlayingBack = false
+        updateRecordPlayButtons()
+    }
+    
+    /// Get audio player ready ro play the audio for the current slot
+    func prepareAudioPlayer() {
+        var error: NSError?
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: UserData.data.getAudioFileURL(forSlotNumber: selectedNoiseSlotNum) as URL)
+        } catch let error1 as NSError {
+            error = error1
+            audioPlayer = nil
+        }
+        
+        if let err = error {
+            print("AVAudioPlayer error: \(err.localizedDescription)")
+        } else {
+            audioPlayer?.delegate = self
+            audioPlayer?.prepareToPlay()
+            audioPlayer?.volume = 5.0
+        }
+    }
+    
+    /// Update the record and play buttons based on the state of the screen
+    func updateRecordPlayButtons() {
+        if isRecording { // disable playback while recording
+            PlayNoiseButton.isEnabled = false
+            RecordNoiseButton.isEnabled = true
+            RecordNoiseButton.setBackgroundImage(HelperFunctions.getUIImage(named: "stopRecording"), for: .normal)
+        } else {
+            RecordNoiseButton.setTitle("", for: .normal)
+            RecordNoiseButton.isEnabled = true
+            RecordNoiseButton.setBackgroundImage(HelperFunctions.getUIImage(named: "record"), for: .normal)
+            
+            if isAudioPlayingBack { // disable recording during playback
+                RecordNoiseButton.isEnabled = false
+                PlayNoiseButton.isEnabled = true // TODO: turn into stop button
+                PlayNoiseButton.setTitle("Stop", for: .normal)
+            } else {
+                PlayNoiseButton.setTitle("", for: .normal)
+                RecordNoiseButton.isEnabled = true
+                if hasNoise(forNum: selectedNoiseSlotNum) { // Only enable play button if there is a sound saved
+                    PlayNoiseButton.isEnabled = true
+                    RecordNoiseButton.setBackgroundImage(HelperFunctions.getUIImage(named: "rerecord"), for: .normal)
+                } else {
+                    PlayNoiseButton.isEnabled = false
+                    RecordNoiseButton.setBackgroundImage(HelperFunctions.getUIImage(named: "record"), for: .normal)
+                }
+            }
+        }
+    }
+    
+    // MARK: Selected Noise
+    /// Called when the delete current noise button is tapped. Confirms action with a popup and then clears and erases the current slot.
+    @objc func deleteNoiseTapped() {
+        // Create popup alert
+        let titleString = NSLocalizedString("Are you sure you want to delete this sound?", comment: "Popup to confirm deleting a custom sound")
+        let alert = UIAlertController(title: titleString, message: "This action cannot be undone.".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Delete".localized, style: .destructive, handler: {action in
+            // When delete is clicked, delete the sound
+            if let selectedCell  = self.NoisesCollectionView.cellForItem(at: IndexPath(row: self.selectedNoiseSlotNum - 1, section: 0)) as? CustomAudioSlotCell { // Find the selected cell
+                selectedCell.clearSlot()
+                self.eraseNoiseFile(forSlotNumber: self.selectedNoiseSlotNum)
+                self.updateSelectedNoiseImageView()
+            }
+        }))
+        present(alert, animated: true)
+    }
+    
+    /// Show audio image when the slot is filled, otherwise show nothing
+    func updateSelectedNoiseImageView() {
+        if hasNoise(forNum: selectedNoiseSlotNum) {// show audio image when slot is filled
+            let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forSlotNumber: selectedNoiseSlotNum))
+            SelectedNoiseImageView.image = audioImage
+            DeleteNoiseButton.isHidden = false
+        } else {
+            SelectedNoiseImageView.image = nil // show no image, only record and play buttons
+            DeleteNoiseButton.isHidden = true
+        }
+        // Always update accessibility
+        updateAccessibility()
+    }
+    
+   
+    // MARK: User Data
+    /// Check if the given number has a noise saved to it
+    private func hasNoise(forNum num : Int) -> Bool{
+        return UserData.data.hasNoise(forSlotNumber: num)
+    }
+    
+    /// If the slot has a noise, return its file name. Otherwise return nil
+    private func getNoiseFileName(forSlotNumber slotNumber : Int) -> String? {
+        return UserData.data.getCustomAudioPaths()[slotNumber - 1] ?? nil
+    }
+    
+    private func setNoiseFileName(forSlotNumber slotNum : Int, toFileName fileName : String) {
+        UserData.data.addCustomAudio(path: fileName, forSlotNumber: slotNum)
+    }
+    
+    /// Remove noise file from user data and from file directory
+    private func eraseNoiseFile(forSlotNumber slotNum : Int) {
+        UserData.data.clearAudio(forSlotNumber: slotNum)
+    }
+    
+    /// Select the slot that was previously selected
     func preserveLastSelection() {
-        if let previousIndexString: String = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["index"] {
-            if let previousIndex: Int = Int(previousIndexString) {
-                selectedNoiseIndex = previousIndex
+        if let previousSlotString: String = currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["slotNumber"] {
+            if let previousSlotNumber: Int = Int(previousSlotString) {
+                selectedNoiseSlotNum = previousSlotNumber
                 updateSelectedNoiseImageView()
                 return
             }
         }
         // By default, focus on the first sound
-        selectedNoiseIndex = 0
+        selectedNoiseSlotNum = 1
         updateSelectedNoiseImageView()
     }
-       
-    
     
     // MARK: Collection View
     
@@ -296,12 +376,12 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let currentCellIndex = indexPath.row
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomAudioSlotCell.identifier, for: indexPath) as! CustomAudioSlotCell
-        cell.configure(withIndex: currentCellIndex, withNoise: UserData.data.getCustomAudioPaths()[currentCellIndex] ?? "")
+        cell.configure(withSlotNumber: currentCellIndex + 1, withNoise: UserData.data.getCustomAudioPaths()[currentCellIndex] ?? "")
         
-        if selectedNoiseIndex == currentCellIndex { // This cell is selected. Highlight it
+        if selectedNoiseSlotNum == currentCellIndex + 1 { // This cell is selected. Highlight it
             cell.highlight()
         }
-        if hasNoise(forIndex: currentCellIndex) { // fill the slot if there is a noise file associated with the slot
+        if hasNoise(forNum: currentCellIndex + 1) { // fill the slot if there is a noise file associated with the slot
             cell.fillSlot()
         }
         updateSelectedNoiseImageView()
@@ -310,30 +390,38 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Deselect all cells
         for cell in collectionView.visibleCells{
             let currentCell = cell as! CustomAudioSlotCell
             currentCell.removeHighlight()
+            currentCell.isSelected = false
         }
         
-        let selectedCell = collectionView.cellForItem(at: indexPath) as! CustomAudioSlotCell // highlight the one selected cell
+        // Highlight the one selected cell
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! CustomAudioSlotCell
         selectedCell.highlight()
-        selectedNoiseIndex = selectedCell.getIndex()
+        selectedCell.isSelected = true
+        
+        // Update UI
+        selectedNoiseSlotNum = selectedCell.getSlotNumber()
         updateSelectedNoiseImageView()
         updateRecordPlayButtons()
         
-        if isAudioPlayingBack { // stop any audio that is playing
+        // Stop any audio that is playing
+        if isAudioPlayingBack {
             audioPlayer?.stop()
             isAudioPlayingBack = false
             updateRecordPlayButtons()
         }
     }
     
-    // Return the size for the item at a given index path
+    /// Return the size for the item at a given index path
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(width: CGFloat(buttonSize), height: CGFloat(buttonSize))
         return size
     }
     
+    /// Center cells horizonally
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
        // Centering cells horizonally is from  https://stackoverflow.com/questions/34267662/how-to-center-horizontally-uicollectionview-cells#:~:text=301-,Its%20not%20a%20good,-idea%20to%20use
         let totalCellWidth = buttonSize * UserData.data.getCustomAudioPaths().count
@@ -343,17 +431,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
         let rightInset = leftInset
 
         return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
-          
     }
-    
-
-    // Method to reload the collection view on the main thread
-       func reloadCollectionView() {
-           DispatchQueue.main.async { [weak self] in
-               self?.NoisesCollectionView.reloadData()
-           }
-       }
-    
     
     // MARK: Navigation
     @IBAction func backButtonPress(_ sender: Any) {
@@ -362,18 +440,13 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if (segue.identifier == "backToFreeplay") {
-            let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
-            
-            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["index"] = String(selectedNoiseIndex)// Tell BlocksViewController which index was selected
-            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["customNoise"] = getNoiseFileName(forIndex: selectedNoiseIndex)// Tell BlocksViewController which noise goes with that index
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["slotNumber"] = String(selectedNoiseSlotNum)// Tell BlocksViewController which index was selected
+            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["customNoise"] = getNoiseFileName(forSlotNumber: selectedNoiseSlotNum)// Tell BlocksViewController which noise goes with that index
         }
-         
     }
-    
 }
 
-
-
+/// Cell used in NoisesCollectionView that represents a slot that can hold a custom audio file
 class CustomAudioSlotCell: UICollectionViewCell {
     static let identifier = "customAudioSlotCell"
     
@@ -393,7 +466,7 @@ class CustomAudioSlotCell: UICollectionViewCell {
         return addSoundImageView
     }()
     
-    private var index: Int = 0
+    private var slotNumber: Int = 1
     
     private var isFilled = false
     
@@ -406,35 +479,53 @@ class CustomAudioSlotCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // Configure the cell with the image name
-    func configure(withIndex index: Int, withNoise noise: String) {
-        self.index = index
+    func configure(withSlotNumber num: Int, withNoise noise: String) {
+        self.slotNumber = num
         backgroundColor = UIColor(named: "gray_color")
-        addSoundImageView.image = HelperFunctions.getUIImage(named: "addProjectButton")
+        addSoundImageView.image = HelperFunctions.getUIImage(named: "addCustomNoise")
         
         if isFilled {
-            let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forIndex: index))
+            let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forSlotNumber: slotNumber))
             imageView.image = audioImage
         }
+        
+        self.isAccessibilityElement = true
+        updateAccessibility()
     }
     
     func fillSlot() {
         isFilled = true
-        let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forIndex: index))
+        let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forSlotNumber: slotNumber))
         imageView.image = audioImage
+        
+        updateAccessibility()
     }
     
     func clearSlot() {
         isFilled = false
         imageView.image = nil
+        updateAccessibility()
     }
     
-    func isSlotFilled() -> Bool {
+    func updateAccessibility() {
+        var formattedString: String
+        if isFilled {
+            formattedString = NSLocalizedString("custom_noise_cell_access_label_filled", comment: "Accessibility label for Custom Noise Cell that has a sound associated with it")
+            
+        } else {
+            formattedString = NSLocalizedString("custom_noise_cell_access_label_empty", comment: "Accessibility label for Custom Noise Cell that does not have a sound associated with it")
+        }
+        let resultString = String.localizedStringWithFormat(formattedString, slotNumber, UserData.data.getMaxNumCustomNoises())
+        
+        self.accessibilityLabel = resultString
+    }
+
+    private func isSlotFilled() -> Bool {
         return isFilled
     }
     
-    func getIndex() -> Int {
-        return index
+    func getSlotNumber() -> Int {
+        return slotNumber
     }
     
     func highlight() {

@@ -66,8 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func load() {
-
-// THE CODE BELOW IS TO DELTE PREVIOUS SAVE
+// THE CODE BELOW IS TO DELETE PREVIOUS SAVE
 //        let fileManager = FileManager.default
 //        //filename refers to the url found at "Blocks4AllSave.json"
 //        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
@@ -105,18 +104,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave2.json"))
            //  creates a string type of the entire json file
             
-            let userDataStrings = jsonString.components(separatedBy: "End User Data \n")[0]
+            let userDataStrings = jsonString.components(separatedBy: "End User Data \n")[0].components(separatedBy: "New User Data \n")
             
             // Process saved custom background paths
-            let customBackgroundStrings = userDataStrings.components(separatedBy: "Custom Background Image Paths \n")
+            let customBackgroundStrings = userDataStrings[0]
             
-            for customBackgroundString in customBackgroundStrings {
-                for line in customBackgroundString.components(separatedBy: "\n") {
-                    if line == "" {
-                        continue
-                    }
-                    UserData.data.addBackgroundPath(path: line)
+            for line in customBackgroundStrings.components(separatedBy: "\n") {
+                if line == "" {
+                    continue
                 }
+                UserData.data.addBackgroundPath(path: line)
+            }
+            
+            
+           
+            // Process saved custom noise paths
+            let customNoiseStrings = userDataStrings[1]
+            UserData.data.setCustomAudioPaths(newList: UserData.data.buildNewNoiseList())
+            var slotNum = 1
+            for line in customNoiseStrings.components(separatedBy: "\n") {
+                if line == "" {
+                    continue
+                } else if line != "nil" {
+                    UserData.data.addCustomAudio(path: line, forSlotNumber: slotNum)
+                }
+               slotNum += 1
             }
             
             // Process all saved project data
@@ -402,10 +414,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // string that json text is appended to
         var writeText = String()
-        writeText.append("Custom Background Image Paths \n")
+        
+        // Custom Background Image Paths
         for path in UserData.data.getCustomBackgroundPaths() {
             writeText.append(path)
             writeText.append("\n")
+        }
+        
+        writeText.append("New User Data \n")
+        // Custom Noise File Paths
+        for path in UserData.data.getCustomAudioPaths() {
+            if path != nil {
+                writeText.append(path!)
+                writeText.append("\n")
+            } else {
+                writeText.append("nil")
+                writeText.append("\n")
+            }
         }
         writeText.append("End User Data \n")
     

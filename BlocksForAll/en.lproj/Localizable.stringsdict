@@ -2,6 +2,30 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>custom_noise_cell_access_label_filled</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Filled Noise Slot %d of %d. </string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>custom_noise_cell_access_label_empty</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Empty Noise Slot %d of %d. </string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
 	<key>click_to_connect_to_robot_name</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

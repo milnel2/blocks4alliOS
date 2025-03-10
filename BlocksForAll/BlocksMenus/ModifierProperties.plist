@@ -50,9 +50,9 @@
 	<key>Custom Noise</key>
 	<dict>
 		<key>attributeName</key>
-		<string>index</string>
+		<string>slotNumber</string>
 		<key>default</key>
-		<string>0</string>
+		<string>1</string>
 		<key>secondAttributeName</key>
 		<string>customNoise</string>
 		<key>accessibilityHint</key>
