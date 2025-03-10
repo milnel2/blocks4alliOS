@@ -273,19 +273,18 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
         if isRecording { // disable playback while recording
             PlayNoiseButton.isEnabled = false
             RecordNoiseButton.isEnabled = true
-            RecordNoiseButton.setBackgroundImage(HelperFunctions.getUIImage(named: "stopRecording"), for: .normal)
+            RecordNoiseButton.setBackgroundImage(HelperFunctions.getUIImage(named: "stopSign"), for: .normal)
         } else {
-            RecordNoiseButton.setTitle("", for: .normal)
             RecordNoiseButton.isEnabled = true
             RecordNoiseButton.setBackgroundImage(HelperFunctions.getUIImage(named: "record"), for: .normal)
             
             if isAudioPlayingBack { // disable recording during playback
                 RecordNoiseButton.isEnabled = false
-                PlayNoiseButton.isEnabled = true // TODO: turn into stop button
-                PlayNoiseButton.setTitle("Stop", for: .normal)
+                PlayNoiseButton.isEnabled = true
+                PlayNoiseButton.setBackgroundImage(HelperFunctions.getUIImage(named: "stopSign"), for: .normal)
             } else {
-                PlayNoiseButton.setTitle("", for: .normal)
                 RecordNoiseButton.isEnabled = true
+                PlayNoiseButton.setBackgroundImage(HelperFunctions.getUIImage(named: "GreenArrow"), for: .normal)
                 if hasNoise(forNum: selectedNoiseSlotNum) { // Only enable play button if there is a sound saved
                     PlayNoiseButton.isEnabled = true
                     RecordNoiseButton.setBackgroundImage(HelperFunctions.getUIImage(named: "rerecord"), for: .normal)

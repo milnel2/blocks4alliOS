@@ -175,7 +175,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         for actor in currentProject!.actors {
             for function in actor.functionDict.keys {
-                print(function)
                 if PREMADE_FUNCTION_NAMES.contains(function) {
                     if actor.functionDict[function]!.isEmpty{
                         let startBlock = Block.init(
@@ -374,7 +373,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         }
         
         accessibilityHint += movementInfo
-        print(accessibilityLabel)
         blockView.accessibilityLabel = accessibilityLabel
         createVoiceControlLabels(for: block, in: blockView)
         blockView.accessibilityHint = accessibilityHint
@@ -504,7 +502,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 { playTrashToggleButton.accessibilityUserInputLabels = ["Trash"] }
             playTrashToggleButton.accessibilityHint = NSLocalizedString("Delete selected blocks", comment: "Accessibility hint for trash button")
         } else if stopIsOption {
-            playTrashToggleButton.setBackgroundImage(#imageLiteral(resourceName: "stop"), for: .normal)
+            playTrashToggleButton.setBackgroundImage(HelperFunctions.getUIImage(named: "stopSign"), for: .normal)
             playTrashToggleButton.accessibilityLabel = NSLocalizedString("Stop", comment: "Accessibility Label for stop button")
             if #available(iOS 13.0, *)
                 { playTrashToggleButton.accessibilityUserInputLabels = ["Stop"] }
