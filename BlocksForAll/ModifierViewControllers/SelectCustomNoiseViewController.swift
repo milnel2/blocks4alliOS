@@ -20,6 +20,9 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     @IBOutlet weak var DeleteNoiseButton: UIButton! // Delete buttom that is displayed in the corner of the SelectedNoiseImageView
     @IBOutlet weak var PlayNoiseButton: UIButton! // Green play button to play currently selected noise
     @IBOutlet weak var RecordNoiseButton: UIButton! // Red circle button to record in currently selected slot
+    @IBOutlet weak var RecordingProgressView: UIView! // View used to show how much time is left to record
+    @IBOutlet weak var RecordingProgressBar: UIView! // View within the progress view that actually moves to show progress
+    @IBOutlet weak var RecordingProgressBarWidth: NSLayoutConstraint! // The width constraint of the RecordingProgressBar
     @IBOutlet weak var BackButton: UIButton! // Arrow button to return to workspace
     @IBOutlet weak var SelectCustomNoiseTitleLabel: UILabel! // Select Custom Noise label at top of screen
     
@@ -86,6 +89,9 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
         // Stop voice over from talking when record/play are pressed is from https://stackoverflow.com/questions/45578888/ios-voiceover-wait-on-element-to-finish-reading-before-changing-to-next-element
         RecordNoiseButton.accessibilityTraits.formUnion(UIAccessibilityTraits.startsMediaSession)
         PlayNoiseButton.accessibilityTraits.formUnion(UIAccessibilityTraits.startsMediaSession)
+        RecordingProgressView.isAccessibilityElement = false // VoiceOver and Switch Control should ignore the progress bar
+        RecordingProgressBarWidth.constant = 0
+
         
         RecordNoiseButton.addTarget(self, action: #selector(recordTapped), for: .touchUpInside)
         PlayNoiseButton.addTarget(self, action: #selector(playTapped), for: .touchUpInside)
@@ -165,11 +171,32 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             isRecording = true
             updateRecordPlayButtons()
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(self.MAX_AUDIO_LENGTH)) {
-                self.finishRecording(success: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // Start recording
+                self.oneSecondRecorded()
             }
         } catch {
             finishRecording(success: false)
+        }
+    }
+    
+    var numSecondsRecorded = 0
+    /// Each second of recording, update the progress bar as well as determine if the recording has reached the max length
+    func oneSecondRecorded() {
+        numSecondsRecorded += 1
+        let fullProgressBarWidth = Int(RecordingProgressView.bounds.width)
+        RecordingProgressBarWidth.constant = CGFloat(numSecondsRecorded * (fullProgressBarWidth / MAX_AUDIO_LENGTH)) // Increase the progress bar width
+        
+        if (isRecording) {
+            if (numSecondsRecorded < self.MAX_AUDIO_LENGTH) { // Set another timer
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.oneSecondRecorded()
+                }
+            } else { // Recording has reached max length
+                self.finishRecording(success: true)
+            }
+        } else { // Not recording, reset progress bar
+            numSecondsRecorded = 0
+            RecordingProgressBarWidth.constant = 0
         }
     }
     
@@ -179,6 +206,10 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             audioRecorder?.stop()
             audioRecorder = nil
             isRecording = false
+            
+            // Reset recording progress bar
+            numSecondsRecorded = 0
+            RecordingProgressBarWidth.constant = 0
             
             if success {
                 // Save noise file name to user data
@@ -274,9 +305,11 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             PlayNoiseButton.isEnabled = false
             RecordNoiseButton.isEnabled = true
             RecordNoiseButton.setBackgroundImage(HelperFunctions.getUIImage(named: "stopSign"), for: .normal)
+            RecordingProgressView.layer.opacity = 100
         } else {
             RecordNoiseButton.isEnabled = true
             RecordNoiseButton.setBackgroundImage(HelperFunctions.getUIImage(named: "record"), for: .normal)
+            RecordingProgressView.layer.opacity = 0
             
             if isAudioPlayingBack { // disable recording during playback
                 RecordNoiseButton.isEnabled = false

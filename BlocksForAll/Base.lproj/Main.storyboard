@@ -2027,16 +2027,16 @@ For further information on Blocks4All, please visit our website. For further det
                                 <rect key="frame" x="0.0" y="225" width="1080" height="580"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rNh-5A-6Wz">
-                                        <rect key="frame" x="433" y="0.0" width="214" height="214"/>
+                                        <rect key="frame" x="438" y="0.0" width="204" height="204.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="rNh-5A-6Wz" secondAttribute="height" multiplier="1:1" id="bOA-0Z-TuS"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8l9-Z9-dkH">
-                                        <rect key="frame" x="397.5" y="219" width="285" height="142.5"/>
+                                        <rect key="frame" x="404" y="209.5" width="272.5" height="136"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbr-3G-Sfp">
-                                                <rect key="frame" x="0.0" y="0.0" width="142.5" height="142.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="136" height="136"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="hbr-3G-Sfp" secondAttribute="height" multiplier="1:1" id="exx-mk-X57"/>
                                                 </constraints>
@@ -2044,7 +2044,7 @@ For further information on Blocks4All, please visit our website. For further det
                                                 <state key="normal" backgroundImage="GreenArrow"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzx-4p-Q3T">
-                                                <rect key="frame" x="142.5" y="0.0" width="142.5" height="142.5"/>
+                                                <rect key="frame" x="136" y="0.0" width="136.5" height="136"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="qzx-4p-Q3T" secondAttribute="height" multiplier="1:1" id="l8z-20-G9u"/>
                                                 </constraints>
@@ -2053,8 +2053,27 @@ For further information on Blocks4All, please visit our website. For further det
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FiE-5s-Gna">
+                                        <rect key="frame" x="472" y="350.5" width="136" height="20"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gka-nM-sJT">
+                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                <color key="backgroundColor" name="vehicleNoiseColor 1"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="qJQ-tq-KJP"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" name="gray_color"/>
+                                        <constraints>
+                                            <constraint firstItem="Gka-nM-sJT" firstAttribute="top" secondItem="FiE-5s-Gna" secondAttribute="top" id="ONc-xt-E5X"/>
+                                            <constraint firstAttribute="bottom" secondItem="Gka-nM-sJT" secondAttribute="bottom" id="Vfi-Ju-0Gg"/>
+                                            <constraint firstAttribute="height" constant="20" id="g1i-24-omY"/>
+                                            <constraint firstItem="Gka-nM-sJT" firstAttribute="leading" secondItem="FiE-5s-Gna" secondAttribute="leading" id="nmk-ex-War"/>
+                                        </constraints>
+                                    </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="znB-hz-S42">
-                                        <rect key="frame" x="40" y="366.5" width="1000" height="213.5"/>
+                                        <rect key="frame" x="40" y="375.5" width="1000" height="204.5"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rRI-vN-S05">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2063,7 +2082,7 @@ For further information on Blocks4All, please visit our website. For further det
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="Yb1-ME-pFA">
-                                                <rect key="frame" x="0.0" y="43" width="128" height="128"/>
+                                                <rect key="frame" x="0.0" y="38.5" width="128" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="48q-NY-sq7">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -2074,13 +2093,17 @@ For further information on Blocks4All, please visit our website. For further det
                                     </collectionView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="FiE-5s-Gna" firstAttribute="top" secondItem="8l9-Z9-dkH" secondAttribute="bottom" constant="5" id="0sV-dC-8Jq"/>
                                     <constraint firstItem="rNh-5A-6Wz" firstAttribute="height" secondItem="8l9-Z9-dkH" secondAttribute="height" multiplier="1.5" id="GEe-dR-4ju"/>
+                                    <constraint firstItem="FiE-5s-Gna" firstAttribute="centerX" secondItem="8l9-Z9-dkH" secondAttribute="centerX" id="Q3N-CZ-dfk"/>
+                                    <constraint firstItem="znB-hz-S42" firstAttribute="top" secondItem="FiE-5s-Gna" secondAttribute="bottom" constant="5" id="QUy-wf-K0k"/>
+                                    <constraint firstItem="FiE-5s-Gna" firstAttribute="width" secondItem="8l9-Z9-dkH" secondAttribute="width" multiplier="0.5" id="X6A-w0-oPz"/>
                                     <constraint firstItem="rNh-5A-6Wz" firstAttribute="height" secondItem="znB-hz-S42" secondAttribute="height" id="XMI-uO-NGB"/>
                                     <constraint firstItem="znB-hz-S42" firstAttribute="leading" secondItem="Uvh-di-A2s" secondAttribute="leading" constant="40" id="yNs-0l-7kR"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJc-Qo-upw">
-                                <rect key="frame" x="622" y="200" width="50" height="50"/>
+                                <rect key="frame" x="617" y="200" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OJc-Qo-upw" secondAttribute="height" multiplier="1:1" id="WfT-Kd-ylr"/>
                                     <constraint firstAttribute="width" constant="50" id="YfJ-3M-WLD"/>
@@ -2110,6 +2133,9 @@ For further information on Blocks4All, please visit our website. For further det
                         <outlet property="NoisesCollectionView" destination="znB-hz-S42" id="RW0-rT-nNK"/>
                         <outlet property="PlayNoiseButton" destination="hbr-3G-Sfp" id="KAf-VE-u6T"/>
                         <outlet property="RecordNoiseButton" destination="qzx-4p-Q3T" id="Afg-4d-bzM"/>
+                        <outlet property="RecordingProgressBar" destination="Gka-nM-sJT" id="pHW-Lg-TQp"/>
+                        <outlet property="RecordingProgressBarWidth" destination="qJQ-tq-KJP" id="pse-iX-bkG"/>
+                        <outlet property="RecordingProgressView" destination="FiE-5s-Gna" id="3UJ-h6-cLy"/>
                         <outlet property="SelectCustomNoiseTitleLabel" destination="vgJ-r9-rQW" id="hNS-Rp-lAw"/>
                         <outlet property="SelectedNoiseImageView" destination="rNh-5A-6Wz" id="Zoa-DY-19K"/>
                         <segue destination="48V-Ne-C7Q" kind="show" identifier="backToFreeplay" id="hlX-XA-zqW"/>
@@ -3131,6 +3157,9 @@ For further information on Blocks4All, please visit our website. For further det
         <namedColor name="blue_block">
             <color red="0.56499999761581421" green="0.84299999475479126" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="gray_color">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="main_background">
             <color red="0.93300002813339233" green="0.47499999403953552" blue="0.18799999356269836" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -3142,6 +3171,9 @@ For further information on Blocks4All, please visit our website. For further det
         </namedColor>
         <namedColor name="redColor">
             <color red="1" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="vehicleNoiseColor 1">
+            <color red="0.34099999070167542" green="0.50599998235702515" blue="0.60399997234344482" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="yellowColor">
             <color red="0.99900001287460327" green="0.98600000143051147" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
