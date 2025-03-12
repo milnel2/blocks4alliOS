@@ -223,8 +223,16 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             blocksProgram.drawHierarchy(in: blocksProgram.bounds, afterScreenUpdates: true)
         }
        
-        currentProject!.image = image
         currentProject!.imageName = generateImageName()
+        // Save image to  directory
+        let imageURL = HelperFunctions.getDocumentsDirectory().appendingPathComponent(currentProject!.imageName)
+        if let data = image.pngData() {
+            do {
+                try data.write(to: imageURL)
+                } catch {
+                    print("Unable to Write Image Data to Disk")
+                }
+        }
     }
     
     /// Generate a unique image name for the project snapshot

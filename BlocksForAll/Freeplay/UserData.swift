@@ -64,6 +64,7 @@ class UserData {
         return false
     }
     
+    
     public func getCustomBackgroundPaths() -> [String] {
         return customBackgroundPaths
     }

@@ -31,9 +31,9 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     func updateUI() {
        
         if let project = project {
-            if project.image != nil {
+            if project.imageName != "" {
                 // Set up and add project image
-                let resizedImage = HelperFunctions.resizeImage(image: project.image!, scaledToSize: imageView.frame.size)
+                let resizedImage = HelperFunctions.resizeImage(image: HelperFunctions.getUIImage(named: project.imageName), scaledToSize: imageView.frame.size)
                 imageView.image = resizedImage
                 imageView.contentMode = .scaleToFill
             }

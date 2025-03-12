@@ -30,7 +30,6 @@ class Project : Equatable{
     
     var name = "" // Name of project
     var imageName : String // Image path for the project's image for the gallery
-    var image: UIImage? = nil // Image associated with imageName
     var actors: [VirtualRobot] = [] // For freeplay projects. Array of all Virtual Robots associated with project
     var currentActor: VirtualRobot? = nil // For freeplay projects. Actor that is currently being edited
     var currentBackground: BackgroundImage? = nil // For freeplay projects. Background image that is currently being displayed

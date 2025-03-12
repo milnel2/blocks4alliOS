@@ -326,7 +326,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave, projectType: ProjectType.Robot)
                     }
                    
-                    project.image = HelperFunctions.getUIImage(named: projectImageName)
+                    
                     
                     for actor in actorsFromSave {
                         
@@ -447,17 +447,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 // Save image to directory as well
                 let imageURL = getDocumentsDirectory().appendingPathComponent(project.imageName)
-                
-                // Convert to Data
-                if project.image != nil {
-                    if let data = project.image!.pngData() {
-                        do {
-                                try data.write(to: imageURL)
-                            } catch {
-                                print("Unable to Write Image Data to Disk")
-                            }
-                    }
-                }
                 
                 writeText.append(project.currentBackground?.getImagePath() ?? "")
                 writeText.append("\n")

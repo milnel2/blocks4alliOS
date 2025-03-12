@@ -193,9 +193,17 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         let image = renderer.image { ctx in
             freeplayOutputView.drawHierarchy(in: freeplayOutputView.bounds, afterScreenUpdates: true)
         }
-       
-        currentProject!.image = image
         currentProject!.imageName = generateImageName()
+    
+        // Save image to  directory
+        let imageURL = HelperFunctions.getDocumentsDirectory().appendingPathComponent(currentProject!.imageName)
+        if let data = image.pngData() {
+            do {
+                try data.write(to: imageURL)
+                } catch {
+                    print("Unable to Write Image Data to Disk")
+                }
+        }
     }
     
     // MARK: UI

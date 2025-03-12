@@ -142,7 +142,6 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
                 
             // Styling
             cell.layer.borderWidth = 5
-            cell.imageView.backgroundColor = .red
             cell.layer.shadowColor = UIColor.gray.cgColor
             cell.layer.shadowRadius = 2.0
             cell.layer.cornerRadius = 10
