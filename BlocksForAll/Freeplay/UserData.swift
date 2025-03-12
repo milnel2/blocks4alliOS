@@ -105,10 +105,13 @@ class UserData {
     
     /// Try to remove path from customAudioPaths list and from file directory
     func clearAudio(forSlotNumber slotNum: Int) {
-        do {
-            try FileManager.default.removeItem(at: getAudioFileURL(forSlotNumber: slotNum))
-        } catch {
-            print("Error deleting file: \(error)")
+        let audioURL = getAudioFileURL(forSlotNumber: slotNum)
+        if FileManager.default.fileExists(atPath: audioURL.relativePath) { // If file exists, delete it
+            do {
+                try FileManager.default.removeItem(at: audioURL )
+            } catch {
+                print("Error deleting file: \(error)")
+            }
         }
         customAudioPaths[slotNum - 1] = nil
     }
@@ -152,7 +155,7 @@ class UserData {
     
     /// Return URL for a slot's audio file
     public func getAudioFileURL(forSlotNumber slotNumber: Int) -> URL {
-        let path = HelperFunctions.getDocumentsDirectory().appendingPathComponent("\(getAudioFileName(forSlotNumber: slotNumber)).m4a")
+        let path = getAudioFileURL(forFileName: getAudioFileName(forSlotNumber: slotNumber))
         return path as URL
     }
     
