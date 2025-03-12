@@ -140,19 +140,16 @@ class ModifierButton: UIButton {
     
     // Sound blocks (ex. Animal noise)
     func noiseButton() {
-        if HelperFunctions.showIconsIsOn() {
-            if data.blockName == "Custom Noise" {
-                if let slotNum = Int(attrVal) {
-                    if UserData.data.hasNoise(forSlotNumber: slotNum) { // The chosen index has a noise associated with it, show the image for that noise
-                        setBackgroundImage(named: UserData.data.getAudioFileName(forSlotNumber: slotNum))
-                    } else { // The chosen index does not have a noise associated with it, show the add noise image
-                        setBackgroundImage(named: "addCustomNoise")
-                    }
+        if data.blockName == "Custom Noise" { // Custom Noise modifiers are slightly different than other noise modifiers
+            if let slotNum = Int(attrVal) {
+                if UserData.data.hasNoise(forSlotNumber: slotNum) { // The chosen index has a noise associated with it, show the image for that noise
+                    setBackgroundImage(named: UserData.data.getAudioFileName(forSlotNumber: slotNum))
+                } else { // The chosen index does not have a noise associated with it, show the add noise image
+                    setBackgroundImage(named: "addCustomNoise")
                 }
-            } else {
-                setBackgroundImage(named: "\(attrVal)")
             }
-           
+        } else if HelperFunctions.showIconsIsOn() {
+                setBackgroundImage(named: "\(attrVal)")
         } else {
             let backgroundImagePath = "\(data.attributeName)Background"
             oneImageOnlyShowTextIsOn(text: attrVal.localized, backgroundPath: backgroundImagePath)
