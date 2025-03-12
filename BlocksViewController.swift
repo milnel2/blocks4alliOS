@@ -90,12 +90,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if currentProject?.projectType == ProjectType.Robot {
-            currentWorkspace = "Main Workspace"
-        }
        
-        // TODO: next line fails in physical robot opening a new function
         endIndex = currentProject!.currentActor!.functionDict[currentWorkspace]!.count - 1
        
         updateStyling()
