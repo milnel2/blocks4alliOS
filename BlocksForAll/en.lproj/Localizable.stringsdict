@@ -161,7 +161,7 @@
 	<key>num_seconds</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@val@  second(s)</string>
+		<string>%#@val@</string>
 		<key>val</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>

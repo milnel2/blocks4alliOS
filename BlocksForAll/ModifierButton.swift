@@ -317,12 +317,11 @@ class ModifierButton: UIButton {
         setBackgroundImage(named: data.imagePath!)
         
         var text: String
-        
+
         let value = Int(attrVal) ?? 1 // TODO: throw error if cant convert to int?
         
         let formattedString = NSLocalizedString("num_seconds", comment: "Text for a wait for time modifier button. Number (as an int) of seconds. '<value> second(s)'")
-        text = String.localizedStringWithFormat(formattedString, attrVal)
-        
+        text = String.localizedStringWithFormat(formattedString, value)
         setTitle(text, for: .normal)
         
         modifierInformation = text
