@@ -630,13 +630,24 @@ class VirtualRobot: Equatable {
             UIView.animate(withDuration: animationDuration, delay: 0, options: .curveLinear, animations: {
                 self.imageView.transform = self.imageView.transform.rotated(by: angleInRadians)
                }, completion: nil)
-        } else {
+        } else if abs(angleInRadians) < 2 * .pi{
             // if the angle is greater than 180 degrees, the turn has to be split up into two turns
             UIView.animate(withDuration: animationDuration / 2, delay: 0, options: .curveLinear, animations: {
                 self.imageView.transform = self.imageView.transform.rotated(by: angleInRadians / 2)
                }, completion: nil)
             UIView.animate(withDuration: animationDuration / 2, delay: animationDuration / 2, options: .curveLinear, animations: {
                 self.imageView.transform = self.imageView.transform.rotated(by: angleInRadians / 2)
+               }, completion: nil)
+        } else {
+            // If the angle is 360 degrees, the turn has to be split up into three turns so that it goes the correction direction
+            UIView.animate(withDuration: animationDuration / 3, delay: 0, options: .curveLinear, animations: {
+                self.imageView.transform = self.imageView.transform.rotated(by: angleInRadians / 3)
+               }, completion: nil)
+            UIView.animate(withDuration: animationDuration / 3, delay: animationDuration / 3, options: .curveLinear, animations: {
+                self.imageView.transform = self.imageView.transform.rotated(by: angleInRadians / 3)
+               }, completion: nil)
+            UIView.animate(withDuration: animationDuration / 3, delay: 2 * animationDuration / 3, options: .curveLinear, animations: {
+                self.imageView.transform = self.imageView.transform.rotated(by: angleInRadians / 3)
                }, completion: nil)
         }
         
