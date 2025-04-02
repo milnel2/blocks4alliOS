@@ -25,6 +25,10 @@ class VirtualRobot: Equatable {
     var functionDict: [String : [Block]] // robot's blocks
     var name: String // name of robot
     var coordinates: (x: CGFloat, y: CGFloat) = (-10, -10) // center coordinates of robot image
+    var rotationDegrees: CGFloat = 0 // Rotation of robot image in degrees
+    var rotationRadians: CGFloat { // Rotation of robot image in radians. Calculated property
+        get { return rotationDegrees * .pi / 180}
+    }
     var project: Project? // project the robot is associated with
     var executingProgram: ExecutingProgram? = nil // executing program the robot is associated with
     var isRunning: Bool = false // whether or not this robot's blocks are running
@@ -46,7 +50,7 @@ class VirtualRobot: Equatable {
     let reallyFastAnimSpeed: CGFloat = 170
     var movementAnimationSpeed: CGFloat = 50 // The bigger the number, the faster the animation
     
-    init(baseImagePath: String, color: String = "Default", freeplayOutputView: FreeplayOutputView, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
+    init(baseImagePath: String, color: String = "Default", freeplayOutputView: FreeplayOutputView, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), rotationDegrees: CGFloat = 0, project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
         
         self.baseImagePath = baseImagePath
         self.color = color
@@ -57,6 +61,7 @@ class VirtualRobot: Equatable {
         self.project = project
         self.name = name
         self.coordinates = coordinates
+        self.rotationDegrees = rotationDegrees
         self.functionDict = [:]
         self.UUID = uuid ?? Foundation.UUID().uuidString
         self.robotSize = robotSize
@@ -68,13 +73,13 @@ class VirtualRobot: Equatable {
         imageView = UIImageView(image: UIImage(named: imagePath))
         
         imageView.frame = CGRect(x: 0, y: 0, width: robotSize, height: robotSize)
-        
+                
         setCoordinates(x: self.coordinates.x, y: self.coordinates.y)
         
         functionDict = createFunctionDict()
     }
     
-    init(baseImagePath: String, color: String = "Default", name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
+    init(baseImagePath: String, color: String = "Default", name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), rotationDegrees: CGFloat = 0, project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
         
         self.baseImagePath = baseImagePath
         self.color = color
@@ -84,6 +89,7 @@ class VirtualRobot: Equatable {
         self.project = project
         self.name = name
         self.coordinates = coordinates
+        self.rotationDegrees = rotationDegrees
         
         self.UUID = uuid ?? Foundation.UUID().uuidString
         self.robotSize = robotSize
@@ -474,12 +480,15 @@ class VirtualRobot: Equatable {
     }
     
     // Move actor to coordinates that are saved to it
-    func setToSavedCoordinates() {
+    public func setToSavedCoordinates() {
         setCoordinates(x: coordinates.x, y: coordinates.y)
     }
     
     // move (unanimated) robot to given coordinates and updates robot data. If coordinates are (-10,-10), sets it to a random position
-    public func setCoordinates(x: CGFloat, y: CGFloat) {
+    public func setCoordinates(x: CGFloat = -10, y: CGFloat = -10) {
+        self.imageView.contentMode = .scaleAspectFit // Prevents image from being distorted when bounds change
+        self.imageView.transform = .identity // Resets rotation to 0
+        setActorSize(size: robotSize)
         if x == -10 && y == -10 {
             let outputWidth = freeplayOutputView!.frame.width
             let outputHeight = freeplayOutputView!.frame.height
@@ -491,7 +500,9 @@ class VirtualRobot: Equatable {
         }
         imageView.center.x = coordinates.x
         imageView.center.y =  coordinates.y
-        
+   
+        self.imageView.transform = self.imageView.transform.rotated(by: rotationRadians) // Set actor rotation to saved rotation amount
+    
         freeplayOutputView!.bringSubviewToFront(imageView)
     }
     
@@ -651,10 +662,8 @@ class VirtualRobot: Equatable {
                }, completion: nil)
         }
         
-        // TODO: retain rotation amounts between sessions
+        rotationDegrees = (rotationDegrees + angle).truncatingRemainder(dividingBy: 360) // Retain rotation amounts between sessions
         executingProgram.finishCommand(withDuration: animationDuration)
-        
-       
     }
     
     func playSound(soundName: String, executingProgram: ExecutingProgram) {

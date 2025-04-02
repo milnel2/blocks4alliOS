@@ -58,7 +58,7 @@ class FreeplayOutputView: UIView {
         addSubview(actor.imageView)
         actorSubviews.append(actor.imageView)
         // Move actor to saved location
-        //actor.setToSavedCoordinates()
+        actor.setToSavedCoordinates()
         
         actor.imageView.isUserInteractionEnabled = true
         

@@ -93,6 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var actorRobotSizePart = true
         var actorXPart = true
         var actorYPart = true
+        var actorRotationPart = true
         
         var functionNamePart = true
         
@@ -197,6 +198,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         actorRobotSizePart = true
                         actorXPart = true
                         actorYPart = true
+                        actorRotationPart = true
                         
                         var actorName = String()
                         var actorBaseImageName = String()
@@ -205,22 +207,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         var actorRobotSize = CGFloat()
                         var actorX = CGFloat()
                         var actorY = CGFloat()
+                        var actorRotation = CGFloat()
                         
                         
                         let functionStrings = actorString.components(separatedBy: "New Function \n")
                         
                         // the first element of functionStrings will have the project image and name data
                         for line in functionStrings[0].components(separatedBy: "\n") {
-                            if !actorNamePart && actorBaseImageNamePart && actorImageColorPart && actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart{
+                            if !actorNamePart && actorBaseImageNamePart && actorImageColorPart && actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart && actorRotationPart{
                                 actorBaseImageNamePart = false
                                 actorBaseImageName = line
-                            } else if !actorNamePart && !actorBaseImageNamePart && actorImageColorPart && actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart{
+                            } else if !actorNamePart && !actorBaseImageNamePart && actorImageColorPart && actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart && actorRotationPart{
                                 actorImageColorPart = false
                                 actorImageColor = line
-                            } else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart {
+                            } else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart && actorRotationPart{
                                 actorUUIDPart = false
                                 actorUUID = line
-                            } else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && !actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart{
+                            } else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && !actorUUIDPart && actorRobotSizePart && actorXPart && actorYPart && actorRotationPart{
                                 actorRobotSizePart = false
                                 
                                 // Converting string to CGFloat is from Michael McGuire's answer on https://stackoverflow.com/questions/27595799/convert-string-to-cgfloat-in-swift
@@ -231,7 +234,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     actorRobotSize = 120
                                 }
                     
-                            } else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && !actorUUIDPart && !actorRobotSizePart && actorXPart && actorYPart{
+                            } else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && !actorUUIDPart && !actorRobotSizePart && actorXPart && actorYPart && actorRotationPart{
                                 actorXPart = false
                                 // Converting string to CGFloat is from Michael McGuire's answer on https://stackoverflow.com/questions/27595799/convert-string-to-cgfloat-in-swift
                                 if let doubleValue = Double(line) {
@@ -241,7 +244,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     actorX = 100
                                 }
                     
-                            } else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && !actorUUIDPart && !actorRobotSizePart && !actorXPart && actorYPart{
+                            } else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && !actorUUIDPart && !actorRobotSizePart && !actorXPart && actorYPart && actorRotationPart{
                                 actorYPart = false
                                 
                                 // Converting string to CGFloat is from Michael McGuire's answer on https://stackoverflow.com/questions/27595799/convert-string-to-cgfloat-in-swift
@@ -251,7 +254,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     print("Error: couldn't parse actorY coordinate when loading")
                                     actorY = 100
                                 }
-                            } else if actorNamePart && actorBaseImageNamePart && actorImageColorPart && actorUUIDPart && actorXPart && actorYPart {
+                            }  else if !actorNamePart && !actorBaseImageNamePart && !actorImageColorPart && !actorUUIDPart && !actorRobotSizePart && !actorXPart && !actorYPart && actorRotationPart{
+                                actorRotationPart = false
+                                // Converting string to CGFloat is from Michael McGuire's answer on https://stackoverflow.com/questions/27595799/convert-string-to-cgfloat-in-swift
+                                if let doubleValue = Double(line) {
+                                    actorRotation = CGFloat(doubleValue)
+                                } else {
+                                    print("Error: couldn't parse actorRotation coordinate when loading")
+                                    actorRotation = 0
+                                }
+                            } else if actorNamePart && actorBaseImageNamePart && actorImageColorPart && actorUUIDPart && actorXPart && actorYPart && actorRotationPart {
                                 actorNamePart = false
                                 actorName = line
                             } else {
@@ -259,7 +271,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                         
-                        let robot = VirtualRobot(baseImagePath: actorBaseImageName, color: actorImageColor, name: actorName, coordinates: (x: actorX, y: actorY), project: nil, uuid: actorUUID, robotSize: actorRobotSize)
+                        let robot = VirtualRobot(baseImagePath: actorBaseImageName, color: actorImageColor, name: actorName, coordinates: (x: actorX, y: actorY), rotationDegrees: actorRotation, project: nil, uuid: actorUUID, robotSize: actorRobotSize)
                         
                         for functionString in functionStrings[1...] {
                             if functionString == "" {
@@ -467,6 +479,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     writeText.append("\(actor.coordinates.x)")
                     writeText.append("\n")
                     writeText.append("\(actor.coordinates.y)")
+                    writeText.append("\n")
+                    writeText.append("\(actor.rotationDegrees)")
                     writeText.append("\n")
                     
                     let funcNames = actor.functionDict.keys
