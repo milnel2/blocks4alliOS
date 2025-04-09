@@ -157,12 +157,11 @@ class ExecutingProgram {
     var currentFunction: String
     //currentWorkspace/function being read
     
-    var blocksToExec: [Block]{
+    var blocksToExec: [Block]{     //array blocks (blocksStack) to be executed by the executing program
         return functionsDictToExec[currentFunction]!
     }
     var blockCurrentlyRunning: Block? = nil // the block from blocksToExec that is currently running
-    //array blocks (blocksStack) to be executed by the executing program
-    
+    var blockRunningTimer: Timer = Timer()// Timer used for finishCommand() to time how long a block should run for
     var repeatCountAndIndexArray: [(timesToR: Int, index: Int)] = []
     //an array of tuples, each tuple keeps track of the number of times left to repeat that repeat loop as well as the index of the start of the repeat loop
     var variablesDict: [String : Double] = [:]
@@ -212,14 +211,14 @@ class ExecutingProgram {
     }
     
     func insertBlock(blockToExec: Block? = nil, blockToExecName: String) {
-        
-        positions[positions.count - 1].position -= 1 // back up the current function position by one so that it doesn't skip over anything
+        if !positions.isEmpty {
+            positions[positions.count - 1].position -= 1 // back up the current function position by one so that it doesn't skip over anything
+        }
         
         currentFunction = blockToExec?.name ?? blockToExecName
         // changes current function to the function being called
+        
         positions.append((funcName: currentFunction, position: 0))
-        
-        
     }
     
     func executeNextCommandExecProgram() {
@@ -876,9 +875,21 @@ class ExecutingProgram {
     
     /// Send message that the block has finished running with optional parameter to wait before sending the message
     func finishCommand(withDuration: Double = 0) {
-        Timer.scheduledTimer(withTimeInterval: withDuration, repeats: false) { timer in
+        blockRunningTimer = Timer.scheduledTimer(withTimeInterval: withDuration, repeats: false) { timer in
             self.robotControlViewController.finishedCommand()
         }
+    }
+    
+    /// Cancel blockRunningTimer which
+    private func cancelBlockTimer() {
+        print("invalidate")
+        blockRunningTimer.invalidate()
+    }
+    
+    /// Stops execution of currently running block. Does not cancel future blocks
+    public func stopCurrentBlock() {
+        cancelBlockTimer()
+        finishCommand()
     }
     
     /// Send a command to Dash. Does not call finishCommand afterwards.  Only sends the data

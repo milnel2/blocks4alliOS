@@ -50,51 +50,21 @@ class VirtualRobot: Equatable {
     let reallyFastAnimSpeed: CGFloat = 170
     var movementAnimationSpeed: CGFloat = 50 // The bigger the number, the faster the animation
     
-    init(baseImagePath: String, color: String = "Default", freeplayOutputView: FreeplayOutputView, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), rotationDegrees: CGFloat = 0, project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
-        
-        self.baseImagePath = baseImagePath
-        self.color = color
-        self.imagePath = "\(baseImagePath)_\(color)"
+    init(baseImagePath: String, color: String = "Default", freeplayOutputView: FreeplayOutputView? = nil, name: String = "Dash", coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), rotationDegrees: CGFloat = 0, project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
         
         self.freeplayOutputView = freeplayOutputView
-    
-        self.project = project
-        self.name = name
-        self.coordinates = coordinates
-        self.rotationDegrees = rotationDegrees
-        self.functionDict = [:]
-        self.UUID = uuid ?? Foundation.UUID().uuidString
-        self.robotSize = robotSize
-        
-        let image = UIImage(named: imagePath)
-        if (image == nil) {
-            print("Error: Couldn't create image in VirtualRobot class from image path: ", imagePath)
-        }
-        imageView = UIImageView(image: UIImage(named: imagePath))
-        
-        imageView.frame = CGRect(x: 0, y: 0, width: robotSize, height: robotSize)
-                
-        setCoordinates(x: self.coordinates.x, y: self.coordinates.y)
-        
-        functionDict = createFunctionDict()
-    }
-    
-    init(baseImagePath: String, color: String = "Default", name: String, coordinates: (x: CGFloat, y: CGFloat) = (-10, -10), rotationDegrees: CGFloat = 0, project: Project?, uuid: String? = nil, robotSize: CGFloat = 120) {
-        
+       
         self.baseImagePath = baseImagePath
         self.color = color
         self.imagePath = "\(baseImagePath)_\(color)"
-        
-        self.freeplayOutputView = nil
+    
         self.project = project
         self.name = name
         self.coordinates = coordinates
         self.rotationDegrees = rotationDegrees
-        
+        self.functionDict = [:]
         self.UUID = uuid ?? Foundation.UUID().uuidString
         self.robotSize = robotSize
-        
-        self.functionDict = [:]
         
         let image = UIImage(named: imagePath)
         if (image == nil) {
@@ -102,8 +72,23 @@ class VirtualRobot: Equatable {
         }
         imageView = UIImageView(image: UIImage(named: imagePath))
         
-        
         functionDict = createFunctionDict()
+        
+        // Tap Gesture code from https://agrawalsuneet.medium.com/uiview-clicklistener-swift-88ab5dec64b5
+        let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(clickOnActor(sender:)))
+       
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGesture)
+        
+        if freeplayOutputView != nil {
+            addFreeplayOutputView(freeplayOutputView: freeplayOutputView!)
+        }
+    }
+    
+    // when an actor image view is clicked on, play its on tap code line and set it to be the current actor
+    @objc func clickOnActor(sender : UITapGestureRecognizer) {
+        freeplayOutputView?.freeplayWorkspaceVC?.updateCurrentActor(newActor: self)
+        freeplayOutputView?.runOnTapCode(forActor: self)
     }
     
     // update the imageView to match the current imagePath
@@ -518,9 +503,8 @@ class VirtualRobot: Equatable {
                self.imageView.center.x = x
                self.imageView.center.y = y
            }
-       
         anim.startAnimation()
-
+        
         coordinates = (x,y)
     }
     
@@ -657,9 +641,10 @@ class VirtualRobot: Equatable {
             UIView.animate(withDuration: animationDuration / 3, delay: animationDuration / 3, options: .curveLinear, animations: {
                 self.imageView.transform = self.imageView.transform.rotated(by: angleInRadians / 3)
                }, completion: nil)
-            UIView.animate(withDuration: animationDuration / 3, delay: 2 * animationDuration / 3, options: .curveLinear, animations: {
+          UIView.animate(withDuration: animationDuration / 3, delay: 2 * animationDuration / 3, options: .curveLinear, animations: {
                 self.imageView.transform = self.imageView.transform.rotated(by: angleInRadians / 3)
                }, completion: nil)
+            
         }
         
         rotationDegrees = (rotationDegrees + angle).truncatingRemainder(dividingBy: 360) // Retain rotation amounts between sessions

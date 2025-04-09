@@ -66,11 +66,6 @@ class FreeplayOutputView: UIView {
         let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(dragActor(sender:)))
         actor.imageView.addGestureRecognizer(dragGesture)
         
-        // Tap Gesture code from https://agrawalsuneet.medium.com/uiview-clicklistener-swift-88ab5dec64b5
-        let tapGesture = UITapGestureRecognizer(target: self, action:  #selector(clickOnActor(sender:)))
-      
-        actor.imageView.addGestureRecognizer(tapGesture)
-        
         // Add actor to the Project object
         UserData.data.getCurrentProject()!.addActor(actor: actor)
         
@@ -78,24 +73,21 @@ class FreeplayOutputView: UIView {
         freeplayWorkspaceVC!.setUpAccessibility()
     }
     
-    // when an actor image view is clicked on, play its on tap code line and set it to be the current actor
-    @objc func clickOnActor(sender : UITapGestureRecognizer) {
-        let tapLocation = sender.location(in: self)
-        for actor in UserData.data.getCurrentProject()!.actors {
-            if actor.imageView.frame.contains(tapLocation) && actor.imageView == sender.view {
-                freeplayWorkspaceVC!.updateCurrentActor(newActor: actor)
-                if actor.isRunning {
-                    // if actor is already doing something, insert the on tap blocks
-                    actor.executingProgram?.insertBlock(blockToExecName: ON_TAP_STRING)
-                    freeplayWorkspaceVC!.stopIsOption = true
-                    freeplayWorkspaceVC!.changePlayTrashButton()
-                } else {
-                    // if actor is idle, just play the on tap blocks
-                    freeplayWorkspaceVC!.play(functionsDictToPlay: actor.functionDict, functionNameToExecute: ON_TAP_STRING, actor: actor)
-                    freeplayWorkspaceVC!.stopIsOption = true
-                    freeplayWorkspaceVC!.changePlayTrashButton()
-                }
-            }
+    
+    // Run the on tap code line for the given actor
+    public func runOnTapCode(forActor actor: VirtualRobot) {
+        if actor.isRunning { // if actor is already doing something, insert the on tap blocks
+            // Stop whatever is currently happening
+            actor.imageView.layer.removeAllAnimations()
+            actor.executingProgram?.stopCurrentBlock()
+            
+            actor.executingProgram?.insertBlock(blockToExecName: ON_TAP_STRING)
+            
+        } else {
+            // if actor is idle, just play the on tap blocks
+            freeplayWorkspaceVC!.play(functionsDictToPlay: actor.functionDict, functionNameToExecute: ON_TAP_STRING, actor: actor)
+            freeplayWorkspaceVC!.stopIsOption = true
+            freeplayWorkspaceVC!.changePlayTrashButton()
         }
     }
     
@@ -113,7 +105,7 @@ class FreeplayOutputView: UIView {
         let backgroundRightX = self.frame.width
                
        switch sender.state {
-       case .began, .changed: // Implementation to recognize seleccted actor from ChatGPT by OpenAI. Source: https://www.openai.com
+       case .began, .changed: // Implementation to recognize selected actor from ChatGPT by OpenAI. Source: https://www.openai.com
            for actor in UserData.data.getCurrentProject()!.actors {
                if actor.imageView.frame.contains(dragLocation) && actor.imageView == sender.view {
                    if !(dragLocation.x - actorWidth / 2 <= backgroundLeftX || dragLocation.x + actorWidth / 2 >= backgroundRightX) {

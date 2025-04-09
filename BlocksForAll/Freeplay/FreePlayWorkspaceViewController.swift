@@ -239,7 +239,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         setUpAccessibility()
     }
 
-   
+
     
     // MARK: Navigation
     

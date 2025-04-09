@@ -52,7 +52,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     // Variables for display
     internal var stopIsOption = false // True if the stop button can be shown
-    private var movingBlocks = false  // True if the user is currently moving a block. Disable modifier blocks if this is true.
+    internal var movingBlocks = false  // True if the user is currently moving a block. Disable modifier blocks if this is true.
     private var arrowToPlaceFirstBlock: UIImageView? = nil // The arrow image that gets shown when the user is about to place the first block in the workspace
     
     // Block variables
@@ -883,6 +883,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                         return
                     }
                     guard !myBlock.name.contains("\(ON_TAP_STRING) Start")  else { // Don't allow placing blocks before event indicators
+                        
                         return
                     }
                 }
@@ -906,6 +907,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                     guard !myBlock.name.contains("\(ON_RUN_STRING) Start")  else {
                         movingBlocks = false
+                        playButtonClicked(self)
                         return
                     }
                     guard !myBlock.name.contains("\(ON_BUMP_STRING) Start")  else {
@@ -914,6 +916,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                     guard !myBlock.name.contains("\(ON_TAP_STRING) Start")  else {
                         movingBlocks = false
+                        currentProject?.currentActor?.freeplayOutputView?.runOnTapCode(forActor: (currentProject?.currentActor)!)
+                        
                         return
                     }
                     selectBlock(block: myBlock, location: blocksStackIndex)
@@ -928,6 +932,14 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     // clicked empty block at end
                     movingBlocks = true
                 }
+            }
+        } else { // On tap code can run even if the robot is already running
+            let blocksStackIndex = indexPath.row
+            let myBlock = currentProject!.currentActor!.functionDict[currentWorkspace]![blocksStackIndex]
+            if myBlock.name.contains("\(ON_TAP_STRING) Start") {
+                movingBlocks = false
+                currentProject?.currentActor?.freeplayOutputView?.runOnTapCode(forActor: (currentProject?.currentActor)!)
+                return
             }
         }
     }
