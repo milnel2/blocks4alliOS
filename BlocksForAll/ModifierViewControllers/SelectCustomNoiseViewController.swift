@@ -37,7 +37,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     // Project Info
     var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen
     
-    var currentProject: Project? { // Project that is currently being edited
+    var currentProject: Project! { // Project that is currently being edited
         get {
             return UserData.data.getCurrentProject()
         }
@@ -157,7 +157,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     func beginRecording() {
         eraseNoiseFile(forSlotNumber: selectedNoiseSlotNum) // erase any previous noise data
         
-        let fileName = UserData.data.getAudioFileURL(forSlotNumber: selectedNoiseSlotNum) // file name where this audio file will be saved
+        let fileName = currentProject.getAudioFileURL(forSlotNumber: selectedNoiseSlotNum) // file name where this audio file will be saved
         
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
@@ -215,7 +215,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             
             if success {
                 // Save noise file name to user data
-                setNoiseFileName(forSlotNumber: selectedNoiseSlotNum, toFileName: UserData.data.getAudioFileName(forSlotNumber: selectedNoiseSlotNum))
+                setNoiseFileName(forSlotNumber: selectedNoiseSlotNum, toFileName: currentProject.getAudioFileName(forSlotNumber: selectedNoiseSlotNum))
                 
                 // Fill the selected slot
                 let selectedCell  = NoisesCollectionView.cellForItem(at: IndexPath(row: selectedNoiseSlotNum - 1, section: 0)) as! CustomAudioSlotCell
@@ -286,7 +286,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     func prepareAudioPlayer() {
         var error: NSError?
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: UserData.data.getAudioFileURL(forSlotNumber: selectedNoiseSlotNum) as URL)
+            audioPlayer = try AVAudioPlayer(contentsOf: currentProject.getAudioFileURL(forSlotNumber: selectedNoiseSlotNum) as URL)
         } catch let error1 as NSError {
             error = error1
             audioPlayer = nil
@@ -354,7 +354,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     /// Show audio image when the slot is filled, otherwise show nothing
     func updateSelectedNoiseImageView() {
         if hasNoise(forNum: selectedNoiseSlotNum) {// show audio image when slot is filled
-            let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forSlotNumber: selectedNoiseSlotNum))
+            let audioImage = HelperFunctions.getUIImage(named: currentProject.getCustomAudioImageFileName(forSlotNumber: selectedNoiseSlotNum))
             SelectedNoiseImageView.image = audioImage
             DeleteNoiseButton.isHidden = false
         } else {
@@ -369,21 +369,21 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     // MARK: User Data
     /// Check if the given number has a noise saved to it
     private func hasNoise(forNum num : Int) -> Bool{
-        return UserData.data.hasNoise(forSlotNumber: num)
+        return currentProject.hasNoise(forSlotNumber: num)
     }
     
     /// If the slot has a noise, return its file name. Otherwise return nil
     private func getNoiseFileName(forSlotNumber slotNumber : Int) -> String? {
-        return UserData.data.getCustomAudioPaths()[slotNumber - 1] ?? nil
+        return currentProject.getCustomAudioPaths()[slotNumber - 1] ?? nil
     }
     
     private func setNoiseFileName(forSlotNumber slotNum : Int, toFileName fileName : String) {
-        UserData.data.addCustomAudio(path: fileName, forSlotNumber: slotNum)
+        currentProject.addCustomAudio(path: fileName, forSlotNumber: slotNum)
     }
     
-    /// Remove noise file from user data and from file directory
+    /// Remove noise file from project and from file directory
     private func eraseNoiseFile(forSlotNumber slotNum : Int) {
-        UserData.data.clearAudio(forSlotNumber: slotNum)
+        currentProject.clearAudio(forSlotNumber: slotNum)
     }
     
     /// Select the slot that was previously selected
@@ -405,13 +405,13 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     // Code for creating a UICollectionView programmatically is from: https://medium.com/@buttam1703/how-to-create-a-uicollectionview-programmatically-in-swift-a030da15d445
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserData.data.getCustomAudioPaths().count
+        return currentProject.getCustomAudioPaths().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let currentCellIndex = indexPath.row
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomAudioSlotCell.identifier, for: indexPath) as! CustomAudioSlotCell
-        cell.configure(withSlotNumber: currentCellIndex + 1, withNoise: UserData.data.getCustomAudioPaths()[currentCellIndex] ?? "")
+        cell.configure(withProject: currentProject, withSlotNumber: currentCellIndex + 1, withNoise: currentProject.getCustomAudioPaths()[currentCellIndex] ?? "")
         
         if selectedNoiseSlotNum == currentCellIndex + 1 { // This cell is selected. Highlight it
             cell.highlight()
@@ -463,8 +463,8 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     /// Center cells horizonally
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
        // Centering cells horizonally is from  https://stackoverflow.com/questions/34267662/how-to-center-horizontally-uicollectionview-cells#:~:text=301-,Its%20not%20a%20good,-idea%20to%20use
-        let totalCellWidth = buttonSize * UserData.data.getCustomAudioPaths().count
-        let totalSpacingWidth = 15 * (UserData.data.getCustomAudioPaths().count - 1)
+        let totalCellWidth = buttonSize * currentProject.getCustomAudioPaths().count
+        let totalSpacingWidth = 15 * (currentProject.getCustomAudioPaths().count - 1)
 
         let leftInset = (NoisesCollectionView.bounds.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
         let rightInset = leftInset
@@ -509,7 +509,10 @@ class CustomAudioSlotCell: UICollectionViewCell {
     
     private var isFilled = false
     
+    private var project: Project // Project this slot is a part of
+    
     override init(frame: CGRect) {
+        self.project = UserData.data.getCurrentProject()!
         super.init(frame: frame)
         setupView()
     }
@@ -518,13 +521,14 @@ class CustomAudioSlotCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(withSlotNumber num: Int, withNoise noise: String) {
+    func configure(withProject project: Project, withSlotNumber num: Int, withNoise noise: String) {
         self.slotNumber = num
+        self.project = project
         backgroundColor = UIColor(named: "gray_color")
         addSoundImageView.image = HelperFunctions.getUIImage(named: "addCustomNoise")
         
         if isFilled {
-            let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forSlotNumber: slotNumber))
+            let audioImage = HelperFunctions.getUIImage(named: self.project.getCustomAudioImageFileName(forSlotNumber: slotNumber))
             imageView.image = audioImage
         }
         
@@ -534,7 +538,7 @@ class CustomAudioSlotCell: UICollectionViewCell {
     
     func fillSlot() {
         isFilled = true
-        let audioImage = HelperFunctions.getUIImage(named: UserData.data.getAudioFileName(forSlotNumber: slotNumber))
+        let audioImage = HelperFunctions.getUIImage(named: project.getCustomAudioImageFileName(forSlotNumber: slotNumber))
         imageView.image = audioImage
         
         updateAccessibility()

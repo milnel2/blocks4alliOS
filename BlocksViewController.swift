@@ -338,7 +338,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 accessibilityHint = ""
                 if block.name == "Custom Noise" {
                     
-                    if !UserData.data.hasNoise(forSlotNumber: Int(modifier)!) {
+                    if !currentProject!.hasNoise(forSlotNumber: Int(modifier)!) {
                        modifier = "\(modifier). Empty Noise."
                     }
                 }

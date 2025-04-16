@@ -119,18 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             
            
-            // Process saved custom noise paths
-            let customNoiseStrings = userDataStrings[1]
-            UserData.data.setCustomAudioPaths(newList: UserData.data.buildNewNoiseList())
-            var slotNum = 1
-            for line in customNoiseStrings.components(separatedBy: "\n") {
-                if line == "" {
-                    continue
-                } else if line != "nil" {
-                    UserData.data.addCustomAudio(path: line, forSlotNumber: slotNum)
-                }
-               slotNum += 1
-            }
+
             
             // Process all saved project data
             let projectDataStrings = jsonString.components(separatedBy: "End User Data \n")[1]
@@ -164,6 +153,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     var projectName = String()
                     var projectImageName = String()
                     var projectBackgroundImageName = String()
+                    var projectCustomAudioPaths = [String](repeating: "nil", count: UserData.data.getMaxNumCustomNoises()) // Create a list of "nil"s
                   //  var projectFunctionDict: [String : [Block] ] = [:]
                     
                     let actorStrings = projectString.components(separatedBy: "New Actor \n")
@@ -180,7 +170,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             projectNamePart = false
                             projectName = line
                         } else {
+                            break
+                        }
+                    }
+                    
+                    let customAudioPart = actorStrings[0].components(separatedBy: "Start Custom Audio \n")
+                    // Process saved custom noise paths
+                    let customNoiseStrings = customAudioPart[1]
+                    var slotNum = 0 // 0 indexed slot numbers (ex. index 0 is associated with slot 1)
+                    for line in customNoiseStrings.components(separatedBy: "\n") {
+                        if line == "" {
                             continue
+                        } else  {
+                            if line != "nil" {
+                                projectCustomAudioPaths[slotNum] = line
+                            }
+                            slotNum += 1
+                        }
+                        if slotNum > UserData.data.getMaxNumCustomNoises() - 1 {
+                            break
                         }
                     }
                     
@@ -332,7 +340,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     var project: Project
                     if galleryType == FREEPLAY_GALLERY_TYPE {
                         project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave, projectType: ProjectType.Freeplay, backgroundImagePath: projectBackgroundImageName)
-                    
+                        project.setCustomAudioPaths(newList: project.buildNewNoiseList())
+                        for index in 0...UserData.data.getMaxNumCustomNoises() - 1 {
+                            project.addCustomAudio(path: projectCustomAudioPaths[index], forSlotNumber: index+1)
+                        }
                     } else {
                         
                         project = Project(name: projectName, imageName: projectImageName, actors: actorsFromSave, projectType: ProjectType.Robot)
@@ -426,25 +437,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // string that json text is appended to
         var writeText = String()
-        
+        writeText.append("Start User Data \n")
+        writeText.append("New User Data \n")
         // Custom Background Image Paths
         for path in UserData.data.getCustomBackgroundPaths() {
             writeText.append(path)
             writeText.append("\n")
         }
         
-        writeText.append("New User Data \n")
-        // Custom Noise File Paths
-        for path in UserData.data.getCustomAudioPaths() {
-            if path != nil {
-                writeText.append(path!)
-                writeText.append("\n")
-            } else {
-                writeText.append("nil")
-                writeText.append("\n")
-            }
-        }
         writeText.append("End User Data \n")
+//        writeText.append("New User Data \n")
+//        // Custom Noise File Paths
+//        for path in UserData.data.getCustomAudioPaths() {
+//            if path != nil {
+//                writeText.append(path!)
+//                writeText.append("\n")
+//            } else {
+//                writeText.append("nil")
+//                writeText.append("\n")
+//            }
+//        }
+//        writeText.append("End User Data \n")
     
         for galleryType in allProjects.keys {
             writeText.append("New Gallery Type \n")
@@ -462,6 +475,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 writeText.append(project.currentBackground?.getImagePath() ?? "")
                 writeText.append("\n")
+                writeText.append("Start Custom Audio \n")
+                // Custom Noise File Paths
+                for path in project.getCustomAudioPaths() {
+                    if path != nil {
+                        writeText.append(path!)
+                        writeText.append("\n")
+                    } else {
+                        writeText.append("nil")
+                        writeText.append("\n")
+                    }
+                }
+                writeText.append("End Custom Audio \n")
                
                
                 for actor in project.actors {
