@@ -125,6 +125,8 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     /// Set up workspace to be editing a custom function.
     /// Creates the "start function" and "end function"  blocks and "back to main workspace" button
     private func setUpForCustomFunction() {
+        endIndex += 2 // Move end index over two because of the "Start function" and "End function" blocks
+        
         mainWorkspaceButton.isHidden = false  // Show Back to Main Workspace arrow button
         if #available(iOS 13.0, *) {
             workspaceTitle.textColor = .label
@@ -922,6 +924,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                     }
                 }
                     
+                if isWorkspaceCustomFunction(name: currentWorkspace) && indexPath.row >= currentProject!.currentActor!.functionDict[currentWorkspace]!.count { // Don't place blocks in the empty white space when editing custom functions. Blocks can only be placed within "Function Start" and "Function End"
+                    return
+                }
                 addBlocks(blocksBeingMoved, at: indexPath.row)
                 containerViewController?.popViewController(animated: false)
                 finishMovingBlocks()
