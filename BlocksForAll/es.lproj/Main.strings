@@ -1,236 +1,236 @@
 /* Class = "UITextField"; accessibilityLabel = "Set your variable value"; ObjectID = "0EE-tA-7aY"; */
-"0EE-tA-7aY.accessibilityLabel" = "Set your variable value";
+"0EE-tA-7aY.accessibilityLabel" = "Establece tu valór de variable";
 
 /* Class = "UIButton"; accessibilityLabel = "Faster"; ObjectID = "0Sr-TT-kf6"; */
-"0Sr-TT-kf6.accessibilityLabel" = "Faster";
+"0Sr-TT-kf6.accessibilityLabel" = "Más rápido";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "0Sr-TT-kf6"; */
 "0Sr-TT-kf6.normalTitle" = " ";
 
 /* Class = "UIButton"; accessibilityLabel = "Main Menu"; ObjectID = "3za-Xs-SXT"; */
-"3za-Xs-SXT.accessibilityLabel" = "Main Menu";
+"3za-Xs-SXT.accessibilityLabel" = "Pantalla Principal";
 
 /* Class = "UILabel"; text = "Drive"; ObjectID = "4FW-BL-NbK"; */
-"4FW-BL-NbK.text" = "Drive";
+"4FW-BL-NbK.text" = "Manejar";
 
 /* Class = "UILabel"; accessibilityHint = "Choose a fruit below"; ObjectID = "5Gb-Uk-oE9"; */
-"5Gb-Uk-oE9.accessibilityHint" = "Choose a fruit below";
+"5Gb-Uk-oE9.accessibilityHint" = "Escoje un fruta abajo";
 
 /* Class = "UILabel"; accessibilityLabel = "Select and set a variable"; ObjectID = "5Gb-Uk-oE9"; */
-"5Gb-Uk-oE9.accessibilityLabel" = "Select and set a variable";
+"5Gb-Uk-oE9.accessibilityLabel" = "Selecciona y Establece un Variable";
 
 /* Class = "UILabel"; text = "Select and Set a Variable"; ObjectID = "5Gb-Uk-oE9"; */
-"5Gb-Uk-oE9.text" = "Select and Set a Variable";
+"5Gb-Uk-oE9.text" = "Selecciona y Establece un Variable ";
 
 /* Class = "UIImageView"; accessibilityLabel = "Customize Actor"; ObjectID = "5xA-lS-fn9"; */
-"5xA-lS-fn9.accessibilityLabel" = "Customize Actor";
+"5xA-lS-fn9.accessibilityLabel" = "Personaliza un Actor";
 
 /* Class = "UIButton"; accessibilityHint = "Double tap to open camera roll"; ObjectID = "6LU-Da-KnO"; */
-"6LU-Da-KnO.accessibilityHint" = "Double tap to open camera roll";
+"6LU-Da-KnO.accessibilityHint" = "Doble toque para abrir rollo de cámara.";
 
 /* Class = "UIButton"; accessibilityLabel = "Add New Background"; ObjectID = "6LU-Da-KnO"; */
-"6LU-Da-KnO.accessibilityLabel" = "Add New Background";
+"6LU-Da-KnO.accessibilityLabel" = "Agrega Nuevo Foto de Fondo";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "7yj-Ik-X8W"; */
-"7yj-Ik-X8W.normalTitle" = "Back";
+"7yj-Ik-X8W.normalTitle" = "Atrás";
 
 /* Class = "UIButton"; accessibilityLabel = "Increase"; ObjectID = "8Yw-ge-P4L"; */
-"8Yw-ge-P4L.accessibilityLabel" = "Increase";
+"8Yw-ge-P4L.accessibilityLabel" = "Aumentar";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "8Yw-ge-P4L"; */
 "8Yw-ge-P4L.normalTitle" = " ";
 
 /* Class = "UIButton"; accessibilityLabel = "Main Menu"; ObjectID = "9YL-5Y-1hw"; */
-"9YL-5Y-1hw.accessibilityLabel" = "Main Menu";
+"9YL-5Y-1hw.accessibilityLabel" = "Pantalla Principal";
 
 /* Class = "UISlider"; accessibilityHint = "10 centimeters to 100 centimeters in increments of 10"; ObjectID = "33V-6u-7DC"; */
-"33V-6u-7DC.accessibilityHint" = "10 centimeters to 100 centimeters in increments of 10";
+"33V-6u-7DC.accessibilityHint" = "10 centimentos a 100 centimentros en incrementos de 10";
 
 /* Class = "UISlider"; accessibilityLabel = "Distance Slider"; ObjectID = "33V-6u-7DC"; */
-"33V-6u-7DC.accessibilityLabel" = "Distance Slider";
+"33V-6u-7DC.accessibilityLabel" = "Control Deslizante de Distancia";
 
 /* Class = "UILabel"; text = "90"; ObjectID = "52s-Ei-stU"; */
 "52s-Ei-stU.text" = "90";
 
 /* Class = "UILabel"; accessibilityHint = "Select a speed."; ObjectID = "71Y-9j-yaK"; */
-"71Y-9j-yaK.accessibilityHint" = "Select a speed.";
+"71Y-9j-yaK.accessibilityHint" = "Selecciona un velocidad.";
 
 /* Class = "UILabel"; accessibilityLabel = "Speed"; ObjectID = "71Y-9j-yaK"; */
-"71Y-9j-yaK.accessibilityLabel" = "Speed";
+"71Y-9j-yaK.accessibilityLabel" = "Velocidad";
 
 /* Class = "UILabel"; text = "Speed:"; ObjectID = "71Y-9j-yaK"; */
-"71Y-9j-yaK.text" = "Speed:";
+"71Y-9j-yaK.text" = "Velocidad:";
 
 /* Class = "UIViewController"; title = "Stepper Mod View Controller"; ObjectID = "a8r-3H-fGk"; */
 "a8r-3H-fGk.title" = "Stepper Mod View Controller";
 
 /* Class = "UILabel"; text = "Value:"; ObjectID = "aCi-eq-XZm"; */
-"aCi-eq-XZm.text" = "Value:";
+"aCi-eq-XZm.text" = "Valor:";
 
 /* Class = "UILabel"; accessibilityLabel = "Animal Noise"; ObjectID = "AxI-El-jaR"; */
-"AxI-El-jaR.accessibilityLabel" = "Animal Noise";
+"AxI-El-jaR.accessibilityLabel" = "Ruido de Animal";
 
 /* Class = "UILabel"; text = "MULTIPLE CHOICE MODIFIER TYPE TITLE"; ObjectID = "AxI-El-jaR"; */
 "AxI-El-jaR.text" = "MULTIPLE CHOICE MODIFIER TYPE TITLE";
 
 /* Class = "UILabel"; accessibilityHint = "How fast should the robot travel "; ObjectID = "aXq-Lg-wuF"; */
-"aXq-Lg-wuF.accessibilityHint" = "How fast should the robot travel ";
+"aXq-Lg-wuF.accessibilityHint" = "¿Que rapido debe ir el robot?";
 
 /* Class = "UILabel"; accessibilityLabel = "Speed"; ObjectID = "aXq-Lg-wuF"; */
-"aXq-Lg-wuF.accessibilityLabel" = "Speed";
+"aXq-Lg-wuF.accessibilityLabel" = "Velocidad";
 
 /* Class = "UILabel"; text = "Speed"; ObjectID = "aXq-Lg-wuF"; */
-"aXq-Lg-wuF.text" = "Speed";
+"aXq-Lg-wuF.text" = "Velocidad";
 
 /* Class = "UILabel"; text = "Select Drive Variable"; ObjectID = "b0B-P4-bMi"; */
-"b0B-P4-bMi.text" = "Select Drive Variable";
+"b0B-P4-bMi.text" = "Selecciona Variable de Manejo";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "b3O-ki-wxr"; */
 "b3O-ki-wxr.text" = "Label";
 
 /* Class = "UILabel"; accessibilityLabel = "Help"; ObjectID = "bf9-8r-YWE"; */
-"bf9-8r-YWE.accessibilityLabel" = "Help";
+"bf9-8r-YWE.accessibilityLabel" = "Ayuda";
 
 /* Class = "UILabel"; text = "Help"; ObjectID = "bf9-8r-YWE"; */
-"bf9-8r-YWE.text" = "Help";
+"bf9-8r-YWE.text" = "Ayuda";
 
 /* Class = "UIImageView"; accessibilityHint = "Digital drawing of a blue Dash robot with a happy expression. Blocks4All requires a Dash or Dot robot from Wonder Workshop. Interactable."; ObjectID = "bML-d3-3Tw"; */
 "bML-d3-3Tw.accessibilityHint" = "Digital drawing of a blue Dash robot with a happy expression. Blocks4All requires a Dash or Dot robot from Wonder Workshop. Interactable.";
 
 /* Class = "UIImageView"; accessibilityLabel = "Dash Robot"; ObjectID = "bML-d3-3Tw"; */
-"bML-d3-3Tw.accessibilityLabel" = "Dash Robot";
+"bML-d3-3Tw.accessibilityLabel" = "Robot Dash";
 
 /* Class = "UILabel"; accessibilityHint = "How fast should the robot travel "; ObjectID = "bQq-rR-mYL"; */
-"bQq-rR-mYL.accessibilityHint" = "How fast should the robot travel ";
+"bQq-rR-mYL.accessibilityHint" = "¿Que rapido debe ir el robot?";
 
 /* Class = "UILabel"; accessibilityLabel = "Speed"; ObjectID = "bQq-rR-mYL"; */
-"bQq-rR-mYL.accessibilityLabel" = "Speed";
+"bQq-rR-mYL.accessibilityLabel" = "Velocidad";
 
 /* Class = "UILabel"; text = "Speed"; ObjectID = "bQq-rR-mYL"; */
-"bQq-rR-mYL.text" = "Speed";
+"bQq-rR-mYL.text" = "Velocidad";
 
 /* Class = "UIButton"; configuration.title = "Yellow"; ObjectID = "bzW-2E-fa3"; */
-"bzW-2E-fa3.configuration.title" = "Yellow";
+"bzW-2E-fa3.configuration.title" = "Amarillo";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "bzW-2E-fa3"; */
-"bzW-2E-fa3.normalTitle" = "Button";
+"bzW-2E-fa3.normalTitle" = "Botón";
 
 /* Class = "UILabel"; accessibilityLabel = "Block Size"; ObjectID = "C1C-po-fkn"; */
-"C1C-po-fkn.accessibilityLabel" = "Block Size";
+"C1C-po-fkn.accessibilityLabel" = "Tamaño de Bloque";
 
 /* Class = "UILabel"; text = "Block Size = 3"; ObjectID = "C1C-po-fkn"; */
-"C1C-po-fkn.text" = "Block Size = 3";
+"C1C-po-fkn.text" = "Tamaño de Bloque = 3";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "c3O-p8-ClS"; */
-"c3O-p8-ClS.normalTitle" = "Back";
+"c3O-p8-ClS.normalTitle" = "Atrás";
 
 /* Class = "UIButton"; normalTitle = "Play with Robot"; ObjectID = "CMD-Kc-2pq"; */
-"CMD-Kc-2pq.normalTitle" = "Play with Robot";
+"CMD-Kc-2pq.normalTitle" = "Jugar con Robot";
 
 /* Class = "UILabel"; accessibilityHint = "Select a variable. Choose a fruit below"; ObjectID = "CO9-t8-AAm"; */
-"CO9-t8-AAm.accessibilityHint" = "Select a variable. Choose a fruit below";
+"CO9-t8-AAm.accessibilityHint" = "Selecciona un variable. Escoje un fruta abajo";
 
 /* Class = "UILabel"; accessibilityLabel = "Distance"; ObjectID = "CO9-t8-AAm"; */
-"CO9-t8-AAm.accessibilityLabel" = "Distance";
+"CO9-t8-AAm.accessibilityLabel" = "Distancia";
 
 /* Class = "UILabel"; text = "Distance:"; ObjectID = "CO9-t8-AAm"; */
-"CO9-t8-AAm.text" = "Distance:";
+"CO9-t8-AAm.text" = "Distancia:";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "cSw-Dm-i97"; */
-"cSw-Dm-i97.normalTitle" = "Back";
+"cSw-Dm-i97.normalTitle" = "Atrás";
 
 /* Class = "UILabel"; accessibilityLabel = "Show Icons or Text"; ObjectID = "dAG-tB-Z7y"; */
-"dAG-tB-Z7y.accessibilityLabel" = "Show Icons or Text";
+"dAG-tB-Z7y.accessibilityLabel" = "Enseña Icono o Texto";
 
 /* Class = "UILabel"; text = "Show Icons or Text"; ObjectID = "dAG-tB-Z7y"; */
-"dAG-tB-Z7y.text" = "Show Icons or Text";
+"dAG-tB-Z7y.text" = "Enseña Icono o Texto";
 
 /* Class = "UILabel"; text = "Main Workspace"; ObjectID = "DAu-wd-2Fx"; */
-"DAu-wd-2Fx.text" = "Main Workspace";
+"DAu-wd-2Fx.text" = "Espacio de Trabajo Principal";
 
 /* Class = "UIViewController"; title = "Distance and Speed"; ObjectID = "Daw-d8-AsD"; */
-"Daw-d8-AsD.title" = "Distance and Speed";
+"Daw-d8-AsD.title" = "Distancia y Velocidad";
 
 /* Class = "UIButton"; accessibilityLabel = "Cherry"; ObjectID = "e5m-D2-7ru"; */
-"e5m-D2-7ru.accessibilityLabel" = "Cherry";
+"e5m-D2-7ru.accessibilityLabel" = "Cerezas";
 
 /* Class = "UILabel"; accessibilityHint = "Choose background image"; ObjectID = "G0I-xg-zo4"; */
-"G0I-xg-zo4.accessibilityHint" = "Choose background image";
+"G0I-xg-zo4.accessibilityHint" = "Escoge foto del fondo";
 
 /* Class = "UILabel"; accessibilityLabel = "Select Background"; ObjectID = "G0I-xg-zo4"; */
-"G0I-xg-zo4.accessibilityLabel" = "Select Background";
+"G0I-xg-zo4.accessibilityLabel" = "Selecciona el Fondo";
 
 /* Class = "UILabel"; text = "Select Background"; ObjectID = "G0I-xg-zo4"; */
-"G0I-xg-zo4.text" = "Select Background";
+"G0I-xg-zo4.text" = "Selecciona el Fondo";
 
 /* Class = "UIImageView"; accessibilityLabel = "Settings"; ObjectID = "glw-m4-ShG"; */
-"glw-m4-ShG.accessibilityLabel" = "Settings";
+"glw-m4-ShG.accessibilityLabel" = "Ajustes";
 
 /* Class = "UIButton"; accessibilityLabel = "Orange "; ObjectID = "GrT-2z-xvO"; */
-"GrT-2z-xvO.accessibilityLabel" = "Orange ";
+"GrT-2z-xvO.accessibilityLabel" = "Naranja";
 
 /* Class = "UILabel"; text = "If you don't see any robots, try turning your robot off and on again."; ObjectID = "gVq-QZ-GAv"; */
-"gVq-QZ-GAv.text" = "If you don't see any robots, try turning your robot off and on again.";
+"gVq-QZ-GAv.text" = "Si no ves un robot, intenta apagando y prendiendo su robot otra vez.";
 
 /* Class = "UIButton"; accessibilityLabel = "Apple"; ObjectID = "HeO-ti-YFz"; */
-"HeO-ti-YFz.accessibilityLabel" = "Apple";
+"HeO-ti-YFz.accessibilityLabel" = "Manzana";
 
 /* Class = "UIViewController"; title = "Multiple Choice Mod View Controller"; ObjectID = "I6l-mr-M6V"; */
 "I6l-mr-M6V.title" = "Multiple Choice Mod View Controller";
 
 /* Class = "UILabel"; accessibilityLabel = "Enter a negative number to use a variable for backwards,  downwards, or left actions later on"; ObjectID = "I8l-wa-KJu"; */
-"I8l-wa-KJu.accessibilityLabel" = "Enter a negative number to use a variable for backwards,  downwards, or left actions later on";
+"I8l-wa-KJu.accessibilityLabel" = "Escriba un número bajo cero para usar un variable para acciones para ir atrás, abajo, o la izquierda más a rato";
 
 /* Class = "UILabel"; text = "Negative = backwards,  upwards, or left "; ObjectID = "I8l-wa-KJu"; */
-"I8l-wa-KJu.text" = "Negative = backwards,  upwards, or left ";
+"I8l-wa-KJu.text" = "Negativo = al revés, arriba, o izquierda";
 
 /* Class = "UIButton"; accessibilityHint = "Leave function workspace "; ObjectID = "I40-yj-Wbs"; */
-"I40-yj-Wbs.accessibilityHint" = "Leave function workspace ";
+"I40-yj-Wbs.accessibilityHint" = "Salir del función dentro el espacio de trabajar";
 
 /* Class = "UIButton"; accessibilityLabel = "Return to Main Workspace"; ObjectID = "I40-yj-Wbs"; */
-"I40-yj-Wbs.accessibilityLabel" = "Return to Main Workspace";
+"I40-yj-Wbs.accessibilityLabel" = "Regresa al Espacio de Trabajo Principal";
 
 /* Class = "UIButton"; configuration.title = " "; ObjectID = "I40-yj-Wbs"; */
 "I40-yj-Wbs.configuration.title" = " ";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "I40-yj-Wbs"; */
-"I40-yj-Wbs.normalTitle" = "Button";
+"I40-yj-Wbs.normalTitle" = "Botón";
 
 /* Class = "UIViewController"; title = "Distance and Speed"; ObjectID = "iOv-sF-LFv"; */
-"iOv-sF-LFv.title" = "Distance and Speed";
+"iOv-sF-LFv.title" = "Distancia y Velocidad";
 
 /* Class = "UIButton"; accessibilityLabel = "Cherry"; ObjectID = "IoX-XS-X1x"; */
-"IoX-XS-X1x.accessibilityLabel" = "Cherry";
+"IoX-XS-X1x.accessibilityLabel" = "Cerezas";
 
 /* Class = "UIButton"; accessibilityLabel = "Main Menu"; ObjectID = "Ipa-F9-VES"; */
-"Ipa-F9-VES.accessibilityLabel" = "Main Menu";
+"Ipa-F9-VES.accessibilityLabel" = "Pantalla Principal";
 
 /* Class = "UIButton"; configuration.title = "Blue"; ObjectID = "iWR-DZ-TX1"; */
-"iWR-DZ-TX1.configuration.title" = "Blue";
+"iWR-DZ-TX1.configuration.title" = "Azul";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "iWR-DZ-TX1"; */
-"iWR-DZ-TX1.normalTitle" = "Button";
+"iWR-DZ-TX1.normalTitle" = "Botón";
 
 /* Class = "UIButton"; accessibilityLabel = "Back"; ObjectID = "jem-v4-ejR"; */
-"jem-v4-ejR.accessibilityLabel" = "Back";
+"jem-v4-ejR.accessibilityLabel" = "Atrás";
 
 /* Class = "UIButton"; normalTitle = "2  "; ObjectID = "jLG-Jt-TWo"; */
 "jLG-Jt-TWo.normalTitle" = "2  ";
 
 /* Class = "UILabel"; accessibilityLabel = "Animal Noise"; ObjectID = "JRu-Ox-rVQ"; */
-"JRu-Ox-rVQ.accessibilityLabel" = "Animal Noise";
+"JRu-Ox-rVQ.accessibilityLabel" = "Ruido de Animal";
 
 /* Class = "UILabel"; text = "TWO OPTION MODIFIER TYPE TITLE"; ObjectID = "JRu-Ox-rVQ"; */
 "JRu-Ox-rVQ.text" = "TWO OPTION MODIFIER TYPE TITLE";
 
 /* Class = "UIBarButtonItem"; title = "Add Function"; ObjectID = "JWi-Kn-6yy"; */
-"JWi-Kn-6yy.title" = "Add Function";
+"JWi-Kn-6yy.title" = "Agregar Función";
 
 /* Class = "UIButton"; normalTitle = "Play with Virtual Robot"; ObjectID = "JyM-Bb-zzW"; */
-"JyM-Bb-zzW.normalTitle" = "Play with Virtual Robot";
+"JyM-Bb-zzW.normalTitle" = "Jugar con Robot Virtual";
 
 /* Class = "UIViewController"; title = "Turn"; ObjectID = "JzC-8L-d8W"; */
-"JzC-8L-d8W.title" = "Turn";
+"JzC-8L-d8W.title" = "Girar";
 
 /* Class = "UILabel"; text = "STEPPER VALUE"; ObjectID = "ka0-sb-1mH"; */
 "ka0-sb-1mH.text" = "STEPPER VALUE";
@@ -239,10 +239,10 @@
 "KI8-EN-GKe.text" = "Label";
 
 /* Class = "UITableViewCell"; accessibilityLabel = "Robot to Connect"; ObjectID = "KUQ-1B-5Sg"; */
-"KUQ-1B-5Sg.accessibilityLabel" = "Robot to Connect";
+"KUQ-1B-5Sg.accessibilityLabel" = "Robot Para Conectar";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "lTH-92-Kwk"; */
-"lTH-92-Kwk.normalTitle" = "Back";
+"lTH-92-Kwk.normalTitle" = "Atrás";
 
 /* Class = "UILabel"; text = "TWO OPTION VALUE"; ObjectID = "Lwb-pX-XHB"; */
 "Lwb-pX-XHB.text" = "TWO OPTION VALUE";
@@ -254,97 +254,97 @@
 "M0M-a3-X3n.text" = "OPTIONAL EXTRA LABEL";
 
 /* Class = "UILabel"; accessibilityHint = "How far should the robot travel"; ObjectID = "M3X-6I-Kgi"; */
-"M3X-6I-Kgi.accessibilityHint" = "How far should the robot travel";
+"M3X-6I-Kgi.accessibilityHint" = "¿Que lejos debe ir el robot?";
 
 /* Class = "UILabel"; accessibilityLabel = "Distance"; ObjectID = "M3X-6I-Kgi"; */
-"M3X-6I-Kgi.accessibilityLabel" = "Distance";
+"M3X-6I-Kgi.accessibilityLabel" = "Distancia";
 
 /* Class = "UILabel"; text = "Distance"; ObjectID = "M3X-6I-Kgi"; */
-"M3X-6I-Kgi.text" = "Distance";
+"M3X-6I-Kgi.text" = "Distancia";
 
 /* Class = "UIButton"; accessibilityLabel = "Faster"; ObjectID = "moY-KE-bSO"; */
-"moY-KE-bSO.accessibilityLabel" = "Faster";
+"moY-KE-bSO.accessibilityLabel" = "Más rápido";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "moY-KE-bSO"; */
 "moY-KE-bSO.normalTitle" = " ";
 
 /* Class = "UILabel"; accessibilityLabel = "Selected Distance"; ObjectID = "MuZ-k8-W3G"; */
-"MuZ-k8-W3G.accessibilityLabel" = "Selected Distance";
+"MuZ-k8-W3G.accessibilityLabel" = "Valor actual";
 
 /* Class = "UILabel"; text = "30"; ObjectID = "MuZ-k8-W3G"; */
 "MuZ-k8-W3G.text" = "30";
 
 /* Class = "UIButton"; accessibilityHint = "Make your robot go!"; ObjectID = "N8m-L7-Ufr"; */
-"N8m-L7-Ufr.accessibilityHint" = "Make your robot go!";
+"N8m-L7-Ufr.accessibilityHint" = "¡Haz que tu robot funciona!";
 
 /* Class = "UIButton"; accessibilityLabel = "Play"; ObjectID = "N8m-L7-Ufr"; */
-"N8m-L7-Ufr.accessibilityLabel" = "Play";
+"N8m-L7-Ufr.accessibilityLabel" = "Jugar";
 
 /* Class = "UILabel"; text = "Normal"; ObjectID = "NAX-qM-mqr"; */
 "NAX-qM-mqr.text" = "Normal";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "nMl-mM-MfN"; */
-"nMl-mM-MfN.normalTitle" = "Back";
+"nMl-mM-MfN.normalTitle" = "Atrás";
 
 /* Class = "UILabel"; text = "Move Forward"; ObjectID = "nml-mO-L4d"; */
 "nml-mO-L4d.text" = "Move Forward";
 
 /* Class = "UIButton"; accessibilityLabel = "Add Actor"; ObjectID = "NnO-p6-y4b"; */
-"NnO-p6-y4b.accessibilityLabel" = "Add Actor";
+"NnO-p6-y4b.accessibilityLabel" = "Agregar Caricatura";
 
 /* Class = "UITextView"; text = "Welcome to Blocks4All! This iOS iPad application is an accessible blocks-based programming environment designed to introduce children with motor and visual impairments to computer science concepts. It is compatible with iOS Switch Control and VoiceOver. \nTo run Blocks4All, you must have a Dash or Dot (limited commands) robot from Wonder Workshop. \nTo get started, select the Play button on the Main Menu. This directs you to the main workspace. To give commands to the robot, first, select a category in the Toolbox on the left side of the screen. Next, select a block (command) from the Toolbox among the available commands for the chosen category. Finally, add the block to the program by tapping on its desired location in the main workspace section in the middle of the screen. Note that you tap to place the block—it’s not drag and drop. \nTo have the robot run the commands, press the Play button in the lower right corner of the screen. To connect Blocks4All with the Wonder Workshop robot, make sure that you have Bluetooth on your device and the robot turned on. If no robot appears, try turning it on and off. Select the robot you want, then press Back, then press Play again. \nSome blocks, such as the Motion blocks, do not include extra parts. Other blocks, like the Sounds and Drive blocks, have modifiers to alter the characteristics (e.g. speed) of each block. You can edit a block command by tapping on the modifier block on the upper half of the block command in the workspace.  \nMeanwhile, blocks like “Repeat” and “If” have three components: a beginning modifier block, an end block, and a group of command block between the beginning and end blocks. The modifier block allows users to alter the conditions of these blocks: for example, the “Repeat” modifier block can be changed to repeat more than 2 times. Meanwhile, the “If” blocks may contain conditions such as “if Dash bumps into something” or “if Dash hears a voice”. These conditions affect the action of the command blocks between the beginning and end blocks.  \nTo create a function, select the Create/Edit Functions block within the Functions category. You can add a function by tapping on the Add Function button on the upper right corner, entering the function name, and clicking Done. Afterwards, you can add commands to the functions or change existing commands by selecting the newly created function from the Functions Menu screen. There is also the option to rename or delete a function.  \nFor further information on Blocks4All, please visit our website. For further details on your data privacy, please visit our Privacy Policy. "; ObjectID = "nZe-3b-W7O"; */
 "nZe-3b-W7O.text" = "Welcome to Blocks4All! This iOS iPad application is an accessible blocks-based programming environment designed to introduce children with motor and visual impairments to computer science concepts. It is compatible with iOS Switch Control and VoiceOver. \nTo run Blocks4All, you must have a Dash or Dot (limited commands) robot from Wonder Workshop. \nTo get started, select the Play button on the Main Menu. This directs you to the main workspace. To give commands to the robot, first, select a category in the Toolbox on the left side of the screen. Next, select a block (command) from the Toolbox among the available commands for the chosen category. Finally, add the block to the program by tapping on its desired location in the main workspace section in the middle of the screen. Note that you tap to place the block—it’s not drag and drop. \nTo have the robot run the commands, press the Play button in the lower right corner of the screen. To connect Blocks4All with the Wonder Workshop robot, make sure that you have Bluetooth on your device and the robot turned on. If no robot appears, try turning it on and off. Select the robot you want, then press Back, then press Play again. \nSome blocks, such as the Motion blocks, do not include extra parts. Other blocks, like the Sounds and Drive blocks, have modifiers to alter the characteristics (e.g. speed) of each block. You can edit a block command by tapping on the modifier block on the upper half of the block command in the workspace.  \nMeanwhile, blocks like “Repeat” and “If” have three components: a beginning modifier block, an end block, and a group of command block between the beginning and end blocks. The modifier block allows users to alter the conditions of these blocks: for example, the “Repeat” modifier block can be changed to repeat more than 2 times. Meanwhile, the “If” blocks may contain conditions such as “if Dash bumps into something” or “if Dash hears a voice”. These conditions affect the action of the command blocks between the beginning and end blocks.  \nTo create a function, select the Create/Edit Functions block within the Functions category. You can add a function by tapping on the Add Function button on the upper right corner, entering the function name, and clicking Done. Afterwards, you can add commands to the functions or change existing commands by selecting the newly created function from the Functions Menu screen. There is also the option to rename or delete a function.  \nFor further information on Blocks4All, please visit our website. For further details on your data privacy, please visit our Privacy Policy. ";
 
 /* Class = "UIButton"; accessibilityLabel = "Orange "; ObjectID = "OWd-yU-SCQ"; */
-"OWd-yU-SCQ.accessibilityLabel" = "Orange ";
+"OWd-yU-SCQ.accessibilityLabel" = "Naranja";
 
 /* Class = "UIImageView"; accessibilityLabel = "Welcome to Blocks For All!"; ObjectID = "P8p-Kk-8W6"; */
-"P8p-Kk-8W6.accessibilityLabel" = "Welcome to Blocks For All!";
+"P8p-Kk-8W6.accessibilityLabel" = "¡Bienvenidos a Blocks4All!";
 
 /* Class = "UIViewController"; title = "Distance and Speed"; ObjectID = "PBc-35-QW0"; */
-"PBc-35-QW0.title" = "Distance and Speed";
+"PBc-35-QW0.title" = "Distancia y Velocidad";
 
 /* Class = "UIButton"; configuration.title = "Red"; ObjectID = "pdO-Kx-8l0"; */
-"pdO-Kx-8l0.configuration.title" = "Red";
+"pdO-Kx-8l0.configuration.title" = "Rojo";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "pdO-Kx-8l0"; */
-"pdO-Kx-8l0.normalTitle" = "Button";
+"pdO-Kx-8l0.normalTitle" = "Botón";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "Qbf-MI-927"; */
-"Qbf-MI-927.title" = "Back";
+"Qbf-MI-927.title" = "Atrás";
 
 /* Class = "UIButton"; accessibilityLabel = "Slower"; ObjectID = "QHF-Ua-0iH"; */
-"QHF-Ua-0iH.accessibilityLabel" = "Slower";
+"QHF-Ua-0iH.accessibilityLabel" = "Despacito";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "QHF-Ua-0iH"; */
 "QHF-Ua-0iH.normalTitle" = " ";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "qLY-mS-WF5"; */
-"qLY-mS-WF5.normalTitle" = "Back";
+"qLY-mS-WF5.normalTitle" = "Atrás";
 
 /* Class = "UIButton"; accessibilityLabel = "Exit Full Screen"; ObjectID = "Qvx-Ab-7LC"; */
-"Qvx-Ab-7LC.accessibilityLabel" = "Exit Full Screen";
+"Qvx-Ab-7LC.accessibilityLabel" = "Salir de Pantalla Completa";
 
 /* Class = "UIButton"; configuration.title = "Main Workspace (temp)"; ObjectID = "R10-4x-ECs"; */
 "R10-4x-ECs.configuration.title" = "Main Workspace (temp)";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "R10-4x-ECs"; */
-"R10-4x-ECs.normalTitle" = "Button";
+"R10-4x-ECs.normalTitle" = "Botón";
 
 /* Class = "UIButton"; accessibilityLabel = "Apple"; ObjectID = "rgQ-Jh-7kw"; */
-"rgQ-Jh-7kw.accessibilityLabel" = "Apple";
+"rgQ-Jh-7kw.accessibilityLabel" = "Manzana";
 
 /* Class = "UIBarButtonItem"; title = "Return to Main Workspace"; ObjectID = "Rqi-nO-wQj"; */
-"Rqi-nO-wQj.title" = "Return to Main Workspace";
+"Rqi-nO-wQj.title" = "Regresa al Espacio de Trabajo Principal";
 
 /* Class = "UIButton"; accessibilityLabel = "Settings"; ObjectID = "RT2-NS-4g9"; */
-"RT2-NS-4g9.accessibilityLabel" = "Settings";
+"RT2-NS-4g9.accessibilityLabel" = "Ajustes";
 
 /* Class = "UIButton"; accessibilityLabel = "Back"; ObjectID = "Rvu-FP-rqn"; */
-"Rvu-FP-rqn.accessibilityLabel" = "Back";
+"Rvu-FP-rqn.accessibilityLabel" = "Atrás";
 
 /* Class = "UIButton"; accessibilityLabel = "Decrease"; ObjectID = "s5b-9i-EKT"; */
-"s5b-9i-EKT.accessibilityLabel" = "Decrease";
+"s5b-9i-EKT.accessibilityLabel" = "Decresimiento";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "s5b-9i-EKT"; */
 "s5b-9i-EKT.normalTitle" = " ";
@@ -353,61 +353,58 @@
 "S7e-AE-Lha.normalTitle" = " ";
 
 /* Class = "UIButton"; accessibilityHint = "Make your robot go!"; ObjectID = "sC9-aO-BO4"; */
-"sC9-aO-BO4.accessibilityHint" = "Make your robot go!";
+"sC9-aO-BO4.accessibilityHint" = "¡Haz que tu robot funciona!";
 
 /* Class = "UIButton"; accessibilityLabel = "Play"; ObjectID = "sC9-aO-BO4"; */
-"sC9-aO-BO4.accessibilityLabel" = "Play";
+"sC9-aO-BO4.accessibilityLabel" = "Jugar";
 
 /* Class = "UIButton"; accessibilityLabel = "Add Robots "; ObjectID = "Skb-Px-NWC"; */
-"Skb-Px-NWC.accessibilityLabel" = "Add Robots ";
+"Skb-Px-NWC.accessibilityLabel" = "Agregar Robots";
 
 /* Class = "UIButton"; accessibilityLabel = "Watermelon"; ObjectID = "Skb-YP-GZa"; */
-"Skb-YP-GZa.accessibilityLabel" = "Watermelon";
+"Skb-YP-GZa.accessibilityLabel" = "Sandía";
 
 /* Class = "UIViewController"; title = "Two Option Mod View Controller"; ObjectID = "sKo-Tc-eyH"; */
 "sKo-Tc-eyH.title" = "Two Option Mod View Controller";
 
 /* Class = "UILabel"; text = "Select Move To Location"; ObjectID = "svw-UV-kJh"; */
-"svw-UV-kJh.text" = "Select Move To Location";
+"svw-UV-kJh.text" = "Selecciona Mueve al Locación";
 
 /* Class = "UILabel"; text = "Tap workspace to add block "; ObjectID = "TgX-Fj-FVm"; */
-"TgX-Fj-FVm.text" = "Tap workspace to add block ";
+"TgX-Fj-FVm.text" = "Toque el espacio de trabajo para agregar un bloque";
 
 /* Class = "UIButton"; accessibilityLabel = "Watermelon"; ObjectID = "tKW-E7-HOd"; */
-"tKW-E7-HOd.accessibilityLabel" = "Watermelon";
+"tKW-E7-HOd.accessibilityLabel" = "Sandía";
 
 /* Class = "UIButton"; configuration.title = "Default"; ObjectID = "tX8-T6-hL4"; */
-"tX8-T6-hL4.configuration.title" = "Default";
+"tX8-T6-hL4.configuration.title" = "Por Defecto";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "tX8-T6-hL4"; */
-"tX8-T6-hL4.normalTitle" = "Button";
+"tX8-T6-hL4.normalTitle" = "Botón";
 
 /* Class = "UILabel"; accessibilityLabel = "Animal Noise"; ObjectID = "uOM-Mf-5kA"; */
-"uOM-Mf-5kA.accessibilityLabel" = "Animal Noise";
+"uOM-Mf-5kA.accessibilityLabel" = "Ruido de Animal";
 
 /* Class = "UILabel"; text = "STEPPER MODIFIER TYPE TITLE"; ObjectID = "uOM-Mf-5kA"; */
 "uOM-Mf-5kA.text" = "STEPPER MODIFIER TYPE TITLE";
 
 /* Class = "UIButton"; accessibilityLabel = "Banana"; ObjectID = "Uv9-Kz-RsF"; */
-"Uv9-Kz-RsF.accessibilityLabel" = "Banana";
+"Uv9-Kz-RsF.accessibilityLabel" = "Platano";
 
 /* Class = "UIButton"; accessibilityLabel = "Help"; ObjectID = "vpe-31-2KD"; */
-"vpe-31-2KD.accessibilityLabel" = "Help";
+"vpe-31-2KD.accessibilityLabel" = "Ayuda";
 
 /* Class = "UIButton"; normalTitle = "Help"; ObjectID = "vpe-31-2KD"; */
-"vpe-31-2KD.normalTitle" = "Help";
+"vpe-31-2KD.normalTitle" = "Ayuda";
 
 /* Class = "UILabel"; text = "Angle"; ObjectID = "vPI-lo-vAq"; */
-"vPI-lo-vAq.text" = "Angle";
-
-/* Class = "UILabel"; accessibilityLabel = "Animal Noise"; ObjectID = "VPt-Ft-1HX"; */
-"VPt-Ft-1HX.accessibilityLabel" = "Animal Noise";
+"vPI-lo-vAq.text" = "Ángulo";
 
 /* Class = "UILabel"; text = "Choose New Actor"; ObjectID = "VPt-Ft-1HX"; */
-"VPt-Ft-1HX.text" = "Choose New Actor";
+"VPt-Ft-1HX.text" = "Escoque Nuevo Caricatura";
 
 /* Class = "UIButton"; accessibilityLabel = "Slower"; ObjectID = "W6A-Pm-nob"; */
-"W6A-Pm-nob.accessibilityLabel" = "Slower";
+"W6A-Pm-nob.accessibilityLabel" = "Despacito";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "W6A-Pm-nob"; */
 "W6A-Pm-nob.normalTitle" = " ";
@@ -416,35 +413,35 @@
 "wdR-Mn-wHu.normalTitle" = "1  ";
 
 /* Class = "UIButton"; accessibilityLabel = "Slower"; ObjectID = "WtH-IO-eXP"; */
-"WtH-IO-eXP.accessibilityLabel" = "Slower";
+"WtH-IO-eXP.accessibilityLabel" = "Despacito";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "WtH-IO-eXP"; */
 "WtH-IO-eXP.normalTitle" = " ";
 
 /* Class = "UIButton"; accessibilityLabel = "Faster"; ObjectID = "X6X-ia-LTz"; */
-"X6X-ia-LTz.accessibilityLabel" = "Faster";
+"X6X-ia-LTz.accessibilityLabel" = "Más rápido";
 
 /* Class = "UIButton"; normalTitle = " "; ObjectID = "X6X-ia-LTz"; */
 "X6X-ia-LTz.normalTitle" = " ";
 
 /* Class = "UIButton"; accessibilityLabel = "Enter Full Screen"; ObjectID = "Xas-Fz-0Ml"; */
-"Xas-Fz-0Ml.accessibilityLabel" = "Enter Full Screen";
+"Xas-Fz-0Ml.accessibilityLabel" = "Entrar Pantalla Completa";
 
 /* Class = "UILabel"; text = "Normal"; ObjectID = "XeR-95-VOA"; */
 "XeR-95-VOA.text" = "Normal";
 
 /* Class = "UIButton"; configuration.title = "Add"; ObjectID = "y2G-gD-W3C"; */
-"y2G-gD-W3C.configuration.title" = "Add";
+"y2G-gD-W3C.configuration.title" = "Agregar";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "y2G-gD-W3C"; */
-"y2G-gD-W3C.normalTitle" = "Button";
+"y2G-gD-W3C.normalTitle" = "Botón";
 
 /* Class = "UIButton"; accessibilityLabel = "Banana"; ObjectID = "ypF-Ea-lgn"; */
-"ypF-Ea-lgn.accessibilityLabel" = "Banana";
+"ypF-Ea-lgn.accessibilityLabel" = "Platano";
 
 /* Class = "UIButton"; accessibilityHint = "Make your robot go!"; ObjectID = "Ztu-9b-vFh"; */
-"Ztu-9b-vFh.accessibilityHint" = "Make your robot go!";
+"Ztu-9b-vFh.accessibilityHint" = "¡Haz que tu robot funciona!";
 
 /* Class = "UIButton"; accessibilityLabel = "Play"; ObjectID = "Ztu-9b-vFh"; */
-"Ztu-9b-vFh.accessibilityLabel" = "Play";
+"Ztu-9b-vFh.accessibilityLabel" = "Jugar";
 

@@ -14,6 +14,7 @@
 		701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701A43861EC26EFD00314599 /* BlocksViewController.swift */; };
 		844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */; };
 		844EAEF822E60CBB00BB1A62 /* FunctionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */; };
+		8D0257D22DDEA3C7004B0B14 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D0257D02DDEA3C7004B0B14 /* InfoPlist.strings */; };
 		8D0D881E2C09068300AC9620 /* DotBlocksMenu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D0D881D2C09068300AC9620 /* DotBlocksMenu.plist */; };
 		8D0D88202C0A51EA00AC9620 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8D0D881F2C0A51EA00AC9620 /* PrivacyInfo.xcprivacy */; };
 		8D27A4522A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */; };
@@ -111,6 +112,7 @@
 		701A43861EC26EFD00314599 /* BlocksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlocksViewController.swift; path = ../BlocksViewController.swift; sourceTree = "<group>"; };
 		844EAEF422E60CBB00BB1A62 /* FunctionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewCell.swift; sourceTree = "<group>"; };
 		844EAEF522E60CBB00BB1A62 /* FunctionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTableViewController.swift; sourceTree = "<group>"; };
+		8D0257D12DDEA3C7004B0B14 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8D0D881D2C09068300AC9620 /* DotBlocksMenu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DotBlocksMenu.plist; sourceTree = "<group>"; };
 		8D0D881F2C0A51EA00AC9620 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
 		8D27A4512A425A8C00A79EB2 /* MultipleChoiceModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceModifierViewController.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				F18FFFB91E65B0FC0090C4B6 /* Assets.xcassets */,
 				FD63882F2A3100D3005F49F7 /* Fonts */,
 				F18FFFBE1E65B0FC0090C4B6 /* Info.plist */,
+				8D0257D02DDEA3C7004B0B14 /* InfoPlist.strings */,
 				8D9853552D013ECC009BA5AE /* Localizable.strings */,
 				F18FFFB21E65B0FB0090C4B6 /* AppDelegate.swift */,
 				F10F716C1E663A520049F3AA /* BlocksForAll-Bridging-Header.h */,
@@ -536,6 +539,7 @@
 				8DEF21BA2C40362400E5E21F /* goat.mp3 in Resources */,
 				8D412CAA2C13915E005B736F /* FreeplayBlocksMenu.plist in Resources */,
 				8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */,
+				8D0257D22DDEA3C7004B0B14 /* InfoPlist.strings in Resources */,
 				F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */,
 				FD6388372A31036B005F49F7 /* AphontBoldItalic.ttf in Resources */,
 				8DEF21C32C40379200E5E21F /* Movement1BeatLoop.mp3 in Resources */,
@@ -650,6 +654,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8D0257D02DDEA3C7004B0B14 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D0257D12DDEA3C7004B0B14 /* es */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		8D98534E2D013575009BA5AE /* Localizable.stringsdict */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Main Workspace</key>
+	<dict>
+		<key>value</key>
+		<string>Main Workspace</string>
+		<key>comment</key>
+		<string>Generic String for Main Workspace</string>
+	</dict>
 	<key>Record</key>
 	<dict>
 		<key>value</key>
@@ -1030,6 +1037,13 @@
 		<string>Cancel</string>
 		<key>comment</key>
 		<string>Generic String for cancel action</string>
+	</dict>
+	<key>Back</key>
+	<dict>
+		<key>value</key>
+		<string>Back</string>
+		<key>comment</key>
+		<string>Generic String for a back button to return to previous screen.</string>
 	</dict>
 </dict>
 </plist>

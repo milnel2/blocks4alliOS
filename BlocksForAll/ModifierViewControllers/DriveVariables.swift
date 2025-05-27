@@ -69,6 +69,7 @@ class DriveVariables: UIViewController {
         setFontStyle()
         
         // Voice Over and Switch Control
+        back.accessibilityLabel = "Back".localized
         driveVariablesView.accessibilityElements = [back!, driveTitleLabel!, distanceLabel!, buttons!, speedTitle!, slowButton!, speedLabel!, speedImage!, fastButton!]
 
         // Text
@@ -158,8 +159,13 @@ class DriveVariables: UIViewController {
    
     /// Called whenever updateScreen() is called. Updates accessibility labels and values to match what is being displayed
     private func updateAccessibilityLabel() {
-        slowButton.accessibilityLabel = NSLocalizedString("Slower. Current speed is \(speed).", comment: "Accessibility label for a button to reduce speed")
-        fastButton.accessibilityLabel = NSLocalizedString("Faster. Current speed is \(speed).", comment: "Accessibility label for a button to increase speed")
+        let formattedString0 = NSLocalizedString("reduce_speed_access_label", comment: "Accessibility label for a button to reduce speed")
+        let resultString0 = String.localizedStringWithFormat(formattedString0, speed)
+        slowButton.accessibilityLabel = resultString0
+        
+        let formattedString1 = NSLocalizedString("increase_speed_access_label", comment: "Accessibility label for a button to increase speed")
+        let resultString1 = String.localizedStringWithFormat(formattedString1, speed)
+        fastButton.accessibilityLabel = resultString1
        
         
         if !speedImage.isHidden {

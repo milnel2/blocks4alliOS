@@ -122,7 +122,7 @@ class VirtualRobot: Equatable {
     func setUpAccessibility() {
         imageView.isUserInteractionEnabled = true
         imageView.isAccessibilityElement = true
-        imageView.accessibilityLabel = "\(name). \(color) \(NSLocalizedString("Color", comment:"used in things like 'Red Color' or 'Default Color'")). \(calculateActorLocationStringForAccessibility())"
+        imageView.accessibilityLabel = "\(name.localized). \(color.localized) \(NSLocalizedString("Color", comment:"used in things like 'Red Color' or 'Default Color'")). \(calculateActorLocationStringForAccessibility())"
         imageView.accessibilityHint = NSLocalizedString("Double tap and hold to drag.", comment: "")
         imageView.accessibilityTraits = .button
     }

@@ -103,6 +103,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     /// Update accessibility elements based on state of screen
     func updateAccessibility() {
         RecordNoiseButton.accessibilityHint = "Can record up to \(MAX_AUDIO_LENGTH) seconds.".localized // TODO: localize
+        BackButton.accessibilityLabel = "Back".localized
         if (hasNoise(forNum: selectedNoiseSlotNum)) {
             // Current slot has a noise, show selected noise, delete button, and play button and update record button
             SelectedNoiseImageView!.isAccessibilityElement = true

@@ -1,317 +1,315 @@
 /* Block movement info */
-". Double tap to move block." = "S";
+". Double tap to move block." = ". Toca dos veces para mover el bloque.";
 
-/* Voice Control label */
-"Add" = "S";
+/* Button text to add new actor to project
+Voice Control label */
+"Add" = "Agregar";
 
 /* Accessibility label for Add Actor Button */
-"Add actor to project." = "S";
+"Add actor to project." = "Agregar caricatura al proyecto.";
 
 /* Accessibility hint for Add New Project Button */
-"Add New Project." = "s";
-
-/* No comment provided by engineer. */
-"Animal Noise" = "s (animal)";
+"Add New Project." = "Agregar nuevo proyecto.";
 
 /* 'Actor' refers to the virtual robot character */
-"Are you sure you want to delete this actor?" = "s";
+"Are you sure you want to delete this actor?" = "¿Estás seguro que quieres borrar esta caricatura?";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete this background image?" = "s";
+"Are you sure you want to delete this background image?" = "¿Estás seguro que quieres borrar este imagen de fondo?";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete this project?" = "s";
+"Are you sure you want to delete this project?" = "¿Estás seguro que quieres borrar este proyecto?";
+
+/* Popup to confirm deleting a custom sound */
+"Are you sure you want to delete this sound?" = "¿Estás seguro que quieres borrar este sonido?";
 
 /* Message for a confirm action */
-"Are you sure you want to delete this?" = "s";
+"Are you sure you want to delete this?" = "¿Estás seguro que quieres borrar esto?";
 
 /* No comment provided by engineer. */
-"Before Wait" = "s";
+"Before Wait" = "Ante Espera";
 
 /* bottom of screen */
-"bottom" = "s";
+"bottom" = "Abajo";
 
 /* Message for an invalid name alert */
-"Choose a different name" = "s";
+"Choose a different name" = "Escoque otro nombre";
+
+/* Title for choose new actor view controller */
+"Choose New Actor" = "Escoque nuevo caricatura";
 
 /* used in things like 'Red Color' or 'Default Color' */
-"Color" = "s";
+"Color" = "Color";
 
 /* Confirm action */
-"Confirm" = "s";
+"Confirm" = "Confirmar";
 
 /* Announcement when no robots are connected */
-"Connect to the dash robot." = "s";
+"Connect to the dash robot." = "Conecta al robot dash.";
 
 /* Voice Control label */
-"Decrease" = "s";
+"Decrease" = "Disminuir";
 
 /* Accessibility hint for trash button */
-"Delete selected blocks" = "s";
+"Delete selected blocks" = "Borrar bloques seleccionado.";
 
 /* No comment provided by engineer. */
-"Double tap and hold to drag." = "s";
+"Double tap and hold to drag." = "Doble toque y sostiene para arrastrar.";
 
 /* Accessibility Hint for block type toolbox */
-"Double tap from menu to select block category." = "s";
+"Double tap from menu to select block category." = "Doble toque el menú para seleccionar categoría de bloque.";
 
 /* Accessibility Hint for table of a certain type of block. Blocks can be moved from here into the workspace */
-"Double tap from toolbox to add block to workspace." = "s";
+"Double tap from toolbox to add block to workspace." = "Doble toque la caja de herramienta para agregar bloques al espacio de trabajo.";
 
 /* Accessibility hint for cell in blocks type toolbox */
-"Double tap to explore blocks in this category" = "s";
+"Double tap to explore blocks in this category" = "Doble toque para explorar bloques en este categoría";
 
 /* Accessibility hint for create/edit functions button */
-"Double tap to go to functions menu." = "s";
+"Double tap to go to functions menu." = "Doble toque para ir al menú de funciones.";
 
 /* Accessibility hint for selecting a multiple choice option */
-"Double tap to select" = "s";
+"Double tap to select" = "Doble toque para seleccionar";
 
 /* Accessibility hint for actor cell */
-"Double tap to select." = "s";
+"Double tap to select." = "Doble toque para seleccionar.";
 
 /* No comment provided by engineer. */
-"Double tap to set color." = "s";
-
-/* No comment provided by engineer. */
-"Emotion Noise" = "s (emotion)";
+"Double tap to set color." = "Doble toque para seleccionar color.";
 
 /* Accessibility User Input Label to place a block at the end of a function */
-"End of function workspace" = "s";
+"End of function workspace" = "Fin del espacio de trabajo para funciones";
 
 /* Accessibility User Input Label to place a block at the end of the workspace */
-"End of workspace" = "s";
+"End of workspace" = "Fin de espacio de trabajo";
 
 /* Accessibility Label for Enter Full Screen button */
-"Enter full screen." = "s";
+"Enter full screen." = "Entrar pantalla completa.";
 
 /* Alert title for creating a new function
 Alert title to rename a custom function */
-"Enter function name" = "s";
+"Enter function name" = "Agregar nombre de función";
 
 /* Title for alert to name a new project */
-"Enter project name" = "s";
+"Enter project name" = "Agregar nombre de proyecto";
 
 /* Voice Control label */
-"Faster" = "s";
+"Faster" = "Más rápido";
 
 /* Accessibility User Input Label for a first (1st) button */
-"First button" = "s";
+"First button" = "Botón primero";
 
 /* Block name for the end of a custom function (ex. block called: <funcName> Function End) */
-"Function End" = "s";
+"Function End" = "Fin de función";
 
 /* Block name for the start of a custom function (ex. block called: <funcName> Function Start) */
-"Function Start" = "s";
+"Function Start" = "Principio de función";
 
 /* Title label for list of custom functions */
-"Functions Menu" = "s";
+"Functions Menu" = "Menú de funciones";
 
 /* Accessibility Label for help button on main menu screen */
-"Help" = "s";
+"Help" = "Ayuda";
 
 /* Accessibility hint for a block in a table of a certain type of block. Block can be moved from here into the workspace */
-"In Toolbox. Double tap to place block in workspace." = "s";
+"In Toolbox. Double tap to place block in workspace." = "En caja de herramientas. Doble toque para colocar bloque en espacio de trabajo.";
 
 /* Voice Control label */
-"Increase" = "s";
+"Increase" = "Aumentar";
 
 /* Left side of screen */
-"left" = "s";
+"left" = "izquierda";
 
 /* Accessibility User Input Label for a button on the left */
-"Left" = "s";
+"Left" = "Izquierda";
 
 /* Voice Control label */
-"Less" = "s";
+"Less" = "Menos";
 
 /* Beginning of description of where a virtual robot is located on the screen. Ex. Location is at left bottom of screen */
-"Location is at" = "s";
+"Location is at" = "Localización es ";
 
 /* No comment provided by engineer. */
-"Look Left or Right" = "s";
-
-/* No comment provided by engineer. */
-"Look Up or Down" = "s";
-
-/* No comment provided by engineer. */
-"Main Workspace" = "s";
+"Main Workspace" = "Espacio de Trabajo Principal";
 
 /* Accessibility hint for play (run code) button */
-"Make your robot go!" = "s";
+"Make your robot go!" = "¡Haz que tu robot funciona!";
 
 /* middle of screen */
-"middle" = "s";
+"middle" = "medio";
 
 /* Voice Control label */
-"Minus" = "s";
+"Minus" = "Menos";
 
 /* Voice Control label */
-"More" = "s";
+"More" = "Más";
 
 /* Title for an invalid name alert */
-"Name already exists" = "s";
+"Name already exists" = "Este nombre ya existe";
 
 /* Title for an invalid name alert */
-"Name cannot be empty" = "s";
+"Name cannot be empty" = "Nombre no puede ser vacía";
 
 /* Title for an invalid name alert */
-"Name cannot have been used before" = "s";
+"Name cannot have been used before" = "Nombre no puede ser usado antes";
 
 /* Title for an invalid name alert */
-"Name is protected" = "s";
+"Name is protected" = "Nombre es protegido";
 
-/* No comment provided by engineer. */
-"Object Noise" = "s (object)";
+/* Description text in the set varaible modifier view controller. A negative number will have the robot move backwards, upwards, or left depending on the context */
+"Negative = backwards, upwards, or left" = "Negativo = al revés, arriba, o izquierda";
 
 /* End of description of where a virtual robot is located on the screen. Ex. Location is at left bottom of screen */
-"of screen." = "s";
+"of screen." = "de pantalla.";
 
 /* Okay action for an invalid name alert */
-"Okay" = "s";
+"Okay" = "Aprobado";
 
 /* Accessibility label for On Actor Tap Code Line Button */
-"On Actor Tap code line." = "s";
+"On Actor Tap code line." = "En Toca Caricatura línea de código.";
 
 /* Accessibility label for On Run Code Line Button */
-"On Run code line." = "s";
+"On Run code line." = "En Ejecutar línea de código.";
 
 /* No comment provided by engineer. */
-"One bunny." = "s";
+"One bunny." = "Un conejito.";
 
 /* No comment provided by engineer. */
-"One snail and one bunny." = "s";
+"One snail and one bunny." = "Una caracol y un conejito.";
 
 /* No comment provided by engineer. */
-"One snail." = "s";
+"One snail." = "Una caracol.";
 
 /* Accessibility label for trash button */
-"Place in Trash" = "s";
+"Place in Trash" = "Coloca al basura";
 
 /* Accessibility Label for play (run code) button
 Accessibility User Input Label for play (run code) button */
-"Play" = "s";
+"Play" = "Jugar";
 
 /* Title for Play with Physical Robot button on main menu screen */
-"Play with Robot" = "s";
+"Play with Robot" = "Jugar con Robot";
 
 /* Title for Play with Virtual Robot button on main menu screen */
-"Play with Virtual Robot" = "s";
+"Play with Virtual Robot" = "Jugar con Robot Virtual";
 
 /* Voice Control label */
-"Plus" = "s";
+"Plus" = "Más";
 
 /* Title for a rename function button */
-"Rename" = "s";
+"Rename" = "Renombre";
 
 /* No comment provided by engineer. */
-"Return to Main Workspace" = "s";
+"Return to Main Workspace" = "Regresa al Espacio de Trabajo Principal";
 
 /* right side of screen */
-"right" = "s";
+"right" = "la derecha";
 
 /* Accessibility User Input Label for a button on the right */
-"Right" = "s";
+"Right" = "La Derecha";
 
 /* Title for a button for a new function */
-"Sample Function" = "s";
+"Sample Function" = "Muestra de Función";
 
 /* Accessibility User Input Label for a second (2nd) button */
-"Second button" = "s";
+"Second button" = "Botón segundo";
 
-/* No comment provided by engineer. */
-"Set All Lights Color" = "s";
+/* title for set variable modifier view controller */
+"select and set a variable" = "Selecciona y Establece el variable";
 
-/* No comment provided by engineer. */
-"Set Front Light Color" = "s";
+/* Title text for drive variable modifier view cotnroller */
+"Select Drive Variable" = "Selecciona Variable de Manejo";
 
-/* No comment provided by engineer. */
-"Set Left Ear Light Color" = "s";
+/* Description text for a look left or right select variable screen */
+"Select Look Left or Right Variable\nLeft = -120, Right = 120" = "Selecciona Variable para Mirar la Izquierda o la Derecha Izquierda = -120, Derecha = 120";
 
-/* No comment provided by engineer. */
-"Set Right Ear Light Color" = "s";
+/* Description text for a look up or down select variable screen */
+"Select Look Up or Down Variable\nUp = -20, Down = 7.5" = "Selecciona Variable para Mirar Arriba o Abajo  Arriba = -20, Abajo = 7.5";
+
+/* Description text for a turn select variable screen */
+"Select turn variable" = "Selecciona variable para girar";
 
 /* Accessibility Label for settings button on main menu screen */
-"Settings" = "s";
+"Settings" = "Ajustes";
 
 /* Text for a show icons or text label when show icons is on */
-"Show Icons" = "s";
+"Show Icons" = "Mostrar Iconos";
+
+/* Accessibility Label for Show Icons segmented control */
+"Show Icons" = "Mostrar Iconos";
+
+/* Accessibility Label for Show Text segmented control */
+"Show Text" = "Mostrar Texto";
 
 /* Accessibility value for a show icons or text label when show icons is on */
-"Show icons selected." = "s";
+"Show icons selected." = "Mostrar iconos seleccionado.";
 
 /* Accessibility label for a show icons or text switch button when show icons is on */
-"Show Icons." = "s";
+"Show Icons." = "Mostar Iconos";
 
 /* Text for a show icons or text label when show text is on */
-"Show Text" = "s";
+"Show Text" = "Mostrar Texto";
 
 /* Accessibility value for a show icons or text label when show text is on */
-"Show text selected." = "s";
+"Show text selected." = "Mostrar el texto seleccionado.";
 
 /* Accessibility label for a show icons or text switch button when show text is on */
-"Show Text." = "s";
+"Show Text." = "Mostrar Texto.";
 
 /* Voice Control label */
-"Slower" = "s";
-
-/* No comment provided by engineer. */
-"Speak" = "s (speak)";
+"Slower" = "Despacito";
 
 /* Accessibility Label for stop button */
-"Stop" = "s";
+"Stop" = "Alto";
 
 /* Accessibility hint for stop button */
-"Stop your robot!" = "s";
+"Stop your robot!" = "¡Detene tu robot!";
 
 /* Voice Control label */
-"Subtract" = "s";
+"Subtract" = "Sustraer";
 
 /* Title string for block type toolbox */
-"Toolbox" = "s";
+"Toolbox" = "Caja de herramientas";
 
 /* Accessibility Label for block type toolbox */
-"Toolbox Menu." = "s";
+"Toolbox Menu." = "Menu de la Caja de Herramientas.";
 
 /* top of screen */
-"top" = "s";
+"top" = "Arriba";
 
 /* No comment provided by engineer. */
-"Turn" = "s";
+"Two bunnies." = "Dos conejos.";
 
 /* No comment provided by engineer. */
-"Two bunnies." = "s";
+"Two snails." = "Dos caracoles.";
 
-/* No comment provided by engineer. */
-"Two snails." = "s";
+/* Generic string for a variable value */
+"value" = "valor";
 
 /* Voice Control label */
-"Value" = "s";
+"Value" = "Valor";
 
 /* No comment provided by engineer. */
-"Vehicle Noise" = "s (vehicle)";
-
-/* No comment provided by engineer. */
-"Wait" = "s";
+"Wait" = "Espera";
 
 /* Label for main menu screen */
-"Welcome to Blocks4All!" = "s";
+"Welcome to Blocks4All!" = "¡Bienvenidos a Blocks4All!";
 
 /* Accessibility User Input Label to place a block at the beginning of the workspace */
-"Workspace" = "s";
+"Workspace" = "Lugar de trabajo";
 
 /* No comment provided by engineer. */
-"Yes" = "s";
+"Yes" = "Sí";
 
 /* Text field placeholder for creating a new function */
-"Your file name" = "s";
+"Your file name" = "Nombre de archivo";
 
 /* Text field placeholder for custom function name */
-"Your function name" = "s";
+"Your function name" = "Tu nombre de función";
 
 /* Placeholder text for textfield to enter project name */
-"Your project name" = "s";
+"Your project name" = "Nombre de proyecto";
 
 /* Accessibility Label for play (run code) button when there are no blocks in the workspace */
-"Your robot has nothing to do! Add some blocks to your workspace." = "s";
+"Your robot has nothing to do! Add some blocks to your workspace." = "¡Tu robot tiene nada que hacer! Agrega algunos bloques en tu espacio de trabajo";
 

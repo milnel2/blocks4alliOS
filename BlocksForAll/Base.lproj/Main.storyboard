@@ -1014,7 +1014,6 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose New Actor" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPt-Ft-1HX">
                                 <rect key="frame" x="403.5" y="107" width="273.5" height="41"/>
-                                <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2621,7 +2620,6 @@ For further information on Blocks4All, please visit our website. For further det
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MULTIPLE CHOICE MODIFIER TYPE TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxI-El-jaR">
                                 <rect key="frame" x="315" y="86.5" width="450.5" height="82"/>
-                                <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2707,7 +2705,6 @@ For further information on Blocks4All, please visit our website. For further det
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STEPPER MODIFIER TYPE TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOM-Mf-5kA">
                                 <rect key="frame" x="300.5" y="107" width="479.5" height="41"/>
-                                <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2796,7 +2793,6 @@ For further information on Blocks4All, please visit our website. For further det
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TWO OPTION MODIFIER TYPE TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRu-Ox-rVQ">
                                 <rect key="frame" x="267" y="107" width="546.5" height="41"/>
-                                <accessibility key="accessibilityConfiguration" label="Animal Noise"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -3106,11 +3102,11 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="cqe-hd-fim"/>
         <segue reference="Mdl-ke-gN7"/>
         <segue reference="CWQ-aM-vhy"/>
-        <segue reference="36F-bB-1lV"/>
+        <segue reference="17X-Fz-tRk"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="hlX-XA-zqW"/>
-        <segue reference="2fL-ta-11H"/>
+        <segue reference="bbR-fH-VNm"/>
+        <segue reference="Oq5-da-dqe"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>

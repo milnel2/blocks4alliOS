@@ -236,7 +236,7 @@ class ExecutingProgram {
         blockCurrentlyRunning = blockToExec
         robotControlViewController.refreshScreen() // refresh screen to highlight the button
         // Announce on VoiceOver that a block is being run
-        UIAccessibility.post(notification: .announcement, argument: "\(blockToExec.name)")
+        UIAccessibility.post(notification: .announcement, argument: "\(blockToExec.name.localized)")
         if connectedRobots.count == 0 && !isInFreeplay{
             return
         }

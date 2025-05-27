@@ -127,7 +127,7 @@ class BlocksTypeTableViewController: UITableViewController {
         cell.textLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 29.0)
         cell.backgroundColor = UIColor(named: "\(blockType.colorName)")
         let formattedString = NSLocalizedString("block_type_category_access_label", comment: "Accessibility label for cell in blocks type toolbox. '<block_type> category.'")
-        cell.accessibilityLabel = String.localizedStringWithFormat(formattedString, blockType.name)
+        cell.accessibilityLabel = String.localizedStringWithFormat(formattedString, blockType.name.localized)
         cell.accessibilityHint = NSLocalizedString("Double tap to explore blocks in this category", comment: "Accessibility hint for cell in blocks type toolbox")
         
 

@@ -1,0 +1,15 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Blocks4All";
+
+/* Bundle name */
+"CFBundleName" = "Blocks4All";
+
+/* Privacy - Bluetooth Always Usage Description */
+"NSBluetoothAlwaysUsageDescription" = "Usamos bluetooth para conectar a Dash";
+
+/* Privacy - Bluetooth Peripheral Usage Description */
+"NSBluetoothPeripheralUsageDescription" = "Usa bluetooth para conectar al robot Dash o Dot";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Micrófono requerido para grabar ruidos personalizados.";
+

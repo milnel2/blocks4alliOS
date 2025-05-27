@@ -21,13 +21,31 @@ private class Localizator { // TODO: make sure this doesn't impact performace. I
     }()
     
     func localize(string: String) -> String {
-        guard let localizationEntry = (localizableDictionary.value(forKey: string) as? NSDictionary) else {
-            print("Missing localization entry for: \(string)")
-                //assertionFailure("Missing localization entry for: \(string)") // TODO: put back once english localization is done (but it's okay if custom function names aren't localized)
-                return string
-                
+        var localizationEntry: NSDictionary? = nil
+        
+        // Look for the string in the dictionary
+        let localizationEntryAsIs = localizableDictionary.value(forKey: string) as? NSDictionary
+        if localizationEntryAsIs != nil {
+            localizationEntry = localizationEntryAsIs
+        } else { // Look for a lowercase version of the string in the dictionary
+            let localizationEntryLowercase = localizableDictionary.value(forKey: string.lowercased()) as? NSDictionary
+            if localizationEntryLowercase != nil {
+                localizationEntry = localizationEntryLowercase
+            } else { // Look for a capitalized version of the string in the dictionary
+                let localizationEntryCapitalized = localizableDictionary.value(forKey: string.capitalized) as? NSDictionary
+                if localizationEntryCapitalized != nil {
+                    localizationEntry = localizationEntryCapitalized
+                } else {
+                    print("Missing localization entry for: \(string)")
+                        //assertionFailure("Missing localization entry for: \(string)") // TODO: put back once english localization is done (but it's okay if custom function names aren't localized)
+                        return string
+                }
             }
-        guard let localizedString = localizationEntry.value(forKey: "value") as? String else {
+        }
+       
+        
+       
+        guard let localizedString = localizationEntry!.value(forKey: "value") as? String else {
                 assertionFailure("Missing translation for: \(string)")
                 return ""
             

@@ -48,7 +48,7 @@ class SelectedBlockViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         let formattedString = NSLocalizedString("block_selected_access_label", comment: "Accessibility label for when a block is selected to move")
-        let label = String.localizedStringWithFormat(formattedString, (blocks?[0].name)!)
+        let label = String.localizedStringWithFormat(formattedString, (blocks?[0].name.localized)!)
         
         
         

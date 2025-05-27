@@ -60,6 +60,7 @@ class DistanceSpeedModViewController: UIViewController{
         updateScreen()
     
         // Accessibility
+        back.accessibilityLabel = "Back".localized
         // Voice Over and Switch Control
         distanceSpeedView.accessibilityElements = [back!, distanceTitle!, distanceDisplayed!, distanceSlider!, speedTitle!, slowButton!, speedLabel!, speedImage!, fastButton!]
         
@@ -146,12 +147,27 @@ class DistanceSpeedModViewController: UIViewController{
     /// Called whenever updateScreen() is called. Updates accessibility labels and values to match what is being displayed
     private func updateAccessibilityTools() {
         // Distance
-        distanceDisplayed.accessibilityValue = NSLocalizedString("Current distance is \(Int(distance)) centimeter(s).", comment: "Accessibility value for a label displaying a distance")
-        distanceSlider.accessibilityValue = NSLocalizedString("\(Int(distance)) centimeter(s).", comment: "Accessibility value for a slider to choose a distance")
+        let formattedString0 = NSLocalizedString("current_distance_access_label", comment: "Accessibility value for a label displaying a distance")
+        let resultString0 = String.localizedStringWithFormat(formattedString0, Int(distance))
+        distanceDisplayed.accessibilityLabel = resultString0
+        
+        
+        let formattedString1 = NSLocalizedString("current_distance_slider_access_label", comment: "Accessibility value for a slider to choose a distance")
+        let resultString1 = String.localizedStringWithFormat(formattedString1, Int(distance))
+        distanceSlider.accessibilityLabel = resultString1
+        
         // Speed
-        slowButton.accessibilityLabel = NSLocalizedString("Slower. Current speed is \(speed).", comment: "Accessibility label for a button to reduce speed")
-        fastButton.accessibilityLabel = NSLocalizedString("Faster. Current speed is \(speed).", comment: "Accessibility label for a button to increase speed")
-        speedLabel.accessibilityLabel = NSLocalizedString("Current speed is \(speed).", comment: "Accessibility label for a label that describes current speed value")
+        let formattedString2 = NSLocalizedString("reduce_speed_access_label", comment: "Accessibility label for a button to reduce speed")
+        let resultString2 = String.localizedStringWithFormat(formattedString2, speed.localized)
+        slowButton.accessibilityLabel = resultString2
+        
+        let formattedString3 = NSLocalizedString("increase_speed_access_label", comment: "Accessibility label for a button to increase speed")
+        let resultString3 = String.localizedStringWithFormat(formattedString3, speed.localized)
+        fastButton.accessibilityLabel = resultString3
+        
+        let formattedString4 = NSLocalizedString("current_speed_access_label", comment: "Accessibility label for a label that describes current speed value")
+        let resultString4 = String.localizedStringWithFormat(formattedString4, speed.localized)
+        speedLabel.accessibilityLabel = resultString4
         
         if !speedImage.isHidden {
             speedImage.isAccessibilityElement = true

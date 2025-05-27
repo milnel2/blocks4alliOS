@@ -208,12 +208,18 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         cell.isAccessibilityElement = true
         
         if attributeName == "lightColor" {
-            cell.accessibilityLabel = NSLocalizedString("\(items[index].localized) color.Option \(index + 1) of \(items.count)", comment: "Accessibility label for a color option. Option (num) of (totalNumOptions)")
+            let formattedString = NSLocalizedString("mult_choice_color_access_label", comment: "Accessibility label for a color option. Option (num) of (totalNumOptions)")
+            let resultString = String.localizedStringWithFormat(formattedString, items[index].localized, index + 1, items.count)
+            cell.accessibilityLabel = resultString
         } else if attributeName == "variableSelected" {
-            cell.accessibilityLabel = NSLocalizedString("\(items[index].localized). Option \(index + 1) of \(items.count)", comment: "Accessibility label for a multiple choice option. Option (num) of (totalNumOptions)")
+            let formattedString = NSLocalizedString("mult_choice_access_label", comment: "Accessibility label for a multiple choice option. Option (num) of (totalNumOptions)")
+            let resultString = String.localizedStringWithFormat(formattedString, items[index].localized, index + 1, items.count)
+            cell.accessibilityLabel = resultString
 
         } else {
-            cell.accessibilityLabel = NSLocalizedString("\(items[index].localized) sound. Option \(index + 1) of \(items.count)", comment: "Accessibility label for a sound option. Option (num) of (totalNumOptions)")
+            let formattedString = NSLocalizedString("mult_choice_sound_access_label", comment: "Accessibility label for a sound option. Option (num) of (totalNumOptions)")
+            let resultString = String.localizedStringWithFormat(formattedString, items[index].localized, index + 1, items.count)
+            cell.accessibilityLabel = resultString
         }
         cell.accessibilityHint = NSLocalizedString("Double tap to select", comment: "Accessibility hint for selecting a multiple choice option")
        
@@ -225,7 +231,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
             cell.layer.borderWidth = 10
             cell.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
             cell.isSelected = true
-            cell.accessibilityHint = "Selected" // TODO: do we need this if cell.isSelected is true?
+            cell.accessibilityHint = "Selected".localized // TODO: do we need this if cell.isSelected is true?
         } else {
             cell.isSelected = false
             cell.layer.borderWidth = 0

@@ -106,12 +106,12 @@ class CustomizeActorViewController: UIViewController {
     
     func setUpAccessibility() {
         let formattedString = NSLocalizedString("actor_cell_access_label", comment: "Accessibility label for actor cell. Should say the actor's name and color.")
-        let resultString = String.localizedStringWithFormat(formattedString, currentActor!.name, selectedColor.localized)
+        let resultString = String.localizedStringWithFormat(formattedString, currentActor!.name.localized, selectedColor.localized)
         actorImageDisplayView.accessibilityLabel = resultString
         
-        let formattedString2 = NSLocalizedString("delete_actor_button_access_hint", comment: "Accessibility Hint for button to delete actor. 'Delete <actor name> actor.'")
-        let resultString2 = String.localizedStringWithFormat(formattedString, currentActor!.name)
-        deleteButton.accessibilityHint = resultString2
+        let formattedString2 = NSLocalizedString("delete_actor_button_access_hint", comment: "Accessibility Hint for button to delete actor. 'Delete <actor name> actor.'") 
+        let resultString2 = String.localizedStringWithFormat(formattedString2, currentActor!.name.localized)
+        deleteButton.accessibilityLabel = resultString2
    
         for button in colorButtons {
             button.accessibilityHint = NSLocalizedString( "Double tap to set color.", comment: "")

@@ -136,10 +136,10 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         cell.isAccessibilityElement = true
         
         let formattedString = NSLocalizedString("actor_cell_access_label", comment: "Accessibility label for actor cell. '<actor_name>. <actor_color> color.'")
-        let resultString = String.localizedStringWithFormat(formattedString, name, "Default")
+        let resultString = String.localizedStringWithFormat(formattedString, name.localized, "Default".localized)
         cell.accessibilityLabel = resultString
         
-        cell.accessibilityHint = NSLocalizedString( "Double tap to select.", comment: "Accessibility hint for actor cell")
+        cell.accessibilityHint = NSLocalizedString("Double tap to select.", comment: "Accessibility hint for actor cell")
         
         cell.accessibilityIdentifier = String(index)
         

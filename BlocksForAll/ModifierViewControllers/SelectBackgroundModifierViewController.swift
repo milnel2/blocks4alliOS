@@ -274,13 +274,23 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         let nonZeroIndex = index + 1
         let totalNumCells = backgrounds.count
         
-        cell.accessibilityLabel = NSLocalizedString("\(bgImage.getImagePath()) image. Double tap to select. Option \(nonZeroIndex) of \(totalNumCells).", comment: "Accessibility Label for an unselected background image cell in Select Background View Controller")
+        cell.accessibilityLabel =
+            String.localizedStringWithFormat(
+                NSLocalizedString("multiple_choice_image_unselected_indexed_access_label", comment: "Accessibility Label for an unselected background image cell in Select Background View Controller"),
+                bgImage.getImagePath(),
+                nonZeroIndex,
+                totalNumCells)
         
         // Highlight the cell if needed
         if index == focusedBackgroundIndex {
             cell.highlight()
             
-            cell.accessibilityLabel = NSLocalizedString("\(bgImage.getImagePath()) image. Selected. Option \(nonZeroIndex) of \(totalNumCells).", comment: "Accessibility Label for a selected background image cell in Select Background View Controller")
+            cell.accessibilityLabel =
+                String.localizedStringWithFormat(
+                    NSLocalizedString("multiple_choice_image_selected_indexed_access_label", comment: "Accessibility Label for a selected background image cell in Select Background View Controller"),
+                    bgImage.getImagePath(),
+                    nonZeroIndex,
+                    totalNumCells)
         } else {
             cell.removeHighlight()
         }
@@ -379,8 +389,11 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         FocusedBackgroundImageView.isAccessibilityElement = true
         
         accessibilityElements = [back!, SelectBackgroundTitleLabel!, FocusedBackgroundImageView!, BackgroundsCollectionView!]
-    
-        FocusedBackgroundImageView.accessibilityLabel = NSLocalizedString("\(focusedBackground!.getImagePath()) image selected.", comment: "Accessibility Label for a selected Image View")
+        back.accessibilityLabel = "Back".localized
+        FocusedBackgroundImageView.accessibilityLabel =
+            String.localizedStringWithFormat(
+                NSLocalizedString("multiple_choice_image_selected_access_label", comment: "Accessibility Label for a selected Image View"),
+                focusedBackground!.getImagePath())
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

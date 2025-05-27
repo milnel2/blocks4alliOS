@@ -401,7 +401,7 @@ class ModifierButton: UIButton {
                 let actorUUID = block.attributes["moveToActor"] ?? ""
                
                 let actor = VirtualRobot.getActorFromUUIDOrDefault(actorUUID: actorUUID, inProject: currentProject!)!
-                accessibilityLabel = "\(actor.name), \(actor.color)"
+                accessibilityLabel = "\(actor.name.localized), \(actor.color.localized)"
                 
             } else if block.name == "Move to Location" {
                 

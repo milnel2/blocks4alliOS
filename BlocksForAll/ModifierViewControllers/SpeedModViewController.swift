@@ -125,13 +125,15 @@ class SpeedModViewController: UIViewController{
     /// Called whenever updateScreen() is called. Updates accessibility labels and values to match what is being displayed
     private func updateAccessibilityTools() {
         // Speed
-        slowButton.accessibilityLabel = "Slower. Current speed: \(speed)"
-        fastButton.accessibilityLabel = "Faster. Current speed: \(speed)"
-        speedLabel.accessibilityLabel = "Current speed is \(speed)"
-        
-        slowButton.accessibilityLabel = NSLocalizedString("Slower. Current speed: \(speed).", comment: "Accessiblity Label for a button to decrease speed")
-        fastButton.accessibilityLabel = NSLocalizedString("Faster. Current speed: \(speed).", comment: "Accessibility Label for a button to increase speed")
-        speedLabel.accessibilityLabel = NSLocalizedString("Current speed is \(speed).", comment: "Accessibility Label for a label displaying current speed")
+        slowButton.accessibilityLabel = String.localizedStringWithFormat(
+                NSLocalizedString("reduce_speed_access_label", comment: "Accessiblity Label for a button to decrease speed"),
+                speed)
+        fastButton.accessibilityLabel = String.localizedStringWithFormat(
+                NSLocalizedString("increase_speed_access_label", comment: "Accessiblity Label for a button to increase speed"),
+                speed)
+        speedLabel.accessibilityLabel = String.localizedStringWithFormat(
+                NSLocalizedString("current_speed_access_label", comment: "Accessiblity Label for a label with current speed"),
+                speed)
         
         if !speedImage.isHidden {
             speedImage.isAccessibilityElement = true

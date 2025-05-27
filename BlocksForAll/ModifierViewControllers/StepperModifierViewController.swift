@@ -153,11 +153,9 @@ class StepperModifierViewController: UIViewController {
             modifierValue = modifierValue + 1
             updateModifierValueLabel()
         } else {
-            if #available(iOS 15, *) {
-                increaseButton.accessibilityLabel = NSLocalizedString("At maximum value. Current value: \(modifierValueLabel.text ?? String(modifierValue)).", comment: "Accessibility label for an increase button when it cannot go any higher")
-            } else {
-                increaseButton.accessibilityLabel = "At maximum value. Current value: \(modifierValueLabel.text ?? String(modifierValue))."
-            }
+        increaseButton.accessibilityLabel = String.localizedStringWithFormat(
+                NSLocalizedString("increase_button_at_max_val_access_label", comment: "Accessibility label for an increase button when it cannot go any higher"),
+                modifierValueLabel.text ?? String(modifierValue))
         }
         
     }
@@ -168,7 +166,10 @@ class StepperModifierViewController: UIViewController {
             modifierValue = modifierValue - 1
             updateModifierValueLabel()
         } else {
-            decreaseButton.accessibilityLabel = NSLocalizedString("At minimum value. Current value: \(modifierValueLabel.text ?? String(modifierValue)).", comment: "Accessibility label for an increase button when it cannot go any higher")
+            
+            decreaseButton.accessibilityLabel = String.localizedStringWithFormat(
+                    NSLocalizedString("decrease_button_at_min_val_access_label", comment: "Accessibility label for a decrease button when it cannot go any lower"),
+                    modifierValueLabel.text ?? String(modifierValue))
         }
     }
     
@@ -204,8 +205,12 @@ class StepperModifierViewController: UIViewController {
     
     /// Update accessibliity tools
     private func updateAccessibilityLabel() {
-        increaseButton.accessibilityLabel = NSLocalizedString("Increase. Current value: \(modifierValueLabel.text ?? String(modifierValue)).", comment: "Accessibility label for an increase button")
-        decreaseButton.accessibilityLabel = NSLocalizedString("Decrease. Current value: \(modifierValueLabel.text ?? String(modifierValue)).", comment: "Accessibility label for a decrease button")
+        increaseButton.accessibilityLabel = String.localizedStringWithFormat(
+                NSLocalizedString("increase_button_access_label", comment: "Accessibility label for an increase button"),
+                modifierValueLabel.text ?? String(modifierValue))
+        decreaseButton.accessibilityLabel = String.localizedStringWithFormat(
+                NSLocalizedString("decrease_button_access_label", comment: "Accessibility label for a decrease button"),
+                modifierValueLabel.text ?? String(modifierValue))
     }
     
     /// Set all labels to custom font

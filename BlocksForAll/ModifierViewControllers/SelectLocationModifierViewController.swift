@@ -9,8 +9,8 @@
 import Foundation
 
 public struct LocationConstants {
-    static let numRows = 4.0
-    static let numCols = 7.0
+    static let numRows = 4
+    static let numCols = 7
 }
 
 /// View Controller for selecting a location for freeplay Move to Location Blocks. Show a grid of locations to select from
@@ -81,7 +81,8 @@ class SelectLocationModifierViewController: UIViewController  {
         } else {
             optionSelectedIndex = Int(previousOption) ?? centerCellIndex
         }
-       
+        modifierTitleLabel.text = "Move to Location".localized
+        backButton.accessibilityLabel = "Back".localized
         accessibilityElements = [backButton!, modifierTitleLabel!, collectionView!]
         
         collectionView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.9490196078, blue: 1, alpha: 1)
@@ -91,20 +92,20 @@ class SelectLocationModifierViewController: UIViewController  {
         let centerCellIndex: Int
         let numRows = LocationConstants.numRows
         let numCols = LocationConstants.numCols
-        if numRows.truncatingRemainder(dividingBy: 2) != 0 {
+        if Double(numRows).truncatingRemainder(dividingBy: 2) != 0 {
             centerCellIndex = Int((numRows * numCols - 1) / 2) // if there are an odd number of rows, just put it in the center
         } else {
             let rowToGoIn = Int(numRows / 2) - 1// go in the upper middle row
-            let colToGoIn = Int(ceil(numCols / 2)) - 1 // go in the middle column
-            centerCellIndex = (rowToGoIn * Int(numCols)) + colToGoIn
+            let colToGoIn = Int(ceil(Double(numCols) / 2)) - 1 // go in the middle column
+            centerCellIndex = (rowToGoIn * numCols) + colToGoIn
         }
         return centerCellIndex
     }
     
     /// calculate cell size based on the size of the grid and the number of rows and columns
     func calculateCellSize() {
-        cellWidth = floor(outputWidth / numCols)
-        cellHeight = floor(outputHeight / numRows)
+        cellWidth = floor(outputWidth / Double(numCols))
+        cellHeight = floor(outputHeight / Double(numRows))
     }
     
     // Given an index of a cell, returns a string of the coordinates associated with it on the output view
@@ -128,7 +129,7 @@ class SelectLocationModifierViewController: UIViewController  {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         // Going back to freeplay workspace
-        if let destination = segue.destination as? FreePlayWorkspaceViewController {
+        if segue.destination is FreePlayWorkspaceViewController {
             
             let coords = getCoordinatesFromCellIndex(index: optionSelectedIndex)
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["moveToLocation"] = coords
@@ -169,10 +170,15 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
         if indexPath.item == optionSelectedIndex {
             setCellHighlight(cell: cell, value: true)
            
-            cell.accessibilityLabel = NSLocalizedString("Selected. Row \(cellRow) of \(numRows), Column \(cellColumn) of \(numCols).", comment: "Accessiblity Label for a selected cell in Select Location View Controller")
+            let formattedString = NSLocalizedString("row_column_selected_access_label", comment: "Accessiblity Label for a selected cell in Select Location View Controller")
+            let resultString = String.localizedStringWithFormat(formattedString, String(cellRow), String(numRows), String(cellColumn), String(numCols))
+            cell.accessibilityLabel = resultString
+           
         } else {
             setCellHighlight(cell: cell, value: false)
-            cell.accessibilityLabel = NSLocalizedString("Row \(cellRow) of \(numRows), Column \(cellColumn) of \(numCols).", comment: "Accessiblity Label for an unselected cell in Select Location View Controller")
+            let formattedString = NSLocalizedString("row_column_access_label", comment: "Accessibility Label for moveToLocation button with row and column information. 'Row <row> of <numRows>, Column <column> of <numColumns>.'")
+            let resultString = String.localizedStringWithFormat(formattedString, String(cellRow), String(numRows), String(cellColumn), String(numCols))
+            cell.accessibilityLabel = resultString
         }
         
         cell.isAccessibilityElement = true

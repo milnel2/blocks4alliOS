@@ -69,7 +69,8 @@ class SettingsViewController: UIViewController {
         
         blockSizeLabel.adjustsFontForContentSizeCategory = true
         showIconsLabel.adjustsFontForContentSizeCategory = true
-        
+        showIconsOrText.subviews[0].accessibilityLabel = NSLocalizedString("Show Icons", comment: "Accessibility Label for Show Icons segmented control")
+        showIconsOrText.subviews[1].accessibilityLabel = NSLocalizedString("Show Text", comment: "Accessibility Label for Show Text segmented control")
     }
     /// Called when the showIconsOrText switch is pressed
     @IBAction func showIconsOrTextSelected(_ sender: UISegmentedControl, forEvent event: UIEvent) {

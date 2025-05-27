@@ -78,7 +78,10 @@ class TwoOptionModifierViewController: UIViewController {
         // Accessibility
         // VoiceOver
         optionModView.accessibilityElements = [back!, optionModTitle!, modifierValueLabel!, optionOneButton!,  optionTwoButton!]
-        modifierValueLabel.accessibilityLabel = NSLocalizedString("Current selection: \(modifierValue)", comment: "Accessibility Label for a label in the two option modifier view controller")
+        modifierValueLabel.accessibilityLabel = String.localizedStringWithFormat(
+            NSLocalizedString("current_selection_access_label", comment: "Accessibility label for a current selection that is a string"),
+            modifierValue)
+
     
         // Voice Control
         //TODO: test voice control
@@ -170,14 +173,16 @@ class TwoOptionModifierViewController: UIViewController {
     /// Set text value of modifierValueLabel which is under the two option buttons
     private func updateModifierValueLabel () {
         modifierValueLabel.text = "\(modifierValue)"
-        modifierValueLabel.accessibilityLabel = "\(optionType) is \(modifierValue)"
     }
 
     /// Call whenever things are changed on the screen
     private func updateAccessibilityLabel() {
-        optionTwoButton.accessibilityLabel = "\(optionTwo)."
-        optionOneButton.accessibilityLabel = "\(optionOne)."
-        modifierValueLabel.accessibilityLabel = NSLocalizedString("Current selection: \(modifierValue)", comment: "Accessibility Label for a label in the two option modifier view controller")
+        optionTwoButton.accessibilityLabel = "\(optionTwo.localized)."
+        optionOneButton.accessibilityLabel = "\(optionOne.localized)."
+        
+        modifierValueLabel.accessibilityLabel = String.localizedStringWithFormat(
+            NSLocalizedString("current_selection_access_label", comment: "Accessibility label for a current selection"),
+            modifierValue)
     }
     
     private func setFontStyle() {

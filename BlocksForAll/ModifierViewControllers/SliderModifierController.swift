@@ -97,6 +97,7 @@ class SliderModifierController: UIViewController {
         // Accessibility
         updateAccessibilityTools()
         back.titleLabel?.adjustsFontForContentSizeCategory = true
+        back.accessibilityLabel = "Back".localized
         turnView.accessibilityElements = [back!, optionModTitle!, valueDisplayed!, slider!]
         setFontStyle()
     }
@@ -109,7 +110,7 @@ class SliderModifierController: UIViewController {
             let resultString = String.localizedStringWithFormat(formattedString, roundedSliderValue)
             slider.accessibilityValue = resultString
             
-            let formattedString2 = NSLocalizedString("current_value_is_degrees", comment: "Accessibility value for a label describing the value of a slider to choose angle")
+            let formattedString2 = NSLocalizedString("current_value_is_degrees", comment: "Accessibility value for a label describing the value of a slider to choose angle") // TODO: this is incorrect in spanish. It repeats and nests within itself
             let resultString2 = String.localizedStringWithFormat(formattedString2, roundedSliderValue)
             valueDisplayed.accessibilityValue = resultString2
             

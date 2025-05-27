@@ -303,8 +303,8 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         addActorButton.accessibilityLabel = NSLocalizedString("Add actor to project.", comment: "Accessibility label for Add Actor Button")
         
         let formattedString = NSLocalizedString("current_actor_image_view_access_label", comment: "Accessibility label for Current Actor Image")
-        let actorName = currentProject!.currentActor!.name
-        let resultString = String.localizedStringWithFormat(formattedString, actorName)
+        let actorNameLocalized = currentProject!.currentActor!.name.localized
+        let resultString = String.localizedStringWithFormat(formattedString, actorNameLocalized)
         currentActorImageView.accessibilityLabel = resultString
         
         FirstCodeLineButton.accessibilityLabel = NSLocalizedString("On Run code line.", comment: "Accessibility label for On Run Code Line Button")
@@ -312,7 +312,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         secondCodeLineButton.accessibilityLabel = NSLocalizedString("On Actor Tap code line.", comment: "Accessibility label for On Actor Tap Code Line Button")
         
         let formattedString2 = NSLocalizedString("second_code_line_access_hint", comment: "Accessibility hint for On Actor Tap Code Line Button")
-        let resultString2 = String.localizedStringWithFormat(formattedString2, actorName)
+        let resultString2 = String.localizedStringWithFormat(formattedString2, actorNameLocalized)
         secondCodeLineButton.accessibilityHint = resultString2
         
         enterFullScreenButton.accessibilityLabel = NSLocalizedString("Enter full screen.", comment: "Accessibility Label for Enter Full Screen button")

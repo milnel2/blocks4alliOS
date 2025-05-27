@@ -85,6 +85,7 @@ class SetVariableModViewController: UIViewController {
         
         // Accessibility
         // VoiceOver
+        back.accessibilityLabel = "Back".localized
         setVarView.accessibilityElements = [back!, setVariableTitle!, buttons!, valueLabel!, variableValueInput!, descriptionLabel!]
         // Voice Control
         if #available(iOS 13.0, *) {
