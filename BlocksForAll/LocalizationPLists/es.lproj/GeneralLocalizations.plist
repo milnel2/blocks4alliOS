@@ -439,7 +439,7 @@
 	<key>Object Noise</key>
 	<dict>
 		<key>value</key>
-		<string>Ruido de Objecto</string>
+		<string>Ruido de Objeto</string>
 		<key>comment</key>
 		<string>Generic String for Object Noise blocks category</string>
 	</dict>

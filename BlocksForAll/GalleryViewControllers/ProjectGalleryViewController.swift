@@ -255,7 +255,12 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
     }
     
     func doesProjectNameAlreadyExist(name: String) -> Bool {
-        for proj in allProjects[galleryType]! {
+        for proj in allProjects[FREEPLAY_GALLERY_TYPE]! {
+            if proj.name == name {
+                   return true
+            }
+        }
+        for proj in allProjects[ROBOT_GALLERY_TYPE]! {
             if proj.name == name {
                    return true
             }
