@@ -3015,14 +3015,24 @@ For further information on Blocks4All, please visit our website. For further det
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lcr-KP-6G2">
                                 <rect key="frame" x="50" y="214" width="980" height="546"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="500" placeholderIntrinsicHeight="350" translatesAutoresizingMaskIntoConstraints="NO" id="LSV-dX-nld" userLabel="Focused Background Image View">
-                                        <rect key="frame" x="240" y="0.0" width="500" height="350"/>
-                                    </imageView>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="500" placeholderIntrinsicHeight="350" translatesAutoresizingMaskIntoConstraints="NO" id="LOL-xt-l8f" userLabel="Content View">
+                                        <rect key="frame" x="240" y="0.0" width="500" height="393"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="500" placeholderIntrinsicHeight="350" image="tempBackground1" translatesAutoresizingMaskIntoConstraints="NO" id="LSV-dX-nld" userLabel="Focused Background Image View">
+                                                <rect key="frame" x="0.0" y="0.0" width="500" height="393"/>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="LSV-dX-nld" firstAttribute="centerX" secondItem="LOL-xt-l8f" secondAttribute="centerX" id="7Vd-kf-c6u"/>
+                                            <constraint firstItem="LSV-dX-nld" firstAttribute="centerY" secondItem="LOL-xt-l8f" secondAttribute="centerY" id="ACn-UF-7OJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="LSV-dX-nld" secondAttribute="bottom" id="Q5g-34-K6e"/>
+                                        </constraints>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zdb-kU-v2p">
-                                        <rect key="frame" x="0.0" y="370" width="980" height="176"/>
+                                        <rect key="frame" x="0.0" y="413" width="980" height="133"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6LU-Da-KnO">
-                                                <rect key="frame" x="0.0" y="0.0" width="133" height="176"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
                                                 <accessibility key="accessibilityConfiguration" hint="Double tap to open camera roll" label="Add New Background"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="addProjectButton">
@@ -3033,7 +3043,7 @@ For further information on Blocks4All, please visit our website. For further det
                                                 </connections>
                                             </button>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="waC-JW-j0j">
-                                                <rect key="frame" x="133" y="0.0" width="847" height="176"/>
+                                                <rect key="frame" x="133" y="0.0" width="847" height="133"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uoU-2D-txm">
                                                     <size key="itemSize" width="128" height="128"/>
@@ -3043,7 +3053,7 @@ For further information on Blocks4All, please visit our website. For further det
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BackgroundCell" id="mnN-Iu-tfJ">
-                                                        <rect key="frame" x="0.0" y="24" width="128" height="128"/>
+                                                        <rect key="frame" x="0.0" y="2.5" width="128" height="128"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="k1D-dO-nux">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -3060,8 +3070,22 @@ For further information on Blocks4All, please visit our website. For further det
                                     <constraint firstAttribute="trailing" secondItem="Zdb-kU-v2p" secondAttribute="trailing" id="8UI-th-wGw"/>
                                     <constraint firstAttribute="bottom" secondItem="Zdb-kU-v2p" secondAttribute="bottom" id="Abd-3g-X7i"/>
                                     <constraint firstItem="Zdb-kU-v2p" firstAttribute="leading" secondItem="lcr-KP-6G2" secondAttribute="leading" id="Lc4-N6-Rd9"/>
+                                    <constraint firstItem="LOL-xt-l8f" firstAttribute="centerX" secondItem="lcr-KP-6G2" secondAttribute="centerX" id="Utq-fO-aJa"/>
+                                    <constraint firstItem="Zdb-kU-v2p" firstAttribute="top" secondItem="lcr-KP-6G2" secondAttribute="top" constant="413" id="Y97-71-Mf6"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b97-vT-dBe">
+                                <rect key="frame" x="765" y="189" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="aEE-7r-Fk7"/>
+                                    <constraint firstAttribute="height" constant="50" id="erI-gm-1k0"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="deleteProjectButton"/>
+                                <connections>
+                                    <action selector="deleteActionWithSender:" destination="Daw-d8-AsD" eventType="touchUpInside" id="Lvx-Tr-CJ8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -3071,15 +3095,19 @@ For further information on Blocks4All, please visit our website. For further det
                             <constraint firstAttribute="trailing" secondItem="lcr-KP-6G2" secondAttribute="trailing" constant="50" id="Quo-uy-crs"/>
                             <constraint firstItem="G0I-xg-zo4" firstAttribute="centerY" secondItem="HQU-Mj-gRp" secondAttribute="centerY" id="Rs7-EG-Z8a"/>
                             <constraint firstItem="lcr-KP-6G2" firstAttribute="leading" secondItem="KgD-Fe-hPq" secondAttribute="leading" constant="50" id="T4D-Fs-HCo"/>
+                            <constraint firstItem="LSV-dX-nld" firstAttribute="top" secondItem="b97-vT-dBe" secondAttribute="bottom" constant="-25" id="Tz2-nA-zMq"/>
                             <constraint firstItem="HQU-Mj-gRp" firstAttribute="leading" secondItem="KgD-Fe-hPq" secondAttribute="leading" constant="20" id="UDe-ry-bcK"/>
                             <constraint firstItem="lcr-KP-6G2" firstAttribute="centerX" secondItem="KgD-Fe-hPq" secondAttribute="centerX" id="eSM-sv-xCf"/>
                             <constraint firstItem="hVH-fw-vgw" firstAttribute="top" secondItem="lcr-KP-6G2" secondAttribute="bottom" constant="50" id="iFY-dE-TZE"/>
+                            <constraint firstItem="b97-vT-dBe" firstAttribute="leading" secondItem="LSV-dX-nld" secondAttribute="trailing" constant="-25" id="x8L-yy-yzx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GrA-6u-sxl"/>
                     <connections>
                         <outlet property="AddNewBackgroundButton" destination="6LU-Da-KnO" id="9C0-QP-OnZ"/>
                         <outlet property="BackgroundsCollectionView" destination="waC-JW-j0j" id="iwF-wX-hIU"/>
+                        <outlet property="DeleteBackgroundButton" destination="b97-vT-dBe" id="wWn-uO-q9n"/>
+                        <outlet property="FocusedBackgroundContentView" destination="LOL-xt-l8f" id="NO7-6u-ipD"/>
                         <outlet property="FocusedBackgroundImageView" destination="LSV-dX-nld" id="Wtx-4t-Hdg"/>
                         <outlet property="HorizontalStackView" destination="Zdb-kU-v2p" id="k8S-qT-xSH"/>
                         <outlet property="SelectBackgroundTitleLabel" destination="G0I-xg-zo4" id="Zu7-rm-bQ0"/>
@@ -3102,11 +3130,11 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="cqe-hd-fim"/>
         <segue reference="Mdl-ke-gN7"/>
         <segue reference="CWQ-aM-vhy"/>
-        <segue reference="17X-Fz-tRk"/>
+        <segue reference="sX9-WY-IIJ"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="bbR-fH-VNm"/>
-        <segue reference="Oq5-da-dqe"/>
+        <segue reference="Ziz-rn-vTi"/>
+        <segue reference="2fL-ta-11H"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -3144,6 +3172,7 @@ For further information on Blocks4All, please visit our website. For further det
         <image name="purple_minus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="purple_plus" width="133.44094848632812" height="133.44094848632812"/>
         <image name="record" width="133.44094848632812" height="133.44094848632812"/>
+        <image name="tempBackground1" width="1614" height="980"/>
         <namedColor name="animalNoiseColor">
             <color red="0.85900002717971802" green="0.94900000095367432" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

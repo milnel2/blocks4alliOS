@@ -17,9 +17,12 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
     @IBOutlet weak var back: UIButton!
     @IBOutlet weak var SelectBackgroundTitleLabel: UILabel!
     @IBOutlet weak var FocusedBackgroundImageView: UIImageView! // Large image view that is an enlarged version of the selected background image
+    @IBOutlet weak var FocusedBackgroundContentView: UIView! // View that holds the focused background
+    @IBOutlet weak var DeleteBackgroundButton: UIButton! // Button to delete a custom background
     @IBOutlet weak var BackgroundsCollectionView: UICollectionView! // Holds row of background image options
     @IBOutlet weak var AddNewBackgroundButton: UIButton!
     @IBOutlet weak var HorizontalStackView: UIStackView! // Holds AddNewBackgroundButton and collection view
+    
     
     var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
     var currentProject: Project? {
@@ -128,6 +131,19 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
                 backgroundCell.removeHighlight()
             }
         }
+        
+        let savedCustomPaths = UserData.data.getCustomBackgroundPaths()
+        if savedCustomPaths.contains(backgrounds[imageIndex].getImagePath()) { // Curent image is a custom background, show the delete button
+            DeleteBackgroundButton.isHidden = false
+            DeleteBackgroundButton.isEnabled = true
+            DeleteBackgroundButton.tag = imageIndex // pass the index of the cell
+            FocusedBackgroundContentView.accessibilityElements = [FocusedBackgroundImageView!, DeleteBackgroundButton!]
+        } else { // This is a built-in background, hide the delete button
+            DeleteBackgroundButton.isHidden = true
+            DeleteBackgroundButton.isEnabled = false
+            FocusedBackgroundContentView.accessibilityElements = [FocusedBackgroundImageView!]
+        }
+        
         BackgroundsCollectionView.reloadData()
     }
     
@@ -294,32 +310,11 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         } else {
             cell.removeHighlight()
         }
-        let savedCustomPaths = UserData.data.getCustomBackgroundPaths()
-        if savedCustomPaths.contains(backgrounds[index].getImagePath()) {
-            // Cell is a custom background
-            //TODO: styling
-            let deleteButton = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-            deleteButton.setTitle("X", for: .normal)
-            cell.addSubview(deleteButton)
-    //        button.titleLabel?.font = UIFont.accessibleFont(withStyle: .title1, size: 26.0)
-    //        button.titleLabel?.adjustsFontForContentSizeCategory = true
-    //        button.sizeToFit()  // makes button wider with larger text
-    //
-            deleteButton.backgroundColor = UIColor(red: 1.0, green: CGFloat(60.0/255.0), blue: 0.0, alpha: 1.0)  // Red
-    //        button.setTitleColor(.white, for: .normal)
-    //
-            deleteButton.layer.cornerRadius = 10
-            cell.deleteButton = deleteButton
-            deleteButton.tag = index // pass the index of the cell
-            deleteButton.addTarget(self, action: #selector(deleteAction(sender:)), for: .touchUpInside)
-    //        button.translatesAutoresizingMaskIntoConstraints = false
-            
-        }
         
         return cell
     }
     
-    @objc func deleteAction(sender: UIButton){
+    @IBAction func deleteAction(sender: UIButton){
         // Verify delete action
         let titleString: String
         titleString = NSLocalizedString("Are you sure you want to delete this background image?", comment: "")
@@ -374,22 +369,36 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         HorizontalStackView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) // TODO: dark mode
         HorizontalStackView.layer.cornerRadius = 10
         
+        FocusedBackgroundImageView.layer.borderWidth = 5
+        FocusedBackgroundImageView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
         AddNewBackgroundButton.titleLabel?.text = ""
         
         let screenHeight = UIScreen.main.bounds.height
         let screenWidth = UIScreen.main.bounds.width
-        let heightContstraint = NSLayoutConstraint(item: FocusedBackgroundImageView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: screenHeight / 2)
-        let widthContstraint = NSLayoutConstraint(item: FocusedBackgroundImageView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: screenWidth / 2)
-        FocusedBackgroundImageView.addConstraint(heightContstraint)
-        FocusedBackgroundImageView.addConstraint(widthContstraint)
+        let heightContstraint = NSLayoutConstraint(item: FocusedBackgroundContentView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: screenHeight / 2.5)
+        let widthContstraint = NSLayoutConstraint(item: FocusedBackgroundContentView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: screenWidth / 2.5)
+        FocusedBackgroundContentView.addConstraint(heightContstraint)
+        FocusedBackgroundContentView.addConstraint(widthContstraint)
+        
+        let heightContstraint2 = NSLayoutConstraint(item: FocusedBackgroundImageView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: screenHeight / 2.5)
+        let widthContstraint2 = NSLayoutConstraint(item: FocusedBackgroundImageView!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: screenWidth / 2.5)
+        FocusedBackgroundImageView.addConstraint(heightContstraint2)
+        FocusedBackgroundImageView.addConstraint(widthContstraint2)
     }
     
     func setUpAccessibility() {
         SelectBackgroundTitleLabel.isAccessibilityElement = true
+        //FocusedBackgroundContentView.isAccessibilityElement = true
         FocusedBackgroundImageView.isAccessibilityElement = true
+        DeleteBackgroundButton.isAccessibilityElement = true
+        DeleteBackgroundButton.accessibilityTraits = .button
         
-        accessibilityElements = [back!, SelectBackgroundTitleLabel!, FocusedBackgroundImageView!, BackgroundsCollectionView!]
+        accessibilityElements = [back!, SelectBackgroundTitleLabel!, FocusedBackgroundContentView!, DeleteBackgroundButton!, BackgroundsCollectionView!]
         back.accessibilityLabel = "Back".localized
+        DeleteBackgroundButton.accessibilityLabel =  String.localizedStringWithFormat(
+            NSLocalizedString("delete_custom_image_button_access_label", comment: "Accessibility Label for a button that will delete a custom image"),
+            focusedBackground!.getImagePath())
         FocusedBackgroundImageView.accessibilityLabel =
             String.localizedStringWithFormat(
                 NSLocalizedString("multiple_choice_image_selected_access_label", comment: "Accessibility Label for a selected Image View"),
@@ -398,21 +407,15 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if (segue.identifier == "backToFreeplay") {
-            let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
-            
             let focusedBackgroundImage = backgrounds[focusedBackgroundIndex]
             
             currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes["background"] = focusedBackgroundImage.getImagePath() // Tell BlocksViewController which background was selected
-           
         }
-         
     }
 }
 
 
 class BackgroundCell: UICollectionViewCell {
-    
-    var deleteButton: UIButton? = nil
     
     func highlight() {
         layer.borderWidth = 10
@@ -423,8 +426,5 @@ class BackgroundCell: UICollectionViewCell {
         layer.borderWidth = 0
         isSelected = false
     }
-
-    
-    
 }
 

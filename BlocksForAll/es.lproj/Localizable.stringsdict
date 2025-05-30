@@ -478,6 +478,18 @@
 			<string></string>
 		</dict>
 	</dict>
+	<key>delete_custom_image_button_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Borrar %@.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
 	<key>multiple_choice_image_selected_indexed_access_label</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

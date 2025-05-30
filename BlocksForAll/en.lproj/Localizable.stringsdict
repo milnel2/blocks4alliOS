@@ -668,7 +668,19 @@
 			<string></string>
 		</dict>
 	</dict>
-	<key>multiple_choice_image_selected_access_label</key>
+	<key>delete_custom_image_button_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Delete %@.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>multiple_choice_image_selected_access_label - 2</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%@ image selected.</string>
