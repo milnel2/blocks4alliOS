@@ -205,18 +205,28 @@ class ModifierButton: UIButton {
     // Move to actor block
     func moveToActorButton() {
         let uuid = block.attributes["moveToActor"] ?? ""
-        
-        let actor = VirtualRobot.getActorFromUUIDOrDefault(actorUUID: uuid, inProject: currentProject!)
-        if HelperFunctions.showIconsIsOn() {
-            setBackgroundImage(named: actor!.imagePath)
-            block.attributes["moveToActor"] = actor!.UUID
+        if (currentProject!.actors.count == 1) { // There is only one actor in the project
+            if HelperFunctions.showIconsIsOn() {
+                setBackgroundImage(named:  "EmptyImage")
+            } else {
+                let text = "N/A".localized
+                oneImageOnlyShowTextIsOn(text: text, backgroundPath: "driveModifierBackground")
+            }
+            modifierInformation = "No actors available".localized
         } else {
-            let backgroundImagePath = "driveModifierBackground"
-            let text = actor!.color.localizedCapitalized + " " + actor!.name.localizedCapitalized
-            oneImageOnlyShowTextIsOn(text: text, backgroundPath: backgroundImagePath)
+            let actor = VirtualRobot.getActorFromUUIDOrDefault(actorUUID: uuid, inProject: currentProject!)
+            if HelperFunctions.showIconsIsOn() {
+                setBackgroundImage(named: actor!.imagePath)
+                block.attributes["moveToActor"] = actor!.UUID
+            } else {
+                let backgroundImagePath = "driveModifierBackground"
+                let text = actor!.color.localizedCapitalized + " " + actor!.name.localizedCapitalized
+                oneImageOnlyShowTextIsOn(text: text, backgroundPath: backgroundImagePath)
+            }
+            
+            modifierInformation = actor!.color.localizedCapitalized + " " + actor!.name.localizedCapitalized
         }
-        
-        modifierInformation = actor!.color.localizedCapitalized + " " + actor!.name.localizedCapitalized
+       
     }
     
     
@@ -400,8 +410,12 @@ class ModifierButton: UIButton {
                 
                 let actorUUID = block.attributes["moveToActor"] ?? ""
                
-                let actor = VirtualRobot.getActorFromUUIDOrDefault(actorUUID: actorUUID, inProject: currentProject!)!
-                accessibilityLabel = "\(actor.name.localized), \(actor.color.localized)"
+                if (currentProject!.actors.count == 1) {
+                    accessibilityLabel = "No actors available".localized
+                } else {
+                    let actor = VirtualRobot.getActorFromUUIDOrDefault(actorUUID: actorUUID, inProject: currentProject!)!
+                    accessibilityLabel = "\(actor.name.localized), \(actor.color.localized)"
+                }
                 
             } else if block.name == "Move to Location" {
                 

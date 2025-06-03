@@ -73,11 +73,20 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         if optionType == "Move to Actor" {
             items = []
             for actor in currentProject!.actors {
-                items.append(actor.UUID)
+                if actor != currentProject!.currentActor { // All other actors should be added to the list of options
+                    items.append(actor.UUID)
+                }
             }
+
+            
            
             attributeName = getAttributeName()
-            optionalExtraLabel.text = ""  // set the extra label to empty by default
+            if items.count == 0 {
+                optionalExtraLabel.text = "There are no other actors to move to. Add some more actors to your project!".localized
+            } else {
+                optionalExtraLabel.text = ""  // set the extra label to empty by default
+            }
+           
         } else {
             items = optionDictionary[optionType] ?? [] // get the array of options for the optionType
               
@@ -301,8 +310,12 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let destination = segue.destination as? FreePlayWorkspaceViewController {
             // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
-            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = items[optionSelectedIndex] // Tell BlocksViewController which sound was selected
-            
+            if items.count == 0 {
+                currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "N/A" // Tell BlocksViewController that there was not a valid option
+            } else {
+                currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = items[optionSelectedIndex]  // Tell BlocksViewController which sound was selected
+            }
+           
               
             // TODO: make this come from the modifierProperties dictionary
             if attributeName == "lightColor" {
@@ -311,7 +324,11 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
         }
         if let destination = segue.destination as? BlocksViewController {
             // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
-            currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = items[optionSelectedIndex] // Tell BlocksViewController which sound was selected
+            if items.count == 0 {
+                currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "N/A" // Tell BlocksViewController that there was not a valid option
+            } else {
+                currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = items[optionSelectedIndex]  // Tell BlocksViewController which sound was selected
+            }
               
             // TODO: make this come from the modifierProperties dictionary
             if attributeName == "lightColor" {

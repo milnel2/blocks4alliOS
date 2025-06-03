@@ -922,8 +922,11 @@ class ExecutingProgram {
     func moveToActor(moveBlock: Block) {
         let actorUUID = moveBlock.addedBlocks[0].attributes["moveToActor"] ?? ""
         
-        
-        currentActor!.moveToActor(actorUUID: actorUUID, executingProgram: self)
+        if (actorUUID == "N/A" || UserData.data.getCurrentProject()!.actors.count == 1) {
+            finishCommand()
+        } else {
+            currentActor!.moveToActor(actorUUID: actorUUID, executingProgram: self)
+        }
     }
     
     func moveToLocation(moveBlock: Block) {

@@ -283,7 +283,7 @@ class VirtualRobot: Equatable {
     
     /// if actorUUID string is empty, return either the second actor or the current actor
     public static func getActorFromUUIDOrDefault(actorUUID: String, inProject: Project) -> VirtualRobot?{
-        if actorUUID == "" {
+        if actorUUID == "" || actorUUID == "N/A" {
             for actor in inProject.actors {
                 if actor != inProject.currentActor {
                     return actor // return any other actor than the current one
