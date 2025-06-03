@@ -56,6 +56,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
         preserveLastSelection()
         
         DeleteNoiseButton.addTarget(self, action: #selector(deleteNoiseTapped), for: .touchUpInside)
+        SelectCustomNoiseTitleLabel.text = "Select Custom Noise".localized
         
         // Set up audio recording
         recordingSession = AVAudioSession.sharedInstance()
@@ -102,7 +103,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
     
     /// Update accessibility elements based on state of screen
     func updateAccessibility() {
-        RecordNoiseButton.accessibilityHint = "Can record up to \(MAX_AUDIO_LENGTH) seconds.".localized // TODO: localize
+        RecordNoiseButton.accessibilityHint = String.localizedStringWithFormat( NSLocalizedString("record_max_num_seconds_access_hint", comment: "Accessibility Hint for the Record Noise button in the custom noise screen"), MAX_AUDIO_LENGTH)
         BackButton.accessibilityLabel = "Back".localized
         if (hasNoise(forNum: selectedNoiseSlotNum)) {
             // Current slot has a noise, show selected noise, delete button, and play button and update record button
@@ -111,14 +112,14 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             DeleteNoiseButton.accessibilityLabel = "\("Delete".localized) \("Noise".localized) \(selectedNoiseSlotNum)."
             
             accessibilityElements = [BackButton!, SelectCustomNoiseTitleLabel!, SelectedNoiseImageView!, DeleteNoiseButton!, PlayNoiseButton!, RecordNoiseButton!, NoisesCollectionView!]
-            PlayNoiseButton.accessibilityLabel = "\("Play Noise".localized) \(selectedNoiseSlotNum)." // TODO: localize
-            RecordNoiseButton.accessibilityLabel = "\("Re-record Noise".localized) \(selectedNoiseSlotNum)." //TODO: localize
+            PlayNoiseButton.accessibilityLabel = "\("Play Noise".localized) \(selectedNoiseSlotNum)."
+            RecordNoiseButton.accessibilityLabel = "\("Re-record Noise".localized) \(selectedNoiseSlotNum)."
         } else {
             // Current slot does not have a noise
             SelectedNoiseImageView!.isAccessibilityElement = false
             accessibilityElements = [BackButton!, SelectCustomNoiseTitleLabel!, PlayNoiseButton!, RecordNoiseButton!, NoisesCollectionView!]
-            PlayNoiseButton.accessibilityLabel = "\("Play Noise".localized) \(selectedNoiseSlotNum). No noise recorded yet." // localize
-            RecordNoiseButton.accessibilityLabel = "\("Record Noise".localized) \(selectedNoiseSlotNum)." // Localize
+            PlayNoiseButton.accessibilityLabel = String.localizedStringWithFormat( NSLocalizedString("play_empty_noise_access_label", comment: "Accessibility Label for an empty custom noise slot"), "Play Noise".localized, selectedNoiseSlotNum)
+            RecordNoiseButton.accessibilityLabel = "\("Record Noise".localized) \(selectedNoiseSlotNum)."
         }
     }
     
@@ -137,7 +138,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             isCountingDown = true
             RecordNoiseButton.isEnabled = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                UIAccessibility.post(notification: .announcement, argument: "You will have up to \(self.MAX_AUDIO_LENGTH) seconds to record. Tap to end early. Recording will begin in 3. 2. 1.") // TODO: localize
+                UIAccessibility.post(notification: .announcement, argument: String.localizedStringWithFormat( NSLocalizedString("record_noise_voiceover_countdown", comment: "Announcement said by voiceover before recording a custom sound"), self.MAX_AUDIO_LENGTH))
             }
         } else {
             beginRecording()
@@ -226,7 +227,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
                 
                 updateRecordPlayButtons()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // need to wait a tiny bit to post the announcement so that it doesn't get muted by the button press
-                    UIAccessibility.post(notification: .announcement, argument: "Recording finished.") // TODO: localize
+                    UIAccessibility.post(notification: .announcement, argument: "Recording finished.".localized)
                 }
             } else {
                 print("record fail")

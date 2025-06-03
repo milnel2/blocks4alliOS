@@ -26,6 +26,42 @@
 			<string></string>
 		</dict>
 	</dict>
+	<key>record_max_num_seconds_access_hint</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Can record up to %d seconds.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>play_empty_noise_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ %d. No noise recorded yet.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>record_noise_voiceover_countdown</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>You will have up to %d seconds to record. Tap to end early. Recording will begin in 3. 2. 1.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
 	<key>click_to_connect_to_robot_name</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

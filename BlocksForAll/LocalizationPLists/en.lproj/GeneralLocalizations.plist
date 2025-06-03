@@ -1045,5 +1045,264 @@
 		<key>comment</key>
 		<string>Generic String for a back button to return to previous screen.</string>
 	</dict>
+	<key>Select Custom Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Select Custom Noise</string>
+		<key>comment</key>
+		<string>Title for screen to choose a custom noise</string>
+	</dict>
+	<key>Double tap to choose animal noise</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to choose animal noise</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose emotion noise</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to choose emotion noise</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose object noise</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to choose object noise</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose vehicle noise</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to choose vehicle noise</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose word</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to choose word</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose custom noise</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to choose custom noise</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set distance and speed</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set distance and speed</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set left turn angle</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set left turn angle</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set right turn angle</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set right turn angle</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set light color</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set light color</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to turn eye light on or off</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to turn eye light on or off</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set number of times to repeat</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set number of times to repeat</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set boolean condition for If</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set boolean condition for If</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set wait time</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set wait time</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set variable value</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set variable value</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set Drive variable</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set Drive variable</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set Turn variable</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set Turn variable</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set Look Up or Down variable</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set Look Up or Down variable</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set Look Left or Right variable</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set Look Left or Right variable</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set distance</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set distance</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose actor to move to</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to choose actor to move to</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose location to move to</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to choose location to move to</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to adjust speed</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to adjust speed</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set amount to grow</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set amount to grow</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set amount to shrink</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set amount to shrink</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set scene background</key>
+	<dict>
+		<key>value</key>
+		<string>Double tap to set scene background</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>End Repeat</key>
+	<dict>
+		<key>value</key>
+		<string>End Repeat</string>
+		<key>comment</key>
+		<string>Generic String for an the end of a Repeat block</string>
+	</dict>
+	<key>End If</key>
+	<dict>
+		<key>value</key>
+		<string>End If</string>
+		<key>comment</key>
+		<string>Generic String for an the end of an If block</string>
+	</dict>
+	<key>End Repeat Forever</key>
+	<dict>
+		<key>value</key>
+		<string>End Repeat Forever</string>
+		<key>comment</key>
+		<string>Generic String for an the end of a Repeat Forever block</string>
+	</dict>
+	<key>Wiggle</key>
+	<dict>
+		<key>value</key>
+		<string>Wiggle</string>
+		<key>comment</key>
+		<string>Generic String for a Wiggle block</string>
+	</dict>
+	<key>Nod</key>
+	<dict>
+		<key>value</key>
+		<string>Nod</string>
+		<key>comment</key>
+		<string>Generic String for a Wiggle block</string>
+	</dict>
+	<key>Custom Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Custom Noise</string>
+		<key>comment</key>
+		<string>Generic String for a Custom Noise block</string>
+	</dict>
+	<key>Play Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Play Noise</string>
+		<key>comment</key>
+		<string>Generic String for playing a custom noise</string>
+	</dict>
+	<key>Record Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Record Noise</string>
+		<key>comment</key>
+		<string>Generic String for recording a custom noise</string>
+	</dict>
+	<key>Re-record Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Re-record Noise</string>
+		<key>comment</key>
+		<string>Generic String for re-recording a custom noise</string>
+	</dict>
+	<key>Recording finished</key>
+	<dict>
+		<key>value</key>
+		<string>Recording finished</string>
+		<key>comment</key>
+		<string>Generic String for announcing that recording a custom noise has finished</string>
+	</dict>
 </dict>
 </plist>

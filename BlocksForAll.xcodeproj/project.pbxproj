@@ -31,7 +31,7 @@
 		8D6A4BA92CE147790074F6F1 /* SelectCustomNoiseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6A4BA82CE147790074F6F1 /* SelectCustomNoiseViewController.swift */; };
 		8D822CDA2C137B3300A8A20D /* FreePlayWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */; };
 		8D822CDC2C138B3100A8A20D /* FreeplayOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */; };
-		8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8D66032A3A43330086E14A /* ModifierProperties.plist */; };
+		8D8CE9032DEE5B3100F2B868 /* ModifierProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8CE9022DEE5B3100F2B868 /* ModifierProperties.plist */; };
 		8D92E0DB2CAB83B800F74DC7 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D92E0DA2CAB83B800F74DC7 /* UserData.swift */; };
 		8D954F592A4B2E9800F10A26 /* TwoOptionModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */; };
 		8D9853502D013575009BA5AE /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 8D98534E2D013575009BA5AE /* Localizable.stringsdict */; };
@@ -130,7 +130,7 @@
 		8D6A4BA82CE147790074F6F1 /* SelectCustomNoiseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCustomNoiseViewController.swift; sourceTree = "<group>"; };
 		8D822CD92C137B3300A8A20D /* FreePlayWorkspaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreePlayWorkspaceViewController.swift; sourceTree = "<group>"; };
 		8D822CDB2C138B3100A8A20D /* FreeplayOutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeplayOutputView.swift; sourceTree = "<group>"; };
-		8D8D66032A3A43330086E14A /* ModifierProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
+		8D8CE9022DEE5B3100F2B868 /* ModifierProperties.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ModifierProperties.plist; sourceTree = "<group>"; };
 		8D92E0DA2CAB83B800F74DC7 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8D954F582A4B2E9800F10A26 /* TwoOptionModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoOptionModifierViewController.swift; sourceTree = "<group>"; };
 		8D98534F2D013575009BA5AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -376,7 +376,7 @@
 				8D364AB32C35F0CA006D42F5 /* ModifierOptionDicts */,
 				F16BA3BD1F59103A00A94FBA /* BlocksMenu.plist */,
 				8D0D881D2C09068300AC9620 /* DotBlocksMenu.plist */,
-				8D8D66032A3A43330086E14A /* ModifierProperties.plist */,
+				8D8CE9022DEE5B3100F2B868 /* ModifierProperties.plist */,
 				8D412CA92C13915E005B736F /* FreeplayBlocksMenu.plist */,
 				8D54890D2C221F07002617BE /* ActorsMenu.plist */,
 				8D5489132C233FE0002617BE /* SoundFileDict.plist */,
@@ -538,7 +538,7 @@
 				8DEF21B82C40362400E5E21F /* dinosaur.mp3 in Resources */,
 				8DEF21BA2C40362400E5E21F /* goat.mp3 in Resources */,
 				8D412CAA2C13915E005B736F /* FreeplayBlocksMenu.plist in Resources */,
-				8D8D66042A3A43330086E14A /* ModifierProperties.plist in Resources */,
+				8D8CE9032DEE5B3100F2B868 /* ModifierProperties.plist in Resources */,
 				8D0257D22DDEA3C7004B0B14 /* InfoPlist.strings in Resources */,
 				F18FFFBD1E65B0FC0090C4B6 /* LaunchScreen.storyboard in Resources */,
 				FD6388372A31036B005F49F7 /* AphontBoldItalic.ttf in Resources */,

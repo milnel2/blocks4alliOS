@@ -247,7 +247,7 @@
 	<key>custom_noise_cell_access_label_empty</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Empty Noise Slot %d of %d. </string>
+		<string>Ranura Vacía del Ruido %d de %d.</string>
 		<key>Variable</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -261,13 +261,49 @@
 	<key>custom_noise_cell_access_label_filled</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Filled Noise Slot %d of %d. </string>
+		<string>Ranura Completada del ruido %d de %d.</string>
 		<key>Variable</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
 			<string>NSStringPluralRuleType</string>
 			<key>one</key>
 			<string></string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>record_max_num_seconds_access_hint</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Puede grabar hasta %d segundos.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>play_empty_noise_access_label</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%@ %d. No hay ruidos grabados todavía.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>other</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>record_noise_voiceover_countdown</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Tú vas a tener hasta %d segundos para grabar. Toca para terminar temprano. Grabación empezaré en 3. 2. 1.</string>
+		<key>Variable</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
 			<key>other</key>
 			<string></string>
 		</dict>

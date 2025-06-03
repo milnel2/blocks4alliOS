@@ -110,7 +110,7 @@
 	<key>On Run Start</key>
 	<dict>
 		<key>value</key>
-		<string>Iniciar la carrera</string>
+		<string>En ejecución</string>
 		<key>comment</key>
 		<string>Generic String for On Run event. Blocks are run when the program is run</string>
 	</dict>
@@ -334,7 +334,7 @@
 	<key>Repeat Forever</key>
 	<dict>
 		<key>value</key>
-		<string>Repetir para siempre</string>
+		<string>Repetir Para Siempre</string>
 		<key>comment</key>
 		<string>Generic String for Repeat Forever block</string>
 	</dict>
@@ -1044,6 +1044,265 @@
 		<string>Atrás</string>
 		<key>comment</key>
 		<string>Generic String for a back button to return to previous screen.</string>
+	</dict>
+	<key>Select Custom Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Seleccionar Ruido Personalizado</string>
+		<key>comment</key>
+		<string>Title for screen to choose a custom noise</string>
+	</dict>
+	<key>Double tap to choose animal noise</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para escojer sonido de animal</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose emotion noise</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para escojer sonido de emoción</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose object noise</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para escojer sonido de objeto</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose vehicle noise</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para escojer sonido de vehículo</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose word</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para escojer palabra</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose custom noise</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para escojer sonido personalizado</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set distance and speed</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar un distancia y velocidad</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set left turn angle</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar ángulo para jirar la izquierda</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set right turn angle</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar ángulo para jirar la derecha</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set light color</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar color de luz</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to turn eye light on or off</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para aprender o apagar luz de los ojos</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set number of times to repeat</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar un número de veces para repetir</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set boolean condition for If</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar condición booleano para Si</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set wait time</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar tiempo de espera</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set variable value</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar valor del variable</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set Drive variable</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar variable de Manejar</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set Turn variable</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar variable de Jirar</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set Look Up or Down variable</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar variable de Mirar Arriba o Abajo</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set Look Left or Right variable</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar variable para Ver Izquierda o Derecha</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set distance</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar distancia</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose actor to move to</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para escojer el actor para ir</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to choose location to move to</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para escojer un lugar para ir</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to adjust speed</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para ajustar velocidad</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set amount to grow</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar un cantidad a crecer</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set amount to shrink</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar un cantidad a reducir</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>Double tap to set scene background</key>
+	<dict>
+		<key>value</key>
+		<string>Dobletoque para colocar escena del fondo</string>
+		<key>comment</key>
+		<string></string>
+	</dict>
+	<key>End Repeat</key>
+	<dict>
+		<key>value</key>
+		<string>Termina Repetición</string>
+		<key>comment</key>
+		<string>Generic String for an the end of a Repeat block</string>
+	</dict>
+	<key>End If</key>
+	<dict>
+		<key>value</key>
+		<string>Termina Si</string>
+		<key>comment</key>
+		<string>Generic String for an the end of an If block</string>
+	</dict>
+	<key>End Repeat Forever</key>
+	<dict>
+		<key>value</key>
+		<string>Termina Repetición para Siempre</string>
+		<key>comment</key>
+		<string>Generic String for an the end of a Repeat Forever block</string>
+	</dict>
+	<key>Wiggle</key>
+	<dict>
+		<key>value</key>
+		<string>Menear</string>
+		<key>comment</key>
+		<string>Generic String for a Wiggle block</string>
+	</dict>
+	<key>Nod</key>
+	<dict>
+		<key>value</key>
+		<string>Inclinación de la Cabeza</string>
+		<key>comment</key>
+		<string>Generic String for a Wiggle block</string>
+	</dict>
+	<key>Custom Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Ruido Personalizado</string>
+		<key>comment</key>
+		<string>Generic String for a Custom Noise block</string>
+	</dict>
+	<key>Play Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Reproducir Ruido</string>
+		<key>comment</key>
+		<string>Generic String for playing a custom noise</string>
+	</dict>
+	<key>Record Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Grabar Ruido</string>
+		<key>comment</key>
+		<string>Generic String for recording a custom noise</string>
+	</dict>
+	<key>Re-record Noise</key>
+	<dict>
+		<key>value</key>
+		<string>Volver a Grabar Ruido</string>
+		<key>comment</key>
+		<string>Generic String for re-recording a custom noise</string>
+	</dict>
+	<key>Recording finished</key>
+	<dict>
+		<key>value</key>
+		<string>Recording finished</string>
+		<key>comment</key>
+		<string>Generic String for announcing that recording a custom noise has finished</string>
 	</dict>
 </dict>
 </plist>
