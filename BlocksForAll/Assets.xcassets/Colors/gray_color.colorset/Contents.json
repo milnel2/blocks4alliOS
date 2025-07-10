@@ -6,6 +6,24 @@
         "reference" : "systemGrayColor"
       },
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "color" : {
+        "color-space" : "srgb",
+        "components" : {
+          "alpha" : "1.000",
+          "blue" : "0.863",
+          "green" : "0.863",
+          "red" : "0.863"
+        }
+      },
+      "idiom" : "universal"
     }
   ],
   "info" : {

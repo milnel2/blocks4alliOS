@@ -107,17 +107,25 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ActorCell", for: indexPath) as! ActorCell
         let index = indexPath.item  // numerical index of cell
-          
+        
+       
+        
         // Reset labels and images in cells
         // ----- Below code is from https://stackoverflow.com/questions/23647833/uicollectionviewcell-is-overlapped-when-scrolling
         for view in cell.subviews {
           view.removeFromSuperview()
         }
         // ----- End of code citation
+        
+        // Some cell styling
+        cell.contentView.backgroundColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        cell.contentView.layer.cornerRadius = 10
+        cell.contentView.layer.masksToBounds = true
+        
         // Create an image for the cell
         var baseImagePath = ""
         var name = ""
-    
+        
         if let actorType = items[index] as? NSDictionary{
             baseImagePath = actorType.value(forKey: "imagePath") as! String
             let imagePath = VirtualRobot.calculateImagePath(baseImagePath: baseImagePath, color: "Default")
@@ -125,11 +133,15 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
             let image = UIImage(named: imagePath)
             
             if image != nil  {
-                // Show Icons is on
-                let resizedImage = HelperFunctions.resizeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize))  // resize the image to fit the button
+                let resizedImage = HelperFunctions.resizeImage(image: image!, scaledToSize: CGSize(width: Int(Double(buttonSize) * 0.9), height: Int(Double(buttonSize) * 0.9)))  // resize the image to fit the button. We make the image a little smaller so that it fits nicely within the button background.
                 let imv = UIImageView(image: resizedImage)
                 cell.addSubview(imv)
-            } 
+                
+                // Center image view within the cell
+                imv.translatesAutoresizingMaskIntoConstraints = false
+                imv.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
+                imv.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+            }
         }
           
         // Accessibility
@@ -142,8 +154,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         cell.accessibilityHint = NSLocalizedString("Double tap to select.", comment: "Accessibility hint for actor cell")
         
         cell.accessibilityIdentifier = String(index)
-        
-        cell.backgroundColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    
         
         // Put a border around the cell if it is currently selected
         if String(optionSelectedIndex) == cell.accessibilityIdentifier {

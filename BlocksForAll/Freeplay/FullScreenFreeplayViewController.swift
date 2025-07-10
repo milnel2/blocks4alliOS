@@ -56,6 +56,8 @@ class FullScreenFreeplayViewController : UIViewController {
         
         outputView.accessibilityElements = []
         
+        outputView.backgroundColor = UIColor(named: "whiteLightModeBlackDarkMode")
+        
         // Set the background image to be the saved background. Also connects the image view to the output view
         backgroundImagePath = currentProject!.currentBackground?.getImagePath()
         outputView.setBackgroundImageView(imageView: outputBackgroundImageView)

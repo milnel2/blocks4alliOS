@@ -147,92 +147,74 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       
     /// Called when the collectionView is being populated with cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! MultipleChoiceButtonCell
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! MultipleChoiceButtonCell
         let index = indexPath.item  // numerical index of cell
-          
-       
+        
         // Reset labels and images in cells
         // Below code is from https://stackoverflow.com/questions/23647833/uicollectionviewcell-is-overlapped-when-scrolling
         for view in cell.subviews {
-          view.removeFromSuperview()
+            view.removeFromSuperview()
         }
         // Above code is from https://stackoverflow.com/questions/23647833/uicollectionviewcell-is-overlapped-when-scrolling
-       
+        
         // Create an image for the cell
         let image: UIImage?
         if optionType == "Move to Actor" {
             let actor = VirtualRobot.getActorFromUUID(actorUUID: items[index], inProject: currentProject!)
             if actor == nil {
                 fatalError("Could not find match for actorUUID in project")
-                
+            } else {
+                // Move to actor cells are set up a bit differently
+                cell = setUpMoveToActorCell(cell: cell, actor: actor!, index: index)
             }
-            image = UIImage(named: actor!.imagePath) ?? nil
         } else {
-            image = UIImage(named: items[index]) ?? nil
-        }
-        if image != nil && HelperFunctions.showIconsIsOn() {
-            // Show Icons is on and the image was found
-            let resizedImage = HelperFunctions.resizeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize))  // resize the image to fit the button
-            let imv = UIImageView(image: resizedImage)
-            cell.addSubview(imv)
-        } else {
-            // No image was found and/or Show Text is on
-            let textView = UILabel(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
+            image = UIImage(named: items[index]) ?? nil // Get the image for this cell
             
-            if optionType == "Move to Actor" { // move to actor is a bit different because their value is a UUID
-                let actor = VirtualRobot.getActorFromUUID(actorUUID: items[index], inProject: currentProject!)
-                if actor == nil {
-                    fatalError("Could not find match for actorUUID in project")
-                }
-                textView.text = actor!.color.localized.localizedCapitalized + " " + actor!.name.localizedCapitalized // TODO: does capitalizaiton affect localization?
+            if image != nil && HelperFunctions.showIconsIsOn() {
+                // Show Icons is on and the image was found
+                let resizedImage = HelperFunctions.resizeImage(image: image!, scaledToSize: CGSize(width: buttonSize, height: buttonSize))  // resize the image to fit the button
+                let imv = UIImageView(image: resizedImage)
+                cell.addSubview(imv)
             } else {
+                // No image was found and/or Show Text is on
+                let textView = UILabel(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
+                
                 textView.text = items[index].localized // TODO: does capitalizaiton affect localization?
+                
+                addStyleToCellText(textView: textView)
+                
+                // Naming convention for color assets is (attributeName)Color
+                // ex. animalNoiseColor, emotionNoiseColor
+                let colorPath: String
+                if optionType.contains("Light Color") || optionType.contains("Lights Color") {
+                    // light modifiers have a different color for each button, so there is a different naming convention
+                    colorPath = "\(items[index])Color"
+                } else {
+                    colorPath = "\(attributeName)Color"
+                }
+                let myUIColor = UIColor(named: colorPath)
+                cell.backgroundColor = myUIColor ?? #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+                
+                cell.addSubview(textView)
             }
-           
-              
-            // Text Style
-            textView.backgroundColor = .clear
-            textView.textAlignment = .center
-            textView.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
-            textView.adjustsFontForContentSizeCategory = true
-            textView.adjustsFontSizeToFitWidth = true
-            textView.numberOfLines = 2
-              
-            // Naming convention for color assets is (attributeName)Color
-            // ex. animalNoiseColor, emotionNoiseColor
-            let colorPath: String
-            if optionType.contains("Light Color") || optionType.contains("Lights Color") {
-                // light modifiers have a different color for each button, so there is a different naming convention
-                colorPath = "\(items[index])Color"
+        
+            // Accessibility
+            if attributeName == "lightColor" {
+                let formattedString = NSLocalizedString("mult_choice_color_access_label", comment: "Accessibility label for a color option. Option (num) of (totalNumOptions)")
+                let resultString = String.localizedStringWithFormat(formattedString, items[index].localized, index + 1, items.count)
+                cell.accessibilityLabel = resultString
+            } else if attributeName == "variableSelected"{
+                let formattedString = NSLocalizedString("mult_choice_access_label", comment: "Accessibility label for a multiple choice option. Option (num) of (totalNumOptions)")
+                let resultString = String.localizedStringWithFormat(formattedString, items[index].localized, index + 1, items.count)
+                cell.accessibilityLabel = resultString
             } else {
-                colorPath = "\(attributeName)Color"
+                let formattedString = NSLocalizedString("mult_choice_sound_access_label", comment: "Accessibility label for a sound option. Option (num) of (totalNumOptions)")
+                let resultString = String.localizedStringWithFormat(formattedString, items[index].localized, index + 1, items.count)
+                cell.accessibilityLabel = resultString
             }
-            let myUIColor = UIColor(named: colorPath)
-            cell.backgroundColor = myUIColor ?? #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-              
-            cell.addSubview(textView)
+            cell.accessibilityHint = NSLocalizedString("Double tap to select", comment: "Accessibility hint for selecting a multiple choice option")
         }
-          
-        // Accessibility
         cell.isAccessibilityElement = true
-        
-        if attributeName == "lightColor" {
-            let formattedString = NSLocalizedString("mult_choice_color_access_label", comment: "Accessibility label for a color option. Option (num) of (totalNumOptions)")
-            let resultString = String.localizedStringWithFormat(formattedString, items[index].localized, index + 1, items.count)
-            cell.accessibilityLabel = resultString
-        } else if attributeName == "variableSelected" {
-            let formattedString = NSLocalizedString("mult_choice_access_label", comment: "Accessibility label for a multiple choice option. Option (num) of (totalNumOptions)")
-            let resultString = String.localizedStringWithFormat(formattedString, items[index].localized, index + 1, items.count)
-            cell.accessibilityLabel = resultString
-
-        } else {
-            let formattedString = NSLocalizedString("mult_choice_sound_access_label", comment: "Accessibility label for a sound option. Option (num) of (totalNumOptions)")
-            let resultString = String.localizedStringWithFormat(formattedString, items[index].localized, index + 1, items.count)
-            cell.accessibilityLabel = resultString
-        }
-        cell.accessibilityHint = NSLocalizedString("Double tap to select", comment: "Accessibility hint for selecting a multiple choice option")
-       
-        
         cell.accessibilityIdentifier = String(index)
           
         // Put a border around the cell if it is currently selected
@@ -246,6 +228,58 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
             cell.layer.borderWidth = 0
         }
         return cell
+    }
+    
+    /// Options for the Move to Actor block are set up a bit differently than other blocks. They have more than one subview. This method takes in a cell, reformats it, and returns it
+    func setUpMoveToActorCell(cell: MultipleChoiceButtonCell, actor: VirtualRobot, index: Int) -> MultipleChoiceButtonCell {
+        let image = UIImage(named: actor.imagePath) ?? nil
+        
+        // Add a background color to the cell
+        let backgroundColorImageView = UIImageView(image:
+            HelperFunctions.resizeImage(image:
+                HelperFunctions.getUIImage(named: "driveModifierBackground"), scaledToSize: CGSize(width: buttonSize, height: buttonSize)))
+        cell.addSubview(backgroundColorImageView)
+        
+        if image != nil && HelperFunctions.showIconsIsOn() {
+            // Show Icons is on and the image was found
+            let resizedImage = HelperFunctions.resizeImage(image: image!, scaledToSize: CGSize(width: Int(Double(buttonSize) * 0.9), height: Int(Double(buttonSize) * 0.9)))  // resize the image to fit the button. We make the image a little smaller so that it fits nicely within the button background.
+            let imv = UIImageView(image: resizedImage)
+            cell.addSubview(imv)
+            
+            // Center image view within the cell
+            imv.translatesAutoresizingMaskIntoConstraints = false
+            imv.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
+            imv.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+            
+        } else {
+            // No image was found and/or Show Text is on
+            let textView = UILabel(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
+           
+            textView.text = actor.color.localized.localizedCapitalized + " " + actor.name.localizedCapitalized // TODO: does capitalizaiton affect localization?
+              
+            addStyleToCellText(textView: textView)
+            cell.addSubview(textView)
+        }
+        
+        // Accessibility
+        let formattedActorString = NSLocalizedString("actor_cell_access_label", comment: "Accessibility label for actor cell. '<actor_name>. <actor_color> color.'")
+        let resultActorString = String.localizedStringWithFormat(formattedActorString, actor.name.localized, actor.color.localized)
+        
+        let formattedString = NSLocalizedString("mult_choice_access_label", comment: "Accessibility label for a multiple choice option. Option (num) of (totalNumOptions)")
+        let resultString = String.localizedStringWithFormat(formattedString, resultActorString, index + 1, items.count)
+        cell.accessibilityLabel = resultString
+            
+        return cell
+    }
+    
+    // Sets up styling for a UILabel that is used in a multiple choice cell during text mode
+    func addStyleToCellText(textView: UILabel) {
+        textView.backgroundColor = .clear
+        textView.textAlignment = .center
+        textView.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
+        textView.adjustsFontForContentSizeCategory = true
+        textView.adjustsFontSizeToFitWidth = true
+        textView.numberOfLines = 2
     }
       
     /// Called when an option button is pressed

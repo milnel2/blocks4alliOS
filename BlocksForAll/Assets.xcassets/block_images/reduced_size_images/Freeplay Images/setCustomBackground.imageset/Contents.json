@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "CustomAudio_1.svg",
+      "filename" : "CustomBackground_Light Mode.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "CustomAudio_1_Dark.svg",
+      "filename" : "CustomBackground_Dark Mode.svg",
       "idiom" : "universal"
     }
   ],

@@ -125,7 +125,7 @@ class SelectedBlockViewController: UIViewController {
         nestedBlockLabel.font = UIFont.accessibleFont(withStyle: .title1, size: 20.0)
         
         // Label styling
-        nestedBlockLabel.backgroundColor = .white
+        nestedBlockLabel.backgroundColor = UIColor(named: "whiteLightModeBlackDarkMode")
         nestedBlockLabel.layer.cornerRadius = 6
         nestedBlockLabel.layer.masksToBounds = true
         

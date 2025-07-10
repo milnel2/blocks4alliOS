@@ -14,6 +14,7 @@ class CustomizeActorViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton! // button to return to the freeplay workspace
     @IBOutlet weak var deleteButton: UIButton! // button the delete the actor
     @IBOutlet weak var actorImageDisplayView: UIImageView! // image showing the actor
+    @IBOutlet weak var actorImageDisplayParentView: UIView! // Parent view used for padding around the image of the actor
     
     @IBOutlet weak var defaultButton: UIButton! // default color button
     @IBOutlet weak var redButton: UIButton! // red color button
@@ -78,7 +79,11 @@ class CustomizeActorViewController: UIViewController {
         blueButton.setTitle("Blue".localized, for: .normal)
         
         actorImageDisplayView.image = UIImage(named: currentActor!.imagePath)
-        
+        actorImageDisplayView.backgroundColor =  .clear
+        actorImageDisplayParentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        actorImageDisplayParentView.layer.cornerRadius = 10
+        actorImageDisplayParentView.translatesAutoresizingMaskIntoConstraints = true
+       
         selectedColor = currentActor!.color
         // show previous selection
         resetColorHighlights()

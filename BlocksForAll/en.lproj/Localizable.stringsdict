@@ -125,7 +125,7 @@
 	<key>num_nested_blocks</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@val@ Nested Block(s)</string>
+		<string>%#@val@</string>
 		<key>val</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>

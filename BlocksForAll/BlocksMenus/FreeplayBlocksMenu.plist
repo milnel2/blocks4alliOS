@@ -289,7 +289,7 @@
 		<key>type</key>
 		<string>Background</string>
 		<key>color</key>
-		<string>yellowColor</string>
+		<string>gold_block</string>
 		<key>Blocks</key>
 		<array>
 			<dict>
@@ -300,11 +300,11 @@
 				<key>name</key>
 				<string>Set Background</string>
 				<key>color</key>
-				<string>yellowColor</string>
+				<string>gold_block</string>
 				<key>double</key>
 				<false/>
 				<key>imageName</key>
-				<string>background</string>
+				<string>setCustomBackground</string>
 			</dict>
 		</array>
 	</dict>

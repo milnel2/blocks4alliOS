@@ -50,16 +50,26 @@
                                     <action selector="backButtonPressed:" destination="WtD-0w-PDj" eventType="touchUpInside" id="hL4-ja-GaB"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zUF-4k-85e">
-                                <rect key="frame" x="355" y="220" width="370" height="370"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="j8R-OD-hB4">
+                                <rect key="frame" x="337.5" y="202.5" width="405" height="405"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zUF-4k-85e">
+                                        <rect key="frame" x="20.5" y="20.5" width="364.5" height="364.5"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="zUF-4k-85e" secondAttribute="height" multiplier="1:1" id="bS0-2G-xgt"/>
+                                    <constraint firstItem="zUF-4k-85e" firstAttribute="centerX" secondItem="j8R-OD-hB4" secondAttribute="centerX" id="GEV-cq-OEf"/>
+                                    <constraint firstItem="zUF-4k-85e" firstAttribute="width" secondItem="j8R-OD-hB4" secondAttribute="width" multiplier="0.9" id="gPo-cw-iW1"/>
+                                    <constraint firstItem="zUF-4k-85e" firstAttribute="centerY" secondItem="j8R-OD-hB4" secondAttribute="centerY" id="tHt-gr-rpm"/>
+                                    <constraint firstAttribute="width" secondItem="j8R-OD-hB4" secondAttribute="height" multiplier="1:1" id="ugg-6G-lUD"/>
+                                    <constraint firstItem="zUF-4k-85e" firstAttribute="height" secondItem="j8R-OD-hB4" secondAttribute="height" multiplier="0.9" id="yAS-rV-cqw"/>
                                 </constraints>
-                            </imageView>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="GFn-rZ-afs">
                                 <rect key="frame" x="295" y="660" width="490" height="100"/>
                                 <subviews>
@@ -129,19 +139,20 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="zUF-4k-85e" firstAttribute="centerX" secondItem="G0P-Uh-ahg" secondAttribute="centerX" id="2AI-gH-Ojf"/>
+                            <constraint firstItem="j8R-OD-hB4" firstAttribute="height" secondItem="G0P-Uh-ahg" secondAttribute="height" multiplier="0.5" id="1Ql-Ta-6gQ"/>
                             <constraint firstItem="cSw-Dm-i97" firstAttribute="leading" secondItem="G0P-Uh-ahg" secondAttribute="leading" constant="20" id="HRW-8h-IYi"/>
                             <constraint firstItem="cSw-Dm-i97" firstAttribute="top" secondItem="Sqd-E8-rAC" secondAttribute="bottom" constant="30" id="Lko-Ka-BoP"/>
                             <constraint firstItem="GFn-rZ-afs" firstAttribute="centerX" secondItem="G0P-Uh-ahg" secondAttribute="centerX" id="VLZ-KW-LYt"/>
                             <constraint firstItem="no5-bE-bCF" firstAttribute="top" secondItem="Sqd-E8-rAC" secondAttribute="bottom" constant="48" id="WML-Fi-yXU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="no5-bE-bCF" secondAttribute="trailing" constant="32" id="WMQ-bC-ovV"/>
+                            <constraint firstItem="j8R-OD-hB4" firstAttribute="centerY" secondItem="G0P-Uh-ahg" secondAttribute="centerY" id="Xqf-Gm-1pG"/>
                             <constraint firstItem="99Q-ml-4HC" firstAttribute="top" secondItem="GFn-rZ-afs" secondAttribute="bottom" constant="50" id="gQ4-RN-MZ9"/>
-                            <constraint firstItem="zUF-4k-85e" firstAttribute="top" secondItem="Sqd-E8-rAC" secondAttribute="bottom" constant="220" id="sxQ-JP-fj8"/>
-                            <constraint firstItem="zUF-4k-85e" firstAttribute="centerY" secondItem="G0P-Uh-ahg" secondAttribute="centerY" id="zGF-x2-Y2T"/>
+                            <constraint firstItem="j8R-OD-hB4" firstAttribute="centerX" secondItem="G0P-Uh-ahg" secondAttribute="centerX" id="hI0-x2-aec"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Pqu-7m-H61"/>
                     <connections>
+                        <outlet property="actorImageDisplayParentView" destination="j8R-OD-hB4" id="dS4-cX-SRr"/>
                         <outlet property="actorImageDisplayView" destination="zUF-4k-85e" id="NyE-KR-wvG"/>
                         <outlet property="backButton" destination="cSw-Dm-i97" id="u51-Fe-8E1"/>
                         <outlet property="blueButton" destination="iWR-DZ-TX1" id="PoD-M8-Y6C"/>
@@ -1609,7 +1620,7 @@ For further information on Blocks4All, please visit our website. For further det
             <objects>
                 <tableViewController id="qsn-gg-TPc" customClass="BlockTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" id="u2M-AO-l53">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="735"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="335"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1678,7 +1689,7 @@ For further information on Blocks4All, please visit our website. For further det
                         <viewControllerLayoutGuide type="bottom" id="M8X-LY-ONh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gng-WS-M5w">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="735"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="335"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap workspace to add block " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TgX-Fj-FVm">
@@ -1708,7 +1719,7 @@ For further information on Blocks4All, please visit our website. For further det
             <objects>
                 <tableViewController id="2Tn-yf-DgT" customClass="BlocksTypeTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6cp-t1-mWw">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="735"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="335"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -2496,7 +2507,7 @@ For further information on Blocks4All, please visit our website. For further det
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="hNp-po-htE" userLabel="Function Table View Controller" customClass="FunctionTableViewController" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="QmC-VP-0hq">
-                        <rect key="frame" x="0.0" y="0.0" width="235" height="805"/>
+                        <rect key="frame" x="0.0" y="0.0" width="235" height="405"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -3121,20 +3132,20 @@ For further information on Blocks4All, please visit our website. For further det
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WZK-Na-4fL"/>
-        <segue reference="bga-bw-aqG"/>
-        <segue reference="u8d-ef-tNg"/>
-        <segue reference="ZVu-V8-d1q"/>
-        <segue reference="DJw-3M-vha"/>
-        <segue reference="qu0-RS-u2g"/>
-        <segue reference="cqe-hd-fim"/>
-        <segue reference="Mdl-ke-gN7"/>
-        <segue reference="CWQ-aM-vhy"/>
+        <segue reference="yHo-Ic-oSY"/>
+        <segue reference="rJ0-q9-MJC"/>
+        <segue reference="lP2-dK-nFu"/>
+        <segue reference="ilo-gl-Ojn"/>
+        <segue reference="urv-T1-OGz"/>
+        <segue reference="Bdm-v1-hdH"/>
+        <segue reference="g0f-Hs-dMn"/>
+        <segue reference="d7W-eK-Vpz"/>
+        <segue reference="Ifr-Iv-956"/>
         <segue reference="sX9-WY-IIJ"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
         <segue reference="hlX-XA-zqW"/>
-        <segue reference="2fL-ta-11H"/>
+        <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -3211,6 +3222,9 @@ For further information on Blocks4All, please visit our website. For further det
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

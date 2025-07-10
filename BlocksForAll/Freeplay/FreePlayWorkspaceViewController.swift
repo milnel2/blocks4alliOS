@@ -62,13 +62,15 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         super.viewDidLoad()
         
         // Styling
-        currentActorImageView.alpha = 0.3
+        currentActorImageView.alpha = 0.5
         workspaceTitle.text = currentProject!.name
         workspaceTitle.layer.cornerRadius = 10.0
         workspaceTitle.layer.masksToBounds = true
         workspaceTitle.textColor = .black
         addActorButton.layer.masksToBounds = true // allows for corner radius to work
         addActorButton.layer.cornerRadius = 10
+        
+        freeplayOutputView.backgroundColor = UIColor(named: "whiteLightModeBlackDarkMode")
         
         updateUI()
         
@@ -209,17 +211,31 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     // MARK: UI
     func updateUI() {
         // Update current actor image
-        let newImage = UIImage(named: (currentProject?.currentActor!.imagePath)!)
-        self.currentActorImageView.image = nil
-        self.currentActorImageView.image = newImage
+        let newImage = HelperFunctions.getUIImage(named: (currentProject?.currentActor!.imagePath)!)
+     
+        self.currentActorImageView.image = newImage.stroked(with: .white, thickness: 5)
+        
         
         // Styling
         FirstCodeLineButton.titleLabel?.font =  UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 24.0)
-        
-        FirstCodeLineButton.titleLabel?.textColor = .black
-        secondCodeLineButton.titleLabel?.textColor = .black
-        
         secondCodeLineButton.titleLabel?.font =  UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 24.0)
+        
+        // Allow for dark mode if possible
+        if #available(iOS 13.0, *) {
+            FirstCodeLineButton.setTitleColor(.label, for: .selected)
+            FirstCodeLineButton.setTitleColor(.label, for: .normal)
+            secondCodeLineButton.setTitleColor(.label, for: .selected)
+            secondCodeLineButton.setTitleColor(.label, for: .normal)
+        } else {
+            // Fallback on earlier versions
+            FirstCodeLineButton.setTitleColor(.black, for: .selected)
+            FirstCodeLineButton.setTitleColor(.black, for: .normal)
+            secondCodeLineButton.setTitleColor(.black, for: .selected)
+            secondCodeLineButton.setTitleColor(.black, for: .normal)
+        }
+        
+        
+       
         
         // reset button images
         FirstCodeLineButton.setBackgroundImage(UIImage(named: "CodeLineButton_Blue"), for: .normal)
@@ -347,5 +363,102 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     /// Reset accessibility elements for accessing the entire screen
     func resetAccessibilityElements() {
         accessibilityElements = [toolboxView!, freeplayOutputView!, mainMenuButton!, addActorButton!, currentActorImageView!, playTrashToggleButton!, FirstCodeLineButton!, secondCodeLineButton!, blocksProgram!] // toolbox, output, home, add actor, customize, play, line 1 line 2, blocks program
+    }
+}
+
+public extension UIImage {
+    // Code for changing the color of a UIImage is from https://sarunw.com/posts/how-to-change-uiimage-color-in-swift/
+    /// Returns a new UIImage with the specified color or the original image if something went wrong
+    func colorized (with color: UIColor = .white) -> UIImage {
+        let newImage = self.withColor(color)
+        
+        if newImage == nil {
+            return self
+        }
+        return newImage!
+    }
+    // Code for changing the color of a UIImage is from https://sarunw.com/posts/how-to-change-uiimage-color-in-swift/
+    func withColor(_ color: UIColor) -> UIImage? {
+           UIGraphicsBeginImageContextWithOptions(size, false, scale)
+           let drawRect = CGRect(x: 0,y: 0,width: size.width,height: size.height)
+           color.setFill()
+           UIRectFill(drawRect)
+           draw(in: drawRect, blendMode: .destinationIn, alpha: 1)
+
+           let tintedImage = UIGraphicsGetImageFromCurrentImageContext()
+           UIGraphicsEndImageContext()
+           return tintedImage!
+       }
+    
+    // Code to add an outline to a UIImage is from Stéphane de Luca's answer on https://stackoverflow.com/questions/47900243/how-to-add-colored-border-to-uiimage-in-swift
+    /// Returns a new UIImage with a border in the specified color or the original image if something went wrong
+    func stroked(with color: UIColor = .white, thickness: CGFloat = 2, quality: CGFloat = 10) -> UIImage {
+
+           guard let cgImage = cgImage else { return self }
+
+           // Colorize the stroke image to reflect border color
+           let strokeImage = colorized(with: color)
+
+           guard let strokeCGImage = strokeImage.cgImage else { return self }
+
+           /// Rendering quality of the stroke
+           let step = quality == 0 ? 10 : abs(quality)
+
+           let oldRect = CGRect(x: thickness, y: thickness, width: size.width, height: size.height).integral
+           let newSize = CGSize(width: size.width + 2 * thickness, height: size.height + 2 * thickness)
+           let translationVector = CGPoint(x: thickness, y: 0)
+
+
+           UIGraphicsBeginImageContextWithOptions(newSize, false, scale)
+
+           guard let context = UIGraphicsGetCurrentContext() else { return self }
+
+           defer {
+               UIGraphicsEndImageContext()
+           }
+           context.translateBy(x: 0, y: newSize.height)
+           context.scaleBy(x: 1.0, y: -1.0)
+           context.interpolationQuality = .high
+
+           for angle: CGFloat in stride(from: 0, to: 360, by: step) {
+               let vector = translationVector.rotated(around: .zero, byDegrees: angle)
+               let transform = CGAffineTransform(translationX: vector.x, y: vector.y)
+
+               context.concatenate(transform)
+
+               context.draw(strokeCGImage, in: oldRect)
+
+               let resetTransform = CGAffineTransform(translationX: -vector.x, y: -vector.y)
+               context.concatenate(resetTransform)
+           }
+
+           context.draw(cgImage, in: oldRect)
+
+           guard let stroked = UIGraphicsGetImageFromCurrentImageContext() else { return self }
+
+           return stroked
+       }
+}
+
+// CGPoint extension code is from Stéphane de Luca's answer on https://stackoverflow.com/questions/47900243/how-to-add-colored-border-to-uiimage-in-swift
+extension CGPoint {
+    /**
+    Rotates the point from the center `origin` by `byDegrees` degrees along the Z axis.
+
+    - Parameters:
+        - origin: The center of he rotation;
+        - byDegrees: Amount of degrees to rotate around the Z axis.
+
+    - Returns: The rotated point.
+    */
+    func rotated(around origin: CGPoint, byDegrees: CGFloat) -> CGPoint {
+        let dx = x - origin.x
+        let dy = y - origin.y
+        let radius = sqrt(dx * dx + dy * dy)
+        let azimuth = atan2(dy, dx) // in radians
+        let newAzimuth = azimuth + byDegrees * .pi / 180.0 // to radians
+        let x = origin.x + radius * cos(newAzimuth)
+        let y = origin.y + radius * sin(newAzimuth)
+        return CGPoint(x: x, y: y)
     }
 }

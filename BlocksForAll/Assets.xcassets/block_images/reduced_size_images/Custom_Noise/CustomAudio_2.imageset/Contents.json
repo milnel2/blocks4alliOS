@@ -3,6 +3,16 @@
     {
       "filename" : "CustomAudio_2.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "CustomAudio_2_Dark.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

@@ -3,6 +3,16 @@
     {
       "filename" : "customNoise.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "customNoise-dark.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

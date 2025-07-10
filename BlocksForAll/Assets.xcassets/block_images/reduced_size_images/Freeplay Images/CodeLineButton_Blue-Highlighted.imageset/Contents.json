@@ -3,6 +3,16 @@
     {
       "filename" : "CodeLineButton-04.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "CodeLineButton_Dark-04.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

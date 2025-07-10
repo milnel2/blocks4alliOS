@@ -40,6 +40,7 @@ class FreeplayOutputView: UIView {
         backgroundImageView!.image = backgroundImage!.getImage()
         backgroundImageView?.contentMode = .scaleAspectFit
         
+        
     }
     
     func getBackgroundImagePath() -> String? {
