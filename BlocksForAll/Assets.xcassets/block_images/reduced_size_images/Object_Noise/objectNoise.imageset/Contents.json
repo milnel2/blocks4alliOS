@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "sounds-05.svg",
+      "filename" : "objectNoise-light.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "object_icon-dark.svg",
+      "filename" : "objectNoise-dark.svg",
       "idiom" : "universal"
     }
   ],

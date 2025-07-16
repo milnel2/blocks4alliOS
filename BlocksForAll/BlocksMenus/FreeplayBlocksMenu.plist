@@ -202,20 +202,6 @@
 			</dict>
 			<dict>
 				<key>isModifiable</key>
-				<false/>
-				<key>type</key>
-				<string>Statement</string>
-				<key>name</key>
-				<string>Move to Center</string>
-				<key>color</key>
-				<string>green_block</string>
-				<key>double</key>
-				<false/>
-				<key>imageName</key>
-				<string>move_to_origin</string>
-			</dict>
-			<dict>
-				<key>isModifiable</key>
 				<true/>
 				<key>name</key>
 				<string>Set Speed</string>
