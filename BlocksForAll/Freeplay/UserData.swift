@@ -18,7 +18,7 @@ class UserData {
     private var currentProject: Project? = nil
     
     private var customBackgroundPaths: [String] = []
-    private var defaultBackgroundPaths = ["DefaultBackground", "tempBackground1", "tempBackground2", "tempBackground3"]
+    private var defaultBackgroundPaths = ["WhiteBackground", "RedBackground", "OrangeBackground", "YellowBackground", "GreenBackground", "BlueBackground", "PurpleBackground"]
     
     static let data = UserData() // Static instance of UserData. Use this when needing to reference user data
     

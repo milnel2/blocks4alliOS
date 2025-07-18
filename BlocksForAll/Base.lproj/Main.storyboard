@@ -3074,12 +3074,14 @@ For further information on Blocks4All, please visit our website. For further det
                                                 </cells>
                                             </collectionView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" secondItem="waC-JW-j0j" secondAttribute="height" id="yGW-pj-uI9"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Zdb-kU-v2p" secondAttribute="bottom" id="08C-H6-Sz8"/>
                                     <constraint firstAttribute="trailing" secondItem="Zdb-kU-v2p" secondAttribute="trailing" id="8UI-th-wGw"/>
-                                    <constraint firstAttribute="bottom" secondItem="Zdb-kU-v2p" secondAttribute="bottom" id="Abd-3g-X7i"/>
                                     <constraint firstItem="Zdb-kU-v2p" firstAttribute="leading" secondItem="lcr-KP-6G2" secondAttribute="leading" id="Lc4-N6-Rd9"/>
                                     <constraint firstItem="LOL-xt-l8f" firstAttribute="centerX" secondItem="lcr-KP-6G2" secondAttribute="centerX" id="Utq-fO-aJa"/>
                                     <constraint firstItem="Zdb-kU-v2p" firstAttribute="top" secondItem="lcr-KP-6G2" secondAttribute="top" constant="413" id="Y97-71-Mf6"/>
@@ -3144,7 +3146,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="sX9-WY-IIJ"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="pX0-ao-Z6G"/>
-        <segue reference="hlX-XA-zqW"/>
+        <segue reference="Ziz-rn-vTi"/>
         <segue reference="OfV-so-xeL"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>

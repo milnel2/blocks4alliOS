@@ -368,23 +368,24 @@ class ModifierButton: UIButton {
  
     // Set background block
     func setBackgroundButton() {
-        if HelperFunctions.showIconsIsOn() {
-            let defaultValue = "" // TODO: default value
-            let imageName = block.attributes["background"] ?? defaultValue
-            var image: UIImage
-            if UserData.data.hasBackgroundPath(path: imageName) {
-                image = HelperFunctions.getUIImage(named: imageName)
-            } else {
-                // Reset image to default image if the custom path no longer exists in user data (it has been deleted)
-                image = HelperFunctions.getUIImage(named: defaultValue)
-                block.attributes["background"] = defaultValue
-            }
-            setBackgroundImage(image, for: .normal)
-            
+        let defaultValue = "" // TODO: default value
+        let imageName = block.attributes["background"] ?? defaultValue
+        var image: UIImage
+        if UserData.data.hasBackgroundPath(path: imageName) {
+            image = HelperFunctions.getUIImage(named: imageName)
         } else {
-            let backgroundImagePath = "driveModifierBackground" // TODO: set the correct yellow background
-            oneImageOnlyShowTextIsOn(text: attrVal, backgroundPath: backgroundImagePath)
+            // Reset image to default image if the custom path no longer exists in user data (it has been deleted)
+            image = HelperFunctions.getUIImage(named: defaultValue)
+            block.attributes["background"] = defaultValue
         }
+        setBackgroundImage(image, for: .normal)
+        
+        // Add a black border around the button
+        clipsToBounds = true
+        layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        layer.borderWidth = 5
+        layer.cornerRadius = 20 // add button rounded border
+        
         modifierInformation = attrVal
     }
     

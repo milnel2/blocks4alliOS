@@ -15,7 +15,7 @@ class BackgroundImage {
     
     init (imagePath: String?) {
         if imagePath == nil {
-            self.imagePath = "DefaultBackground"
+            self.imagePath = "WhiteBackground"
         } else {
             self.imagePath = imagePath!
         }

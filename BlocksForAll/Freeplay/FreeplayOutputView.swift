@@ -38,7 +38,13 @@ class FreeplayOutputView: UIView {
         freeplayWorkspaceVC!.currentProject!.updateCurrentBackground(background: backgroundImage)
         
         backgroundImageView!.image = backgroundImage!.getImage()
-        backgroundImageView?.contentMode = .scaleAspectFit
+        // If the background path is a built-in background (plain color), scale to fill. Otherwise (custom image), just aspect fit it.
+        if (UserData.data.hasDefaultBackgroundPath(path: newImagePath ?? "")) {
+            backgroundImageView?.contentMode = .scaleToFill
+        } else {
+            backgroundImageView?.contentMode = .scaleAspectFit
+        }
+       
         
         
     }

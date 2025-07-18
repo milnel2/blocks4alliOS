@@ -124,6 +124,12 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         
         focusedBackground = bgImage
         FocusedBackgroundImageView.image = bgImage.getImage()
+        // If the background path is a built-in background (plain color), scale to fill. Otherwise (custom image), just aspect fit it.
+        if (UserData.data.hasDefaultBackgroundPath(path: bgImage.getImagePath())) {
+            FocusedBackgroundImageView.contentMode = .scaleToFill
+        } else {
+            FocusedBackgroundImageView?.contentMode = .scaleAspectFit
+        }
         
         // Remove highlight on all cells
         for cell in BackgroundsCollectionView.visibleCells {
@@ -309,6 +315,12 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
                     totalNumCells)
         } else {
             cell.removeHighlight()
+            
+            // Put a black border around the white background cell so that it is visible
+            if (bgImage.getImagePath() == "WhiteBackground") {
+                cell.layer.borderWidth = 5
+                cell.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            }
         }
         
         return cell
@@ -368,6 +380,8 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         HorizontalStackView.layer.borderWidth = 5
         HorizontalStackView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) // TODO: dark mode
         HorizontalStackView.layer.cornerRadius = 10
+      
+      //  HorizontalStackView.addConstraint(NSLayoutConstraint(item: HorizontalStackView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: cellHeight * 2))
         
         FocusedBackgroundImageView.layer.borderWidth = 5
         FocusedBackgroundImageView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

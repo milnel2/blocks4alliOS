@@ -947,7 +947,7 @@ class ExecutingProgram {
     }
     
     func setBackground(backgroundBlock: Block) {
-        let backgroundImagePath = backgroundBlock.addedBlocks[0].attributes["background"] ?? "DefaultBackground"
+        let backgroundImagePath = backgroundBlock.addedBlocks[0].attributes["background"] ?? "WhiteBackground"
         
         currentActor!.freeplayOutputView?.setBackgroundImage(newImagePath: backgroundImagePath)
         
