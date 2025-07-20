@@ -3027,10 +3027,10 @@ For further information on Blocks4All, please visit our website. For further det
                                 <rect key="frame" x="50" y="214" width="980" height="546"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="500" placeholderIntrinsicHeight="350" translatesAutoresizingMaskIntoConstraints="NO" id="LOL-xt-l8f" userLabel="Content View">
-                                        <rect key="frame" x="240" y="0.0" width="500" height="393"/>
+                                        <rect key="frame" x="240" y="0.0" width="500" height="350"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="500" placeholderIntrinsicHeight="350" image="tempBackground1" translatesAutoresizingMaskIntoConstraints="NO" id="LSV-dX-nld" userLabel="Focused Background Image View">
-                                                <rect key="frame" x="0.0" y="0.0" width="500" height="393"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="500" height="350"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
@@ -3040,10 +3040,10 @@ For further information on Blocks4All, please visit our website. For further det
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zdb-kU-v2p">
-                                        <rect key="frame" x="0.0" y="413" width="980" height="133"/>
+                                        <rect key="frame" x="0.0" y="370" width="980" height="176"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6LU-Da-KnO">
-                                                <rect key="frame" x="0.0" y="0.0" width="133" height="133"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133" height="176"/>
                                                 <accessibility key="accessibilityConfiguration" hint="Double tap to open camera roll" label="Add New Background"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="addProjectButton">
@@ -3054,7 +3054,7 @@ For further information on Blocks4All, please visit our website. For further det
                                                 </connections>
                                             </button>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="waC-JW-j0j">
-                                                <rect key="frame" x="133" y="0.0" width="847" height="133"/>
+                                                <rect key="frame" x="133" y="0.0" width="847" height="176"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uoU-2D-txm">
                                                     <size key="itemSize" width="128" height="128"/>
@@ -3064,7 +3064,7 @@ For further information on Blocks4All, please visit our website. For further det
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BackgroundCell" id="mnN-Iu-tfJ">
-                                                        <rect key="frame" x="0.0" y="2.5" width="128" height="128"/>
+                                                        <rect key="frame" x="0.0" y="24" width="128" height="128"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="k1D-dO-nux">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -3080,11 +3080,9 @@ For further information on Blocks4All, please visit our website. For further det
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Zdb-kU-v2p" secondAttribute="bottom" id="08C-H6-Sz8"/>
                                     <constraint firstAttribute="trailing" secondItem="Zdb-kU-v2p" secondAttribute="trailing" id="8UI-th-wGw"/>
                                     <constraint firstItem="Zdb-kU-v2p" firstAttribute="leading" secondItem="lcr-KP-6G2" secondAttribute="leading" id="Lc4-N6-Rd9"/>
                                     <constraint firstItem="LOL-xt-l8f" firstAttribute="centerX" secondItem="lcr-KP-6G2" secondAttribute="centerX" id="Utq-fO-aJa"/>
-                                    <constraint firstItem="Zdb-kU-v2p" firstAttribute="top" secondItem="lcr-KP-6G2" secondAttribute="top" constant="413" id="Y97-71-Mf6"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b97-vT-dBe">
@@ -3104,6 +3102,7 @@ For further information on Blocks4All, please visit our website. For further det
                         <constraints>
                             <constraint firstItem="lcr-KP-6G2" firstAttribute="top" secondItem="G0I-xg-zo4" secondAttribute="bottom" constant="30" id="18O-Zk-Y9E"/>
                             <constraint firstItem="HQU-Mj-gRp" firstAttribute="top" secondItem="Bzo-V7-gQ3" secondAttribute="bottom" constant="30" id="9e8-iz-f5l"/>
+                            <constraint firstItem="hVH-fw-vgw" firstAttribute="top" secondItem="Zdb-kU-v2p" secondAttribute="bottom" constant="50" id="DmU-ig-NRZ"/>
                             <constraint firstItem="G0I-xg-zo4" firstAttribute="centerX" secondItem="KgD-Fe-hPq" secondAttribute="centerX" id="FyS-kl-jo7"/>
                             <constraint firstAttribute="trailing" secondItem="lcr-KP-6G2" secondAttribute="trailing" constant="50" id="Quo-uy-crs"/>
                             <constraint firstItem="G0I-xg-zo4" firstAttribute="centerY" secondItem="HQU-Mj-gRp" secondAttribute="centerY" id="Rs7-EG-Z8a"/>

@@ -290,8 +290,8 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         
         imageView.frame = CGRect(x: 0, y: 0, width: cellWidth, height: cellWidth)
         cell.addSubview(imageView)
-        
-        // Accessibility
+        cell.backgroundColor = .white
+                // Accessibility
         cell.isAccessibilityElement = true
         let nonZeroIndex = index + 1
         let totalNumCells = backgrounds.count

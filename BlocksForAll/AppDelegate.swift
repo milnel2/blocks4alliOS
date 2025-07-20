@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let userDataStrings = jsonString.components(separatedBy: "End User Data \n")[0].components(separatedBy: "New User Data \n")
             
             // Process saved custom background paths
-            let customBackgroundStrings = userDataStrings[0]
+            let customBackgroundStrings = userDataStrings[1]
             
             for line in customBackgroundStrings.components(separatedBy: "\n") {
                 if line == "" {
@@ -435,6 +435,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("couldn't delete previous Blocks4AllSave2. Error = ", error)
         }
         
+         
         // string that json text is appended to
         var writeText = String()
         writeText.append("Start User Data \n")
@@ -444,7 +445,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             writeText.append(path)
             writeText.append("\n")
         }
-        
         writeText.append("End User Data \n")
 //        writeText.append("New User Data \n")
 //        // Custom Noise File Paths

@@ -368,7 +368,7 @@ class ModifierButton: UIButton {
  
     // Set background block
     func setBackgroundButton() {
-        let defaultValue = "" // TODO: default value
+        let defaultValue =  data.defaultValue
         let imageName = block.attributes["background"] ?? defaultValue
         var image: UIImage
         if UserData.data.hasBackgroundPath(path: imageName) {
