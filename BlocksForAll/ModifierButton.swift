@@ -386,7 +386,7 @@ class ModifierButton: UIButton {
         layer.borderWidth = 5
         layer.cornerRadius = 20 // add button rounded border
         
-        modifierInformation = attrVal
+        modifierInformation = BackgroundImage.getUserFacingImageName(forPath: imageName)
     }
     
     // Handle special drawing of Move to Actor and Move to Location blocks

@@ -30,4 +30,18 @@ class BackgroundImage {
     public func getImagePath() -> String{
         return imagePath
     }
+    
+    
+    // Given an image path, return a string that can be used as an image name for VoiceOver
+    public static func getUserFacingImageName(forPath path: String) -> String {
+        let isCustomBackground = UserData.data.hasCustomBackgroundPath(path: path)
+        let userFacingImageName: String
+        
+        if isCustomBackground {
+            userFacingImageName = "Custom Background".localized // TODO: localize
+        } else {
+            userFacingImageName = path // TODO: localize
+        }
+        return userFacingImageName
+    }
 }

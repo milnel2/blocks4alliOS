@@ -293,15 +293,19 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         cell.backgroundColor = .white
                 // Accessibility
         cell.isAccessibilityElement = true
+        
         let nonZeroIndex = index + 1
         let totalNumCells = backgrounds.count
+        
+        
         
         cell.accessibilityLabel =
             String.localizedStringWithFormat(
                 NSLocalizedString("multiple_choice_image_unselected_indexed_access_label", comment: "Accessibility Label for an unselected background image cell in Select Background View Controller"),
-                bgImage.getImagePath(),
+                BackgroundImage.getUserFacingImageName(forPath: bgImage.getImagePath()),
                 nonZeroIndex,
                 totalNumCells)
+        
         
         // Highlight the cell if needed
         if index == focusedBackgroundIndex {
@@ -310,7 +314,7 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
             cell.accessibilityLabel =
                 String.localizedStringWithFormat(
                     NSLocalizedString("multiple_choice_image_selected_indexed_access_label", comment: "Accessibility Label for a selected background image cell in Select Background View Controller"),
-                    bgImage.getImagePath(),
+                    BackgroundImage.getUserFacingImageName(forPath: bgImage.getImagePath()),
                     nonZeroIndex,
                     totalNumCells)
         } else {
@@ -361,6 +365,7 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         cell.highlight()
         
         focusBackground(imageIndex: index)
+        setUpAccessibility()
     }
     
     /// Add a margin to the collection view so that the cells don't go right up to the edge
@@ -408,15 +413,15 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
         DeleteBackgroundButton.isAccessibilityElement = true
         DeleteBackgroundButton.accessibilityTraits = .button
         
-        accessibilityElements = [back!, SelectBackgroundTitleLabel!, FocusedBackgroundContentView!, DeleteBackgroundButton!, BackgroundsCollectionView!]
+        accessibilityElements = [back!, SelectBackgroundTitleLabel!, FocusedBackgroundContentView!, DeleteBackgroundButton!, AddNewBackgroundButton!, BackgroundsCollectionView!]
         back.accessibilityLabel = "Back".localized
         DeleteBackgroundButton.accessibilityLabel =  String.localizedStringWithFormat(
             NSLocalizedString("delete_custom_image_button_access_label", comment: "Accessibility Label for a button that will delete a custom image"),
-            focusedBackground!.getImagePath())
+            BackgroundImage.getUserFacingImageName(forPath: focusedBackground!.getImagePath()))
         FocusedBackgroundImageView.accessibilityLabel =
             String.localizedStringWithFormat(
                 NSLocalizedString("multiple_choice_image_selected_access_label", comment: "Accessibility Label for a selected Image View"),
-                focusedBackground!.getImagePath())
+                BackgroundImage.getUserFacingImageName(forPath: focusedBackground!.getImagePath()))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

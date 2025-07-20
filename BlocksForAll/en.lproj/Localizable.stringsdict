@@ -716,7 +716,7 @@
 			<string></string>
 		</dict>
 	</dict>
-	<key>multiple_choice_image_selected_access_label - 2</key>
+	<key>multiple_choice_image_selected_access_label</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%@ image selected.</string>
