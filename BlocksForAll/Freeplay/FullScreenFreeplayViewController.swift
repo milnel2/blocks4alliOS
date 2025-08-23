@@ -8,7 +8,7 @@
 
 import Foundation
 
-// An output view for running freeplay scenes in full screen
+// An output view controller for running freeplay scenes in full screen
 class FullScreenFreeplayViewController : UIViewController {
     
     @IBOutlet weak var outputView: FreeplayOutputView! // The output view where scenes are played

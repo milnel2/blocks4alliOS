@@ -12,7 +12,6 @@ import UIKit
 class DistanceSpeedModViewController: UIViewController{
     /* View controller for the Distance and Speed modifier scene */
     
-    //TODO: update these based on Dash API
     // Distance variables
     var distance: Double = 30
     var speed: String = "Normal"
