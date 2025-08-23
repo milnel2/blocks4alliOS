@@ -15,10 +15,10 @@ var currentWorkspace = String()  // workspace you are currently editing on scree
 /// Holds saved user data, like the custom background image paths
 class UserData {
     
-    private var currentProject: Project? = nil
+    private var currentProject: Project? = nil // Project that is currently being edited
     
-    private var customBackgroundPaths: [String] = []
-    private var defaultBackgroundPaths = ["WhiteBackground", "RedBackground", "OrangeBackground", "YellowBackground", "GreenBackground", "BlueBackground", "PurpleBackground"]
+    private var customBackgroundPaths: [String] = [] // Image paths for all images that have been uploaded as custom backgrounds for freeplay
+    private var defaultBackgroundPaths = ["WhiteBackground", "RedBackground", "OrangeBackground", "YellowBackground", "GreenBackground", "BlueBackground", "PurpleBackground"] // Image paths for default/built-in backgrounds for freeplay
     
     static let data = UserData() // Static instance of UserData. Use this when needing to reference user data
     
@@ -31,7 +31,6 @@ class UserData {
         currentProject = newProject
     }
 
-    
     //MARK:  Custom Backgrounds
     /// Add path to the customBackgroundPaths list if it doesn't already exist in the list
     func addBackgroundPath(path: String) {
@@ -60,7 +59,6 @@ class UserData {
             }
             return true
         }
-        
         return false
     }
     
@@ -94,6 +92,4 @@ class UserData {
     public func getMaxNumCustomNoises() -> Int {
         return 5
     }
-    
-   
 }

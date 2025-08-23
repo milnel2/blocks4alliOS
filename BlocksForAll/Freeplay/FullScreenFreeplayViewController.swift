@@ -13,27 +13,27 @@ class FullScreenFreeplayViewController : UIViewController {
     
     @IBOutlet weak var outputView: FreeplayOutputView! // The output view where scenes are played
     
-    @IBOutlet weak var outputBackgroundImageView: UIImageView!
+    @IBOutlet weak var outputBackgroundImageView: UIImageView! // image view for the full screen background image
     @IBOutlet weak var exitFullScreenButton: UIButton! // button to go back to the freeplay workspace
     
     var smallViewSize: CGSize? = nil // size of the output view in the regular freeplay workspace
     
-    var screenSize = UIScreen.main.bounds.size
+    let SCREEN_SIZE = UIScreen.main.bounds.size
     
     var verticalSizeFactor = 0.0 // ratio for sizing from small size to full screen
     var horizontalSizeFactor = 0.0 // ratio for sizing from small size to full screen
     
     let ACTOR_SHRINK_MULITPLIER = 0.9 // number to make the full screen actors a tiny bit smaller
     
-    var freeplayWorkspaceVC: FreePlayWorkspaceViewController? = nil
+    var freeplayWorkspaceVC: FreePlayWorkspaceViewController? = nil // Freeplay workspace associated with this view controller
     
     var freeplayWorkspaceOriginalPlayButton: UIButton? // Used to retain the reference to the play button when going back and forth from the workspace and full screen
     
-    @IBOutlet weak var fullScreenPlayButton: UIButton!
+    @IBOutlet weak var fullScreenPlayButton: UIButton! // Button to run the program
     
-    var backgroundImagePath: String? = nil
+    var backgroundImagePath: String? = nil // Path for the current background image
     
-    var currentProject: Project? {
+    var currentProject: Project? { // Project that is currently open
         get {
             return UserData.data.getCurrentProject()
         }
@@ -47,6 +47,7 @@ class FullScreenFreeplayViewController : UIViewController {
             print("ERROR: freeplay workspace is nil")
         }
        
+        // Link play buttons
         freeplayWorkspaceVC!.playTrashToggleButton = fullScreenPlayButton
 
         calculateVerticalSizeFactor()
@@ -54,6 +55,7 @@ class FullScreenFreeplayViewController : UIViewController {
         
         outputView.freeplayWorkspaceVC = freeplayWorkspaceVC
         
+        // Clear accessibility elements
         outputView.accessibilityElements = []
         
         outputView.backgroundColor = UIColor(named: "whiteLightModeBlackDarkMode")
@@ -95,12 +97,12 @@ class FullScreenFreeplayViewController : UIViewController {
     
     // calculate vertical ratio of full screen to smaller output view
     func calculateVerticalSizeFactor() {
-        verticalSizeFactor = screenSize.height /  smallViewSize!.height
+        verticalSizeFactor = SCREEN_SIZE.height /  smallViewSize!.height
     }
     
     // calculate horizontal ratio of full screen to smaller output view
     func calculateHorizontalSizeFactor() {
-        horizontalSizeFactor = screenSize.width /  smallViewSize!.width
+        horizontalSizeFactor = SCREEN_SIZE.width /  smallViewSize!.width
     }
     
     @IBAction func fullScreenPlayPressed(_ sender: Any) {
@@ -108,7 +110,6 @@ class FullScreenFreeplayViewController : UIViewController {
     }
     
     @IBAction func exitFullScreenPressed(_ sender: Any) {
-        
         performSegue(withIdentifier: "exitFullScreen", sender: nil)
     }
     
@@ -126,7 +127,6 @@ class FullScreenFreeplayViewController : UIViewController {
                 
                 actor.executingProgram?.stopWasPressed = true
             }
-            //freeplayWorkspaceVC.backgroundImagePath = outputView.getBackgroundImagePath()
         }
         super.prepare(for: segue, sender: sender)
     }

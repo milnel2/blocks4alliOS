@@ -13,11 +13,10 @@ import UIKit
 public let FREEPLAY_GALLERY_TYPE = "Freeplay Projects"
 public let ROBOT_GALLERY_TYPE = "Robot Projects"
 
-
 var allProjects: [String : [Project]] = [FREEPLAY_GALLERY_TYPE:[], ROBOT_GALLERY_TYPE: []]
 
 let ON_RUN_STRING = "On Run"
-let ON_BUMP_STRING = "On Bump" // Need to add implementation for On Bump
+let ON_BUMP_STRING = "On Bump" // TODO: Need to add implementation for On Bump
 let ON_TAP_STRING = "On Tap"
 
 let PREMADE_FUNCTION_NAMES = [ON_RUN_STRING, ON_BUMP_STRING, ON_TAP_STRING, "Main Workspace"]
@@ -56,7 +55,8 @@ class Project : Equatable{
         self.actors = actors
         self.projectType = projectType
         
-        if actors.count < 1 {
+        if actors.count < 1 {// By default adds one actor to the project if there are none
+
             let defaultActor = VirtualRobot(baseImagePath: "CatActor", name: "Cat", project: self)
             addActor(actor: defaultActor)
             currentActor = defaultActor
@@ -66,14 +66,12 @@ class Project : Equatable{
         
         // Sets a default background
         currentBackground = BackgroundImage(imagePath: backgroundImagePath)
-        
     }
     
     func addActor(actor: VirtualRobot) {
         if !actors.contains(actor) {
             actors.append(actor)
         }
-        
     }
     
     // attempt to delete actor from project
@@ -88,13 +86,11 @@ class Project : Equatable{
         } else {
             print("Failed to delete actor:", actor.name)
         }
-        
-        
     }
     
     static func FetchProjects () -> [String:[Project]]{
         return allProjects
-       }
+    }
     
     public func updateCurrentBackground(background: BackgroundImage?) {
         currentBackground = background
@@ -107,7 +103,7 @@ class Project : Equatable{
         if !customAudioPaths.contains(path) {
             customAudioPaths[slotNum - 1] = path
         } else {
-            // TODO: repeated audio file
+            // TODO: handle repeated audio file
         }
     }
     

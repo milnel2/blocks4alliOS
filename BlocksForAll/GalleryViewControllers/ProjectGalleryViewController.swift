@@ -60,55 +60,6 @@ class ProjectGalleryViewController: UIViewController {
         homeButton.accessibilityLabel = "Main Menu".localized
     }
     
-    func validateFunctionName(name: String, currentAlert: UIAlertController) -> Bool{
-        let dictionary = HelperFunctions.getPListDictionary(resourceName: "ModifierProperties")!
-        if (dictionary[name] != nil) {
-            // Name is protected, show an alert do not rename the function
-            let titleString: String
-            let messageString: String
-            
-            titleString = NSLocalizedString("Name is protected", comment: "")
-            messageString = NSLocalizedString("Choose a different name", comment: "")
-           
-            currentAlert.dismiss(animated: true) {
-                let invalidNameAlert = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
-                invalidNameAlert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
-                self.present(invalidNameAlert, animated: true)
-            }
-            return false
-        } else if (name == "") {
-            // Name is empty string
-            let titleString: String
-            let messageString: String
-            
-            titleString = NSLocalizedString("Name cannot be empty", comment: "")
-            messageString = NSLocalizedString("Choose a different name", comment: "")
-    
-            currentAlert.dismiss(animated: true) {
-                let invalidNameAlert = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
-                invalidNameAlert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
-                self.present(invalidNameAlert, animated: true)
-            }
-            return false
-        } else {
-            for proj in allProjects[galleryType]! {
-                if proj.name == name {
-                    let titleString: String
-                    let messageString: String
-                    
-                    titleString = NSLocalizedString("Name already exists", comment: "")
-                    messageString = NSLocalizedString( "Choose a different name", comment: "")
-                    
-                    let invalidNameAlert = UIAlertController(title: titleString, message: messageString, preferredStyle: .alert)
-                        invalidNameAlert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
-                        self.present(invalidNameAlert, animated: true)
-                    
-                    return false
-                }
-            }
-        }
-        return true
-    }
 }
 
 extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -160,8 +111,6 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             return cell
         }
     }
-    
-    // TODO: have cells fill left to right instead of top to bottom
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

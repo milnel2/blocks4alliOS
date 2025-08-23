@@ -85,6 +85,7 @@ class CustomizeActorViewController: UIViewController {
         actorImageDisplayParentView.translatesAutoresizingMaskIntoConstraints = true
        
         selectedColor = currentActor!.color
+        
         // show previous selection
         resetColorHighlights()
         switch currentActor!.color {
@@ -102,7 +103,7 @@ class CustomizeActorViewController: UIViewController {
         
         setUpAccessibility()
         
-        if UserData.data.getCurrentProject()!.actors.count > 1 { // don't allow deleting when there is only one actor left
+        if UserData.data.getCurrentProject()!.actors.count > 1 { // don't allow deleting actor when there is only one actor left
             deleteButton.isEnabled = true
         } else {
             deleteButton.isEnabled = false // can't delete the only actor

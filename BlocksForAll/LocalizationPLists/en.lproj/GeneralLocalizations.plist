@@ -1304,5 +1304,12 @@
 		<key>comment</key>
 		<string>Generic String for announcing that recording a custom noise has finished</string>
 	</dict>
+	<key>Custom Background</key>
+	<dict>
+		<key>value</key>
+		<string>Custom Background</string>
+		<key>comment</key>
+		<string>Generic String for a Custom Background image name</string>
+	</dict>
 </dict>
 </plist>

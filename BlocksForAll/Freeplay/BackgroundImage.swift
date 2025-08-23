@@ -38,9 +38,9 @@ class BackgroundImage {
         let userFacingImageName: String
         
         if isCustomBackground {
-            userFacingImageName = "Custom Background".localized // TODO: localize
+            userFacingImageName = "Custom Background".localized
         } else {
-            userFacingImageName = path // TODO: localize
+            userFacingImageName = path // TODO: localize?
         }
         return userFacingImageName
     }

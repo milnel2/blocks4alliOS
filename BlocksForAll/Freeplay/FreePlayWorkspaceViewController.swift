@@ -17,7 +17,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     @IBOutlet weak var freeplayOutputView: FreeplayOutputView! // View where actors are located
     
-    @IBOutlet weak var homeButton: UIButton!
+    @IBOutlet weak var homeButton: UIButton! // Button to return to main menu
     
     @IBOutlet weak var currentActorImageView: UIImageView! // image view that shows which actor is currently selected and is being edited
     
@@ -33,9 +33,9 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     var newActorToAdd: (name:String, baseImagePath: String, color: String)? // to be used when adding to actors
     
-    var backgroundImagePath: String? = nil
+    var backgroundImagePath: String? = nil // Image path for the current background image in the output view
     
-    var currentFunctionDict: [String : [Block]]{
+    var currentFunctionDict: [String : [Block]]{ // Function dictionary for the actor that is currently selected
         get { return UserData.data.getCurrentProject()!.currentActor!.functionDict}
         set {
             UserData.data.getCurrentProject()!.currentActor!.functionDict = newValue
@@ -46,17 +46,18 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         if (currentProject == nil) {
             print("ERROR: current project is nil")
         }
-        freeplayOutputView.freeplayWorkspaceVC = self
-        freeplayOutputView.resetActorSubviews()
         
-        // add actors to the scene
+        freeplayOutputView.freeplayWorkspaceVC = self // Attach self to the output view
+        freeplayOutputView.resetActorSubviews() // Remove all actors from output view
+        
+        // Add actors to the scene
         for actor in currentProject!.actors {
-            actor.addFreeplayOutputView(freeplayOutputView: freeplayOutputView)
-           addActor(actor: actor)
+            actor.addFreeplayOutputView(freeplayOutputView: freeplayOutputView) // Attach actor to the output view
+            addActor(actor: actor)
         }
         
         isInFreeplay = true
-       
+        
         currentWorkspace = ON_RUN_STRING
         
         super.viewDidLoad()
@@ -69,7 +70,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         workspaceTitle.textColor = .black
         addActorButton.layer.masksToBounds = true // allows for corner radius to work
         addActorButton.layer.cornerRadius = 10
-        
         freeplayOutputView.backgroundColor = UIColor(named: "whiteLightModeBlackDarkMode")
         
         updateUI()
@@ -86,7 +86,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         currentActorImageView.addGestureRecognizer(tapGesture)
         
         // Set the background image to be the saved background. Also connects the image view to the output view
-        // TODO: the image size is different before play is pressed
         backgroundImagePath = currentProject!.currentBackground?.getImagePath()
         freeplayOutputView.setBackgroundImageView(imageView: outputBackgroundImageView)
         freeplayOutputView.setBackgroundImage(newImagePath: backgroundImagePath)
@@ -100,7 +99,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     // MARK: Actions
     
-    
+    // When the current actor image is clicked, go to the customize actor screen
     @objc func clickOnCurrentActorImageView(sender : UITapGestureRecognizer) {
         performSegue(withIdentifier: "toCustomizeActor", sender: nil)
     }
@@ -128,7 +127,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     //this function allows the blocks in the workspace to be sent to the virtual robot
     override func play(functionsDictToPlay: [String : [Block]], functionNameToExecute: String? = nil, actor: VirtualRobot? = nil){
         let newRobotControlVC = RobotControlViewController()
-        
         executingProgram = ExecutingProgram(functionsDictToExecute: functionsDictToPlay, robotControlViewController: newRobotControlVC, functionNameToExecute: functionNameToExecute, actor: actor)
         newRobotControlVC.executingProgram = executingProgram
         newRobotControlVC.blocksViewController = self
@@ -136,13 +134,10 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         actor?.executingProgram = executingProgram
         
         executingProgram?.robotControlViewController.executeNextCommandRobotControllVC()
-      
-      
-        
     }
     
+    // When the play button is clicked, run the On Run code line for all actors
     override func playClicked() {
-        
         stopIsOption = true
         changePlayTrashButton()
         //Calls RobotControllerViewController play function
@@ -160,27 +155,28 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     }
     
     // MARK: Actors
-    // Called after returning from the add actor screen. Adds a new actor to the project.
+    // Called after returning from the add actor screen. Creates and adds a new actor to the project.
     func afterNewActorSelected(name: String, baseImagePath: String) {
         let newRobot = VirtualRobot(baseImagePath: baseImagePath, freeplayOutputView: freeplayOutputView, name: name, project: currentProject!)
         addActor(actor: newRobot)
-        updateCurrentActor(newActor: newRobot)
+        setCurrentActor(newActor: newRobot) // Set this new actor as the current actor
         newActorToAdd = nil
     }
     
+    // Attach actor to the freeplay output view
     func addActor(actor: VirtualRobot) {
         freeplayOutputView.addActor(actor: actor)
     }
     
-    // Updates the actor that is currently being edited
-    func updateCurrentActor(newActor: VirtualRobot) {
+    // Set the actor that is currently being edited
+    func setCurrentActor(newActor: VirtualRobot) {
         currentProject!.currentActor = newActor
-//        functionsDict = currentProject!.currentActor!.functionDict
         
         refreshScreen()
         updateUI()
     }
     
+    // Delete actor from the project
     func deleteActor(actor: VirtualRobot) {
         currentProject!.deleteActor(actor: actor)
     }
@@ -213,7 +209,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         // Update current actor image
         let newImage = HelperFunctions.getUIImage(named: (currentProject?.currentActor!.imagePath)!)
      
-        self.currentActorImageView.image = newImage.stroked(with: .white, thickness: 5)
+        self.currentActorImageView.image = newImage.stroked(with: .white, thickness: 5) // Add border to image
         
         
         // Styling
@@ -234,9 +230,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             secondCodeLineButton.setTitleColor(.black, for: .normal)
         }
         
-        
-       
-        
         // reset button images
         FirstCodeLineButton.setBackgroundImage(UIImage(named: "CodeLineButton_Blue"), for: .normal)
         secondCodeLineButton.setBackgroundImage(UIImage(named: "CodeLineButton_Orange"), for: .normal)
@@ -246,7 +239,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         case ON_RUN_STRING:
             FirstCodeLineButton.setBackgroundImage(UIImage(named: "CodeLineButton_Blue-Highlighted"), for: .normal)
         case ON_TAP_STRING:
-           
             secondCodeLineButton.setBackgroundImage(UIImage(named: "CodeLineButton_Orange-Highlighted"), for: .normal)
         default:
             break
@@ -255,8 +247,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         setUpAccessibility()
     }
 
-
-    
     // MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -271,8 +261,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
             fullscreenVC.freeplayWorkspaceVC = self
             fullscreenVC.smallViewSize = freeplayOutputView.frame.size
             fullscreenVC.freeplayWorkspaceOriginalPlayButton = playTrashToggleButton
-            //fullscreenVC.backgroundImagePath = freeplayOutputView.getBackgroundImagePath()
-            //print("set full screen background image path to: \(fullscreenVC.backgroundImagePath)")
             
             for actor in currentProject!.actors {
                 actor.executingProgram?.stopWasPressed = true
@@ -287,9 +275,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
         super.prepare(for: segue, sender: sender)
     }
-    
-    
-    
     
     // MARK: Accessibility
     func setUpAccessibility() {
@@ -311,6 +296,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         mainMenuButton.isAccessibilityElement = true
         mainMenuButton.isUserInteractionEnabled = true
         mainMenuButton.accessibilityTraits = .button
+        
         homeButton.accessibilityLabel = "Main Menu".localized
         
         // Set the accessibility elements for the screen
@@ -333,7 +319,6 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         
         enterFullScreenButton.accessibilityLabel = NSLocalizedString("Enter full screen.", comment: "Accessibility Label for Enter Full Screen button")
            
-       
         // highlight the active code line button
         switch currentWorkspace {
         case ON_RUN_STRING:
@@ -345,9 +330,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         default:
             break
         }
-        
     }
-    
     
     // Update accessibility elements to make navigation easier when moving blocks
     override func beginMovingBlocks(_ blocks: [Block]) {
@@ -362,7 +345,7 @@ class FreePlayWorkspaceViewController: BlocksViewController {
     
     /// Reset accessibility elements for accessing the entire screen
     func resetAccessibilityElements() {
-        accessibilityElements = [toolboxView!, freeplayOutputView!, mainMenuButton!, addActorButton!, currentActorImageView!, playTrashToggleButton!, FirstCodeLineButton!, secondCodeLineButton!, blocksProgram!] // toolbox, output, home, add actor, customize, play, line 1 line 2, blocks program
+        accessibilityElements = [toolboxView!, freeplayOutputView!, mainMenuButton!, addActorButton!, currentActorImageView!, playTrashToggleButton!, FirstCodeLineButton!, secondCodeLineButton!, blocksProgram!] // toolbox, output, home, add actor, customize, play, line 1, line 2, blocks program
     }
 }
 
@@ -407,7 +390,6 @@ public extension UIImage {
            let oldRect = CGRect(x: thickness, y: thickness, width: size.width, height: size.height).integral
            let newSize = CGSize(width: size.width + 2 * thickness, height: size.height + 2 * thickness)
            let translationVector = CGPoint(x: thickness, y: 0)
-
 
            UIGraphicsBeginImageContextWithOptions(newSize, false, scale)
 

@@ -87,7 +87,7 @@ class VirtualRobot: Equatable {
     
     // when an actor image view is clicked on, play its on tap code line and set it to be the current actor
     @objc func clickOnActor(sender : UITapGestureRecognizer) {
-        freeplayOutputView?.freeplayWorkspaceVC?.updateCurrentActor(newActor: self)
+        freeplayOutputView?.freeplayWorkspaceVC?.setCurrentActor(newActor: self)
         freeplayOutputView?.runOnTapCode(forActor: self)
     }
     

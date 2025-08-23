@@ -21,15 +21,14 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     
     var cellGalleryType: String = ROBOT_GALLERY_TYPE // Type of project that the cell is for: either robot or freeplay
     
-    
     var project : Project! { // associated Project object
        didSet {
            self.updateUI()
            self.setUpProjectLabelTap()
        }
-   }
+    }
+    
     func updateUI() {
-       
         if let project = project {
             if project.imageName != "" {
                 // Set up and add project image
@@ -55,6 +54,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         updateAccessibilityTools()
        }
     
+    // When the project name label is tapped, prompt to rename the project
     @objc func projectLabelTapped(_ sender: UITapGestureRecognizer) {
         // Show rename project alert
         let titleString: String
@@ -70,7 +70,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Done".localized, style: .default, handler: {action in
             let textField = alert.textFields![0] as UITextField
-            if self.validateFunctionName(name: textField.text ?? "") {
+            if self.validateProjectName(name: textField.text ?? "") {
                 let newName = textField.text!
                 // name is valid, rename the project
                 for proj in allProjects[self.cellGalleryType]! {
@@ -85,9 +85,8 @@ class ProjectCollectionViewCell: UICollectionViewCell {
             
         }))
             parentViewController!.present(alert, animated: true)
-        
             // if the name isn't valid, the label will go back to whatever the name previously was
-        updateUI()
+            updateUI()
         }
     
     /// Adds tap gesture to project name label for renaming project
@@ -96,7 +95,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.projectLabelTapped(_:)))
         self.projectNameLabel.isUserInteractionEnabled = true
         self.projectNameLabel.addGestureRecognizer(labelTap)
-        }
+    }
   
     func updateAccessibilityTools() {
         isAccessibilityElement = false
@@ -122,7 +121,6 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         let formattedString2 = NSLocalizedString("project_cell_access_hint", comment: "Accessibility hint for project cell in the project gallery.")
         let resultString2 = String.localizedStringWithFormat(formattedString2, project.name, (cellIndex + 1), numProjects)
         contentView.accessibilityHint = resultString2
-        // TODO: add image description
         
         let formattedString3 = NSLocalizedString("delete_project_button_access_label", comment: "Accessibility label for Delete Project Button on project cell in project gallery")
         let resultString3 = String.localizedStringWithFormat(formattedString3, project.name)
@@ -146,10 +144,9 @@ class ProjectCollectionViewCell: UICollectionViewCell {
             self.parentViewController!.reloadGallery()
         }))
         parentViewController!.present(alert, animated: true)
-        
     }
     
-    func validateFunctionName(name: String) -> Bool{
+    func validateProjectName(name: String) -> Bool{
         let dictionary = HelperFunctions.getPListDictionary(resourceName: "ModifierProperties")!
         if (dictionary[name] != nil) {
             // Name is protected, show an alert do not rename the function

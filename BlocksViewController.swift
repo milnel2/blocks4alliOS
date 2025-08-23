@@ -70,11 +70,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     internal var allModifierBlocks = [UIButton]()  // A list of all the modifier blocks in the workspace
     private var modifierBlockIndex: Int?  // An integer used to identify which modifier block was clicked when going to other screens.
     
-    
-   
     var galleryType = String()
-    
-   
   
     //MARK: - View Controller Methods
     override func viewDidAppear(_ animated: Bool) {
@@ -90,7 +86,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+               
         endIndex = currentProject!.currentActor!.functionDict[currentWorkspace]!.count - 1
        
         updateStyling()
@@ -205,7 +201,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     override func viewWillDisappear(_ animated: Bool) {
         // Save project snapshot every time the view will disappear saves an image more often than just saving it when the user goes to the main menu, since it doesn't save one when closing the app
-        // TODO: save a snapshot when closing the app
         saveProjectSnapshot()
     }
     
@@ -1116,7 +1111,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
             return #selector(angleModifier(sender:))
         case "Drive":
             return #selector(driveModifier(sender:))
-        case "Drive Forward", "Drive Backward": // TODO: update for freeplay
+        case "Drive Forward", "Drive Backward":
             return #selector(distanceSpeedModifier(sender:))
         case "Set Variable":
             return #selector(variableModifier(sender:))
@@ -1155,7 +1150,6 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     // MARK: - - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     
-    //TODO: refactor these methods? they are all the same except for the identifier
     @objc  func stepperModifier(sender: UIButton!) {
         modifierBlockIndex = sender.tag
         performSegue(withIdentifier: "StepperModifier", sender: nil)

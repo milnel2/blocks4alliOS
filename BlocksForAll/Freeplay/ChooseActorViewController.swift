@@ -23,9 +23,9 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
     
     private var optionSelectedIndex = 0 // index of the option in the ActorsMenu array
     
-    var items: NSArray = []
+    var actorOptions: NSArray = [] // List of actors from the ActorsMenu plist
     
-    var selectedActor = (name: "", baseImagePath: "", color: "")
+    var selectedActor = (name: "", baseImagePath: "", color: "") // Actor that is currently selected
     
     var freeplayOutputView: FreeplayOutputView? // used during segues
     
@@ -45,7 +45,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         
         // get data for possible actors
          if let path = Bundle.main.path(forResource: "ActorsMenu", ofType: "plist") {
-            items = NSArray(contentsOfFile: path)!
+            actorOptions = NSArray(contentsOfFile: path)!
          } else {
              print("could not access ActorsMenu plist")
          }
@@ -54,23 +54,19 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         actorsCollectionView.dataSource = self
         actorsCollectionView.register(ActorCell.self, forCellWithReuseIdentifier: "ActorCell")
          
-//        collectionView.isAccessibilityElement = false
-//        collectionView.shouldGroupAccessibilityChildren = true  // this and more good voiceOver tips are from https://medium.com/bpxl-craft/how-to-make-voiceover-more-friendly-in-your-ios-app-8fac34ab8c51
-       
         // Voice Over
         accessibilityElements = [backButton!, chooseActorTitleLabel!, actorsCollectionView!, addActorButton!]
         
         // Text
-        
         chooseActorTitleLabel.text = NSLocalizedString("Choose New Actor", comment: "Title for choose new actor view controller").localizedCapitalized
         addActorButton.setTitle(NSLocalizedString("Add", comment: "Button text to add new actor to project"), for: .normal)
     }
     
     // MARK: Actions
-    @IBAction func backButtonPressed(_ sender: Any) {
+    @IBAction func backButtonPressed(_ sender: Any) { // Return to freeplay without adding a new actor
         performSegue(withIdentifier: "backToFreeplay", sender: nil)
     }
-    @IBAction func addActorPressed(_ sender: Any) {
+    @IBAction func addActorPressed(_ sender: Any) { // Return to freeplay and add a new actor
         performSegue(withIdentifier: "backToFreeplayWithNewActor", sender: nil)
     }
     
@@ -95,7 +91,7 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
     
     // MARK: Collection View
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.items.count
+        return self.actorOptions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -107,8 +103,6 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ActorCell", for: indexPath) as! ActorCell
         let index = indexPath.item  // numerical index of cell
-        
-       
         
         // Reset labels and images in cells
         // ----- Below code is from https://stackoverflow.com/questions/23647833/uicollectionviewcell-is-overlapped-when-scrolling
@@ -126,7 +120,8 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         var baseImagePath = ""
         var name = ""
         
-        if let actorType = items[index] as? NSDictionary{
+        if let actorType = actorOptions[index] as? NSDictionary{
+            // Get the image for this actor
             baseImagePath = actorType.value(forKey: "imagePath") as! String
             let imagePath = VirtualRobot.calculateImagePath(baseImagePath: baseImagePath, color: "Default")
             name = actorType.value(forKey: "name") as! String
@@ -155,7 +150,6 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         
         cell.accessibilityIdentifier = String(index)
     
-        
         // Put a border around the cell if it is currently selected
         if String(optionSelectedIndex) == cell.accessibilityIdentifier {
             cell.layer.borderWidth = 10
@@ -182,7 +176,6 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         for cell in collectionView.visibleCells{ // deselect all visible buttons
             cell.isSelected = false
             cell.layer.borderWidth = 0
-            
         }
         let selectedCell = collectionView.cellForItem(at: indexPath) // highlight the one selected button
         selectedCell?.layer.borderWidth = 10
@@ -192,8 +185,9 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         
         var imagePath = ""
         var name = ""
-    
-        if let actorType = items[optionSelectedIndex] as? NSDictionary{
+        
+        // Select this new actor
+        if let actorType = actorOptions[optionSelectedIndex] as? NSDictionary{
             imagePath = actorType.value(forKey: "imagePath") as! String
             name = actorType.value(forKey: "name") as! String
             selectedActor = (name: name, baseImagePath: imagePath, color: "Default".localized)

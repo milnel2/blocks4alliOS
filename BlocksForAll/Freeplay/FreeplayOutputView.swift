@@ -15,13 +15,13 @@ class FreeplayOutputView: UIView {
     
     var actorSubviews = [UIImageView]() // all of the actor image views that are inside of this output view
     
-    var backgroundImage: BackgroundImage? = nil
+    var backgroundImage: BackgroundImage? = nil // Background image of the scene
     
-    var backgroundImageView: UIImageView? = nil
+    var backgroundImageView: UIImageView? = nil // Image view for the background of the scene
     
     //MARK: Background
 
-    // Specifies the image view to use for this output. Important because the full screen output has a different imageview
+    // Specifies the image view to use for this output. Important because the full screen output has a different imageview than when in the regular freeplay workspace
     func setBackgroundImageView(imageView: UIImageView) {
         backgroundImageView = imageView
     }
@@ -38,15 +38,13 @@ class FreeplayOutputView: UIView {
         freeplayWorkspaceVC!.currentProject!.updateCurrentBackground(background: backgroundImage)
         
         backgroundImageView!.image = backgroundImage!.getImage()
+        
         // If the background path is a built-in background (plain color), scale to fill. Otherwise (custom image), just aspect fit it.
         if (UserData.data.hasDefaultBackgroundPath(path: newImagePath ?? "")) {
             backgroundImageView?.contentMode = .scaleToFill
         } else {
             backgroundImageView?.contentMode = .scaleAspectFit
         }
-       
-        
-        
     }
     
     func getBackgroundImagePath() -> String? {
@@ -59,11 +57,12 @@ class FreeplayOutputView: UIView {
         actorSubviews = []
     }
     
-    // add actor as a subview and add gestures to it
+    // add actor as a subview and add touch gestures to it
     func addActor(actor: VirtualRobot) {
         // Add actor to screen
         addSubview(actor.imageView)
         actorSubviews.append(actor.imageView)
+       
         // Move actor to saved location
         actor.setToSavedCoordinates()
         
@@ -79,7 +78,6 @@ class FreeplayOutputView: UIView {
         freeplayWorkspaceVC!.addEventIndicatorBlocks()
         freeplayWorkspaceVC!.setUpAccessibility()
     }
-    
     
     // Run the on tap code line for the given actor
     public func runOnTapCode(forActor actor: VirtualRobot) {
@@ -112,7 +110,7 @@ class FreeplayOutputView: UIView {
         let backgroundRightX = self.frame.width
                
        switch sender.state {
-       case .began, .changed: // Implementation to recognize selected actor from ChatGPT by OpenAI. Source: https://www.openai.com
+       case .began, .changed:
            for actor in UserData.data.getCurrentProject()!.actors {
                if actor.imageView.frame.contains(dragLocation) && actor.imageView == sender.view {
                    if !(dragLocation.x - actorWidth / 2 <= backgroundLeftX || dragLocation.x + actorWidth / 2 >= backgroundRightX) {
@@ -126,7 +124,7 @@ class FreeplayOutputView: UIView {
                        actor.setCoordinates(x: actor.coordinates.x, y: dragLocation.y)
                        actor.setUpAccessibility()
                    }
-                   freeplayWorkspaceVC!.updateCurrentActor(newActor: actor)
+                   freeplayWorkspaceVC!.setCurrentActor(newActor: actor)
                }
            }
        default:
