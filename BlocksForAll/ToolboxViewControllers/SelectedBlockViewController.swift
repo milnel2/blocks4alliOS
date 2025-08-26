@@ -113,7 +113,7 @@ class SelectedBlockViewController: UIViewController {
 
        
         let numNestedBlocks = blocks!.count - 2 // the number of blocks that are nested inside of this block (don't count the start and end blocks)
-        let formattedString = NSLocalizedString("nested_block_selected_access_label", comment: "Accessibility label for when a nested block is selected to move. Says name of block and how many blocks (int) are nested within it") // TODO: don't forget to test this one
+        let formattedString = NSLocalizedString("nested_block_selected_access_label", comment: "Accessibility label for when a nested block is selected to move. Says name of block and how many blocks (int) are nested within it")
         let blockName = blocks![0].name.localized
         var label = "\(blockName) \(String.localizedStringWithFormat(formattedString, numNestedBlocks))"
         
@@ -125,7 +125,11 @@ class SelectedBlockViewController: UIViewController {
         nestedBlockLabel.font = UIFont.accessibleFont(withStyle: .title1, size: 20.0)
         
         // Label styling
-        nestedBlockLabel.backgroundColor = UIColor(named: "whiteLightModeBlackDarkMode")
+        if #available(iOS 13.0, *) {
+            nestedBlockLabel.backgroundColor = .systemBackground // white in light mode and black in dark mode
+        } else {
+            nestedBlockLabel.backgroundColor = .white
+        }
         nestedBlockLabel.layer.cornerRadius = 6
         nestedBlockLabel.layer.masksToBounds = true
         
@@ -195,6 +199,4 @@ class SelectedBlockViewController: UIViewController {
         
         return (defaultValue! as! String, attributeName! as! String, imagePath as? String, displaysText, secondAttributeName as? String, secondDefault as? String, showTextImage as? String)
     }
-    
-    // TODO: is a prepare() function needed?
 }

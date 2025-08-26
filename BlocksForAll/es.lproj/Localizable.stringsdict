@@ -215,7 +215,7 @@
 	<key>current_value_is_degrees</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Valor corriente es %#@val@  grado(s).</string>
+		<string>Valor corriente es %d  grado(s).</string>
 		<key>val</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -557,7 +557,7 @@
 	<key>nested_block_selected_access_label</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Bloque con %#@val@ bloques anidados seleccionados. Select location in workspace to place it.</string>
+		<string>Bloque con %d bloques anidados seleccionados. Select location in workspace to place it.</string>
 		<key>val</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>

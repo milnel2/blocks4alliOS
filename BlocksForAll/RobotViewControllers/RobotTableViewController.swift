@@ -219,7 +219,6 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
         
     }
     
-    // TODO: read sensor data
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: (any Error)?) {
         
         guard let robot = getRobotFromPeripheral(peripheral: peripheral) else { return }
@@ -265,7 +264,6 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
             } else if characteristic.uuid == dashInfoUUID {
                 robot.dashInfoCharacteristic = characteristic
             }
-            
         }
         
         

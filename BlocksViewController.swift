@@ -171,7 +171,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if PREMADE_FUNCTION_NAMES.contains(function) {
                     if actor.functionDict[function]!.isEmpty{
                         let startBlock = Block.init(
-                            name: "\(function) Start", //TODO: update block name
+                            name: "\(function) Start",
                             colorName: "light_purple_block",
                             double: false,
                             isModifiable: false)
@@ -420,7 +420,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
                 if movingBlocks {
                     if block.name == "Wait for Time" {
                         blockView.accessibilityUserInputLabels = [
-                            NSLocalizedString("Before Wait", comment: ""), NSLocalizedString("Before \(block.name.localized)", comment: "")] // TODO: check that this is localized
+                            NSLocalizedString("Before Wait", comment: ""), NSLocalizedString("Before \(block.name.localized)", comment: "")] //
                     }
                 } else {
                     blockView.accessibilityUserInputLabels = [NSLocalizedString("Wait", comment: ""), "\(block.name.localized)"]

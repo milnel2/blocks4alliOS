@@ -86,6 +86,14 @@ class SelectLocationModifierViewController: UIViewController  {
         accessibilityElements = [backButton!, modifierTitleLabel!, collectionView!]
         
         collectionView.backgroundColor = #colorLiteral(red: 0.8588235294, green: 0.9490196078, blue: 1, alpha: 1)
+        
+        setFontStyle()
+    }
+    
+    /// Set all labels to custom font
+    private func setFontStyle() {
+        modifierTitleLabel.adjustsFontForContentSizeCategory = true
+        modifierTitleLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
     }
     /// Find the index of the center cell based on the number of rows and number of columns in the grid
     public static func calculateCenterCellIndex() -> Int{
@@ -204,7 +212,6 @@ extension SelectLocationModifierViewController: UICollectionViewDataSource, UICo
             cell.layer.borderWidth = 10
             cell.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
             cell.isSelected = true
-            // TODO: add red X in the middle of the cell
         } else {
             cell.isSelected = false
             cell.layer.borderWidth = 0

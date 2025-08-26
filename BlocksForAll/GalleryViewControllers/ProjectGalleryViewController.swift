@@ -162,10 +162,9 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
         let projectName = generateNewProjectName()
         // Create new project and insert it at the beginning
         if self.galleryType == FREEPLAY_GALLERY_TYPE {
-            //TODO: fix image paths
-            allProjects[self.galleryType]!.insert(Project(name: projectName, imageName: "drive_backward", projectType: ProjectType.Freeplay), at: 0)
+            allProjects[self.galleryType]!.insert(Project(name: projectName, imageName: "WhiteBackground", projectType: ProjectType.Freeplay), at: 0)
         } else {
-            allProjects[self.galleryType]!.insert(Project(name: projectName, imageName: "drive_backward", projectType: ProjectType.Robot), at: 0)
+            allProjects[self.galleryType]!.insert(Project(name: projectName, imageName: "WhiteBackground", projectType: ProjectType.Robot), at: 0)
         }
         
         // Add project

@@ -43,6 +43,8 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
        
         addActorButton.layer.cornerRadius = 10
         
+        setFontStyle()
+        
         // get data for possible actors
          if let path = Bundle.main.path(forResource: "ActorsMenu", ofType: "plist") {
             actorOptions = NSArray(contentsOfFile: path)!
@@ -60,6 +62,12 @@ class ChooseActorViewController: UIViewController, UICollectionViewDataSource, U
         // Text
         chooseActorTitleLabel.text = NSLocalizedString("Choose New Actor", comment: "Title for choose new actor view controller").localizedCapitalized
         addActorButton.setTitle(NSLocalizedString("Add", comment: "Button text to add new actor to project"), for: .normal)
+    }
+    
+    /// Set all labels to custom font
+    private func setFontStyle() {
+        chooseActorTitleLabel.adjustsFontForContentSizeCategory = true
+        chooseActorTitleLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)        
     }
     
     // MARK: Actions

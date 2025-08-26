@@ -901,7 +901,7 @@
 	<key>red</key>
 	<dict>
 		<key>value</key>
-		<string>Red yas</string>
+		<string>Red</string>
 		<key>comment</key>
 		<string>Generic String for a red color</string>
 	</dict>

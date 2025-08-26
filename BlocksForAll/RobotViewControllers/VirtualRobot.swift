@@ -205,21 +205,6 @@ class VirtualRobot: Equatable {
        
         setCoordinates(x: coordinates.x, y: coordinates.y)
     }
-   
-    /// Move to the center of the freeplay output view, animated, with sound
-    func moveToOrigin(executingProgram: ExecutingProgram) {
-        let currentX = coordinates.x
-        let currentY = coordinates.y
-        
-        let backgroundCenterX =  freeplayOutputView!.frame.width / 2
-        let backgroundCenterY =  freeplayOutputView!.frame.height / 2
-        
-        let animationDuration = VirtualRobot.calculateMovementDistance(startX: currentX, startY: currentY, endX: backgroundCenterX, endY: backgroundCenterY) / (movementAnimationSpeed * 2)
-       
-        animatedMoveToCoordinatesWithSound(x: backgroundCenterX, y: backgroundCenterY, duration: animationDuration)
-       
-        executingProgram.finishCommand(withDuration: animationDuration) //TODO: block highlight is going away before movement is finished
-    }
     
     /// Distance formula
     public static func calculateMovementDistance(startX: CGFloat, startY: CGFloat, endX: CGFloat, endY: CGFloat) -> Double {

@@ -143,7 +143,7 @@
 	<key>nested_block_selected_access_label</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>block with %#@val@ nested block(s) selected. Select location in workspace to place it.</string>
+		<string>block with %d nested block(s) selected. Select location in workspace to place it.</string>
 		<key>val</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -383,7 +383,7 @@
 	<key>current_value_is_degrees</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Current value is %#@val@ degree(s).</string>
+		<string>Current value is %d degree(s).</string>
 		<key>val</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>

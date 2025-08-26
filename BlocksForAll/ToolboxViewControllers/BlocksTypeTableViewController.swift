@@ -152,7 +152,7 @@ class BlocksTypeTableViewController: UITableViewController {
         if #available(iOS 13.0, *) {
             cell.accessibilityUserInputLabels = ["\(blockType.name)"]
         }
-        cell.selectionStyle = .none // TODO: if the selection style is not none, the selected cell stays gray after navigating back to it
+        cell.selectionStyle = .none // if the selection style is not none, the selected cell stays gray after navigating back to it
         
         return cell
     }

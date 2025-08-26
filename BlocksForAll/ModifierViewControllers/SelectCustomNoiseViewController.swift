@@ -42,7 +42,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             return UserData.data.getCurrentProject()
         }
     }
-    private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each button that is showed in the collection view // TODO: handle different block sizes
+    private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each button that is showed in the collection view 
     
    
     override func viewDidLoad() {
@@ -83,6 +83,7 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
         NotificationCenter.default.addObserver(self, selector: #selector(voiceOverAnnouncementFinished), name: UIAccessibility.announcementDidFinishNotification, object: nil) // Listen for when VoiceOver announcements finish
 
         updateAccessibility()
+        setFontStyle()
     }
     
     /// Set up recording elements
@@ -121,6 +122,12 @@ class SelectCustomNoiseViewController: UIViewController, UICollectionViewDataSou
             PlayNoiseButton.accessibilityLabel = String.localizedStringWithFormat( NSLocalizedString("play_empty_noise_access_label", comment: "Accessibility Label for an empty custom noise slot"), "Play Noise".localized, selectedNoiseSlotNum)
             RecordNoiseButton.accessibilityLabel = "\("Record Noise".localized) \(selectedNoiseSlotNum)."
         }
+    }
+    
+    /// Set all labels to custom font
+    private func setFontStyle() {
+        SelectCustomNoiseTitleLabel.adjustsFontForContentSizeCategory = true
+        SelectCustomNoiseTitleLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
     }
     
     // MARK: Record audio

@@ -96,6 +96,7 @@ class BlockTableViewController: UITableViewController {
             cell.accessibilityHint = NSLocalizedString("In Toolbox. Double tap to place block in workspace.", comment: "Accessibility hint for a block in a table of a certain type of block. Block can be moved from here into the workspace")
         }
        
+        cell.accessibilityLabel = block.name.localized
         
         return cell
     }
@@ -157,7 +158,7 @@ class BlockTableViewController: UITableViewController {
         if let blockType = blockTypesDict.object(at: typeIndex) as? NSDictionary{
             // blockTypes is a nsArray object with the contents of the ReleaseBlocksMenu.plist file, type index is an Int Var starts at 0, so it takes the contents of ReleaseBlocksMenu.plist and sets it to blockType as an NSDictionary
             
-            if (blockType.object(forKey: "type") as? String == "Functions"){ //TODO: 
+            if (blockType.object(forKey: "type") as? String == "Functions"){
                 var functionsDictToUse = UserData.data.getCurrentProject()!.currentActor!.functionDict
                 functionsDictToUse.removeValue(forKey: "Main Workspace")
                
@@ -210,7 +211,7 @@ class BlockTableViewController: UITableViewController {
                                 }
                                 // Makes the categories that Dot cannot use deactivate
                                   if numDotsConnected > 0 && numDotsConnected == connectedRobots.count && (block.name == "Emotion Noise" || block.name == "Speak") { // all connected robots are Dots
-                                        // TODO make this a property of the block instead
+                                        // TODO: make this a property of the block instead
                                       print("Not allowed on Dot: ", block.name)
                                        
                                       // don't add the category

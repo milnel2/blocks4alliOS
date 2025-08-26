@@ -16,7 +16,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
     public var modifierBlockIndexSender: Int? // used to know which modifier block was clicked to enter this screen. It is public because it is used by BlocksViewController as well
     private var optionSelectedIndex = 0 // index of the option in the optionDictionary array
     private var optionType = "" // Name of option that gets used for accessing data and displaying information
-    //TODO: get this dictionary from asset folders?
+    //: get this dictionary from asset folders?
     // holds the different options for each multiple choice modifier type
     // the keys are the same as what gets put in the optionModTitle and are accessed by using optionType
     // the values are arrays of strings which are the same as the image names for those options. In text mode, a capitalized version of these strings are shown instead of the images.
@@ -31,8 +31,8 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
      "Emotion Noise": ["bragging", "confused", "giggle", "grunt", "sigh", "snore", "surprised", "yawn" ,"random emotion"],
      "Object Noise": ["laser", "squeak", "trumpet", "random object"],
      "Vehicle Noise": ["airplane", "beep", "boat", "helicopter", "siren", "speed boost", "start engine", "tire squeal", "train" ,"random vehicle"],
-     "Speak": ["hi", "bye", "cool", "haha", "huh", "let's go", "oh", "wow", "tah dah!", "uh huh", "uh oh", "wah", "wee hee!", "wow", "yippee!" ,"random word"], //TODO: there are two wows in this lists
-     "Set Right Ear Light Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"], // TODO: for localization: colors are images, not text
+     "Speak": ["hi", "bye", "cool", "haha", "huh", "let's go", "oh", "wow", "tah dah!", "uh huh", "uh oh", "wah", "wee hee!", "yippee!" ,"random word"],
+     "Set Right Ear Light Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"], // TODO: for localization: colors are static images with text baked on, not dynamic text. We should make them dynamic so that they update based on the language
     "Set Left Ear Light Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
      "Set Front Light Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
     "Set All Lights Color": ["red", "orange", "yellow", "green", "blue", "purple", "white", "Off"],
@@ -179,7 +179,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
                 // No image was found and/or Show Text is on
                 let textView = UILabel(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
                 
-                textView.text = items[index].localized // TODO: does capitalizaiton affect localization?
+                textView.text = items[index].localized
                 
                 addStyleToCellText(textView: textView)
                 
@@ -222,7 +222,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
             cell.layer.borderWidth = 10
             cell.layer.borderColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
             cell.isSelected = true
-            cell.accessibilityHint = "Selected".localized // TODO: do we need this if cell.isSelected is true?
+            cell.accessibilityHint = "Selected".localized
         } else {
             cell.isSelected = false
             cell.layer.borderWidth = 0
@@ -255,7 +255,7 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
             // No image was found and/or Show Text is on
             let textView = UILabel(frame: CGRect(x: 0, y: 0, width: buttonSize, height: buttonSize))
            
-            textView.text = actor.color.localized.localizedCapitalized + " " + actor.name.localizedCapitalized // TODO: does capitalizaiton affect localization?
+            textView.text = actor.color.localized.localizedCapitalized + " " + actor.name.localizedCapitalized
               
             addStyleToCellText(textView: textView)
             cell.addSubview(textView)
@@ -343,7 +343,6 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
       
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if let destination = segue.destination as? FreePlayWorkspaceViewController {
-            // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
             if items.count == 0 {
                 currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "N/A" // Tell BlocksViewController that there was not a valid option
             } else {
@@ -357,7 +356,6 @@ class MultipleChoiceModifierViewController: UIViewController, UICollectionViewDa
             }
         }
         if let destination = segue.destination as? BlocksViewController {
-            // TODO: update so that just an array is used for images, so that soundSelected can be passed instead
             if items.count == 0 {
                 currentProject!.currentActor!.functionDict[currentWorkspace]![modifierBlockIndexSender!].addedBlocks[0].attributes[attributeName] = "N/A" // Tell BlocksViewController that there was not a valid option
             } else {

@@ -23,7 +23,7 @@ class Robot: Equatable {
     // Sensors currently in use by Blocks4All
         // Sound
     var soundLevel: Int // value from 0 to 255 of how much sound is heard
-    var soundDirection: Int //TODO: description
+    var soundDirection: Int
         // Object detection
     var leftDistanceSensor: Int // value from 0 to 255 of how close an object is (255 is closest, 0 is farthest)
     var rightDistanceSensor: Int // value from 0 to 255 of how close an object is (255 is closest, 0 is farthest)
@@ -94,7 +94,6 @@ class Robot: Equatable {
         self.zRotationAcceleration = 0
         self.wheelDistance = 0
     }
-    //TODO: documentation
     
     /// Receive and parse through the first set of sensor data from the robot
     func updateSensorData1(data: String) {

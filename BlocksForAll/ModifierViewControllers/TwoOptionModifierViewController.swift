@@ -21,7 +21,7 @@ class TwoOptionModifierViewController: UIViewController {
       // the values are dictionaries of string : string that holds different attributes to be shown on the screen
     private let optionDictionary: [String:[String : String]] =
         ["Set Eye Light" : ["attributeName" : "eyeLight", "Option 1" : "On", "Option 2" : "Off", "Default image" : "EyeLightModifierBackground"],
-            "If" : ["attributeName" : "booleanSelected", "Option 1" : "Obstacle sensed", "Option 2" : "Hear voice", "Default image" : "controlModifierBackground"] // TODO: default if value used to be false. I removed it because it will never be used and is not an option you can choose on this screen - Lucy
+            "If" : ["attributeName" : "booleanSelected", "Option 1" : "Obstacle sensed", "Option 2" : "Hear voice", "Default image" : "controlModifierBackground"] // TODO: The default value for If Statements used to be false. I removed it because it will never be used and is not an option you can choose on this screen - Lucy
         ]
     private var attributeName = ""  // Used for accessing and saving data, taken from optionDictionary (ex. if optionType = "Wait for Time", attributeName is "wait"
     private var optionOne = "N/A"  // String value of option one

@@ -110,18 +110,16 @@ class SliderModifierController: UIViewController {
             let resultString = String.localizedStringWithFormat(formattedString, roundedSliderValue)
             slider.accessibilityValue = resultString
             
-            let formattedString2 = NSLocalizedString("current_value_is_degrees", comment: "Accessibility value for a label describing the value of a slider to choose angle") // TODO: this is incorrect in spanish. It repeats and nests within itself
+            let formattedString2 = NSLocalizedString("current_value_is_degrees", comment: "Accessibility value for a label describing the value of a slider to choose angle")
             let resultString2 = String.localizedStringWithFormat(formattedString2, roundedSliderValue)
             valueDisplayed.accessibilityValue = resultString2
             
         } else {
-            slider.accessibilityValue = NumberFormatter.localizedString(from: roundedSliderValue as NSNumber, number: .none) //TODO: test this
-            
+            slider.accessibilityValue = NumberFormatter.localizedString(from: roundedSliderValue as NSNumber, number: .none)
             let formattedString = NSLocalizedString("current_value_is_int", comment: "Accessibility value for a label describing the value of a slider")
             let resultString = String.localizedStringWithFormat(formattedString, roundedSliderValue)
             valueDisplayed.accessibilityValue = resultString
         }
-//        optionModTitle.accessibilityHint = attributeName + "Adjust slider to set amount"
     }
     
     @IBAction func backButtonPress(_ sender: Any) {

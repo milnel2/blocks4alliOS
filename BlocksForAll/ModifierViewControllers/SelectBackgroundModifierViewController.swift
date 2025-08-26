@@ -37,7 +37,6 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
     private var cellWidth: CGFloat = 100 // width of each cell
     private var cellHeight: CGFloat = 100 // height of each cell
     
-    //TODO: update buttonSize
     private let buttonSize = (((defaults.value(forKey: "blockSize") as! Int) * 10) / 9) // the size of each button that is showed in the collection view
     
     
@@ -376,20 +375,21 @@ class SelectBackgroundModifierViewController: UIViewController, UICollectionView
     //MARK: Styling and Accessibility
     /// Set all labels to custom font
     private func setFontStyle() {
-    // TODO: implement
+        SelectBackgroundTitleLabel.adjustsFontForContentSizeCategory = true
+        SelectBackgroundTitleLabel.font = UIFont.accessibleFont(withStyle: .title2, size: 34.0)
     }
     
     /// Visual styling of the view components
     func doStyling() {
         // Style the row of background options at the bottom of the screen
         HorizontalStackView.layer.borderWidth = 5
-        HorizontalStackView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) // TODO: dark mode
+        HorizontalStackView.layer.borderColor = UIColor(named: "blackLightModeWhiteDarkMode")?.cgColor
         HorizontalStackView.layer.cornerRadius = 10
       
       //  HorizontalStackView.addConstraint(NSLayoutConstraint(item: HorizontalStackView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: cellHeight * 2))
         
         FocusedBackgroundImageView.layer.borderWidth = 5
-        FocusedBackgroundImageView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        FocusedBackgroundImageView.layer.borderColor =  UIColor(named: "blackLightModeWhiteDarkMode")?.cgColor
         
         AddNewBackgroundButton.titleLabel?.text = ""
         

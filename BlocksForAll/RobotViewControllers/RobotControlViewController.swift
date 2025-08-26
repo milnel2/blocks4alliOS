@@ -337,7 +337,7 @@ class ExecutingProgram {
             } else if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "Obstacle sensed"{
             // check if the if statement is evaluating for a obstacle_sensed
                 
-                // TODO: if we allow multiple robots to each evaluate the if condition, will that mess up the sequence of the rest of the blocks? Maybe we should disable the aility to connect to more than one robot
+                // TODO: if we allow multiple robots to each evaluate the if condition, will that mess up the sequence of the rest of the blocks? Maybe we should disable the ability to connect to more than one robot
                 var numTrue = 0
                 for _ in 0..<20 { // Check multiple times if the robot detectsObject in order to reduce error
                     if (connectedRobots[0].isObstacleDetected()) {
@@ -745,7 +745,6 @@ class ExecutingProgram {
 
     /// Plays eye light spiral by creating a repeating timer that fires to change which lights are turned on
     func playEyeLightSpiral() {
-        // TODO: freeplay
         let spiralDuration = 0.04
         Timer.scheduledTimer(timeInterval: spiralDuration, target: self, selector: #selector(eyeLightTimerFire(timer:)),  userInfo: spiralDuration as Any , repeats: true)
         finishCommand(withDuration: 2)
@@ -903,7 +902,6 @@ class ExecutingProgram {
     }
 
     func playWait(waitBlock: Block) {
-        // TODO: implement for freeplay
         let wait = Double(waitBlock.addedBlocks[0].attributes["wait"] ?? "0") ?? 0
         finishCommand(withDuration: wait)
     }
@@ -964,8 +962,7 @@ class ExecutingProgram {
     //decomposition of drive functions
     func playDrive (driveBlock: Block, driveConstant: Double){
         if isInFreeplay {
-            // TODO: implement for freeplay
-           
+            // Right now this block doesn't exist in freeplay
             finishCommand(withDuration: 1.5)
         } else {
             var distance = 0.0
@@ -1198,7 +1195,6 @@ class ExecutingProgram {
     
     //decomposition of light functions
     func playLight (lightBlock: Block, positionBits: Int) {
-        // TODO: implement for freeplay
         let color = lightBlock.addedBlocks[0].attributes["lightColor"] ?? "white"
         var selectedColor = (red: 255, green: 255, blue: 255)
         switch color {

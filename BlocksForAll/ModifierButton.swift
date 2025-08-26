@@ -67,7 +67,7 @@ class ModifierButton: UIButton {
         case "Move to Actor":
             moveToActorButton()
         case "Move to Location":
-            // do nothing, draw will handle it // TODO: show text version
+            // do nothing, draw will handle it
             moveToLocationButton()
         case "Set Background":
             setBackgroundButton()
@@ -187,7 +187,7 @@ class ModifierButton: UIButton {
         setTitle(text, for: .normal)
         
         let formattedText = NSLocalizedString("num_centimeters_with_speed_access_label", comment: "Accessibility label for a drive modifier button. Number (as a string) of centimeters and then the speed. '<value> cm, at <speed>'")
-        modifierInformation = String.localizedStringWithFormat(formattedText, attrVal, secondAttrVal) // TODO: make sure all voice over labels have periods.
+        modifierInformation = String.localizedStringWithFormat(formattedText, attrVal, secondAttrVal) 
     }
     
     // Set speed block

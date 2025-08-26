@@ -124,7 +124,7 @@ class SettingsViewController: UIViewController {
         blockSizeLabel.text = String.localizedStringWithFormat(formattedString, value)
         
         let formattedString2 = NSLocalizedString("block_size_equals_access_value", comment: "Accessibility value of a block size label. 'equals <int>.'")
-        blockSizeLabel.accessibilityValue = String.localizedStringWithFormat(formattedString, value) //TODO: is this accessibility value needed?
+        blockSizeLabel.accessibilityValue = String.localizedStringWithFormat(formattedString, value)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

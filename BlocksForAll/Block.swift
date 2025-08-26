@@ -58,7 +58,6 @@ class Block: Codable {
           isModifiable: Bool = false)
     {
         
-        //TODO: check that color is initialized as well
         if name.isEmpty{
             return nil
         }
@@ -85,7 +84,6 @@ class Block: Codable {
           isInToolBox: Bool)
     {
         
-        //TODO: check that color is initialized as well
         if name.isEmpty {
             return nil
         }
