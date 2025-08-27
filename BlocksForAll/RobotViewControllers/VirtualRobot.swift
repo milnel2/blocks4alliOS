@@ -291,7 +291,10 @@ class VirtualRobot: Equatable {
             
             let animationDuration = CGFloat(amount) / movementAnimationSpeed * 10.0
             animatedSetSize(size: robotSize, duration: TimeInterval(animationDuration) )
-            
+            do {
+                try playChangeSizeSound(duration: Float(animationDuration), willGrow: growOrShrink == 1) } catch let error {
+                        print("Could not play change size sound. Error = \(error)")
+                }
             executingProgram.finishCommand(withDuration: animationDuration)
         } else {
             executingProgram.finishCommand() // don't shrink or grow if it will get too big or too small
@@ -306,8 +309,27 @@ class VirtualRobot: Equatable {
                self.setActorSize(size: size)
                self.setToSavedCoordinates()
            }
-        
         anim.startAnimation()
+    }
+    
+    func playChangeSizeSound (duration: Float, willGrow: Bool) throws {
+        let fileName: String
+        if willGrow {
+            fileName = "GrowSound"
+        } else {
+            fileName = "ShrinkSound"
+        }
+        guard let path = Bundle.main.path(forResource: fileName, ofType:"mp3") else {
+            print("Couldn't find sound file for", fileName )
+                 return }
+        let url = URL(fileURLWithPath: path)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+           
+            audioPlayer?.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
     // Play a horizontal or vertical move. Stops if it will collide with a wall
@@ -516,26 +538,16 @@ class VirtualRobot: Equatable {
     
     /// Play movement beeping sound. Moving to the left is quieter, right is louder, up is higher pitch, and down is lower pitch.
     func playMovementSound(duration: TimeInterval, startX: CGFloat, startY: CGFloat, endX: CGFloat, endY: CGFloat) throws {
-       
-        
         let fileURL = URL(fileReferenceLiteralResourceName: "Movement1BeatLoop.mp3")
         let file = try AVAudioFile(forReading: fileURL) // load in the audio file
-        
-        // calculating the length of an audio file is from https://forums.developer.apple.com/forums/thread/722272
-        let timeInBetween = (1 / file.processingFormat.sampleRate * Double(file.length)) + 0.05
-        //print("time in between = ", timeInBetween)
+    
+        let timeInBetween = 0.3
+        speedControl.rate = 1.6
         let numTimesToPlay = Int(Double(duration) / timeInBetween)
         
         let movementDistance = VirtualRobot.calculateMovementDistance(startX: startX, startY: startY, endX: endX, endY: endY)
-       
-        //speedControl.rate = 1.1
+        
         if numTimesToPlay >= 1 {
-            let currentYPosition = Float(self.imageView.center.y)
-            let yDistanceFromCenter = Float(self.freeplayOutputView!.frame.height / 2) - currentYPosition
-            let currentXPosition = Float(self.imageView.center.x)
-            let xDistanceFromCenter = Float(self.freeplayOutputView!.frame.width / 2) - currentXPosition
-            
-            
             var timesPlayed = 0
             let amountYChangedEachFrame = CGFloat(Int(endY - startY) / (numTimesToPlay))
             let amountXChangedEachFrame = CGFloat(Int(endX - startX) / (numTimesToPlay))
@@ -546,7 +558,7 @@ class VirtualRobot: Equatable {
                    
                     let currentYPosition = Float(startY + (amountYChangedEachFrame * CGFloat(timesPlayed)))
                     let yDistanceFromCenter = Float(self.freeplayOutputView!.frame.height / 2) - currentYPosition
-                    self.pitchControl.pitch = yDistanceFromCenter * 3
+                    self.pitchControl.pitch = (yDistanceFromCenter * 5) - 150 // Widen the pitch range and shift it downwards
                     
                     let currentXPosition = Float(startX + (amountXChangedEachFrame * CGFloat(timesPlayed)))
                     let xDistanceFromCenter = Float(self.freeplayOutputView!.frame.width / 2) - currentXPosition
@@ -603,9 +615,14 @@ class VirtualRobot: Equatable {
     
     // left turn is a negative angle and right turn is a positive angle
     func playTurn(angle: Double, executingProgram: ExecutingProgram) {
+       
         let angleInRadians = angle * .pi / 180
        
         let animationDuration = abs(angleInRadians) / (movementAnimationSpeed / 10)
+        
+        do { try playTurnSound(duration: animationDuration, angle: angle) }
+        catch let error { print("Could not play turn sound. Error = \(error)")}
+        
         if abs(angleInRadians) <= .pi {
             UIView.animate(withDuration: animationDuration, delay: 0, options: .curveLinear, animations: {
                 self.imageView.transform = self.imageView.transform.rotated(by: angleInRadians)
@@ -634,6 +651,55 @@ class VirtualRobot: Equatable {
         
         rotationDegrees = (rotationDegrees + angle).truncatingRemainder(dividingBy: 360) // Retain rotation amounts between sessions
         executingProgram.finishCommand(withDuration: animationDuration)
+    }
+    
+    func playTurnSound(duration: Double, angle: Double) throws {
+        let fileURL = URL(fileReferenceLiteralResourceName: "LongTone.mp3")
+        let file = try AVAudioFile(forReading: fileURL) // load in the audio file
+        // code for adjusting audio speed and pitch is from https://www.hackingwithswift.com/example-code/media/how-to-control-the-pitch-and-speed-of-audio-using-avaudioengine
+        engine.stop()
+        engine.reset()
+        
+        // Reset pitch
+        pitchControl.pitch = 150
+      
+        
+        // connect audio player, pitch control, and speed control to the audio engine
+        engine.attach(movementSoundAudioPlayer)
+        engine.attach(pitchControl)
+        engine.attach(speedControl)
+        
+        // arrange so the audio player feeds into speed control, which feeds into pitch control, which feeds into main mixer output, which plays aloud
+        engine.connect(movementSoundAudioPlayer, to: speedControl, format: nil)
+        engine.connect(speedControl, to: pitchControl, format: nil)
+        engine.connect(pitchControl, to: engine.mainMixerNode, format: nil)
+        
+        // prepare to start reading the file
+        movementSoundAudioPlayer.scheduleFile(file, at: nil)
+        
+        // start engine and audio player
+        try engine.start()
+        movementSoundAudioPlayer.play()
+        
+        var playing = true
+        
+        Timer.scheduledTimer(withTimeInterval: TimeInterval(duration), repeats: false, block: { timer in
+            self.engine.stop()
+            playing = false
+        })
+        Timer.scheduledTimer(withTimeInterval: TimeInterval(0.05), repeats: true, block: { timer in
+            if playing {
+                if angle < 0 {
+                    self.pitchControl.pitch += 50 // Raise pitch when turning left
+                } else {
+                    self.pitchControl.pitch -= 50 // Lower pitch when turning right
+                }
+                
+            } else {
+                timer.invalidate()
+                self.pitchControl.pitch = 0
+            }
+        })
     }
     
     func playSound(soundName: String, executingProgram: ExecutingProgram) {

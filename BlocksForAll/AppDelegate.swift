@@ -315,7 +315,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     }
                                 }
                                 
-                                // TODO: update this comment
                                 //adds current function to the functionsDict from save includes name and [Block]
                                
                                 functionsDictFromSave[functionName] = functionBlockStack
@@ -332,7 +331,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     //adds proper counterparts
                     ifAndRepeatCounterparts(functionBlocksDictCounter: functionsDictFromSave)
                     
-                    //TODO: update this?
                     if functionsDictFromSave["Main Workspace"] == nil{
                         functionsDictFromSave["Main Workspace"] = []
                     }
@@ -367,7 +365,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("load completed")
         }catch{
             print("load failed")
-            // TODO: handle if there are no projects
             allProjects[ROBOT_GALLERY_TYPE] = []
             allProjects[FREEPLAY_GALLERY_TYPE] = []
         }

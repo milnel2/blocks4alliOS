@@ -91,6 +91,14 @@ class FreePlayWorkspaceViewController: BlocksViewController {
         freeplayOutputView.setBackgroundImage(newImagePath: backgroundImagePath)
         
         setUpAccessibility()
+        
+        // Allow for sound playback
+        let recordingSession = AVAudioSession.sharedInstance()
+        do {
+            try recordingSession.setCategory(.playback, mode: .default)
+        } catch let error {
+            print("Error setting up audio playback: " + error.localizedDescription)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

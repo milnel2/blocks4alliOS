@@ -616,9 +616,6 @@ class ExecutingProgram {
         case "Move Right":
             print("move right")
             playMove(moveBlock: blockToExec, xDirection: 1, yDirection: 0)
-        case "Move to Center":
-            print("Move to center")
-            moveToOrigin()
         case "Move to Actor":
             print("Move to Actor")
             moveToActor(moveBlock: blockToExec)
@@ -910,11 +907,6 @@ class ExecutingProgram {
         let distance = (Double(moveBlock.addedBlocks[0].attributes["movement"] ?? "1") ?? 1 ) * 10
         currentActor!.playMove(distance: distance, xDirection: xDirection, yDirection: yDirection, executingProgram: self)
        
-    }
-  
-    
-    func moveToOrigin() {
-        currentActor!.moveToOrigin(executingProgram: self)
     }
     
     func moveToActor(moveBlock: Block) {
