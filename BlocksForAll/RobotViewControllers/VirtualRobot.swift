@@ -291,10 +291,14 @@ class VirtualRobot: Equatable {
             
             let animationDuration = CGFloat(amount) / movementAnimationSpeed * 10.0
             animatedSetSize(size: robotSize, duration: TimeInterval(animationDuration) )
-            do {
-                try playChangeSizeSound(duration: Float(animationDuration), willGrow: growOrShrink == 1) } catch let error {
-                        print("Could not play change size sound. Error = \(error)")
-                }
+            
+            if UIAccessibility.isVoiceOverRunning {
+                do {
+                    try playChangeSizeSound(duration: Float(animationDuration), willGrow: growOrShrink == 1) } catch let error {
+                            print("Could not play change size sound. Error = \(error)")
+                    }
+            }
+            
             executingProgram.finishCommand(withDuration: animationDuration)
         } else {
             executingProgram.finishCommand() // don't shrink or grow if it will get too big or too small
@@ -499,11 +503,14 @@ class VirtualRobot: Equatable {
     }
     
     func animatedMoveToCoordinatesWithSound(x: CGFloat, y: CGFloat, duration: TimeInterval, delay: TimeInterval = 0) {
-        do {
-            try playMovementSound(duration: duration, startX: coordinates.x, startY: coordinates.y, endX: x, endY: y)
-        } catch let error {
-            print("Error playing movement sound: \(error)")
+        if UIAccessibility.isVoiceOverRunning {
+            do {
+                try playMovementSound(duration: duration, startX: coordinates.x, startY: coordinates.y, endX: x, endY: y)
+            } catch let error {
+                print("Error playing movement sound: \(error)")
+            }
         }
+       
         // Animating while still being able to recognize being tapped is from Matt's answer on https://stackoverflow.com/questions/57032194/tapping-a-uiimage-while-its-being-animated
         let anim = UIViewPropertyAnimator(duration: duration, timingParameters: UICubicTimingParameters(animationCurve: .linear))
            anim.addAnimations {
@@ -620,8 +627,10 @@ class VirtualRobot: Equatable {
        
         let animationDuration = abs(angleInRadians) / (movementAnimationSpeed / 10)
         
-        do { try playTurnSound(duration: animationDuration, angle: angle) }
-        catch let error { print("Could not play turn sound. Error = \(error)")}
+        if UIAccessibility.isVoiceOverRunning {
+            do { try playTurnSound(duration: animationDuration, angle: angle) }
+            catch let error { print("Could not play turn sound. Error = \(error)")}
+        }
         
         if abs(angleInRadians) <= .pi {
             UIView.animate(withDuration: animationDuration, delay: 0, options: .curveLinear, animations: {
