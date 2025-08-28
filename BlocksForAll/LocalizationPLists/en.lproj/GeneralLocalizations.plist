@@ -114,6 +114,13 @@
 		<key>comment</key>
 		<string>Generic String for On Run event. Blocks are run when the program is run</string>
 	</dict>
+	<key>On Run</key>
+	<dict>
+		<key>value</key>
+		<string>On Run</string>
+		<key>comment</key>
+		<string>Generic String for On Run event. Blocks are run when the program is run</string>
+	</dict>
 	<key>On Bump Start</key>
 	<dict>
 		<key>value</key>

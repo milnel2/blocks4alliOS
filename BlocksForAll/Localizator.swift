@@ -35,20 +35,29 @@ private class Localizator { // TODO: make sure this doesn't impact performace. I
                 let localizationEntryCapitalized = localizableDictionary.value(forKey: string.capitalized) as? NSDictionary
                 if localizationEntryCapitalized != nil {
                     localizationEntry = localizationEntryCapitalized
+                } else if Int(string) != nil {
+                   // string is an integer, don't localize it
+                    return string
+                } else if Double(string) != nil {
+                    // String is a double, don't localize it
+                    return string
+                } else if Float(string) != nil {
+                    // String is a float, don't localize it
+                    return string
+                } else if string.contains("\u{00B0}") {
+                    // String is an amount of degrees, don't localize it
+                    return string
                 } else {
                     print("Missing localization entry for: \(string)")
-                        //assertionFailure("Missing localization entry for: \(string)") // TODO: put back once english localization is done (but it's okay if custom function names aren't localized)
-                        return string
+                    //assertionFailure("Missing localization entry for: \(string)") // TODO: put back once english localization is done (but it's okay if custom function names aren't localized)
+                    return string
                 }
             }
         }
        
-        
-       
         guard let localizedString = localizationEntry!.value(forKey: "value") as? String else {
                 assertionFailure("Missing translation for: \(string)")
                 return ""
-            
         }
     
         return localizedString

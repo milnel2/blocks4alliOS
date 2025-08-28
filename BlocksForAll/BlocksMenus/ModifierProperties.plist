@@ -365,7 +365,7 @@
 		<key>default</key>
 		<string>1</string>
 		<key>accessibilityHint</key>
-		<string>Double tap to set amount to Grow</string>
+		<string>Double tap to set amount to grow</string>
 		<key>imagePath</key>
 		<string>driveModifierBackground</string>
 		<key>displaysText</key>
