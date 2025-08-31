@@ -48,7 +48,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         imageView.layer.masksToBounds = true
         
         projectNameLabel.adjustsFontForContentSizeCategory = true
-        projectNameLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 34.0)
+        projectNameLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 30.0)
         
         // Accessibility
         updateAccessibilityTools()
