@@ -105,10 +105,11 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         accessibilityTraits = .allowsDirectInteraction
         
         projectNameLabel.isAccessibilityElement = true
-        projectNameLabel.accessibilityTraits = .button
+        projectNameLabel.accessibilityTraits = [.button, .allowsDirectInteraction]
         
         deleteButton.isAccessibilityElement = true
-        
+        deleteButton.accessibilityTraits = [.button, .allowsDirectInteraction]
+
         accessibilityElements = [contentView, projectNameLabel!, deleteButton!]
         
         let cellIndex = allProjects[cellGalleryType]?.firstIndex(of: project) ?? 0

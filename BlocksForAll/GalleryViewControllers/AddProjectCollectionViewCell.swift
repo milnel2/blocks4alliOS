@@ -22,6 +22,17 @@ class AddProjectCollectionViewCell: UICollectionViewCell {
         
         accessibilityElements = [contentView]
         
+        
+        if #available(iOS 13.0, *) { // Voice Control
+            contentView.accessibilityUserInputLabels = [
+                NSLocalizedString("Add", comment: "Voice Control label"),
+                NSLocalizedString("Add project", comment: "Voice Control label"),
+                NSLocalizedString("New project", comment: "Voice Control label"),
+                NSLocalizedString("New", comment: "Voice Control label"),
+                NSLocalizedString("Plus", comment: "Voice Control label")
+            ]
+        }
+        
         imageView.layer.cornerRadius = 10.0
         imageView.layer.masksToBounds = true
     }

@@ -56,7 +56,13 @@ class ProjectGalleryViewController: UIViewController {
     }
     func updateAccessibilityTools() {
         view.accessibilityElements = [projectGalleryCollectionView!, homeButton!]
-        
+        if #available(iOS 13.0, *) { // Voice Control Labels
+            homeButton.accessibilityUserInputLabels = [
+                NSLocalizedString("Menu", comment: "Voice Control label"),
+                NSLocalizedString("Home", comment: "Voice Control label"),
+                NSLocalizedString("Main Menu", comment: "Voice Control label")
+            ]
+        }
         homeButton.accessibilityLabel = "Main Menu".localized
     }
     
@@ -84,6 +90,7 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             cell.layer.borderColor = UIColor.black.cgColor
             cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
             cell.layer.shadowRadius = 2.0
+            
             return cell
         } else {
             // Project Cell
