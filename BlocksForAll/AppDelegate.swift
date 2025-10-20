@@ -68,8 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func load() {
 // THE CODE BELOW IS TO DELETE PREVIOUS SAVE
 //        let fileManager = FileManager.default
-//        //filename refers to the url found at "Blocks4AllSave.json"
-//        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave.json")
+//        //filename refers to the url found at "Blocks4AllSave3.json"
+//        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave3.json")
 //        do{
 //            //Deletes previous save in order to rewrite for each save action (therefore, no excess blocks)
 //            try fileManager.removeItem(at: filename)
@@ -102,26 +102,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var functionsDictFromSave: [String : [Block] ] = [:]
         // used to store the loaded stuff and later normal functionsDict is set to the from save version
         do{
-            let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave2.json"))
+            let jsonString = try String(contentsOf: getDocumentsDirectory().appendingPathComponent("Blocks4AllSave3.json"))
            //  creates a string type of the entire json file
             
             let userDataStrings = jsonString.components(separatedBy: "End User Data \n")[0].components(separatedBy: "New User Data \n")
             
             // Process saved custom background paths
-            let customBackgroundStrings = userDataStrings[1]
-            
-            for line in customBackgroundStrings.components(separatedBy: "\n") {
-                if line == "" {
-                    continue
+            if userDataStrings.count > 1 {
+                let customBackgroundStrings = userDataStrings[1]
+                
+                for line in customBackgroundStrings.components(separatedBy: "\n") {
+                    if line == "" {
+                        continue
+                    }
+                    UserData.data.addBackgroundPath(path: line)
                 }
-                UserData.data.addBackgroundPath(path: line)
             }
-            
-            
-           
-
+                
             
             // Process all saved project data
+            
             let projectDataStrings = jsonString.components(separatedBy: "End User Data \n")[1]
             
             let galleryTypeStrings = projectDataStrings.components(separatedBy: "New Gallery Type \n")
@@ -421,7 +421,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func save(){
         let fileManager = FileManager.default
 
-        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave2.json")
+        let filename = getDocumentsDirectory().appendingPathComponent("Blocks4AllSave3.json")
         
       
        
@@ -429,7 +429,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //Deletes previous save in order to rewrite for each save action
             try fileManager.removeItem(at: filename)
         }catch{
-            print("couldn't delete previous Blocks4AllSave2. Error = ", error)
+            print("couldn't delete previous Blocks4AllSave3. Error = ", error)
         }
         
          
