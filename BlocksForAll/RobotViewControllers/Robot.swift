@@ -225,7 +225,7 @@ class Robot: Equatable {
 
     /// Returns true if the soundlevel is above a certain threshold
     func canHearSound() -> Bool {
-        return soundLevel > 50 // TODO: test value for accuracy
+        return soundLevel > 0 // TODO: test value for accuracy. This might be too sensitive, but it still doesn't always pick up on my robot - LR
     }
     
     /// Returns true if distance sensors are above a certain threshold to detect and object in front of the robot

@@ -317,38 +317,44 @@ class ExecutingProgram {
         case "If":
             // what the statement evaluates to
             // what info we get from the robot
+            var numTrue = 0
+            var numFalse = 0
+            let evaluateDuration = 3.0
+            let timeBetween = 0.1
+            let timesToRepeat: Int = Int(ceil(evaluateDuration / timeBetween))
             if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "Hear voice"{
             // check if the if statement is evaluating for a hear_voice
                 
                 // TODO: if we allow multiple robots to each evaluate the if condition, will that mess up the sequence of the rest of the blocks? Maybe we should disable the ability to connect to more than one robot
-                var numTrue = 0
-                for _ in 0..<20 { // Check multiple times if the robot hears a sound in order to reduce error
+                for _ in 0..<timesToRepeat { // Check multiple times if the robot hears a sound in order to reduce error
                     if (connectedRobots[0].canHearSound()) {
                         numTrue += 1
+                    } else {
+                        numFalse += 1
                     }
+                    Thread.sleep(forTimeInterval: timeBetween)
                 }
-                
-                if (numTrue >= 10) { // if sounds was heard at least half of the time, evaluate the if statement to true
+                if (numTrue >= numFalse) { // if sounds was heard at least half of the time, evaluate the if statement to true
                     print("hear Voice true")
                     ifCondition = true
                 } else {
                     ifCondition = false
                 }
-      
                    
             } else if blockToExec.addedBlocks[0].attributes["booleanSelected"] == "Obstacle sensed"{
             // check if the if statement is evaluating for a obstacle_sensed
                 
                 // TODO: if we allow multiple robots to each evaluate the if condition, will that mess up the sequence of the rest of the blocks? Maybe we should disable the ability to connect to more than one robot
-                var numTrue = 0
-                for _ in 0..<20 { // Check multiple times if the robot detectsObject in order to reduce error
+                for _ in 0..<timesToRepeat { // Check multiple times if the robot hears a sound in order to reduce error
                     if (connectedRobots[0].isObstacleDetected()) {
                         numTrue += 1
+                    } else {
+                        numFalse += 1
                     }
+                    Thread.sleep(forTimeInterval: timeBetween)
                 }
                 
-                if (numTrue >= 10) { // if obstacle was detected at least half of the time, evaluate the if statement to true
-                   
+                if (numTrue >= numFalse) { // if sounds was heard at least half of the time, evaluate the if statement to true
                     print("detect obstacle true")
                     ifCondition = true
                 } else {
@@ -358,12 +364,12 @@ class ExecutingProgram {
 
             if(ifCondition){
                 //if it's true, just keep going
-                finishCommand(withDuration: 1)
+                finishCommand()
             
             }else{
                 // run the ifFalse function, this is to skip over blocks that aren't supposed to be executed
                 ifFalse()
-                finishCommand(withDuration: 1)
+                finishCommand()
                 
             }
             print(ifCondition)
