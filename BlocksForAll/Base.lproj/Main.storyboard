@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YEE-PZ-SjD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BIf-1x-2af">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <accessibilityOverrides dynamicTypePreference="11"/>
     <dependencies>
@@ -324,7 +324,7 @@
         <!--Start Screen Gallery-->
         <scene sceneID="yah-U5-iM8">
             <objects>
-                <viewController id="BIf-1x-2af" customClass="StartScreenGallery" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BIf-1x-2af" customClass="StartScreenGallery" customModule="BlocksForAll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="whW-x7-Q4U"/>
                         <viewControllerLayoutGuide type="bottom" id="p2y-cY-Pmw"/>
@@ -378,6 +378,9 @@
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="Question_Mark"/>
+                                                        <connections>
+                                                            <action selector="helpButtonPressed:" destination="BIf-1x-2af" eventType="touchUpInside" id="Pd7-Fw-GsX"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr3-N8-uot" userLabel="Settings">
                                                         <rect key="frame" x="300" y="30" width="105" height="105"/>
@@ -386,6 +389,9 @@
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="Settings"/>
+                                                        <connections>
+                                                            <action selector="settingsButtonPressed:" destination="BIf-1x-2af" eventType="touchUpInside" id="XsK-71-qtg"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -403,7 +409,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjA-ip-RsH" userLabel="Gallery View">
                                         <rect key="frame" x="0.0" y="135" width="1080" height="675"/>
                                         <subviews>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IPo-e2-8Ry">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IPo-e2-8Ry" customClass="ProjectGalleryCollectionView" customModule="BlocksForAll" customModuleProvider="target">
                                                 <rect key="frame" x="30" y="75" width="1020" height="525"/>
                                                 <color key="backgroundColor" name="navy_text"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ogm-K5-dhw">
@@ -520,6 +526,20 @@
                             <constraint firstItem="w6j-1x-wEY" firstAttribute="centerY" secondItem="0hD-Fa-wp1" secondAttribute="centerY" id="Zqp-8N-6aX"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="1qK-Mt-NGc"/>
+                    <connections>
+                        <outlet property="freeplayTab" destination="mFT-Wr-uuz" id="Bkz-VH-gdE"/>
+                        <outlet property="galleryCollectionView" destination="IPo-e2-8Ry" id="iNH-Zo-jeV"/>
+                        <outlet property="galleryView" destination="zjA-ip-RsH" id="2lt-0C-Jb1"/>
+                        <outlet property="helpButton" destination="yWo-2o-cM6" id="ALc-JJ-bP8"/>
+                        <outlet property="robotTab" destination="1iB-Vq-69B" id="3Wv-t9-ejw"/>
+                        <outlet property="settingsButton" destination="Dr3-N8-uot" id="WXr-KT-s68"/>
+                        <outlet property="tabsView" destination="QYv-qH-Ihb" id="3yf-Ow-d9D"/>
+                        <segue destination="e1z-cA-zHu" kind="show" identifier="startScreenGalleryToSettings" id="Mgg-JY-OYu"/>
+                        <segue destination="1qS-gh-lht" kind="show" identifier="startScreenGalleryToHelp" id="HBt-V8-Vd2"/>
+                        <segue destination="uoc-nU-c4a" kind="show" identifier="openRobotWorkspaceFromGallery" id="GFr-l0-p1d"/>
+                        <segue destination="48V-Ne-C7Q" kind="show" identifier="openFreeplayFromGallery" id="rIL-7v-1GC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cS-O1-eGd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1106,7 +1126,6 @@
                         <segue destination="sKo-Tc-eyH" kind="show" identifier="TwoOptionModifier" id="yHo-Ic-oSY"/>
                         <segue destination="a8r-3H-fGk" kind="show" identifier="StepperModifier" id="rJ0-q9-MJC"/>
                         <segue destination="I6l-mr-M6V" kind="show" identifier="MultipleChoiceModifier" id="lP2-dK-nFu"/>
-                        <segue destination="YEE-PZ-SjD" kind="show" identifier="toMainMenu" id="OfV-so-xeL"/>
                         <segue destination="jJr-Hm-QsK" kind="show" identifier="toChooseActor" id="5Xz-1I-HDS"/>
                         <segue destination="9IQ-B3-7v1" kind="show" identifier="enterFullScreen" id="i4h-7s-vWn"/>
                         <segue destination="mAr-FX-Q3Q" kind="show" identifier="SelectLocationModifier" id="jhw-iu-lck"/>
@@ -1114,6 +1133,7 @@
                         <segue destination="WtD-0w-PDj" kind="show" identifier="toCustomizeActor" id="k4Q-bN-qpZ"/>
                         <segue destination="Daw-d8-AsD" kind="show" identifier="SelectBackgroundModifier" id="gMp-pW-59s"/>
                         <segue destination="74x-5e-Noc" kind="show" identifier="toSelectCustomNoise" id="Bdm-v1-hdH"/>
+                        <segue destination="BIf-1x-2af" kind="show" identifier="toMainMenu" id="TiE-e2-scZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zMf-n1-Jxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1405,7 +1425,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="YEE-PZ-SjD" kind="show" id="Oq5-da-dqe"/>
+                                    <segue destination="BIf-1x-2af" kind="show" id="Sqv-Qd-nUV"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SettingsTitle" translatesAutoresizingMaskIntoConstraints="NO" id="glw-m4-ShG">
@@ -1495,7 +1515,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="YEE-PZ-SjD" kind="show" id="KBE-C8-Ew2"/>
+                                    <segue destination="BIf-1x-2af" kind="show" id="cMd-ti-UVt"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bf9-8r-YWE">
@@ -1808,12 +1828,12 @@ For further information on Blocks4All, please visit our website. For further det
                         <segue destination="JzC-8L-d8W" kind="show" identifier="SliderModifier" id="cqe-hd-fim"/>
                         <segue destination="B5M-ey-3HD" kind="show" identifier="VariableModifier" id="DJw-3M-vha"/>
                         <segue destination="jdf-AY-L53" kind="show" identifier="driveModifier" id="ZVu-V8-d1q"/>
-                        <segue destination="YEE-PZ-SjD" kind="show" identifier="toMainMenu" id="XsQ-5G-ZnB"/>
                         <segue destination="Cxp-3J-pfY" kind="show" identifier="mainToMain" id="vzO-l2-EmX"/>
                         <segue destination="I6l-mr-M6V" kind="show" identifier="MultipleChoiceModifier" id="u8d-ef-tNg"/>
                         <segue destination="a8r-3H-fGk" kind="show" identifier="StepperModifier" id="bga-bw-aqG"/>
                         <segue destination="sKo-Tc-eyH" kind="show" identifier="TwoOptionModifier" id="WZK-Na-4fL"/>
                         <segue destination="74x-5e-Noc" kind="show" identifier="SelectCustomNoiseModifier" id="qu0-RS-u2g"/>
+                        <segue destination="BIf-1x-2af" kind="show" identifier="toMainMenu" id="9Ir-7Z-6un"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W32-Q3-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3347,11 +3367,12 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="g0f-Hs-dMn"/>
         <segue reference="d7W-eK-Vpz"/>
         <segue reference="Ifr-Iv-956"/>
-        <segue reference="sX9-WY-IIJ"/>
-        <segue reference="SES-Og-HDs"/>
-        <segue reference="gnX-kj-isW"/>
-        <segue reference="a9q-34-jse"/>
-        <segue reference="2fL-ta-11H"/>
+        <segue reference="GFr-l0-p1d"/>
+        <segue reference="PIe-sL-Fqa"/>
+        <segue reference="HBt-V8-Vd2"/>
+        <segue reference="Mgg-JY-OYu"/>
+        <segue reference="dIU-VY-Si3"/>
+        <segue reference="TiE-e2-scZ"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -15,7 +15,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var projectNameLabel: UILabel! // Displays the name of the project. Can be edited
     
-    var parentViewController: ProjectGalleryViewController? // View Controller that the cell is a part of
+    var parentViewController: StartScreenGallery? // View Controller that the cell is a part of
     
     @IBOutlet weak var deleteButton: UIButton! // Button to delete project
     
