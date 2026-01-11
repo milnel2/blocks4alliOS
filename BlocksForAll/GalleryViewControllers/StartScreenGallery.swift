@@ -11,6 +11,7 @@ class StartScreenGallery: UIViewController {
     @IBOutlet weak var tabsView: UIView! // view that holds the two tabs. Referenced so we can change sorting order
     @IBOutlet weak var freeplayTab: UIImageView!
     @IBOutlet weak var robotTab: UIImageView!
+    @IBOutlet weak var buttonsView: UIView! // view that holds the help and settings buttons
     @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var galleryView: UIView! // Large view that holds the gallery. Referenced so that we can access and change its color
@@ -28,7 +29,20 @@ class StartScreenGallery: UIViewController {
         didSet { self.reloadGallery() }
     }
     
+    var blockSize = 150 // this controls the size of the blocks you put down in the Building Screen
+    
     override func viewDidLoad() {
+        // Default settings
+        // if show icons/show text hasn't been set yet, set showText to showIcons by default
+        if  defaults.value(forKey: "showText") == nil {
+            defaults.setValue(0, forKey: "showText")
+        }
+        // if blockSize hasn't been set yet, set it to be 150 by default
+        if defaults.value(forKey: "blockSize") == nil {
+            defaults.setValue(150, forKey: "blockSize")
+        }
+        
+        
         galleryCollectionView.setupGallery(withStartScreenGallery: self, galleryType: currentGalleryType)
         // Open the Robot project gallery by default
         currentGalleryType = ROBOT_GALLERY_TYPE
@@ -42,16 +56,22 @@ class StartScreenGallery: UIViewController {
         freeplayTab.isUserInteractionEnabled = true
         robotTab.addGestureRecognizer(robotTapGesture)
         freeplayTab.addGestureRecognizer(freeplayTapGesture)
+        
+        setUpAccessibility()
     }
     
     @objc func robotTabClicked(sender : UITapGestureRecognizer) {
         if currentGalleryType != ROBOT_GALLERY_TYPE {
             currentGalleryType = ROBOT_GALLERY_TYPE
+            // Move accessibility focus to the gallery
+            UIAccessibility.post(notification: .screenChanged, argument: self.galleryCollectionView)
         }
     }
     @objc func freeplayTabClicked(sender : UITapGestureRecognizer) {
         if currentGalleryType != FREEPLAY_GALLERY_TYPE {
             currentGalleryType = FREEPLAY_GALLERY_TYPE
+            // Move accessibility focus to the gallery
+            UIAccessibility.post(notification: .screenChanged, argument: self.galleryCollectionView)
         }
     }
     
@@ -73,8 +93,29 @@ class StartScreenGallery: UIViewController {
         galleryCollectionView.reloadGallery(galleryType: currentGalleryType)
     }
     
+    func setUpAccessibility() {
+        // Navigation order
+        robotTab.isAccessibilityElement = true
+        freeplayTab.isAccessibilityElement = true
+        
+        accessibilityElements = [tabsView!, buttonsView!, galleryCollectionView!]
+        tabsView.accessibilityElements = [robotTab!, freeplayTab!]
+        buttonsView.accessibilityElements = [settingsButton!, helpButton!]
+        
+        // VoiceOver labels
+        settingsButton.accessibilityLabel = NSLocalizedString("Settings", comment: "Accessibility Label for settings button on main menu screen")
+        helpButton.accessibilityLabel = NSLocalizedString("Help", comment: "Accessibility Label for help button on main menu screen")
+        robotTab.accessibilityLabel = NSLocalizedString("Play with Robot", comment: "Title for Play with Physical Robot button on main menu screen")
+        freeplayTab.accessibilityLabel = NSLocalizedString("Play with Virtual Robot", comment: "Title for Play with Virtual Robot button on main menu screen")
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if (segue.identifier == "openFreeplayFromGallery") {
+        // Pass blockSize setting
+        if let myDestination = segue.destination as? BlocksViewController{
+            myDestination.blockSize = blockSize
+        }
+    
+        if (segue.identifier == "openFreeplayFromGallery") {
           let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
            UserData.data.setCurrentProject(newProject: sender as? Project)
            freeplayWorkspaceVC.galleryType = currentGalleryType
@@ -87,5 +128,20 @@ class StartScreenGallery: UIViewController {
             robotWorkspaceVC.galleryType = currentGalleryType
             currentWorkspace = "Main Workspace"
         }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if #available(iOS 11.0, *) {
+            if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
+                print("accessibility enabled")
+                blockSize = 200
+            }
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }

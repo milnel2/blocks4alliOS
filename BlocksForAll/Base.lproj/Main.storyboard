@@ -528,6 +528,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="1qK-Mt-NGc"/>
                     <connections>
+                        <outlet property="buttonsView" destination="b38-Q1-jAU" id="mxC-Hx-Ix0"/>
                         <outlet property="freeplayTab" destination="mFT-Wr-uuz" id="Bkz-VH-gdE"/>
                         <outlet property="galleryCollectionView" destination="IPo-e2-8Ry" id="iNH-Zo-jeV"/>
                         <outlet property="galleryView" destination="zjA-ip-RsH" id="2lt-0C-Jb1"/>
@@ -3371,7 +3372,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="PIe-sL-Fqa"/>
         <segue reference="HBt-V8-Vd2"/>
         <segue reference="Mgg-JY-OYu"/>
-        <segue reference="dIU-VY-Si3"/>
+        <segue reference="rIL-7v-1GC"/>
         <segue reference="TiE-e2-scZ"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
