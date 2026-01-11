@@ -426,21 +426,37 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="280" height="244"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addProjectButton" translatesAutoresizingMaskIntoConstraints="NO" id="LB0-c9-GPV">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="244"/>
-                                                                </imageView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fsj-Km-3gx">
+                                                                    <rect key="frame" x="0.0" y="5" width="280" height="234"/>
+                                                                    <subviews>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addProjectButton" translatesAutoresizingMaskIntoConstraints="NO" id="LB0-c9-GPV">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="280" height="203"/>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9W-e6-x5B">
+                                                                            <rect key="frame" x="94" y="203" width="92.5" height="31"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="trailing" secondItem="LB0-c9-GPV" secondAttribute="trailing" id="jdu-Di-1Dj"/>
+                                                                        <constraint firstItem="LB0-c9-GPV" firstAttribute="leading" secondItem="fsj-Km-3gx" secondAttribute="leading" id="n2H-9c-ot3"/>
+                                                                    </constraints>
+                                                                </stackView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="LB0-c9-GPV" secondAttribute="trailing" id="7FT-xK-Tdh"/>
-                                                                <constraint firstItem="LB0-c9-GPV" firstAttribute="leading" secondItem="rsW-S9-8Rz" secondAttribute="leading" id="lCy-ll-ZzQ"/>
-                                                                <constraint firstAttribute="bottom" secondItem="LB0-c9-GPV" secondAttribute="bottom" id="lI2-Oc-J3p"/>
-                                                                <constraint firstItem="LB0-c9-GPV" firstAttribute="top" secondItem="rsW-S9-8Rz" secondAttribute="top" id="loH-GX-vLN"/>
+                                                                <constraint firstItem="fsj-Km-3gx" firstAttribute="top" secondItem="rsW-S9-8Rz" secondAttribute="top" constant="5" id="MKO-I1-iIM"/>
+                                                                <constraint firstAttribute="bottom" secondItem="fsj-Km-3gx" secondAttribute="bottom" constant="5" id="mCc-fc-ygc"/>
+                                                                <constraint firstAttribute="trailing" secondItem="fsj-Km-3gx" secondAttribute="trailing" id="pwA-PM-IAS"/>
+                                                                <constraint firstItem="fsj-Km-3gx" firstAttribute="leading" secondItem="rsW-S9-8Rz" secondAttribute="leading" id="suT-U1-RpH"/>
                                                             </constraints>
                                                         </collectionViewCellContentView>
                                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                         <size key="customSize" width="280" height="244"/>
                                                         <connections>
                                                             <outlet property="imageView" destination="LB0-c9-GPV" id="PPF-4v-ZuC"/>
+                                                            <outlet property="newProjectLabel" destination="E9W-e6-x5B" id="VZh-lq-YQH"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProjectsCell" id="Z0v-i7-f4T" customClass="ProjectCollectionViewCell" customModule="BlocksForAll" customModuleProvider="target">

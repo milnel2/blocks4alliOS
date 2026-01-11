@@ -11,6 +11,14 @@ import Foundation
 /// UICollectionViewCell used in a gallery for adding a new project
 class AddProjectCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var newProjectLabel: UILabel!
+    
+    func updateUI() {
+        newProjectLabel.adjustsFontForContentSizeCategory = true
+        newProjectLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 30.0)
+    }
+    
     func updateAccessibilityTools() {
         isAccessibilityElement = false
         
