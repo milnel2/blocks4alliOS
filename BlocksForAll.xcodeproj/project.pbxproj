@@ -63,6 +63,7 @@
 		8DEF21BF2C40362400E5E21F /* horse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21B52C40362400E5E21F /* horse.mp3 */; };
 		8DEF21C12C40371000E5E21F /* bounceOffWall.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21C02C40371000E5E21F /* bounceOffWall.mp3 */; };
 		8DEF21C52C4037B300E5E21F /* Movement4BeatLoop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21C42C4037B300E5E21F /* Movement4BeatLoop.mp3 */; };
+		8DF2EC1B2F14123D007E6CB9 /* StartScreenGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2EC1A2F141239007E6CB9 /* StartScreenGallery.swift */; };
 		8DFEBAC02C2B40AC00491CAD /* FullScreenFreeplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFEBABF2C2B40AC00491CAD /* FullScreenFreeplayViewController.swift */; };
 		8DFEBAC22C2C6F8900491CAD /* SelectLocationModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFEBAC12C2C6F8900491CAD /* SelectLocationModifierViewController.swift */; };
 		8DFEBAC62C2C973500491CAD /* SpeedModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFEBAC52C2C973500491CAD /* SpeedModViewController.swift */; };
@@ -167,6 +168,7 @@
 		8DEF21B52C40362400E5E21F /* horse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = horse.mp3; path = "BlocksForAll/Audio Files/Sound Blocks/horse.mp3"; sourceTree = SOURCE_ROOT; };
 		8DEF21C02C40371000E5E21F /* bounceOffWall.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bounceOffWall.mp3; path = "BlocksForAll/Audio Files/bounceOffWall.mp3"; sourceTree = SOURCE_ROOT; };
 		8DEF21C42C4037B300E5E21F /* Movement4BeatLoop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Movement4BeatLoop.mp3; path = "BlocksForAll/Audio Files/Movement4BeatLoop.mp3"; sourceTree = SOURCE_ROOT; };
+		8DF2EC1A2F141239007E6CB9 /* StartScreenGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenGallery.swift; sourceTree = "<group>"; };
 		8DFEBABF2C2B40AC00491CAD /* FullScreenFreeplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenFreeplayViewController.swift; sourceTree = "<group>"; };
 		8DFEBAC12C2C6F8900491CAD /* SelectLocationModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationModifierViewController.swift; sourceTree = "<group>"; };
 		8DFEBAC52C2C973500491CAD /* SpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedModViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 		8DE37AFF2C1A3C24006DB159 /* GalleryViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8DF2EC1A2F141239007E6CB9 /* StartScreenGallery.swift */,
 				8DE37B002C1A3C39006DB159 /* ProjectCollectionViewCell.swift */,
 				8DE37B022C1A3D68006DB159 /* Project.swift */,
 				8DE37B042C1A3F12006DB159 /* ProjectGalleryViewController.swift */,
@@ -639,6 +642,7 @@
 				701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */,
 				FD3A59562A3B639E00122BEF /* InstructionsViewController.swift in Sources */,
 				844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */,
+				8DF2EC1B2F14123D007E6CB9 /* StartScreenGallery.swift in Sources */,
 				8DE37B032C1A3D68006DB159 /* Project.swift in Sources */,
 				F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */,
 				8DFEBAC62C2C973500491CAD /* SpeedModViewController.swift in Sources */,
