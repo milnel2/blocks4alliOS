@@ -79,18 +79,22 @@ class StartScreenGallery: UIViewController {
         // Update visuals
         if currentGalleryType == ROBOT_GALLERY_TYPE {
             // dark blue background
-            galleryView.backgroundColor = UIColor(named: "navy_text")
-            galleryCollectionView.backgroundColor = UIColor(named: "navy_text")
+            galleryView.backgroundColor = UIColor(named: "dark_blue")
+            galleryCollectionView.backgroundColor = UIColor(named: "dark_blue")
             tabsView.bringSubviewToFront(robotTab)
         } else if currentGalleryType == FREEPLAY_GALLERY_TYPE {
             // orange background
-            galleryView.backgroundColor = UIColor(named: "orange_block")
-            galleryCollectionView.backgroundColor = UIColor(named: "orange_block")
+            galleryView.backgroundColor = UIColor(named: "dark_orange")
+            galleryCollectionView.backgroundColor = UIColor(named: "dark_orange")
             tabsView.bringSubviewToFront(freeplayTab)
         }
         
         // Update projects
         galleryCollectionView.reloadGallery(galleryType: currentGalleryType)
+    }
+    
+    public func getGalleryType() -> String {
+        return currentGalleryType
     }
     
     func setUpAccessibility() {

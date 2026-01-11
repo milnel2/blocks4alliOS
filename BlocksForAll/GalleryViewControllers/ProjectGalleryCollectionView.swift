@@ -76,6 +76,7 @@ extension ProjectGalleryCollectionView : UICollectionViewDataSource, UICollectio
         if index == 0 {
             // Add Project Cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addProjectCell", for: indexPath) as! AddProjectCollectionViewCell
+            cell.setUpCell(parentVC: startScreenGallery!)
             cell.updateUI()
             cell.updateAccessibilityTools()
             cell.layer.borderWidth = 5

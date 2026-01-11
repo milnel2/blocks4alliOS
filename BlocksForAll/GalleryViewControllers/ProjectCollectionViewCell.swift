@@ -52,6 +52,12 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         
         // Accessibility
         updateAccessibilityTools()
+        
+        if parentViewController?.getGalleryType() == ROBOT_GALLERY_TYPE {
+            backgroundColor = UIColor(named: "blue_block")
+        } else if parentViewController?.getGalleryType() == FREEPLAY_GALLERY_TYPE {
+            backgroundColor = UIColor(named: "orange_block")
+        }
        }
     
     // When the project name label is tapped, prompt to rename the project

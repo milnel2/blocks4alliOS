@@ -1,6 +1,16 @@
 {
   "images" : [
     {
+      "filename" : "Freeplay Tab - Dark.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
       "filename" : "Freeplay Tab.svg",
       "idiom" : "universal"
     }
