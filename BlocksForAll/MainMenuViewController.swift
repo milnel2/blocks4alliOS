@@ -150,13 +150,13 @@ class MainMenuViewController: UIViewController {
             }
         }
         
-        if segue.identifier == "mainToFreeplayGallery" {
-            let destinationViewController = segue.destination as? ProjectGalleryViewController
-            destinationViewController?.galleryType = FREEPLAY_GALLERY_TYPE
-        }
-        if segue.identifier == "mainToRobotGallery" {
-            let destinationViewController = segue.destination as? ProjectGalleryViewController
-            destinationViewController?.galleryType = ROBOT_GALLERY_TYPE
-        }
+//        if segue.identifier == "mainToFreeplayGallery" {
+//            let destinationViewController = segue.destination as? ProjectGalleryViewController
+//            destinationViewController?.galleryType = FREEPLAY_GALLERY_TYPE
+//        }
+//        if segue.identifier == "mainToRobotGallery" {
+//            let destinationViewController = segue.destination as? ProjectGalleryViewController
+//            destinationViewController?.galleryType = ROBOT_GALLERY_TYPE
+//        }
     }
 }

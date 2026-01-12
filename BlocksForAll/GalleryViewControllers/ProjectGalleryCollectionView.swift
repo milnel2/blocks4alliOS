@@ -9,13 +9,8 @@
 import Foundation
 import UIKit
 
-/// View Controller for a gallery of projects. Either robot projects or freeplay projects. Can view projects, delete projects, rename projects, or add new projects from this screen.
-class ProjectGalleryViewController: UIViewController {
-    
-    @IBOutlet weak var projectGalleryCollectionView: UICollectionView! // collection view to hold project cells
-    @IBOutlet weak var robotButton: UIButton!
-    
-    @IBOutlet weak var homeButton: UIButton! // button to return to main menu
+/// Collection Viewrfor a gallery of projects. Either robot projects or freeplay projects. Can view projects, delete projects, rename projects, or add new projects from this gallery.
+class ProjectGalleryCollectionView: UICollectionView {
     
     var projects: [Project] = [] // projects associated with this gallery
     let cellScale : CGFloat = 0.28 // how big cells should be in relation to the screen size
@@ -27,27 +22,29 @@ class ProjectGalleryViewController: UIViewController {
     
     var galleryType: String = ROBOT_GALLERY_TYPE // either freeplay or robot gallery type. Determines the set of projects to display
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var startScreenGallery: StartScreenGallery? = nil
+    
+    public func setupGallery(withStartScreenGallery startScreenGallery: StartScreenGallery, galleryType: String) {
+        self.startScreenGallery = startScreenGallery
+        self.galleryType = galleryType
         
         projects = Project.FetchProjects()[galleryType]!
         
-        projectGalleryCollectionView.dataSource = self
-        projectGalleryCollectionView.delegate = self
+        dataSource = self
+        delegate = self
         
         // calculate cell size
         let screenSize = UIScreen.main.bounds.size
         cellWidth = floor(screenSize.width * cellScale)
         cellHeight = floor(screenSize.height * cellScale)
-        
-        projectGalleryCollectionView.translatesAutoresizingMaskIntoConstraints = false
-    
+            
         updateUI()
     }
    
-    func reloadGallery() {
+    public func reloadGallery(galleryType: String) {
+        self.galleryType = galleryType
         self.projects = allProjects[self.galleryType]!
-        projectGalleryCollectionView.reloadData()
+        reloadData()
         updateUI()
     }
     
@@ -55,20 +52,19 @@ class ProjectGalleryViewController: UIViewController {
         updateAccessibilityTools()
     }
     func updateAccessibilityTools() {
-        view.accessibilityElements = [projectGalleryCollectionView!, homeButton!]
-        if #available(iOS 13.0, *) { // Voice Control Labels
-            homeButton.accessibilityUserInputLabels = [
-                NSLocalizedString("Menu", comment: "Voice Control label"),
-                NSLocalizedString("Home", comment: "Voice Control label"),
-                NSLocalizedString("Main Menu", comment: "Voice Control label")
-            ]
-        }
-        homeButton.accessibilityLabel = "Main Menu".localized
+//        if #available(iOS 13.0, *) { // Voice Control Labels
+//            homeButton.accessibilityUserInputLabels = [
+//                NSLocalizedString("Menu", comment: "Voice Control label"),
+//                NSLocalizedString("Home", comment: "Voice Control label"),
+//                NSLocalizedString("Main Menu", comment: "Voice Control label")
+//            ]
+//        }
+//        homeButton.accessibilityLabel = "Main Menu".localized
     }
     
 }
 
-extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ProjectGalleryCollectionView : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return projects.count + 1 // add one to allow for the add project cell
     }
@@ -80,7 +76,8 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
         if index == 0 {
             // Add Project Cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addProjectCell", for: indexPath) as! AddProjectCollectionViewCell
-           
+            cell.setUpCell(parentVC: startScreenGallery!)
+            cell.updateUI()
             cell.updateAccessibilityTools()
             cell.layer.borderWidth = 5
             // Styling
@@ -112,7 +109,7 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             
             cell.cellGalleryType = galleryType
             cell.project = project
-            cell.parentViewController = self
+            cell.parentViewController = startScreenGallery
            
             updateAccessibilityTools()
             return cell
@@ -158,10 +155,10 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
     func openProjectAtIndex(index: Int) {
         let selectedProject = allProjects[galleryType]![index]
         if galleryType == FREEPLAY_GALLERY_TYPE {
-            performSegue(withIdentifier: "openFreeplayFromGallery", sender: selectedProject)
+            startScreenGallery!.performSegue(withIdentifier: "openFreeplayFromGallery", sender: selectedProject)
             
         } else if galleryType == ROBOT_GALLERY_TYPE{
-            performSegue(withIdentifier: "openRobotWorkspaceFromGallery", sender: selectedProject)
+            startScreenGallery!.performSegue(withIdentifier: "openRobotWorkspaceFromGallery", sender: selectedProject)
         }
     }
     
@@ -221,21 +218,5 @@ extension ProjectGalleryViewController : UICollectionViewDataSource, UICollectio
             }
         }
         return false
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if (segue.identifier == "openFreeplayFromGallery") {
-          let freeplayWorkspaceVC = segue.destination as! FreePlayWorkspaceViewController
-           UserData.data.setCurrentProject(newProject: sender as? Project)
-           freeplayWorkspaceVC.galleryType = galleryType
-           currentWorkspace = ON_RUN_STRING
-        
-       }
-        if (segue.identifier == "openRobotWorkspaceFromGallery") {
-            let robotWorkspaceVC = segue.destination as! BlocksViewController
-            UserData.data.setCurrentProject(newProject: sender as? Project)
-            robotWorkspaceVC.galleryType = galleryType
-            currentWorkspace = "Main Workspace"
-        }
     }
 }

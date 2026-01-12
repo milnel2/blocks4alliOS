@@ -47,7 +47,7 @@
 		8DDC31A32CA1D11600337B39 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDC31A22CA1D11600337B39 /* BackgroundImage.swift */; };
 		8DE37B012C1A3C39006DB159 /* ProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37B002C1A3C39006DB159 /* ProjectCollectionViewCell.swift */; };
 		8DE37B032C1A3D68006DB159 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37B022C1A3D68006DB159 /* Project.swift */; };
-		8DE37B052C1A3F12006DB159 /* ProjectGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37B042C1A3F12006DB159 /* ProjectGalleryViewController.swift */; };
+		8DE37B052C1A3F12006DB159 /* ProjectGalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37B042C1A3F12006DB159 /* ProjectGalleryCollectionView.swift */; };
 		8DE76F832A3100BE002E11C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */; };
 		8DE83BA82CA0B34B005DF819 /* SelectBackgroundModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE83BA72CA0B34B005DF819 /* SelectBackgroundModifierViewController.swift */; };
 		8DE97FD52C29CFE4008661BB /* AddProjectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE97FD42C29CFE4008661BB /* AddProjectCollectionViewCell.swift */; };
@@ -63,6 +63,7 @@
 		8DEF21BF2C40362400E5E21F /* horse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21B52C40362400E5E21F /* horse.mp3 */; };
 		8DEF21C12C40371000E5E21F /* bounceOffWall.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21C02C40371000E5E21F /* bounceOffWall.mp3 */; };
 		8DEF21C52C4037B300E5E21F /* Movement4BeatLoop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DEF21C42C4037B300E5E21F /* Movement4BeatLoop.mp3 */; };
+		8DF2EC1B2F14123D007E6CB9 /* StartScreenGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2EC1A2F141239007E6CB9 /* StartScreenGallery.swift */; };
 		8DFEBAC02C2B40AC00491CAD /* FullScreenFreeplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFEBABF2C2B40AC00491CAD /* FullScreenFreeplayViewController.swift */; };
 		8DFEBAC22C2C6F8900491CAD /* SelectLocationModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFEBAC12C2C6F8900491CAD /* SelectLocationModifierViewController.swift */; };
 		8DFEBAC62C2C973500491CAD /* SpeedModViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFEBAC52C2C973500491CAD /* SpeedModViewController.swift */; };
@@ -151,7 +152,7 @@
 		8DDC31A22CA1D11600337B39 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		8DE37B002C1A3C39006DB159 /* ProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DE37B022C1A3D68006DB159 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
-		8DE37B042C1A3F12006DB159 /* ProjectGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGalleryViewController.swift; sourceTree = "<group>"; };
+		8DE37B042C1A3F12006DB159 /* ProjectGalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGalleryCollectionView.swift; sourceTree = "<group>"; };
 		8DE76F822A3100BE002E11C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8DE83BA72CA0B34B005DF819 /* SelectBackgroundModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBackgroundModifierViewController.swift; sourceTree = "<group>"; };
 		8DE97FD42C29CFE4008661BB /* AddProjectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -167,6 +168,7 @@
 		8DEF21B52C40362400E5E21F /* horse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = horse.mp3; path = "BlocksForAll/Audio Files/Sound Blocks/horse.mp3"; sourceTree = SOURCE_ROOT; };
 		8DEF21C02C40371000E5E21F /* bounceOffWall.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bounceOffWall.mp3; path = "BlocksForAll/Audio Files/bounceOffWall.mp3"; sourceTree = SOURCE_ROOT; };
 		8DEF21C42C4037B300E5E21F /* Movement4BeatLoop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Movement4BeatLoop.mp3; path = "BlocksForAll/Audio Files/Movement4BeatLoop.mp3"; sourceTree = SOURCE_ROOT; };
+		8DF2EC1A2F141239007E6CB9 /* StartScreenGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenGallery.swift; sourceTree = "<group>"; };
 		8DFEBABF2C2B40AC00491CAD /* FullScreenFreeplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenFreeplayViewController.swift; sourceTree = "<group>"; };
 		8DFEBAC12C2C6F8900491CAD /* SelectLocationModifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationModifierViewController.swift; sourceTree = "<group>"; };
 		8DFEBAC52C2C973500491CAD /* SpeedModViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedModViewController.swift; sourceTree = "<group>"; };
@@ -285,9 +287,10 @@
 		8DE37AFF2C1A3C24006DB159 /* GalleryViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8DF2EC1A2F141239007E6CB9 /* StartScreenGallery.swift */,
 				8DE37B002C1A3C39006DB159 /* ProjectCollectionViewCell.swift */,
 				8DE37B022C1A3D68006DB159 /* Project.swift */,
-				8DE37B042C1A3F12006DB159 /* ProjectGalleryViewController.swift */,
+				8DE37B042C1A3F12006DB159 /* ProjectGalleryCollectionView.swift */,
 				8DE97FD42C29CFE4008661BB /* AddProjectCollectionViewCell.swift */,
 			);
 			path = GalleryViewControllers;
@@ -617,7 +620,7 @@
 				F10F71691E65BFF50049F3AA /* Block.swift in Sources */,
 				8DD0F84A2BFE7DD0005021EB /* Robot.swift in Sources */,
 				F18FFFB31E65B0FB0090C4B6 /* AppDelegate.swift in Sources */,
-				8DE37B052C1A3F12006DB159 /* ProjectGalleryViewController.swift in Sources */,
+				8DE37B052C1A3F12006DB159 /* ProjectGalleryCollectionView.swift in Sources */,
 				8D822CDA2C137B3300A8A20D /* FreePlayWorkspaceViewController.swift in Sources */,
 				8D92E0DB2CAB83B800F74DC7 /* UserData.swift in Sources */,
 				F73D31762A5DFA0F00008126 /* AddRobotViewController.swift in Sources */,
@@ -639,6 +642,7 @@
 				701A43871EC26EFD00314599 /* BlocksViewController.swift in Sources */,
 				FD3A59562A3B639E00122BEF /* InstructionsViewController.swift in Sources */,
 				844EAEF722E60CBB00BB1A62 /* FunctionTableViewCell.swift in Sources */,
+				8DF2EC1B2F14123D007E6CB9 /* StartScreenGallery.swift in Sources */,
 				8DE37B032C1A3D68006DB159 /* Project.swift in Sources */,
 				F13A0AE91E6B2C3E00DB4C86 /* BlocksTypeTableViewController.swift in Sources */,
 				8DFEBAC62C2C973500491CAD /* SpeedModViewController.swift in Sources */,

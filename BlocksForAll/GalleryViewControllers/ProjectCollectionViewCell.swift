@@ -15,7 +15,7 @@ class ProjectCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var projectNameLabel: UILabel! // Displays the name of the project. Can be edited
     
-    var parentViewController: ProjectGalleryViewController? // View Controller that the cell is a part of
+    var parentViewController: StartScreenGallery? // View Controller that the cell is a part of
     
     @IBOutlet weak var deleteButton: UIButton! // Button to delete project
     
@@ -52,6 +52,12 @@ class ProjectCollectionViewCell: UICollectionViewCell {
         
         // Accessibility
         updateAccessibilityTools()
+        
+        if parentViewController?.getGalleryType() == ROBOT_GALLERY_TYPE {
+            backgroundColor = UIColor(named: "blue_block")
+        } else if parentViewController?.getGalleryType() == FREEPLAY_GALLERY_TYPE {
+            backgroundColor = UIColor(named: "orange_block")
+        }
        }
     
     // When the project name label is tapped, prompt to rename the project
