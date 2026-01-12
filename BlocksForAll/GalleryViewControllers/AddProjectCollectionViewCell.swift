@@ -11,6 +11,26 @@ import Foundation
 /// UICollectionViewCell used in a gallery for adding a new project
 class AddProjectCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var newProjectLabel: UILabel!
+   
+    var parentViewController: StartScreenGallery? // View Controller that the cell is a part of
+    
+    func setUpCell(parentVC: StartScreenGallery) {
+        parentViewController = parentVC
+    }
+    
+    func updateUI() {
+        newProjectLabel.adjustsFontForContentSizeCategory = true
+        newProjectLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 30.0)
+        if parentViewController?.getGalleryType() == ROBOT_GALLERY_TYPE {
+            backgroundColor = UIColor(named: "blue_block")
+        } else if parentViewController?.getGalleryType() == FREEPLAY_GALLERY_TYPE {
+            backgroundColor = UIColor(named: "orange_block")
+        }
+        
+    }
+    
     func updateAccessibilityTools() {
         isAccessibilityElement = false
         
