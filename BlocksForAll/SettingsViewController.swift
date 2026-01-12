@@ -129,7 +129,7 @@ class SettingsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationViewController = segue.destination as? AddRobotViewController {
-            destinationViewController.sentFromWorkspace = false
+            destinationViewController.sentFrom = .Settings
         }
     }
 }

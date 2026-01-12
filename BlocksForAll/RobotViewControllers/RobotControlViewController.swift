@@ -47,7 +47,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     }
     
     
-    func areRobotsConnected() -> Bool{
+    static func areRobotsConnected() -> Bool{
         return !connectedRobots.isEmpty
     }
     
@@ -55,7 +55,7 @@ class RobotControlViewController: UIViewController, CBPeripheralDelegate {
     func play(functionsDictToPlay: [String : [Block]], functionNameToExecute: String? = nil, actor: VirtualRobot? = nil){
         print("in play")
        
-        if areRobotsConnected() {
+        if RobotControlViewController.areRobotsConnected() {
             for robot in connectedRobots {
                 robot.peripheral.setNotifyValue(true, for: robot.dashSensorCharacteristic2!)
                robot.peripheral.setNotifyValue(true, for: robot.dashSensorCharacteristic1!)
@@ -499,9 +499,9 @@ class ExecutingProgram {
             }
             
         case "Nod":
-            let lookFoward = setHeadYPosition(y: 0)
-            let lookUp = setHeadYPosition(y: 22)
-            let lookDown = setHeadYPosition(y: -7)
+            let lookFoward = ExecutingProgram.setHeadYPosition(y: 0)
+            let lookUp = ExecutingProgram.setHeadYPosition(y: 22)
+            let lookDown = ExecutingProgram.setHeadYPosition(y: -7)
             
             sendDataToDashNoDuration(data: Data(lookFoward))
             
@@ -524,19 +524,19 @@ class ExecutingProgram {
             }
         //LOOK CATEGORY
         case "Look Up":
-            let data = setHeadYPosition(y: 22)
+            let data = ExecutingProgram.setHeadYPosition(y: 22)
             sendDataToDash(data: Data(data), withDuration: 2)
             
         case "Look Down":
-            let data = setHeadYPosition(y: -7)
+            let data = ExecutingProgram.setHeadYPosition(y: -7)
             sendDataToDash(data: Data(data), withDuration: 2)
             
         case "Look Left":
-            let data = setHeadXPosition(x: -64)
+            let data = ExecutingProgram.setHeadXPosition(x: -64)
             sendDataToDash(data: Data(data), withDuration: 2)
             
         case "Look Right":
-            let data = setHeadXPosition(x: 64)
+            let data = ExecutingProgram.setHeadXPosition(x: 64)
             sendDataToDash(data: Data(data), withDuration: 2)
             
         case "Look Forward":
@@ -689,33 +689,48 @@ class ExecutingProgram {
     }
     
     /// Generate and return data string array for setting the robot head x position
-    func setHeadXPosition(x: Int) -> [UInt8] {
+    static func setHeadXPosition(x: Int) -> [UInt8] {
+        print("set head x position to \(x)")
         // Set head position code is based off https://github.com/vdwel/RobotControl/blob/master/robot.py
         var xAngle = x
         
-        if (xAngle < -64){
-            print("Head cannot move more than 64 degrees.")
-            xAngle = -64
-        } else if (xAngle > 64){
-            print("Head cannot move more than 64 degrees.")
-            xAngle = 64
-        }
-        if (xAngle < 0) {
-            xAngle *= -1
-            xAngle += 0b10000000  // add negative sign bit
-        }
+//        if (xAngle < -64){
+//            print("Head cannot move more than 64 degrees.")
+//            xAngle = -64
+//        } else if (xAngle > 64){
+//            print("Head cannot move more than 64 degrees.")
+//            xAngle = 64
+//        }
+        
+        xAngle = min(xAngle, 255)
+        
+        
+        
+//        if (xAngle < 0) {
+//            xAngle = 511 + xAngle
+//        }
+        
+        // convert out of angle
+       // xAngle = xAngle * 244 / 135
+        
+        print("ready to send xangle = \(xAngle)")
        
         var data = [UInt8](repeating: 0, count: 2)
-        data = [UInt8](repeating: 0, count: 3)
+      //  data = [UInt8](repeating: 0, count: 2)
         data[0] = 6
         data[1] = UInt8(xAngle)
+        
+        
+//        data[1] = UInt8(xAngle >> 8)
+//        data[2] = UInt8(xAngle & 0b0000000011111111)
+
         
         return data
         
     }
     
     /// Generate and return data string array for setting the robot head y position
-    func setHeadYPosition(y: Int) -> [UInt8]{
+    static func setHeadYPosition(y: Int) -> [UInt8]{
         // TODO: head keeps going back to center without being told to
         // Set head position code is based off https://github.com/vdwel/RobotControl/blob/master/robot.py
         var yAngle = y
@@ -743,8 +758,8 @@ class ExecutingProgram {
     
     /// Generate and return tuple of two data string arrays for setting the robot head x and y position
     func setHeadXandYPostion(x: Int, y: Int) -> (xData: [UInt8], yData: [UInt8]) {
-        let data1 = setHeadXPosition(x: x)
-        let data2 = setHeadYPosition(y: y)
+        let data1 = ExecutingProgram.setHeadXPosition(x: x)
+        let data2 = ExecutingProgram.setHeadYPosition(y: y)
         return (xData: data1, yData: data2)
     }
 

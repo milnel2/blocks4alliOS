@@ -19,6 +19,7 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var robotImageView: UIImageView!
     @IBOutlet weak var playWithVirtualRobotButton: UIButton!
+    @IBOutlet weak var playWithXylophoneButton: UIButton!
     @IBOutlet weak var welcomeLabelImage: UIImageView!
     
     var blockSize = 150 // this controls the size of the blocks you put down in the Building Screen
@@ -47,6 +48,16 @@ class MainMenuViewController: UIViewController {
         playWithVirtualRobotButton.titleLabel?.lineBreakMode = .byWordWrapping
         playWithVirtualRobotButton.titleLabel?.textAlignment = .center
         playWithRobotButton.titleLabel?.numberOfLines = 2
+        
+        playWithXylophoneButton.layer.cornerRadius = 30
+        playWithXylophoneButton.layer.borderWidth = 10
+        playWithXylophoneButton.layer.borderColor = #colorLiteral(red: 0.3607843137, green: 0, blue: 0.7215686275, alpha: 1)
+        playWithXylophoneButton.backgroundColor = #colorLiteral(red: 0.6745098039, green: 0.5215686275, blue: 0.9568627451, alpha: 1)
+        playWithXylophoneButton.titleLabel?.font =  UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 30.0)
+        playWithXylophoneButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        playWithXylophoneButton.titleLabel?.lineBreakMode = .byWordWrapping
+        playWithXylophoneButton.titleLabel?.textAlignment = .center
+        playWithXylophoneButton.titleLabel?.numberOfLines = 2
         
        
         // Accessibility

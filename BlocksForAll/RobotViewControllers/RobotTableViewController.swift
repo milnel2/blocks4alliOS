@@ -42,10 +42,11 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
    
     var dashPeripheral: CBPeripheral?
     var localCentralManager: CBCentralManager!
+    public var isConnecting: Bool = false
     
     // MARK: View Lifecycle
     override func viewDidLoad() {
-        
+        print("loaded robot table view controller")
         super.viewDidLoad()
         // Make table background transparent
                tableView.backgroundColor = UIColor.clear
@@ -220,7 +221,6 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: (any Error)?) {
-        
         guard let robot = getRobotFromPeripheral(peripheral: peripheral) else { return }
         if characteristic == robot.dashSensorCharacteristic2 {
            
@@ -264,13 +264,16 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
             } else if characteristic.uuid == dashInfoUUID {
                 robot.dashInfoCharacteristic = characteristic
             }
+           
         }
-        
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        print("reloading")
+        self.tableView.reloadData()
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
+        //isConnecting = false
     }
+    
 
 //    // MARK: Helper Methods
     // TODO: test this function
@@ -352,6 +355,7 @@ class RobotTableViewController: UITableViewController, CBCentralManagerDelegate,
             dashPeripheral = robotPeripheral
             dashPeripheral?.delegate = self
             localCentralManager.connect(dashPeripheral!)
+            isConnecting = true
         }
         
         DispatchQueue.main.async {
