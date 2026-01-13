@@ -63,6 +63,13 @@ class CalibrateXylophoneViewController: UIViewController {
             calibrationStep = 0
         }
         updateStep()
+        setUpAccessibility()
+    }
+    
+    func setUpAccessibility() {
+        calibrateLabel.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 30.0)
+        instructionsLabel.font =  UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 24.0)
+        nextButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 24.0)
     }
     
   
