@@ -65,25 +65,38 @@ class CalibrateXylophoneViewController: UIViewController {
         switch calibrationStep {
         case 0:
             instructionsLabel.text = "Connect a Dash robot."
+            instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_ConnectRobot")
+            nextButton.setTitle("Search for Robots", for: .normal)
         case 1:
             instructionsLabel.text = "Attach xylophone to Dash."
-            break
+            instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_Xylophone")
+            nextButton.setTitle("Next", for: .normal)
+
         case 2:
             instructionsLabel.text = "Attach mallet to Dash's left ear."
+            instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_AttachMallet")
         case 3:
-            instructionsLabel.text = "Place mallet on red (first) key."
+            instructionsLabel.text = "Place mallet on red (first/largest) key."
+            instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_RedKey")
         case 4:
             // Save coordinates
             noteCoordinates["Red"] = (connectedRobots[0].headX,connectedRobots[0].headY)
+            
             instructionsLabel.text = "Place mallet on green (fourth) key."
+            instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_GreenKey")
         case 5:
             noteCoordinates["Green"] = (connectedRobots[0].headX,connectedRobots[0].headY)
+            
             instructionsLabel.text = "Place mallet on turquoise (fifth) key."
+            instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_TurquoiseKey")
         case 6:
             noteCoordinates["Turquoise"] = (connectedRobots[0].headX,connectedRobots[0].headY)
+            
             instructionsLabel.text = "Place mallet on pink (eighth) key."
+            instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_PinkKey")
         case 7:
             noteCoordinates["Pink"] = (connectedRobots[0].headX,connectedRobots[0].headY)
+            
             instructionsLabel.text = "Calibration complete!"
             // Calculate other key positions
             let greenToRedDist = noteCoordinates["Green"]!.x - noteCoordinates["Red"]!.x

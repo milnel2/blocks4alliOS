@@ -21,9 +21,12 @@ class AddRobotViewController: UIViewController {
     
     @IBAction func backButtonPressed(_ sender: Any) {
         
-//        while robotTableVC.isConnecting {
-//            print("waiting to connect")
-//        }
+        // Make sure robots have finished connecting, otherwise do nothing
+        for robot in connectedRobots {
+            if robot.dashCharacteristic == nil || robot.dashSensorCharacteristic1 == nil || robot.dashSensorCharacteristic2 == nil || robot.dashInfoCharacteristic == nil {
+                return
+            }
+        }
         switch sentFrom {
         case .Workspace:
             performSegue(withIdentifier: "robotMenuToWorkspace", sender: self)
