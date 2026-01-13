@@ -12,6 +12,7 @@ class CalibrateXylophoneViewController: UIViewController {
     
     @IBOutlet weak var calibrateLabel: UILabel!
     
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var instructionsLabel: UILabel!
     
     @IBOutlet weak var instructionsImage: UIImageView!
@@ -70,66 +71,81 @@ class CalibrateXylophoneViewController: UIViewController {
         calibrateLabel.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 30.0)
         instructionsLabel.font =  UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 24.0)
         nextButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 24.0)
+        cancelButton.accessibilityLabel = "Cancel calibration."
+        instructionsImage.isAccessibilityElement = true
+        accessibilityElements = [cancelButton!, calibrateLabel!, instructionsLabel!, instructionsImage!, nextButton!]
     }
     
   
     func updateStep() {
+        // Move accessibility focus to the instructions label
+        UIAccessibility.post(notification: .screenChanged, argument: self.instructionsLabel)
         switch calibrationStep {
         case 0:
-            instructionsLabel.text = "Connect a Dash robot."
+            instructionsLabel.text = "Step 0. Connect a Dash robot."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_ConnectRobot")
+            instructionsImage.image?.accessibilityLabel = "Dash robot"
             nextButton.setTitle("Search for Robots", for: .normal)
         case 1:
-            instructionsLabel.text = "Attach xylophone to Dash."
+            instructionsLabel.text = "Step 1. Attach xylophone to Dash."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_Xylophone")
             nextButton.setTitle("Next", for: .normal)
-
+            instructionsImage.image?.accessibilityLabel = "Wonder Workshop xylophone attachment"
         case 2:
-            instructionsLabel.text = "Attach mallet to Dash's left ear."
+            instructionsLabel.text = "Step 2. Attach mallet to Dash's left ear (your right)"
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_AttachMallet")
+            instructionsImage.image?.accessibilityLabel = "Mallet should be attached to Dash's left ear and be facing out towards the xylophone."
         case 3:
-            instructionsLabel.text = "Place mallet on red (first/largest) key."
+            instructionsLabel.text = "Step 3. Place mallet on red (first/largest) key."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_RedKey")
+            instructionsImage.image?.accessibilityLabel = "Mallet is on red/first/leftmost/largest key."
         case 4:
             // Save coordinates
             noteCoordinates["Red"] = (connectedRobots[0].headX, connectedRobots[0].headY)
             
-            instructionsLabel.text = "Place mallet on orange (second) key."
+            instructionsLabel.text = "Step 4. Place mallet on orange (second) key."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_OrangeKey")
+            instructionsImage.image?.accessibilityLabel = "Mallet is on orange key."
         case 5:
             // Save coordinates
             noteCoordinates["Orange"] = (connectedRobots[0].headX,connectedRobots[0].headY)
             
-            instructionsLabel.text = "Place mallet on yellow (third) key."
+            instructionsLabel.text = "Step 5. Place mallet on yellow (third) key."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_YellowKey")
+            instructionsImage.image?.accessibilityLabel = "Mallet is on yellow key."
         case 6:
             // Save coordinates
             noteCoordinates["Yellow"] = (connectedRobots[0].headX,connectedRobots[0].headY)
             
-            instructionsLabel.text = "Place mallet on green (fourth) key."
+            instructionsLabel.text = "Step 6. Place mallet on green (fourth) key."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_GreenKey")
+            instructionsImage.image?.accessibilityLabel = "Mallet is on green key."
         case 7:
             noteCoordinates["Green"] = (connectedRobots[0].headX,connectedRobots[0].headY)
             
-            instructionsLabel.text = "Place mallet on turquoise (fifth) key."
+            instructionsLabel.text = "Step 7. Place mallet on turquoise (fifth) key."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_TurquoiseKey")
+            instructionsImage.image?.accessibilityLabel = "Mallet is on turquoise key."
         case 8:
             // Save coordinates
             noteCoordinates["Turquoise"] = (connectedRobots[0].headX,connectedRobots[0].headY)
             
-            instructionsLabel.text = "Place mallet on blue (sixth) key."
+            instructionsLabel.text = "Step 8. Place mallet on blue (sixth) key."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_BlueKey")
+            instructionsImage.image?.accessibilityLabel = "Mallet is on blue key."
         case 9:
             // Save coordinates
             noteCoordinates["Blue"] = (connectedRobots[0].headX,connectedRobots[0].headY)
             
-            instructionsLabel.text = "Place mallet on purple (seventh) key."
+            instructionsLabel.text = "Step 9. Place mallet on purple (seventh) key."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_PurpleKey")
+            instructionsImage.image?.accessibilityLabel = "Mallet is on purple key."
         case 10:
             noteCoordinates["Purple"] = (connectedRobots[0].headX,connectedRobots[0].headY)
             
-            instructionsLabel.text = "Place mallet on pink (eighth) key."
+            instructionsLabel.text = "Step 10. Place mallet on pink (eighth) key."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_PinkKey")
+            instructionsImage.image?.accessibilityLabel = "Mallet is on pink key."
         case 11:
             noteCoordinates["Pink"] = (connectedRobots[0].headX,connectedRobots[0].headY)
             

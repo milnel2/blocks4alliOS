@@ -11,7 +11,8 @@ import Foundation
 class XylophoneViewController: UIViewController {
     // View Controller Elements
     
-//    @IBOutlet weak var startListeningToInputButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var calibrateButton: UIButton!
     @IBOutlet weak var redButton: UIButton!
     @IBOutlet weak var orangeButton: UIButton!
@@ -22,6 +23,7 @@ class XylophoneViewController: UIViewController {
     @IBOutlet weak var purpleButton: UIButton!
     @IBOutlet weak var pinkButton: UIButton!
     
+    @IBOutlet weak var keysTable: UIStackView!
     private var noteCoordinates: [String : (x: Int, y: Int)] = ["Red" : (0,0), "Orange": (0,0), "Yellow": (0,0), "Green": (0,0), "Turquoise": (0,0), "Blue": (0,0), "Purple": (0,0), "Pink": (0,0)]
     
     private var isCalibrated: Bool = false
@@ -108,6 +110,8 @@ class XylophoneViewController: UIViewController {
             blueButton.isEnabled = true
             purpleButton.isEnabled = true
             pinkButton.isEnabled = true
+            // Move accessibility focus to the first key
+            UIAccessibility.post(notification: .screenChanged, argument: self.redButton)
         } else {
             redButton.isEnabled = false
             orangeButton.isEnabled = false
@@ -118,6 +122,23 @@ class XylophoneViewController: UIViewController {
             purpleButton.isEnabled = false
             pinkButton.isEnabled = false
         }
+        
+        setUpAccessibility()
+    }
+    
+    func setUpAccessibility() {
+        calibrateButton.titleLabel?.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 24.0)
+        titleLabel.font = UIFont.accessibleFont(withStyle: .largeTitle, size: 18.0)
+        accessibilityElements = [backButton!, titleLabel!, calibrateButton!, keysTable!]
+        
+        redButton.accessibilityLabel = "Note 1, Red."
+        orangeButton.accessibilityLabel = "Note 2, Orange."
+        yellowButton.accessibilityLabel = "Note 3, Yellow."
+        greenButton.accessibilityLabel = "Note 4, Green."
+        turquoiseButton.accessibilityLabel = "Note 5, Turquoise."
+        blueButton.accessibilityLabel = "Note 6, Blue."
+        purpleButton.accessibilityLabel = "Note 7, Purple."
+        pinkButton.accessibilityLabel = "Note 8, Pink."
     }
     
     func moveHeadX(x: Int) {

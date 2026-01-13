@@ -569,6 +569,7 @@
                         <outlet property="robotTab" destination="1iB-Vq-69B" id="3Wv-t9-ejw"/>
                         <outlet property="settingsButton" destination="Dr3-N8-uot" id="WXr-KT-s68"/>
                         <outlet property="tabsView" destination="QYv-qH-Ihb" id="3yf-Ow-d9D"/>
+                        <outlet property="xylophoneButton" destination="PU0-qA-KDK" id="hgW-Ko-b3g"/>
                         <segue destination="e1z-cA-zHu" kind="show" identifier="startScreenGalleryToSettings" id="Mgg-JY-OYu"/>
                         <segue destination="1qS-gh-lht" kind="show" identifier="startScreenGalleryToHelp" id="HBt-V8-Vd2"/>
                         <segue destination="uoc-nU-c4a" kind="show" identifier="openRobotWorkspaceFromGallery" id="GFr-l0-p1d"/>
@@ -750,13 +751,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="9q1-WM-3i4"/>
                     <connections>
+                        <outlet property="backButton" destination="rek-R1-igb" id="qvl-cU-Byb"/>
                         <outlet property="blueButton" destination="bcN-nK-LlT" id="clp-eY-FU3"/>
                         <outlet property="calibrateButton" destination="QPO-wV-CXA" id="AVQ-e1-mN1"/>
                         <outlet property="greenButton" destination="Aix-Y8-F6s" id="wL0-In-ha6"/>
+                        <outlet property="keysTable" destination="sbN-k5-IOH" id="k2t-0H-lNa"/>
                         <outlet property="orangeButton" destination="bHf-Mo-10T" id="vHA-rA-Rl3"/>
                         <outlet property="pinkButton" destination="hNS-Ts-uh3" id="4B6-IO-MUh"/>
                         <outlet property="purpleButton" destination="2I4-CU-WXE" id="xoe-go-Eqa"/>
                         <outlet property="redButton" destination="GCW-la-c2s" id="DEY-vH-eYm"/>
+                        <outlet property="titleLabel" destination="wRv-yd-WPb" id="gvO-iI-90U"/>
                         <outlet property="turquoiseButton" destination="xHd-Fh-s8c" id="TFK-Jh-5TJ"/>
                         <outlet property="yellowButton" destination="d4v-It-j3L" id="KCc-Hv-egf"/>
                         <segue destination="TFS-lV-U7s" kind="show" identifier="calibrateXylophone" id="Ipv-mX-Tno"/>
@@ -781,7 +785,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oG3-TK-UbO" userLabel="Cancel">
                                 <rect key="frame" x="33" y="46" width="100" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <accessibility key="accessibilityConfiguration" label="Back"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="oG3-TK-UbO" secondAttribute="height" multiplier="1:1" id="Y1F-C0-qw8"/>
                                     <constraint firstAttribute="width" constant="100" id="jAp-o1-Bmc"/>
@@ -843,6 +846,7 @@
                     <navigationItem key="navigationItem" id="Epq-pF-UA4"/>
                     <connections>
                         <outlet property="calibrateLabel" destination="d99-0D-qMy" id="ulq-zn-W0E"/>
+                        <outlet property="cancelButton" destination="oG3-TK-UbO" id="oT7-06-Dy2"/>
                         <outlet property="instructionsImage" destination="kUl-fN-ufp" id="zUP-1w-7g8"/>
                         <outlet property="instructionsLabel" destination="8ZJ-fO-mSF" id="5gS-jY-b1g"/>
                         <outlet property="nextButton" destination="GEz-Na-lob" id="ibR-Rn-dFI"/>
