@@ -800,20 +800,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ZJ-fO-mSF" userLabel="Instructions">
-                                <rect key="frame" x="472" y="197" width="136.5" height="33"/>
+                                <rect key="frame" x="472" y="172" width="136.5" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kUl-fN-ufp">
-                                <rect key="frame" x="390" y="255" width="300" height="300"/>
+                                <rect key="frame" x="340" y="205" width="400" height="400"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="Xek-RB-3I8"/>
-                                    <constraint firstAttribute="height" constant="300" id="b9p-Fd-ylI"/>
+                                    <constraint firstAttribute="width" constant="400" id="Xek-RB-3I8"/>
+                                    <constraint firstAttribute="height" constant="400" id="b9p-Fd-ylI"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEz-Na-lob">
-                                <rect key="frame" x="479.5" y="580" width="121" height="96"/>
+                                <rect key="frame" x="479.5" y="630" width="121" height="96"/>
                                 <color key="backgroundColor" name="blueAndOrange"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <inset key="contentEdgeInsets" minX="30" minY="30" maxX="30" maxY="30"/>
@@ -834,7 +834,7 @@
                             <constraint firstItem="GEz-Na-lob" firstAttribute="top" secondItem="kUl-fN-ufp" secondAttribute="bottom" constant="25" id="Mf7-8M-QKv"/>
                             <constraint firstItem="d99-0D-qMy" firstAttribute="centerX" secondItem="hSS-th-vLn" secondAttribute="centerX" id="Wb0-zW-W7z"/>
                             <constraint firstItem="d99-0D-qMy" firstAttribute="centerY" secondItem="oG3-TK-UbO" secondAttribute="centerY" id="YJI-O0-J2w"/>
-                            <constraint firstItem="kUl-fN-ufp" firstAttribute="top" secondItem="8ZJ-fO-mSF" secondAttribute="bottom" constant="25" id="dcd-tg-yUa"/>
+                            <constraint firstItem="kUl-fN-ufp" firstAttribute="top" secondItem="8ZJ-fO-mSF" secondAttribute="bottom" id="dcd-tg-yUa"/>
                             <constraint firstItem="8ZJ-fO-mSF" firstAttribute="centerX" secondItem="hSS-th-vLn" secondAttribute="centerX" id="dgs-Q4-Pn8"/>
                             <constraint firstItem="oG3-TK-UbO" firstAttribute="top" secondItem="FlV-eA-w8x" secondAttribute="bottom" constant="46" id="ha2-JG-31s"/>
                             <constraint firstItem="oG3-TK-UbO" firstAttribute="leading" secondItem="hSS-th-vLn" secondAttribute="leading" constant="33" id="wYN-3w-B7r"/>
