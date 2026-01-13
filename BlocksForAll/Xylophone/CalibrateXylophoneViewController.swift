@@ -7,7 +7,7 @@
 //
 import UIKit
 import Foundation
-
+// TODO: translate this VC to Spanish
 class CalibrateXylophoneViewController: UIViewController {
     
     @IBOutlet weak var calibrateLabel: UILabel!
@@ -127,25 +127,7 @@ class CalibrateXylophoneViewController: UIViewController {
             noteCoordinates["Pink"] = (connectedRobots[0].headX,connectedRobots[0].headY)
             
             instructionsLabel.text = "Calibration complete!"
-//            // Calculate other key positions
-//            let greenToRedDist = noteCoordinates["Green"]!.x - noteCoordinates["Red"]!.x
-//            let orangeX = noteCoordinates["Red"]!.x + (greenToRedDist / 3)
-//            let orangeY = (noteCoordinates["Green"]!.y + noteCoordinates["Red"]!.y) / 2
-//            noteCoordinates["Orange"] = (x: orangeX, y: orangeY)
-//
-//            let yellowX = noteCoordinates["Red"]!.x + (2 * greenToRedDist / 3)
-//            let yellowY = (noteCoordinates["Green"]!.y + noteCoordinates["Red"]!.y) / 2
-//            noteCoordinates["Yellow"] = (x: yellowX, y: yellowY)
-//
-//            let turqToPinkDist = noteCoordinates["Turquoise"]!.x - noteCoordinates["Pink"]!.x
-//
-//            let blueX = noteCoordinates["Turquoise"]!.x - (turqToPinkDist / 3)
-//            let blueY = (noteCoordinates["Turquoise"]!.y + noteCoordinates["Pink"]!.y) / 2
-//            noteCoordinates["Blue"] = (x: blueX, y: blueY)
-//
-//            let purpleX = noteCoordinates["Turquoise"]!.x - (2 * turqToPinkDist / 3)
-//            let purpleY = (noteCoordinates["Turquoise"]!.y + noteCoordinates["Pink"]!.y) / 2
-//            noteCoordinates["Purple"] = (x: purpleX, y: purpleY)
+            
             doneCalibrating = true
             performSegue(withIdentifier: "calibrateToXylophone", sender: self)
         default:
