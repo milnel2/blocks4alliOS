@@ -30,9 +30,14 @@ class CalibrateXylophoneViewController: UIViewController {
     // 1: Attach xylophone
     // 2: Attach mallet
     // 3: Red key
-    // 4: Green key
-    // 5: Turquoise key
-    // 6: Pink key
+    // 4: Orange key
+    // 5: Yellow key
+    // 6: Green key
+    // 7: Turquoise key
+    // 8: Blue key
+    // 9: Purple key
+    // 10: Pink key
+    // 11: Complete
     private var calibrationStep: Int = 1
     private var xylophoneViewController: XylophoneViewController?
     
@@ -80,43 +85,67 @@ class CalibrateXylophoneViewController: UIViewController {
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_RedKey")
         case 4:
             // Save coordinates
-            noteCoordinates["Red"] = (connectedRobots[0].headX,connectedRobots[0].headY)
+            noteCoordinates["Red"] = (connectedRobots[0].headX, connectedRobots[0].headY)
+            
+            instructionsLabel.text = "Place mallet on orange (second) key."
+            instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_OrangeKey")
+        case 5:
+            // Save coordinates
+            noteCoordinates["Orange"] = (connectedRobots[0].headX,connectedRobots[0].headY)
+            
+            instructionsLabel.text = "Place mallet on yellow (third) key."
+            instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_YellowKey")
+        case 6:
+            // Save coordinates
+            noteCoordinates["Yellow"] = (connectedRobots[0].headX,connectedRobots[0].headY)
             
             instructionsLabel.text = "Place mallet on green (fourth) key."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_GreenKey")
-        case 5:
+        case 7:
             noteCoordinates["Green"] = (connectedRobots[0].headX,connectedRobots[0].headY)
             
             instructionsLabel.text = "Place mallet on turquoise (fifth) key."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_TurquoiseKey")
-        case 6:
+        case 8:
+            // Save coordinates
             noteCoordinates["Turquoise"] = (connectedRobots[0].headX,connectedRobots[0].headY)
+            
+            instructionsLabel.text = "Place mallet on blue (sixth) key."
+            instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_BlueKey")
+        case 9:
+            // Save coordinates
+            noteCoordinates["Blue"] = (connectedRobots[0].headX,connectedRobots[0].headY)
+            
+            instructionsLabel.text = "Place mallet on purple (seventh) key."
+            instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_PurpleKey")
+        case 10:
+            noteCoordinates["Purple"] = (connectedRobots[0].headX,connectedRobots[0].headY)
             
             instructionsLabel.text = "Place mallet on pink (eighth) key."
             instructionsImage.image = HelperFunctions.getUIImage(named: "Calibrate_PinkKey")
-        case 7:
+        case 11:
             noteCoordinates["Pink"] = (connectedRobots[0].headX,connectedRobots[0].headY)
             
             instructionsLabel.text = "Calibration complete!"
-            // Calculate other key positions
-            let greenToRedDist = noteCoordinates["Green"]!.x - noteCoordinates["Red"]!.x
-            let orangeX = noteCoordinates["Red"]!.x + (greenToRedDist / 3)
-            let orangeY = (noteCoordinates["Green"]!.y + noteCoordinates["Red"]!.y) / 2
-            noteCoordinates["Orange"] = (x: orangeX, y: orangeY)
-
-            let yellowX = noteCoordinates["Red"]!.x + (2 * greenToRedDist / 3)
-            let yellowY = (noteCoordinates["Green"]!.y + noteCoordinates["Red"]!.y) / 2
-            noteCoordinates["Yellow"] = (x: yellowX, y: yellowY)
-
-            let turqToPinkDist = noteCoordinates["Turquoise"]!.x - noteCoordinates["Pink"]!.x
-
-            let blueX = noteCoordinates["Turquoise"]!.x - (turqToPinkDist / 3)
-            let blueY = (noteCoordinates["Turquoise"]!.y + noteCoordinates["Pink"]!.y) / 2
-            noteCoordinates["Blue"] = (x: blueX, y: blueY)
-
-            let purpleX = noteCoordinates["Turquoise"]!.x - (2 * turqToPinkDist / 3)
-            let purpleY = (noteCoordinates["Turquoise"]!.y + noteCoordinates["Pink"]!.y) / 2
-            noteCoordinates["Purple"] = (x: purpleX, y: purpleY)
+//            // Calculate other key positions
+//            let greenToRedDist = noteCoordinates["Green"]!.x - noteCoordinates["Red"]!.x
+//            let orangeX = noteCoordinates["Red"]!.x + (greenToRedDist / 3)
+//            let orangeY = (noteCoordinates["Green"]!.y + noteCoordinates["Red"]!.y) / 2
+//            noteCoordinates["Orange"] = (x: orangeX, y: orangeY)
+//
+//            let yellowX = noteCoordinates["Red"]!.x + (2 * greenToRedDist / 3)
+//            let yellowY = (noteCoordinates["Green"]!.y + noteCoordinates["Red"]!.y) / 2
+//            noteCoordinates["Yellow"] = (x: yellowX, y: yellowY)
+//
+//            let turqToPinkDist = noteCoordinates["Turquoise"]!.x - noteCoordinates["Pink"]!.x
+//
+//            let blueX = noteCoordinates["Turquoise"]!.x - (turqToPinkDist / 3)
+//            let blueY = (noteCoordinates["Turquoise"]!.y + noteCoordinates["Pink"]!.y) / 2
+//            noteCoordinates["Blue"] = (x: blueX, y: blueY)
+//
+//            let purpleX = noteCoordinates["Turquoise"]!.x - (2 * turqToPinkDist / 3)
+//            let purpleY = (noteCoordinates["Turquoise"]!.y + noteCoordinates["Pink"]!.y) / 2
+//            noteCoordinates["Purple"] = (x: purpleX, y: purpleY)
             doneCalibrating = true
             performSegue(withIdentifier: "calibrateToXylophone", sender: self)
         default:

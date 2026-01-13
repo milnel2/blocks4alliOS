@@ -175,7 +175,7 @@ class XylophoneViewController: UIViewController {
             let y = noteCoordinates[color]!.y
             moveHeadX(x: x)
             Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { timer in
-                self.moveHeadY(y: y)
+                self.moveHeadY(y: y + 2) // adjust to be a little higher so that the mallet doesn't smash into the xylophone
             }
         } else {
             print("\(color) not present in noteCoordinates dictionary")
