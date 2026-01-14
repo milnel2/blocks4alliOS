@@ -9,8 +9,9 @@
 import UIKit
 
 class AddRobotViewController: UIViewController {
-    var sentFromWorkspace = true
+    var sentFrom: addRobotSenderType = addRobotSenderType.NOT_SET
     
+    //public var robotTableVC: RobotTableViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,16 +20,34 @@ class AddRobotViewController: UIViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        if sentFromWorkspace{
-            performSegue(withIdentifier: "robotMenuToWorkspace", sender: self)
-        }else{
-            performSegue(withIdentifier: "robotMenuToSettings", sender: self)
+        
+        // Make sure robots have finished connecting, otherwise do nothing
+        for robot in connectedRobots {
+            if robot.dashCharacteristic == nil || robot.dashSensorCharacteristic1 == nil || robot.dashSensorCharacteristic2 == nil || robot.dashInfoCharacteristic == nil {
+                return
+            }
         }
+        switch sentFrom {
+        case .Workspace:
+            performSegue(withIdentifier: "robotMenuToWorkspace", sender: self)
+        case .Settings:
+            performSegue(withIdentifier: "robotMenuToSettings", sender: self)
+        case .Xylophone:
+            performSegue(withIdentifier: "addRobotToCalibrate", sender: self)
+        default:
+            print("ERROR: addRobotSenderType not set")
+        }
+       
+        // reset sentFrom
+        sentFrom = .NOT_SET
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? BlocksViewController {
+}
 
-        }
-    }
+// View Controllers that could cause the AddRobotViewController to open
+enum addRobotSenderType {
+    case NOT_SET
+    case Workspace
+    case Settings
+    case Xylophone
 }

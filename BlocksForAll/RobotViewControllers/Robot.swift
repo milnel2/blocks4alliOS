@@ -113,19 +113,22 @@ class Robot: Equatable {
         // Head X and Y
         let head = (dataList[0x12] << 8) + dataList[0x13]
         headX = head & 0b0000000111111111  // select last 9 bits
+        let rawHeadX = headX
         headY = (head & 0b1111111000000000) >> 9  // select first 7 bits
-        if (headX > 255) {
-            // signed integer conversion
-            headX -= 512
-        }
-        
+//        if (headX > 255) {
+//            // signed integer conversion
+//            headX -= 512
+//        }
+        let rawHeadY = headY
         if (headY > 63) {
             headY -= 128
         }
         
-        headX = headX * 135 / 244 // convert to degrees
-        headY = headY * 22 / 49 // convert to degrees
+       // headX = headX * 135 / 244 // convert to degrees
+       
         
+        headY = headY * 22 / 49 // convert to degrees
+
         // Wheels
         leftWheel = (dataList[0x11] << 8) + dataList[0x10]
         rightWheel = (dataList[0x0F] << 8) + dataList[0x0E]

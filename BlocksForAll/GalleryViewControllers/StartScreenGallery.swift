@@ -14,6 +14,7 @@ class StartScreenGallery: UIViewController {
     @IBOutlet weak var buttonsView: UIView! // view that holds the help and settings buttons
     @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var xylophoneButton: UIButton!
     @IBOutlet weak var galleryView: UIView! // Large view that holds the gallery. Referenced so that we can access and change its color
     @IBOutlet weak var galleryCollectionView: ProjectGalleryCollectionView!
         
@@ -104,11 +105,12 @@ class StartScreenGallery: UIViewController {
         
         accessibilityElements = [tabsView!, buttonsView!, galleryCollectionView!]
         tabsView.accessibilityElements = [robotTab!, freeplayTab!]
-        buttonsView.accessibilityElements = [settingsButton!, helpButton!]
+        buttonsView.accessibilityElements = [xylophoneButton!, settingsButton!, helpButton!]
         
         // VoiceOver labels
         settingsButton.accessibilityLabel = NSLocalizedString("Settings", comment: "Accessibility Label for settings button on main menu screen")
         helpButton.accessibilityLabel = NSLocalizedString("Help", comment: "Accessibility Label for help button on main menu screen")
+        xylophoneButton.accessibilityLabel = "Play with Dash's xylophone attachment." // TODO: translate to Spanish
         robotTab.accessibilityLabel = NSLocalizedString("Play with Robot", comment: "Title for Play with Physical Robot button on main menu screen")
         freeplayTab.accessibilityLabel = NSLocalizedString("Play with Virtual Robot", comment: "Title for Play with Virtual Robot button on main menu screen")
     }

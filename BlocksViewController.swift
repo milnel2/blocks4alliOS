@@ -572,7 +572,7 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
     
     /// Run the actual program when the play button is clicked
     func playClicked() {
-        if(!areRobotsConnected()) {
+        if(!RobotControlViewController.areRobotsConnected()) {
             //no robots
             let announcement = NSLocalizedString("Connect to the dash robot.", comment: "Announcement when no robots are connected")
             UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged, argument: announcement)
@@ -1263,7 +1263,9 @@ class BlocksViewController:  RobotControlViewController, UICollectionViewDataSou
         
         // Segue to Add Robot Screen
         if  let destinationViewController = segue.destination as? AddRobotViewController {
+            destinationViewController.sentFrom = .Workspace
         }
+        
         
         // Segue to Location Selection Screen
         if let destinationViewController = segue.destination as? SelectLocationModifierViewController {
