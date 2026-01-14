@@ -7,6 +7,7 @@
 //
 import UIKit
 
+// TODO: translate this VC to Spanish
 class InstructionsViewController: UIViewController {
     
     // View Controller Elements
@@ -22,8 +23,8 @@ class InstructionsViewController: UIViewController {
         let attributedString = NSMutableAttributedString(attributedString: instructionsText.attributedText)
        
         // Set the substring 'website' and 'Privacy Policy' to be the link
-        attributedString.setAttributes([.link: websiteURL], range: NSMakeRange(2535, 7))
-        attributedString.setAttributes([.link: privPolicyURL], range: NSMakeRange(2603, 14))
+        attributedString.setAttributes([.link: websiteURL], range: NSMakeRange(2730, 7))
+        attributedString.setAttributes([.link: privPolicyURL], range: NSMakeRange(2798, 14))
         
         self.instructionsText.attributedText = attributedString
         self.instructionsText.isUserInteractionEnabled = true

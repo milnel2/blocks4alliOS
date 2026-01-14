@@ -1842,14 +1842,14 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" button="YES"/>
                                 </accessibility>
-                                <string key="text">Welcome to Blocks4All! This iOS iPad application is an accessible blocks-based programming environment designed to introduce children with motor and visual impairments to computer science concepts. It is compatible with iOS Switch Control and VoiceOver. 
-To run Blocks4All, you must have a Dash or Dot (limited commands) robot from Wonder Workshop. 
-To get started, select the Play button on the Main Menu. This directs you to the main workspace. To give commands to the robot, first, select a category in the Toolbox on the left side of the screen. Next, select a block (command) from the Toolbox among the available commands for the chosen category. Finally, add the block to the program by tapping on its desired location in the main workspace section in the middle of the screen. Note that you tap to place the block—it’s not drag and drop. 
+                                <mutableString key="text">Welcome to Blocks4All! This iOS iPad application is an accessible blocks-based programming environment designed to introduce children with motor and visual impairments to computer science concepts. It is compatible with iOS Switch Control and VoiceOver. 
+To run Blocks4All, you can program a "Virtual Robot" (no third-party purchases necessary) or use a Dash or Dot (limited commands) robot from Wonder Workshop. You may also play with the Wonder Workshop Dash Xylophone attachement in the (beta) xylophone mode.  
+To get started, create a new Dash project or Virtual Robot project from the Main Menu. This directs you to the main workspace. To give commands to the robot, first, select a category in the Toolbox on the left side of the screen. Next, select a block (command) from the Toolbox among the available commands for the chosen category. Finally, add the block to the program by tapping on its desired location in the main workspace section in the middle of the screen. Note that you tap to place the block—it’s not drag and drop. 
 To have the robot run the commands, press the Play button in the lower right corner of the screen. To connect Blocks4All with the Wonder Workshop robot, make sure that you have Bluetooth on your device and the robot turned on. If no robot appears, try turning it on and off. Select the robot you want, then press Back, then press Play again. 
 Some blocks, such as the Motion blocks, do not include extra parts. Other blocks, like the Sounds and Drive blocks, have modifiers to alter the characteristics (e.g. speed) of each block. You can edit a block command by tapping on the modifier block on the upper half of the block command in the workspace.  
 Meanwhile, blocks like “Repeat” and “If” have three components: a beginning modifier block, an end block, and a group of command block between the beginning and end blocks. The modifier block allows users to alter the conditions of these blocks: for example, the “Repeat” modifier block can be changed to repeat more than 2 times. Meanwhile, the “If” blocks may contain conditions such as “if Dash bumps into something” or “if Dash hears a voice”. These conditions affect the action of the command blocks between the beginning and end blocks.  
 To create a function, select the Create/Edit Functions block within the Functions category. You can add a function by tapping on the Add Function button on the upper right corner, entering the function name, and clicking Done. Afterwards, you can add commands to the functions or change existing commands by selecting the newly created function from the Functions Menu screen. There is also the option to rename or delete a function.  
-For further information on Blocks4All, please visit our website. For further details on your data privacy, please visit our Privacy Policy. </string>
+For further information on Blocks4All, please visit our website. For further details on your data privacy, please visit our Privacy Policy. </mutableString>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -3675,7 +3675,7 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="rIL-7v-1GC"/>
         <segue reference="Sej-Dp-TtN"/>
         <segue reference="bi3-BD-KAN"/>
-        <segue reference="Sqv-Qd-nUV"/>
+        <segue reference="cMd-ti-UVt"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>
