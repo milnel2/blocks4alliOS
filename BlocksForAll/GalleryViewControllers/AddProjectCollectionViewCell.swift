@@ -24,9 +24,9 @@ class AddProjectCollectionViewCell: UICollectionViewCell {
         newProjectLabel.adjustsFontForContentSizeCategory = true
         newProjectLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 30.0)
         if parentViewController?.getGalleryType() == ROBOT_GALLERY_TYPE {
-            backgroundColor = UIColor(named: "blue_block")
+            backgroundColor = UIColor(named: "light_blue")
         } else if parentViewController?.getGalleryType() == FREEPLAY_GALLERY_TYPE {
-            backgroundColor = UIColor(named: "orange_block")
+            backgroundColor = UIColor(named: "light_orange")
         }
         
     }

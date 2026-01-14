@@ -110,6 +110,7 @@ extension ProjectGalleryCollectionView : UICollectionViewDataSource, UICollectio
             cell.cellGalleryType = galleryType
             cell.project = project
             cell.parentViewController = startScreenGallery
+            cell.updateUI()
            
             updateAccessibilityTools()
             return cell
