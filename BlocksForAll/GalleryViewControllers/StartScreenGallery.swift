@@ -5,7 +5,7 @@
 //  Created by Lucy Rubin on 1/11/26.
 //  Copyright © 2026 Blocks4All. All rights reserved.
 //
-
+// TODO: translate this VC to Spanish
 class StartScreenGallery: UIViewController {
     
     @IBOutlet weak var tabsView: UIView! // view that holds the two tabs. Referenced so we can change sorting order
@@ -15,6 +15,7 @@ class StartScreenGallery: UIViewController {
     @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var xylophoneButton: UIButton!
+    @IBOutlet weak var galleryTitleLabel: UILabel!
     @IBOutlet weak var galleryView: UIView! // Large view that holds the gallery. Referenced so that we can access and change its color
     @IBOutlet weak var galleryCollectionView: ProjectGalleryCollectionView!
         
@@ -82,12 +83,23 @@ class StartScreenGallery: UIViewController {
             // dark blue background
             galleryView.backgroundColor = UIColor(named: "dark_blue")
             galleryCollectionView.backgroundColor = UIColor(named: "dark_blue")
+            
+            // Switch tabs
             tabsView.bringSubviewToFront(robotTab)
+            
+            // Update title
+            galleryTitleLabel.text = "Dash Robot Projects"
+            
         } else if currentGalleryType == FREEPLAY_GALLERY_TYPE {
             // orange background
             galleryView.backgroundColor = UIColor(named: "dark_orange")
             galleryCollectionView.backgroundColor = UIColor(named: "dark_orange")
+            
+            // Switch tabs
             tabsView.bringSubviewToFront(freeplayTab)
+            
+            // Update title
+            galleryTitleLabel.text = "Virtual Robot Projects"
         }
         
         // Update projects
@@ -103,7 +115,7 @@ class StartScreenGallery: UIViewController {
         robotTab.isAccessibilityElement = true
         freeplayTab.isAccessibilityElement = true
         
-        accessibilityElements = [tabsView!, buttonsView!, galleryCollectionView!]
+        accessibilityElements = [tabsView!, buttonsView!, galleryTitleLabel!, galleryCollectionView!]
         tabsView.accessibilityElements = [robotTab!, freeplayTab!]
         buttonsView.accessibilityElements = [xylophoneButton!, settingsButton!, helpButton!]
         
@@ -113,6 +125,10 @@ class StartScreenGallery: UIViewController {
         xylophoneButton.accessibilityLabel = "Play with Dash's xylophone attachment." // TODO: translate to Spanish
         robotTab.accessibilityLabel = NSLocalizedString("Play with Robot", comment: "Title for Play with Physical Robot button on main menu screen")
         freeplayTab.accessibilityLabel = NSLocalizedString("Play with Virtual Robot", comment: "Title for Play with Virtual Robot button on main menu screen")
+        
+        // Font
+        galleryTitleLabel.font = UIFont.accessibleBoldFont(withStyle: .largeTitle, size: 30)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -150,4 +166,6 @@ class StartScreenGallery: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 }

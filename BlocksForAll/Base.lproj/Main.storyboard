@@ -534,9 +534,17 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dash Robot Projects" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHA-n2-srD" userLabel="Gallery Title Label">
+                                                <rect key="frame" x="435" y="36" width="210" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <color key="textColor" name="whiteLightModeBlackDarkMode 1"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" name="navy_text"/>
                                         <constraints>
+                                            <constraint firstItem="IPo-e2-8Ry" firstAttribute="top" secondItem="pHA-n2-srD" secondAttribute="bottom" constant="10" id="4PS-wv-6VD"/>
+                                            <constraint firstItem="pHA-n2-srD" firstAttribute="centerX" secondItem="zjA-ip-RsH" secondAttribute="centerX" id="PKA-5J-u05"/>
                                             <constraint firstItem="IPo-e2-8Ry" firstAttribute="top" secondItem="zjA-ip-RsH" secondAttribute="top" constant="75" id="aSv-fq-J20"/>
                                             <constraint firstAttribute="trailing" secondItem="IPo-e2-8Ry" secondAttribute="trailing" constant="30" id="cQL-Jn-hn6"/>
                                             <constraint firstItem="IPo-e2-8Ry" firstAttribute="centerX" secondItem="zjA-ip-RsH" secondAttribute="centerX" id="dg0-Aa-vb7"/>
@@ -564,6 +572,7 @@
                         <outlet property="buttonsView" destination="b38-Q1-jAU" id="mxC-Hx-Ix0"/>
                         <outlet property="freeplayTab" destination="mFT-Wr-uuz" id="Bkz-VH-gdE"/>
                         <outlet property="galleryCollectionView" destination="IPo-e2-8Ry" id="iNH-Zo-jeV"/>
+                        <outlet property="galleryTitleLabel" destination="pHA-n2-srD" id="0ZF-67-zki"/>
                         <outlet property="galleryView" destination="zjA-ip-RsH" id="2lt-0C-Jb1"/>
                         <outlet property="helpButton" destination="yWo-2o-cM6" id="ALc-JJ-bP8"/>
                         <outlet property="robotTab" destination="1iB-Vq-69B" id="3Wv-t9-ejw"/>
@@ -3659,14 +3668,14 @@ For further information on Blocks4All, please visit our website. For further det
         <segue reference="g0f-Hs-dMn"/>
         <segue reference="d7W-eK-Vpz"/>
         <segue reference="Ifr-Iv-956"/>
-        <segue reference="36F-bB-1lV"/>
+        <segue reference="GFr-l0-p1d"/>
         <segue reference="SES-Og-HDs"/>
         <segue reference="HBt-V8-Vd2"/>
-        <segue reference="pX0-ao-Z6G"/>
+        <segue reference="Mgg-JY-OYu"/>
         <segue reference="rIL-7v-1GC"/>
         <segue reference="Sej-Dp-TtN"/>
         <segue reference="bi3-BD-KAN"/>
-        <segue reference="cMd-ti-UVt"/>
+        <segue reference="Sqv-Qd-nUV"/>
         <segue reference="wUA-vU-JW1"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -3745,6 +3754,9 @@ For further information on Blocks4All, please visit our website. For further det
         </namedColor>
         <namedColor name="vehicleNoiseColor 1">
             <color red="0.34099999070167542" green="0.50599998235702515" blue="0.60399997234344482" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="whiteLightModeBlackDarkMode 1">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="yellowColor">
             <color red="0.99900001287460327" green="0.98600000143051147" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
